@@ -58,9 +58,16 @@ export const NetworkModal: React.FC<NetworkModalProps> = ({ network, onClose }) 
                 </div>
               </div>
             </div>
-            <p className="text-white/90 text-sm leading-relaxed max-w-md">
+            <p className="text-white/90 text-sm leading-relaxed max-w-md mb-4">
               {meta.description}
             </p>
+            {network === 'Rain' && (
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/20 rounded-xl border border-white/30 backdrop-blur-sm">
+                <span className="text-[10px] font-black uppercase tracking-widest text-white">
+                  🏠 Best for home use — not ideal for mobile coverage
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Content */}

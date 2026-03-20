@@ -53,10 +53,23 @@ export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }>
           {meta.logoLetter}
         </div>
         <div>
-          <h2 className="text-2xl font-black text-[#031636] tracking-tight">{network}</h2>
+          <div className="flex items-center gap-2 mb-0.5">
+            <h2 className="text-2xl font-black text-[#031636] tracking-tight">{network}</h2>
+            <span className="text-[9px] font-black px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-500 uppercase tracking-wider">
+              {meta.type === 'mobile' ? '📱 Mobile' : '🏠 Home / Fixed'}
+            </span>
+          </div>
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{bundlesCount} active deals</span>
         </div>
       </div>
+
+      {network === 'Rain' && (
+        <div className="mb-6 p-3 bg-orange-50/50 border border-orange-100 rounded-xl">
+          <p className="text-[10px] font-bold text-orange-700 leading-tight">
+            Best for home use — not ideal for mobile coverage
+          </p>
+        </div>
+      )}
 
       <div className="space-y-6 flex-grow mb-8">
         {networkBundles.map(bundle => (

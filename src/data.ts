@@ -8,6 +8,7 @@ export const networkMetadata: Record<NetworkName, NetworkMetadata> = {
     logoLetter: 'V',
     description: "Vodacom's 5G footprint and throughput remain the most consistent in urban metros.",
     ussdBalance: '*135#',
+    type: 'mobile',
   },
   MTN: {
     name: 'MTN',
@@ -16,6 +17,7 @@ export const networkMetadata: Record<NetworkName, NetworkMetadata> = {
     logoLetter: 'M',
     description: "With a lower average cost per GB, MTN consistently delivers more data for less Rand.",
     ussdBalance: '*136#',
+    type: 'mobile',
   },
   Telkom: {
     name: 'Telkom',
@@ -24,6 +26,7 @@ export const networkMetadata: Record<NetworkName, NetworkMetadata> = {
     logoLetter: 'T',
     description: "Telkom's prepaid data remains the cheapest 'Anytime' data in the country.",
     ussdBalance: '*188#',
+    type: 'mobile',
   },
   'Cell C': {
     name: 'Cell C',
@@ -32,6 +35,7 @@ export const networkMetadata: Record<NetworkName, NetworkMetadata> = {
     logoLetter: 'C',
     description: "Cell C roams on MTN/Vodacom infrastructure in most areas, offering good value.",
     ussdBalance: '*101#',
+    type: 'mobile',
   },
   Rain: {
     name: 'Rain',
@@ -40,6 +44,7 @@ export const networkMetadata: Record<NetworkName, NetworkMetadata> = {
     logoLetter: 'R',
     description: "Specializing in unlimited data for urban metros with strong 5G focus.",
     ussdBalance: 'N/A (App only)',
+    type: 'fixed',
   },
 };
 

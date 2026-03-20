@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calculator, Youtube, Instagram, MessageCircle, Globe, Info, Zap, TrendingDown, Star, ChevronDown, ChevronUp } from 'lucide-react';
-import { bundles } from '../data';
+import { bundles, networkMetadata } from '../data';
 import { Bundle } from '../types';
 
 const USAGE_RATES = {
@@ -18,6 +18,7 @@ export const DataCalculator: React.FC = () => {
     chat: 1,
     web: 1,
   });
+  const [useCase, setUseCase] = useState<'mobile' | 'home'>('mobile');
   const [currentSpend, setCurrentSpend] = useState<number | ''>('');
   const [showMethodology, setShowMethodology] = useState(false);
 
@@ -39,15 +40,25 @@ export const DataCalculator: React.FC = () => {
 
     if (validBundles.length === 0) return null;
 
+    const filteredBundles = validBundles.filter(b => {
+      const isFixed = networkMetadata[b.network].type === 'fixed';
+      // Deprioritize Rain (fixed) for "mobile" use case unless "heavy usage" (> 20GB) and "home" is selected
+      if (useCase === 'mobile' && isFixed) return false;
+      return true;
+    });
+
+    // If no bundles left after filtering (e.g., only Rain was valid but excluded), fallback to all valid but mark Rain as lower
+    const bundlesToRank = filteredBundles.length > 0 ? filteredBundles : validBundles;
+
     // Best Value (lowest cost per GB)
-    const bestValue = [...validBundles].sort((a, b) => {
+    const bestValue = [...bundlesToRank].sort((a, b) => {
       const aCost = a.volume === 'Unlimited' ? 0.01 : a.costPerGb;
       const bCost = b.volume === 'Unlimited' ? 0.01 : b.costPerGb;
       return aCost - bCost;
     })[0];
 
     // Cheapest (absolute lowest price)
-    const cheapest = [...validBundles].sort((a, b) => a.price - b.price)[0];
+    const cheapest = [...bundlesToRank].sort((a, b) => a.price - b.price)[0];
 
     // Heavy User Recommend (if usage > 50GB)
     const heavyUser = totalDataNeeded > 50
@@ -60,7 +71,7 @@ export const DataCalculator: React.FC = () => {
     }
 
     return { bestValue, cheapest, heavyUser, savings };
-  }, [totalDataNeeded, currentSpend]);
+  }, [totalDataNeeded, currentSpend, useCase]);
 
   return (
     <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 border border-white shadow-xl hover:shadow-2xl transition-all duration-300" id="calculator">
@@ -76,6 +87,32 @@ export const DataCalculator: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="space-y-8">
+          <div className="mb-8 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block">How do you mainly use your data?</span>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setUseCase('mobile')}
+                className={`flex-1 py-3 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+                  useCase === 'mobile'
+                    ? 'bg-[#031636] text-white shadow-lg'
+                    : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
+                }`}
+              >
+                <span>📱</span> On the go
+              </button>
+              <button
+                onClick={() => setUseCase('home')}
+                className={`flex-1 py-3 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+                  useCase === 'home'
+                    ? 'bg-[#031636] text-white shadow-lg'
+                    : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
+                }`}
+              >
+                <span>🏠</span> Mostly at home
+              </button>
+            </div>
+          </div>
+
           <UsageSlider 
             label="Video Streaming (HD)" 
             icon={<Youtube className="w-4 h-4" />} 
@@ -154,6 +191,7 @@ export const DataCalculator: React.FC = () => {
                     bundle={recommendations.cheapest}
                     icon={<TrendingDown className="w-3.5 h-3.5" />}
                     color="blue"
+                    showFixedLabel={networkMetadata[recommendations.cheapest.network].type === 'fixed'}
                   />
                   {recommendations.bestValue.id !== recommendations.cheapest.id && (
                     <RecommendationCard
@@ -161,6 +199,7 @@ export const DataCalculator: React.FC = () => {
                       bundle={recommendations.bestValue}
                       icon={<Star className="w-3.5 h-3.5" />}
                       color="green"
+                      showFixedLabel={networkMetadata[recommendations.bestValue.network].type === 'fixed'}
                     />
                   )}
                   {recommendations.heavyUser && (
@@ -169,7 +208,15 @@ export const DataCalculator: React.FC = () => {
                       bundle={recommendations.heavyUser}
                       icon={<Zap className="w-3.5 h-3.5" />}
                       color="orange"
+                      showFixedLabel={networkMetadata[recommendations.heavyUser.network].type === 'fixed'}
                     />
+                  )}
+                  {networkMetadata[recommendations.cheapest.network].type === 'fixed' && (
+                    <div className="p-3 bg-blue-50/50 border border-blue-100 rounded-xl mt-4">
+                      <p className="text-[10px] font-bold text-blue-700 leading-tight italic">
+                        This option is best for home use and may not suit on-the-go usage.
+                      </p>
+                    </div>
                   )}
                   <p className="text-[10px] text-slate-500 font-medium mt-4 italic leading-relaxed">
                     {recommendations.cheapest.network} gives you {recommendations.cheapest.volume} for R{recommendations.cheapest.price}
@@ -238,7 +285,8 @@ const RecommendationCard: React.FC<{
   bundle: Bundle;
   icon: React.ReactNode;
   color: 'blue' | 'green' | 'orange';
-}> = ({ type, bundle, icon, color }) => {
+  showFixedLabel?: boolean;
+}> = ({ type, bundle, icon, color, showFixedLabel }) => {
   const colorClasses = {
     blue: 'bg-blue-50 text-blue-700 border-blue-100',
     green: 'bg-[#a0f399]/20 text-[#217128] border-[#a0f399]/30',
@@ -253,9 +301,16 @@ const RecommendationCard: React.FC<{
       className="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm"
     >
       <div className="flex items-center justify-between mb-3">
-        <span className={`flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full uppercase border ${colorClasses[color]}`}>
-          {icon} {type}
-        </span>
+        <div className="flex flex-col gap-1">
+          <span className={`inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full uppercase border ${colorClasses[color]} w-fit`}>
+            {icon} {type}
+          </span>
+          {showFixedLabel && (
+            <span className="text-[9px] font-black px-1.5 py-0.5 rounded-md bg-blue-100 text-blue-600 uppercase tracking-wider w-fit">
+              🏠 Best for home use
+            </span>
+          )}
+        </div>
         <span className="text-xs font-black text-[#031636]">{bundle.network}</span>
       </div>
       <div className="flex justify-between items-end">
