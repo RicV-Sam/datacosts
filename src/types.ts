@@ -1,6 +1,8 @@
+export type NetworkName = 'MTN' | 'Vodacom' | 'Telkom' | 'Cell C' | 'Rain';
+
 export interface Bundle {
   id: string;
-  network: 'MTN' | 'Vodacom' | 'Telkom' | 'Cell C' | 'Rain';
+  network: NetworkName;
   name: string;
   price: number;
   volume: string; // e.g. "10GB"
@@ -14,9 +16,18 @@ export interface Bundle {
 }
 
 export interface NetworkStats {
-  network: string;
+  network: NetworkName;
   coverage: string;
   avgSpeed5G: string;
   resilience: string;
   pricePoint: string;
+}
+
+export interface NetworkMetadata {
+  name: NetworkName;
+  color: string;
+  textColor: string;
+  logoLetter: string;
+  description: string;
+  ussdBalance: string;
 }

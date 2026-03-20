@@ -1,4 +1,47 @@
-import { Bundle, NetworkStats } from './types';
+import { Bundle, NetworkStats, NetworkMetadata, NetworkName } from './types';
+
+export const networkMetadata: Record<NetworkName, NetworkMetadata> = {
+  Vodacom: {
+    name: 'Vodacom',
+    color: '#E60000',
+    textColor: '#FFFFFF',
+    logoLetter: 'V',
+    description: "Vodacom's 5G footprint and throughput remain the most consistent in urban metros.",
+    ussdBalance: '*135#',
+  },
+  MTN: {
+    name: 'MTN',
+    color: '#FFCC00',
+    textColor: '#031636',
+    logoLetter: 'M',
+    description: "With a lower average cost per GB, MTN consistently delivers more data for less Rand.",
+    ussdBalance: '*136#',
+  },
+  Telkom: {
+    name: 'Telkom',
+    color: '#0066CC',
+    textColor: '#FFFFFF',
+    logoLetter: 'T',
+    description: "Telkom's prepaid data remains the cheapest 'Anytime' data in the country.",
+    ussdBalance: '*188#',
+  },
+  'Cell C': {
+    name: 'Cell C',
+    color: '#1a1c1c',
+    textColor: '#FFFFFF',
+    logoLetter: 'C',
+    description: "Cell C roams on MTN/Vodacom infrastructure in most areas, offering good value.",
+    ussdBalance: '*101#',
+  },
+  Rain: {
+    name: 'Rain',
+    color: '#FF4400',
+    textColor: '#FFFFFF',
+    logoLetter: 'R',
+    description: "Specializing in unlimited data for urban metros with strong 5G focus.",
+    ussdBalance: 'N/A (App only)',
+  },
+};
 
 export const bundles: Bundle[] = [
   {
@@ -60,6 +103,17 @@ export const bundles: Bundle[] = [
     costPerGb: 4.95,
   },
   {
+    id: 'telkom-prepaid-40gb',
+    network: 'Telkom',
+    name: 'Telkom 40GB Prepaid',
+    price: 189,
+    volume: '40GB',
+    validity: '30 Days',
+    type: 'Prepaid',
+    anytimeData: '40GB',
+    costPerGb: 4.73,
+  },
+  {
     id: 'cellc-monthly-10gb',
     network: 'Cell C',
     name: 'Cell C 10GB Monthly',
@@ -69,6 +123,17 @@ export const bundles: Bundle[] = [
     type: 'Monthly',
     anytimeData: '10GB',
     costPerGb: 12.90,
+  },
+  {
+    id: 'cellc-monthly-30gb',
+    network: 'Cell C',
+    name: 'Cell C 30GB Monthly',
+    price: 299,
+    volume: '30GB',
+    validity: '30 Days',
+    type: 'Monthly',
+    anytimeData: '30GB',
+    costPerGb: 9.97,
   },
   {
     id: 'rain-unlimited-4g',
@@ -81,10 +146,21 @@ export const bundles: Bundle[] = [
     anytimeData: 'Unlimited',
     costPerGb: 0,
   },
+  {
+    id: 'rain-unlimited-5g',
+    network: 'Rain',
+    name: 'Rain Unlimited 5G',
+    price: 599,
+    volume: 'Unlimited',
+    validity: '30 Days',
+    type: 'Monthly',
+    anytimeData: 'Unlimited',
+    costPerGb: 0,
+  },
 ];
 
 export interface USSDCode {
-  network: string;
+  network: NetworkName;
   purpose: string;
   code: string;
   category: 'Balance' | 'Data' | 'Settings' | 'Other';
