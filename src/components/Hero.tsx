@@ -1,12 +1,16 @@
 import React from 'react';
-import { BadgeCheck, Info } from 'lucide-react';
+import { BadgeCheck, Info, ArrowRight, Calculator, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  onScrollTo: (id: string) => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
   return (
     <section className="mb-16 pt-8 md:pt-16" id="home">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-12">
-        <div className="max-w-2xl relative">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 mb-12">
+        <div className="max-w-2xl relative text-center md:text-left">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -19,25 +23,24 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-black tracking-tighter text-[#031636] leading-[0.85] mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#031636] to-[#1b6d24]"
+            className="text-4xl md:text-7xl font-black tracking-tighter text-[#031636] leading-[0.95] md:leading-[0.85] mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#031636] to-[#1b6d24]"
           >
-            Compare SA's <br className="hidden md:block" />
-            Top Data Plans
+            Find the Cheapest Data in South Africa — Right Now
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-slate-600 text-lg md:text-xl max-w-lg leading-relaxed font-medium"
+            className="text-slate-600 text-lg md:text-xl max-w-lg leading-relaxed font-medium mx-auto md:mx-0"
           >
-            Objective, unbiased analysis of South Africa's mobile networks. We compare cost, coverage, and speed so you don't have to.
+            Compare MTN, Vodacom, Telkom, Cell C & Rain. Updated regularly.
           </motion.p>
         </div>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
-          className="relative group shrink-0"
+          className="relative group shrink-0 hidden md:block"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-[#1b6d24] to-[#a0f399] blur-2xl opacity-20 group-hover:opacity-30 transition-opacity rounded-3xl" />
           <div className="relative bg-white p-8 rounded-3xl shadow-xl border border-white/50 flex flex-col items-center justify-center text-center min-w-[240px]">
@@ -53,6 +56,49 @@ export const Hero: React.FC = () => {
           </div>
         </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-4"
+      >
+        <button
+          onClick={() => onScrollTo('deals')}
+          className="flex items-center justify-between p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-[#a0f399]/50 transition-all group text-left min-h-[44px]"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600">
+              <ArrowRight className="w-5 h-5" />
+            </div>
+            <span className="font-bold text-[#031636]">Compare Prices</span>
+          </div>
+        </button>
+
+        <button
+          onClick={() => onScrollTo('calculator')}
+          className="flex items-center justify-between p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-[#a0f399]/50 transition-all group text-left min-h-[44px]"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-[#a0f399]/20 rounded-xl flex items-center justify-center text-[#217128]">
+              <Calculator className="w-5 h-5" />
+            </div>
+            <span className="font-bold text-[#031636]">Use Calculator</span>
+          </div>
+        </button>
+
+        <button
+          onClick={() => onScrollTo('ussd')}
+          className="flex items-center justify-between p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-[#a0f399]/50 transition-all group text-left min-h-[44px]"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600">
+              <Phone className="w-5 h-5" />
+            </div>
+            <span className="font-bold text-[#031636]">View USSD Codes</span>
+          </div>
+        </button>
+      </motion.div>
     </section>
   );
 };

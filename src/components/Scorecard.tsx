@@ -16,13 +16,14 @@ export const Scorecard: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 border border-white shadow-2xl overflow-hidden">
-        <div className="hidden lg:grid grid-cols-6 gap-6 mb-8 px-6 py-6 bg-slate-50/50 rounded-2xl border border-slate-100">
-          <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Network Metric</div>
-          {networkStats.map(stat => (
-            <div key={stat.network} className="text-[10px] font-black uppercase tracking-[0.2em] text-[#031636] text-center">{stat.network}</div>
-          ))}
-        </div>
+      <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 border border-white shadow-2xl overflow-x-auto">
+        <div className="min-w-[800px] lg:min-w-0">
+          <div className="hidden lg:grid grid-cols-6 gap-6 mb-8 px-6 py-6 bg-slate-50/50 rounded-2xl border border-slate-100">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Network Metric</div>
+            {networkStats.map(stat => (
+              <div key={stat.network} className="text-[10px] font-black uppercase tracking-[0.2em] text-[#031636] text-center">{stat.network}</div>
+            ))}
+          </div>
 
         <div className="space-y-6">
           {/* Coverage */}
@@ -50,6 +51,8 @@ export const Scorecard: React.FC = () => {
             icon={<Banknote className="w-5 h-5" />}
             stats={networkStats.map(s => ({ network: s.network, value: s.pricePoint }))}
           />
+        </div>
+
         </div>
 
         <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">

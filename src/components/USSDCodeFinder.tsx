@@ -29,7 +29,7 @@ export const USSDCodeFinder: React.FC = () => {
   };
 
   return (
-    <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white shadow-2xl hover:shadow-2xl transition-all duration-300" id="ussd">
+    <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white shadow-2xl hover:shadow-2xl transition-all duration-300">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-12 mb-12">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 bg-[#a0f399]/20 rounded-2xl flex items-center justify-center text-[#217128] border border-[#a0f399]/30">

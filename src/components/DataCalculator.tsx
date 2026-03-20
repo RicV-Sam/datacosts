@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calculator, Youtube, Instagram, MessageCircle, Globe, Info, Zap, TrendingDown, Star } from 'lucide-react';
+import { Calculator, Youtube, Instagram, MessageCircle, Globe, Info, Zap, TrendingDown, Star, ChevronDown, ChevronUp } from 'lucide-react';
 import { bundles } from '../data';
 import { Bundle } from '../types';
 
@@ -13,11 +13,13 @@ const USAGE_RATES = {
 
 export const DataCalculator: React.FC = () => {
   const [usage, setUsage] = useState({
-    video: 0,
-    social: 0,
-    chat: 0,
-    web: 0,
+    video: 1,
+    social: 2,
+    chat: 1,
+    web: 1,
   });
+  const [currentSpend, setCurrentSpend] = useState<number | ''>('');
+  const [showMethodology, setShowMethodology] = useState(false);
 
   const totalDataNeeded = useMemo(() => {
     const daily = 
@@ -52,8 +54,13 @@ export const DataCalculator: React.FC = () => {
       ? validBundles.find(b => b.volume === 'Unlimited')
       : null;
 
-    return { bestValue, cheapest, heavyUser };
-  }, [totalDataNeeded]);
+    let savings = 0;
+    if (typeof currentSpend === 'number' && cheapest) {
+      savings = Math.max(0, currentSpend - cheapest.price);
+    }
+
+    return { bestValue, cheapest, heavyUser, savings };
+  }, [totalDataNeeded, currentSpend]);
 
   return (
     <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 border border-white shadow-xl hover:shadow-2xl transition-all duration-300" id="calculator">
@@ -101,6 +108,22 @@ export const DataCalculator: React.FC = () => {
             unit="hrs/day"
             max={10}
           />
+
+          <div className="pt-6 border-t border-slate-100">
+            <label className="block text-sm font-bold text-slate-700 mb-2">
+              I currently pay (R/month)
+            </label>
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R</span>
+              <input
+                type="number"
+                placeholder="0"
+                value={currentSpend}
+                onChange={(e) => setCurrentSpend(e.target.value === '' ? '' : Number(e.target.value))}
+                className="w-full pl-8 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#a0f399] font-bold"
+              />
+            </div>
+          </div>
         </div>
 
         <div className="bg-slate-50 rounded-2xl p-8 flex flex-col justify-center">
@@ -115,15 +138,26 @@ export const DataCalculator: React.FC = () => {
             <AnimatePresence mode="wait">
               {recommendations ? (
                 <>
+                  {recommendations.savings > 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="bg-[#a0f399] p-4 rounded-xl text-[#1b6d24] text-center mb-4 border border-[#1b6d24]/20"
+                    >
+                      <p className="text-xs font-black uppercase tracking-widest mb-1">Potential Monthly Saving</p>
+                      <p className="text-3xl font-black">R{recommendations.savings.toFixed(2)}</p>
+                      <p className="text-[10px] font-bold mt-1">By switching to {recommendations.cheapest.network}</p>
+                    </motion.div>
+                  )}
                   <RecommendationCard
-                    type="Cheapest"
+                    type="Cheapest Option"
                     bundle={recommendations.cheapest}
                     icon={<TrendingDown className="w-3.5 h-3.5" />}
                     color="blue"
                   />
                   {recommendations.bestValue.id !== recommendations.cheapest.id && (
                     <RecommendationCard
-                      type="Best Value"
+                      type="Best Value Option"
                       bundle={recommendations.bestValue}
                       icon={<Star className="w-3.5 h-3.5" />}
                       color="green"
@@ -137,6 +171,10 @@ export const DataCalculator: React.FC = () => {
                       color="orange"
                     />
                   )}
+                  <p className="text-[10px] text-slate-500 font-medium mt-4 italic leading-relaxed">
+                    {recommendations.cheapest.network} gives you {recommendations.cheapest.volume} for R{recommendations.cheapest.price}
+                    {recommendations.cheapest.volume !== 'Unlimited' && `, which is R${recommendations.cheapest.costPerGb.toFixed(2)} per GB`}.
+                  </p>
                 </>
               ) : (
                 <div className="flex items-center gap-2 text-slate-400 text-sm justify-center py-8">
@@ -147,6 +185,49 @@ export const DataCalculator: React.FC = () => {
             </AnimatePresence>
           </div>
         </div>
+      </div>
+
+      {/* Methodology Section */}
+      <div className="mt-12 pt-8 border-t border-slate-100">
+        <button
+          onClick={() => setShowMethodology(!showMethodology)}
+          className="flex items-center gap-2 text-slate-500 hover:text-[#031636] transition-colors"
+        >
+          {showMethodology ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          <span className="text-sm font-bold uppercase tracking-widest">How we calculate results</span>
+        </button>
+
+        <AnimatePresence>
+          {showMethodology && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="pt-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <h4 className="text-xs font-black text-[#031636] uppercase mb-2">Usage Estimation</h4>
+                  <p className="text-xs text-slate-500 leading-relaxed">
+                    We use industry-standard averages for data consumption: HD Video (~1.5GB/hr), Social Media (~200MB/hr), and basic web browsing/messaging.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-xs font-black text-[#031636] uppercase mb-2">Cost Logic</h4>
+                  <p className="text-xs text-slate-500 leading-relaxed">
+                    "Cheapest" is the absolute lowest price for a bundle that meets your data needs. "Best Value" prioritizes the lowest cost per GB.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-xs font-black text-[#031636] uppercase mb-2">Data Sources</h4>
+                  <p className="text-xs text-slate-500 leading-relaxed">
+                    Pricing is pulled directly from network provider websites and updated daily. We only include standard prepaid and monthly bundles.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

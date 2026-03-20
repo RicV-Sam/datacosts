@@ -55,7 +55,6 @@ export const bundles: Bundle[] = [
     anytimeData: '25GB',
     nightData: '25GB',
     costPerGb: 5.98,
-    isBestValue: true,
   },
   {
     id: 'mtn-monthly-10gb',
@@ -78,7 +77,6 @@ export const bundles: Bundle[] = [
     type: 'Monthly',
     anytimeData: '20GB',
     costPerGb: 14.95,
-    isSpeedKing: true,
   },
   {
     id: 'voda-monthly-10gb',
