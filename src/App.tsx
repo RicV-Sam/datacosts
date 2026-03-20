@@ -19,6 +19,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
+  const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   // Smooth scroll handler
   const scrollTo = (id: string) => {
@@ -91,7 +92,14 @@ export default function App() {
 
       <Header onScrollTo={scrollTo} activeSection={activeSection} />
 
-      <main className="max-w-7xl mx-auto px-4 py-8 md:py-16">
+      <main className="max-w-7xl mx-auto px-4 py-8 md:py-16 mb-20 md:mb-0">
+        <Hero onScrollTo={scrollTo} />
+
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-2">
+          <h2 className="text-3xl font-black tracking-tighter">Cheapest 1GB & Large Data Prices</h2>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Prices last updated: {today}</span>
+        </div>
+
         {/* Search Bar */}
         <div className="mb-12 relative max-w-2xl mx-auto">
           <div className="relative">
@@ -158,8 +166,10 @@ export default function App() {
           </AnimatePresence>
         </div>
 
-        {/* AI Summary Block (TL;DR) */}
-        <section className="mb-12 bg-white/70 backdrop-blur-xl border-l-4 border-[#1b6d24] p-6 rounded-r-xl shadow-sm hover:shadow-md transition-shadow">
+        <NetworkCards onViewDeals={(network) => setSelectedNetwork(network)} />
+
+        {/* AI Summary Block (TL;DR) - Moved below network comparison */}
+        <section className="mb-16 bg-white/70 backdrop-blur-xl border-l-4 border-[#1b6d24] p-6 rounded-r-xl shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-center gap-2 mb-2">
             <Bolt className="w-5 h-5 text-[#1b6d24]" />
             <h2 className="text-sm font-black uppercase tracking-widest text-[#1b6d24]">AI Summary (TL;DR)</h2>
@@ -172,43 +182,18 @@ export default function App() {
           </p>
         </section>
 
-        {/* Quick Actions (Zero-Click Answers) */}
-        <section className="mb-12 grid grid-cols-2 md:grid-cols-5 gap-4">
-          <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-            <span className="text-[10px] font-bold text-slate-400 uppercase mb-2">Vodacom Balance</span>
-            <code className="text-lg font-black text-[#E60000]">*135#</code>
-          </div>
-          <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-            <span className="text-[10px] font-bold text-slate-400 uppercase mb-2">MTN Balance</span>
-            <code className="text-lg font-black text-[#FFCC00] bg-[#031636] px-2 rounded">*136#</code>
-          </div>
-          <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-            <span className="text-[10px] font-bold text-slate-400 uppercase mb-2">Telkom Balance</span>
-            <code className="text-lg font-black text-blue-600">*188#</code>
-          </div>
-          <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-            <span className="text-[10px] font-bold text-slate-400 uppercase mb-2">Cell C Balance</span>
-            <code className="text-lg font-black text-slate-800">*101#</code>
-          </div>
-          <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-            <span className="text-[10px] font-bold text-slate-400 uppercase mb-2">Rain Balance</span>
-            <code className="text-lg font-black text-[#FF4400]">App Only</code>
-          </div>
-        </section>
-
-        <Hero />
-
-        <h2 className="text-3xl font-black tracking-tighter mb-8">Cheapest 1GB & Large Data Prices</h2>
-        <NetworkCards onViewDeals={(network) => setSelectedNetwork(network)} />
-
         <section className="mb-16">
           <DataCalculator />
         </section>
 
-        <h2 className="text-3xl font-black tracking-tighter mb-8">How to Check Balance & Buy Data (USSD Codes)</h2>
+        <Scorecard />
+
+        <h2 className="text-3xl font-black tracking-tighter mb-8" id="ussd">How to Check Balance & Buy Data (USSD Codes)</h2>
         <section className="mb-16">
           <USSDCodeFinder />
         </section>
+
+        <Verdict />
 
         {/* FAQ Section */}
         <section className="mb-16 bg-white rounded-2xl p-8 border border-slate-100 shadow-sm">
@@ -229,12 +214,20 @@ export default function App() {
           </div>
         </section>
 
-        <Scorecard />
-        <Verdict />
       </main>
 
       <Footer onScrollTo={scrollTo} />
       <MobileNav onScrollTo={scrollTo} activeSection={activeSection} />
+
+      {/* Sticky Bottom Bar for Mobile */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/80 backdrop-blur-lg border-t border-slate-100 z-50 md:hidden">
+        <button
+          onClick={() => scrollTo('calculator')}
+          className="w-full py-4 bg-[#031636] text-white rounded-2xl font-black text-sm shadow-xl active:scale-95 transition-transform"
+        >
+          Find Cheapest Deal
+        </button>
+      </div>
 
       <NetworkModal network={selectedNetwork} onClose={() => setSelectedNetwork(null)} />
     </div>

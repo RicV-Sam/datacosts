@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'motion/react';
 import { Router, TowerControl, Signal, Globe, Zap, ArrowRight } from 'lucide-react';
 import { NetworkName, Bundle, NetworkMetadata } from '../types';
@@ -19,17 +19,25 @@ const NetworkIcon = ({ network, className }: { network: NetworkName; className?:
   }
 };
 
-export const NetworkCard: React.FC<NetworkCardProps> = ({ network, onViewDeals }) => {
+export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }> = ({ network, onViewDeals, isBestValue }) => {
   const meta = networkMetadata[network];
   const networkBundles = bundles.filter(b => b.network === network).slice(0, 2);
   const bundlesCount = bundles.filter(b => b.network === network).length;
   const minCostPerGb = Math.min(...bundles.filter(b => b.network === network).map(b => b.costPerGb));
+  const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   return (
     <motion.div
       whileHover={{ y: -8 }}
-      className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 relative overflow-hidden group border border-white shadow-xl hover:shadow-2xl hover:border-[#a0f399]/30 transition-all duration-300 flex flex-col"
+      className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 relative overflow-hidden group border border-white shadow-xl hover:shadow-2xl hover:border-[#a0f399]/30 transition-all duration-300 flex flex-col min-h-[400px]"
     >
+      {isBestValue && (
+        <div className="absolute top-4 right-4 z-10">
+          <span className="bg-[#a0f399] text-[#1b6d24] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
+            Best Value
+          </span>
+        </div>
+      )}
       <div
         className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"
         style={{ color: meta.color }}
@@ -60,12 +68,19 @@ export const NetworkCard: React.FC<NetworkCardProps> = ({ network, onViewDeals }
             <span className="text-xl font-black text-[#031636]">R{bundle.price}</span>
           </div>
         ))}
-        <div className="flex justify-between items-center py-2 px-4 bg-slate-50 rounded-xl border border-slate-100/50">
-          <span className="text-[10px] text-slate-500 font-black uppercase tracking-wider">Avg. Cost/GB</span>
-          <span className="text-sm font-black text-[#1b6d24]">
-            {minCostPerGb > 0 ? `R${minCostPerGb.toFixed(2)}` : 'R0 (Unlimited)'}
+        <div className="flex flex-col gap-1 py-3 px-4 bg-slate-50 rounded-xl border border-slate-100/50">
+          <span className="text-[10px] text-slate-500 font-black uppercase tracking-wider">Cheapest Cost/GB</span>
+          <span className="text-2xl font-black text-[#1b6d24]">
+            {network === 'Rain' ? 'Unlimited' : minCostPerGb > 0 ? `R${minCostPerGb.toFixed(2)}` : 'N/A'}
           </span>
+          {network === 'Rain' && (
+            <span className="text-[10px] text-slate-400 font-bold uppercase">From R479/month</span>
+          )}
         </div>
+      </div>
+
+      <div className="mb-6">
+        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Updated: {today}</span>
       </div>
 
       <button
@@ -82,10 +97,26 @@ export const NetworkCard: React.FC<NetworkCardProps> = ({ network, onViewDeals }
 
 export const NetworkCards: React.FC<{ onViewDeals: (network: NetworkName) => void }> = ({ onViewDeals }) => {
   const networks: NetworkName[] = ['Vodacom', 'MTN', 'Telkom', 'Cell C', 'Rain'];
+
+  const bestValueNetwork = useMemo(() => {
+    // Exclude Rain from "cheapest cost per GB" calculation if it's 0 (unlimited)
+    // Or handle it by finding the network with the absolute lowest costPerGb > 0
+    const costs = networks.map(n => {
+      const networkCosts = bundles.filter(b => b.network === n && b.costPerGb > 0).map(b => b.costPerGb);
+      return { network: n, minCost: networkCosts.length > 0 ? Math.min(...networkCosts) : Infinity };
+    });
+    return costs.sort((a, b) => a.minCost - b.minCost)[0]?.network;
+  }, []);
+
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24" id="deals">
       {networks.map(network => (
-        <NetworkCard key={network} network={network} onViewDeals={onViewDeals} />
+        <NetworkCard
+          key={network}
+          network={network}
+          onViewDeals={onViewDeals}
+          isBestValue={network === bestValueNetwork}
+        />
       ))}
     </section>
   );
