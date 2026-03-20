@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calculator, Youtube, Instagram, MessageCircle, Globe, Info, Zap, TrendingDown, Star, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calculator, Youtube, Instagram, MessageCircle, Globe, Info, Zap, TrendingDown, Star, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 import { bundles } from '../data';
 import { Bundle } from '../types';
+import { trackAndRedirect } from '../utils/tracking';
 
 const USAGE_RATES = {
   video: 1.5, // GB per hour (HD)
@@ -175,6 +176,19 @@ export const DataCalculator: React.FC = () => {
                     {recommendations.cheapest.network} gives you {recommendations.cheapest.volume} for R{recommendations.cheapest.price}
                     {recommendations.cheapest.volume !== 'Unlimited' && `, which is R${recommendations.cheapest.costPerGb.toFixed(2)} per GB`}.
                   </p>
+
+                  <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col items-center gap-4">
+                    <button
+                      onClick={() => trackAndRedirect(recommendations.cheapest.network, 'calculator', recommendations.cheapest.name)}
+                      className="w-full py-4 bg-[#031636] text-white rounded-2xl font-black text-sm shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2 hover:opacity-90"
+                    >
+                      View Best Deal
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-center">
+                      You will be redirected to the operator’s official website
+                    </p>
+                  </div>
                 </>
               ) : (
                 <div className="flex items-center gap-2 text-slate-400 text-sm justify-center py-8">
