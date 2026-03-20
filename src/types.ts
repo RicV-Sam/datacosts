@@ -30,4 +30,5 @@ export interface NetworkMetadata {
   logoLetter: string;
   description: string;
   ussdBalance: string;
+  externalUrl: string;
 }

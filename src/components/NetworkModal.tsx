@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ExternalLink, Info, CheckCircle2 } from 'lucide-react';
+import { X, ArrowRight, Info, CheckCircle2 } from 'lucide-react';
 import { NetworkName } from '../types';
 import { networkMetadata, bundles } from '../data';
+import { trackAndRedirect } from '../utils/tracking';
 
 interface NetworkModalProps {
   network: NetworkName | null;
@@ -100,8 +101,12 @@ export const NetworkModal: React.FC<NetworkModalProps> = ({ network, onClose }) 
                     <div className="text-right">
                       <div className="text-2xl font-black text-[#031636]">R{bundle.price}</div>
                     </div>
-                    <button className="bg-[#031636] text-white p-3 rounded-xl hover:opacity-90 transition-opacity">
-                      <ExternalLink className="w-5 h-5" />
+                    <button
+                      onClick={() => trackAndRedirect(network, 'modal', bundle.name)}
+                      className="bg-[#031636] text-white px-4 py-2.5 rounded-xl hover:opacity-90 transition-opacity text-xs font-bold flex items-center gap-2 whitespace-nowrap"
+                    >
+                      Get this deal
+                      <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
@@ -110,17 +115,22 @@ export const NetworkModal: React.FC<NetworkModalProps> = ({ network, onClose }) 
           </div>
 
           {/* Footer */}
-          <div className="p-6 bg-white border-t border-slate-100 flex justify-between items-center">
-            <div className="flex flex-col">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">USSD Balance Code</span>
-              <code className="text-sm font-black text-[#031636]">{meta.ussdBalance}</code>
+          <div className="p-6 bg-white border-t border-slate-100 flex flex-col gap-6">
+            <div className="flex justify-between items-center">
+              <div className="flex flex-col">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">USSD Balance Code</span>
+                <code className="text-sm font-black text-[#031636]">{meta.ussdBalance}</code>
+              </div>
+              <button
+                onClick={onClose}
+                className="px-6 py-2 text-sm font-bold text-slate-500 hover:text-slate-900 transition-colors"
+              >
+                Close
+              </button>
             </div>
-            <button
-              onClick={onClose}
-              className="px-6 py-2 text-sm font-bold text-slate-500 hover:text-slate-900 transition-colors"
-            >
-              Close
-            </button>
+            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-center pt-4 border-t border-slate-50">
+              You will be redirected to the operator’s official website
+            </p>
           </div>
         </motion.div>
       </div>
