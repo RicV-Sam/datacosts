@@ -3,7 +3,11 @@ import { Search, Phone, Copy, Check, Filter, ArrowRight } from 'lucide-react';
 import { ussdCodes } from '../data';
 import { motion, AnimatePresence } from 'motion/react';
 
-export const USSDCodeFinder: React.FC = () => {
+interface USSDCodeFinderProps {
+  onViewAll?: () => void;
+}
+
+export const USSDCodeFinder: React.FC<USSDCodeFinderProps> = ({ onViewAll }) => {
   const [search, setSearch] = useState('');
   const [activeNetwork, setActiveNetwork] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -79,9 +83,9 @@ export const USSDCodeFinder: React.FC = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
         <AnimatePresence mode="popLayout">
-          {filteredCodes.map((code, idx) => (
+          {filteredCodes.slice(0, 6).map((code, idx) => (
             <motion.div
               layout
               initial={{ opacity: 0, scale: 0.9 }}
@@ -119,9 +123,22 @@ export const USSDCodeFinder: React.FC = () => {
         </AnimatePresence>
       </div>
 
-      {filteredCodes.length === 0 && (
+      {filteredCodes.length === 0 ? (
         <div className="text-center py-24 bg-slate-50/50 rounded-3xl border border-dashed border-slate-200">
           <p className="text-slate-400 font-bold uppercase tracking-widest">No USSD codes found for "{search}"</p>
+        </div>
+      ) : (
+        <div className="text-center">
+          <button
+            onClick={onViewAll}
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-[#031636] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#1b6d24] transition-all shadow-xl active:scale-95"
+          >
+            <span>View Full USSD Repository</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
+          <p className="mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+            Access hundreds of verified codes for all networks
+          </p>
         </div>
       )}
     </div>

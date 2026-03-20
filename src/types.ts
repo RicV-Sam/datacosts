@@ -32,3 +32,25 @@ export interface NetworkMetadata {
   ussdBalance: string;
   externalUrl: string;
 }
+
+export type USSDCategory =
+  | 'Balance'
+  | 'Airtime / Recharge'
+  | 'Data / Bundles'
+  | 'Transfers'
+  | 'Number / SIM info'
+  | 'Self-service / Account'
+  | 'Support / Customer care'
+  | 'Promotions / Advance airtime / Extras'
+  | 'Other';
+
+export interface USSDEntry {
+  network: NetworkName;
+  category: USSDCategory;
+  action: string;
+  code: string;
+  explanation: string;
+  status: 'verified' | 'needs review';
+  note?: string;
+  dialable?: boolean;
+}

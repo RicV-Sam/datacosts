@@ -3,6 +3,7 @@ import { Bolt, Search, X } from 'lucide-react';
 import { bundles } from './data';
 import { DataCalculator } from './components/DataCalculator';
 import { USSDCodeFinder } from './components/USSDCodeFinder';
+import { USSDPage } from './components/USSDPage';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { NetworkCards } from './components/NetworkCards';
@@ -17,16 +18,68 @@ import { motion, AnimatePresence } from 'motion/react';
 export default function App() {
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkName | null>(null);
   const [activeSection, setActiveSection] = useState('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'ussd'>(() => {
+    return window.location.pathname.includes('/ussd-codes-south-africa') ? 'ussd' : 'home';
+  });
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
+  // Navigation handler
+  const navigateTo = (page: 'home' | 'ussd') => {
+    const path = page === 'ussd' ? '/datacosts/ussd-codes-south-africa/' : '/datacosts/';
+    window.history.pushState({ page }, '', path);
+    setCurrentPage(page);
+    window.scrollTo(0, 0);
+  };
+
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state && event.state.page) {
+        setCurrentPage(event.state.page);
+      } else {
+        setCurrentPage(window.location.pathname.includes('/ussd-codes-south-africa') ? 'ussd' : 'home');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  useEffect(() => {
+    if (currentPage === 'ussd') {
+      document.title = "USSD Codes South Africa - Official Network Short Codes | DataCost";
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', 'Complete repository of South African USSD codes for MTN, Vodacom, Telkom, Cell C and Rain. Check balance, buy data, and manage your account.');
+      }
+    } else {
+      document.title = "DataCost.co.za - South Africa Network Comparison";
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', "Compare South Africa's mobile data networks. Independent analysis of Vodacom, MTN, Telkom, and Cell C for coverage, speed, and cost.");
+      }
+    }
+  }, [currentPage]);
+
   // Smooth scroll handler
   const scrollTo = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(id);
+    if (currentPage !== 'home') {
+      navigateTo('home');
+      // Wait for re-render
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          setActiveSection(id);
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setActiveSection(id);
+      }
     }
   };
 
@@ -83,6 +136,12 @@ export default function App() {
       }
     ]
   };
+
+  if (currentPage === 'ussd') {
+    return (
+      <USSDPage onBack={() => navigateTo('home')} />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans selection:bg-[#a0f399]/30 relative overflow-hidden">
@@ -190,7 +249,7 @@ export default function App() {
 
         <h2 className="text-3xl font-black tracking-tighter mb-8" id="ussd">How to Check Balance & Buy Data (USSD Codes)</h2>
         <section className="mb-16">
-          <USSDCodeFinder />
+          <USSDCodeFinder onViewAll={() => navigateTo('ussd')} />
         </section>
 
         <Verdict />
