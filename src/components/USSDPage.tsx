@@ -11,6 +11,7 @@ interface USSDPageProps {
 
 export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
+  const [activeNetworkChip, setActiveNetworkChip] = useState<string | null>(null);
 
   const handleCopy = (code: string) => {
     navigator.clipboard.writeText(code);
@@ -33,9 +34,11 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
   ];
 
   const scrollToNetwork = (network: string) => {
-    const element = document.getElementById(`network-${network.toLowerCase().replace(' ', '-')}`);
+    setActiveNetworkChip(network);
+    const elementId = `network-${network.toLowerCase().replace(' ', '-')}`;
+    const element = document.getElementById(elementId);
     if (element) {
-      const offset = 100; // Account for sticky nav
+      const offset = 120; // Slightly more offset for the sticky nav + small gap
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -45,6 +48,12 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
         top: offsetPosition,
         behavior: 'smooth'
       });
+
+      // Highlight the section briefly
+      element.classList.add('section-highlight');
+      setTimeout(() => {
+        element.classList.remove('section-highlight');
+      }, 2000);
     }
   };
 
@@ -118,20 +127,46 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
             Verified USSD Repository
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
-            South Africa <span className="text-[#1b6d24]">USSD Codes</span> Reference
+            All South African Network <span className="text-[#1b6d24]">USSD Codes</span>: Check Balance, Recharge & Buy Data
           </h1>
           <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto mb-8">
-            The definitive repository for checking balances, buying data, and managing your network services across all South African mobile operators.
+            Access our verified repository of essential short codes for MTN, Vodacom, Telkom, Cell C, and Rain. Manage your account instantly without using any data.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <span className="px-4 py-2 bg-white border border-slate-100 rounded-2xl text-[10px] font-bold text-slate-400 uppercase tracking-widest shadow-sm">
-              Last Updated: {today}
-            </span>
-            <span className="px-4 py-2 bg-white border border-slate-100 rounded-2xl text-[10px] font-bold text-slate-400 uppercase tracking-widest shadow-sm">
-              Status: Expanding Database
-            </span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-100 rounded-2xl shadow-sm">
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                Last Updated: {today}
+              </span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-100 rounded-2xl shadow-sm">
+              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                Status: Verified Database
+              </span>
+            </div>
           </div>
         </header>
+
+        {/* Network Selection Chips */}
+        <section className="mb-16">
+          <h2 className="text-center text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Select your network</h2>
+          <div className="flex overflow-x-auto no-scrollbar gap-3 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:justify-center">
+            {networks.map(network => (
+              <button
+                key={network}
+                onClick={() => scrollToNetwork(network)}
+                className={`flex-shrink-0 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all shadow-sm active:scale-95 ${
+                  activeNetworkChip === network
+                    ? 'bg-[#031636] text-white shadow-xl scale-105 border-b-4 border-[#a0f399]'
+                    : 'bg-white text-slate-600 border border-slate-100 hover:border-[#a0f399]'
+                }`}
+              >
+                {network}
+              </button>
+            ))}
+          </div>
+        </section>
 
         {/* Network Sections */}
         {networks.map(network => (
@@ -187,6 +222,19 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
               </div>
             ) : (
               <div className="space-y-12">
+                <div className="bg-white/50 border border-slate-100 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <p className="text-sm font-medium text-slate-600 italic">
+                    Want to see how {network} stacks up against the competition?
+                  </p>
+                  <button
+                    onClick={onBack}
+                    className="w-full sm:w-auto px-6 py-3 bg-[#a0f399]/20 text-[#217128] rounded-xl text-xs font-black uppercase tracking-widest hover:bg-[#a0f399]/30 transition-colors border border-[#a0f399]/30 flex items-center justify-center gap-2"
+                  >
+                    Compare {network} Deals
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+
                 {categories.map(category => {
                   const codes = ussdRepository.filter(c => c.network === network && c.category === category);
                   if (codes.length === 0) return null;
@@ -201,43 +249,48 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
                         {codes.map((item, idx) => (
                           <div
                             key={`${item.code}-${idx}`}
-                            className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+                            className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-all group"
                           >
-                            <div className="flex justify-between items-start mb-4">
-                              <h4 className="font-black text-slate-900 leading-tight">{item.action}</h4>
+                            <div className="flex justify-between items-start mb-2">
+                              <h4 className="text-lg font-black text-[#031636] leading-tight tracking-tight">{item.action}</h4>
                               {item.status === 'verified' && (
-                                <span className="text-[8px] font-black uppercase tracking-widest text-[#217128] bg-[#a0f399]/20 px-2 py-1 rounded-full">
-                                  Verified
-                                </span>
+                                <div className="flex items-center gap-1 text-[8px] font-black uppercase tracking-widest text-[#217128] bg-[#a0f399]/20 px-2 py-1 rounded-full">
+                                  <ShieldCheck className="w-3 h-3" />
+                                  <span>Verified</span>
+                                </div>
                               )}
                             </div>
-                            <p className="text-sm text-slate-500 mb-6 font-medium leading-relaxed">
+                            <p className="text-xs text-slate-500 mb-6 font-medium leading-relaxed">
                               {item.explanation}
                             </p>
-                            <div className="flex items-center gap-2">
-                              <div className="flex-1 bg-slate-50 px-4 py-3 rounded-xl border border-slate-100 font-mono font-black text-[#031636] text-lg tracking-widest overflow-hidden text-ellipsis whitespace-nowrap">
+                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                              <div className="flex-1 bg-slate-50 px-5 py-4 rounded-2xl border-2 border-slate-100 font-mono font-black text-[#031636] text-2xl tracking-[0.2em] flex items-center justify-center group-hover:border-[#a0f399]/50 transition-colors">
                                 {item.code}
                               </div>
-                              <button
-                                onClick={() => handleCopy(item.code)}
-                                className="p-3 bg-slate-50 text-slate-400 hover:text-[#217128] hover:bg-[#a0f399]/10 border border-slate-100 rounded-xl transition-all"
-                                title="Copy code"
-                              >
-                                {copiedCode === item.code ? <Check className="w-5 h-5 text-[#217128]" /> : <Copy className="w-5 h-5" />}
-                              </button>
-                              {item.dialable && (
-                                <a
-                                  href={`tel:${item.code.replace('#', '%23')}`}
-                                  className="p-3 bg-[#031636] text-white hover:bg-[#1b6d24] rounded-xl transition-all shadow-lg active:scale-95"
-                                  title="Dial code"
+                              <div className="flex items-center gap-2">
+                                <button
+                                  onClick={() => handleCopy(item.code)}
+                                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-4 bg-slate-50 text-slate-600 hover:text-[#217128] hover:bg-[#a0f399]/20 border border-slate-100 rounded-2xl transition-all min-h-[54px] min-w-[54px]"
+                                  title="Copy code"
                                 >
-                                  <Phone className="w-5 h-5" />
-                                </a>
-                              )}
+                                  {copiedCode === item.code ? <Check className="w-6 h-6 text-[#217128]" /> : <Copy className="w-6 h-6" />}
+                                  <span className="sm:hidden font-black uppercase tracking-widest text-[10px]">Copy</span>
+                                </button>
+                                {item.dialable && (
+                                  <a
+                                    href={`tel:${item.code.replace('#', '%23')}`}
+                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-4 bg-[#031636] text-white hover:bg-[#1b6d24] rounded-2xl transition-all shadow-lg active:scale-95 min-h-[54px] min-w-[54px]"
+                                    title="Dial code"
+                                  >
+                                    <Phone className="w-6 h-6" />
+                                    <span className="sm:hidden font-black uppercase tracking-widest text-[10px]">Dial</span>
+                                  </a>
+                                )}
+                              </div>
                             </div>
                             {item.note && (
-                              <p className="mt-3 text-[10px] text-slate-400 font-bold italic">
-                                Note: {item.note}
+                              <p className="mt-4 text-[10px] text-slate-400 font-bold italic bg-slate-50 p-2 rounded-lg inline-block">
+                                Tip: {item.note}
                               </p>
                             )}
                           </div>

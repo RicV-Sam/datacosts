@@ -62,3 +62,22 @@
 .glass-dark {
   @apply bg-[#031636]/80 backdrop-blur-xl border border-white/10 shadow-xl;
 }
+
+@keyframes section-pulse {
+  0% { background-color: transparent; }
+  50% { background-color: rgba(160, 243, 153, 0.1); }
+  100% { background-color: transparent; }
+}
+
+.section-highlight {
+  animation: section-pulse 2s ease-out;
+  border-radius: 2rem;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
