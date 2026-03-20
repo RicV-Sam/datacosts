@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
-import { Calculator, Youtube, Instagram, MessageCircle, Globe, Info } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Calculator, Youtube, Instagram, MessageCircle, Globe, Info, Zap, TrendingDown, Star } from 'lucide-react';
 import { bundles } from '../data';
+import { Bundle } from '../types';
 
 const USAGE_RATES = {
   video: 1.5, // GB per hour (HD)
@@ -27,13 +28,31 @@ export const DataCalculator: React.FC = () => {
     return daily * 30; // Monthly
   }, [usage]);
 
-  const recommendedBundle = useMemo(() => {
-    return bundles
-      .filter(b => {
-        const vol = parseInt(b.volume.replace('GB', ''));
-        return vol >= totalDataNeeded;
-      })
-      .sort((a, b) => a.price - b.price)[0];
+  const recommendations = useMemo(() => {
+    const validBundles = bundles.filter(b => {
+      if (b.volume === 'Unlimited') return true;
+      const vol = parseInt(b.volume.replace('GB', ''));
+      return vol >= totalDataNeeded;
+    });
+
+    if (validBundles.length === 0) return null;
+
+    // Best Value (lowest cost per GB)
+    const bestValue = [...validBundles].sort((a, b) => {
+      const aCost = a.volume === 'Unlimited' ? 0.01 : a.costPerGb;
+      const bCost = b.volume === 'Unlimited' ? 0.01 : b.costPerGb;
+      return aCost - bCost;
+    })[0];
+
+    // Cheapest (absolute lowest price)
+    const cheapest = [...validBundles].sort((a, b) => a.price - b.price)[0];
+
+    // Heavy User Recommend (if usage > 50GB)
+    const heavyUser = totalDataNeeded > 50
+      ? validBundles.find(b => b.volume === 'Unlimited')
+      : null;
+
+    return { bestValue, cheapest, heavyUser };
   }, [totalDataNeeded]);
 
   return (
@@ -84,40 +103,88 @@ export const DataCalculator: React.FC = () => {
           />
         </div>
 
-        <div className="bg-slate-50 rounded-2xl p-8 flex flex-col justify-center items-center text-center">
-          <div className="mb-6">
+        <div className="bg-slate-50 rounded-2xl p-8 flex flex-col justify-center">
+          <div className="text-center mb-8">
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-2 block">Estimated Monthly Need</span>
             <div className="text-6xl font-black text-[#031636] tracking-tighter">
               {totalDataNeeded.toFixed(1)}<span className="text-2xl ml-1">GB</span>
             </div>
           </div>
 
-          {recommendedBundle ? (
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              key={recommendedBundle.id}
-              className="w-full bg-white p-6 rounded-xl border border-slate-200 shadow-sm"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] font-bold text-[#217128] bg-[#a0f399]/20 px-2 py-0.5 rounded uppercase">Best Fit</span>
-                <span className="text-sm font-black text-[#031636]">{recommendedBundle.network}</span>
-              </div>
-              <h4 className="font-bold text-slate-900 mb-1">{recommendedBundle.name}</h4>
-              <div className="text-2xl font-black text-[#031636] mb-4">R{recommendedBundle.price}</div>
-              <button className="w-full bg-[#031636] text-white py-3 rounded-full text-sm font-bold hover:opacity-90 transition-opacity">
-                Get This Deal
-              </button>
-            </motion.div>
-          ) : (
-            <div className="flex items-center gap-2 text-slate-400 text-sm">
-              <Info className="w-4 h-4" />
-              <span>Adjust sliders to see recommendations</span>
-            </div>
-          )}
+          <div className="space-y-4">
+            <AnimatePresence mode="wait">
+              {recommendations ? (
+                <>
+                  <RecommendationCard
+                    type="Cheapest"
+                    bundle={recommendations.cheapest}
+                    icon={<TrendingDown className="w-3.5 h-3.5" />}
+                    color="blue"
+                  />
+                  {recommendations.bestValue.id !== recommendations.cheapest.id && (
+                    <RecommendationCard
+                      type="Best Value"
+                      bundle={recommendations.bestValue}
+                      icon={<Star className="w-3.5 h-3.5" />}
+                      color="green"
+                    />
+                  )}
+                  {recommendations.heavyUser && (
+                    <RecommendationCard
+                      type="Recommended for Heavy Users"
+                      bundle={recommendations.heavyUser}
+                      icon={<Zap className="w-3.5 h-3.5" />}
+                      color="orange"
+                    />
+                  )}
+                </>
+              ) : (
+                <div className="flex items-center gap-2 text-slate-400 text-sm justify-center py-8">
+                  <Info className="w-4 h-4" />
+                  <span>Adjust sliders to see recommendations</span>
+                </div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </div>
+  );
+};
+
+const RecommendationCard: React.FC<{
+  type: string;
+  bundle: Bundle;
+  icon: React.ReactNode;
+  color: 'blue' | 'green' | 'orange';
+}> = ({ type, bundle, icon, color }) => {
+  const colorClasses = {
+    blue: 'bg-blue-50 text-blue-700 border-blue-100',
+    green: 'bg-[#a0f399]/20 text-[#217128] border-[#a0f399]/30',
+    orange: 'bg-orange-50 text-orange-700 border-orange-100',
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      className="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm"
+    >
+      <div className="flex items-center justify-between mb-3">
+        <span className={`flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full uppercase border ${colorClasses[color]}`}>
+          {icon} {type}
+        </span>
+        <span className="text-xs font-black text-[#031636]">{bundle.network}</span>
+      </div>
+      <div className="flex justify-between items-end">
+        <div>
+          <h4 className="font-bold text-slate-900 text-sm leading-tight">{bundle.name}</h4>
+          <span className="text-[10px] text-slate-500 font-medium">{bundle.volume} • {bundle.validity}</span>
+        </div>
+        <div className="text-xl font-black text-[#031636]">R{bundle.price}</div>
+      </div>
+    </motion.div>
   );
 };
 
