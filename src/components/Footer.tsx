@@ -3,7 +3,7 @@ import { guides } from '../data/guides';
 
 interface FooterProps {
   onScrollTo: (id: string) => void;
-  onNavigateTo: (page: 'home' | 'ussd' | 'guide', slug?: string) => void;
+  onNavigateTo: (page: 'home' | 'ussd' | 'guide' | 'guides-index', slug?: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onScrollTo, onNavigateTo }) => {
@@ -23,7 +23,13 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTo, onNavigateTo }) => {
 
         {/* Guides (SEO GOLD 🔥) */}
         <div className="flex flex-col gap-4">
-          <h5 className="font-bold text-sm uppercase tracking-wider">Guides</h5>
+          <a
+            href="/guides/"
+            onClick={(e) => { e.preventDefault(); onNavigateTo('guides-index'); }}
+            className="font-bold text-sm uppercase tracking-wider hover:text-[#1b6d24] transition-colors"
+          >
+            Guides
+          </a>
 
           {guides.map(guide => (
             <a
