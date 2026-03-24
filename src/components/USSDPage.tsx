@@ -59,33 +59,55 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
 
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+  const pageSchema = {
+    "@context": "https://schema.org/",
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "What are USSD codes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "USSD (Unstructured Supplementary Service Data) codes are short codes that start with an asterisk (*) and end with a hash (#). They are used to communicate directly with your mobile network provider to check balances, buy bundles, and manage account services without needing an internet connection."
+        "@type": "Article",
+        "headline": "South Africa USSD Codes Directory",
+        "description": "A comprehensive repository of verified South African USSD short codes for MTN, Vodacom, Telkom, Cell C and Rain. Check balance, buy data and manage your account instantly.",
+        "url": "https://datacost.co.za/ussd-codes-south-africa/",
+        "author": {
+          "@type": "Organization",
+          "name": "DataCost.co.za"
         }
       },
       {
-        "@type": "Question",
-        "name": "How do I check my Vodacom balance?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Dial *135# on your Vodacom phone to check your airtime and data balance."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the MTN balance check code?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The USSD code to check your MTN balance is *136#."
-        }
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are USSD codes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "USSD (Unstructured Supplementary Service Data) codes are short codes that start with an asterisk (*) and end with a hash (#). They are used to communicate directly with your mobile network provider to check balances, buy bundles, and manage account services without needing an internet connection."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I check my Vodacom balance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dial *135# on your Vodacom phone to check your airtime and data balance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the MTN balance check code?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The USSD code to check your MTN balance is *136#."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Rain use USSD codes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, Rain is managed primarily through the official Rain app or website, as it does not use a traditional USSD-based management system."
+            }
+          }
+        ]
       }
     ]
   };
@@ -93,7 +115,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
       <script type="application/ld+json">
-        {JSON.stringify(faqSchema)}
+        {JSON.stringify(pageSchema)}
       </script>
       {/* Header / Navigation */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 px-4 py-4">
