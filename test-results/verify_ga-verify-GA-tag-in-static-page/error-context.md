@@ -1,0 +1,500 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - button "Back to Comparison" [ref=e6]:
+        - img [ref=e7]
+        - generic [ref=e9]: Back to Comparison
+      - generic [ref=e10]:
+        - button "Vodacom" [ref=e11]
+        - button "MTN" [ref=e12]
+        - button "Telkom" [ref=e13]
+        - button "Cell C" [ref=e14]
+        - button "Rain" [ref=e15]
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - img [ref=e19]
+        - text: Verified USSD Repository
+      - 'heading "All South African Network USSD Codes: Check Balance, Recharge & Buy Data" [level=1] [ref=e22]'
+      - paragraph [ref=e23]: Access our verified repository of essential short codes for MTN, Vodacom, Telkom, Cell C, and Rain. Manage your account instantly without using any data.
+      - generic [ref=e24]:
+        - generic [ref=e27]: "Last Updated: 24 March 2026"
+        - generic [ref=e30]: "Status: Verified Database"
+    - generic [ref=e31]:
+      - heading "Select your network" [level=2] [ref=e32]
+      - generic [ref=e33]:
+        - button "Vodacom" [ref=e34]
+        - button "MTN" [ref=e35]
+        - button "Telkom" [ref=e36]
+        - button "Cell C" [ref=e37]
+        - button "Rain" [ref=e38]
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]: V
+        - generic [ref=e42]:
+          - heading "Vodacom Codes" [level=2] [ref=e43]
+          - paragraph [ref=e44]: Vodacom's 5G footprint and throughput remain the most consistent in urban metros.
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - paragraph [ref=e47]: Want to see how Vodacom stacks up against the competition?
+          - button "Compare Vodacom Deals" [ref=e48]:
+            - text: Compare Vodacom Deals
+            - img [ref=e49]
+        - generic [ref=e53]:
+          - heading "Balance" [level=3] [ref=e54]: Balance
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - heading "Check Balance (Main)" [level=4] [ref=e59]
+                - generic [ref=e60]:
+                  - img [ref=e61]
+                  - generic [ref=e64]: Verified
+              - paragraph [ref=e65]: Quick summary of airtime, data and SMS balances.
+              - generic [ref=e66]:
+                - generic [ref=e67]: "*135#"
+                - generic [ref=e68]:
+                  - button "Copy code" [ref=e69]:
+                    - img [ref=e70]
+                  - link "Dial code" [ref=e73] [cursor=pointer]:
+                    - /url: tel:*135%23
+                    - img [ref=e74]
+            - generic [ref=e76]:
+              - generic [ref=e77]:
+                - heading "Detailed Balance" [level=4] [ref=e78]
+                - generic [ref=e79]:
+                  - img [ref=e80]
+                  - generic [ref=e83]: Verified
+              - paragraph [ref=e84]: Get a full breakdown of all your active bundles.
+              - generic [ref=e85]:
+                - generic [ref=e86]: "*135*502#"
+                - generic [ref=e87]:
+                  - button "Copy code" [ref=e88]:
+                    - img [ref=e89]
+                  - link "Dial code" [ref=e92] [cursor=pointer]:
+                    - /url: tel:*135*502%23
+                    - img [ref=e93]
+        - generic [ref=e95]:
+          - heading "Airtime / Recharge" [level=3] [ref=e96]: Airtime / Recharge
+          - generic [ref=e99]:
+            - generic [ref=e100]:
+              - heading "Recharge with Voucher" [level=4] [ref=e101]
+              - generic [ref=e102]:
+                - img [ref=e103]
+                - generic [ref=e106]: Verified
+            - paragraph [ref=e107]: Instantly top up your account using a physical voucher.
+            - generic [ref=e108]:
+              - generic [ref=e109]: "*136*VoucherCode#"
+              - button "Copy code" [ref=e111]:
+                - img [ref=e112]
+        - generic [ref=e115]:
+          - heading "Data / Bundles" [level=3] [ref=e116]: Data / Bundles
+          - generic [ref=e119]:
+            - generic [ref=e120]:
+              - heading "Buy Data / Bundles" [level=4] [ref=e121]
+              - generic [ref=e122]:
+                - img [ref=e123]
+                - generic [ref=e126]: Verified
+            - paragraph [ref=e127]: Purchase daily, weekly or monthly data and social bundles.
+            - generic [ref=e128]:
+              - generic [ref=e129]: "*135*2#"
+              - generic [ref=e130]:
+                - button "Copy code" [ref=e131]:
+                  - img [ref=e132]
+                - link "Dial code" [ref=e135] [cursor=pointer]:
+                  - /url: tel:*135*2%23
+                  - img [ref=e136]
+        - generic [ref=e138]:
+          - heading "Transfers" [level=3] [ref=e139]: Transfers
+          - generic [ref=e142]:
+            - generic [ref=e143]:
+              - heading "Transfer Airtime / Data" [level=4] [ref=e144]
+              - generic [ref=e145]:
+                - img [ref=e146]
+                - generic [ref=e149]: Verified
+            - paragraph [ref=e150]: Send airtime or data to another Vodacom number.
+            - generic [ref=e151]:
+              - generic [ref=e152]: "*135*1002#"
+              - generic [ref=e153]:
+                - button "Copy code" [ref=e154]:
+                  - img [ref=e155]
+                - link "Dial code" [ref=e158] [cursor=pointer]:
+                  - /url: tel:*135*1002%23
+                  - img [ref=e159]
+        - generic [ref=e161]:
+          - heading "Number / SIM info" [level=3] [ref=e162]: Number / SIM info
+          - generic [ref=e165]:
+            - generic [ref=e166]:
+              - heading "Check My Number" [level=4] [ref=e167]
+              - generic [ref=e168]:
+                - img [ref=e169]
+                - generic [ref=e172]: Verified
+            - paragraph [ref=e173]: Displays your current MSISDN (cellphone number).
+            - generic [ref=e174]:
+              - generic [ref=e175]: "*135*501#"
+              - generic [ref=e176]:
+                - button "Copy code" [ref=e177]:
+                  - img [ref=e178]
+                - link "Dial code" [ref=e181] [cursor=pointer]:
+                  - /url: tel:*135*501%23
+                  - img [ref=e182]
+        - generic [ref=e184]:
+          - heading "Self-service / Account" [level=3] [ref=e185]: Self-service / Account
+          - generic [ref=e188]:
+            - generic [ref=e189]:
+              - heading "Manage My Account" [level=4] [ref=e190]
+              - generic [ref=e191]:
+                - img [ref=e192]
+                - generic [ref=e195]: Verified
+            - paragraph [ref=e196]: Change settings, manage VAS services and update profile.
+            - generic [ref=e197]:
+              - generic [ref=e198]: "*135#"
+              - generic [ref=e199]:
+                - button "Copy code" [ref=e200]:
+                  - img [ref=e201]
+                - link "Dial code" [ref=e204] [cursor=pointer]:
+                  - /url: tel:*135%23
+                  - img [ref=e205]
+        - generic [ref=e207]:
+          - heading "Support / Customer care" [level=3] [ref=e208]: Support / Customer care
+          - generic [ref=e211]:
+            - generic [ref=e212]:
+              - heading "Customer Care Call" [level=4] [ref=e213]
+              - generic [ref=e214]:
+                - img [ref=e215]
+                - generic [ref=e218]: Verified
+            - paragraph [ref=e219]: Call center support for all queries.
+            - generic [ref=e220]:
+              - generic [ref=e221]: "135"
+              - generic [ref=e222]:
+                - button "Copy code" [ref=e223]:
+                  - img [ref=e224]
+                - link "Dial code" [ref=e227] [cursor=pointer]:
+                  - /url: tel:135
+                  - img [ref=e228]
+    - generic [ref=e230]:
+      - generic [ref=e231]:
+        - generic [ref=e232]: M
+        - generic [ref=e233]:
+          - heading "MTN Codes" [level=2] [ref=e234]
+          - paragraph [ref=e235]: With a lower average cost per GB, MTN consistently delivers more data for less Rand.
+      - generic [ref=e236]:
+        - generic [ref=e237]:
+          - paragraph [ref=e238]: Want to see how MTN stacks up against the competition?
+          - button "Compare MTN Deals" [ref=e239]:
+            - text: Compare MTN Deals
+            - img [ref=e240]
+        - generic [ref=e244]:
+          - heading "Balance" [level=3] [ref=e245]: Balance
+          - generic [ref=e248]:
+            - generic [ref=e249]:
+              - heading "Check Balance" [level=4] [ref=e250]
+              - generic [ref=e251]:
+                - img [ref=e252]
+                - generic [ref=e255]: Verified
+            - paragraph [ref=e256]: View your remaining airtime and data bundles.
+            - generic [ref=e257]:
+              - generic [ref=e258]: "*136#"
+              - generic [ref=e259]:
+                - button "Copy code" [ref=e260]:
+                  - img [ref=e261]
+                - link "Dial code" [ref=e264] [cursor=pointer]:
+                  - /url: tel:*136%23
+                  - img [ref=e265]
+        - generic [ref=e267]:
+          - heading "Airtime / Recharge" [level=3] [ref=e268]: Airtime / Recharge
+          - generic [ref=e271]:
+            - generic [ref=e272]:
+              - heading "Recharge Account" [level=4] [ref=e273]
+              - generic [ref=e274]:
+                - img [ref=e275]
+                - generic [ref=e278]: Verified
+            - paragraph [ref=e279]: Top up your MTN prepaid account.
+            - generic [ref=e280]:
+              - generic [ref=e281]: "*136*VoucherCode#"
+              - button "Copy code" [ref=e283]:
+                - img [ref=e284]
+        - generic [ref=e287]:
+          - heading "Data / Bundles" [level=3] [ref=e288]: Data / Bundles
+          - generic [ref=e291]:
+            - generic [ref=e292]:
+              - heading "Buy Data / Bundles" [level=4] [ref=e293]
+              - generic [ref=e294]:
+                - img [ref=e295]
+                - generic [ref=e298]: Verified
+            - paragraph [ref=e299]: Access the menu to buy data and specialized bundles.
+            - generic [ref=e300]:
+              - generic [ref=e301]: "*136*2#"
+              - generic [ref=e302]:
+                - button "Copy code" [ref=e303]:
+                  - img [ref=e304]
+                - link "Dial code" [ref=e307] [cursor=pointer]:
+                  - /url: tel:*136*2%23
+                  - img [ref=e308]
+        - generic [ref=e310]:
+          - heading "Transfers" [level=3] [ref=e311]: Transfers
+          - generic [ref=e314]:
+            - generic [ref=e315]:
+              - heading "MTN Me2U (Transfer)" [level=4] [ref=e316]
+              - generic [ref=e317]:
+                - img [ref=e318]
+                - generic [ref=e321]: Verified
+            - paragraph [ref=e322]: Transfer airtime or data to other MTN users.
+            - generic [ref=e323]:
+              - generic [ref=e324]: "*136*3#"
+              - generic [ref=e325]:
+                - button "Copy code" [ref=e326]:
+                  - img [ref=e327]
+                - link "Dial code" [ref=e330] [cursor=pointer]:
+                  - /url: tel:*136*3%23
+                  - img [ref=e331]
+        - generic [ref=e333]:
+          - heading "Number / SIM info" [level=3] [ref=e334]: Number / SIM info
+          - generic [ref=e337]:
+            - generic [ref=e338]:
+              - heading "Check My Number" [level=4] [ref=e339]
+              - generic [ref=e340]:
+                - img [ref=e341]
+                - generic [ref=e344]: Verified
+            - paragraph [ref=e345]: Quickly find your own phone number.
+            - generic [ref=e346]:
+              - generic [ref=e347]: "*123*888#"
+              - generic [ref=e348]:
+                - button "Copy code" [ref=e349]:
+                  - img [ref=e350]
+                - link "Dial code" [ref=e353] [cursor=pointer]:
+                  - /url: tel:*123*888%23
+                  - img [ref=e354]
+        - generic [ref=e356]:
+          - heading "Support / Customer care" [level=3] [ref=e357]: Support / Customer care
+          - generic [ref=e360]:
+            - generic [ref=e361]:
+              - heading "MTN Helpdesk" [level=4] [ref=e362]
+              - generic [ref=e363]:
+                - img [ref=e364]
+                - generic [ref=e367]: Verified
+            - paragraph [ref=e368]: Direct line to MTN customer support.
+            - generic [ref=e369]:
+              - generic [ref=e370]: "135"
+              - generic [ref=e371]:
+                - button "Copy code" [ref=e372]:
+                  - img [ref=e373]
+                - link "Dial code" [ref=e376] [cursor=pointer]:
+                  - /url: tel:135
+                  - img [ref=e377]
+        - generic [ref=e379]:
+          - heading "Promotions / Advance airtime / Extras" [level=3] [ref=e380]: Promotions / Advance airtime / Extras
+          - generic [ref=e383]:
+            - generic [ref=e384]:
+              - heading "XtraTime" [level=4] [ref=e385]
+              - generic [ref=e386]:
+                - img [ref=e387]
+                - generic [ref=e390]: Verified
+            - paragraph [ref=e391]: Advance airtime or data when you are low on balance.
+            - generic [ref=e392]:
+              - generic [ref=e393]: "*151#"
+              - generic [ref=e394]:
+                - button "Copy code" [ref=e395]:
+                  - img [ref=e396]
+                - link "Dial code" [ref=e399] [cursor=pointer]:
+                  - /url: tel:*151%23
+                  - img [ref=e400]
+    - generic [ref=e402]:
+      - generic [ref=e403]:
+        - generic [ref=e404]: T
+        - generic [ref=e405]:
+          - heading "Telkom Codes" [level=2] [ref=e406]
+          - paragraph [ref=e407]: Telkom's prepaid data remains the cheapest 'Anytime' data in the country.
+      - generic [ref=e408]:
+        - generic [ref=e409]:
+          - paragraph [ref=e410]: Want to see how Telkom stacks up against the competition?
+          - button "Compare Telkom Deals" [ref=e411]:
+            - text: Compare Telkom Deals
+            - img [ref=e412]
+        - generic [ref=e416]:
+          - heading "Balance" [level=3] [ref=e417]: Balance
+          - generic [ref=e420]:
+            - generic [ref=e421]:
+              - heading "Check Balance" [level=4] [ref=e422]
+              - generic [ref=e423]:
+                - img [ref=e424]
+                - generic [ref=e427]: Verified
+            - paragraph [ref=e428]: Shows your anytime and night-owl data balances.
+            - generic [ref=e429]:
+              - generic [ref=e430]: "*188#"
+              - generic [ref=e431]:
+                - button "Copy code" [ref=e432]:
+                  - img [ref=e433]
+                - link "Dial code" [ref=e436] [cursor=pointer]:
+                  - /url: tel:*188%23
+                  - img [ref=e437]
+        - generic [ref=e439]:
+          - heading "Data / Bundles" [level=3] [ref=e440]: Data / Bundles
+          - generic [ref=e443]:
+            - generic [ref=e444]:
+              - heading "Buy Data" [level=4] [ref=e445]
+              - generic [ref=e446]:
+                - img [ref=e447]
+                - generic [ref=e450]: Verified
+            - paragraph [ref=e451]: The main menu for purchasing Telkom Mo'Nice and standard bundles.
+            - generic [ref=e452]:
+              - generic [ref=e453]: "*180#"
+              - generic [ref=e454]:
+                - button "Copy code" [ref=e455]:
+                  - img [ref=e456]
+                - link "Dial code" [ref=e459] [cursor=pointer]:
+                  - /url: tel:*180%23
+                  - img [ref=e460]
+        - generic [ref=e462]:
+          - heading "Number / SIM info" [level=3] [ref=e463]: Number / SIM info
+          - generic [ref=e466]:
+            - generic [ref=e467]:
+              - heading "Check My Number" [level=4] [ref=e468]
+              - generic [ref=e469]:
+                - img [ref=e470]
+                - generic [ref=e473]: Verified
+            - paragraph [ref=e474]: Displays your Telkom mobile number.
+            - generic [ref=e475]:
+              - generic [ref=e476]: "*1#"
+              - generic [ref=e477]:
+                - button "Copy code" [ref=e478]:
+                  - img [ref=e479]
+                - link "Dial code" [ref=e482] [cursor=pointer]:
+                  - /url: tel:*1%23
+                  - img [ref=e483]
+        - generic [ref=e485]:
+          - heading "Support / Customer care" [level=3] [ref=e486]: Support / Customer care
+          - generic [ref=e489]:
+            - generic [ref=e490]:
+              - heading "Customer Care" [level=4] [ref=e491]
+              - generic [ref=e492]:
+                - img [ref=e493]
+                - generic [ref=e496]: Verified
+            - paragraph [ref=e497]: Call for Telkom technical and account support.
+            - generic [ref=e498]:
+              - generic [ref=e499]: "180"
+              - generic [ref=e500]:
+                - button "Copy code" [ref=e501]:
+                  - img [ref=e502]
+                - link "Dial code" [ref=e505] [cursor=pointer]:
+                  - /url: tel:180
+                  - img [ref=e506]
+    - generic [ref=e508]:
+      - generic [ref=e509]:
+        - generic [ref=e510]: C
+        - generic [ref=e511]:
+          - heading "Cell C Codes" [level=2] [ref=e512]
+          - paragraph [ref=e513]: Cell C roams on MTN/Vodacom infrastructure in most areas, offering good value.
+      - generic [ref=e514]:
+        - generic [ref=e515]:
+          - paragraph [ref=e516]: Want to see how Cell C stacks up against the competition?
+          - button "Compare Cell C Deals" [ref=e517]:
+            - text: Compare Cell C Deals
+            - img [ref=e518]
+        - generic [ref=e522]:
+          - heading "Balance" [level=3] [ref=e523]: Balance
+          - generic [ref=e526]:
+            - generic [ref=e527]:
+              - heading "Check Balance" [level=4] [ref=e528]
+              - generic [ref=e529]:
+                - img [ref=e530]
+                - generic [ref=e533]: Verified
+            - paragraph [ref=e534]: View your airtime and data bundle status.
+            - generic [ref=e535]:
+              - generic [ref=e536]: "*101#"
+              - generic [ref=e537]:
+                - button "Copy code" [ref=e538]:
+                  - img [ref=e539]
+                - link "Dial code" [ref=e542] [cursor=pointer]:
+                  - /url: tel:*101%23
+                  - img [ref=e543]
+        - generic [ref=e545]:
+          - heading "Data / Bundles" [level=3] [ref=e546]: Data / Bundles
+          - generic [ref=e549]:
+            - generic [ref=e550]:
+              - heading "Buy Bundles" [level=4] [ref=e551]
+              - generic [ref=e552]:
+                - img [ref=e553]
+                - generic [ref=e556]: Verified
+            - paragraph [ref=e557]: Choose from a variety of data, voice, and SMS bundles.
+            - generic [ref=e558]:
+              - generic [ref=e559]: "*147#"
+              - generic [ref=e560]:
+                - button "Copy code" [ref=e561]:
+                  - img [ref=e562]
+                - link "Dial code" [ref=e565] [cursor=pointer]:
+                  - /url: tel:*147%23
+                  - img [ref=e566]
+        - generic [ref=e568]:
+          - heading "Number / SIM info" [level=3] [ref=e569]: Number / SIM info
+          - generic [ref=e572]:
+            - generic [ref=e573]:
+              - heading "Check My Number" [level=4] [ref=e574]
+              - generic [ref=e575]:
+                - img [ref=e576]
+                - generic [ref=e579]: Verified
+            - paragraph [ref=e580]: Confirm your Cell C mobile number.
+            - generic [ref=e581]:
+              - generic [ref=e582]: "*147*100#"
+              - generic [ref=e583]:
+                - button "Copy code" [ref=e584]:
+                  - img [ref=e585]
+                - link "Dial code" [ref=e588] [cursor=pointer]:
+                  - /url: tel:*147*100%23
+                  - img [ref=e589]
+        - generic [ref=e591]:
+          - heading "Support / Customer care" [level=3] [ref=e592]: Support / Customer care
+          - generic [ref=e595]:
+            - generic [ref=e596]:
+              - heading "Customer Service" [level=4] [ref=e597]
+              - generic [ref=e598]:
+                - img [ref=e599]
+                - generic [ref=e602]: Verified
+            - paragraph [ref=e603]: Speak to a Cell C representative.
+            - generic [ref=e604]:
+              - generic [ref=e605]: "135"
+              - generic [ref=e606]:
+                - button "Copy code" [ref=e607]:
+                  - img [ref=e608]
+                - link "Dial code" [ref=e611] [cursor=pointer]:
+                  - /url: tel:135
+                  - img [ref=e612]
+    - generic [ref=e614]:
+      - generic [ref=e615]:
+        - generic [ref=e616]: R
+        - generic [ref=e617]:
+          - heading "Rain Codes" [level=2] [ref=e618]
+          - paragraph [ref=e619]: Specializing in unlimited data for urban metros with strong 5G focus.
+      - generic [ref=e621]:
+        - img [ref=e623]
+        - generic [ref=e626]:
+          - heading "Rain is App-Managed" [level=3] [ref=e627]
+          - paragraph [ref=e628]: Rain is not a traditional USSD-driven mobile operator. They focus on a digital-first experience where all management happens via their official app or website.
+          - generic [ref=e629]:
+            - link "Official Website" [ref=e630] [cursor=pointer]:
+              - /url: https://www.rain.co.za
+              - generic [ref=e631]: Official Website
+              - img [ref=e632]
+            - link "Customer Support" [ref=e636] [cursor=pointer]:
+              - /url: tel:0816100000
+              - generic [ref=e637]: Customer Support
+              - img [ref=e638]
+    - generic [ref=e642]:
+      - heading "Looking for cheaper data?" [level=2] [ref=e643]
+      - paragraph [ref=e644]: Our main comparison tool analyzes dozens of bundles from all networks to find the absolute lowest cost per GB for your specific needs.
+      - button "Compare Data Plans Now" [ref=e645]
+    - generic [ref=e646]:
+      - heading "Frequently Asked Questions" [level=2] [ref=e647]
+      - generic [ref=e648]:
+        - generic [ref=e649]:
+          - heading "What are USSD codes?" [level=3] [ref=e650]
+          - paragraph [ref=e651]: USSD (Unstructured Supplementary Service Data) codes are short codes that start with an asterisk (*) and end with a hash (#). They are used to communicate directly with your mobile network provider to check balances, buy bundles, and manage account services without needing an internet connection.
+        - generic [ref=e652]:
+          - heading "Is the repository fully complete?" [level=3] [ref=e653]
+          - paragraph [ref=e654]: This repository includes the most common and verified codes currently in our database. We are constantly expanding the list as new services are launched by South African operators.
+        - generic [ref=e655]:
+          - heading "Do USSD codes cost money?" [level=3] [ref=e656]
+          - paragraph [ref=e657]: Most network service USSD codes are free to use in South Africa. However, some premium services might carry a cost, but you will usually be notified before being charged.
+```
