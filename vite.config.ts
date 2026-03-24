@@ -22,13 +22,18 @@ export default defineConfig(({mode}) => {
           '/guides/convert-airtime-to-data-south-africa/',
           '/guides/best-data-deals-south-africa/',
           '/guides/prepaid-vs-contract-south-africa/',
+          '/network/vodacom/',
+          '/network/mtn/',
+          '/network/telkom/',
+          '/network/cell-c/',
+          '/network/rain/',
         ],
         renderer: new PuppeteerRenderer({
           renderAfterDocumentEvent: 'render-event',
           headless: true,
           args: ['--no-sandbox', '--disable-setuid-sandbox']
         }),
-        postProcess(renderedRoute) {
+        postProcess(renderedRoute: any) {
           renderedRoute.html = renderedRoute.html
             .replace(/http:\/\/localhost:[0-9]+/g, 'https://datacost.co.za');
           return renderedRoute;

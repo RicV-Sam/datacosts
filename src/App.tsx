@@ -6,9 +6,7 @@ import { NetworkPage } from './pages/NetworkPage';
 import { HomePage } from './pages/HomePage';
 import { GuidesIndex } from './pages/GuidesIndex';
 import { guides } from './data/guides';
-import { NetworkName } from './types';
-
-export type NavigateFunction = (page: 'home' | 'ussd' | 'guide' | 'network' | 'guides-index', slug?: string) => void;
+import { NetworkName, NavigateFunction } from './types';
 
 function AppContent() {
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkName | null>(null);
@@ -38,6 +36,10 @@ function AppContent() {
     }
     if (id === 'guides') {
       navigateTo('guides-index');
+      return;
+    }
+    if (id === 'networks') {
+      navigateTo('network', 'vodacom');
       return;
     }
     if (id === 'home' || id === 'deals' || id === 'calculator' || id === 'scorecard') {
