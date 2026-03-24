@@ -4,6 +4,8 @@ import { bundles } from './data';
 import { DataCalculator } from './components/DataCalculator';
 import { USSDCodeFinder } from './components/USSDCodeFinder';
 import { USSDPage } from './components/USSDPage';
+import { GuidePage } from './components/GuidePage';
+import { guides } from './data/guides';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { NetworkCards } from './components/NetworkCards';
@@ -18,18 +20,28 @@ import { motion, AnimatePresence } from 'motion/react';
 export default function App() {
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkName | null>(null);
   const [activeSection, setActiveSection] = useState('home');
-  const [currentPage, setCurrentPage] = useState<'home' | 'ussd'>(() => {
-    return window.location.pathname.includes('/ussd-codes-south-africa') ? 'ussd' : 'home';
+  const [currentPage, setCurrentPage] = useState<'home' | 'ussd' | 'guide'>(() => {
+    if (window.location.pathname.includes('/ussd-codes-south-africa')) return 'ussd';
+    if (window.location.pathname.includes('/guides/')) return 'guide';
+    return 'home';
+  });
+  const [guideSlug, setGuideSlug] = useState<string | null>(() => {
+    const match = window.location.pathname.match(/\/guides\/([^/]+)\//);
+    return match ? match[1] : null;
   });
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   // Navigation handler
-  const navigateTo = (page: 'home' | 'ussd') => {
-    const path = page === 'ussd' ? '/ussd-codes-south-africa/' : '/';
-    window.history.pushState({ page }, '', path);
+  const navigateTo = (page: 'home' | 'ussd' | 'guide', slug?: string) => {
+    let path = '/';
+    if (page === 'ussd') path = '/ussd-codes-south-africa/';
+    if (page === 'guide' && slug) path = `/guides/${slug}/`;
+
+    window.history.pushState({ page, slug }, '', path);
     setCurrentPage(page);
+    if (slug) setGuideSlug(slug);
     window.scrollTo(0, 0);
   };
 
@@ -37,8 +49,17 @@ export default function App() {
     const handlePopState = (event: PopStateEvent) => {
       if (event.state && event.state.page) {
         setCurrentPage(event.state.page);
+        if (event.state.slug) setGuideSlug(event.state.slug);
       } else {
-        setCurrentPage(window.location.pathname.includes('/ussd-codes-south-africa') ? 'ussd' : 'home');
+        if (window.location.pathname.includes('/ussd-codes-south-africa')) {
+          setCurrentPage('ussd');
+        } else if (window.location.pathname.includes('/guides/')) {
+          const match = window.location.pathname.match(/\/guides\/([^/]+)\//);
+          setCurrentPage('guide');
+          setGuideSlug(match ? match[1] : null);
+        } else {
+          setCurrentPage('home');
+        }
       }
     };
 
@@ -47,20 +68,38 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const canonical = document.querySelector('link[rel="canonical"]');
+
     if (currentPage === 'ussd') {
       document.title = "USSD Codes South Africa - Official Network Short Codes | DataCost";
-      const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
         metaDescription.setAttribute('content', 'Complete repository of South African USSD codes for MTN, Vodacom, Telkom, Cell C and Rain. Check balance, buy data, and manage your account.');
       }
+      if (canonical) {
+        canonical.setAttribute('href', 'https://datacost.co.za/ussd-codes-south-africa/');
+      }
+    } else if (currentPage === 'guide' && guideSlug) {
+      const guide = guides.find(g => g.slug === guideSlug);
+      if (guide) {
+        document.title = `${guide.title} | DataCost`;
+        if (metaDescription) {
+          metaDescription.setAttribute('content', guide.metaDescription);
+        }
+        if (canonical) {
+          canonical.setAttribute('href', `https://datacost.co.za/guides/${guide.slug}/`);
+        }
+      }
     } else {
       document.title = "DataCost.co.za - South Africa Network Comparison";
-      const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
         metaDescription.setAttribute('content', "Compare South Africa's mobile data networks. Independent analysis of Vodacom, MTN, Telkom, and Cell C for coverage, speed, and cost.");
       }
+      if (canonical) {
+        canonical.setAttribute('href', 'https://datacost.co.za/');
+      }
     }
-  }, [currentPage]);
+  }, [currentPage, guideSlug]);
 
   // Smooth scroll handler
   const scrollTo = (id: string) => {
@@ -182,6 +221,26 @@ export default function App() {
     return (
       <USSDPage onBack={() => navigateTo('home')} />
     );
+  }
+
+  if (currentPage === 'guide' && guideSlug) {
+    const guide = guides.find(g => g.slug === guideSlug);
+    if (guide) {
+      return (
+        <GuidePage
+          guide={guide}
+          allGuides={guides}
+          onBack={() => navigateTo('home')}
+          onNavigateToGuide={(slug) => {
+            if (slug === 'ussd') {
+              navigateTo('ussd');
+            } else {
+              navigateTo('guide', slug);
+            }
+          }}
+        />
+      );
+    }
   }
 
   return (
@@ -316,7 +375,7 @@ export default function App() {
 
       </main>
 
-      <Footer onScrollTo={scrollTo} />
+      <Footer onScrollTo={scrollTo} onNavigateTo={navigateTo} />
       <MobileNav onScrollTo={scrollTo} activeSection={activeSection} />
 
       {/* Sticky Bottom Bar for Mobile */}

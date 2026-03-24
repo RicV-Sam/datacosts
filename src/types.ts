@@ -54,3 +54,26 @@ export interface USSDEntry {
   note?: string;
   dialable?: boolean;
 }
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export interface GuideStep {
+  title: string;
+  description: string;
+}
+
+export interface Guide {
+  slug: string;
+  title: string;
+  metaDescription: string;
+  h1: string;
+  intro: string;
+  stepsTitle?: string;
+  steps?: GuideStep[];
+  faq: FAQ[];
+  comparisonType?: '1gb' | 'night' | 'best-value' | 'all';
+  additionalContent?: string;
+}
