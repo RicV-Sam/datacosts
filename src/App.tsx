@@ -164,16 +164,6 @@ export default function App() {
             }
           }
         ]
-      },
-      {
-        "@type": "Organization",
-        "name": "DataCost.co.za",
-        "url": "https://datacost.co.za/"
-      },
-      {
-        "@type": "WebSite",
-        "name": "DataCost.co.za",
-        "url": "https://datacost.co.za/"
       }
     ]
   };
