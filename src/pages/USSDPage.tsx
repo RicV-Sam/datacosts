@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Phone, Copy, Check, ArrowLeft, ExternalLink, ShieldCheck, HelpCircle } from 'lucide-react';
 import { ussdRepository } from '../data/ussd';
 import { networkMetadata } from '../data';
@@ -114,9 +115,14 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
-      <script type="application/ld+json">
-        {JSON.stringify(pageSchema)}
-      </script>
+      <Helmet>
+        <title>USSD Codes South Africa (2025) | All Network Shortcuts</title>
+        <meta name="description" content="Comprehensive list of South African USSD codes for Vodacom, MTN, Telkom, Cell C and Rain. Check balance, buy data and manage bundles." />
+        <link rel="canonical" href="https://datacost.co.za/ussd-codes-south-africa/" />
+        <script type="application/ld+json">
+          {JSON.stringify(pageSchema)}
+        </script>
+      </Helmet>
       {/* Header / Navigation */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
