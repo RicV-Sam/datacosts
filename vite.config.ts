@@ -16,6 +16,7 @@ export default defineConfig(({mode}) => {
         routes: [
           '/',
           '/ussd-codes-south-africa/',
+          '/guides/',
           '/guides/cheapest-1gb-data-south-africa/',
           '/guides/cheap-night-data-south-africa/',
           '/guides/convert-airtime-to-data-south-africa/',

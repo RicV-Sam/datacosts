@@ -15,7 +15,8 @@ import { guides } from '../data/guides';
 import { NetworkName } from '../types';
 
 interface HomePageProps {
-  onNavigate: (page: 'home' | 'ussd' | 'guide' | 'network', slug?: string) => void;
+  onNavigate: (page: 'home' | 'ussd' | 'guide' | 'network' | 'guides-index', slug?: string) => void;
+  onScrollTo: (id: string) => void;
   activeSection: string;
   selectedNetwork: NetworkName | null;
   setSelectedNetwork: (network: NetworkName | null) => void;
@@ -23,6 +24,7 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({
   onNavigate,
+  onScrollTo,
   activeSection,
   selectedNetwork,
   setSelectedNetwork
@@ -46,12 +48,12 @@ export const HomePage: React.FC<HomePageProps> = ({
         </script>
       </Helmet>
 
-      <Header onScrollTo={() => {}} activeSection={activeSection} />
+      <Header onScrollTo={onScrollTo} activeSection={activeSection} />
 
       <main className="max-w-7xl mx-auto px-4 py-8">
         <AdUnit type="aboveFold" />
 
-        <Hero onScrollTo={() => {}} />
+        <Hero onScrollTo={onScrollTo} />
 
         {/* 🔥 GUIDES */}
         <section className="mt-12 mb-20">
@@ -93,8 +95,8 @@ export const HomePage: React.FC<HomePageProps> = ({
         <Verdict />
       </main>
 
-      <Footer onScrollTo={() => {}} onNavigateTo={onNavigate} />
-      <MobileNav onScrollTo={() => {}} activeSection={activeSection} />
+      <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
+      <MobileNav onScrollTo={onScrollTo} activeSection={activeSection} />
       <AdUnit type="stickyMobile" />
 
       <NetworkModal network={selectedNetwork} onClose={() => setSelectedNetwork(null)} />

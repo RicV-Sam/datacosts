@@ -13,6 +13,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
   const navItems = [
     { id: 'deals', label: 'Deals' },
     { id: 'calculator', label: 'Calculator' },
+    { id: 'guides', label: 'Guides' },
     { id: 'ussd', label: 'USSD Codes' },
     { id: 'scorecard', label: 'Scorecard' },
   ];
@@ -29,25 +30,30 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
-          <button
-            onClick={() => onScrollTo('home')}
+          <a
+            href="/"
+            onClick={(e) => { e.preventDefault(); onScrollTo('home'); }}
             className="text-xl font-black tracking-tighter font-headline hover:opacity-80 transition-opacity"
           >
             DataCost.co.za
-          </button>
+          </a>
         </div>
 
         <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
           {navItems.map(item => (
-            <button
+            <a
               key={item.id}
-              onClick={() => onScrollTo(item.id)}
+              href={item.id === 'ussd' ? '/ussd-codes-south-africa/' : item.id === 'guides' ? '/guides/' : `#${item.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onScrollTo(item.id);
+              }}
               className={`text-sm font-bold transition-all hover:translate-y-[-1px] ${
                 activeSection === item.id ? 'text-[#1b6d24]' : 'text-slate-500 hover:text-slate-900'
               }`}
             >
               {item.label}
-            </button>
+            </a>
           ))}
         </nav>
 
@@ -72,9 +78,11 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
           >
             <div className="flex flex-col p-4 gap-2">
               {navItems.map(item => (
-                <button
+                <a
                   key={item.id}
-                  onClick={() => {
+                  href={item.id === 'ussd' ? '/ussd-codes-south-africa/' : item.id === 'guides' ? '/guides/' : `#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
                     onScrollTo(item.id);
                     setIsMenuOpen(false);
                   }}
@@ -83,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                   }`}
                 >
                   {item.label}
-                </button>
+                </a>
               ))}
             </div>
           </motion.div>
