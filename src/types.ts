@@ -78,3 +78,5 @@ export interface Guide {
   comparisonType?: '1gb' | 'night' | 'best-value' | 'all';
   additionalContent?: string;
 }
+
+export type NavigateFunction = (page: 'home' | 'ussd' | 'guide' | 'network' | 'guides-index', slug?: string) => void;

@@ -76,6 +76,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'mtn-monthly-1gb',
+    slug: 'mtn-1gb-data-price',
     network: 'MTN',
     name: 'MTN Monthly 1GB',
     price: 85,
@@ -111,6 +112,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'voda-monthly-1gb',
+    slug: 'vodacom-1gb-data-price',
     network: 'Vodacom',
     name: 'Vodacom Monthly 1GB',
     price: 99,
@@ -146,6 +148,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'telkom-prepaid-1gb',
+    slug: 'telkom-1gb-data-price',
     network: 'Telkom',
     name: 'Telkom 1GB Prepaid',
     price: 79,

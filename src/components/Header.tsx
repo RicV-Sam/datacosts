@@ -13,6 +13,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
   const navItems = [
     { id: 'deals', label: 'Deals' },
     { id: 'calculator', label: 'Calculator' },
+    { id: 'networks', label: 'Networks' },
     { id: 'guides', label: 'Guides' },
     { id: 'ussd', label: 'USSD Codes' },
     { id: 'scorecard', label: 'Scorecard' },
@@ -43,7 +44,12 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
           {navItems.map(item => (
             <a
               key={item.id}
-              href={item.id === 'ussd' ? '/ussd-codes-south-africa/' : item.id === 'guides' ? '/guides/' : `#${item.id}`}
+              href={
+                item.id === 'ussd' ? '/ussd-codes-south-africa/' :
+                item.id === 'guides' ? '/guides/' :
+                item.id === 'networks' ? '/network/vodacom/' :
+                `#${item.id}`
+              }
               onClick={(e) => {
                 e.preventDefault();
                 onScrollTo(item.id);
@@ -80,7 +86,12 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
               {navItems.map(item => (
                 <a
                   key={item.id}
-                  href={item.id === 'ussd' ? '/ussd-codes-south-africa/' : item.id === 'guides' ? '/guides/' : `#${item.id}`}
+                  href={
+                    item.id === 'ussd' ? '/ussd-codes-south-africa/' :
+                    item.id === 'guides' ? '/guides/' :
+                    item.id === 'networks' ? '/network/vodacom/' :
+                    `#${item.id}`
+                  }
                   onClick={(e) => {
                     e.preventDefault();
                     onScrollTo(item.id);
