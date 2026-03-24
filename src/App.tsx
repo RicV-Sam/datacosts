@@ -27,7 +27,7 @@ export default function App() {
 
   // Navigation handler
   const navigateTo = (page: 'home' | 'ussd') => {
-    const path = page === 'ussd' ? '/datacosts/ussd-codes-south-africa/' : '/datacosts/';
+    const path = page === 'ussd' ? '/ussd-codes-south-africa/' : '/';
     window.history.pushState({ page }, '', path);
     setCurrentPage(page);
     window.scrollTo(0, 0);
