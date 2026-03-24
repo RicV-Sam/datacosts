@@ -2,6 +2,7 @@ export type NetworkName = 'MTN' | 'Vodacom' | 'Telkom' | 'Cell C' | 'Rain';
 
 export interface Bundle {
   id: string;
+  slug: string;
   network: NetworkName;
   name: string;
   price: number;
