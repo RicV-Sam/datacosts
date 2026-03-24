@@ -95,33 +95,40 @@ export default function App() {
     "@graph": [
       {
         "@type": "ItemList",
-        "name": "Top South African Data Bundles",
-        "itemListElement": bundles.map((bundle, index) => ({
-          "@type": "ListItem",
-          "position": index + 1,
-          "item": {
-            "@type": "Product",
-            "name": bundle.name,
-            "description": `${bundle.network} ${bundle.volume} Data Bundle`,
-            "brand": { "@type": "Brand", "name": bundle.network },
-            "offers": {
-              "@type": "Offer",
-              "price": bundle.price.toFixed(2),
-              "priceCurrency": "ZAR",
-              "availability": "https://schema.org/InStock"
+        "name": "Best Data Bundles South Africa",
+        "description": "Comparison of the best mobile data bundles in South Africa across Vodacom, MTN, Telkom, Cell C and Rain.",
+        "itemListElement": [...bundles]
+          .sort((a, b) => (a.costPerGb || 0) - (b.costPerGb || 0))
+          .map((bundle, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": {
+              "@type": "Service",
+              "name": bundle.name,
+              "provider": {
+                "@type": "Organization",
+                "name": bundle.network
+              },
+              "areaServed": "South Africa",
+              "offers": {
+                "@type": "Offer",
+                "price": bundle.price.toFixed(2),
+                "priceCurrency": "ZAR",
+                "availability": "https://schema.org/InStock",
+                "url": "https://datacost.co.za/"
+              }
             }
-          }
-        }))
+          }))
       },
       {
         "@type": "FAQPage",
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Which network has the cheapest 1GB data in South Africa?",
+            "name": "Which network has the cheapest data in South Africa?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "As of March 2026, Telkom and MTN (via Boosta bundles) typically offer the lowest cost per GB, often dropping below R10/GB for larger bundles."
+              "text": "Telkom and MTN typically offer the lowest cost per GB depending on bundle size and promotions, with prices often dropping below R10/GB."
             }
           },
           {
@@ -131,8 +138,42 @@ export default function App() {
               "@type": "Answer",
               "text": "Dial *135# and follow the prompts, or use the MyVodacom app."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I check my MTN balance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dial *136# on your phone to see your remaining airtime and data bundles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Rain data unlimited?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Rain offers unlimited 4G and 5G data plans for a fixed monthly fee, primarily in urban metro areas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the cheapest 1GB data bundle?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Telkom's prepaid 20GB bundle often works out to the lowest cost per GB, while MTN's 'Boosta' deals are highly competitive."
+            }
           }
         ]
+      },
+      {
+        "@type": "Organization",
+        "name": "DataCost.co.za",
+        "url": "https://datacost.co.za/"
+      },
+      {
+        "@type": "WebSite",
+        "name": "DataCost.co.za",
+        "url": "https://datacost.co.za/"
       }
     ]
   };
