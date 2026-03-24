@@ -40,12 +40,15 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
         "url": `https://datacost.co.za/guides/${guide.slug}/`,
         "author": {
           "@type": "Organization",
-          "name": "DataCost.co.za"
+          "name": "DataCost.co.za",
+          "url": "https://datacost.co.za"
         },
+        "image": "https://datacost.co.za/og-image.jpg",
         "dateModified": new Date().toISOString(),
         "publisher": {
           "@type": "Organization",
           "name": "DataCost.co.za",
+          "url": "https://datacost.co.za",
           "logo": {
             "@type": "ImageObject",
             "url": "https://datacost.co.za/logo.png"

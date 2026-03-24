@@ -70,8 +70,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
         "url": "https://datacost.co.za/ussd-codes-south-africa/",
         "author": {
           "@type": "Organization",
-          "name": "DataCost.co.za"
-        }
+          "name": "DataCost.co.za",
+          "url": "https://datacost.co.za"
+        },
+        "image": "https://datacost.co.za/og-image.jpg"
       },
       {
         "@type": "FAQPage",
