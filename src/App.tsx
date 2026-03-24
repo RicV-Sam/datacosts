@@ -14,10 +14,14 @@ import { MobileNav } from './components/MobileNav';
 import { NetworkModal } from './components/NetworkModal';
 import { NetworkName } from './types';
 import { motion, AnimatePresence } from 'motion/react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation, Link } from 'react-router-dom';
 import { CheapestData } from './pages/CheapestData';
 import { VodacomVsMTN } from './pages/VodacomVsMTN';
 import { WaspSubscriptions } from './pages/WaspSubscriptions';
+import { NetworkPage } from './pages/NetworkPage';
+import { BundlePage } from './pages/BundlePage';
+import { AirtimePage } from './pages/AirtimePage';
+import { AdUnit } from './components/AdUnit';
 
 export default function App() {
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkName | null>(null);
@@ -163,6 +167,9 @@ export default function App() {
       <Route path="/cheapest-data-south-africa/" element={<CheapestData />} />
       <Route path="/vodacom-vs-mtn-data-prices/" element={<VodacomVsMTN />} />
       <Route path="/how-to-stop-wasp-subscriptions/" element={<WaspSubscriptions />} />
+      <Route path="/network/:networkSlug/" element={<NetworkPage />} />
+      <Route path="/network/:networkSlug/:bundleSlug/" element={<BundlePage />} />
+      <Route path="/buy-airtime/:networkSlug/" element={<AirtimePage />} />
     </Routes>
   );
 }
@@ -177,6 +184,7 @@ function Home({ scrollTo, navigate, activeSection, searchQuery, setSearchQuery, 
       <Header onScrollTo={scrollTo} activeSection={activeSection} />
 
       <main className="max-w-7xl mx-auto px-4 py-8 md:py-16 mb-20 md:mb-0">
+        <AdUnit type="aboveFold" />
         <Hero onScrollTo={scrollTo} />
 
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-2">
@@ -250,7 +258,8 @@ function Home({ scrollTo, navigate, activeSection, searchQuery, setSearchQuery, 
           </AnimatePresence>
         </div>
 
-        <NetworkCards onViewDeals={(network) => setSelectedNetwork(network)} />
+        <NetworkCards onViewDeals={(network) => navigate(`/network/${network.toLowerCase().replace(' ', '')}/`)} />
+        <AdUnit type="inContent" />
 
         {/* AI Summary Block (TL;DR) - Moved below network comparison */}
         <section className="mb-16 bg-white/70 backdrop-blur-xl border-l-4 border-[#1b6d24] p-6 rounded-r-xl shadow-sm hover:shadow-md transition-shadow">
@@ -269,6 +278,7 @@ function Home({ scrollTo, navigate, activeSection, searchQuery, setSearchQuery, 
         <section className="mb-16">
           <DataCalculator />
         </section>
+        <AdUnit type="inContent" />
 
         <Scorecard />
 
@@ -302,6 +312,7 @@ function Home({ scrollTo, navigate, activeSection, searchQuery, setSearchQuery, 
 
       <Footer onScrollTo={scrollTo} />
       <MobileNav onScrollTo={scrollTo} activeSection={activeSection} />
+      <AdUnit type="stickyMobile" />
 
       {/* Sticky Bottom Bar for Mobile */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/80 backdrop-blur-lg border-t border-slate-100 z-50 md:hidden">

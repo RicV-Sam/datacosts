@@ -51,6 +51,7 @@ export const networkMetadata: Record<NetworkName, NetworkMetadata> = {
 export const bundles: Bundle[] = [
   {
     id: 'mtn-monthly-50gb',
+    slug: 'mtn-50gb-data-price',
     network: 'MTN',
     name: 'MTN Monthly 50GB',
     price: 299,
@@ -63,6 +64,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'mtn-monthly-10gb',
+    slug: 'mtn-10gb-data-price',
     network: 'MTN',
     name: 'MTN Monthly 10GB',
     price: 149,
@@ -74,6 +76,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'voda-monthly-20gb',
+    slug: 'vodacom-20gb-data-price',
     network: 'Vodacom',
     name: 'Vodacom 20GB Anytime',
     price: 299,
@@ -85,6 +88,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'voda-monthly-10gb',
+    slug: 'vodacom-10gb-data-price',
     network: 'Vodacom',
     name: 'Vodacom 10GB Anytime',
     price: 199,
@@ -96,6 +100,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'telkom-prepaid-20gb',
+    slug: 'telkom-20gb-data-price',
     network: 'Telkom',
     name: 'Telkom 20GB Prepaid',
     price: 99,
@@ -107,6 +112,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'telkom-prepaid-40gb',
+    slug: 'telkom-40gb-data-price',
     network: 'Telkom',
     name: 'Telkom 40GB Prepaid',
     price: 189,
@@ -118,6 +124,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'cellc-monthly-10gb',
+    slug: 'cell-c-10gb-data-price',
     network: 'Cell C',
     name: 'Cell C 10GB Monthly',
     price: 129,
@@ -129,6 +136,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'cellc-monthly-30gb',
+    slug: 'cell-c-30gb-data-price',
     network: 'Cell C',
     name: 'Cell C 30GB Monthly',
     price: 299,
@@ -140,6 +148,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'rain-unlimited-4g',
+    slug: 'rain-unlimited-4g-data-price',
     network: 'Rain',
     name: 'Rain Unlimited 4G',
     price: 479,
@@ -151,6 +160,7 @@ export const bundles: Bundle[] = [
   },
   {
     id: 'rain-unlimited-5g',
+    slug: 'rain-unlimited-5g-data-price',
     network: 'Rain',
     name: 'Rain Unlimited 5G',
     price: 599,
