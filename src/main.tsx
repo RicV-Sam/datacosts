@@ -11,3 +11,6 @@ createRoot(document.getElementById('root')!).render(
     </HelmetProvider>
   </StrictMode>,
 );
+
+// Dispatch event for prerendering
+document.dispatchEvent(new Event('render-event'));
