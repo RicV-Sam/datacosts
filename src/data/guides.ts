@@ -291,7 +291,7 @@ export const guides: Guide[] = [
     ]
   },
   {
-    slug: 'convert-airtime-to-data',
+    slug: 'convert-airtime-to-data-south-africa',
     title: 'How to Convert Airtime to Data South Africa (All Networks)',
     metaDescription: 'Learn how to convert airtime to data on Vodacom, MTN, Telkom, and Cell C. Save money by avoiding expensive out-of-bundle data rates.',
     h1: 'How to Convert Airtime to Data in South Africa',

@@ -13,7 +13,15 @@ export default defineConfig(({mode}) => {
       react(),
       tailwindcss(),
       prerender({
-        routes: ['/', '/ussd-codes-south-africa/'],
+        routes: [
+          '/',
+          '/ussd-codes-south-africa/',
+          '/guides/cheapest-1gb-data-south-africa/',
+          '/guides/cheap-night-data-south-africa/',
+          '/guides/convert-airtime-to-data-south-africa/',
+          '/guides/best-data-deals-south-africa/',
+          '/guides/prepaid-vs-contract-south-africa/',
+        ],
         renderer: new PuppeteerRenderer({
           renderAfterDocumentEvent: 'render-event',
           headless: true,
