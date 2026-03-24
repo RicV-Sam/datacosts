@@ -26,13 +26,25 @@
         "@graph": [
           {
             "@type": "WebSite",
+            "@id": "https://datacost.co.za/#website",
             "name": "DataCost.co.za",
-            "url": "https://datacost.co.za/"
+            "url": "https://datacost.co.za/",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://datacost.co.za/?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
           },
           {
             "@type": "Organization",
+            "@id": "https://datacost.co.za/#organization",
             "name": "DataCost.co.za",
-            "url": "https://datacost.co.za/"
+            "url": "https://datacost.co.za/",
+            "sameAs": [
+              "https://www.facebook.com/datacost",
+              "https://twitter.com/datacost",
+              "https://www.linkedin.com/company/datacost"
+            ]
           }
         ]
       }
