@@ -13,10 +13,27 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const [activeNetworkChip, setActiveNetworkChip] = useState<string | null>(null);
 
-  const handleCopy = (code: string) => {
+  const handleCopy = (code: string, network: string) => {
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
+    if ((window as any).gtag) {
+      (window as any).gtag('event', 'ussd_click', {
+        code,
+        network: network.toLowerCase(),
+        action: 'copy'
+      });
+    }
     setTimeout(() => setCopiedCode(null), 2000);
+  };
+
+  const handleDial = (code: string, network: string) => {
+    if ((window as any).gtag) {
+      (window as any).gtag('event', 'ussd_click', {
+        code,
+        network: network.toLowerCase(),
+        action: 'dial'
+      });
+    }
   };
 
   const networks: NetworkName[] = ['Vodacom', 'MTN', 'Telkom', 'Cell C', 'Rain'];
@@ -35,6 +52,11 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
 
   const scrollToNetwork = (network: string) => {
     setActiveNetworkChip(network);
+    if ((window as any).gtag) {
+      (window as any).gtag('event', 'network_select', {
+        network: network.toLowerCase()
+      });
+    }
     const elementId = `network-${network.toLowerCase().replace(' ', '-')}`;
     const element = document.getElementById(elementId);
     if (element) {
@@ -269,7 +291,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
                               </div>
                               <div className="flex items-center gap-2">
                                 <button
-                                  onClick={() => handleCopy(item.code)}
+                                  onClick={() => handleCopy(item.code, network)}
                                   className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-4 bg-slate-50 text-slate-600 hover:text-[#217128] hover:bg-[#a0f399]/20 border border-slate-100 rounded-2xl transition-all min-h-[54px] min-w-[54px]"
                                   title="Copy code"
                                 >
@@ -279,6 +301,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack }) => {
                                 {item.dialable && (
                                   <a
                                     href={`tel:${item.code.replace('#', '%23')}`}
+                                    onClick={() => handleDial(item.code, network)}
                                     className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-4 bg-[#031636] text-white hover:bg-[#1b6d24] rounded-2xl transition-all shadow-lg active:scale-95 min-h-[54px] min-w-[54px]"
                                     title="Dial code"
                                   >

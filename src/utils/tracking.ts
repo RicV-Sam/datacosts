@@ -7,15 +7,22 @@ export const trackAndRedirect = (network: NetworkName, source: 'calculator' | 'm
   const meta = networkMetadata[network];
   const url = `${meta.externalUrl}${UTM_PARAMS}`;
 
+  // Google Analytics Event
+  if (typeof window !== 'undefined' && (window as any).gtag) {
+    (window as any).gtag('event', 'airtime_click', {
+      network: network.toLowerCase(),
+      location: window.location.pathname,
+      source: source,
+      bundle_name: bundleName
+    });
+  }
+
   // Lightweight tracking
   const message = bundleName
     ? `User clicked ${network} (${bundleName}) from ${source}`
     : `User clicked ${network} from ${source}`;
 
   console.log(message);
-
-  // Future: Add GA or other tracking tools here
-  // window.gtag?.('event', 'outbound_click', { network, source, bundle_name: bundleName });
 
   window.open(url, '_blank', 'noopener,noreferrer');
 };

@@ -632,11 +632,62 @@
       document.querySelectorAll('[data-code]').forEach((button) => {
         button.addEventListener('click', async () => {
           const code = button.getAttribute('data-code');
+          const network = button.closest('article')?.id || 'unknown';
           try {
             await navigator.clipboard.writeText(code);
             showToast(`${code} copied`);
+            if (window.gtag) {
+              gtag('event', 'ussd_click', {
+                code: code,
+                network: network,
+                action: 'copy'
+              });
+            }
           } catch (error) {
             showToast('Unable to copy code');
+          }
+        });
+      });
+
+      document.querySelectorAll('.dial-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          const code = link.closest('.code-item')?.querySelector('[data-code]')?.getAttribute('data-code') || 'unknown';
+          const network = link.closest('article')?.id || 'unknown';
+          if (window.gtag) {
+            gtag('event', 'ussd_click', {
+              code: code,
+              network: network,
+              action: 'dial'
+            });
+          }
+        });
+      });
+
+      document.querySelectorAll('.nav-chip').forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const network = chip.getAttribute('href')?.replace('#', '') || 'unknown';
+          if (window.gtag) {
+            gtag('event', 'network_select', {
+              network: network
+            });
+          }
+        });
+      });
+
+      const trackedMilestones = new Set();
+      window.addEventListener('scroll', () => {
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPos = window.scrollY;
+        const percentage = Math.round((scrollPos / scrollHeight) * 100);
+
+        [25, 50, 75, 100].forEach(milestone => {
+          if (percentage >= milestone && !trackedMilestones.has(milestone)) {
+            trackedMilestones.add(milestone);
+            if (window.gtag) {
+              gtag('event', 'scroll_depth', {
+                percentage: milestone
+              });
+            }
           }
         });
       });

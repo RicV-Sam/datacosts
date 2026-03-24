@@ -31,6 +31,11 @@ export default function App() {
     window.history.pushState({ page }, '', path);
     setCurrentPage(page);
     window.scrollTo(0, 0);
+    if (page === 'ussd' && (window as any).gtag) {
+      (window as any).gtag('event', 'network_select', {
+        network: 'all_ussd'
+      });
+    }
   };
 
   useEffect(() => {
@@ -142,6 +147,37 @@ export default function App() {
       <USSDPage onBack={() => navigateTo('home')} />
     );
   }
+
+  useEffect(() => {
+    if (selectedNetwork && (window as any).gtag) {
+      (window as any).gtag('event', 'network_select', {
+        network: selectedNetwork.toLowerCase()
+      });
+    }
+  }, [selectedNetwork]);
+
+  useEffect(() => {
+    const trackedMilestones = new Set<number>();
+    const handleScroll = () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPos = window.scrollY;
+      const percentage = Math.round((scrollPos / scrollHeight) * 100);
+
+      [25, 50, 75, 100].forEach(milestone => {
+        if (percentage >= milestone && !trackedMilestones.has(milestone)) {
+          trackedMilestones.add(milestone);
+          if ((window as any).gtag) {
+            (window as any).gtag('event', 'scroll_depth', {
+              percentage: milestone
+            });
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [currentPage]);
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans selection:bg-[#a0f399]/30 relative overflow-hidden">
