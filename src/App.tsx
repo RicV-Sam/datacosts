@@ -14,58 +14,44 @@ import { MobileNav } from './components/MobileNav';
 import { NetworkModal } from './components/NetworkModal';
 import { NetworkName } from './types';
 import { motion, AnimatePresence } from 'motion/react';
+import { Routes, Route, useNavigate, useLocation, Link } from 'react-router-dom';
+import { CheapestData } from './pages/CheapestData';
+import { VodacomVsMTN } from './pages/VodacomVsMTN';
+import { WaspSubscriptions } from './pages/WaspSubscriptions';
+import { NetworkPage } from './pages/NetworkPage';
+import { BundlePage } from './pages/BundlePage';
+import { AirtimePage } from './pages/AirtimePage';
+import { AdUnit } from './components/AdUnit';
 
 export default function App() {
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkName | null>(null);
   const [activeSection, setActiveSection] = useState('home');
-  const [currentPage, setCurrentPage] = useState<'home' | 'ussd'>(() => {
-    return window.location.pathname.includes('/ussd-codes-south-africa') ? 'ussd' : 'home';
-  });
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchActive, setIsSearchActive] = useState(false);
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-
-  // Navigation handler
-  const navigateTo = (page: 'home' | 'ussd') => {
-    const path = page === 'ussd' ? '/ussd-codes-south-africa/' : '/';
-    window.history.pushState({ page }, '', path);
-    setCurrentPage(page);
-    window.scrollTo(0, 0);
-  };
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const handlePopState = (event: PopStateEvent) => {
-      if (event.state && event.state.page) {
-        setCurrentPage(event.state.page);
-      } else {
-        setCurrentPage(window.location.pathname.includes('/ussd-codes-south-africa') ? 'ussd' : 'home');
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
-
-  useEffect(() => {
-    if (currentPage === 'ussd') {
+    if (location.pathname === '/ussd-codes-south-africa/') {
       document.title = "USSD Codes South Africa - Official Network Short Codes | DataCost";
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
         metaDescription.setAttribute('content', 'Complete repository of South African USSD codes for MTN, Vodacom, Telkom, Cell C and Rain. Check balance, buy data, and manage your account.');
       }
-    } else {
+    } else if (location.pathname === '/') {
       document.title = "DataCost.co.za - South Africa Network Comparison";
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
         metaDescription.setAttribute('content', "Compare South Africa's mobile data networks. Independent analysis of Vodacom, MTN, Telkom, and Cell C for coverage, speed, and cost.");
       }
     }
-  }, [currentPage]);
+  }, [location.pathname]);
 
   // Smooth scroll handler
   const scrollTo = (id: string) => {
-    if (currentPage !== 'home') {
-      navigateTo('home');
+    if (location.pathname !== '/') {
+      navigate('/');
       // Wait for re-render
       setTimeout(() => {
         const element = document.getElementById(id);
@@ -75,6 +61,11 @@ export default function App() {
         }
       }, 100);
     } else {
+      if (id === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setActiveSection('home');
+        return;
+      }
       const element = document.getElementById(id);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -110,12 +101,13 @@ export default function App() {
                 "name": bundle.network
               },
               "areaServed": "South Africa",
+              "image": `https://datacost.co.za/images/${bundle.network.toLowerCase().replace(' ', '')}.jpg`,
               "offers": {
                 "@type": "Offer",
                 "price": bundle.price.toFixed(2),
                 "priceCurrency": "ZAR",
                 "availability": "https://schema.org/InStock",
-                "url": "https://datacost.co.za/"
+                "url": "https://datacost.co.za/#deals"
               }
             }
           }))
@@ -164,26 +156,25 @@ export default function App() {
             }
           }
         ]
-      },
-      {
-        "@type": "Organization",
-        "name": "DataCost.co.za",
-        "url": "https://datacost.co.za/"
-      },
-      {
-        "@type": "WebSite",
-        "name": "DataCost.co.za",
-        "url": "https://datacost.co.za/"
       }
     ]
   };
 
-  if (currentPage === 'ussd') {
-    return (
-      <USSDPage onBack={() => navigateTo('home')} />
-    );
-  }
+  return (
+    <Routes>
+      <Route path="/" element={<Home scrollTo={scrollTo} navigate={navigate} activeSection={activeSection} searchQuery={searchQuery} setSearchQuery={setSearchQuery} isSearchActive={isSearchActive} setIsSearchActive={setIsSearchActive} filteredBundles={filteredBundles} today={today} setSelectedNetwork={setSelectedNetwork} selectedNetwork={selectedNetwork} jsonLd={jsonLd} />} />
+      <Route path="/ussd-codes-south-africa/" element={<USSDPage onBack={() => navigate('/')} />} />
+      <Route path="/cheapest-data-south-africa/" element={<CheapestData />} />
+      <Route path="/vodacom-vs-mtn-data-prices/" element={<VodacomVsMTN />} />
+      <Route path="/how-to-stop-wasp-subscriptions/" element={<WaspSubscriptions />} />
+      <Route path="/network/:networkSlug/" element={<NetworkPage />} />
+      <Route path="/network/:networkSlug/:bundleSlug/" element={<BundlePage />} />
+      <Route path="/buy-airtime/:networkSlug/" element={<AirtimePage />} />
+    </Routes>
+  );
+}
 
+function Home({ scrollTo, navigate, activeSection, searchQuery, setSearchQuery, isSearchActive, setIsSearchActive, filteredBundles, today, setSelectedNetwork, selectedNetwork, jsonLd }: any) {
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans selection:bg-[#a0f399]/30 relative overflow-hidden">
       <script type="application/ld+json">
@@ -193,6 +184,7 @@ export default function App() {
       <Header onScrollTo={scrollTo} activeSection={activeSection} />
 
       <main className="max-w-7xl mx-auto px-4 py-8 md:py-16 mb-20 md:mb-0">
+        <AdUnit type="aboveFold" />
         <Hero onScrollTo={scrollTo} />
 
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-2">
@@ -266,7 +258,8 @@ export default function App() {
           </AnimatePresence>
         </div>
 
-        <NetworkCards onViewDeals={(network) => setSelectedNetwork(network)} />
+        <NetworkCards onViewDeals={(network) => navigate(`/network/${network.toLowerCase().replace(' ', '')}/`)} />
+        <AdUnit type="inContent" />
 
         {/* AI Summary Block (TL;DR) - Moved below network comparison */}
         <section className="mb-16 bg-white/70 backdrop-blur-xl border-l-4 border-[#1b6d24] p-6 rounded-r-xl shadow-sm hover:shadow-md transition-shadow">
@@ -285,12 +278,13 @@ export default function App() {
         <section className="mb-16">
           <DataCalculator />
         </section>
+        <AdUnit type="inContent" />
 
         <Scorecard />
 
         <h2 className="text-3xl font-black tracking-tighter mb-8" id="ussd">How to Check Balance & Buy Data (USSD Codes)</h2>
         <section className="mb-16">
-          <USSDCodeFinder onViewAll={() => navigateTo('ussd')} />
+          <USSDCodeFinder onViewAll={() => navigate('/ussd-codes-south-africa/')} />
         </section>
 
         <Verdict />
@@ -318,6 +312,7 @@ export default function App() {
 
       <Footer onScrollTo={scrollTo} />
       <MobileNav onScrollTo={scrollTo} activeSection={activeSection} />
+      <AdUnit type="stickyMobile" />
 
       {/* Sticky Bottom Bar for Mobile */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/80 backdrop-blur-lg border-t border-slate-100 z-50 md:hidden">
