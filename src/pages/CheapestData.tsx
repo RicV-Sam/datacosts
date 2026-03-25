@@ -46,6 +46,19 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const bestValueNetwork = [...networkSummaries]
     .filter((summary) => summary.minCostPerGb !== null)
     .sort((a, b) => (a.minCostPerGb ?? Number.POSITIVE_INFINITY) - (b.minCostPerGb ?? Number.POSITIVE_INFINITY))[0];
+  const cheapestOverall = sortedBundles.find((bundle) => bundle.costPerGb > 0);
+  const cheapest1Gb = bundles
+    .filter((bundle) => bundle.volume === '1GB')
+    .sort((a, b) => a.price - b.price)[0];
+  const cheapestMonthly = bundles
+    .filter((bundle) => bundle.validity.toLowerCase().includes('30 day') || bundle.validity.toLowerCase().includes('month'))
+    .sort((a, b) => a.costPerGb - b.costPerGb)[0];
+  const cheapestNight = bundles
+    .filter((bundle) => bundle.name.toLowerCase().includes('night') || (bundle.nightData !== undefined && bundle.nightData !== ''))
+    .sort((a, b) => a.costPerGb - b.costPerGb)[0];
+  const cheapestPrepaid = bundles
+    .filter((bundle) => bundle.type === 'Prepaid')
+    .sort((a, b) => a.costPerGb - b.costPerGb)[0];
 
   const bestNetworkReasoning: Record<string, string> = {
     Telkom:
@@ -66,18 +79,38 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Which network has the cheapest 1GB data?",
+        "name": "What is the cheapest data in South Africa right now?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Telkom typically offers the lowest price for a standard 1GB anytime bundle, though MTN Boosta bundles often provide better value for larger amounts."
+          "text": cheapestOverall
+            ? `${cheapestOverall.network} currently has the lowest cost-per-GB in this comparison, with ${cheapestOverall.name} at R${cheapestOverall.price} (about R${cheapestOverall.costPerGb.toFixed(2)}/GB).`
+            : "Telkom currently leads on price-per-GB in our latest comparison dataset."
         }
       },
       {
         "@type": "Question",
-        "name": "Is Rain the cheapest for unlimited data?",
+        "name": "Which network offers the best value for data?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, Rain currently offers the most competitive unlimited 4G and 5G plans in South Africa, starting from R479 per month."
+          "text": `${bestValueNetwork?.networkName ?? 'Telkom'} offers the strongest overall value right now based on current cost-per-GB across active bundles.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the cheapest 1GB data bundle right now?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": cheapest1Gb
+            ? `${cheapest1Gb.network} currently has the cheapest 1GB option in this dataset: ${cheapest1Gb.name} at R${cheapest1Gb.price}.`
+            : "Telkom is typically the cheapest for standard 1GB bundles, with MTN often close on promotions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is prepaid data cheaper than contract in South Africa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In many cases, yes. Prepaid can be cheaper, especially when you use personalised or promotional bundles and avoid out-of-bundle rates."
         }
       }
     ]
@@ -126,6 +159,35 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
           </p>
         </header>
 
+        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
+          <p className="text-slate-700 leading-relaxed">
+            {cheapestOverall
+              ? `The cheapest data in South Africa right now (in this comparison) is ${cheapestOverall.network}'s ${cheapestOverall.name} at R${cheapestOverall.price}, about R${cheapestOverall.costPerGb.toFixed(2)}/GB.`
+              : 'The cheapest data in South Africa right now is currently led by Telkom in our comparison dataset.'}{' '}
+            {bestValueNetwork
+              ? `${bestValueNetwork.networkName} offers the best overall value at the moment when balancing price-per-GB and practical bundle options.`
+              : 'Telkom offers the best overall value right now.'}{' '}
+            Check your coverage first, then compare 1GB, monthly, and promo options before buying.
+          </p>
+        </section>
+
+        <section className="mb-16 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-6">Direct Answer Summary</h2>
+          <div className="space-y-4">
+            <p className="text-slate-700">
+              <span className="font-black text-slate-900">What is the cheapest data in South Africa right now?</span>{' '}
+              {cheapestOverall
+                ? `${cheapestOverall.network} currently leads this comparison with ${cheapestOverall.name} at R${cheapestOverall.price} (about R${cheapestOverall.costPerGb.toFixed(2)}/GB).`
+                : 'Telkom currently leads this comparison on price-per-GB.'}
+            </p>
+            <p className="text-slate-700">
+              <span className="font-black text-slate-900">Which network offers the best value?</span>{' '}
+              {bestValueNetwork?.networkName ?? 'Telkom'} offers the strongest value right now based on current cost-per-GB and available bundle mix.
+            </p>
+          </div>
+        </section>
+
         <section className="mb-16 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <div className="flex items-start gap-3 mb-4">
             <CalendarClock className="w-5 h-5 text-[#1b6d24] mt-0.5" />
@@ -133,6 +195,42 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
               <h2 className="text-xl font-black tracking-tight">Last Updated</h2>
               <p className="text-slate-600 text-sm mt-1">
                 {lastUpdated}. This page is rebuilt from the same bundle dataset used across our network and guide pages. When pricing data changes, this comparison updates with the next production build.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-20 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-6">Cheapest Data by Use Case</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <div className="rounded-2xl border border-slate-100 p-5 bg-slate-50">
+              <h3 className="font-black text-slate-900 mb-2">Cheapest 1GB</h3>
+              <p className="text-slate-700">
+                {cheapest1Gb ? `${cheapest1Gb.network} - ${cheapest1Gb.name} (R${cheapest1Gb.price}).` : 'Telkom is usually the cheapest starting point for 1GB bundles.'}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-100 p-5 bg-slate-50">
+              <h3 className="font-black text-slate-900 mb-2">Cheapest Monthly Data</h3>
+              <p className="text-slate-700">
+                {cheapestMonthly
+                  ? `${cheapestMonthly.network} - ${cheapestMonthly.name} (R${cheapestMonthly.price}, ~R${cheapestMonthly.costPerGb.toFixed(2)}/GB).`
+                  : 'Telkom and MTN are usually the most competitive on monthly value.'}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-100 p-5 bg-slate-50">
+              <h3 className="font-black text-slate-900 mb-2">Cheapest Night Data</h3>
+              <p className="text-slate-700">
+                {cheapestNight
+                  ? `${cheapestNight.network} - ${cheapestNight.name} (R${cheapestNight.price}, ~R${cheapestNight.costPerGb.toFixed(2)}/GB).`
+                  : 'MTN and Vodacom usually lead for mainstream night-data options.'}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-100 p-5 bg-slate-50">
+              <h3 className="font-black text-slate-900 mb-2">Cheapest Prepaid Option</h3>
+              <p className="text-slate-700">
+                {cheapestPrepaid
+                  ? `${cheapestPrepaid.network} - ${cheapestPrepaid.name} (R${cheapestPrepaid.price}, ~R${cheapestPrepaid.costPerGb.toFixed(2)}/GB).`
+                  : 'Telkom and Cell C are typically the best prepaid value starting points.'}
               </p>
             </div>
           </div>
@@ -291,37 +389,30 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
           </div>
         </section>
 
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-            <h3 className="text-xl font-black mb-4 flex items-center gap-2">
-              <ShieldCheck className="w-6 h-6 text-[#1b6d24]" />
-              Practical Winner: Best Value
-            </h3>
-            <p className="text-slate-600 leading-relaxed">
-              <span className="font-bold text-slate-900">{bestValueNetwork?.networkName ?? 'Telkom'}</span> is the strongest starting point for price-focused shoppers right now in this dataset.
-            </p>
-          </div>
-          <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-            <h3 className="text-xl font-black mb-4 flex items-center gap-2">
-              <HelpCircle className="w-6 h-6 text-[#1b6d24]" />
-              Winner: Budget Choice
-            </h3>
-            <p className="text-slate-600 leading-relaxed">
-              <span className="font-bold text-slate-900">Telkom and Cell C</span> are often worth checking first when you need lower entry prices and flexible prepaid value.
-            </p>
-          </div>
-        </section>
-
         <section className="mb-20">
           <h2 className="text-2xl font-black tracking-tight mb-8">Frequently Asked Questions</h2>
           <div className="space-y-6">
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-              <h3 className="font-bold text-slate-900 mb-2">Which network has the cheapest 1GB data?</h3>
-              <p className="text-sm text-slate-600">Telkom typically offers the lowest price for a standard 1GB anytime bundle, though MTN Boosta bundles often provide better value for larger amounts.</p>
+              <h3 className="font-bold text-slate-900 mb-2">What is the cheapest data in South Africa right now?</h3>
+              <p className="text-sm text-slate-600">{cheapestOverall
+                ? `${cheapestOverall.network} currently has the lowest cost-per-GB in this comparison.`
+                : 'Telkom currently leads this comparison on price-per-GB.'}</p>
+              <p className="text-sm text-slate-600 mt-2">Always check final offer details on the operator page, because promo and account-specific pricing can change quickly.</p>
             </div>
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-              <h3 className="font-bold text-slate-900 mb-2">Is Rain the cheapest for unlimited data?</h3>
-              <p className="text-sm text-slate-600">Yes, Rain currently offers the most competitive unlimited 4G and 5G plans in South Africa, starting from R479 per month.</p>
+              <h3 className="font-bold text-slate-900 mb-2">Which network gives the best value for data in South Africa?</h3>
+              <p className="text-sm text-slate-600">{bestValueNetwork?.networkName ?? 'Telkom'} currently offers the strongest overall value in this dataset.</p>
+              <p className="text-sm text-slate-600 mt-2">If you care more about coverage consistency than lowest price-per-GB, compare MTN and Vodacom side-by-side before deciding.</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+              <h3 className="font-bold text-slate-900 mb-2">What is the cheapest 1GB data bundle right now?</h3>
+              <p className="text-sm text-slate-600">{cheapest1Gb ? `${cheapest1Gb.network} currently has the cheapest 1GB option listed here at R${cheapest1Gb.price}.` : 'Telkom is usually the cheapest benchmark for 1GB.'}</p>
+              <p className="text-sm text-slate-600 mt-2">For many users, 1GB is best for light WhatsApp and browsing. Heavy streaming usually needs a monthly plan instead.</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+              <h3 className="font-bold text-slate-900 mb-2">Is prepaid data cheaper than contract in South Africa?</h3>
+              <p className="text-sm text-slate-600">Often yes, especially when prepaid promos are available.</p>
+              <p className="text-sm text-slate-600 mt-2">But real value depends on your usage pattern, coverage, and whether a contract includes extra benefits you actually use.</p>
             </div>
           </div>
         </section>
