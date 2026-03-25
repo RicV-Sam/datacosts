@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { ArrowLeft, Check, ShieldCheck, HelpCircle, XCircle, ShieldOff, AlertTriangle, Info } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, AlertTriangle, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NavigateFunction } from '../types';
 
@@ -13,16 +13,52 @@ interface WaspSubscriptionsProps {
 }
 
 export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'How to Stop WASP Subscriptions in South Africa - Opt-Out Guide | DataCost';
+  const pageTitle = 'How to Stop WASP Subscriptions in South Africa (2026 Guide) | DataCost';
   const metaDescription =
-    'Is your airtime disappearing? Learn how to unsubscribe from content services and stop WASP subscriptions for Vodacom, MTN, Telkom, and Cell C.';
+    'Learn how to stop WASP subscriptions in South Africa with simple steps for Vodacom, MTN, Telkom, and Cell C, plus what to do if charges continue.';
   const canonicalUrl = 'https://datacost.co.za/guides/stop-wasp-subscriptions-south-africa/';
 
-  const optOutCodes = [
-    { network: 'Vodacom', code: '*135*997#', instructions: 'Dial and follow the prompts to manage and unsubscribe from all premium services.' },
-    { network: 'MTN', code: '*155#', instructions: 'Follow the menu to block or unsubscribe from all content services.' },
-    { network: 'Telkom', code: '*180#', instructions: 'Navigate to the self-service menu or content subscriptions to opt-out.' },
-    { network: 'Cell C', code: '*133*1#', instructions: 'Directly manage and stop all premium rate services.' },
+  const networkSteps = [
+    {
+      network: 'Vodacom',
+      code: '*135*997#',
+      steps: [
+        'Dial *135*997# from your Vodacom SIM.',
+        'Open the subscriptions or content services option.',
+        'Select each active service and unsubscribe.',
+        'If available, turn on a content block for future charges.',
+      ],
+    },
+    {
+      network: 'MTN',
+      code: '*155#',
+      steps: [
+        'Dial *155# from your MTN line.',
+        'Go to content services or subscriptions.',
+        'Cancel all listed paid services.',
+        'Apply a block option if your menu shows one.',
+      ],
+    },
+    {
+      network: 'Telkom',
+      code: '*180#',
+      steps: [
+        'Dial *180# on your Telkom mobile number.',
+        'Check active subscriptions in the self-service menu.',
+        'Stop each paid service one by one.',
+        'Save confirmation SMS messages as proof.',
+      ],
+    },
+    {
+      network: 'Cell C',
+      code: '*133*1#',
+      steps: [
+        'Dial *133*1# from your Cell C SIM.',
+        'Open subscription management.',
+        'Cancel any active premium services.',
+        'Check your balance over the next 24 to 48 hours.',
+      ],
+    },
   ];
 
   const faqSchema = {
@@ -31,18 +67,18 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is a WASP subscription?",
+        "name": "How do I stop WASP subscriptions?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "WASP stands for Wireless Application Service Provider. These are third-party companies that provide content like jokes, music, or news via SMS, often for a daily or weekly fee that drains your airtime."
+          "text": "Dial your network's subscription USSD code, view active services, and unsubscribe from each one. Then switch on a content block if your network provides it."
         }
       },
       {
         "@type": "Question",
-        "name": "Why is my airtime disappearing?",
+        "name": "Why am I being charged for services I didn’t subscribe to?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Disappearing airtime is usually caused by active WASP subscriptions or background data usage. You can use USSD codes to block these services and stop the deductions."
+          "text": "In many cases, charges come from premium content services that were accepted through pop-ups, links, or previous opt-ins. Check active subscriptions on your network menu and cancel any service you do not recognize."
         }
       }
     ]
@@ -91,63 +127,81 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
             How to Stop <span className="text-red-600">WASP Subscriptions</span> in South Africa
           </h1>
           <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto mb-8">
-            Is your airtime disappearing mysteriously? You are likely subscribed to a content service without knowing. Use these <span className="font-bold">USSD opt-out codes</span> to stop deductions immediately.
+            If your airtime keeps dropping, paid content services may be one reason. Use this guide to check, cancel, and block unwanted WASP charges on your network.
           </p>
         </header>
 
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {optOutCodes.map(item => (
-            <div key={item.network} className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm group hover:shadow-md transition-shadow">
-              <div className="flex justify-between items-start mb-6">
-                <h3 className={`text-2xl font-black ${
-                  item.network === 'Vodacom' ? 'text-[#E60000]' :
-                  item.network === 'MTN' ? 'text-[#eab308]' :
-                  item.network === 'Telkom' ? 'text-[#0066CC]' :
-                  'text-slate-900'
-                }`}>{item.network}</h3>
-                <div className="px-4 py-2 bg-slate-50 rounded-2xl font-mono font-black text-[#031636] text-xl tracking-widest group-hover:bg-[#a0f399]/20 transition-colors">
-                  {item.code}
-                </div>
-              </div>
-              <p className="text-sm text-slate-600 font-medium leading-relaxed mb-6">
-                {item.instructions}
-              </p>
-              <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#217128]">
-                <ShieldCheck className="w-4 h-4" />
-                Verified for 2026
-              </div>
-            </div>
-          ))}
+        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
+          <p className="text-slate-700 text-sm leading-relaxed">
+            The fastest way to stop WASP charges is to dial your network subscription code, cancel every active paid service, and enable a content block if available. For most users, this reduces unexpected airtime deductions after confirmation messages are received.
+          </p>
         </section>
 
-        <section className="mb-20 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 blur-3xl -mr-16 -mt-16"></div>
+        <section className="mb-20 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-8">Direct Answer Summary</h2>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-lg font-black mb-2">How to stop WASP subscriptions immediately</h3>
+              <p className="text-sm text-slate-700 leading-relaxed">
+                Dial your network code below, open subscription management, and cancel all active paid services. Keep the cancellation SMS messages in case you need to dispute ongoing charges later.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-black mb-2">How to check if you have active subscriptions</h3>
+              <p className="text-sm text-slate-700 leading-relaxed">
+                Use the same USSD menu and look for terms like "subscriptions", "content services", or "premium services". If unfamiliar services appear, unsubscribe and monitor your airtime for the next day or two.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-20">
           <h2 className="text-2xl font-black tracking-tight mb-8 flex items-center gap-2">
             <Info className="w-6 h-6 text-blue-500" />
-            Step-by-Step Guide
+            Step-by-Step by Network
           </h2>
-          <div className="space-y-8">
-            <div className="flex gap-4">
-              <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center font-black flex-shrink-0">1</div>
-              <div>
-                <h3 className="font-bold mb-1">Check for active subscriptions</h3>
-                <p className="text-slate-600 text-sm">Dial the USSD code specific to your network above. Look for options like "My Subscriptions" or "Manage Content Services".</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {networkSteps.map(item => (
+              <div key={item.network} className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+                <div className="flex justify-between items-start mb-6 gap-3">
+                  <h3 className={`text-2xl font-black ${
+                    item.network === 'Vodacom' ? 'text-[#E60000]' :
+                    item.network === 'MTN' ? 'text-[#a16207]' :
+                    item.network === 'Telkom' ? 'text-[#0066CC]' :
+                    'text-slate-900'
+                  }`}>{item.network}</h3>
+                  <div className="px-3 py-2 bg-slate-50 rounded-2xl font-mono font-black text-[#031636] text-base tracking-widest">
+                    {item.code}
+                  </div>
+                </div>
+                <ol className="space-y-2 text-sm text-slate-700 list-decimal pl-5">
+                  {item.steps.map(step => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ol>
               </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center font-black flex-shrink-0">2</div>
-              <div>
-                <h3 className="font-bold mb-1">Unsubscribe from ALL services</h3>
-                <p className="text-slate-600 text-sm">Follow the prompts to unsubscribe from each active service. We recommend unsubscribing from ALL to be safe.</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center font-black flex-shrink-0">3</div>
-              <div>
-                <h3 className="font-bold mb-1">Activate the "Content Block"</h3>
-                <p className="text-slate-600 text-sm">Most networks (like MTN and Vodacom) allow you to set a permanent block on all future content services. Ensure this is activated.</p>
-              </div>
-            </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-20 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">Why your airtime is disappearing</h2>
+          <p className="text-sm text-slate-700 leading-relaxed mb-4">
+            In many cases, unexpected airtime loss is linked to paid SMS content services. This can happen after tapping a popup, entering a number on a promo page, or accepting a service message without noticing the billing terms.
+          </p>
+          <p className="text-sm text-slate-700 leading-relaxed">
+            Airtime can also drop due to background data use. If you want a full check, use our <Link to="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">South Africa USSD codes guide</Link> and our <Link to="/guides/why-is-my-data-finishing-so-fast/" className="text-[#1b6d24] font-semibold hover:underline">data drain troubleshooting guide</Link>.
+          </p>
+        </section>
+
+        <section className="mb-20 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">What to do if charges continue</h2>
+          <div className="space-y-3 text-sm text-slate-700 leading-relaxed">
+            <p>1. Repeat the USSD check and confirm no active premium services remain.</p>
+            <p>2. Contact your network support team and request a paid content block.</p>
+            <p>3. Share your cancellation SMS records and ask for a charge investigation.</p>
+            <p>4. If needed, compare your options on our <Link to="/network/" className="text-[#1b6d24] font-semibold hover:underline">network comparison hub</Link> before switching providers.</p>
           </div>
         </section>
 
@@ -155,12 +209,12 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
           <h2 className="text-2xl font-black tracking-tight mb-8">Frequently Asked Questions</h2>
           <div className="space-y-6">
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-              <h3 className="font-bold text-slate-900 mb-2">What is a WASP subscription?</h3>
-              <p className="text-sm text-slate-600">WASP stands for Wireless Application Service Provider. These are third-party companies that provide content like jokes, music, or news via SMS, often for a daily or weekly fee that drains your airtime.</p>
+              <h3 className="font-bold text-slate-900 mb-2">How do I stop WASP subscriptions?</h3>
+              <p className="text-sm text-slate-600">Dial your network code, open your subscription list, and cancel all paid services. Then enable a content block if your network menu offers one.</p>
             </div>
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-              <h3 className="font-bold text-slate-900 mb-2">Why is my airtime disappearing?</h3>
-              <p className="text-sm text-slate-600">Disappearing airtime is usually caused by active WASP subscriptions or background data usage. You can use USSD codes to block these services and stop the deductions.</p>
+              <h3 className="font-bold text-slate-900 mb-2">Why am I being charged for services I didn’t subscribe to?</h3>
+              <p className="text-sm text-slate-600">This is often linked to premium content sign-ups accepted through a link, popup, or old opt-in flow. Check active services on your network menu, cancel anything unfamiliar, and monitor airtime after cancellation.</p>
             </div>
           </div>
         </section>
@@ -173,10 +227,10 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
             Full USSD Directory
           </Link>
           <Link
-            to="/"
+            to="/network/"
             className="px-8 py-4 bg-white text-slate-900 rounded-2xl font-black text-sm uppercase tracking-widest border border-slate-100 hover:border-[#a0f399] transition-all"
           >
-            Compare Data Deals
+            Compare Networks
           </Link>
         </div>
       </main>

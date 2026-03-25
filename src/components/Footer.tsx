@@ -58,6 +58,20 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTo, onNavigateTo }) => {
           </a>
 
           <a
+            href="/guides/cheapest-1gb-data-south-africa/"
+            className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
+          >
+            Cheapest 1GB Data
+          </a>
+
+          <a
+            href="/guides/best-data-deals-south-africa/"
+            className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
+          >
+            Best Data Deals
+          </a>
+
+          <a
             href="/guides/vodacom-vs-mtn-data-prices/"
             className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
           >

@@ -15,6 +15,8 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
 import { ContactPage } from './pages/ContactPage';
 import { CheapestData } from './pages/CheapestData';
+import { Cheapest1GB } from './pages/Cheapest1GB';
+import { BestDataDeals } from './pages/BestDataDeals';
 import { VodacomVsMTN } from './pages/VodacomVsMTN';
 import { WaspSubscriptions } from './pages/WaspSubscriptions';
 import { guides } from './data/guides';
@@ -143,6 +145,14 @@ function AppContent() {
       <Route
         path="/guides/cheapest-data-south-africa/"
         element={<CheapestData onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/guides/cheapest-1gb-data-south-africa/"
+        element={<Cheapest1GB onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/guides/best-data-deals-south-africa/"
+        element={<BestDataDeals onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
       <Route
         path="/guides/vodacom-vs-mtn-data-prices/"
