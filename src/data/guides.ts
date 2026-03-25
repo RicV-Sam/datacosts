@@ -1,204 +1,5 @@
 import { Guide } from '../types';
 
-/**
- * These guides are implemented but not currently featured in the main navigation or sitemap.
- * Kept for potential future use or long-tail SEO expansion.
- */
-export const secondaryGuides: Guide[] = [
-  {
-    slug: 'how-to-buy-data-vodacom',
-    title: 'How to Buy Data on Vodacom - USSD Codes & App Guide 2026',
-    metaDescription: 'Learn how to buy data on Vodacom using USSD codes, the MyVodacom app, and airtime conversion. Find the fastest way to get connected on SA\'s biggest network.',
-    h1: 'How to Buy Data on Vodacom: Step-by-Step Guide',
-    intro: 'Vodacom offers several ways to purchase data bundles, whether you are looking for a quick daily fix or a large monthly allocation. The most common method is using USSD codes, which work even if you don\'t have an active data connection. This guide covers all the ways you can buy Vodacom data bundles in seconds.',
-    comparisonType: 'all',
-    stepsTitle: '3 Ways to Buy Vodacom Data',
-    steps: [
-      {
-        title: 'Option 1: Using USSD Codes (Fastest)',
-        description: 'Dial *135# from your Vodacom SIM. Select "Buy" (usually option 2), then select "Data". Follow the prompts to choose your bundle size and validity period.'
-      },
-      {
-        title: 'Option 2: Just4You Personalised Deals',
-        description: 'Dial *123# to access "Just4You" deals. These are often significantly cheaper than standard bundles and are tailored to your usage patterns.'
-      },
-      {
-        title: 'Option 3: Using the MyVodacom App',
-        description: 'Open the MyVodacom app, tap "Buy Bundles", and select "Data". The app often features exclusive "App-only" deals that you won\'t find on USSD.'
-      }
-    ],
-    faq: [
-      {
-        question: 'What is the USSD code to buy Vodacom data?',
-        answer: 'The primary USSD code is *135#. You can also use *123# for personalized Just4You deals.'
-      },
-      {
-        question: 'Can I buy Vodacom data for someone else?',
-        answer: 'Yes, dial *135#, select "Buy", choose "Data", and then look for the option to "Purchase for another number".'
-      },
-      {
-        question: 'How do I check my Vodacom data balance?',
-        answer: 'Dial *135# and select "Balances" or simply dial *136# for a quick summary.'
-      },
-      {
-        question: 'How long do Vodacom data bundles last?',
-        answer: 'Validity depends on the bundle: Hourly (1 hour), Daily (expires at midnight), Weekly (7 days), or Monthly (30 days).'
-      },
-      {
-        question: 'Is there a cheap 1GB bundle on Vodacom?',
-        answer: 'Yes, Vodacom often offers 1GB "Daily" or "Weekly" bundles for under R50, while a standard 30-day 1GB bundle is usually around R85-R99.'
-      }
-    ]
-  },
-  {
-    slug: 'how-to-buy-data-mtn',
-    title: 'How to Buy Data on MTN - USSD Codes & MTN App Guide 2026',
-    metaDescription: 'Step-by-step guide on how to buy MTN data bundles using USSD codes like *136*2# and the MTN app. Get the best MTN Boosta and personalized deals.',
-    h1: 'How to Buy Data on MTN: Easy USSD & App Methods',
-    intro: 'MTN is known for its high-speed network and wide variety of data options. Whether you need a small WhatsApp bundle or a massive 100GB package, MTN makes it easy to recharge using your airtime. This guide will show you the exact USSD codes and steps needed to buy MTN data bundles quickly.',
-    comparisonType: 'all',
-    stepsTitle: 'How to Purchase MTN Data Bundles',
-    steps: [
-      {
-        title: 'Method 1: The Standard USSD Code',
-        description: 'Dial *136*2# on your phone. This will take you directly to the data bundle selection menu where you can choose between Daily, Weekly, and Monthly options.'
-      },
-      {
-        title: 'Method 2: MTN Pulse (For Youth)',
-        description: 'If you are under 25, dial *411# to join MTN Pulse. This gives you access to exclusive, ultra-cheap data deals like 500MB for R10.'
-      },
-      {
-        title: 'Method 3: MTN Boosta & Personalised Deals',
-        description: 'Dial *142# to see "Boosta" deals. These are promotional offers that provide much better value than the standard data menu.'
-      }
-    ],
-    faq: [
-      {
-        question: 'What is the USSD code for MTN data?',
-        answer: 'The main code is *136*2#. You can also use the general menu at *136#.'
-      },
-      {
-        question: 'How do I buy 1GB on MTN?',
-        answer: 'Dial *136*2#, select "Monthly", and choose the 1GB option. Alternatively, check *142# for a cheaper "Boosta" 1GB deal.'
-      },
-      {
-        question: 'Can I use my airtime to buy MTN data?',
-        answer: 'Yes, as long as you have enough airtime balance, the cost of the data bundle will be deducted from your airtime automatically.'
-      },
-      {
-        question: 'How do I check MTN data balance?',
-        answer: 'Simply dial *136*1# or use the MTN app for a detailed breakdown of your remaining data.'
-      },
-      {
-        question: 'Does MTN have unlimited data?',
-        answer: 'MTN offers "Uncapped" plans, but they usually come with a Fair Usage Policy (FUP) that reduces your speed after you reach a certain limit.'
-      }
-    ]
-  },
-  {
-    slug: 'how-to-check-data-balance',
-    title: 'How to Check Data Balance South Africa - All Networks (2026)',
-    metaDescription: 'Never run out of data! Learn the USSD codes to check your data balance on Vodacom, MTN, Telkom, and Cell C instantly from your phone.',
-    h1: 'How to Check Your Data Balance (All SA Networks)',
-    intro: 'Running out of data in the middle of a task is frustrating. In South Africa, every network provides a free USSD code that allows you to check your remaining data balance in seconds. This guide lists the official codes for Vodacom, MTN, Telkom, and Cell C so you can always stay on top of your usage.',
-    comparisonType: 'all',
-    stepsTitle: 'USSD Balance Codes by Operator',
-    steps: [
-      {
-        title: 'Check Vodacom Balance',
-        description: 'Dial *136# for a quick summary or *135# and select "Balances" for a detailed view of your data, airtime, and SMS bundles.'
-      },
-      {
-        title: 'Check MTN Balance',
-        description: 'Dial *136*1# to see your data and airtime balances instantly on your screen.'
-      },
-      {
-        title: 'Check Telkom Balance',
-        description: 'Dial *188# to receive an instant pop-up or SMS showing your Anytime and Night-Owl data balances.'
-      },
-      {
-        title: 'Check Cell C Balance',
-        description: 'Dial *101# or *147# to view your remaining data and airtime.'
-      }
-    ],
-    faq: [
-      {
-        question: 'Is it free to check my data balance?',
-        answer: 'Using USSD codes like *136# or *188# is completely free on all South African mobile networks.'
-      },
-      {
-        question: 'Why is my data balance not updating?',
-        answer: 'There is sometimes a small delay (a few minutes) between using data and it reflecting on the USSD menu. Try restarting your phone or waiting 5 minutes.'
-      },
-      {
-        question: 'Can I check my balance on a router?',
-        answer: 'Yes, you can log in to your router\'s web interface (usually 192.168.8.1) or use the network\'s app on your phone if it is linked to the router\'s SIM.'
-      },
-      {
-        question: 'What is "Night Owl" data balance?',
-        answer: 'This is a separate data balance that can only be used between midnight (00:00) and 05:00 AM. Your regular Anytime data won\'t be used during these hours.'
-      },
-      {
-        question: 'How do I see which apps are using my data?',
-        answer: 'On Android: Go to Settings > Network & Internet > Data Usage. On iPhone: Go to Settings > Mobile Data.'
-      }
-    ]
-  },
-  {
-    slug: 'why-is-my-data-finishing-so-fast',
-    title: 'Why is My Data Finishing So Fast? 5 Tips to Save Data in SA',
-    metaDescription: 'Is your data disappearing too quickly? Discover why your data is finishing so fast and learn 5 simple ways to reduce usage on Vodacom, MTN, and Telkom.',
-    h1: 'Why is My Data Finishing So Fast? (Solved)',
-    intro: 'It is a common frustration in South Africa: you buy a 1GB bundle, and just a few days (or hours) later, it is gone. High-quality video, background updates, and "data-hungry" social media apps are usually the culprits. This guide explains exactly where your data is going and how you can stop the "data leak" today.',
-    comparisonType: 'all',
-    stepsTitle: '5 Ways to Stop Your Data Disappearing',
-    steps: [
-      {
-        title: 'Disable Auto-Play on Social Media',
-        description: 'Facebook, Instagram, and TikTok auto-play videos by default. Go into the settings of each app and set videos to "Never Auto-play" or "Wi-Fi Only".'
-      },
-      {
-        title: 'Turn Off Background App Refresh',
-        description: 'Many apps use data even when you aren\'t using them. Go to your phone settings and disable "Background App Refresh" for non-essential apps.'
-      },
-      {
-        title: 'Change YouTube Video Quality',
-        description: 'Watching a video in 1080p (HD) uses 4x more data than 480p (Standard Definition). Manually set your quality to 480p to save significant data.'
-      },
-      {
-        title: 'Limit Cloud Syncing (Google Photos/iCloud)',
-        description: 'Your phone might be uploading every photo and video you take to the cloud instantly. Set your backup settings to "Wi-Fi Only".'
-      },
-      {
-        title: 'Check for Software Updates',
-        description: 'System updates can be several Gigabytes in size. Ensure your phone is set to "Update over Wi-Fi only" in your system settings.'
-      }
-    ],
-    faq: [
-      {
-        question: 'Does WhatsApp use a lot of data?',
-        answer: 'Texting uses very little data, but sending/receiving photos, videos, and voice notes can add up. Turn off "Media Auto-Download" in WhatsApp settings.'
-      },
-      {
-        question: 'Does TikTok use more data than YouTube?',
-        answer: 'Yes, TikTok is highly optimized for high-quality video and auto-playing content, which can consume data much faster than traditional browsing.'
-      },
-      {
-        question: 'Why does my phone use data when I am on Wi-Fi?',
-        answer: 'Feature like "Wi-Fi Assist" (iPhone) or "Network Acceleration" (Android) might switch back to mobile data if your Wi-Fi signal is weak. Turn these off in settings.'
-      },
-      {
-        question: 'How much data does Netflix use?',
-        answer: 'On low quality, Netflix uses about 300MB per hour. On High/4K quality, it can use up to 7GB per hour.'
-      },
-      {
-        question: 'Can a virus cause data loss?',
-        answer: 'Yes, some malicious apps can run in the background and send data to external servers. If your usage is unexplained, check your "Data Usage" settings for unfamiliar apps.'
-      }
-    ]
-  }
-];
-
 export const guides: Guide[] = [
   {
     slug: 'cheapest-1gb-data-south-africa',
@@ -426,6 +227,288 @@ export const guides: Guide[] = [
       {
         question: 'What is a "Hybrid" or "Top-up" contract?',
         answer: 'This is a contract with a fixed monthly cost that gives you a set amount of data/airtime. Once that is used, you can "top up" with prepaid airtime, giving you the best of both worlds.'
+      }
+    ]
+  },
+  {
+    slug: 'why-is-my-data-finishing-so-fast',
+    title: 'Why is My Data Finishing So Fast? 5 Tips to Save Data in SA',
+    metaDescription: 'Is your data disappearing too quickly? Discover why your data is finishing so fast and learn 5 simple ways to reduce usage on Vodacom, MTN, and Telkom.',
+    h1: 'Why is My Data Finishing So Fast? (Solved)',
+    intro: 'It is a common frustration in South Africa: you buy a 1GB bundle, and just a few days (or hours) later, it is gone. High-quality video, background updates, and "data-hungry" social media apps are usually the culprits. This guide explains exactly where your data is going and how you can stop the "data leak" today.',
+    comparisonType: 'all',
+    stepsTitle: '5 Ways to Stop Your Data Disappearing',
+    steps: [
+      {
+        title: 'Disable Auto-Play on Social Media',
+        description: 'Facebook, Instagram, and TikTok auto-play videos by default. Go into the settings of each app and set videos to "Never Auto-play" or "Wi-Fi Only".'
+      },
+      {
+        title: 'Turn Off Background App Refresh',
+        description: 'Many apps use data even when you aren\'t using them. Go to your phone settings and disable "Background App Refresh" for non-essential apps.'
+      },
+      {
+        title: 'Change YouTube Video Quality',
+        description: 'Watching a video in 1080p (HD) uses 4x more data than 480p (Standard Definition). Manually set your quality to 480p to save significant data.'
+      },
+      {
+        title: 'Limit Cloud Syncing (Google Photos/iCloud)',
+        description: 'Your phone might be uploading every photo and video you take to the cloud instantly. Set your backup settings to "Wi-Fi Only".'
+      },
+      {
+        title: 'Check for Software Updates',
+        description: 'System updates can be several Gigabytes in size. Ensure your phone is set to "Update over Wi-Fi only" in your system settings.'
+      }
+    ],
+    faq: [
+      {
+        question: 'Does WhatsApp use a lot of data?',
+        answer: 'Texting uses very little data, but sending/receiving photos, videos, and voice notes can add up. Turn off "Media Auto-Download" in WhatsApp settings.'
+      },
+      {
+        question: 'Does TikTok use more data than YouTube?',
+        answer: 'Yes, TikTok is highly optimized for high-quality video and auto-playing content, which can consume data much faster than traditional browsing.'
+      },
+      {
+        question: 'Why does my phone use data when I am on Wi-Fi?',
+        answer: 'Feature like "Wi-Fi Assist" (iPhone) or "Network Acceleration" (Android) might switch back to mobile data if your Wi-Fi signal is weak. Turn these off in settings.'
+      },
+      {
+        question: 'How much data does Netflix use?',
+        answer: 'On low quality, Netflix uses about 300MB per hour. On High/4K quality, it can use up to 7GB per hour.'
+      },
+      {
+        question: 'Can a virus cause data loss?',
+        answer: 'Yes, some malicious apps can run in the background and send data to external servers. If your usage is unexplained, check your "Data Usage" settings for unfamiliar apps.'
+      }
+    ]
+  },
+  {
+    slug: 'how-to-check-data-balance',
+    title: 'How to Check Data Balance South Africa - All Networks (2026)',
+    metaDescription: 'Never run out of data! Learn the USSD codes to check your data balance on Vodacom, MTN, Telkom, and Cell C instantly from your phone.',
+    h1: 'How to Check Your Data Balance (All SA Networks)',
+    intro: 'Running out of data in the middle of a task is frustrating. In South Africa, every network provides a free USSD code that allows you to check your remaining data balance in seconds. This guide lists the official codes for Vodacom, MTN, Telkom, and Cell C so you can always stay on top of your usage.',
+    comparisonType: 'all',
+    stepsTitle: 'USSD Balance Codes by Operator',
+    steps: [
+      {
+        title: 'Check Vodacom Balance',
+        description: 'Dial *136# for a quick summary or *135# and select "Balances" for a detailed view of your data, airtime, and SMS bundles.'
+      },
+      {
+        title: 'Check MTN Balance',
+        description: 'Dial *136*1# to see your data and airtime balances instantly on your screen.'
+      },
+      {
+        title: 'Check Telkom Balance',
+        description: 'Dial *188# to receive an instant pop-up or SMS showing your Anytime and Night-Owl data balances.'
+      },
+      {
+        title: 'Check Cell C Balance',
+        description: 'Dial *101# or *147# to view your remaining data and airtime.'
+      }
+    ],
+    faq: [
+      {
+        question: 'Is it free to check my data balance?',
+        answer: 'Using USSD codes like *136# or *188# is completely free on all South African mobile networks.'
+      },
+      {
+        question: 'Why is my data balance not updating?',
+        answer: 'There is sometimes a small delay (a few minutes) between using data and it reflecting on the USSD menu. Try restarting your phone or waiting 5 minutes.'
+      },
+      {
+        question: 'Can I check my balance on a router?',
+        answer: 'Yes, you can log in to your router\'s web interface (usually 192.168.8.1) or use the network\'s app on your phone if it is linked to the router\'s SIM.'
+      },
+      {
+        question: 'What is "Night Owl" data balance?',
+        answer: 'This is a separate data balance that can only be used between midnight (00:00) and 05:00 AM. Your regular Anytime data won\'t be used during these hours.'
+      },
+      {
+        question: 'How do I see which apps are using my data?',
+        answer: 'On Android: Go to Settings > Network & Internet > Data Usage. On iPhone: Go to Settings > Mobile Data.'
+      }
+    ]
+  },
+  {
+    slug: 'how-to-buy-data-vodacom',
+    title: 'How to Buy Data on Vodacom - USSD Codes & App Guide 2026',
+    metaDescription: 'Learn how to buy data on Vodacom using USSD codes, the MyVodacom app, and airtime conversion. Find the fastest way to get connected on SA\'s biggest network.',
+    h1: 'How to Buy Data on Vodacom: Step-by-Step Guide',
+    intro: 'Vodacom offers several ways to purchase data bundles, whether you are looking for a quick daily fix or a large monthly allocation. The most common method is using USSD codes, which work even if you don\'t have an active data connection. This guide covers all the ways you can buy Vodacom data bundles in seconds.',
+    comparisonType: 'all',
+    stepsTitle: '3 Ways to Buy Vodacom Data',
+    steps: [
+      {
+        title: 'Option 1: Using USSD Codes (Fastest)',
+        description: 'Dial *135# from your Vodacom SIM. Select "Buy" (usually option 2), then select "Data". Follow the prompts to choose your bundle size and validity period.'
+      },
+      {
+        title: 'Option 2: Just4You Personalised Deals',
+        description: 'Dial *123# to access "Just4You" deals. These are often significantly cheaper than standard bundles and are tailored to your usage patterns.'
+      },
+      {
+        title: 'Option 3: Using the MyVodacom App',
+        description: 'Open the MyVodacom app, tap "Buy Bundles", and select "Data". The app often features exclusive "App-only" deals that you won\'t find on USSD.'
+      }
+    ],
+    faq: [
+      {
+        question: 'What is the USSD code to buy Vodacom data?',
+        answer: 'The primary USSD code is *135#. You can also use *123# for personalized Just4You deals.'
+      },
+      {
+        question: 'Can I buy Vodacom data for someone else?',
+        answer: 'Yes, dial *135#, select "Buy", choose "Data", and then look for the option to "Purchase for another number".'
+      },
+      {
+        question: 'How do I check my Vodacom data balance?',
+        answer: 'Dial *135# and select "Balances" or simply dial *136# for a quick summary.'
+      },
+      {
+        question: 'How long do Vodacom data bundles last?',
+        answer: 'Validity depends on the bundle: Hourly (1 hour), Daily (expires at midnight), Weekly (7 days), or Monthly (30 days).'
+      },
+      {
+        question: 'Is there a cheap 1GB bundle on Vodacom?',
+        answer: 'Yes, Vodacom often offers 1GB "Daily" or "Weekly" bundles for under R50, while a standard 30-day 1GB bundle is usually around R85-R99.'
+      }
+    ]
+  },
+  {
+    slug: 'how-to-buy-data-mtn',
+    title: 'How to Buy Data on MTN - USSD Codes & MTN App Guide 2026',
+    metaDescription: 'Step-by-step guide on how to buy MTN data bundles using USSD codes like *136*2# and the MTN app. Get the best MTN Boosta and personalized deals.',
+    h1: 'How to Buy Data on MTN: Easy USSD & App Methods',
+    intro: 'MTN is known for its high-speed network and wide variety of data options. Whether you need a small WhatsApp bundle or a massive 100GB package, MTN makes it easy to recharge using your airtime. This guide will show you the exact USSD codes and steps needed to buy MTN data bundles quickly.',
+    comparisonType: 'all',
+    stepsTitle: 'How to Purchase MTN Data Bundles',
+    steps: [
+      {
+        title: 'Method 1: The Standard USSD Code',
+        description: 'Dial *136*2# on your phone. This will take you directly to the data bundle selection menu where you can choose between Daily, Weekly, and Monthly options.'
+      },
+      {
+        title: 'Method 2: MTN Pulse (For Youth)',
+        description: 'If you are under 25, dial *411# to join MTN Pulse. This gives you access to exclusive, ultra-cheap data deals like 500MB for R10.'
+      },
+      {
+        title: 'Method 3: MTN Boosta & Personalised Deals',
+        description: 'Dial *142# to see "Boosta" deals. These are promotional offers that provide much better value than the standard data menu.'
+      }
+    ],
+    faq: [
+      {
+        question: 'What is the USSD code for MTN data?',
+        answer: 'The main code is *136*2#. You can also use the general menu at *136#.'
+      },
+      {
+        question: 'How do I buy 1GB on MTN?',
+        answer: 'Dial *136*2#, select "Monthly", and choose the 1GB option. Alternatively, check *142# for a cheaper "Boosta" 1GB deal.'
+      },
+      {
+        question: 'Can I use my airtime to buy MTN data?',
+        answer: 'Yes, as long as you have enough airtime balance, the cost of the data bundle will be deducted from your airtime automatically.'
+      },
+      {
+        question: 'How do I check MTN data balance?',
+        answer: 'Simply dial *136*1# or use the MTN app for a detailed breakdown of your remaining data.'
+      },
+      {
+        question: 'Does MTN have unlimited data?',
+        answer: 'MTN offers "Uncapped" plans, but they usually come with a Fair Usage Policy (FUP) that reduces your speed after you reach a certain limit.'
+      }
+    ]
+  },
+  {
+    slug: 'how-to-buy-data-telkom',
+    title: 'How to Buy Data on Telkom - USSD Codes & Mo\'Nice Guide 2026',
+    metaDescription: 'Get the best Telkom data deals. Learn how to buy Telkom data using USSD *180#, Mo\'Nice personalized offers, and the Telkom app.',
+    h1: 'How to Buy Data on Telkom: Best Value Methods',
+    intro: 'Telkom is famous for offering some of the cheapest data in South Africa. Whether you are looking for their massive "Mo\'Nice" deals or standard anytime bundles, buying Telkom data is straightforward. This guide shows you how to use Telkom USSD codes and their mobile app to get the most data for your money.',
+    comparisonType: 'all',
+    stepsTitle: '3 Ways to Buy Telkom Data',
+    steps: [
+      {
+        title: 'Option 1: Telkom Mo\'Nice (Cheapest)',
+        description: 'Dial *123# to access Mo\'Nice. These are personalized deals that are often 50-80% cheaper than standard data bundles.'
+      },
+      {
+        title: 'Option 2: The Main USSD Menu',
+        description: 'Dial *180# to access the standard Telkom mobile menu. From here you can select "Data Bundles" and choose from Daily, Weekly, or Monthly options.'
+      },
+      {
+        title: 'Option 3: Using the Telkom App',
+        description: 'Download and log in to the Telkom app to purchase bundles and track your usage in real-time. The app sometimes features exclusive promotional bundles.'
+      }
+    ],
+    faq: [
+      {
+        question: 'What is the USSD code to buy Telkom data?',
+        answer: 'The main menu is *180#, while personalized Mo\'Nice deals are found at *123#.'
+      },
+      {
+        question: 'How do I buy 1GB on Telkom?',
+        answer: 'Dial *180#, select "Data Bundles", and follow the prompts to find the 1GB option. For better value, check *123# first.'
+      },
+      {
+        question: 'Does Telkom have unlimited data?',
+        answer: 'Yes, Telkom offers "Infinite" and "FreeMe" plans that include unlimited data with speed caps after a certain threshold is reached.'
+      },
+      {
+        question: 'How do I check my Telkom balance?',
+        answer: 'Dial *188# to receive an instant summary of your data and airtime balances.'
+      },
+      {
+        question: 'Is Telkom data cheaper than Vodacom?',
+        answer: 'In most cases, yes. Telkom\'s standard prepaid data rates are among the lowest in South Africa, especially for their Mo\'Nice offers.'
+      }
+    ]
+  },
+  {
+    slug: 'how-to-buy-data-cell-c',
+    title: 'How to Buy Data on Cell C - USSD Codes & App Guide 2026',
+    metaDescription: 'Learn how to buy Cell C data bundles using USSD *147# and the Cell C app. Find the best social, daily, and monthly data deals.',
+    h1: 'How to Buy Data on Cell C: Step-by-Step',
+    intro: 'Cell C offers a variety of flexible data options, from social media specific bundles to large monthly packages. Even if you are roaming on another network, you can still use Cell C USSD codes to top up. This guide covers the most efficient ways to buy Cell C data using airtime or the app.',
+    comparisonType: 'all',
+    stepsTitle: 'How to Purchase Cell C Data Bundles',
+    steps: [
+      {
+        title: 'Method 1: Using the *147# Menu',
+        description: 'Dial *147# on your Cell C SIM. Select "Data" (usually option 1 or 2) and browse through the available validity periods (Daily, Weekly, Monthly).'
+      },
+      {
+        title: 'Method 2: Cell C App',
+        description: 'The Cell C mobile app allows for quick recharges and often features "Double Data" or "App-only" specials that provide extra value.'
+      },
+      {
+        title: 'Method 3: Social Media Bundles',
+        description: 'If you only need data for WhatsApp, Facebook, or YouTube, Cell C offers specific social bundles that are much cheaper than general anytime data.'
+      }
+    ],
+    faq: [
+      {
+        question: 'What is the Cell C data USSD code?',
+        answer: 'The primary code for all Cell C services, including data, is *147#.'
+      },
+      {
+        question: 'Can I buy data with Cell C airtime?',
+        answer: 'Yes, buying bundles via *147# will automatically deduct the cost from your available airtime balance.'
+      },
+      {
+        question: 'How do I check my Cell C data balance?',
+        answer: 'Dial *101# or *147# and select the "Balance" option.'
+      },
+      {
+        question: 'Does Cell C have 1GB for R20?',
+        answer: 'Cell C frequently runs "Daily" or "Nite" data promotions where you can get 1GB for R10-R25. Check the *147# menu for current deals.'
+      },
+      {
+        question: 'Does Cell C roaming use extra data?',
+        answer: 'No, if you have an active data bundle, it will be used even when roaming on MTN or Vodacom towers (where applicable) at no extra cost.'
       }
     ]
   }
