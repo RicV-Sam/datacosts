@@ -74,6 +74,15 @@ export const ussdRepository: USSDEntry[] = [
     status: 'verified',
     dialable: true
   },
+  {
+    network: 'Vodacom',
+    category: 'Promotions',
+    action: 'Just 4 You Deals',
+    code: '*123#',
+    explanation: 'Personalized data and voice deals tailored to your usage.',
+    status: 'verified',
+    dialable: true
+  },
 
   // MTN
   {
@@ -139,6 +148,15 @@ export const ussdRepository: USSDEntry[] = [
     status: 'verified',
     dialable: true
   },
+  {
+    network: 'MTN',
+    category: 'Promotions',
+    action: 'MTN Made4U',
+    code: '*142#',
+    explanation: 'Discounted data bundles and personalized network offers.',
+    status: 'verified',
+    dialable: true
+  },
 
   // TELKOM
   {
@@ -177,6 +195,15 @@ export const ussdRepository: USSDEntry[] = [
     status: 'verified',
     dialable: true
   },
+  {
+    network: 'Telkom',
+    category: 'Promotions',
+    action: 'Mo\'Nice Deals',
+    code: '*123#',
+    explanation: 'Telkom\'s best personalized data and airtime deals.',
+    status: 'verified',
+    dialable: true
+  },
 
   // CELL C
   {
@@ -212,6 +239,15 @@ export const ussdRepository: USSDEntry[] = [
     action: 'Customer Service',
     code: '135',
     explanation: 'Speak to a Cell C representative.',
+    status: 'verified',
+    dialable: true
+  },
+  {
+    network: 'Cell C',
+    category: 'Promotions',
+    action: 'Cell C For You',
+    code: '*108#',
+    explanation: 'Access special discounted offers for your SIM.',
     status: 'verified',
     dialable: true
   },
