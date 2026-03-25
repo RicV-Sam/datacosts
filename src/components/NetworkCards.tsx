@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Router, TowerControl, Signal, Globe, Zap, ArrowRight } from 'lucide-react';
 import { NetworkName, Bundle, NetworkMetadata } from '../types';
 import { networkMetadata, bundles } from '../data';
+import { networkPages } from '../data/networks';
 
 interface NetworkCardProps {
   network: NetworkName;
@@ -84,7 +85,7 @@ export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }>
       </div>
 
       <a
-        href={`/network/${network.toLowerCase().replace(/[^a-z0-9]/g, '')}/`}
+        href={`/network/${Object.values(networkPages).find(p => p.networkName === network)?.slug || network.toLowerCase().replace(/[^a-z0-9]/g, '')}/`}
         onClick={(e) => { e.preventDefault(); onViewDeals(network); }}
         className="w-full py-4 rounded-2xl text-sm font-black flex items-center justify-center gap-2 group/btn transition-all active:scale-95 shadow-lg"
         style={{ backgroundColor: meta.color, color: meta.textColor }}

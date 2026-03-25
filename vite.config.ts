@@ -22,6 +22,7 @@ export default defineConfig(({mode}) => {
           '/guides/convert-airtime-to-data-south-africa/',
           '/guides/best-data-deals-south-africa/',
           '/guides/prepaid-vs-contract-south-africa/',
+          '/network/',
           '/network/vodacom/',
           '/network/mtn/',
           '/network/telkom/',

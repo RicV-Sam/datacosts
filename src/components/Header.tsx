@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
               href={
                 item.id === 'ussd' ? '/ussd-codes-south-africa/' :
                 item.id === 'guides' ? '/guides/' :
-                item.id === 'networks' ? '/network/vodacom/' :
+                item.id === 'networks' ? '/network/' :
                 `#${item.id}`
               }
               onClick={(e) => {
@@ -89,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                   href={
                     item.id === 'ussd' ? '/ussd-codes-south-africa/' :
                     item.id === 'guides' ? '/guides/' :
-                    item.id === 'networks' ? '/network/vodacom/' :
+                    item.id === 'networks' ? '/network/' :
                     `#${item.id}`
                   }
                   onClick={(e) => {
