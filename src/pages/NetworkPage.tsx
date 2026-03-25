@@ -348,7 +348,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         </div>
       </main>
 
-      <Footer onScrollTo={onScrollTo} />
+      <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
       <AdUnit type="stickyMobile" />
     </div>
   );
