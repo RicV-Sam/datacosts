@@ -5,8 +5,8 @@ import { ussdRepository } from '../data/ussd';
 import { networkPages } from '../data/networks';
 import { Footer } from '../components/Footer';
 import { AdUnit } from '../components/AdUnit';
-import { ArrowLeft, ChevronRight, ShieldCheck, Zap, Info, Smartphone, HelpCircle, Clock, Tag } from 'lucide-react';
-import { NetworkName, NavigateFunction } from '../types';
+import { ArrowLeft, ChevronRight, ShieldCheck, Zap, Info, Smartphone, HelpCircle, Clock, Tag, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { NetworkName, NavigateFunction, Bundle } from '../types';
 
 interface NetworkPageProps {
   networkSlug: string;
@@ -60,7 +60,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     "headline": `${network.name} Data Prices South Africa (2026)`,
     "description": metaDescription,
     "url": canonicalUrl,
-    "dateModified": new Date().toISOString(),
+    "dateModified": "2024-03-20T00:00:00Z",
     "author": {
       "@type": "Organization",
       "name": "DataCost.co.za",
@@ -69,7 +69,32 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     "image": "https://datacost.co.za/og-image.jpg"
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": pageData.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   const lastUpdated = "20 March 2024";
+
+  const bundleTypeMap: Record<string, { label: string; filter: (b: Bundle) => boolean }> = {
+    '1gb': { label: '1GB Deals', filter: (b) => b.volume === '1GB' },
+    'daily-data': { label: 'Daily Data', filter: (b) => (b.validity.toLowerCase().includes('day') && !b.validity.toLowerCase().includes('30 day') && !b.validity.toLowerCase().includes('7 day')) || b.type === 'Daily' },
+    'weekly-data': { label: 'Weekly Data', filter: (b) => b.validity.toLowerCase().includes('week') || b.type === 'Weekly' },
+    'monthly-data': { label: 'Monthly Data', filter: (b) => b.validity.toLowerCase().includes('30 day') || b.type === 'Monthly' || b.validity.toLowerCase().includes('month') },
+    'night-data': { label: 'Night Data', filter: (b) => b.name.toLowerCase().includes('night') || (b.nightData !== undefined && b.nightData !== '') }
+  };
+
+  const availableTypes = Object.entries(bundleTypeMap).filter(([_, config]) =>
+    networkBundles.some(b => config.filter(b))
+  );
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -79,6 +104,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">
           {JSON.stringify(articleSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
 
@@ -136,11 +164,39 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
         <AdUnit type="aboveFold" />
 
+        {/* SECTION: STRENGTHS & BEST FOR - Card style */}
+        <section className="mb-16 grid md:grid-cols-2 gap-6">
+          <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-[#1b6d24] rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-emerald-100">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              Primary Strength
+            </div>
+            <h2 className="text-2xl font-black tracking-tighter mb-4">{pageData.bestFor}</h2>
+            <p className="text-slate-600 font-medium leading-relaxed">
+              {network.name} has positioned itself as the {pageData.bestFor.toLowerCase()} in the South African market, making it a top choice for {network.name === 'Rain' ? 'home internet users' : 'mobile prepaid customers'}.
+            </p>
+          </div>
+          <div className="bg-[#f8fafc] border border-slate-100 rounded-[2.5rem] p-8 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-blue-100">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              Key Advantages
+            </div>
+            <ul className="space-y-3">
+              {pageData.strengths.map((strength, i) => (
+                <li key={i} className="flex items-start gap-3 text-slate-700 font-bold text-sm">
+                  <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#1b6d24] flex-shrink-0" />
+                  {strength}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* SECTION 1: DATA TABLE - Aligned with GuidePage styling */}
         <section className="mb-16">
           <h2 className="text-2xl font-black tracking-tighter mb-6 flex items-center gap-2">
             <Tag className="w-6 h-6 text-[#1b6d24]" />
-            {network.name} Data Pricing Table
+            {network.name} Data Prices Table (2026)
           </h2>
           <div className="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden">
             <div className="overflow-x-auto">
@@ -187,7 +243,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
               <ShieldCheck className="w-3.5 h-3.5" />
               Quick Verdict
             </div>
-            <h2 className="text-3xl font-black tracking-tighter mb-8">At a Glance: Is {network.name} worth it?</h2>
+            <h2 className="text-3xl font-black tracking-tighter mb-8">Is {network.name} worth it in 2026?</h2>
 
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               {[
@@ -199,7 +255,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                   <div className="text-[#a0f399] text-[10px] font-black uppercase tracking-widest mb-2 opacity-80">{item.label}</div>
                   {item.bundle ? (
                     <>
-                      <div className="text-lg font-black mb-1">{item.bundle.name}</div>
+                      <div className="text-lg font-black mb-1 line-clamp-1">{item.bundle.name}</div>
                       <div className="text-2xl font-black text-[#a0f399]">R{item.bundle.price}</div>
                     </>
                   ) : (
@@ -211,9 +267,21 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <p className="text-slate-300 leading-relaxed font-medium">
-                <strong>Our Analysis:</strong> {network.name} is generally best suited for users who prioritize {network.name === 'Vodacom' || network.name === 'MTN' ? 'coverage and speed' : 'raw value and anytime data'}.
-                While they offer competitive entry-level bundles, we recommend checking your personalized "Just 4 You" or "Mo'Nice" menus for the absolute lowest rates.
+                <strong>Our Analysis:</strong> {network.name === 'Rain'
+                  ? 'Rain is the ultimate choice for heavy data users who live within strong 5G coverage areas. Its unlimited nature makes it a perfect replacement for traditional fiber or ADSL, though it lacks the widespread mobile roaming of traditional prepaid networks.'
+                  : `${network.name} is generally best suited for users who prioritize ${network.name === 'Vodacom' || network.name === 'MTN' ? 'coverage and network reliability' : 'raw value and anytime data'}. While they offer competitive standard bundles, the real savings are found in their personalized app-based deals.`}
               </p>
+              <div className="mt-6">
+                <a
+                  href={network.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#1b6d24] text-white rounded-xl font-black hover:bg-[#a0f399] hover:text-[#031636] transition-all"
+                >
+                  Visit Official {network.name} Site
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -284,7 +352,25 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
         <AdUnit type="inContent" />
 
-        {/* SECTION 5: INTERNAL LINKS - Aligned with site system */}
+        {/* SECTION 5: QUICK LINKS - Category drill-downs */}
+        {availableTypes.length > 0 && (
+          <section className="mb-16">
+            <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Narrow Your Search</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {availableTypes.map(([slug, config]) => (
+                <button
+                  key={slug}
+                  onClick={() => onNavigate('network', `${networkSlug}/${slug}`)}
+                  className="px-4 py-4 bg-white border border-slate-100 rounded-2xl text-center hover:border-[#1b6d24] hover:shadow-sm transition-all group"
+                >
+                  <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors text-sm">{config.label}</div>
+                </button>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* SECTION 6: INTERNAL LINKS - Aligned with site system */}
         <section className="mb-16">
           <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Explore More Guides & Tools</h2>
           <div className="grid sm:grid-cols-3 gap-4">
@@ -315,28 +401,21 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           </div>
         </section>
 
-        {/* SECTION 6: FAQ - Standard FAQ section style */}
+        {/* SECTION 7: FAQ - Network Specific FAQ */}
         <section className="mb-16 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm">
           <h2 className="text-3xl font-black tracking-tighter mb-8">Frequently Asked Questions</h2>
           <div className="space-y-8">
-            <div className="border-b border-slate-50 pb-8 last:border-0 last:pb-0">
-              <h3 className="text-lg font-black mb-3 flex items-start gap-3">
-                <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1b6d24] flex-shrink-0" />
-                Which {network.name} bundle is the cheapest?
-              </h3>
-              <p className="text-slate-600 leading-relaxed font-medium pl-[1.125rem]">
-                The cheapest {network.name} bundles are typically their 1-hour or 1-day packs. However, if you are looking for long-term value, their monthly bundles offer a lower cost per GB.
-              </p>
-            </div>
-            <div className="border-b border-slate-50 pb-8 last:border-0 last:pb-0">
-              <h3 className="text-lg font-black mb-3 flex items-start gap-3">
-                <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1b6d24] flex-shrink-0" />
-                How do I check my {network.name} data balance?
-              </h3>
-              <p className="text-slate-600 leading-relaxed font-medium pl-[1.125rem]">
-                {ussdCodes.length > 0 ? `You can check your balance by dialing ${ussdCodes.find(u => u.category === 'Balance')?.code || 'the balance USSD code'} on your phone.` : `Since ${network.name} doesn't use USSD codes, you can check your balance via the official ${network.name} app or website.`}
-              </p>
-            </div>
+            {pageData.faqs.map((faq, i) => (
+              <div key={i} className="border-b border-slate-50 pb-8 last:border-0 last:pb-0">
+                <h3 className="text-lg font-black mb-3 flex items-start gap-3">
+                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1b6d24] flex-shrink-0" />
+                  {faq.question}
+                </h3>
+                <p className="text-slate-600 leading-relaxed font-medium pl-[1.125rem]">
+                  {faq.answer}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
