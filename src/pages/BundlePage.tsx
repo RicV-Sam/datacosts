@@ -34,7 +34,7 @@ export const BundlePage: React.FC = () => {
       "name": bundle.network
     },
     "areaServed": "South Africa",
-    "image": `https://datacost.co.za/images/${bundle.network.toLowerCase().replace(' ', '')}.jpg`,
+    "image": "https://datacost.co.za/og-image.jpg",
     "offers": {
       "@type": "Offer",
       "price": bundle.price.toFixed(2),

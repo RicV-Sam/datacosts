@@ -1,8 +1,5 @@
-[build]
-  command = "npx puppeteer install chrome && npm run build"
-  publish = "dist"
-
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "https://datacost.co.za/:splat"
+  status = 301
+  force = true

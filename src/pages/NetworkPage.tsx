@@ -102,6 +102,16 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
         <script type="application/ld+json">
           {JSON.stringify(articleSchema)}
         </script>

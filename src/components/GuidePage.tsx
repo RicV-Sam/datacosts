@@ -14,6 +14,8 @@ interface GuidePageProps {
 
 export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateToGuide, allGuides }) => {
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const canonicalUrl = `https://datacost.co.za/guides/${guide.slug}/`;
+  const pageTitle = `${guide.title} | DataCost`;
 
   const filteredBundles = React.useMemo(() => {
     let result = [...bundles];
@@ -37,7 +39,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
         "@type": "Article",
         "headline": guide.h1,
         "description": guide.metaDescription,
-        "url": `https://datacost.co.za/guides/${guide.slug}/`,
+        "url": canonicalUrl,
         "author": {
           "@type": "Organization",
           "name": "DataCost.co.za",
@@ -72,9 +74,19 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
       <Helmet>
-        <title>{guide.title} | DataCost</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={guide.metaDescription} />
-        <link rel="canonical" href={`https://datacost.co.za/guides/${guide.slug}/`} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={guide.metaDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={guide.metaDescription} />
+        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}
         </script>

@@ -7,54 +7,18 @@ import { networkPages } from '../data/networks';
 import { Footer } from '../components/Footer';
 import { AdUnit } from '../components/AdUnit';
 import { ArrowLeft, ExternalLink, ShieldCheck, Zap, Info, Smartphone, HelpCircle } from 'lucide-react';
-import { NetworkName, NavigateFunction, Bundle } from '../types';
+import { NetworkName, NavigateFunction } from '../types';
+import { BUNDLE_TYPE_MAP } from '../config/routeCatalog';
 
 interface BundleTypePageProps {
   onNavigate: NavigateFunction;
   onScrollTo: (id: string) => void;
 }
 
-const bundleTypeMap: Record<string, { label: string; filter: (b: Bundle) => boolean; guideSlug?: string }> = {
-  '1gb': {
-    label: '1GB',
-    filter: (b) => b.volume === '1GB',
-    guideSlug: 'cheapest-1gb-data-south-africa'
-  },
-  '2gb': {
-    label: '2GB',
-    filter: (b) => b.volume === '2GB'
-  },
-  '5gb': {
-    label: '5GB',
-    filter: (b) => b.volume === '5GB'
-  },
-  '10gb': {
-    label: '10GB',
-    filter: (b) => b.volume === '10GB'
-  },
-  'daily-data': {
-    label: 'Daily',
-    filter: (b) => (b.validity.toLowerCase().includes('day') && !b.validity.toLowerCase().includes('30 day') && !b.validity.toLowerCase().includes('7 day')) || b.type === 'Daily'
-  },
-  'weekly-data': {
-    label: 'Weekly',
-    filter: (b) => b.validity.toLowerCase().includes('week') || b.type === 'Weekly'
-  },
-  'monthly-data': {
-    label: 'Monthly',
-    filter: (b) => b.validity.toLowerCase().includes('30 day') || b.type === 'Monthly' || b.validity.toLowerCase().includes('month')
-  },
-  'night-data': {
-    label: 'Night',
-    filter: (b) => b.name.toLowerCase().includes('night') || (b.nightData !== undefined && b.nightData !== ''),
-    guideSlug: 'cheap-night-data-south-africa'
-  }
-};
-
 export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onScrollTo }) => {
   const { networkSlug, bundleType } = useParams<{ networkSlug: string; bundleType: string }>();
 
-  const typeConfig = bundleType ? bundleTypeMap[bundleType] : null;
+  const typeConfig = bundleType ? BUNDLE_TYPE_MAP[bundleType] : null;
   const networkData = networkSlug ? networkPages[networkSlug] : null;
   const networkKey = networkData?.networkName as NetworkName | undefined;
   const network = networkKey ? networkMetadata[networkKey] : null;
@@ -138,6 +102,16 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
         <script type="application/ld+json">
           {JSON.stringify(articleSchema)}
         </script>

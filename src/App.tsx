@@ -7,6 +7,7 @@ import { NetworkHubPage } from './pages/NetworkHubPage';
 import { HomePage } from './pages/HomePage';
 import { GuidesIndex } from './pages/GuidesIndex';
 import { BundleTypePage } from './pages/BundleTypePage';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { guides } from './data/guides';
 import { NetworkName, NavigateFunction } from './types';
 
@@ -106,6 +107,10 @@ function AppContent() {
         path="/network/:networkSlug/:bundleType/"
         element={<BundleTypeRoute onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
+      <Route
+        path="*"
+        element={<NotFoundPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
     </Routes>
   );
 }
@@ -113,7 +118,7 @@ function AppContent() {
 function GuideRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction, onScrollTo: (id: string) => void }) {
   const { slug } = useParams();
   const guide = guides.find(g => g.slug === slug);
-  if (!guide) return <HomePage onNavigate={onNavigate} onScrollTo={onScrollTo} activeSection="home" selectedNetwork={null} setSelectedNetwork={() => {}} />;
+  if (!guide) return <NotFoundPage onNavigate={onNavigate} onScrollTo={onScrollTo} />;
 
   return (
     <GuidePage

@@ -30,20 +30,42 @@ export const HomePage: React.FC<HomePageProps> = ({
   selectedNetwork,
   setSelectedNetwork
 }) => {
+  const pageTitle = "DataCost | Compare South Africa's Cheapest Data Bundles";
+  const metaDescription = 'Compare mobile data prices in South Africa. Find the cheapest data bundles from MTN, Vodacom, Telkom, Cell C and Rain.';
+  const canonicalUrl = 'https://datacost.co.za/';
+
   const homeSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "DataCost",
-    "url": "https://datacost.co.za/",
-    "description": "Compare mobile data prices in South Africa."
+    "url": canonicalUrl,
+    "description": "Compare mobile data prices in South Africa.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "DataCost.co.za",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://datacost.co.za/logo.png"
+      }
+    }
   };
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans">
       <Helmet>
-        <title>DataCost | Compare South Africa's Cheapest Data Bundles</title>
-        <meta name="description" content="Compare mobile data prices in South Africa. Find the cheapest data bundles from MTN, Vodacom, Telkom, Cell C and Rain." />
-        <link rel="canonical" href="https://datacost.co.za/" />
+        <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
         <script type="application/ld+json">
           {JSON.stringify(homeSchema)}
         </script>
