@@ -81,6 +81,9 @@ export function getIndexableRoutes(): string[] {
   routes.add('/methodology/');
   routes.add('/editorial-policy/');
   routes.add('/contact/');
+  routes.add('/guides/cheapest-data-south-africa/');
+  routes.add('/guides/vodacom-vs-mtn-data-prices/');
+  routes.add('/guides/stop-wasp-subscriptions-south-africa/');
 
   for (const guide of guides) {
     routes.add(`/guides/${guide.slug}/`);

@@ -49,6 +49,27 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTo, onNavigateTo }) => {
           >
             USSD Codes Directory
           </a>
+
+          <a
+            href="/guides/cheapest-data-south-africa/"
+            className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
+          >
+            Cheapest Data South Africa
+          </a>
+
+          <a
+            href="/guides/vodacom-vs-mtn-data-prices/"
+            className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
+          >
+            Vodacom vs MTN
+          </a>
+
+          <a
+            href="/guides/stop-wasp-subscriptions-south-africa/"
+            className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
+          >
+            Stop WASP Subscriptions
+          </a>
         </div>
 
         {/* Resources */}

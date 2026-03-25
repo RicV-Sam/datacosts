@@ -14,6 +14,9 @@ import { EditorialPolicyPage } from './pages/EditorialPolicyPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
 import { ContactPage } from './pages/ContactPage';
+import { CheapestData } from './pages/CheapestData';
+import { VodacomVsMTN } from './pages/VodacomVsMTN';
+import { WaspSubscriptions } from './pages/WaspSubscriptions';
 import { guides } from './data/guides';
 import { NetworkName, NavigateFunction } from './types';
 
@@ -136,6 +139,18 @@ function AppContent() {
       <Route
         path="/contact/"
         element={<ContactPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/guides/cheapest-data-south-africa/"
+        element={<CheapestData onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/guides/vodacom-vs-mtn-data-prices/"
+        element={<VodacomVsMTN onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/guides/stop-wasp-subscriptions-south-africa/"
+        element={<WaspSubscriptions onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
       <Route
         path="*"

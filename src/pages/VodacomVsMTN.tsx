@@ -1,25 +1,45 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { networkStats } from '../data';
+import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { MobileNav } from '../components/MobileNav';
 import { ArrowLeft, Check, ShieldCheck, HelpCircle, Activity, Zap, TrendingDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { NavigateFunction } from '../types';
 
-export const VodacomVsMTN: React.FC = () => {
-  useEffect(() => {
-    document.title = "Vodacom vs MTN Data Prices (2026) - Speed vs Price Comparison | DataCost";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Is Vodacom better than MTN for data? We compare the latest data prices, speeds, and coverage to help you choose the right network in 2026.');
-    }
-    window.scrollTo(0, 0);
-  }, []);
+interface VodacomVsMTNProps {
+  onNavigate: NavigateFunction;
+  onScrollTo: (id: string) => void;
+}
+
+export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScrollTo }) => {
+  const pageTitle = 'Vodacom vs MTN Data Prices (2026) - Speed vs Price Comparison | DataCost';
+  const metaDescription =
+    'Is Vodacom better than MTN for data? We compare the latest data prices, speeds, and coverage to help you choose the right network in 2026.';
+  const canonicalUrl = 'https://datacost.co.za/guides/vodacom-vs-mtn-data-prices/';
 
   const vodacomStats = networkStats.find(n => n.network === 'Vodacom');
   const mtnStats = networkStats.find(n => n.network === 'MTN');
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+      </Helmet>
+      <Header onScrollTo={onScrollTo} activeSection="guides" />
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link
@@ -133,7 +153,8 @@ export const VodacomVsMTN: React.FC = () => {
           </p>
         </section>
       </main>
-      <Footer onScrollTo={() => {}} />
+      <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
+      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />
     </div>
   );
 };

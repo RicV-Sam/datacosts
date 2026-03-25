@@ -1,18 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { MobileNav } from '../components/MobileNav';
 import { ArrowLeft, Check, ShieldCheck, HelpCircle, XCircle, ShieldOff, AlertTriangle, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { NavigateFunction } from '../types';
 
-export const WaspSubscriptions: React.FC = () => {
-  useEffect(() => {
-    document.title = "How to Stop WASP Subscriptions in South Africa - Opt-Out Guide | DataCost";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Is your airtime disappearing? Learn how to unsubscribe from content services and stop WASP subscriptions for Vodacom, MTN, Telkom, and Cell C.');
-    }
-    window.scrollTo(0, 0);
-  }, []);
+interface WaspSubscriptionsProps {
+  onNavigate: NavigateFunction;
+  onScrollTo: (id: string) => void;
+}
+
+export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate, onScrollTo }) => {
+  const pageTitle = 'How to Stop WASP Subscriptions in South Africa - Opt-Out Guide | DataCost';
+  const metaDescription =
+    'Is your airtime disappearing? Learn how to unsubscribe from content services and stop WASP subscriptions for Vodacom, MTN, Telkom, and Cell C.';
+  const canonicalUrl = 'https://datacost.co.za/guides/stop-wasp-subscriptions-south-africa/';
 
   const optOutCodes = [
     { network: 'Vodacom', code: '*135*997#', instructions: 'Dial and follow the prompts to manage and unsubscribe from all premium services.' },
@@ -46,9 +50,25 @@ export const WaspSubscriptions: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
-      <script type="application/ld+json">
-        {JSON.stringify(faqSchema)}
-      </script>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
+      <Header onScrollTo={onScrollTo} activeSection="guides" />
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link
@@ -160,7 +180,8 @@ export const WaspSubscriptions: React.FC = () => {
           </Link>
         </div>
       </main>
-      <Footer onScrollTo={() => {}} />
+      <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
+      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />
     </div>
   );
 };
