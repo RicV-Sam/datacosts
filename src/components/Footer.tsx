@@ -55,17 +55,12 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTo, onNavigateTo }) => {
         <div className="flex flex-col gap-4">
           <h5 className="font-bold text-sm uppercase tracking-wider">Resources</h5>
 
-          <a
-            href="/"
-            onClick={(e) => { e.preventDefault(); onScrollTo('home'); }}
-            className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block"
-          >
+          <a href="/about/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">
             About
           </a>
 
           <a
-            href="/"
-            onClick={(e) => { e.preventDefault(); onScrollTo('scorecard'); }}
+            href="/network/"
             className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block"
           >
             Network Comparison
@@ -78,17 +73,29 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTo, onNavigateTo }) => {
           >
             Check Data Balance
           </a>
+
+          <a href="/methodology/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">
+            Methodology
+          </a>
+
+          <a href="/editorial-policy/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">
+            Editorial Policy
+          </a>
+
+          <a href="/contact/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">
+            Contact
+          </a>
         </div>
 
         {/* Legal */}
         <div className="flex flex-col gap-4">
           <h5 className="font-bold text-sm uppercase tracking-wider">Legal</h5>
 
-          <a href="#" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">
+          <a href="/privacy-policy/" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">
             Privacy Policy
           </a>
 
-          <a href="#" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">
+          <a href="/terms/" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">
             Terms of Service
           </a>
         </div>

@@ -75,6 +75,12 @@ export function getIndexableRoutes(): string[] {
   routes.add('/ussd-codes-south-africa/');
   routes.add('/guides/');
   routes.add('/network/');
+  routes.add('/privacy-policy/');
+  routes.add('/terms/');
+  routes.add('/about/');
+  routes.add('/methodology/');
+  routes.add('/editorial-policy/');
+  routes.add('/contact/');
 
   for (const guide of guides) {
     routes.add(`/guides/${guide.slug}/`);

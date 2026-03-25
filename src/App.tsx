@@ -8,6 +8,12 @@ import { HomePage } from './pages/HomePage';
 import { GuidesIndex } from './pages/GuidesIndex';
 import { BundleTypePage } from './pages/BundleTypePage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { AboutPage } from './pages/AboutPage';
+import { MethodologyPage } from './pages/MethodologyPage';
+import { EditorialPolicyPage } from './pages/EditorialPolicyPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsPage } from './pages/TermsPage';
+import { ContactPage } from './pages/ContactPage';
 import { guides } from './data/guides';
 import { NetworkName, NavigateFunction } from './types';
 
@@ -106,6 +112,30 @@ function AppContent() {
       <Route
         path="/network/:networkSlug/:bundleType/"
         element={<BundleTypeRoute onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/about/"
+        element={<AboutPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/methodology/"
+        element={<MethodologyPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/editorial-policy/"
+        element={<EditorialPolicyPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/privacy-policy/"
+        element={<PrivacyPolicyPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/terms/"
+        element={<TermsPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/contact/"
+        element={<ContactPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
       <Route
         path="*"
