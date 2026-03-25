@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate, useParams } from 'react-rout
 import { USSDPage } from './pages/USSDPage';
 import { GuidePage } from './components/GuidePage';
 import { NetworkPage } from './pages/NetworkPage';
+import { NetworkHubPage } from './pages/NetworkHubPage';
 import { HomePage } from './pages/HomePage';
 import { GuidesIndex } from './pages/GuidesIndex';
 import { BundleTypePage } from './pages/BundleTypePage';
@@ -18,7 +19,9 @@ function AppContent() {
     let path = '/';
     if (page === 'ussd') path = '/ussd-codes-south-africa/';
     if (page === 'guide' && slug) path = `/guides/${slug}/`;
-    if (page === 'network' && slug) path = `/network/${slug}/`;
+    if (page === 'network') {
+      path = slug ? `/network/${slug}/` : '/network/';
+    }
     if (page === 'guides-index') path = '/guides/';
 
     if (window.location.pathname === path && path === '/') {
@@ -40,7 +43,7 @@ function AppContent() {
       return;
     }
     if (id === 'networks') {
-      navigateTo('network', 'vodacom');
+      navigateTo('network');
       return;
     }
     if (id === 'home' || id === 'deals' || id === 'calculator' || id === 'scorecard') {
@@ -90,6 +93,10 @@ function AppContent() {
       <Route
         path="/guides/:slug/"
         element={<GuideRoute onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/network/"
+        element={<NetworkHubPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
       <Route
         path="/network/:slug/"

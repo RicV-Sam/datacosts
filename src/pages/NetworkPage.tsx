@@ -5,7 +5,7 @@ import { ussdRepository } from '../data/ussd';
 import { networkPages } from '../data/networks';
 import { Footer } from '../components/Footer';
 import { AdUnit } from '../components/AdUnit';
-import { ArrowLeft, ShieldCheck, Zap, Info, Smartphone, HelpCircle, Clock, Tag } from 'lucide-react';
+import { ArrowLeft, ChevronRight, ShieldCheck, Zap, Info, Smartphone, HelpCircle, Clock, Tag } from 'lucide-react';
 import { NetworkName, NavigateFunction } from '../types';
 
 interface NetworkPageProps {
@@ -83,15 +83,28 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
       </Helmet>
 
       {/* NAVIGATION - Aligned with USSD/GuidePage */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 px-4 py-4">
+      <nav aria-label="Breadcrumb" className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <button
-            onClick={() => onNavigate('home')}
-            className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-slate-600 hover:text-[#1b6d24] transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back</span>
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => onNavigate('home')}
+              className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-slate-600 hover:text-[#1b6d24] transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Home</span>
+            </button>
+            <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-slate-300">
+              <ChevronRight className="w-4 h-4" />
+              <button
+                onClick={() => onNavigate('network')}
+                className="hover:text-[#1b6d24] transition-colors text-slate-600"
+              >
+                Networks
+              </button>
+              <ChevronRight className="w-4 h-4" />
+              <span className="text-slate-400">{network.name}</span>
+            </div>
+          </div>
           <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">
             {network.name} / 2026 Data Prices
           </div>

@@ -12,6 +12,7 @@ import { MobileNav } from '../components/MobileNav';
 import { NetworkModal } from '../components/NetworkModal';
 import { AdUnit } from '../components/AdUnit';
 import { guides } from '../data/guides';
+import { networkPages } from '../data/networks';
 import { NetworkName } from '../types';
 
 interface HomePageProps {
@@ -79,9 +80,12 @@ export const HomePage: React.FC<HomePageProps> = ({
 
         {/* 🔥 NETWORKS FIXED */}
         <NetworkCards
-          onViewDeals={(network) =>
-            onNavigate('network', network.toLowerCase().replace(' ', ''))
-          }
+          onViewDeals={(network) => {
+            const page = Object.values(networkPages).find(p => p.networkName === network);
+            if (page) {
+              onNavigate('network', page.slug);
+            }
+          }}
         />
 
         <AdUnit type="inContent" />
