@@ -5,6 +5,7 @@ import { GuidePage } from './components/GuidePage';
 import { NetworkPage } from './pages/NetworkPage';
 import { HomePage } from './pages/HomePage';
 import { GuidesIndex } from './pages/GuidesIndex';
+import { BundleTypePage } from './pages/BundleTypePage';
 import { guides } from './data/guides';
 import { NetworkName, NavigateFunction } from './types';
 
@@ -94,6 +95,10 @@ function AppContent() {
         path="/network/:slug/"
         element={<NetworkRoute onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
+      <Route
+        path="/network/:networkSlug/:bundleType/"
+        element={<BundleTypeRoute onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
     </Routes>
   );
 }
@@ -116,6 +121,10 @@ function GuideRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction, 
 function NetworkRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction, onScrollTo: (id: string) => void }) {
   const { slug } = useParams();
   return <NetworkPage networkSlug={slug || ''} onNavigate={onNavigate} onScrollTo={onScrollTo} />;
+}
+
+function BundleTypeRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction, onScrollTo: (id: string) => void }) {
+  return <BundleTypePage onNavigate={onNavigate} onScrollTo={onScrollTo} />;
 }
 
 export default function App() {
