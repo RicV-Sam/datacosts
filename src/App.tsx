@@ -19,6 +19,7 @@ import { Cheapest1GB } from './pages/Cheapest1GB';
 import { BestDataDeals } from './pages/BestDataDeals';
 import { VodacomVsMTN } from './pages/VodacomVsMTN';
 import { WaspSubscriptions } from './pages/WaspSubscriptions';
+import { TravelSimsPage } from './pages/TravelSimsPage';
 import { guides } from './data/guides';
 import { NetworkName, NavigateFunction } from './types';
 
@@ -35,6 +36,7 @@ function AppContent() {
       path = slug ? `/network/${slug}/` : '/network/';
     }
     if (page === 'guides-index') path = '/guides/';
+    if (page === 'travel-sims') path = '/travel-sims-south-africa/';
 
     if (window.location.pathname === path && path === '/') {
       // already on home, scroll to top
@@ -161,6 +163,10 @@ function AppContent() {
       <Route
         path="/guides/stop-wasp-subscriptions-south-africa/"
         element={<WaspSubscriptions onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/travel-sims-south-africa/"
+        element={<TravelSimsPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
       <Route
         path="*"

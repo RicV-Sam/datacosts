@@ -32,6 +32,17 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       slugs: ['cheapest-1gb-data-south-africa', 'best-data-deals-south-africa', 'cheap-night-data-south-africa', 'why-is-my-data-finishing-so-fast', 'prepaid-vs-contract-south-africa']
     },
     {
+      title: "For Tourists & Travelers",
+      description: "Visiting South Africa? Find the best way to stay connected without roaming fees.",
+      links: [
+        {
+          title: "Best Travel SIMs & eSIMs for South Africa",
+          description: "A complete 2026 guide to tourist SIMs, international eSIMs, and airport connectivity.",
+          path: "/travel-sims-south-africa/"
+        }
+      ]
+    },
+    {
       title: "Buying Data & Airtime",
       description: "Step-by-step instructions on how to recharge and convert airtime across all networks.",
       slugs: ['how-to-buy-data-vodacom', 'how-to-buy-data-mtn', 'how-to-buy-data-telkom', 'how-to-buy-data-cell-c', 'convert-airtime-to-data-south-africa']
@@ -219,7 +230,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {category.slugs.map((slug, index) => {
+              {category.slugs?.map((slug, index) => {
                 const guide = guides.find(g => g.slug === slug);
                 if (!guide) return null;
                 return (
@@ -244,6 +255,27 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
                   </motion.button>
                 );
               })}
+              {category.links?.map((link, index) => (
+                <motion.button
+                  key={link.path}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  onClick={() => onNavigate('travel-sims')}
+                  className="text-left p-8 bg-white/80 backdrop-blur-sm border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-xl hover:border-[#a0f399]/30 transition-all group flex flex-col h-full"
+                >
+                  <h3 className="text-xl font-black mb-4 group-hover:text-[#1b6d24] transition-colors leading-tight">
+                    {link.title}
+                  </h3>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-grow font-medium">
+                    {link.description}
+                  </p>
+                  <div className="flex items-center gap-2 text-[#1b6d24] font-bold text-sm group-hover:translate-x-1 transition-transform">
+                    Read Full Guide <ArrowRight className="w-4 h-4" />
+                  </div>
+                </motion.button>
+              ))}
             </div>
             {catIndex === 0 && <AdUnit type="inContent" />}
           </section>
