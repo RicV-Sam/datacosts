@@ -22,35 +22,66 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
   };
 
   const canonicalUrl = "https://datacost.co.za/guides/";
-  const pageTitle = "Mobile Data Guides South Africa 2026 | Save Money on Data";
-  const metaDescription = "Expert guides on how to find the cheapest data in South Africa. Compare Vodacom, MTN, Telkom and Cell C. Learn how to buy data, check balances, and save on mobile costs.";
+  const pageTitle = "South Africa Mobile Data Guides Hub (2026) | DataCost";
+  const metaDescription = "Explore practical South African telecom guides in one place. Compare data prices, network options, and fixes for common SIM and airtime issues.";
 
-  const categories = [
+  const getGuidePath = (slug: string) => `/guides/${slug}/`;
+  const guideMap = new Map(guides.map((guide) => [guide.slug, guide]));
+  const getGuide = (slug: string) => guideMap.get(slug);
+
+  const popularGuides = [
+    { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', description: 'Start here for a quick market-level view of where prepaid data is cheapest right now.', path: '/guides/cheapest-data-south-africa/' },
+    { slug: 'cheapest-1gb-data-south-africa' },
+    { slug: 'best-data-deals-south-africa' },
+    { slug: 'vodacom-vs-mtn-data-prices', title: 'Vodacom vs MTN Data Prices', description: 'A side-by-side comparison for travellers, commuters, and regular prepaid users.', path: '/guides/vodacom-vs-mtn-data-prices/' },
+    { slug: 'travel-sims-south-africa', title: 'Best Travel SIMs & eSIMs for South Africa', description: 'Practical arrival advice for airport connectivity, local SIMs, and travel eSIM convenience.', path: '/travel-sims-south-africa/' }
+  ];
+
+  const hubSections = [
     {
-      title: "Save Money on Data",
-      description: "Comparison guides and tips to help you get more megabytes for your Rand.",
-      slugs: ['cheapest-1gb-data-south-africa', 'best-data-deals-south-africa', 'cheap-night-data-south-africa', 'why-is-my-data-finishing-so-fast', 'prepaid-vs-contract-south-africa']
-    },
-    {
-      title: "For Tourists & Travelers",
-      description: "Visiting South Africa? Find the best way to stay connected without roaming fees.",
+      title: "Cheapest Data & Best Value",
+      snippet: "Use these guides to compare real prepaid value, short-term bundles, and where to find better per-GB pricing before you recharge.",
       links: [
-        {
-          title: "Best Travel SIMs & eSIMs for South Africa",
-          description: "A complete 2026 guide to tourist SIMs, international eSIMs, and airport connectivity.",
-          path: "/travel-sims-south-africa/"
-        }
+        { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', path: '/guides/cheapest-data-south-africa/' },
+        { slug: 'cheapest-1gb-data-south-africa' },
+        { slug: 'best-data-deals-south-africa' },
+        { slug: 'cheap-night-data-south-africa' },
+        { slug: 'prepaid-vs-contract-south-africa' }
       ]
     },
     {
-      title: "Buying Data & Airtime",
-      description: "Step-by-step instructions on how to recharge and convert airtime across all networks.",
-      slugs: ['how-to-buy-data-vodacom', 'how-to-buy-data-mtn', 'how-to-buy-data-telkom', 'how-to-buy-data-cell-c', 'convert-airtime-to-data-south-africa']
+      title: "Network Comparisons",
+      snippet: "If you are choosing between networks, these pages help you compare prices and then check network-specific pages before you buy.",
+      links: [
+        { slug: 'vodacom-vs-mtn-data-prices', title: 'Vodacom vs MTN Data Prices', path: '/guides/vodacom-vs-mtn-data-prices/' },
+        { slug: 'travel-sims-south-africa', title: 'Best Travel SIMs & eSIMs for South Africa', path: '/travel-sims-south-africa/' },
+        { slug: 'network-hub', title: 'All South Africa Networks', description: 'Browse Vodacom, MTN, Telkom, Cell C, and Rain pages in one place.', path: '/network/' },
+        { slug: 'vodacom-network', title: 'Vodacom Network Page', description: 'Current pricing context, coverage notes, and practical buying tips.', path: '/network/vodacom/' },
+        { slug: 'mtn-network', title: 'MTN Network Page', description: 'Plan comparison context and links to current MTN bundle options.', path: '/network/mtn/' }
+      ]
     },
     {
-      title: "Network Help & Settings",
-      description: "Utility guides for managing your SIM card and understanding network services.",
-      slugs: ['how-to-check-data-balance']
+      title: "Consumer Help & Fixes",
+      snippet: "Use these when airtime disappears, data runs out too quickly, or you need the quickest way to audit balances and subscriptions.",
+      links: [
+        { slug: 'why-is-my-data-finishing-so-fast' },
+        { slug: 'how-to-check-data-balance' },
+        { slug: 'stop-wasp-subscriptions-south-africa', title: 'Stop WASP Subscriptions in South Africa', description: 'How to stop unwanted premium billing and protect your airtime.', path: '/guides/stop-wasp-subscriptions-south-africa/' },
+        { slug: 'ussd-codes-south-africa', title: 'USSD Codes South Africa', description: 'Find operator codes for balances, bundle buying, and account help.', path: '/ussd-codes-south-africa/' },
+        { slug: 'methodology', title: 'How We Compare Prices (Methodology)', description: 'See how DataCost sources and compares telecom pricing data.', path: '/methodology/' }
+      ]
+    },
+    {
+      title: "How-To Guides",
+      snippet: "Step-by-step practical actions for buying data, converting airtime, and avoiding expensive out-of-bundle usage.",
+      links: [
+        { slug: 'how-to-buy-data-vodacom' },
+        { slug: 'how-to-buy-data-mtn' },
+        { slug: 'how-to-buy-data-telkom' },
+        { slug: 'how-to-buy-data-cell-c' },
+        { slug: 'convert-airtime-to-data-south-africa' },
+        { slug: 'how-to-check-data-balance' }
+      ]
     }
   ];
 
@@ -168,18 +199,29 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         <div className="mb-16 text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#a0f399]/20 text-[#1b6d24] text-sm font-bold mb-6">
             <BookOpen className="w-4 h-4" />
-            <span>Learning Center 2026</span>
+            <span>Guides Hub 2026</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
-            Mobile Data <span className="text-[#1b6d24]">Guides</span> South Africa
+            South Africa Telecom <span className="text-[#1b6d24]">Guides Hub</span>
           </h1>
           <p className="text-lg md:text-xl text-slate-600 leading-relaxed font-medium">
-            Master your mobile spending with our expert-led guides. Whether you are looking for the
-            <strong> cheapest 1GB data deals</strong>, searching for <strong>mobile data saving tips</strong>,
-            or need the latest <strong>Vodacom, MTN, Telkom, and Cell C</strong> instructions,
-            we have you covered.
+            Use this page as your starting point for practical mobile help in South Africa:
+            compare <strong>cheapest data options</strong>, check <strong>network differences</strong>,
+            solve <strong>airtime or data problems</strong>, and follow clear step-by-step buying guides.
           </p>
         </div>
+
+        <section className="mb-16 max-w-4xl mx-auto">
+          <div className="bg-white/90 border border-slate-100 rounded-[2rem] p-7 md:p-8 shadow-sm">
+            <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-3">What You Can Find Here</h2>
+            <p className="text-slate-600 font-medium leading-relaxed mb-4">
+              This hub brings together our highest-value telecom content in one place. If prices shift or offers change, use these guides to narrow down the right option for your budget, trip length, and daily data needs.
+            </p>
+            <p className="text-slate-500 text-sm leading-relaxed font-medium">
+              We focus on transparent comparisons and practical actions. Final offers can change, so confirm details on operator pages before you buy.
+            </p>
+          </div>
+        </section>
 
         {/* QUICK UTILITY LINKS */}
         <section className="mb-20">
@@ -224,68 +266,95 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
           </div>
         </section>
 
-        {/* CATEGORIZED GUIDES */}
-        {categories.map((category, catIndex) => (
-          <section key={category.title} className="mb-20">
-            <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-2 flex items-center gap-3">
-                <span className="w-8 h-8 rounded-lg bg-[#a0f399]/30 text-[#1b6d24] flex items-center justify-center text-sm font-bold">
-                  0{catIndex + 1}
-                </span>
-                {category.title}
-              </h2>
-              <p className="text-slate-500 font-medium">{category.description}</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {category.slugs?.map((slug, index) => {
-                const guide = guides.find(g => g.slug === slug);
-                if (!guide) return null;
-                return (
-                  <motion.button
-                    key={guide.slug}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    onClick={() => onNavigate('guide', guide.slug)}
-                    className="text-left p-8 bg-white/80 backdrop-blur-sm border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-xl hover:border-[#a0f399]/30 transition-all group flex flex-col h-full"
-                  >
-                    <h3 className="text-xl font-black mb-4 group-hover:text-[#1b6d24] transition-colors leading-tight">
-                      {guide.title}
-                    </h3>
-                    <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-grow font-medium">
-                      {guide.metaDescription}
-                    </p>
-                    <div className="flex items-center gap-2 text-[#1b6d24] font-bold text-sm group-hover:translate-x-1 transition-transform">
-                      Read Full Guide <ArrowRight className="w-4 h-4" />
-                    </div>
-                  </motion.button>
-                );
-              })}
-              {category.links?.map((link, index) => (
-                <motion.button
-                  key={link.path}
+        {/* MOST POPULAR GUIDES */}
+        <section className="mb-20">
+          <div className="mb-8">
+            <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-2 flex items-center gap-3">
+              <span className="w-8 h-8 rounded-lg bg-[#a0f399]/30 text-[#1b6d24] flex items-center justify-center text-sm font-bold">
+                01
+              </span>
+              Most Popular Guides
+            </h2>
+            <p className="text-slate-500 font-medium">
+              The pages readers use most when they need a fast answer on data cost, network choice, or travel connectivity.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {popularGuides.map((item, index) => {
+              const guide = item.slug ? getGuide(item.slug) : undefined;
+              const title = item.title || guide?.title;
+              const description = item.description || guide?.metaDescription;
+              const path = item.path || (item.slug ? getGuidePath(item.slug) : '');
+              if (!title || !description || !path) return null;
+              return (
+                <motion.a
+                  key={path}
+                  href={path}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  onClick={() => onNavigate('travel-sims')}
                   className="text-left p-8 bg-white/80 backdrop-blur-sm border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-xl hover:border-[#a0f399]/30 transition-all group flex flex-col h-full"
                 >
                   <h3 className="text-xl font-black mb-4 group-hover:text-[#1b6d24] transition-colors leading-tight">
-                    {link.title}
+                    {title}
                   </h3>
                   <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-grow font-medium">
-                    {link.description}
+                    {description}
                   </p>
                   <div className="flex items-center gap-2 text-[#1b6d24] font-bold text-sm group-hover:translate-x-1 transition-transform">
-                    Read Full Guide <ArrowRight className="w-4 h-4" />
+                    Read Guide <ArrowRight className="w-4 h-4" />
                   </div>
-                </motion.button>
-              ))}
+                </motion.a>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* CLUSTERED HUB SECTIONS */}
+        {hubSections.map((section, sectionIndex) => (
+          <section key={section.title} className="mb-20">
+            <div className="mb-8">
+              <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-2 flex items-center gap-3">
+                <span className="w-8 h-8 rounded-lg bg-[#a0f399]/30 text-[#1b6d24] flex items-center justify-center text-sm font-bold">
+                  0{sectionIndex + 2}
+                </span>
+                {section.title}
+              </h2>
+              <p className="text-slate-500 font-medium">{section.snippet}</p>
             </div>
-            {catIndex === 0 && <AdUnit type="inContent" />}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {section.links.map((item, index) => {
+                const guide = item.slug ? getGuide(item.slug) : undefined;
+                const title = item.title || guide?.title;
+                const description = item.description || guide?.metaDescription;
+                const path = item.path || (item.slug ? getGuidePath(item.slug) : '');
+                if (!title || !description || !path) return null;
+                return (
+                  <motion.a
+                    key={path}
+                    href={path}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="text-left p-8 bg-white/80 backdrop-blur-sm border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-xl hover:border-[#a0f399]/30 transition-all group flex flex-col h-full"
+                  >
+                    <h3 className="text-xl font-black mb-4 group-hover:text-[#1b6d24] transition-colors leading-tight">
+                      {title}
+                    </h3>
+                    <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-grow font-medium">
+                      {description}
+                    </p>
+                    <div className="flex items-center gap-2 text-[#1b6d24] font-bold text-sm group-hover:translate-x-1 transition-transform">
+                      Read Guide <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </motion.a>
+                );
+              })}
+            </div>
+            {sectionIndex === 0 && <AdUnit type="inContent" />}
           </section>
         ))}
 
