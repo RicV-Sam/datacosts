@@ -10,6 +10,7 @@ import { NetworkName, NavigateFunction } from '../types';
 import { networkPages } from '../data/networks';
 import { TowerControl, BookOpen, Smartphone, Info, Zap, Globe, ShieldCheck, Gauge, Wifi, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Link } from 'react-router-dom';
 
 interface NetworkHubPageProps {
   onNavigate: NavigateFunction;
@@ -25,64 +26,97 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
 
   const faqs = [
     {
-      question: "Which mobile network has the best coverage in South Africa?",
-      answer: "Vodacom and MTN consistently provide the best overall coverage in South Africa, covering over 99% of the population. Vodacom is widely regarded as having the most stable network in rural and outlying areas."
+      question: 'Which mobile network has the best coverage in South Africa?',
+      answer: 'Vodacom and MTN are often the strongest for broad national coverage. Your exact experience can still differ by suburb, building, and device.'
     },
     {
-      question: "Which network is cheapest for data in South Africa?",
-      answer: "Telkom and Cell C are generally the cheapest for 'Anytime' prepaid data. Telkom's Mo'Nice offers and Cell C's personalized bundles often provide the lowest cost per GB for standard mobile users."
+      question: 'Which network is cheapest for data in South Africa?',
+      answer: 'Telkom, Cell C, and promotional deals on other networks can offer strong value. Prices and deal quality change often, so compare before each recharge.'
     },
     {
-      question: "Is MTN or Vodacom better?",
-      answer: "It depends on your priority. Vodacom usually offers slightly better rural coverage and network stability, while MTN frequently wins awards for the fastest 5G and 4G download speeds in urban areas."
+      question: 'Is MTN or Vodacom better?',
+      answer: 'Neither is universally better for everyone. The right choice depends on where you use your SIM most and which bundles match your monthly usage.'
     },
     {
-      question: "Is Rain a good alternative for mobile data?",
-      answer: "Rain is excellent for data-heavy users and home internet (Fixed-LTE/5G) in metropolitan areas. However, because it relies on newer infrastructure and has limited rural reach, it is best used as a secondary data SIM or for home Wi-Fi."
+      question: 'Is Rain a good alternative for mobile data?',
+      answer: 'Rain can work well for high-volume users in supported areas, especially for home or fixed-use setups. Coverage fit is the key factor to check first.'
     }
   ];
 
-  const canonicalUrl = "https://datacost.co.za/network/";
-  const pageTitle = "Compare Mobile Networks in South Africa | Vodacom, MTN, Cell C, Telkom & Rain";
-  const metaDescription = "Compare South Africa’s mobile networks including Vodacom, MTN, Cell C, Telkom and Rain. See network strengths, data value, coverage, speeds and related guides.";
+  const canonicalUrl = 'https://datacost.co.za/network/';
+  const pageTitle = 'Compare Mobile Networks in South Africa | Vodacom, MTN, Cell C, Telkom & Rain';
+  const metaDescription = "Compare South Africa's mobile networks including Vodacom, MTN, Cell C, Telkom and Rain. See network strengths, data value, coverage, speeds and related guides.";
 
   const coreNetworks: NetworkName[] = ['Vodacom', 'MTN', 'Cell C', 'Telkom'];
   const secondaryNetworks: NetworkName[] = ['Rain'];
 
+  const operatorCards = [
+    {
+      name: 'Vodacom',
+      href: '/network/vodacom/',
+      summary: 'Often chosen for broad coverage and dependable day-to-day performance across many areas.',
+      bestFor: 'Choose this if coverage stability is your top priority.'
+    },
+    {
+      name: 'MTN',
+      href: '/network/mtn/',
+      summary: 'Strong all-round option with competitive prepaid offers and solid performance in many urban areas.',
+      bestFor: 'Choose this if you want a balance of speed and value.'
+    },
+    {
+      name: 'Telkom',
+      href: '/network/telkom/',
+      summary: 'Frequently competitive on prepaid pricing, especially for users watching cost per GB closely.',
+      bestFor: 'Choose this if your main goal is better bundle value.'
+    },
+    {
+      name: 'Cell C',
+      href: '/network/cell-c/',
+      summary: 'Can be a practical budget option when current promos and your coverage needs line up.',
+      bestFor: 'Choose this if you are willing to shop current promotions.'
+    },
+    {
+      name: 'Rain',
+      href: '/network/rain/',
+      summary: 'Worth comparing for high-volume monthly usage where coverage and speeds match your location.',
+      bestFor: 'Choose this if you use a lot of data each month.'
+    }
+  ];
+
   const articleSchema = {
-    "@context": "https://schema.org",
-    "@graph": [
+    '@context': 'https://schema.org',
+    '@graph': [
       {
-        "@type": "Article",
-        "headline": "Compare Mobile Networks in South Africa (2026)",
-        "description": metaDescription,
-        "image": "https://datacost.co.za/og-image.jpg",
-        "author": {
-          "@type": "Organization",
-          "name": "DataCost.co.za",
-          "url": "https://datacost.co.za"
+        '@type': 'Article',
+        headline: 'Compare Mobile Networks in South Africa (2026)',
+        description: metaDescription,
+        image: 'https://datacost.co.za/og-image.jpg',
+        author: {
+          '@type': 'Organization',
+          name: 'DataCost.co.za',
+          url: 'https://datacost.co.za'
         },
-        "publisher": {
-          "@type": "Organization",
-          "name": "DataCost.co.za",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://datacost.co.za/logo.png"
+        publisher: {
+          '@type': 'Organization',
+          name: 'DataCost.co.za',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://datacost.co.za/logo.png'
           }
         },
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": canonicalUrl
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': canonicalUrl
         }
       },
       {
-        "@type": "FAQPage",
-        "mainEntity": faqs.map(faq => ({
-          "@type": "Question",
-          "name": faq.question,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": faq.answer
+        '@type': 'FAQPage',
+        mainEntity: faqs.map(faq => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer
           }
         }))
       }
@@ -122,55 +156,70 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
       <main className="max-w-7xl mx-auto px-4 py-8 md:py-12">
         <AdUnit type="aboveFold" />
 
-        {/* HERO SECTION */}
         <div className="mb-16 text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#a0f399]/20 text-[#1b6d24] text-sm font-bold mb-6">
             <TowerControl className="w-4 h-4" />
-            <span>Expert Comparison 2026</span>
+            <span>Network Comparison Hub 2026</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
             Compare Mobile <span className="text-[#1b6d24]">Networks</span> South Africa
           </h1>
           <p className="text-lg md:text-xl text-slate-600 leading-relaxed font-medium">
-            Finding the <strong>best mobile network in South Africa</strong> depends on your budget, coverage, and data needs.
-            Whether you are weighing up <strong>Vodacom vs MTN vs Telkom vs Cell C</strong>, or searching for the
-            <strong> cheapest data network in South Africa</strong>, our 2026 comparison helps you choose the right provider.
+            Use this hub to compare operators by <strong>coverage, value, and practical day-to-day use</strong>. Start with the quick summary,
+            then open each network page for current bundle context before you buy.
           </p>
         </div>
 
-        {/* BEST FOR SECTION */}
         <section className="mb-20">
-          <h2 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-8 text-center italic">Best Network for Your Needs</h2>
+          <h2 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-8 text-center italic">Compare South African Networks</h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             <div className="bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:border-[#1b6d24] transition-colors group">
               <Globe className="w-8 h-8 text-[#1b6d24] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Vodacom</div>
-              <div className="text-sm font-black text-slate-900 leading-tight">Best for Coverage</div>
+              <div className="text-sm font-black text-slate-900 leading-tight">Strong Coverage Option</div>
             </div>
             <div className="bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:border-[#1b6d24] transition-colors group">
               <Gauge className="w-8 h-8 text-[#1b6d24] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">MTN</div>
-              <div className="text-sm font-black text-slate-900 leading-tight">Best All-Rounder</div>
+              <div className="text-sm font-black text-slate-900 leading-tight">Strong All-Round Option</div>
             </div>
             <div className="bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:border-[#1b6d24] transition-colors group">
               <Zap className="w-8 h-8 text-[#1b6d24] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Telkom</div>
-              <div className="text-sm font-black text-slate-900 leading-tight">Best Value</div>
+              <div className="text-sm font-black text-slate-900 leading-tight">Strong Value Option</div>
             </div>
             <div className="bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:border-[#1b6d24] transition-colors group">
               <ShieldCheck className="w-8 h-8 text-[#1b6d24] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Cell C</div>
-              <div className="text-sm font-black text-slate-900 leading-tight">Best Budget Promos</div>
+              <div className="text-sm font-black text-slate-900 leading-tight">Budget Promo Option</div>
             </div>
             <div className="col-span-2 md:col-span-1 bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:border-[#1b6d24] transition-colors group">
               <Wifi className="w-8 h-8 text-[#1b6d24] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Rain</div>
-              <div className="text-sm font-black text-slate-900 leading-tight">Best for Heavy Data</div>
+              <div className="text-sm font-black text-slate-900 leading-tight">High-Usage Data Option</div>
             </div>
+          </div>
+          <p className="text-sm text-slate-500 font-medium mt-6 text-center max-w-3xl mx-auto">
+            Prices and promotions can change quickly. Use these labels as a starting point, then confirm current details on each operator page.
+          </p>
+        </section>
+
+        <section className="mb-20">
+          <h2 className="text-2xl font-black tracking-tighter mb-8">Network Snapshot by Operator</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {operatorCards.map((operator) => (
+              <div key={operator.name} className="bg-white border border-slate-100 rounded-[2rem] p-7 shadow-sm">
+                <h3 className="text-xl font-black mb-3">{operator.name}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed font-medium mb-3">{operator.summary}</p>
+                <p className="text-slate-500 text-sm leading-relaxed font-medium mb-5">{operator.bestFor}</p>
+                <Link to={operator.href} className="inline-flex items-center text-[#1b6d24] font-bold text-sm hover:underline">
+                  View {operator.name} network page
+                </Link>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* CORE NETWORKS */}
         <section className="mb-16">
           <h2 className="text-2xl font-black tracking-tighter mb-8 flex items-center gap-2">
             Major Mobile Operators
@@ -186,7 +235,6 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
           </div>
         </section>
 
-        {/* SECONDARY NETWORKS (Rain) */}
         <section className="mb-24">
           <h2 className="text-2xl font-black tracking-tighter mb-8 flex items-center gap-2">
             Specialized & Data-Only Networks
@@ -204,12 +252,24 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
 
         <AdUnit type="inContent" />
 
-        {/* COMPARISON TABLE */}
+        <section className="mb-20 bg-slate-50/50 rounded-[2.5rem] p-8 md:p-10 border border-slate-100">
+          <h2 className="text-2xl font-black tracking-tighter mb-4">Supporting Guides for Better Decisions</h2>
+          <p className="text-slate-600 font-medium mb-6 max-w-3xl">
+            Use these pages with the network summaries above to compare pricing context and practical mobile actions.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link to="/guides/cheapest-data-south-africa/" className="bg-white border border-slate-100 rounded-2xl p-4 text-sm font-semibold text-slate-800 hover:border-[#1b6d24] transition-colors">Cheapest Data in South Africa</Link>
+            <Link to="/guides/best-data-deals-south-africa/" className="bg-white border border-slate-100 rounded-2xl p-4 text-sm font-semibold text-slate-800 hover:border-[#1b6d24] transition-colors">Best Data Deals in South Africa</Link>
+            <Link to="/guides/cheapest-1gb-data-south-africa/" className="bg-white border border-slate-100 rounded-2xl p-4 text-sm font-semibold text-slate-800 hover:border-[#1b6d24] transition-colors">Cheapest 1GB Data in South Africa</Link>
+            <Link to="/guides/vodacom-vs-mtn-data-prices/" className="bg-white border border-slate-100 rounded-2xl p-4 text-sm font-semibold text-slate-800 hover:border-[#1b6d24] transition-colors">Vodacom vs MTN Data Prices</Link>
+            <Link to="/ussd-codes-south-africa/" className="bg-white border border-slate-100 rounded-2xl p-4 text-sm font-semibold text-slate-800 hover:border-[#1b6d24] transition-colors">USSD Codes South Africa</Link>
+          </div>
+        </section>
+
         <div className="mb-24">
-            <Scorecard />
+          <Scorecard />
         </div>
 
-        {/* RELATED RESOURCES */}
         <section className="mb-24 bg-slate-50/50 rounded-[3rem] p-8 md:p-12 border border-slate-100">
           <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-8 text-center">Explore More Guides & Tools</h2>
           <div className="grid sm:grid-cols-3 gap-6">
@@ -241,28 +301,14 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
         </section>
 
         <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm mb-24">
-          <h2 className="text-2xl font-black tracking-tighter mb-6">Choosing the Best Mobile Network (2026 Comparison)</h2>
-          <div className="prose prose-slate max-w-none text-slate-600 font-medium leading-relaxed">
-            <p className="mb-4">
-                When you <strong>compare mobile networks in South Africa</strong>, the decision usually comes down to three main factors:
-                <strong> Coverage</strong>, <strong>Data Speed</strong>, and <strong>Price</strong>.
-                While <strong>Vodacom and MTN</strong> offer the most extensive network reach (especially in rural areas),
-                <strong> Telkom and Cell C</strong> often provide better value for money through aggressive prepaid pricing and personalized "Mo'Nice" or "Made4U" deals.
-            </p>
-            <p className="mb-4">
-                In the battle of <strong>Vodacom vs MTN vs Telkom vs Cell C</strong>, there is no single "best" provider for everyone.
-                Vodacom is often cited as the "Gold Standard" for reliability, while MTN consistently wins awards for the fastest average speeds.
-                Telkom remains the <strong>cheapest data network in South Africa</strong> for large "Anytime" prepaid bundles.
-            </p>
-            <p>
-                If you are looking for home internet or high-volume data, <strong>Rain's</strong> unlimited 4G and 5G plans are worth considering,
-                provided you are within their urban coverage zones. We recommend checking the official coverage maps of each operator
-                before committing to a long-term contract or a large data bundle.
-            </p>
+          <h2 className="text-2xl font-black tracking-tighter mb-6">How to Choose the Right Network</h2>
+          <div className="text-slate-600 font-medium leading-relaxed space-y-4">
+            <p>Start with where you use data most: home, work, commute routes, and family travel locations.</p>
+            <p>Then compare two or three operators on bundle value, validity rules, and practical prepaid options.</p>
+            <p>Use this order for better decisions: coverage fit first, then price per GB, then bundle type and convenience.</p>
           </div>
         </div>
 
-        {/* FAQ SECTION */}
         <section className="mb-24 max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-black tracking-tighter mb-4">Common Questions</h2>
@@ -300,7 +346,6 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
             ))}
           </div>
         </section>
-
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
