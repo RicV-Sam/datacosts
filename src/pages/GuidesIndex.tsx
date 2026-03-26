@@ -48,6 +48,9 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         { slug: 'cheapest-10gb-data-south-africa', title: 'Cheapest 10GB Data South Africa', description: 'Compare currently listed 10GB bundles across networks and see who offers the strongest value profile.', path: '/guides/cheapest-10gb-data-south-africa/' },
         { slug: 'cheapest-monthly-data-south-africa', title: 'Cheapest Monthly Data South Africa', description: 'A focused 30-day bundle comparison for users who buy data monthly and want better value.', path: '/guides/cheapest-monthly-data-south-africa/' },
         { slug: 'best-prepaid-data-deals-south-africa', title: 'Best Prepaid Data Deals South Africa', description: 'Find practical prepaid options by network, use case, and currently listed cost-per-GB.', path: '/guides/best-prepaid-data-deals-south-africa/' },
+        { slug: 'cheapest-unlimited-data-south-africa', title: 'Cheapest Unlimited Data South Africa', description: 'Compare unlimited-style plans and capped alternatives for heavy monthly usage.', path: '/guides/cheapest-unlimited-data-south-africa/' },
+        { slug: 'best-sim-only-deals-south-africa', title: 'Best SIM-Only Deals South Africa', description: 'See current SIM-only style options and how they compare with prepaid value.', path: '/guides/best-sim-only-deals-south-africa/' },
+        { slug: 'cheapest-whatsapp-bundles-south-africa', title: 'Cheapest WhatsApp Bundles South Africa', description: 'Find low-cost WhatsApp-focused bundle options and practical alternatives.', path: '/guides/cheapest-whatsapp-bundles-south-africa/' },
         { slug: 'best-data-deals-south-africa' },
         { slug: 'cheap-night-data-south-africa' },
         { slug: 'prepaid-vs-contract-south-africa' }

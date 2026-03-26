@@ -94,6 +94,27 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTo, onNavigateTo }) => {
           </a>
 
           <a
+            href="/guides/cheapest-unlimited-data-south-africa/"
+            className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
+          >
+            Cheapest Unlimited Data
+          </a>
+
+          <a
+            href="/guides/best-sim-only-deals-south-africa/"
+            className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
+          >
+            Best SIM-Only Deals
+          </a>
+
+          <a
+            href="/guides/cheapest-whatsapp-bundles-south-africa/"
+            className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
+          >
+            Cheapest WhatsApp Bundles
+          </a>
+
+          <a
             href="/guides/vodacom-vs-mtn-data-prices/"
             className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
           >
