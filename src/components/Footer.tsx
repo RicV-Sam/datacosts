@@ -1,9 +1,10 @@
 import React from 'react';
 import { guides } from '../data/guides';
+import { NavigateFunction } from '../types';
 
 interface FooterProps {
   onScrollTo: (id: string) => void;
-  onNavigateTo: (page: 'home' | 'ussd' | 'guide' | 'guides-index', slug?: string) => void;
+  onNavigateTo: NavigateFunction;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onScrollTo, onNavigateTo }) => {
@@ -83,6 +84,14 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTo, onNavigateTo }) => {
             className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
           >
             Stop WASP Subscriptions
+          </a>
+
+          <a
+            href="/travel-sims-south-africa/"
+            onClick={(e) => { e.preventDefault(); onNavigateTo('travel-sims'); }}
+            className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block"
+          >
+            Travel SIMs & eSIMs
           </a>
         </div>
 

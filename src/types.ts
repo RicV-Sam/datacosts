@@ -79,4 +79,4 @@ export interface Guide {
   additionalContent?: string;
 }
 
-export type NavigateFunction = (page: 'home' | 'ussd' | 'guide' | 'network' | 'guides-index', slug?: string) => void;
+export type NavigateFunction = (page: 'home' | 'ussd' | 'guide' | 'network' | 'guides-index' | 'travel-sims', slug?: string) => void;
