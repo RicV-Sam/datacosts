@@ -4,6 +4,7 @@ import { ArrowLeft, ShieldCheck, Clock, Tag, Zap, Info, ChevronRight } from 'luc
 import { Guide, Bundle } from '../types';
 import { bundles } from '../data';
 import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 
 interface GuidePageProps {
   guide: Guide;
@@ -13,6 +14,7 @@ interface GuidePageProps {
 }
 
 export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateToGuide, allGuides }) => {
+  const navigate = useNavigate();
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   const canonicalUrl = `https://datacost.co.za/guides/${guide.slug}/`;
   const pageTitle = `${guide.title} | DataCost`;
@@ -235,6 +237,17 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
               <div>
                 <h4 className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors">USSD Codes Directory</h4>
                 <p className="text-xs text-slate-500 font-medium">Check balance & buy data codes</p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-[#1b6d24]" />
+            </a>
+            <a
+              href="/travel-sims-south-africa/"
+              onClick={(e) => { e.preventDefault(); navigate('/travel-sims-south-africa/'); }}
+              className="flex items-center justify-between p-6 bg-white border border-slate-100 rounded-3xl hover:border-[#1b6d24] transition-all group text-left"
+            >
+              <div>
+                <h4 className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors">Travel SIMs & eSIMs Guide</h4>
+                <p className="text-xs text-slate-500 font-medium">Tourist setup and best-value options</p>
               </div>
               <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-[#1b6d24]" />
             </a>

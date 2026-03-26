@@ -16,7 +16,7 @@ import { networkPages } from '../data/networks';
 import { NetworkName } from '../types';
 
 interface HomePageProps {
-  onNavigate: (page: 'home' | 'ussd' | 'guide' | 'network' | 'guides-index', slug?: string) => void;
+  onNavigate: (page: 'home' | 'ussd' | 'guide' | 'network' | 'guides-index' | 'travel-sims', slug?: string) => void;
   onScrollTo: (id: string) => void;
   activeSection: string;
   selectedNetwork: NetworkName | null;
@@ -85,7 +85,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {guides.slice(0, 5).map((guide) => (
+            {guides.slice(0, 4).map((guide) => (
               <button
                 key={guide.slug}
                 onClick={() => onNavigate('guide', guide.slug)}
@@ -97,6 +97,15 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </p>
               </button>
             ))}
+            <button
+              onClick={() => onNavigate('travel-sims')}
+              className="text-left p-5 bg-white border rounded-2xl shadow-sm hover:shadow-md"
+            >
+              <h3 className="font-bold mb-2">Best Travel SIMs & eSIMs for South Africa</h3>
+              <p className="text-sm text-slate-500">
+                A complete guide for tourists: airport SIM options, eSIM setup, and best-value picks.
+              </p>
+            </button>
           </div>
         </section>
 

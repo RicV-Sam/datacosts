@@ -79,12 +79,20 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
     "name": "Mobile Data Guides South Africa",
     "description": metaDescription,
     "url": canonicalUrl,
-    "itemListElement": guides.map((guide, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "name": guide.title,
-      "url": `https://datacost.co.za/guides/${guide.slug}/`
-    }))
+    "itemListElement": [
+      ...guides.map((guide, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": guide.title,
+        "url": `https://datacost.co.za/guides/${guide.slug}/`
+      })),
+      {
+        "@type": "ListItem",
+        "position": guides.length + 1,
+        "name": "Best Travel SIMs & eSIMs for South Africa",
+        "url": "https://datacost.co.za/travel-sims-south-africa/"
+      }
+    ]
   };
 
   const articleSchema = {
