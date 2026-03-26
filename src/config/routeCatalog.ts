@@ -84,6 +84,9 @@ export function getIndexableRoutes(): string[] {
   routes.add('/guides/cheapest-data-south-africa/');
   routes.add('/guides/cheapest-1gb-data-south-africa/');
   routes.add('/guides/best-data-deals-south-africa/');
+  routes.add('/guides/best-prepaid-data-deals-south-africa/');
+  routes.add('/guides/cheapest-monthly-data-south-africa/');
+  routes.add('/guides/cheapest-10gb-data-south-africa/');
   routes.add('/guides/vodacom-vs-mtn-data-prices/');
   routes.add('/guides/stop-wasp-subscriptions-south-africa/');
   routes.add('/travel-sims-south-africa/');

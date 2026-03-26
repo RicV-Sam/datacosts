@@ -32,6 +32,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
   const popularGuides = [
     { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', description: 'Start here for a quick market-level view of where prepaid data is cheapest right now.', path: '/guides/cheapest-data-south-africa/' },
     { slug: 'cheapest-1gb-data-south-africa' },
+    { slug: 'cheapest-10gb-data-south-africa', title: 'Cheapest 10GB Data South Africa', description: 'Compare currently listed 10GB bundles for practical monthly middle-usage plans.', path: '/guides/cheapest-10gb-data-south-africa/' },
     { slug: 'best-data-deals-south-africa' },
     { slug: 'vodacom-vs-mtn-data-prices', title: 'Vodacom vs MTN Data Prices', description: 'A side-by-side comparison for travellers, commuters, and regular prepaid users.', path: '/guides/vodacom-vs-mtn-data-prices/' },
     { slug: 'travel-sims-south-africa', title: 'Best Travel SIMs & eSIMs for South Africa', description: 'Practical arrival advice for airport connectivity, local SIMs, and travel eSIM convenience.', path: '/travel-sims-south-africa/' }
@@ -44,6 +45,9 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       links: [
         { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', path: '/guides/cheapest-data-south-africa/' },
         { slug: 'cheapest-1gb-data-south-africa' },
+        { slug: 'cheapest-10gb-data-south-africa', title: 'Cheapest 10GB Data South Africa', description: 'Compare currently listed 10GB bundles across networks and see who offers the strongest value profile.', path: '/guides/cheapest-10gb-data-south-africa/' },
+        { slug: 'cheapest-monthly-data-south-africa', title: 'Cheapest Monthly Data South Africa', description: 'A focused 30-day bundle comparison for users who buy data monthly and want better value.', path: '/guides/cheapest-monthly-data-south-africa/' },
+        { slug: 'best-prepaid-data-deals-south-africa', title: 'Best Prepaid Data Deals South Africa', description: 'Find practical prepaid options by network, use case, and currently listed cost-per-GB.', path: '/guides/best-prepaid-data-deals-south-africa/' },
         { slug: 'best-data-deals-south-africa' },
         { slug: 'cheap-night-data-south-africa' },
         { slug: 'prepaid-vs-contract-south-africa' }
