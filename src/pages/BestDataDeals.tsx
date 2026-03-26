@@ -191,6 +191,12 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
               </p>
             </div>
           </div>
+          <p className="text-sm text-slate-600 mt-6">
+            To verify real-world fit, compare your network details in the{' '}
+            <Link to="/network/" className="text-[#1b6d24] font-semibold hover:underline">network comparison hub</Link>, then use the{' '}
+            <Link to="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">USSD directory</Link> to check live menu offers before checkout. Our{' '}
+            <Link to="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</Link> explains the value scoring model used here.
+          </p>
         </section>
 
         <section className="mb-20 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
@@ -214,6 +220,14 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
             <Link to="/network/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">
               <h3 className="font-black text-slate-900">Network Hub</h3>
               <p className="text-sm text-slate-600 mt-2">Browse network detail pages and bundle-type pages.</p>
+            </Link>
+            <Link to="/ussd-codes-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">
+              <h3 className="font-black text-slate-900">USSD Codes Guide</h3>
+              <p className="text-sm text-slate-600 mt-2">Check balances and buy bundles from your phone without the app.</p>
+            </Link>
+            <Link to="/methodology/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">
+              <h3 className="font-black text-slate-900">Methodology</h3>
+              <p className="text-sm text-slate-600 mt-2">Understand how value rankings are calculated across bundle types.</p>
             </Link>
           </div>
         </section>
@@ -250,4 +264,3 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     </div>
   );
 };
-

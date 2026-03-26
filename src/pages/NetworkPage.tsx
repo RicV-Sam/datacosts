@@ -53,6 +53,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const pageTitle = `${network.name} Data Prices South Africa (2026) | DataCost`;
   const metaDescription = `Compare ${network.name} data prices in South Africa. Find the cheapest bundles, USSD codes, and best deals updated for 2026.`;
   const canonicalUrl = `https://datacost.co.za/network/${networkSlug}/`;
+  const now = new Date();
+  const lastUpdated = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const dateModifiedIso = now.toISOString();
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -60,7 +63,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     "headline": `${network.name} Data Prices South Africa (2026)`,
     "description": metaDescription,
     "url": canonicalUrl,
-    "dateModified": "2024-03-20T00:00:00Z",
+    "dateModified": dateModifiedIso,
     "author": {
       "@type": "Organization",
       "name": "DataCost.co.za",
@@ -81,8 +84,6 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
       }
     }))
   };
-
-  const lastUpdated = "20 March 2024";
 
   const bundleTypeMap: Record<string, { label: string; filter: (b: Bundle) => boolean }> = {
     '1gb': { label: '1GB Deals', filter: (b) => b.volume === '1GB' },
@@ -432,7 +433,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         <div className="bg-white border border-slate-100 rounded-2xl p-6 text-sm text-slate-500 flex items-start gap-3 shadow-sm">
           <Info className="w-5 h-5 text-slate-400 mt-0.5" />
           <p className="font-medium">
-            <strong>Note:</strong> While we strive for accuracy, network providers often change their pricing without notice. You will be redirected to the operator’s official website when making a purchase. Prices are updated for 2026.
+            <strong>Trust note:</strong> Prices can change quickly and listed bundles are based on currently available data at the time of update. Always confirm final offer details on official operator pages. For our comparison framework, see <a href="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</a>.
           </p>
         </div>
       </main>

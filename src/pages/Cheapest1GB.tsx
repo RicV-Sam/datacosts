@@ -218,6 +218,13 @@ export const Cheapest1GB: React.FC<Cheapest1GBProps> = ({ onNavigate, onScrollTo
               </ul>
             </div>
           </div>
+          <p className="text-sm text-slate-600 mt-6">
+            For a broader benchmark, compare this page with our{' '}
+            <Link to="/guides/cheapest-data-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">cheapest data overall guide</Link>, then cross-check your operator on the{' '}
+            <Link to="/network/" className="text-[#1b6d24] font-semibold hover:underline">network hub</Link>. If you buy via short codes, use our{' '}
+            <Link to="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">USSD directory</Link>. For details on scoring logic, see the{' '}
+            <Link to="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology page</Link>.
+          </p>
         </section>
 
         <section className="mb-20">
@@ -266,9 +273,17 @@ export const Cheapest1GB: React.FC<Cheapest1GBProps> = ({ onNavigate, onScrollTo
               <h3 className="font-black text-slate-900">Telkom 1GB Page</h3>
               <p className="text-sm text-slate-600 mt-2">See Telkom 1GB options and related prepaid pricing.</p>
             </Link>
+            <Link to="/guides/best-data-deals-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">
+              <h3 className="font-black text-slate-900">Best Data Deals Guide</h3>
+              <p className="text-sm text-slate-600 mt-2">Compare promo-led offers when value beats standard 1GB pricing.</p>
+            </Link>
             <Link to="/ussd-codes-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">
               <h3 className="font-black text-slate-900">USSD Codes Guide</h3>
               <p className="text-sm text-slate-600 mt-2">Check balance and buy bundles quickly from your phone.</p>
+            </Link>
+            <Link to="/methodology/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">
+              <h3 className="font-black text-slate-900">How We Rank Value</h3>
+              <p className="text-sm text-slate-600 mt-2">Review how we compare cost-per-GB and validity across bundles.</p>
             </Link>
           </div>
         </section>
@@ -279,4 +294,3 @@ export const Cheapest1GB: React.FC<Cheapest1GBProps> = ({ onNavigate, onScrollTo
     </div>
   );
 };
-

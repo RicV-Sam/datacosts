@@ -203,6 +203,11 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
             <p>3. Share your cancellation SMS records and ask for a charge investigation.</p>
             <p>4. If needed, compare your options on our <Link to="/network/" className="text-[#1b6d24] font-semibold hover:underline">network comparison hub</Link> before switching providers.</p>
           </div>
+          <p className="text-sm text-slate-700 leading-relaxed mt-5">
+            You can also review your operator page directly for support context: <Link to="/network/vodacom/" className="text-[#1b6d24] font-semibold hover:underline">Vodacom</Link>,{' '}
+            <Link to="/network/mtn/" className="text-[#1b6d24] font-semibold hover:underline">MTN</Link>, or <Link to="/network/telkom/" className="text-[#1b6d24] font-semibold hover:underline">Telkom</Link>. For page methodology standards, see{' '}
+            <Link to="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">how we evaluate operator information</Link>.
+          </p>
         </section>
 
         <section className="mb-20">

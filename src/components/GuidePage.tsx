@@ -18,6 +18,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   const canonicalUrl = `https://datacost.co.za/guides/${guide.slug}/`;
   const pageTitle = `${guide.title} | DataCost`;
+  const showPriorityInternalLinks = guide.slug === 'why-is-my-data-finishing-so-fast' || guide.slug === 'how-to-check-data-balance';
 
   const filteredBundles = React.useMemo(() => {
     let result = [...bundles];
@@ -192,6 +193,31 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+        )}
+
+        {showPriorityInternalLinks && (
+          <section className="mb-16 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm">
+            <h2 className="text-2xl font-black tracking-tighter mb-4">Useful Related Pages</h2>
+            <p className="text-slate-600 font-medium leading-relaxed mb-6">
+              For a complete decision path, pair this guide with the <a href="/network/" onClick={(e) => { e.preventDefault(); navigate('/network/'); }} className="text-[#1b6d24] font-bold hover:underline">network comparison hub</a>, our <a href="/ussd-codes-south-africa/" onClick={(e) => { e.preventDefault(); navigate('/ussd-codes-south-africa/'); }} className="text-[#1b6d24] font-bold hover:underline">USSD codes directory</a>, and the <a href="/methodology/" onClick={(e) => { e.preventDefault(); navigate('/methodology/'); }} className="text-[#1b6d24] font-bold hover:underline">methodology page</a>.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/guides/cheapest-data-south-africa/" onClick={(e) => { e.preventDefault(); onNavigateToGuide('cheapest-data-south-africa'); }} className="flex items-center justify-between p-5 bg-slate-50 border border-slate-100 rounded-2xl hover:border-[#1b6d24] transition-all group">
+                <div>
+                  <h3 className="font-bold text-slate-900 group-hover:text-[#1b6d24]">Cheapest Data Guide</h3>
+                  <p className="text-xs text-slate-500 mt-1">Compare current value leaders</p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-[#1b6d24]" />
+              </a>
+              <a href="/guides/best-data-deals-south-africa/" onClick={(e) => { e.preventDefault(); onNavigateToGuide('best-data-deals-south-africa'); }} className="flex items-center justify-between p-5 bg-slate-50 border border-slate-100 rounded-2xl hover:border-[#1b6d24] transition-all group">
+                <div>
+                  <h3 className="font-bold text-slate-900 group-hover:text-[#1b6d24]">Best Data Deals</h3>
+                  <p className="text-xs text-slate-500 mt-1">Promo and value-focused picks</p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-[#1b6d24]" />
+              </a>
             </div>
           </section>
         )}
