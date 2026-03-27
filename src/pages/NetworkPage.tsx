@@ -59,7 +59,6 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const network = networkKey ? networkMetadata[networkKey] : null;
   const networkBundles = bundles.filter(b => b.network === networkKey);
   const ussdCodes = ussdRepository.filter(u => u.network === networkKey);
-  const isVodacomPage = networkSlug === 'vodacom';
 
   if (!network || !pageData) {
     return (
@@ -270,9 +269,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             </div>
             <h2 className="text-2xl font-black tracking-tighter mb-4">{pageData.bestFor}</h2>
             <p className="text-slate-600 font-medium leading-relaxed">
-              {isVodacomPage
-                ? 'Vodacom is usually chosen for coverage and consistency rather than being the cheapest option. Most savings come from matching bundle validity to your usage and checking personalised offers first.'
-                : `${network.name} can be a strong fit when you choose bundles based on your real usage pattern, not just headline data size.`}
+              {pageData.verdictSummary || `${network.name} can be a strong fit when you choose bundles based on your real usage pattern, not just headline data size.`}
             </p>
           </div>
           <div className="bg-[#f8fafc] border border-slate-100 rounded-[2.5rem] p-8 shadow-sm">
@@ -299,7 +296,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                 <ShieldCheck className="w-3.5 h-3.5" />
                 Best {network.name} bundles at a glance
               </div>
-              <h2 className="text-3xl font-black tracking-tighter mb-8">{isVodacomPage ? 'Vodacom quick answers' : `${network.name} quick answers`}</h2>
+              <h2 className="text-3xl font-black tracking-tighter mb-8">{network.name} quick answers</h2>
 
               <div className="grid md:grid-cols-2 gap-5">
                 {summaryCards.map((item) => (
@@ -312,10 +309,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                 ))}
               </div>
 
-              {isVodacomPage && (
+              {pageData.personalisedSection && (
                 <p className="mt-6 text-slate-300 text-sm leading-relaxed font-medium">
-                  Cheapest standard 1GB is usually the short-validity bundle. For longer value, monthly bundles typically reduce Rand-per-GB. Always check
-                  <span className="font-bold text-white"> Just 4 You (*123#)</span> first, because personalised offers can be cheaper than menu pricing.
+                  Cheapest standard 1GB is usually short-validity. For longer value, monthly bundles typically reduce Rand-per-GB. Always check personalised offer channels before paying full menu pricing.
                 </p>
               )}
             </div>
@@ -383,54 +379,38 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
         <AdUnit type="inContent" />
 
-        {isVodacomPage && (
+        {pageData.howToBuySection && (
           <>
             <section className="mb-16 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
-              <h2 className="text-2xl font-black tracking-tighter mb-6">How to buy Vodacom data bundles</h2>
+              <h2 className="text-2xl font-black tracking-tighter mb-6">{pageData.howToBuySection.title}</h2>
               <div className="space-y-4 text-slate-700 leading-relaxed font-medium">
-                <p>Most prepaid users buy data through <strong>*135#</strong> and the data menu flow on <strong>*135*2#</strong>. You can also buy through the My Vodacom or VodaPay app, plus selected banking app channels.</p>
-                <p>Before paying standard rates, check <strong>*123# (Just 4 You)</strong>. These personalised offers can be cheaper, but they are not identical for every customer and can change over time.</p>
-                <p>
-                  For a step-by-step walkthrough, use the
-                  {' '}
-                  <a href="/guides/how-to-buy-data-vodacom/" className="text-[#1b6d24] font-semibold hover:underline">How to buy Vodacom data guide</a>.
-                </p>
+                {pageData.howToBuySection.paragraphs.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
               </div>
             </section>
 
-            <section className="mb-16 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
-              <h2 className="text-2xl font-black tracking-tighter mb-6">What is Vodacom Just 4 You?</h2>
-              <p className="text-slate-700 leading-relaxed font-medium mb-4">
-                Just 4 You is Vodacom&apos;s personalised offer channel. It is driven by usage profile and campaigns, so two prepaid users can see different deals on the same day.
-                In many cases, these offers are cheaper than standard listed pricing.
-              </p>
-              <p className="text-slate-700 leading-relaxed font-medium">
-                Check on <strong>*123#</strong>. Treat it as a variable savings channel, not a fixed public bundle table.
-              </p>
-            </section>
+            {pageData.personalisedSection && (
+              <section className="mb-16 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
+                <h2 className="text-2xl font-black tracking-tighter mb-6">{pageData.personalisedSection.title}</h2>
+                <div className="space-y-4 text-slate-700 leading-relaxed font-medium">
+                  {pageData.personalisedSection.paragraphs.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
+                </div>
+              </section>
+            )}
 
-            <section className="mb-16 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
-              <h2 className="text-2xl font-black tracking-tighter mb-6">How Vodacom compares to other networks</h2>
-              <div className="space-y-4 text-slate-700 leading-relaxed font-medium">
-                <p>
-                  Vodacom usually wins on consistency and coverage, but standard prepaid pricing can be higher than value-led rivals.
-                  For the head-to-head view, read
-                  {' '}
-                  <a href="/guides/vodacom-vs-mtn-data-prices/" className="text-[#1b6d24] font-semibold hover:underline">Vodacom vs MTN data prices</a>.
-                </p>
-                <p>
-                  You can also compare
-                  {' '}
-                  <a href="/network/mtn/" className="text-[#1b6d24] font-semibold hover:underline">MTN data prices</a>,
-                  {' '}
-                  <a href="/network/telkom/" className="text-[#1b6d24] font-semibold hover:underline">Telkom prepaid data deals</a>,
-                  {' '}
-                  and
-                  {' '}
-                  <a href="/network/cell-c/" className="text-[#1b6d24] font-semibold hover:underline">Cell C monthly data prices</a>.
-                </p>
-              </div>
-            </section>
+            {pageData.editorialComparisonSection && (
+              <section className="mb-16 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
+                <h2 className="text-2xl font-black tracking-tighter mb-6">{pageData.editorialComparisonSection.title}</h2>
+                <div className="space-y-4 text-slate-700 leading-relaxed font-medium">
+                  {pageData.editorialComparisonSection.paragraphs.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
+                </div>
+              </section>
+            )}
           </>
         )}
 
@@ -546,29 +526,18 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                   </div>
                 </div>
               ))}
-              {isVodacomPage ? (
+              {pageData.extraSavingsTips && pageData.extraSavingsTips.length > 0 ? (
                 <>
-                  <div className="flex gap-6 group">
-                    <div className="flex-shrink-0 w-10 h-10 bg-[#031636] text-white rounded-xl flex items-center justify-center text-sm font-black shadow-lg group-hover:bg-[#1b6d24] transition-colors">
-                      {pageData.tips.length + 1}
+                  {pageData.extraSavingsTips.map((tip, index) => (
+                    <div key={index} className="flex gap-6 group">
+                      <div className="flex-shrink-0 w-10 h-10 bg-[#031636] text-white rounded-xl flex items-center justify-center text-sm font-black shadow-lg group-hover:bg-[#1b6d24] transition-colors">
+                        {pageData.tips.length + index + 1}
+                      </div>
+                      <div className="pt-2">
+                        <p className="text-slate-600 leading-relaxed font-medium">{tip}</p>
+                      </div>
                     </div>
-                    <div className="pt-2">
-                      <p className="text-slate-600 leading-relaxed font-medium">Compare short-term versus monthly bundles. A daily top-up can become expensive if repeated all month.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-6 group">
-                    <div className="flex-shrink-0 w-10 h-10 bg-[#031636] text-white rounded-xl flex items-center justify-center text-sm font-black shadow-lg group-hover:bg-[#1b6d24] transition-colors">
-                      {pageData.tips.length + 2}
-                    </div>
-                    <div className="pt-2">
-                      <p className="text-slate-600 leading-relaxed font-medium">
-                        Avoid browsing from airtime with no active bundle. Out-of-bundle rates can consume airtime quickly at high per-MB charges.
-                        If usage seems abnormal, read
-                        {' '}
-                        <a href="/guides/why-is-my-data-finishing-so-fast/" className="text-[#1b6d24] font-semibold hover:underline">why data finishes so fast</a>.
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                 </>
               ) : (
                 <div className="flex gap-6 group">
@@ -584,30 +553,16 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           </div>
         </section>
 
-        {isVodacomPage && (
+        {pageData.commonQuestionsSection && (
           <section className="mb-16 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
-            <h2 className="text-2xl font-black tracking-tighter mb-6">Common Vodacom data questions</h2>
+            <h2 className="text-2xl font-black tracking-tighter mb-6">{pageData.commonQuestionsSection.title}</h2>
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-                <h3 className="font-black mb-2">Why is Vodacom data expensive?</h3>
-                <p className="text-sm text-slate-600 font-medium">Vodacom standard prepaid can be pricier than value-led rivals, especially outside personalised promotions.</p>
-              </div>
-              <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-                <h3 className="font-black mb-2">Why is my Vodacom data finishing so fast?</h3>
-                <p className="text-sm text-slate-600 font-medium">Background updates, video autoplay and out-of-bundle usage are common reasons for rapid data drain.</p>
-              </div>
-              <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-                <h3 className="font-black mb-2">How do I stop out-of-bundle charges?</h3>
-                <p className="text-sm text-slate-600 font-medium">Keep an active bundle and manage out-of-bundle settings in self-service channels so airtime is protected.</p>
-              </div>
-              <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-                <h3 className="font-black mb-2">Is Vodacom cheaper through Just 4 You?</h3>
-                <p className="text-sm text-slate-600 font-medium">Often yes, but not always. Just 4 You is personalised, so offer value varies by user and campaign.</p>
-              </div>
-              <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50 md:col-span-2">
-                <h3 className="font-black mb-2">Does Vodacom have unlimited prepaid data?</h3>
-                <p className="text-sm text-slate-600 font-medium">True unlimited prepaid handset data is uncommon. Unlimited-style options are usually tied to fixed LTE or 5G product categories.</p>
-              </div>
+              {pageData.commonQuestionsSection.items.map((item, index) => (
+                <div key={index} className={`p-5 rounded-2xl border border-slate-100 bg-slate-50 ${index === pageData.commonQuestionsSection!.items.length - 1 ? 'md:col-span-2' : ''}`}>
+                  <h3 className="font-black mb-2">{item.question}</h3>
+                  <p className="text-sm text-slate-600 font-medium">{item.answer}</p>
+                </div>
+              ))}
             </div>
           </section>
         )}
@@ -628,20 +583,13 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                   <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors text-sm">{config.label}</div>
                 </a>
               ))}
-              {isVodacomPage && (
+              {pageData.narrowSearchLinks && pageData.narrowSearchLinks.length > 0 && (
                 <>
-                  <a href="/guides/how-to-buy-data-vodacom/" className="px-4 py-4 bg-white border border-slate-100 rounded-2xl text-center hover:border-[#1b6d24] hover:shadow-sm transition-all group">
-                    <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors text-sm">How to buy Vodacom data</div>
-                  </a>
-                  <a href="/guides/vodacom-vs-mtn-data-prices/" className="px-4 py-4 bg-white border border-slate-100 rounded-2xl text-center hover:border-[#1b6d24] hover:shadow-sm transition-all group">
-                    <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors text-sm">Vodacom vs MTN</div>
-                  </a>
-                  <a href="/guides/stop-wasp-subscriptions-south-africa/" className="px-4 py-4 bg-white border border-slate-100 rounded-2xl text-center hover:border-[#1b6d24] hover:shadow-sm transition-all group">
-                    <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors text-sm">Stop out-of-bundle charges</div>
-                  </a>
-                  <a href="/ussd-codes-south-africa/" className="px-4 py-4 bg-white border border-slate-100 rounded-2xl text-center hover:border-[#1b6d24] hover:shadow-sm transition-all group">
-                    <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors text-sm">Vodacom USSD codes</div>
-                  </a>
+                  {pageData.narrowSearchLinks.map((link) => (
+                    <a key={link.href} href={link.href} className="px-4 py-4 bg-white border border-slate-100 rounded-2xl text-center hover:border-[#1b6d24] hover:shadow-sm transition-all group">
+                      <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors text-sm">{link.label}</div>
+                    </a>
+                  ))}
                 </>
               )}
             </div>
