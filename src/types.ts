@@ -8,12 +8,14 @@ export interface Bundle {
   price: number;
   volume: string; // e.g. "10GB"
   validity: string; // e.g. "30 Days"
-  type: 'Prepaid' | 'Contract' | 'Monthly' | 'Weekly' | 'Daily';
+  type: 'Prepaid' | 'Contract' | 'Monthly' | 'Weekly' | 'Daily' | 'Hourly' | 'Social';
   anytimeData: string;
   nightData?: string;
   costPerGb: number;
   isBestValue?: boolean;
   isSpeedKing?: boolean;
+  bestFor?: string;
+  note?: string;
 }
 
 export interface NetworkStats {
