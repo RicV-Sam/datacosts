@@ -8,9 +8,11 @@ import { NetworkCard } from '../components/NetworkCards';
 import { Scorecard } from '../components/Scorecard';
 import { NetworkName, NavigateFunction } from '../types';
 import { networkPages } from '../data/networks';
+import { bundles } from '../data';
 import { TowerControl, BookOpen, Smartphone, Info, Zap, Globe, ShieldCheck, Gauge, Wifi, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
+import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
 
 interface NetworkHubPageProps {
   onNavigate: NavigateFunction;
@@ -83,6 +85,13 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
     }
   ];
 
+  const featuredBundles = Object.values(networkPages).flatMap((page) =>
+    bundles
+      .filter((bundle) => bundle.network === page.networkName)
+      .sort((a, b) => a.price - b.price)
+      .slice(0, 2)
+  );
+
   const articleSchema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -123,6 +132,13 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
     ]
   };
 
+  const networkHubBundleItemListSchema = buildBundleItemListSchema(
+    'Featured Network Bundle Deals in South Africa',
+    canonicalUrl,
+    featuredBundles,
+    (bundle) => getNetworkPageUrl(bundle.network)
+  );
+
   const handleViewDeals = (network: NetworkName) => {
     const page = Object.values(networkPages).find(p => p.networkName === network);
     if (page) {
@@ -148,6 +164,9 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
         <script type="application/ld+json">
           {JSON.stringify(articleSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(networkHubBundleItemListSchema)}
         </script>
       </Helmet>
 

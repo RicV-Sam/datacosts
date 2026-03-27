@@ -7,6 +7,7 @@ import { Footer } from '../components/Footer';
 import { AdUnit } from '../components/AdUnit';
 import { RelatedPages } from '../components/RelatedPages';
 import { ArrowLeft, ExternalLink, ShieldCheck, Zap, Info, Clock, Volume2 } from 'lucide-react';
+import { buildBundleProductSchema } from '../utils/structuredData';
 
 export const BundlePage: React.FC = () => {
   const { networkSlug, bundleSlug } = useParams<{ networkSlug: string; bundleSlug: string }>();
@@ -23,25 +24,15 @@ export const BundlePage: React.FC = () => {
 
   const pageTitle = `${bundle.name} Price (2026) - ${bundle.volume} Data Bundle | DataCost`;
   const metaDescription = `How much is the ${bundle.name}? Full price breakdown: R${bundle.price} for ${bundle.volume}. Valid for ${bundle.validity}. Cost per GB: R${bundle.costPerGb.toFixed(2)}.`;
+  const canonicalUrl = `https://datacost.co.za/network/${networkSlug}/${bundleSlug}/`;
 
   const jsonLd = {
-    "@context": "https://schema.org/",
-    "@type": "Service",
-    "name": bundle.name,
-    "description": `${bundle.network} ${bundle.volume} Data Bundle. ${bundle.validity} validity.`,
-    "provider": {
-      "@type": "Organization",
-      "name": bundle.network
-    },
-    "areaServed": "South Africa",
-    "image": "https://datacost.co.za/og-image.jpg",
-    "offers": {
-      "@type": "Offer",
-      "price": bundle.price.toFixed(2),
-      "priceCurrency": "ZAR",
-      "availability": "https://schema.org/InStock",
-      "url": `https://datacost.co.za/#deals`
-    }
+    '@context': 'https://schema.org',
+    ...buildBundleProductSchema(bundle, {
+      productUrl: canonicalUrl,
+      offerUrl: canonicalUrl,
+      description: `Compare the ${bundle.name} prepaid data bundle in South Africa, including price, validity, and cost per GB.`
+    })
   };
 
   const faqSchema = {
@@ -72,7 +63,7 @@ export const BundlePage: React.FC = () => {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
-        <link rel="canonical" href={`https://datacost.co.za/network/${networkSlug}/${bundleSlug}/`} />
+        <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}
         </script>

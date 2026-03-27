@@ -13,7 +13,9 @@ import { NetworkModal } from '../components/NetworkModal';
 import { AdUnit } from '../components/AdUnit';
 import { guides } from '../data/guides';
 import { networkPages } from '../data/networks';
+import { bundles } from '../data';
 import { NetworkName } from '../types';
+import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
 
 interface HomePageProps {
   onNavigate: (page: 'home' | 'ussd' | 'guide' | 'network' | 'guides-index' | 'travel-sims', slug?: string) => void;
@@ -50,6 +52,20 @@ export const HomePage: React.FC<HomePageProps> = ({
     }
   };
 
+  const featuredBundles = Object.values(networkPages).flatMap((page) =>
+    bundles
+      .filter((bundle) => bundle.network === page.networkName)
+      .sort((a, b) => a.price - b.price)
+      .slice(0, 2)
+  );
+
+  const homeBundleItemListSchema = buildBundleItemListSchema(
+    'Featured Mobile Data Bundle Deals in South Africa',
+    canonicalUrl,
+    featuredBundles,
+    (bundle) => getNetworkPageUrl(bundle.network)
+  );
+
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans">
       <Helmet>
@@ -68,6 +84,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
         <script type="application/ld+json">
           {JSON.stringify(homeSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(homeBundleItemListSchema)}
         </script>
       </Helmet>
 

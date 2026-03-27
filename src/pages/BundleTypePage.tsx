@@ -9,6 +9,7 @@ import { AdUnit } from '../components/AdUnit';
 import { ArrowLeft, ExternalLink, ShieldCheck, Zap, Info, Smartphone, HelpCircle } from 'lucide-react';
 import { NetworkName, NavigateFunction } from '../types';
 import { BUNDLE_TYPE_MAP } from '../config/routeCatalog';
+import { buildBundleItemListSchema } from '../utils/structuredData';
 
 interface BundleTypePageProps {
   onNavigate: NavigateFunction;
@@ -71,6 +72,13 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
 
   const ussdCodes = ussdRepository.filter(u => u.network === network.name);
 
+  const bundleItemListSchema = buildBundleItemListSchema(
+    `${network.name} ${typeConfig.label} Mobile Data Bundles`,
+    canonicalUrl,
+    matchingBundles,
+    () => canonicalUrl
+  );
+
   const getPriceInsights = () => {
     if (!matchingBundles.length) return null;
 
@@ -114,6 +122,9 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
         <script type="application/ld+json">
           {JSON.stringify(articleSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(bundleItemListSchema)}
         </script>
       </Helmet>
 

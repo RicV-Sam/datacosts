@@ -7,6 +7,7 @@ import { Footer } from '../components/Footer';
 import { AdUnit } from '../components/AdUnit';
 import { ArrowLeft, ChevronRight, ShieldCheck, Zap, Info, Smartphone, HelpCircle, Clock, Tag, ExternalLink, CheckCircle2 } from 'lucide-react';
 import { NetworkName, NavigateFunction, Bundle } from '../types';
+import { buildBundleItemListSchema } from '../utils/structuredData';
 
 interface NetworkPageProps {
   networkSlug: string;
@@ -85,6 +86,13 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     }))
   };
 
+  const bundleItemListSchema = buildBundleItemListSchema(
+    `${network.name} Mobile Data Bundles`,
+    canonicalUrl,
+    sortedBundles,
+    () => canonicalUrl
+  );
+
   const bundleTypeMap: Record<string, { label: string; filter: (b: Bundle) => boolean }> = {
     '1gb': { label: '1GB Deals', filter: (b) => b.volume === '1GB' },
     'daily-data': { label: 'Daily Data', filter: (b) => (b.validity.toLowerCase().includes('day') && !b.validity.toLowerCase().includes('30 day') && !b.validity.toLowerCase().includes('7 day')) || b.type === 'Daily' },
@@ -118,6 +126,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         </script>
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(bundleItemListSchema)}
         </script>
       </Helmet>
 

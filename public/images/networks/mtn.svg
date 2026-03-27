@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">MTN network image</title>
+  <desc id="desc">Yellow background with MTN label.</desc>
+  <rect width="1200" height="630" fill="#FFCC00" />
+  <text x="600" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="88" font-weight="700" fill="#031636">MTN</text>
+</svg>
