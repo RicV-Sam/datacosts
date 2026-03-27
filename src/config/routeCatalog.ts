@@ -52,6 +52,13 @@ export const BUNDLE_TYPE_MAP: Record<string, BundleTypeConfig> = {
     label: 'Night',
     filter: (bundle) => bundle.name.toLowerCase().includes('night') || (bundle.nightData !== undefined && bundle.nightData !== ''),
     guideSlug: 'cheap-night-data-south-africa'
+  },
+  'social-data': {
+    label: 'Social',
+    filter: (bundle) =>
+      bundle.type === 'Social' ||
+      bundle.name.toLowerCase().includes('whatsapp') ||
+      bundle.name.toLowerCase().includes('social')
   }
 };
 

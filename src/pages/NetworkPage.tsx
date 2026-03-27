@@ -41,6 +41,17 @@ const getNetworkBundleType = (bundle: Bundle): string => {
   return bundle.type;
 };
 
+const getBundleWatchOut = (bundle: Bundle): string => {
+  if (bundle.watchOut) return bundle.watchOut;
+  if (bundle.note) return bundle.note;
+  if (isSocialBundle(bundle)) return 'App-limited access';
+  if (isNightBundle(bundle)) return 'Night-only usage window';
+  if (bundle.validity.toLowerCase().includes('1 hour')) return 'Very short validity';
+  if (bundle.validity.toLowerCase().includes('1 day')) return 'Short validity';
+  if (bundle.validity.toLowerCase().includes('recurring')) return 'Auto-renews';
+  return 'Check offer terms';
+};
+
 export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigate, onScrollTo }) => {
   const pageData = networkPages[networkSlug];
 
@@ -73,20 +84,26 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
   const sortedBundles = [...networkBundles].sort((a, b) => a.price - b.price);
   const standardBundles = sortedBundles.filter((bundle) => !isSocialBundle(bundle));
+  const generalUseBundles = standardBundles.filter((bundle) => !isNightBundle(bundle) && !isHourlyBundle(bundle));
+  const nightBundles = sortedBundles.filter((bundle) => isNightBundle(bundle));
 
-  const bestCheapBundle = standardBundles[0];
-  const best1GbOption = standardBundles.filter((bundle) => bundle.volume.toLowerCase().includes('1gb')).sort((a, b) => a.price - b.price)[0];
+  const bestCheapGeneralBundle = [...generalUseBundles, ...standardBundles].sort((a, b) => a.price - b.price)[0];
+  const best1GbOption = generalUseBundles.filter((bundle) => bundle.volume.toLowerCase().includes('1gb')).sort((a, b) => a.price - b.price)[0];
   const bestMonthlyValue = standardBundles.filter((bundle) => isMonthlyBundle(bundle)).sort((a, b) => a.costPerGb - b.costPerGb)[0];
+  const bestNightBundle = nightBundles.sort((a, b) => a.costPerGb - b.costPerGb)[0];
   const bestHeavyUser = standardBundles
     .filter((bundle) => isMonthlyBundle(bundle) && (bundle.volume.toLowerCase().includes('10gb') || bundle.volume.toLowerCase().includes('20gb') || bundle.volume.toLowerCase().includes('30gb') || bundle.volume.toLowerCase().includes('50gb')))
     .sort((a, b) => a.costPerGb - b.costPerGb)[0];
 
   const summaryCards: SummaryCard[] = [
-    bestCheapBundle ? { label: `Best cheap ${network.name} bundle`, bundle: bestCheapBundle } : null,
+    bestCheapGeneralBundle ? { label: `Best cheap general-use ${network.name} bundle`, bundle: bestCheapGeneralBundle } : null,
     best1GbOption ? { label: `Best ${network.name} 1GB option`, bundle: best1GbOption } : null,
     bestMonthlyValue ? { label: `Best monthly ${network.name} value`, bundle: bestMonthlyValue } : null,
-    bestHeavyUser ? { label: `Best for heavy ${network.name} users`, bundle: bestHeavyUser } : null
+    bestNightBundle ? { label: `Best ${network.name} night bundle`, bundle: bestNightBundle } : null,
+    bestHeavyUser ? { label: `Best ${network.name} heavy-use bundle`, bundle: bestHeavyUser } : null
   ].filter((item): item is SummaryCard => item !== null);
+
+  const comparisonRows = pageData.comparisonSummary || [];
 
   const pageTitle = `${network.name} Data Prices South Africa (2026) | DataCost`;
   const metaDescription = `Compare ${network.name} prepaid data prices in South Africa, including daily, weekly and monthly bundles, USSD codes, and practical savings tips updated for 2026.`;
@@ -141,7 +158,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   );
 
   const bundleTypeMap: Record<string, { label: string; filter: (b: Bundle) => boolean }> = {
-    'cheapest-1gb': { label: `Cheapest 1GB ${network.name} data`, filter: (b) => b.volume === '1GB' },
+    '1gb': { label: `Cheapest 1GB ${network.name} data`, filter: (b) => b.volume === '1GB' },
     'daily-data': { label: `${network.name} daily bundles`, filter: (b) => isDailyBundle(b) },
     'weekly-data': { label: `${network.name} weekly bundles`, filter: (b) => isWeeklyBundle(b) },
     'monthly-data': { label: `${network.name} monthly bundles`, filter: (b) => isMonthlyBundle(b) },
@@ -152,6 +169,13 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const availableTypes = Object.entries(bundleTypeMap).filter(([_, config]) =>
     networkBundles.some(b => config.filter(b))
   );
+
+  const getUssdCode = (matcher: (action: string, category: string) => boolean) =>
+    ussdCodes.find((code) => matcher(code.action.toLowerCase(), code.category.toLowerCase()))?.code;
+  const balanceCode = getUssdCode((action, category) => action.includes('balance') || category.includes('balance'));
+  const buyDataCode = getUssdCode((action, category) => action.includes('buy data') || action.includes('bundles') || category.includes('data'));
+  const promoCode = getUssdCode((action) => action.includes('just 4 you') || action.includes('made4u') || action.includes("mo'nice") || action.includes('for you'));
+  const rechargeCode = getUssdCode((action, category) => action.includes('recharge') || action.includes('voucher') || category.includes('recharge') || category.includes('airtime'));
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -187,21 +211,23 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
       <nav aria-label="Breadcrumb" className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <button
-              onClick={() => onNavigate('home')}
+            <a
+              href="/"
+              onClick={(e) => { e.preventDefault(); onNavigate('home'); }}
               className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-slate-600 hover:text-[#1b6d24] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Home</span>
-            </button>
+            </a>
             <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-slate-300">
               <ChevronRight className="w-4 h-4" />
-              <button
-                onClick={() => onNavigate('network')}
+              <a
+                href="/network/"
+                onClick={(e) => { e.preventDefault(); onNavigate('network'); }}
                 className="hover:text-[#1b6d24] transition-colors text-slate-600"
               >
                 Networks
-              </button>
+              </a>
               <ChevronRight className="w-4 h-4" />
               <span className="text-slate-400">{network.name}</span>
             </div>
@@ -301,6 +327,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             <Tag className="w-6 h-6 text-[#1b6d24]" />
             {network.name} prepaid bundle prices ({lastUpdated})
           </h2>
+          <p className="text-slate-600 font-medium leading-relaxed mb-5">
+            We track publicly listed prepaid bundle pricing, USSD access routes and network-specific offer patterns in South Africa to compare real value, not just headline GB size.
+          </p>
           <div className="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left min-w-[760px]">
@@ -312,11 +341,12 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                     <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Validity</th>
                     <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Cost per GB / Value</th>
                     <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Best For</th>
+                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Watch Out</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
                   {sortedBundles.map(bundle => {
-                    const isHighlight = bestCheapBundle?.id === bundle.id || bestMonthlyValue?.id === bundle.id || bestHeavyUser?.id === bundle.id;
+                    const isHighlight = bestCheapGeneralBundle?.id === bundle.id || bestMonthlyValue?.id === bundle.id || bestHeavyUser?.id === bundle.id;
                     return (
                     <tr key={bundle.id} className="hover:bg-slate-50 transition-colors">
                       <td className="px-6 py-4 font-bold text-slate-900">
@@ -336,6 +366,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                         </span>
                       </td>
                       <td className="px-6 py-4 text-sm font-medium text-slate-600">{bundle.bestFor || 'General prepaid use'}</td>
+                      <td className="px-6 py-4 text-sm font-medium text-amber-700">{getBundleWatchOut(bundle)}</td>
                     </tr>
                     );
                   })}
@@ -403,6 +434,38 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           </>
         )}
 
+        {comparisonRows.length > 0 && (
+          <section className="mb-16 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
+            <h2 className="text-2xl font-black tracking-tighter mb-6">{network.name} vs other networks at a glance</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[680px] text-left">
+                <thead>
+                  <tr className="border-b border-slate-100">
+                    <th className="px-3 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Network</th>
+                    <th className="px-3 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Best for</th>
+                    <th className="px-3 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Usually cheapest?</th>
+                    <th className="px-3 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Coverage</th>
+                    <th className="px-3 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Good for</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {comparisonRows.map((row) => (
+                    <tr key={row.network}>
+                      <td className="px-3 py-3 font-bold">
+                        <a href={row.href} className="text-[#1b6d24] hover:underline">{row.network}</a>
+                      </td>
+                      <td className="px-3 py-3 text-sm font-medium text-slate-700">{row.bestFor}</td>
+                      <td className="px-3 py-3 text-sm font-medium text-slate-700">{row.usuallyCheapest}</td>
+                      <td className="px-3 py-3 text-sm font-medium text-slate-700">{row.coverage}</td>
+                      <td className="px-3 py-3 text-sm font-medium text-slate-700">{row.goodFor}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
+
         {/* SECTION 3: USSD CODES - Aligned with site system */}
         <section className="mb-16">
           <h2 className="text-2xl font-black tracking-tighter mb-4 flex items-center gap-2">
@@ -437,12 +500,33 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
               </div>
             )}
           </div>
+          {(balanceCode || buyDataCode || promoCode || rechargeCode) && (
+            <p className="mt-5 text-sm text-slate-600 font-medium leading-relaxed">
+              {balanceCode && `${network.name} balance check code: ${balanceCode}. `}
+              {buyDataCode && `${network.name} buy data code: ${buyDataCode}. `}
+              {promoCode && `${network.name} personalised deals code: ${promoCode}. `}
+              {rechargeCode && `${network.name} recharge code: ${rechargeCode}. `}
+            </p>
+          )}
           <div className="mt-5 text-xs text-slate-500 font-medium">
             Last checked {lastUpdated}. USSD codes can change by campaign or customer profile.
             {' '}
             <a href="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">View full South Africa USSD directory</a>.
           </div>
         </section>
+
+        {pageData.commonMistakes && pageData.commonMistakes.length > 0 && (
+          <section className="mb-16 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
+            <h2 className="text-2xl font-black tracking-tighter mb-6">What {network.name} users usually get wrong</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              {pageData.commonMistakes.map((mistake, index) => (
+                <div key={index} className="p-5 rounded-2xl border border-slate-100 bg-slate-50 text-slate-700 font-medium leading-relaxed">
+                  {mistake}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* SECTION 4: SAVINGS TIPS - Aligned with site system */}
         <section className="mb-16">

@@ -8,6 +8,15 @@ export interface NetworkPageData {
   bestFor: string;
   strengths: string[];
   faqs: { question: string; answer: string }[];
+  commonMistakes?: string[];
+  comparisonSummary?: {
+    network: NetworkName;
+    bestFor: string;
+    usuallyCheapest: string;
+    coverage: string;
+    goodFor: string;
+    href: string;
+  }[];
 }
 
 export const networkPages: Record<string, NetworkPageData> = {
@@ -26,6 +35,48 @@ export const networkPages: Record<string, NetworkPageData> = {
       'Check Just 4 You (*123#) before buying a standard prepaid bundle.',
       'If you only need data for a short task, compare hourly or daily options before buying monthly bundles.',
       'Keep out-of-bundle usage disabled where possible so airtime is not consumed at high per-MB rates.'
+    ],
+    commonMistakes: [
+      'Buying daily bundles repeatedly instead of moving to a monthly pack when usage is consistent.',
+      'Assuming Just 4 You prices are public and identical for every Vodacom customer.',
+      'Leaving out-of-bundle enabled and losing airtime at high per-MB rates.',
+      'Treating social bundles as full internet access when they are app-limited.',
+      'Missing the difference between once-off bundles and auto-recurring options.',
+      'Choosing the cheapest headline price instead of comparing Rand-per-GB and validity.'
+    ],
+    comparisonSummary: [
+      {
+        network: 'Vodacom',
+        bestFor: 'Coverage consistency',
+        usuallyCheapest: 'No',
+        coverage: 'Strong national footprint',
+        goodFor: 'Users who prioritise reliable signal',
+        href: '/network/vodacom/'
+      },
+      {
+        network: 'MTN',
+        bestFor: 'Speed and promos',
+        usuallyCheapest: 'Sometimes',
+        coverage: 'Strong urban and suburban',
+        goodFor: 'Promo hunters and heavy app users',
+        href: '/network/mtn/'
+      },
+      {
+        network: 'Telkom',
+        bestFor: 'Low cost per GB',
+        usuallyCheapest: 'Often',
+        coverage: 'Best in metros',
+        goodFor: 'Budget-focused prepaid users',
+        href: '/network/telkom/'
+      },
+      {
+        network: 'Cell C',
+        bestFor: 'Value mixes',
+        usuallyCheapest: 'Sometimes',
+        coverage: 'Roaming-backed footprint',
+        goodFor: 'Flexible monthly and social buyers',
+        href: '/network/cell-c/'
+      }
     ],
     faqs: [
       {

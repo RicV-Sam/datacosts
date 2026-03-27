@@ -97,7 +97,8 @@ export const bundles: Bundle[] = [
     type: 'Hourly',
     anytimeData: '75MB',
     costPerGb: 160,
-    bestFor: 'Quick top-up for maps, chat and urgent browsing'
+    bestFor: 'Quick top-up for maps, chat and urgent browsing',
+    watchOut: 'Very short validity (1 hour)'
   },
   {
     id: 'voda-daily-250mb',
@@ -110,7 +111,8 @@ export const bundles: Bundle[] = [
     type: 'Daily',
     anytimeData: '250MB',
     costPerGb: 76,
-    bestFor: 'Light users who need data for a single day'
+    bestFor: 'Light users who need data for a single day',
+    watchOut: 'Short validity (1 day)'
   },
   {
     id: 'voda-daily-1gb',
@@ -123,7 +125,8 @@ export const bundles: Bundle[] = [
     type: 'Daily',
     anytimeData: '1GB',
     costPerGb: 29,
-    bestFor: 'Best standard short-term 1GB option'
+    bestFor: 'Best standard short-term 1GB option',
+    watchOut: 'Short validity (1 day)'
   },
   {
     id: 'voda-weekly-500mb',
@@ -136,7 +139,8 @@ export const bundles: Bundle[] = [
     type: 'Weekly',
     anytimeData: '500MB',
     costPerGb: 98,
-    bestFor: 'Moderate users who recharge weekly'
+    bestFor: 'Moderate users who recharge weekly',
+    watchOut: 'Higher cost per GB than larger packs'
   },
   {
     id: 'voda-weekly-1gb',
@@ -149,7 +153,8 @@ export const bundles: Bundle[] = [
     type: 'Weekly',
     anytimeData: '1GB',
     costPerGb: 79,
-    bestFor: 'Steady weekly usage without a monthly commitment'
+    bestFor: 'Steady weekly usage without a monthly commitment',
+    watchOut: 'Higher cost per GB than monthly bundles'
   },
   {
     id: 'voda-monthly-1gb',
@@ -162,7 +167,8 @@ export const bundles: Bundle[] = [
     type: 'Monthly',
     anytimeData: '1GB',
     costPerGb: 99,
-    bestFor: 'Entry-level monthly bundle'
+    bestFor: 'Entry-level monthly bundle',
+    watchOut: 'Can be poor value versus promos'
   },
   {
     id: 'voda-monthly-2gb',
@@ -175,7 +181,8 @@ export const bundles: Bundle[] = [
     type: 'Monthly',
     anytimeData: '2GB',
     costPerGb: 74.5,
-    bestFor: 'Users moving from daily to monthly bundles'
+    bestFor: 'Users moving from daily to monthly bundles',
+    watchOut: 'Standard pricing may be beaten by personalised offers'
   },
   {
     id: 'voda-monthly-10gb',
@@ -188,7 +195,8 @@ export const bundles: Bundle[] = [
     type: 'Monthly',
     anytimeData: '10GB',
     costPerGb: 19.9,
-    bestFor: 'Regular streamers and remote workers'
+    bestFor: 'Regular streamers and remote workers',
+    watchOut: 'Confirm once-off versus recurring terms'
   },
   {
     id: 'voda-monthly-20gb',
@@ -201,7 +209,8 @@ export const bundles: Bundle[] = [
     type: 'Monthly',
     anytimeData: '20GB',
     costPerGb: 14.95,
-    bestFor: 'Heavy users who need large anytime allocation'
+    bestFor: 'Heavy users who need large anytime allocation',
+    watchOut: 'Large upfront spend'
   },
   {
     id: 'voda-monthly-recurring-30gb',
@@ -214,7 +223,8 @@ export const bundles: Bundle[] = [
     type: 'Monthly',
     anytimeData: '30GB',
     costPerGb: 15.63,
-    bestFor: 'Users who prefer auto-renew convenience'
+    bestFor: 'Users who prefer auto-renew convenience',
+    watchOut: 'Auto-renews each cycle'
   },
   {
     id: 'voda-night-owl-250mb',
@@ -228,7 +238,8 @@ export const bundles: Bundle[] = [
     anytimeData: '0MB',
     nightData: '250MB',
     costPerGb: 40,
-    bestFor: 'Late-night updates and overnight downloads'
+    bestFor: 'Late-night updates and overnight downloads',
+    watchOut: 'Night-only usage window'
   },
   {
     id: 'voda-whatsapp-daily-250mb',
@@ -242,7 +253,8 @@ export const bundles: Bundle[] = [
     anytimeData: '250MB (WhatsApp)',
     costPerGb: 20,
     bestFor: 'Chat-first users with low daily spend',
-    note: 'App-specific bundle'
+    note: 'App-specific bundle',
+    watchOut: 'Social-only access, not full internet'
   },
   {
     id: 'telkom-prepaid-20gb',

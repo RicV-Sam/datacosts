@@ -16,6 +16,7 @@ export interface Bundle {
   isSpeedKing?: boolean;
   bestFor?: string;
   note?: string;
+  watchOut?: string;
 }
 
 export interface NetworkStats {
