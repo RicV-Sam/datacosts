@@ -368,7 +368,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
               <h3 className="font-black text-slate-900">MTN Network Page</h3>
               <p className="text-sm text-slate-600 mt-2">Compare MTN monthly, 1GB, and promo-friendly options.</p>
             </Link>
-            <Link to="/network/telkom/1gb/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
+              <Link to="/network/telkom/cheapest-1gb/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
               <h3 className="font-black text-slate-900">Best 1GB Bundles</h3>
               <p className="text-sm text-slate-600 mt-2">Shortcut to 1GB category pricing where budget users often start.</p>
             </Link>

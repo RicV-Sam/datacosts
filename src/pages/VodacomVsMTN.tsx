@@ -293,7 +293,7 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
               <h3 className="font-black text-slate-900">MTN Network Page</h3>
               <p className="text-sm text-slate-600 mt-2">View current MTN bundles and value breakdowns.</p>
             </Link>
-            <Link to="/network/vodacom/1gb/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
+              <Link to="/network/vodacom/cheapest-1gb/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
               <h3 className="font-black text-slate-900">Vodacom 1GB Deals</h3>
               <p className="text-sm text-slate-600 mt-2">Check currently listed 1GB options on Vodacom.</p>
             </Link>

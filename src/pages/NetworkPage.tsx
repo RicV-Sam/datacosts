@@ -157,7 +157,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   );
 
   const bundleTypeMap: Record<string, { label: string; filter: (b: Bundle) => boolean }> = {
-    '1gb': { label: `Cheapest 1GB ${network.name} data`, filter: (b) => b.volume === '1GB' },
+    'cheapest-1gb': { label: `Cheapest 1GB ${network.name} data`, filter: (b) => b.volume === '1GB' && !isSocialBundle(b) },
     'daily-data': { label: `${network.name} daily bundles`, filter: (b) => isDailyBundle(b) },
     'weekly-data': { label: `${network.name} weekly bundles`, filter: (b) => isWeeklyBundle(b) },
     'monthly-data': { label: `${network.name} monthly bundles`, filter: (b) => isMonthlyBundle(b) },

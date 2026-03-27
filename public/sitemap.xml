@@ -109,19 +109,10 @@
     <loc>https://datacost.co.za/network/rain/</loc>
   </url>
   <url>
-    <loc>https://datacost.co.za/network/vodacom/1gb/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/vodacom/2gb/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/vodacom/10gb/</loc>
+    <loc>https://datacost.co.za/network/vodacom/cheapest-1gb/</loc>
   </url>
   <url>
     <loc>https://datacost.co.za/network/vodacom/daily-data/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/vodacom/weekly-data/</loc>
   </url>
   <url>
     <loc>https://datacost.co.za/network/vodacom/monthly-data/</loc>
@@ -130,19 +121,10 @@
     <loc>https://datacost.co.za/network/vodacom/night-data/</loc>
   </url>
   <url>
-    <loc>https://datacost.co.za/network/vodacom/social-data/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/mtn/1gb/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/mtn/10gb/</loc>
+    <loc>https://datacost.co.za/network/mtn/cheapest-1gb/</loc>
   </url>
   <url>
     <loc>https://datacost.co.za/network/mtn/daily-data/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/mtn/weekly-data/</loc>
   </url>
   <url>
     <loc>https://datacost.co.za/network/mtn/monthly-data/</loc>
@@ -151,57 +133,21 @@
     <loc>https://datacost.co.za/network/mtn/night-data/</loc>
   </url>
   <url>
-    <loc>https://datacost.co.za/network/mtn/social-data/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/telkom/1gb/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/telkom/2gb/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/telkom/10gb/</loc>
+    <loc>https://datacost.co.za/network/telkom/cheapest-1gb/</loc>
   </url>
   <url>
     <loc>https://datacost.co.za/network/telkom/daily-data/</loc>
   </url>
   <url>
-    <loc>https://datacost.co.za/network/telkom/weekly-data/</loc>
-  </url>
-  <url>
     <loc>https://datacost.co.za/network/telkom/monthly-data/</loc>
   </url>
   <url>
-    <loc>https://datacost.co.za/network/telkom/night-data/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/telkom/social-data/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/cell-c/1gb/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/cell-c/5gb/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/cell-c/10gb/</loc>
+    <loc>https://datacost.co.za/network/cell-c/cheapest-1gb/</loc>
   </url>
   <url>
     <loc>https://datacost.co.za/network/cell-c/daily-data/</loc>
   </url>
   <url>
-    <loc>https://datacost.co.za/network/cell-c/weekly-data/</loc>
-  </url>
-  <url>
     <loc>https://datacost.co.za/network/cell-c/monthly-data/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/cell-c/night-data/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/cell-c/social-data/</loc>
-  </url>
-  <url>
-    <loc>https://datacost.co.za/network/rain/monthly-data/</loc>
   </url>
 </urlset>

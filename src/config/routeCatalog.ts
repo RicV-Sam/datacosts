@@ -11,10 +11,31 @@ export type BundleTypeConfig = {
   guideSlug?: string;
 };
 
+const isDailyBundle = (bundle: Bundle) =>
+  bundle.type === 'Daily' ||
+  (bundle.validity.toLowerCase().includes('day') &&
+    !bundle.validity.toLowerCase().includes('7 day') &&
+    !bundle.validity.toLowerCase().includes('30 day'));
+const isWeeklyBundle = (bundle: Bundle) =>
+  bundle.type === 'Weekly' || bundle.validity.toLowerCase().includes('week') || bundle.validity.toLowerCase().includes('7 day');
+const isMonthlyBundle = (bundle: Bundle) =>
+  bundle.type === 'Monthly' || bundle.validity.toLowerCase().includes('30 day') || bundle.validity.toLowerCase().includes('month');
+const isNightBundle = (bundle: Bundle) =>
+  bundle.name.toLowerCase().includes('night') || (bundle.nightData !== undefined && bundle.nightData !== '');
+const isSocialBundle = (bundle: Bundle) =>
+  bundle.type === 'Social' ||
+  bundle.name.toLowerCase().includes('whatsapp') ||
+  bundle.name.toLowerCase().includes('social');
+
 export const BUNDLE_TYPE_MAP: Record<string, BundleTypeConfig> = {
+  'cheapest-1gb': {
+    label: 'Cheapest 1GB',
+    filter: (bundle) => bundle.volume === '1GB' && !isSocialBundle(bundle),
+    guideSlug: 'cheapest-1gb-data-south-africa'
+  },
   '1gb': {
-    label: '1GB',
-    filter: (bundle) => bundle.volume === '1GB',
+    label: 'Cheapest 1GB',
+    filter: (bundle) => bundle.volume === '1GB' && !isSocialBundle(bundle),
     guideSlug: 'cheapest-1gb-data-south-africa'
   },
   '2gb': {
@@ -31,36 +52,43 @@ export const BUNDLE_TYPE_MAP: Record<string, BundleTypeConfig> = {
   },
   'daily-data': {
     label: 'Daily',
-    filter: (bundle) =>
-      (bundle.validity.toLowerCase().includes('day') &&
-        !bundle.validity.toLowerCase().includes('30 day') &&
-        !bundle.validity.toLowerCase().includes('7 day')) ||
-      bundle.type === 'Daily'
+    filter: (bundle) => isDailyBundle(bundle) && !isNightBundle(bundle) && !isSocialBundle(bundle)
   },
   'weekly-data': {
     label: 'Weekly',
-    filter: (bundle) => bundle.validity.toLowerCase().includes('week') || bundle.type === 'Weekly'
+    filter: (bundle) => isWeeklyBundle(bundle) && !isSocialBundle(bundle)
   },
   'monthly-data': {
     label: 'Monthly',
-    filter: (bundle) =>
-      bundle.validity.toLowerCase().includes('30 day') ||
-      bundle.type === 'Monthly' ||
-      bundle.validity.toLowerCase().includes('month')
+    filter: (bundle) => isMonthlyBundle(bundle) && !isNightBundle(bundle) && !isSocialBundle(bundle)
   },
   'night-data': {
     label: 'Night',
-    filter: (bundle) => bundle.name.toLowerCase().includes('night') || (bundle.nightData !== undefined && bundle.nightData !== ''),
+    filter: (bundle) => isNightBundle(bundle),
     guideSlug: 'cheap-night-data-south-africa'
   },
   'social-data': {
     label: 'Social',
-    filter: (bundle) =>
-      bundle.type === 'Social' ||
-      bundle.name.toLowerCase().includes('whatsapp') ||
-      bundle.name.toLowerCase().includes('social')
+    filter: (bundle) => isSocialBundle(bundle)
   }
 };
+
+const PHASE1_FILTER_ROUTES: Array<{ network: string; bundleType: string }> = [
+  { network: 'vodacom', bundleType: 'cheapest-1gb' },
+  { network: 'vodacom', bundleType: 'daily-data' },
+  { network: 'vodacom', bundleType: 'monthly-data' },
+  { network: 'vodacom', bundleType: 'night-data' },
+  { network: 'mtn', bundleType: 'cheapest-1gb' },
+  { network: 'mtn', bundleType: 'daily-data' },
+  { network: 'mtn', bundleType: 'monthly-data' },
+  { network: 'mtn', bundleType: 'night-data' },
+  { network: 'telkom', bundleType: 'cheapest-1gb' },
+  { network: 'telkom', bundleType: 'daily-data' },
+  { network: 'telkom', bundleType: 'monthly-data' },
+  { network: 'cell-c', bundleType: 'cheapest-1gb' },
+  { network: 'cell-c', bundleType: 'daily-data' },
+  { network: 'cell-c', bundleType: 'monthly-data' }
+];
 
 function normalizeCanonicalPath(path: string): string {
   if (!path.startsWith('/')) {
@@ -109,17 +137,20 @@ export function getIndexableRoutes(): string[] {
     routes.add(`/network/${networkPage.slug}/`);
   }
 
-  for (const networkPage of Object.values(networkPages)) {
-    const networkBundles = bundles.filter((bundle) => bundle.network === networkPage.networkName);
-
-    for (const [bundleTypeSlug, bundleTypeConfig] of Object.entries(BUNDLE_TYPE_MAP)) {
-      const hasMatchingBundle = networkBundles.some((bundle) => bundleTypeConfig.filter(bundle));
-      if (!hasMatchingBundle) {
-        continue;
-      }
-
-      routes.add(`/network/${networkPage.slug}/${bundleTypeSlug}/`);
+  for (const phase1Route of PHASE1_FILTER_ROUTES) {
+    const networkPage = networkPages[phase1Route.network];
+    const bundleTypeConfig = BUNDLE_TYPE_MAP[phase1Route.bundleType];
+    if (!networkPage || !bundleTypeConfig) {
+      continue;
     }
+
+    const networkBundles = bundles.filter((bundle) => bundle.network === networkPage.networkName);
+    const hasMatchingBundle = networkBundles.some((bundle) => bundleTypeConfig.filter(bundle));
+    if (!hasMatchingBundle) {
+      continue;
+    }
+
+    routes.add(`/network/${networkPage.slug}/${phase1Route.bundleType}/`);
   }
 
   return [...routes].map(normalizeCanonicalPath);

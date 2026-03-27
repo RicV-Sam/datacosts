@@ -269,7 +269,7 @@ export const Cheapest1GB: React.FC<Cheapest1GBProps> = ({ onNavigate, onScrollTo
               <h3 className="font-black text-slate-900">Network Comparison Hub</h3>
               <p className="text-sm text-slate-600 mt-2">Compare Vodacom, MTN, Telkom, Cell C, and Rain in one place.</p>
             </Link>
-            <Link to="/network/telkom/1gb/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">
+                <Link to="/network/telkom/cheapest-1gb/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">
               <h3 className="font-black text-slate-900">Telkom 1GB Page</h3>
               <p className="text-sm text-slate-600 mt-2">See Telkom 1GB options and related prepaid pricing.</p>
             </Link>
