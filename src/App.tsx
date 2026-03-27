@@ -15,17 +15,13 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
 import { ContactPage } from './pages/ContactPage';
 import { CheapestData } from './pages/CheapestData';
-import { Cheapest1GB } from './pages/Cheapest1GB';
 import { BestDataDeals } from './pages/BestDataDeals';
-import { BestPrepaidData } from './pages/BestPrepaidData';
-import { CheapestMonthlyData } from './pages/CheapestMonthlyData';
-import { Cheapest10GB } from './pages/Cheapest10GB';
 import { CheapestUnlimitedData } from './pages/CheapestUnlimitedData';
 import { BestSimOnlyDeals } from './pages/BestSimOnlyDeals';
-import { CheapestWhatsappBundles } from './pages/CheapestWhatsappBundles';
 import { VodacomVsMTN } from './pages/VodacomVsMTN';
 import { WaspSubscriptions } from './pages/WaspSubscriptions';
 import { TravelSimsPage } from './pages/TravelSimsPage';
+import { ComparisonGuidePage } from './pages/ComparisonGuidePage';
 import { guides } from './data/guides';
 import { NetworkName, NavigateFunction } from './types';
 
@@ -156,7 +152,7 @@ function AppContent() {
       />
       <Route
         path="/guides/cheapest-1gb-data-south-africa/"
-        element={<Cheapest1GB onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        element={<ComparisonGuidePage guideSlug="cheapest-1gb-data-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
       <Route
         path="/guides/best-data-deals-south-africa/"
@@ -164,15 +160,19 @@ function AppContent() {
       />
       <Route
         path="/guides/best-prepaid-data-deals-south-africa/"
-        element={<BestPrepaidData onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        element={<ComparisonGuidePage guideSlug="best-prepaid-data-deals-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
       <Route
         path="/guides/cheapest-monthly-data-south-africa/"
-        element={<CheapestMonthlyData onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        element={<ComparisonGuidePage guideSlug="best-monthly-data-deals-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/guides/best-monthly-data-deals-south-africa/"
+        element={<ComparisonGuidePage guideSlug="best-monthly-data-deals-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
       <Route
         path="/guides/cheapest-10gb-data-south-africa/"
-        element={<Cheapest10GB onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        element={<ComparisonGuidePage guideSlug="cheapest-10gb-data-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
       <Route
         path="/guides/cheapest-unlimited-data-south-africa/"
@@ -184,7 +184,11 @@ function AppContent() {
       />
       <Route
         path="/guides/cheapest-whatsapp-bundles-south-africa/"
-        element={<CheapestWhatsappBundles onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        element={<ComparisonGuidePage guideSlug="cheapest-whatsapp-bundles-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+      />
+      <Route
+        path="/guides/cheap-night-data-south-africa/"
+        element={<ComparisonGuidePage guideSlug="cheap-night-data-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
       />
       <Route
         path="/guides/vodacom-vs-mtn-data-prices/"

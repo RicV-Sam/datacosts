@@ -467,7 +467,7 @@ function getGuideLinks(networkSlug: string, networkName: NetworkName): LinkItem[
       description: 'Cross-network benchmark for 1GB prepaid value.'
     },
     {
-      href: '/guides/cheapest-monthly-data-south-africa/',
+      href: '/guides/best-monthly-data-deals-south-africa/',
       label: 'Cheapest monthly data in South Africa',
       description: 'Countrywide monthly comparison for regular users.'
     }

@@ -325,7 +325,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     },
     narrowSearchLinks: [
       { href: '/guides/how-to-buy-data-telkom/', label: 'How to buy Telkom data' },
-      { href: '/guides/cheapest-monthly-data-south-africa/', label: 'Cheapest monthly data in SA' },
+      { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best monthly data deals in SA' },
       { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB data in SA' },
       { href: '/ussd-codes-south-africa/', label: 'Telkom USSD codes' }
     ],
@@ -433,7 +433,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     narrowSearchLinks: [
       { href: '/guides/how-to-buy-data-cell-c/', label: 'How to buy Cell C data' },
       { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB data in SA' },
-      { href: '/guides/cheapest-monthly-data-south-africa/', label: 'Cheapest monthly data in SA' },
+      { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best monthly data deals in SA' },
       { href: '/ussd-codes-south-africa/', label: 'Cell C USSD codes' }
     ],
     commonMistakes: [

@@ -605,7 +605,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
               <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors">Cheapest 1GB data in South Africa</div>
               <p className="text-[10px] text-slate-500 mt-1 uppercase font-black tracking-widest">Comparison Guide</p>
             </a>
-            <a href="/guides/cheapest-monthly-data-south-africa/" className="p-6 bg-white border border-slate-100 rounded-3xl text-left hover:border-[#1b6d24] hover:shadow-md transition-all group">
+            <a href="/guides/best-monthly-data-deals-south-africa/" className="p-6 bg-white border border-slate-100 rounded-3xl text-left hover:border-[#1b6d24] hover:shadow-md transition-all group">
               <LinkIcon className="w-6 h-6 text-[#1b6d24] mb-3" />
               <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors">Best monthly data deals South Africa</div>
               <p className="text-[10px] text-slate-500 mt-1 uppercase font-black tracking-widest">Money Saver</p>

@@ -234,7 +234,7 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <Link to="/guides/prepaid-vs-contract-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Prepaid vs Contract South Africa</Link>
             <Link to="/guides/best-prepaid-data-deals-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Best Prepaid Data Deals South Africa</Link>
-            <Link to="/guides/cheapest-monthly-data-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Cheapest Monthly Data South Africa</Link>
+            <Link to="/guides/best-monthly-data-deals-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Cheapest Monthly Data South Africa</Link>
             <Link to="/network/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Network Hub</Link>
             <Link to="/network/vodacom/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Vodacom Network Page</Link>
             <Link to="/network/mtn/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">MTN Network Page</Link>

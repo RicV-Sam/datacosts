@@ -212,7 +212,7 @@ export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ on
             Internal Links
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <Link to="/guides/cheapest-monthly-data-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Cheapest Monthly Data South Africa</Link>
+            <Link to="/guides/best-monthly-data-deals-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Cheapest Monthly Data South Africa</Link>
             <Link to="/guides/best-data-deals-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Best Data Deals South Africa</Link>
             <Link to="/network/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Network Hub</Link>
             <Link to="/network/rain/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Rain Network Page</Link>
