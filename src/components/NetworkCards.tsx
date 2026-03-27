@@ -90,7 +90,7 @@ export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }>
         className="w-full py-4 rounded-2xl text-sm font-black flex items-center justify-center gap-2 group/btn transition-all active:scale-95 shadow-lg"
         style={{ backgroundColor: meta.color, color: meta.textColor }}
       >
-        View All Deals
+        Compare {network} Data Prices
         <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
       </a>
     </motion.div>

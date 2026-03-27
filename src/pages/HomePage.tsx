@@ -37,17 +37,17 @@ export const HomePage: React.FC<HomePageProps> = ({
   const canonicalUrl = 'https://datacost.co.za/';
 
   const homeSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "DataCost",
-    "url": canonicalUrl,
-    "description": "Compare mobile data prices in South Africa.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "DataCost.co.za",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://datacost.co.za/logo.png"
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'DataCost',
+    url: canonicalUrl,
+    description: 'Compare mobile data prices in South Africa.',
+    publisher: {
+      '@type': 'Organization',
+      name: 'DataCost.co.za',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://datacost.co.za/logo.png'
       }
     }
   };
@@ -93,45 +93,116 @@ export const HomePage: React.FC<HomePageProps> = ({
       <Header onScrollTo={onScrollTo} activeSection={activeSection} />
 
       <main className="max-w-7xl mx-auto px-4 py-8">
+        <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-4 md:p-6 shadow-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <a
+              href="/network/"
+              onClick={(e) => { e.preventDefault(); onNavigate('network'); }}
+              className="min-h-[44px] rounded-2xl px-4 py-3 bg-[#031636] text-white font-black text-sm text-center hover:bg-[#1b6d24] transition-colors"
+            >
+              Compare All Networks
+            </a>
+            <a
+              href="/guides/cheapest-1gb-data-south-africa/"
+              onClick={(e) => { e.preventDefault(); onNavigate('guide', 'cheapest-1gb-data-south-africa'); }}
+              className="min-h-[44px] rounded-2xl px-4 py-3 bg-white border border-slate-200 text-[#031636] font-black text-sm text-center hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+            >
+              Find the Cheapest 1GB
+            </a>
+            <a
+              href="/guides/best-data-deals-south-africa/"
+              onClick={(e) => { e.preventDefault(); onNavigate('guide', 'best-data-deals-south-africa'); }}
+              className="min-h-[44px] rounded-2xl px-4 py-3 bg-white border border-slate-200 text-[#031636] font-black text-sm text-center hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+            >
+              View Best Data Deals
+            </a>
+            <a
+              href="/ussd-codes-south-africa/"
+              onClick={(e) => { e.preventDefault(); onNavigate('ussd'); }}
+              className="min-h-[44px] rounded-2xl px-4 py-3 bg-white border border-slate-200 text-[#031636] font-black text-sm text-center hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+            >
+              Check USSD Codes
+            </a>
+          </div>
+        </section>
+
         <AdUnit type="aboveFold" />
 
         <Hero onScrollTo={onScrollTo} />
 
-        {/* 🔥 GUIDES */}
+        <section className="mt-10 mb-8 bg-white/90 border border-slate-100 rounded-[2rem] p-6 md:p-8 shadow-sm">
+          <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4">
+            Compare Data Prices in South Africa
+          </h2>
+          <p className="text-slate-700 leading-relaxed font-medium mb-4">
+            DataCost helps South Africans compare mobile data prices across major networks in one place. We track currently listed prepaid data bundles, monthly data deals, and high-usage options so you can quickly find the cheapest data in South Africa for your budget. Instead of guessing between promotions, you can compare mobile data prices side by side and see practical value based on price, validity, and cost per GB.
+          </p>
+          <p className="text-slate-700 leading-relaxed font-medium">
+            We cover MTN, Vodacom, Telkom, Cell C, and Rain with independent editorial context and updated South African telecom pricing snapshots. Whether you need the best value data offers for everyday browsing or larger plans for streaming and work, this page points you to the most relevant network pages, guides, and tools before you buy.
+          </p>
+        </section>
+
+        <section className="mb-12 bg-[#031636] text-white rounded-[2rem] p-6 md:p-8 shadow-xl">
+          <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4">
+            Which network has the cheapest data in South Africa?
+          </h2>
+          <p className="text-slate-200 leading-relaxed font-medium">
+            Telkom often leads on low cost per GB for standard prepaid bundles, while MTN frequently offers strong promotional value on selected plans. Rain can be a practical choice for users focused on unlimited usage, and Vodacom is often preferred where premium coverage and speed matter most. The best choice still depends on your location, usage pattern, and current offer availability.
+          </p>
+        </section>
+
+        <section className="mb-16">
+          <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4">
+            Quick Comparison Links
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <a href="/network/mtn/" onClick={(e) => { e.preventDefault(); onNavigate('network', 'mtn'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Compare MTN data prices</a>
+            <a href="/network/vodacom/" onClick={(e) => { e.preventDefault(); onNavigate('network', 'vodacom'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Compare Vodacom data bundles</a>
+            <a href="/network/telkom/" onClick={(e) => { e.preventDefault(); onNavigate('network', 'telkom'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Telkom prepaid data deals</a>
+            <a href="/network/cell-c/" onClick={(e) => { e.preventDefault(); onNavigate('network', 'cell-c'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Cell C monthly data prices</a>
+            <a href="/network/rain/" onClick={(e) => { e.preventDefault(); onNavigate('network', 'rain'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Rain unlimited data plans</a>
+            <a href="/ussd-codes-south-africa/" onClick={(e) => { e.preventDefault(); onNavigate('ussd'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">South Africa USSD codes</a>
+            <a href="/guides/cheapest-1gb-data-south-africa/" onClick={(e) => { e.preventDefault(); onNavigate('guide', 'cheapest-1gb-data-south-africa'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Cheapest 1GB data in South Africa</a>
+            <a href="/guides/best-prepaid-data-deals-south-africa/" onClick={(e) => { e.preventDefault(); onNavigate('guide', 'best-prepaid-data-deals-south-africa'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Best prepaid data deals South Africa</a>
+            <a href="/travel-sims-south-africa/" onClick={(e) => { e.preventDefault(); onNavigate('travel-sims'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Travel SIMs and eSIMs for South Africa</a>
+          </div>
+        </section>
+
         <section className="mt-12 mb-20">
           <h2 className="text-2xl font-black mb-6">
-            🔥 Popular Data Guides South Africa
+            Popular Data Guides South Africa
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {guides.slice(0, 4).map((guide) => (
-              <button
+              <a
                 key={guide.slug}
-                onClick={() => onNavigate('guide', guide.slug)}
+                href={`/guides/${guide.slug}/`}
+                onClick={(e) => { e.preventDefault(); onNavigate('guide', guide.slug); }}
                 className="text-left p-5 bg-white border rounded-2xl shadow-sm hover:shadow-md"
               >
                 <h3 className="font-bold mb-2">{guide.title}</h3>
                 <p className="text-sm text-slate-500">
                   {guide.metaDescription}
                 </p>
-              </button>
+              </a>
             ))}
-            <button
-              onClick={() => onNavigate('travel-sims')}
+            <a
+              href="/travel-sims-south-africa/"
+              onClick={(e) => { e.preventDefault(); onNavigate('travel-sims'); }}
               className="text-left p-5 bg-white border rounded-2xl shadow-sm hover:shadow-md"
             >
               <h3 className="font-bold mb-2">Best Travel SIMs & eSIMs for South Africa</h3>
               <p className="text-sm text-slate-500">
                 A complete guide for tourists: airport SIM options, eSIM setup, and best-value picks.
               </p>
-            </button>
+            </a>
           </div>
         </section>
 
-        {/* 🔥 NETWORKS FIXED */}
         <NetworkCards
           onViewDeals={(network) => {
-            const page = Object.values(networkPages).find(p => p.networkName === network);
+            const page = Object.values(networkPages).find((p) => p.networkName === network);
             if (page) {
               onNavigate('network', page.slug);
             }

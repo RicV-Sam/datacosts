@@ -26,6 +26,10 @@ export default defineConfig(({mode}) => {
         postProcess(renderedRoute: any) {
           renderedRoute.html = renderedRoute.html
             .replace(/http:\/\/localhost:[0-9]+/g, 'https://datacost.co.za');
+          renderedRoute.html = renderedRoute.html
+            .replace(/<title(?![^>]*data-rh=)/g, '<title data-rh="true"')
+            .replace(/<meta(?![^>]*data-rh=)([^>]*(?:name="description"|property="og:[^"]+"|name="twitter:[^"]+")[^>]*)>/g, '<meta data-rh="true"$1>')
+            .replace(/<link(?![^>]*data-rh=)([^>]*rel="canonical"[^>]*)>/g, '<link data-rh="true"$1>');
           return renderedRoute;
         },
       })
