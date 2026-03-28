@@ -33,35 +33,25 @@ function buildOffer(offerUrl: string, price: number, availability = DEFAULT_AVAI
     price: price.toFixed(2),
     priceCurrency: 'ZAR',
     availability,
-    url: offerUrl,
-    shippingDetails: {
-      '@type': 'OfferShippingDetails',
-      shippingRate: {
-        '@type': 'MonetaryAmount',
-        value: '0',
-        currency: 'ZAR'
-      },
-      deliveryTime: {
-        '@type': 'ShippingDeliveryTime',
-        handlingTime: {
-          '@type': 'QuantitativeValue',
-          minValue: 0,
-          maxValue: 0,
-          unitCode: 'DAY'
-        },
-        transitTime: {
-          '@type': 'QuantitativeValue',
-          minValue: 0,
-          maxValue: 0,
-          unitCode: 'DAY'
-        }
-      }
+    url: offerUrl
+  };
+}
+
+function buildBundleComparisonEntitySchema(bundle: Bundle, itemUrl: string, availability = DEFAULT_AVAILABILITY) {
+  return {
+    '@type': 'Service',
+    name: bundle.name,
+    description: `Prepaid ${bundle.volume} mobile data bundle from ${bundle.network} in South Africa.`,
+    provider: {
+      '@type': 'Organization',
+      name: bundle.network,
+      url: getNetworkPageUrl(bundle.network)
     },
-    hasMerchantReturnPolicy: {
-      '@type': 'MerchantReturnPolicy',
-      applicableCountry: 'ZA',
-      returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted'
-    }
+    areaServed: 'ZA',
+    serviceType: 'Prepaid Mobile Data Bundle',
+    image: getNetworkImageUrl(bundle.network),
+    url: itemUrl,
+    offers: buildOffer(itemUrl, bundle.price, availability)
   };
 }
 
@@ -109,11 +99,7 @@ export function buildBundleItemListSchema(
     itemListElement: bundles.map((bundle, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      item: buildBundleProductSchema(bundle, {
-        productUrl: getBundleUrl(bundle),
-        offerUrl: getBundleUrl(bundle)
-      })
+      item: buildBundleComparisonEntitySchema(bundle, getBundleUrl(bundle))
     }))
   };
 }
-
