@@ -8,6 +8,17 @@ This contains everything you need to run your app locally.
 
 View your app in AI Studio: https://ai.studio/apps/e91a1732-9bed-425e-ac93-e1b43e16e410
 
+## Deployment
+
+Production hosting is GitHub Pages (custom domain via `public/CNAME`), deployed by `.github/workflows/deploy.yml`.
+
+Current canonical/redirect behavior for production:
+- `www -> non-www`: handled by GitHub Pages custom-domain redirect behavior.
+- `http -> https`: handled at the GitHub Pages/Fastly edge.
+- trailing slash normalization: handled by GitHub Pages static routing behavior and app route conventions.
+
+Netlify is not part of the live deployment path.
+
 ## Run Locally
 
 **Prerequisites:**  Node.js
