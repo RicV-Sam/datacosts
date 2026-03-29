@@ -408,8 +408,10 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
         <div className="bg-white border border-slate-100 rounded-2xl p-6 text-sm text-slate-500 flex items-start gap-3 shadow-sm">
           <Info className="w-5 h-5 text-slate-400 mt-0.5" />
           <p className="font-medium">
-            <strong>Trust note:</strong> {definition.trustLine} For detailed scoring standards and methodology controls, review our{' '}
-            <a href="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</a>.
+            <strong>Independent analysis:</strong> {definition.trustLine} Prices may change, so always verify with the operator. For detailed scoring standards and methodology controls, review our{' '}
+            <a href="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</a>{' '}
+            and{' '}
+            <a href="/editorial-policy/" className="text-[#1b6d24] font-semibold hover:underline">editorial policy</a>.
           </p>
         </div>
 

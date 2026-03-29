@@ -168,6 +168,28 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const availableTypes = Object.entries(bundleTypeMap).filter(([_, config]) =>
     networkBundles.some(b => config.filter(b))
   );
+  const howToBuyGuideBySlug: Record<string, string> = {
+    vodacom: '/guides/how-to-buy-data-vodacom/',
+    mtn: '/guides/how-to-buy-data-mtn/',
+    telkom: '/guides/how-to-buy-data-telkom/',
+    'cell-c': '/guides/how-to-buy-data-cell-c/'
+  };
+  const howToBuyGuideHref = howToBuyGuideBySlug[networkSlug];
+  const operatorActionLinks = [
+    ...availableTypes
+      .filter(([slug]) => ['daily-data', 'monthly-data', 'night-data', 'cheapest-1gb'].includes(slug))
+      .map(([slug, config]) => ({
+        href: `/network/${networkSlug}/${slug}/`,
+        label: config.label,
+        description: `${network.name} ${config.label.toLowerCase()} page`
+      })),
+    ...(howToBuyGuideHref
+      ? [{ href: howToBuyGuideHref, label: `How to buy ${network.name} data`, description: `Step-by-step buy flow for ${network.name}.` }]
+      : []),
+    { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Keep track of active bundles and expiry.' },
+    { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data South Africa', description: 'National comparison for regular users.' },
+    { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa', description: 'National low-volume benchmark.' }
+  ];
 
   const getUssdCode = (matcher: (action: string, category: string) => boolean) =>
     ussdCodes.find((code) => matcher(code.action.toLowerCase(), code.category.toLowerCase()))?.code;
@@ -596,6 +618,18 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           </section>
         )}
 
+        <section className="mb-16 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tighter mb-6">{network.name} action hub links</h2>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {operatorActionLinks.slice(0, 8).map((link) => (
+              <a key={link.href} href={link.href} className="p-5 bg-slate-50 border border-slate-100 rounded-2xl hover:border-[#1b6d24] transition-colors">
+                <div className="font-bold text-slate-900">{link.label}</div>
+                <p className="text-sm text-slate-600 mt-2">{link.description}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+
         {/* SECTION 6: INTERNAL LINKS - Aligned with site system */}
         <section className="mb-16">
           <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Explore more guides and tools</h2>
@@ -639,7 +673,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         <div className="bg-white border border-slate-100 rounded-2xl p-6 text-sm text-slate-500 flex items-start gap-3 shadow-sm">
           <Info className="w-5 h-5 text-slate-400 mt-0.5" />
           <p className="font-medium">
-            <strong>Trust note:</strong> Prices can change quickly and listed bundles are based on currently available data at the time of update. Always confirm final offer details on official operator pages. For our comparison framework, see <a href="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</a>.
+            <strong>Independent analysis:</strong> Prices can change quickly and listed bundles are based on currently available data at the time of update. Always confirm final offer details on official operator pages. For our comparison framework, see <a href="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</a> and <a href="/editorial-policy/" className="text-[#1b6d24] font-semibold hover:underline">editorial policy</a>.
           </p>
         </div>
 

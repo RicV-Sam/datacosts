@@ -835,7 +835,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
         <div className="bg-white border border-slate-100 rounded-2xl p-6 text-sm text-slate-500 flex items-start gap-3 shadow-sm">
           <Info className="w-5 h-5 text-slate-400 mt-0.5" />
           <p className="font-medium">
-            <strong>Disclaimer:</strong> Travel eSIM pricing in USD is subject to exchange rate fluctuations. Local South African prices are updated for 2026 but operators may change their offers at any time. We may earn a commission from affiliate links on this page.
+            <strong>Independent analysis:</strong> Travel eSIM pricing in USD is subject to exchange-rate shifts, and local South African prices can change quickly. Always verify final offer details with the operator. Review our <a href="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</a> and <a href="/editorial-policy/" className="text-[#1b6d24] font-semibold hover:underline">editorial policy</a>. We may earn a commission from affiliate links on this page.
           </p>
         </div>
       </main>

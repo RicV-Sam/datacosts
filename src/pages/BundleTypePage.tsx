@@ -470,6 +470,16 @@ function getGuideLinks(networkSlug: string, networkName: NetworkName): LinkItem[
       href: '/guides/best-monthly-data-deals-south-africa/',
       label: 'Cheapest monthly data in South Africa',
       description: 'Countrywide monthly comparison for regular users.'
+    },
+    {
+      href: '/guides/how-to-check-data-balance/',
+      label: 'How to check data balance',
+      description: 'Track active bundles and avoid accidental out-of-bundle spend.'
+    },
+    {
+      href: '/guides/cheapest-10gb-data-south-africa/',
+      label: 'Cheapest 10GB data in South Africa',
+      description: 'National benchmark for medium-to-heavy users.'
     }
   ];
 
@@ -794,7 +804,7 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
         <div className="bg-white border border-slate-100 rounded-2xl p-6 text-sm text-slate-500 flex items-start gap-3 shadow-sm">
           <Info className="w-5 h-5 text-slate-400 mt-0.5" />
           <p className="font-medium">
-            <strong>Trust note:</strong> We track publicly listed prepaid bundle pricing, USSD access routes, and network offer patterns to compare real value rather than headline GB alone. Final terms can change quickly, so confirm on official operator channels.
+            <strong>Independent analysis:</strong> We track publicly listed prepaid bundle pricing, USSD access routes, and network offer patterns to compare real value rather than headline GB alone. Final terms can change quickly, so confirm on official operator channels. Review our <a href="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</a> and <a href="/editorial-policy/" className="text-[#1b6d24] font-semibold hover:underline">editorial policy</a>.
           </p>
         </div>
 

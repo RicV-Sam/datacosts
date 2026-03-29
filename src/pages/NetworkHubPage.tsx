@@ -21,6 +21,7 @@ interface NetworkHubPageProps {
 
 export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onScrollTo }) => {
   const [openFaqIndex, setOpenFaqIndex] = React.useState<number | null>(0);
+  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -186,6 +187,9 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
           <p className="text-lg md:text-xl text-slate-600 leading-relaxed font-medium">
             Use this hub to compare operators by <strong>coverage, value, and practical day-to-day use</strong>. Start with the quick summary,
             then open each network page for current bundle context before you buy.
+          </p>
+          <p className="mt-4 text-sm text-slate-500 font-medium">
+            Last updated: {lastUpdated}
           </p>
         </div>
 
@@ -365,6 +369,13 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
             ))}
           </div>
         </section>
+
+        <div className="mb-16 bg-white border border-slate-100 rounded-2xl p-6 text-sm text-slate-500 flex items-start gap-3 shadow-sm">
+          <Info className="w-5 h-5 text-slate-400 mt-0.5" />
+          <p className="font-medium">
+            <strong>Independent analysis:</strong> We compare publicly listed network pricing and practical usage factors. Prices may change, so always verify with the operator. Read our <a href="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</a> and <a href="/editorial-policy/" className="text-[#1b6d24] font-semibold hover:underline">editorial policy</a>.
+          </p>
+        </div>
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />

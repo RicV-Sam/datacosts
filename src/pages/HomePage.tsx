@@ -66,6 +66,22 @@ export const HomePage: React.FC<HomePageProps> = ({
     (bundle) => getNetworkPageUrl(bundle.network)
   );
 
+  const priorityPages = [
+    { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa', onClick: () => onNavigate('guide', 'cheapest-1gb-data-south-africa') },
+    { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data South Africa', onClick: () => onNavigate('guide', 'cheapest-10gb-data-south-africa') },
+    { href: '/guides/cheapest-unlimited-data-south-africa/', label: 'Cheapest Unlimited Data South Africa', onClick: () => onNavigate('guide', 'cheapest-unlimited-data-south-africa') },
+    { href: '/guides/cheapest-whatsapp-bundles-south-africa/', label: 'Cheapest WhatsApp Bundles', onClick: () => onNavigate('guide', 'cheapest-whatsapp-bundles-south-africa') },
+    { href: '/guides/convert-airtime-to-data-south-africa/', label: 'Convert Airtime to Data', onClick: () => onNavigate('guide', 'convert-airtime-to-data-south-africa') },
+    { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', onClick: () => onNavigate('guide', 'how-to-check-data-balance') },
+    { href: '/network/', label: 'Network Comparison Hub', onClick: () => onNavigate('network') },
+    { href: '/network/mtn/', label: 'MTN Network Hub', onClick: () => onNavigate('network', 'mtn') },
+    { href: '/network/vodacom/', label: 'Vodacom Network Hub', onClick: () => onNavigate('network', 'vodacom') },
+    { href: '/network/telkom/', label: 'Telkom Network Hub', onClick: () => onNavigate('network', 'telkom') },
+    { href: '/network/cell-c/', label: 'Cell C Network Hub', onClick: () => onNavigate('network', 'cell-c') },
+    { href: '/network/rain/', label: 'Rain Network Hub', onClick: () => onNavigate('network', 'rain') },
+    { href: '/travel-sims-south-africa/', label: 'Travel SIMs South Africa', onClick: () => onNavigate('travel-sims') }
+  ];
+
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans">
       <Helmet>
@@ -197,6 +213,28 @@ export const HomePage: React.FC<HomePageProps> = ({
                 A complete guide for tourists: airport SIM options, eSIM setup, and best-value picks.
               </p>
             </a>
+          </div>
+        </section>
+
+        <section className="mb-20 bg-white border border-slate-100 rounded-[2rem] p-6 md:p-8 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tighter mb-3">Priority SEO Pages</h2>
+          <p className="text-slate-600 font-medium leading-relaxed mb-6">
+            Start here for our most important comparison, network hub, and support pages.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {priorityPages.map((page) => (
+              <a
+                key={page.href}
+                href={page.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  page.onClick();
+                }}
+                className="bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+              >
+                {page.label}
+              </a>
+            ))}
           </div>
         </section>
 
