@@ -6,6 +6,7 @@ import { NetworkName, NavigateFunction } from './types';
 const HomePage = lazy(() => import('./pages/HomePage').then((mod) => ({ default: mod.HomePage })));
 const USSDPage = lazy(() => import('./pages/USSDPage').then((mod) => ({ default: mod.USSDPage })));
 const SaveUssdCodes = lazy(() => import('./pages/SaveUssdCodes').then((mod) => ({ default: mod.SaveUssdCodes })));
+const AlertsPage = lazy(() => import('./pages/AlertsPage').then((mod) => ({ default: mod.AlertsPage })));
 const GuidePage = lazy(() => import('./components/GuidePage').then((mod) => ({ default: mod.GuidePage })));
 const NetworkPage = lazy(() => import('./pages/NetworkPage').then((mod) => ({ default: mod.NetworkPage })));
 const NetworkHubPage = lazy(() => import('./pages/NetworkHubPage').then((mod) => ({ default: mod.NetworkHubPage })));
@@ -108,6 +109,10 @@ function AppContent() {
         <Route
           path="/save-ussd-codes/"
           element={<SaveUssdCodes onBack={() => navigateTo('home')} onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
+        />
+        <Route
+          path="/alerts/"
+          element={<AlertsPage onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
         />
         <Route
           path="/guides/"

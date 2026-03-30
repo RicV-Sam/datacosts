@@ -3,6 +3,7 @@ const DEFAULT_MODIFIED_ISO = '2026-02-15T00:00:00.000Z';
 
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/': '2026-03-25T00:00:00.000Z',
+  '/alerts/': '2026-03-30T00:00:00.000Z',
   '/about/': '2026-01-20T00:00:00.000Z',
   '/contact/': '2026-01-20T00:00:00.000Z',
   '/editorial-policy/': '2026-01-20T00:00:00.000Z',

@@ -109,6 +109,7 @@ export function getIndexableRoutes(): string[] {
   routes.add('/');
   routes.add('/ussd-codes-south-africa/');
   routes.add('/save-ussd-codes/');
+  routes.add('/alerts/');
   routes.add('/guides/');
   routes.add('/network/');
   routes.add('/privacy-policy/');
