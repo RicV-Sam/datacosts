@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -9,6 +9,7 @@ import { AdUnit } from '../components/AdUnit';
 import { UssdTool } from '../components/UssdTool';
 import { NavigateFunction } from '../types';
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { triggerOneSignalPrompt } from '../utils/oneSignal';
 
 interface SaveUssdCodesProps {
   onBack: () => void;
@@ -35,6 +36,7 @@ const faqItems = [
 ];
 
 export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo, onNavigate }) => {
+  const [alertsHint, setAlertsHint] = useState<string | null>(null);
   const pageTitle = 'Save USSD Codes to Your Phone | MTN, Vodacom, Cell C & Telkom | DataCost';
   const metaDescription =
     'Quickly copy, WhatsApp share, and save South African USSD codes for MTN, Vodacom, Cell C, and Telkom. Mobile-friendly and easy to use.';
@@ -120,6 +122,23 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
         </section>
 
         <UssdTool />
+
+        <section className="mt-5 rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
+          <h2 className="text-xl font-black tracking-tight text-slate-900">
+            Want alerts for useful mobile deals, promos and competitions?
+          </h2>
+          <button
+            type="button"
+            onClick={() => {
+              triggerOneSignalPrompt();
+              setAlertsHint("If your browser allows it, you'll see a prompt to enable alerts.");
+            }}
+            className="mt-3 min-h-[44px] rounded-xl bg-[#031636] px-4 text-sm font-black text-white hover:bg-[#1b6d24] transition-colors"
+          >
+            Turn On Alerts
+          </button>
+          {alertsHint ? <p className="mt-2 text-sm text-slate-600">{alertsHint}</p> : null}
+        </section>
 
         <AdUnit type="inContent" />
 

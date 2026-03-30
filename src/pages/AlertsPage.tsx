@@ -13,6 +13,7 @@ import {
 } from '../components/AlertsPreferences';
 import { AlertsSignupCard } from '../components/AlertsSignupCard';
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { triggerOneSignalPrompt } from '../utils/oneSignal';
 
 interface AlertsPageProps {
   onScrollTo: (id: string) => void;
@@ -90,7 +91,8 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
   };
 
   const handleBrowserAlerts = () => {
-    showToast('Browser alerts are coming soon. Preferences saved.');
+    triggerOneSignalPrompt();
+    showToast("If your browser allows it, you'll see a prompt to enable alerts.");
   };
 
   const handleEmailSignup = (event: React.FormEvent<HTMLFormElement>) => {
@@ -391,4 +393,3 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
     </div>
   );
 };
-
