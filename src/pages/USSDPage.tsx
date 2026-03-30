@@ -142,6 +142,76 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     }
   ];
 
+  const utilityCoverageRows = [
+    {
+      task: 'Airtime balance',
+      codes: {
+        MTN: findFirstCode('MTN', ['balance']),
+        Vodacom: findFirstCode('Vodacom', ['balance']),
+        Telkom: findFirstCode('Telkom', ['balance']),
+        'Cell C': findFirstCode('Cell C', ['balance'])
+      },
+      note: 'Fast way to check available airtime before topping up or borrowing.'
+    },
+    {
+      task: 'Data balance',
+      codes: {
+        MTN: findFirstCode('MTN', ['balance']),
+        Vodacom: findFirstCode('Vodacom', ['detailed balance', 'balance']),
+        Telkom: findFirstCode('Telkom', ['balance']),
+        'Cell C': findFirstCode('Cell C', ['balance'])
+      },
+      note: 'Use this first to avoid buying duplicate bundles by mistake.'
+    },
+    {
+      task: 'Buy data with USSD',
+      codes: {
+        MTN: findFirstCode('MTN', ['buy data', 'bundle', 'data']),
+        Vodacom: findFirstCode('Vodacom', ['buy data', 'bundle', 'data']),
+        Telkom: findFirstCode('Telkom', ['buy data', 'bundle', 'data']),
+        'Cell C': findFirstCode('Cell C', ['buy data', 'bundle', 'data'])
+      },
+      note: 'Useful when apps are down or you need a quick bundle from basic signal.'
+    },
+    {
+      task: 'Airtime advance / borrow airtime',
+      codes: {
+        MTN: findFirstCode('MTN', ['xtratime', 'advance']),
+        Vodacom: 'Check menu',
+        Telkom: 'Check menu',
+        'Cell C': 'Check menu'
+      },
+      note: 'If no direct shortcode works, open your operator self-service menu and look for advance airtime.'
+    }
+  ];
+
+  const pleaseCallMeRows = [
+    {
+      network: 'Vodacom',
+      code: '*140*RecipientNumber#',
+      verification: 'Commonly used format',
+      support: 'If this fails, open *135# and use callback/Please Call Me options.'
+    },
+    {
+      network: 'MTN',
+      code: '*121*RecipientNumber#',
+      verification: 'Widely used format',
+      support: 'If unavailable on your line, check *136# self-service for callback options.'
+    },
+    {
+      network: 'Telkom',
+      code: '*140*RecipientNumber#',
+      verification: 'Widely used format',
+      support: 'If not accepted, use *180# or *188# to find callback options on your profile.'
+    },
+    {
+      network: 'Cell C',
+      code: '*111*RecipientNumber#',
+      verification: 'Widely used format',
+      support: 'If this format fails, use *147# account tools or contact support for active callback format.'
+    }
+  ];
+
   const filteredCodes = useMemo(() => {
     return ussdRepository.filter((entry) => {
       const matchesNetwork = activeNetwork === 'All' || entry.network === activeNetwork;
@@ -279,6 +349,65 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         </section>
 
         <AdUnit type="inContent" />
+
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-6">Essential utility USSD actions in South Africa</h2>
+          <p className="text-slate-700 leading-relaxed mb-6">
+            These are the high-utility tasks most prepaid users rely on daily: airtime balance, data balance, buying data with USSD, and airtime advance/borrow airtime access.
+          </p>
+          <div className="space-y-4">
+            {utilityCoverageRows.map((row) => (
+              <article key={row.task} className="border border-slate-100 rounded-2xl p-5 bg-slate-50">
+                <h3 className="font-black text-slate-900 mb-3">{row.task}</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+                  {Object.entries(row.codes).map(([networkName, code]) => (
+                    <button
+                      key={`${row.task}-${networkName}`}
+                      onClick={() => isDialable(code) && dialCode(code)}
+                      className="text-left p-4 rounded-2xl bg-white border border-slate-100 hover:border-[#1b6d24] transition-colors"
+                    >
+                      <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{networkName}</div>
+                      <div className="font-black text-slate-900">{code}</div>
+                    </button>
+                  ))}
+                </div>
+                <p className="text-sm text-slate-600">{row.note}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">Please Call Me USSD Codes in South Africa</h2>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            Please Call Me is one of the most common zero-balance actions on South African prepaid lines. Use the comparison below as a quick starting point.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="min-w-full border border-slate-200 rounded-2xl overflow-hidden text-sm">
+              <thead className="bg-slate-50">
+                <tr>
+                  <th className="text-left p-3 font-black text-slate-700">Network</th>
+                  <th className="text-left p-3 font-black text-slate-700">Please Call Me USSD</th>
+                  <th className="text-left p-3 font-black text-slate-700">Verification status</th>
+                  <th className="text-left p-3 font-black text-slate-700">If code does not work</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pleaseCallMeRows.map((row) => (
+                  <tr key={row.network} className="border-t border-slate-100">
+                    <td className="p-3 font-semibold text-slate-900">{row.network}</td>
+                    <td className="p-3 font-black text-slate-900">{row.code}</td>
+                    <td className="p-3 text-slate-700">{row.verification}</td>
+                    <td className="p-3 text-slate-600">{row.support}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-sm text-slate-600 mt-4">
+            Codes and menu paths can change by campaign, tariff plan, or SIM profile. If a shortcode fails, use your operator self-service menu first, then support.
+          </p>
+        </section>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6">Network USSD sections</h2>
