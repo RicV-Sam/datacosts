@@ -13,6 +13,7 @@ import { TowerControl, BookOpen, Smartphone, Info, Zap, Globe, ShieldCheck, Gaug
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
+import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 
 interface NetworkHubPageProps {
   onNavigate: NavigateFunction;
@@ -21,7 +22,9 @@ interface NetworkHubPageProps {
 
 export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onScrollTo }) => {
   const [openFaqIndex, setOpenFaqIndex] = React.useState<number | null>(0);
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const dateModifiedIso = getRouteModifiedIso('/network/');
+  const datePublishedIso = getDefaultPublishedIso();
+  const lastUpdated = formatIsoForDisplay(dateModifiedIso);
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -49,6 +52,30 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
   const canonicalUrl = 'https://datacost.co.za/network/';
   const pageTitle = 'Compare Mobile Networks in South Africa | Vodacom, MTN, Cell C, Telkom & Rain';
   const metaDescription = "Compare South Africa's mobile networks including Vodacom, MTN, Cell C, Telkom and Rain. See network strengths, data value, coverage, speeds and related guides.";
+
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Compare Mobile Networks in South Africa',
+    description: metaDescription,
+    url: canonicalUrl,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'DataCost',
+      url: 'https://datacost.co.za/'
+    }
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
+      { '@type': 'ListItem', position: 2, name: 'Networks', item: canonicalUrl }
+    ]
+  };
 
   const coreNetworks: NetworkName[] = ['Vodacom', 'MTN', 'Cell C', 'Telkom'];
   const secondaryNetworks: NetworkName[] = ['Rain'];
@@ -100,6 +127,8 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
         '@type': 'Article',
         headline: 'Compare Mobile Networks in South Africa (2026)',
         description: metaDescription,
+        datePublished: datePublishedIso,
+        dateModified: dateModifiedIso,
         image: 'https://datacost.co.za/og-image.jpg',
         author: {
           '@type': 'Organization',
@@ -163,6 +192,12 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <script type="application/ld+json">
+          {JSON.stringify(webPageSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
         <script type="application/ld+json">
           {JSON.stringify(articleSchema)}
         </script>

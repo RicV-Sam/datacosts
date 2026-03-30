@@ -8,6 +8,7 @@ import { guides } from '../data/guides';
 import { BookOpen, ArrowRight, ChevronDown, Zap, Smartphone, HelpCircle, Info, Calculator } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { NavigateFunction } from '../types';
+import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 
 interface GuidesIndexProps {
   onNavigate: NavigateFunction;
@@ -24,6 +25,8 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
   const canonicalUrl = "https://datacost.co.za/guides/";
   const pageTitle = "South Africa Mobile Data Guides Hub (2026) | DataCost";
   const metaDescription = "Explore practical South African telecom guides in one place. Compare data prices, network options, and fixes for common SIM and airtime issues.";
+  const datePublishedIso = getDefaultPublishedIso();
+  const dateModifiedIso = getRouteModifiedIso('/guides/');
 
   const getGuidePath = (slug: string) => `/guides/${slug}/`;
   const guideMap = new Map(guides.map((guide) => [guide.slug, guide]));
@@ -133,6 +136,30 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
     ]
   };
 
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'South Africa Mobile Data Guides Hub',
+    description: metaDescription,
+    url: canonicalUrl,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'DataCost',
+      url: 'https://datacost.co.za/'
+    }
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: canonicalUrl }
+    ]
+  };
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -140,6 +167,8 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         "@type": "Article",
         "headline": "Mobile Data Guides South Africa (2026)",
         "description": metaDescription,
+        "datePublished": datePublishedIso,
+        "dateModified": dateModifiedIso,
         "image": "https://datacost.co.za/og-image.jpg",
         "author": {
           "@type": "Organization",
@@ -189,6 +218,12 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <script type="application/ld+json">
+          {JSON.stringify(webPageSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
         <script type="application/ld+json">
           {JSON.stringify(itemListSchema)}
         </script>

@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { BASE_URL, getIndexableRoutes, validateIndexableRoutes } from '../src/config/routeCatalog';
+import { getRouteLastMod } from '../src/seo/contentDates';
 
 type SitemapSection = {
   filename: string;
@@ -12,6 +13,7 @@ function buildUrlSetXml(routes: string[]): string {
     return [
       '  <url>',
       `    <loc>${BASE_URL}${route}</loc>`,
+      `    <lastmod>${getRouteLastMod(route)}</lastmod>`,
       '  </url>'
     ].join('\n');
   });
@@ -27,9 +29,15 @@ function buildUrlSetXml(routes: string[]): string {
 
 function buildSitemapIndexXml(sections: SitemapSection[]): string {
   const lines = sections.map((section) => {
+    const latestLastMod = section.routes
+      .map((route) => getRouteLastMod(route))
+      .sort()
+      .at(-1);
+
     return [
       '  <sitemap>',
       `    <loc>${BASE_URL}/${section.filename}</loc>`,
+      ...(latestLastMod ? [`    <lastmod>${latestLastMod}</lastmod>`] : []),
       '  </sitemap>'
     ].join('\n');
   });

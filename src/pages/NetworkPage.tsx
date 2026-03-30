@@ -8,6 +8,7 @@ import { AdUnit } from '../components/AdUnit';
 import { ArrowLeft, ChevronRight, ShieldCheck, Zap, Info, Smartphone, HelpCircle, Clock, Tag, ExternalLink, CheckCircle2, Link as LinkIcon } from 'lucide-react';
 import { NetworkName, NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema } from '../utils/structuredData';
+import { formatIsoForDisplay, getDefaultPublishedIso, getNetworkModifiedIso } from '../seo/contentDates';
 
 interface NetworkPageProps {
   networkSlug: string;
@@ -107,9 +108,24 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const pageTitle = `${network.name} Data Prices South Africa (2026) | DataCost`;
   const metaDescription = `Compare ${network.name} prepaid data prices in South Africa, including daily, weekly and monthly bundles, USSD codes, and practical savings tips updated for 2026.`;
   const canonicalUrl = `https://datacost.co.za/network/${networkSlug}/`;
-  const now = new Date();
-  const lastUpdated = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  const dateModifiedIso = now.toISOString();
+  const dateModifiedIso = getNetworkModifiedIso(networkSlug);
+  const datePublishedIso = getDefaultPublishedIso();
+  const lastUpdated = formatIsoForDisplay(dateModifiedIso);
+
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: `${network.name} Data Prices South Africa (2026)`,
+    description: metaDescription,
+    url: canonicalUrl,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'DataCost',
+      url: 'https://datacost.co.za/'
+    }
+  };
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -117,6 +133,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     headline: `${network.name} Data Prices South Africa (2026)`,
     description: metaDescription,
     url: canonicalUrl,
+    datePublished: datePublishedIso,
     dateModified: dateModifiedIso,
     author: {
       '@type': 'Organization',
@@ -214,6 +231,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <script type="application/ld+json">
+          {JSON.stringify(webPageSchema)}
+        </script>
         <script type="application/ld+json">
           {JSON.stringify(articleSchema)}
         </script>

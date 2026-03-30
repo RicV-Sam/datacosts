@@ -1,5 +1,5 @@
 import { Suspense, lazy, useState } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate, useParams } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, useNavigate, useParams } from 'react-router-dom';
 import { guides } from './data/guides';
 import { NetworkName, NavigateFunction } from './types';
 
@@ -166,7 +166,7 @@ function AppContent() {
         />
         <Route
           path="/guides/cheapest-monthly-data-south-africa/"
-          element={<ComparisonGuidePage guideSlug="best-monthly-data-deals-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+          element={<Navigate to="/guides/best-monthly-data-deals-south-africa/" replace />}
         />
         <Route
           path="/guides/best-monthly-data-deals-south-africa/"

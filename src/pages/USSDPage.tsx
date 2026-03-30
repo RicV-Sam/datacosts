@@ -9,6 +9,7 @@ import { ussdRepository } from '../data/ussd';
 import { networkPages } from '../data/networks';
 import { NavigateFunction, USSDEntry } from '../types';
 import { ArrowLeft, Search, Copy, CheckCircle2, Phone, ShieldCheck, HelpCircle } from 'lucide-react';
+import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 
 interface USSDPageProps {
   onBack: () => void;
@@ -38,7 +39,9 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const metaDescription =
     'Find the most useful South African USSD codes for MTN, Vodacom, Telkom, Cell C and more. Check balance, buy data, recharge airtime and manage your line quickly.';
   const canonicalUrl = 'https://datacost.co.za/ussd-codes-south-africa/';
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const datePublishedIso = getDefaultPublishedIso();
+  const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');
+  const lastUpdated = formatIsoForDisplay(dateModifiedIso);
 
   const faqItems = [
     {
@@ -98,6 +101,30 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         text: item.answer
       }
     }))
+  };
+
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'South Africa USSD Codes (2026)',
+    description: metaDescription,
+    url: canonicalUrl,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'DataCost',
+      url: 'https://datacost.co.za/'
+    }
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
+      { '@type': 'ListItem', position: 2, name: 'USSD Codes South Africa', item: canonicalUrl }
+    ]
   };
 
   const networkSummaries = [
@@ -326,6 +353,8 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 

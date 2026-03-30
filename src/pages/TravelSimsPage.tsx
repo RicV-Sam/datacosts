@@ -22,6 +22,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { NavigateFunction } from '../types';
+import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 
 interface TravelSimsPageProps {
   onNavigate: NavigateFunction;
@@ -32,9 +33,9 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
   const pageTitle = "Best Travel SIMs & eSIMs for South Africa (2026 Tourist Guide) | DataCost";
   const metaDescription = "Looking for the best SIM or eSIM for South Africa? Compare travel eSIMs, Vodacom, MTN, airport SIMs, setup, coverage, and the cheapest options for tourists.";
   const canonicalUrl = "https://datacost.co.za/travel-sims-south-africa/";
-  const now = new Date();
-  const lastUpdated = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  const dateModifiedIso = now.toISOString();
+  const datePublishedIso = getDefaultPublishedIso();
+  const dateModifiedIso = getRouteModifiedIso('/travel-sims-south-africa/');
+  const lastUpdated = formatIsoForDisplay(dateModifiedIso);
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -60,12 +61,28 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
     ]
   };
 
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Best Travel SIMs & eSIMs for South Africa (2026 Tourist Guide)",
+    "description": metaDescription,
+    "url": canonicalUrl,
+    "datePublished": datePublishedIso,
+    "dateModified": dateModifiedIso,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "DataCost",
+      "url": "https://datacost.co.za/"
+    }
+  };
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Best Travel SIMs & eSIMs for South Africa (2026 Tourist Guide)",
     "description": metaDescription,
     "url": canonicalUrl,
+    "datePublished": datePublishedIso,
     "dateModified": dateModifiedIso,
     "author": {
       "@type": "Organization",
@@ -127,6 +144,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>

@@ -11,6 +11,7 @@ import { NavigateFunction, Bundle, NetworkName } from '../types';
 import { getComparisonGuideBySlug } from '../data/comparisonGuides';
 import { buildBundleItemListSchema } from '../utils/structuredData';
 import { networkPages } from '../data/networks';
+import { formatIsoForDisplay, getComparisonGuideModifiedIso, getDefaultPublishedIso } from '../seo/contentDates';
 
 interface ComparisonGuidePageProps {
   guideSlug: string;
@@ -190,10 +191,26 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
 
   const winners = getWinners(definition.mode, rows, definition.coverageFirstNetwork);
   const listedRows = rows.filter((row) => row.bundle).map((row) => row.bundle as Bundle);
-  const now = new Date();
-  const lastUpdated = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const dateModifiedIso = getComparisonGuideModifiedIso(definition.slug);
+  const datePublishedIso = getDefaultPublishedIso();
+  const lastUpdated = formatIsoForDisplay(dateModifiedIso);
   const canonicalUrl = `https://datacost.co.za${definition.canonicalPath}`;
   const isAliasPath = location.pathname !== definition.canonicalPath;
+
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: definition.h1,
+    description: definition.metaDescription,
+    url: canonicalUrl,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'DataCost',
+      url: 'https://datacost.co.za/'
+    }
+  };
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -201,7 +218,8 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
     headline: definition.h1,
     description: definition.metaDescription,
     url: canonicalUrl,
-    dateModified: now.toISOString(),
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
     author: {
       '@type': 'Organization',
       name: 'DataCost.co.za',
@@ -268,6 +286,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
         <meta name="twitter:title" content={definition.title} />
         <meta name="twitter:description" content={definition.metaDescription} />
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>

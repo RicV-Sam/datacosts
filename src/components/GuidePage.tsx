@@ -4,6 +4,7 @@ import { ArrowLeft, Clock, Tag, Info, ChevronRight } from 'lucide-react';
 import { Guide, Bundle } from '../types';
 import { bundles } from '../data';
 import { useNavigate } from 'react-router-dom';
+import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
 
 interface GuidePageProps {
   guide: Guide;
@@ -65,7 +66,9 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
 
 export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateToGuide, allGuides }) => {
   const navigate = useNavigate();
-  const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const dateModifiedIso = getGuideModifiedIso(guide.slug);
+  const datePublishedIso = getDefaultPublishedIso();
+  const lastUpdatedLabel = formatIsoForDisplay(dateModifiedIso);
   const canonicalUrl = `https://datacost.co.za/guides/${guide.slug}/`;
   const pageTitle = `${guide.title} | DataCost`;
   const showPriorityInternalLinks = guide.slug === 'why-is-my-data-finishing-so-fast' || guide.slug === 'how-to-check-data-balance';
@@ -96,6 +99,31 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
     return result;
   }, [guide.comparisonType]);
 
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: guide.h1,
+    description: guide.metaDescription,
+    url: canonicalUrl,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'DataCost',
+      url: 'https://datacost.co.za/'
+    }
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://datacost.co.za/guides/' },
+      { '@type': 'ListItem', position: 3, name: guide.h1, item: canonicalUrl }
+    ]
+  };
+
   const jsonLd = {
     '@context': 'https://schema.org/',
     '@graph': [
@@ -110,7 +138,8 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
           url: 'https://datacost.co.za'
         },
         image: 'https://datacost.co.za/og-image.jpg',
-        dateModified: new Date().toISOString(),
+        datePublished: datePublishedIso,
+        dateModified: dateModifiedIso,
         publisher: {
           '@type': 'Organization',
           name: 'DataCost.co.za',
@@ -151,6 +180,8 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={guide.metaDescription} />
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
@@ -168,7 +199,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
         <header className="mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#a0f399]/20 text-[#217128] rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-[#a0f399]/30">
             <Clock className="w-3 h-3" />
-            Updated {today}
+            Updated {lastUpdatedLabel}
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">{guide.h1}</h1>
           <p className="text-xl text-slate-600 font-medium leading-relaxed">{guide.intro}</p>

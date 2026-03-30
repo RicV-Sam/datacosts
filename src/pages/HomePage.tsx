@@ -16,6 +16,7 @@ import { networkPages } from '../data/networks';
 import { bundles } from '../data';
 import { NetworkName } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
+import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 
 interface HomePageProps {
   onNavigate: (page: 'home' | 'ussd' | 'guide' | 'network' | 'guides-index' | 'travel-sims', slug?: string) => void;
@@ -35,6 +36,8 @@ export const HomePage: React.FC<HomePageProps> = ({
   const pageTitle = "DataCost | Compare South Africa's Cheapest Data Bundles";
   const metaDescription = 'Compare mobile data prices in South Africa. Find the cheapest data bundles from MTN, Vodacom, Telkom, Cell C and Rain.';
   const canonicalUrl = 'https://datacost.co.za/';
+  const datePublishedIso = getDefaultPublishedIso();
+  const dateModifiedIso = getRouteModifiedIso('/');
 
   const homeSchema = {
     '@context': 'https://schema.org',
@@ -50,6 +53,29 @@ export const HomePage: React.FC<HomePageProps> = ({
         url: 'https://datacost.co.za/logo.png'
       }
     }
+  };
+
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: "DataCost | Compare South Africa's Cheapest Data Bundles",
+    description: metaDescription,
+    url: canonicalUrl,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'DataCost',
+      url: canonicalUrl
+    }
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: canonicalUrl }
+    ]
   };
 
   const featuredBundles = Object.values(networkPages).flatMap((page) =>
@@ -98,6 +124,12 @@ export const HomePage: React.FC<HomePageProps> = ({
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <script type="application/ld+json">
+          {JSON.stringify(webPageSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
         <script type="application/ld+json">
           {JSON.stringify(homeSchema)}
         </script>

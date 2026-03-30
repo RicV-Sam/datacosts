@@ -10,6 +10,7 @@ import { ArrowLeft, ChevronRight, ExternalLink, Info, ShieldCheck, Tag } from 'l
 import { Bundle, NavigateFunction, NetworkName } from '../types';
 import { BUNDLE_TYPE_MAP } from '../config/routeCatalog';
 import { buildBundleItemListSchema } from '../utils/structuredData';
+import { formatIsoForDisplay, getBundleTypeModifiedIso, getDefaultPublishedIso } from '../seo/contentDates';
 
 interface BundleTypePageProps {
   onNavigate: NavigateFunction;
@@ -554,8 +555,9 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
   const pageTitle = `${network.name} ${INTENT_LABELS[intent]} South Africa (${CURRENT_YEAR}) | DataCost`;
   const metaDescription = `Compare ${network.name} ${INTENT_META_FOCUS[intent]} in South Africa. See listed prices, validity, value notes, and practical prepaid watch-outs for ${CURRENT_YEAR}.`;
   const canonicalUrl = `https://datacost.co.za/network/${networkSlug}/${normalizedBundleType}/`;
-  const now = new Date();
-  const lastUpdated = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const datePublishedIso = getDefaultPublishedIso();
+  const dateModifiedIso = getBundleTypeModifiedIso(networkSlug);
+  const lastUpdated = formatIsoForDisplay(dateModifiedIso);
 
   const h1 = `${network.name} ${INTENT_LABELS[intent]} South Africa (${CURRENT_YEAR})`;
   const intro = getIntro(network.name, intent);
@@ -566,13 +568,29 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
   const relatedIntentLinks = getIntentLinks(networkSlug, intent);
   const guideLinks = getGuideLinks(networkSlug, network.name);
 
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: h1,
+    description: metaDescription,
+    url: canonicalUrl,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'DataCost',
+      url: 'https://datacost.co.za/'
+    }
+  };
+
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: h1,
     description: metaDescription,
     url: canonicalUrl,
-    dateModified: now.toISOString(),
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
     author: {
       '@type': 'Organization',
       name: 'DataCost.co.za',
@@ -628,6 +646,7 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
         {!matchingBundles.length && <meta name="robots" content="noindex,follow" />}
+        <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(bundleItemListSchema)}</script>
