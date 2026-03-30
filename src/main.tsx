@@ -18,5 +18,52 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 );
 
-// Dispatch event for prerendering
-document.dispatchEvent(new Event('render-event'));
+let prerenderEventDispatched = false;
+
+function dispatchPrerenderReadyEvent(): void {
+  if (prerenderEventDispatched) return;
+  prerenderEventDispatched = true;
+  document.dispatchEvent(new Event('render-event'));
+}
+
+function isAboveFoldContentStable(): boolean {
+  const heading = document.querySelector('main h1, h1') as HTMLElement | null;
+  if (!heading) return false;
+
+  const styles = window.getComputedStyle(heading);
+  const opacity = Number(styles.opacity || '1');
+  const transform = styles.transform;
+  return opacity >= 0.99 && (transform === 'none' || transform === 'matrix(1, 0, 0, 1, 0, 0)');
+}
+
+function waitForStableAboveFoldAndDispatch(): void {
+  const maxWaitMs = 6000;
+  const pollMs = 100;
+  const requiredStableChecks = 2;
+  const start = Date.now();
+  let stableChecks = 0;
+
+  const tick = () => {
+    if (isAboveFoldContentStable()) {
+      stableChecks += 1;
+    } else {
+      stableChecks = 0;
+    }
+
+    const timedOut = Date.now() - start >= maxWaitMs;
+    if (stableChecks >= requiredStableChecks || timedOut) {
+      dispatchPrerenderReadyEvent();
+      return;
+    }
+
+    window.setTimeout(tick, pollMs);
+  };
+
+  window.setTimeout(tick, pollMs);
+}
+
+if (document.readyState === 'complete') {
+  waitForStableAboveFoldAndDispatch();
+} else {
+  window.addEventListener('load', waitForStableAboveFoldAndDispatch, { once: true });
+}
