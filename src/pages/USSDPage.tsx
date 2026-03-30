@@ -68,6 +68,22 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
       question: 'Why is a USSD code not working?',
       answer:
         'Codes can change, menus can be temporarily unavailable, or your tariff/profile may route differently. Retry, check signal strength, then verify the latest shortcode with your operator.'
+    },
+    {
+      question: 'What is the Vodacom Please Call Me code?',
+      answer: 'The most commonly used Vodacom Please Call Me format is *140*0821234567#.'
+    },
+    {
+      question: 'What is the MTN Please Call Me code?',
+      answer: 'A widely used MTN Please Call Me format is *121*0821234567#.'
+    },
+    {
+      question: 'Is Please Call Me free in South Africa?',
+      answer: 'In most cases, yes. Please Call Me messages are usually free, but daily limits may apply.'
+    },
+    {
+      question: 'Why is my Please Call Me not working?',
+      answer: 'You may have reached your daily limit, entered the wrong number, or your network may have updated the service.'
     }
   ];
 
