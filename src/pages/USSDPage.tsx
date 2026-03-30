@@ -188,25 +188,25 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const pleaseCallMeRows = [
     {
       network: 'Vodacom',
-      code: '*140*RecipientNumber#',
+      code: '*140*0821234567#',
       verification: 'Commonly used format',
       support: 'If this fails, open *135# and use callback/Please Call Me options.'
     },
     {
       network: 'MTN',
-      code: '*121*RecipientNumber#',
+      code: '*121*0821234567#',
       verification: 'Widely used format',
       support: 'If unavailable on your line, check *136# self-service for callback options.'
     },
     {
       network: 'Telkom',
-      code: '*140*RecipientNumber#',
+      code: '*140*0821234567#',
       verification: 'Widely used format',
       support: 'If not accepted, use *180# or *188# to find callback options on your profile.'
     },
     {
       network: 'Cell C',
-      code: '*111*RecipientNumber#',
+      code: '*111*0821234567#',
       verification: 'Widely used format',
       support: 'If this format fails, use *147# account tools or contact support for active callback format.'
     }
@@ -380,7 +380,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Please Call Me USSD Codes in South Africa</h2>
           <p className="text-slate-700 leading-relaxed mb-4">
-            Please Call Me is one of the most common zero-balance actions on South African prepaid lines. Use the comparison below as a quick starting point.
+            If you have no airtime, you can still send a free Please Call Me message using a USSD code on most South African networks. This is one of the most useful prepaid mobile features in South Africa, especially when you need someone to call you back urgently.
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            Use the comparison table below to find the most commonly used Please Call Me or Call Me Back format for Vodacom, MTN, Telkom and Cell C.
           </p>
           <div className="overflow-x-auto">
             <table className="min-w-full border border-slate-200 rounded-2xl overflow-hidden text-sm">
@@ -407,6 +410,45 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
           <p className="text-sm text-slate-600 mt-4">
             Codes and menu paths can change by campaign, tariff plan, or SIM profile. If a shortcode fails, use your operator self-service menu first, then support.
           </p>
+
+          <article className="mt-6 border border-slate-100 rounded-2xl p-5 bg-slate-50">
+            <h3 className="text-xl font-black tracking-tight mb-3">How to Send a Please Call Me</h3>
+            <p className="text-slate-700 leading-relaxed mb-3">
+              Sending a Please Call Me is quick and free on most South African networks.
+            </p>
+            <ol className="list-decimal pl-5 space-y-1 text-slate-700">
+              <li>Open your phone dialler</li>
+              <li>Enter the Please Call Me code for your network</li>
+              <li>Replace the sample number with the number you want to contact</li>
+              <li>Press call</li>
+              <li>The other person should receive a free callback request message</li>
+            </ol>
+            <p className="text-slate-700 leading-relaxed mt-3">
+              If the code does not work, your network may have changed the service or moved it into a self-service USSD menu.
+            </p>
+          </article>
+
+          <article className="mt-5 border border-slate-100 rounded-2xl p-5 bg-slate-50">
+            <h3 className="text-xl font-black tracking-tight mb-4">Please Call Me FAQs</h3>
+            <div className="space-y-3">
+              <div className="bg-white border border-slate-100 rounded-xl p-4">
+                <h4 className="font-bold text-slate-900 mb-1">What is the Vodacom Please Call Me code?</h4>
+                <p className="text-sm text-slate-600">The most commonly used Vodacom Please Call Me format is *140*0821234567#.</p>
+              </div>
+              <div className="bg-white border border-slate-100 rounded-xl p-4">
+                <h4 className="font-bold text-slate-900 mb-1">What is the MTN Please Call Me code?</h4>
+                <p className="text-sm text-slate-600">A widely used MTN Please Call Me format is *121*0821234567#.</p>
+              </div>
+              <div className="bg-white border border-slate-100 rounded-xl p-4">
+                <h4 className="font-bold text-slate-900 mb-1">Is Please Call Me free in South Africa?</h4>
+                <p className="text-sm text-slate-600">In most cases, yes. Please Call Me messages are usually free, but daily limits may apply.</p>
+              </div>
+              <div className="bg-white border border-slate-100 rounded-xl p-4">
+                <h4 className="font-bold text-slate-900 mb-1">Why is my Please Call Me not working?</h4>
+                <p className="text-sm text-slate-600">You may have reached your daily limit, entered the wrong number, or your network may have updated the service.</p>
+              </div>
+            </div>
+          </article>
         </section>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
