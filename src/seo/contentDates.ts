@@ -10,6 +10,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/methodology/': '2026-01-20T00:00:00.000Z',
   '/network/': '2026-03-24T00:00:00.000Z',
   '/privacy-policy/': '2026-01-20T00:00:00.000Z',
+  '/save-ussd-codes/': '2026-03-30T00:00:00.000Z',
   '/terms/': '2026-01-20T00:00:00.000Z',
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
   '/ussd-codes-south-africa/': '2026-03-30T00:00:00.000Z'

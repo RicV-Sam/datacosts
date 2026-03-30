@@ -381,6 +381,19 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
 
+        <section className="mb-10 bg-[#031636] text-white rounded-3xl p-6 shadow-sm">
+          <h2 className="text-xl font-black tracking-tight mb-2">Want to save these codes to your phone?</h2>
+          <p className="text-sm text-slate-200 leading-relaxed mb-4">
+            Use the quick tool to copy, WhatsApp, or save your network&apos;s USSD codes.
+          </p>
+          <Link
+            to="/save-ussd-codes/"
+            className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]"
+          >
+            Go to USSD Save Tool
+          </Link>
+        </section>
+
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">

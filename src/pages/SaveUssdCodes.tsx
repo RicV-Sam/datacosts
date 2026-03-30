@@ -35,12 +35,12 @@ const faqItems = [
 ];
 
 export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo, onNavigate }) => {
-  const pageTitle = 'Save USSD Codes to Phone | MTN, Vodacom, Cell C, Telkom | DataCost';
+  const pageTitle = 'Save USSD Codes to Your Phone | MTN, Vodacom, Cell C & Telkom | DataCost';
   const metaDescription =
-    'Mobile-first USSD Save Tool for South Africa. Instantly copy, WhatsApp share, and save image cards for MTN, Vodacom, Cell C, and Telkom codes.';
-  const canonicalUrl = 'https://datacost.co.za/ussd-codes-south-africa/';
+    'Quickly copy, WhatsApp share, and save South African USSD codes for MTN, Vodacom, Cell C, and Telkom. Mobile-friendly and easy to use.';
+  const canonicalUrl = 'https://datacost.co.za/save-ussd-codes/';
   const datePublishedIso = getDefaultPublishedIso();
-  const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');
+  const dateModifiedIso = getRouteModifiedIso('/save-ussd-codes/');
 
   const webPageSchema = {
     '@context': 'https://schema.org',
@@ -109,6 +109,15 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
         >
           <ArrowLeft className="w-4 h-4" /> Back to comparison
         </button>
+
+        <section className="mb-4 rounded-2xl border border-slate-100 bg-white p-4 shadow-sm">
+          <p className="text-sm text-slate-700">
+            Need the full list and explanations?{' '}
+            <Link to="/ussd-codes-south-africa/" className="font-bold text-[#1b6d24] hover:underline">
+              See the complete South Africa USSD guide.
+            </Link>
+          </p>
+        </section>
 
         <UssdTool />
 
