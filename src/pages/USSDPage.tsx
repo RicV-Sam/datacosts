@@ -228,6 +228,33 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     }
   ];
 
+  const borrowAirtimeRows = [
+    {
+      network: 'Vodacom',
+      option: 'Vodacom Airtime Advance',
+      access: '*135#',
+      notes: 'Usually available through self-service or account menu options.'
+    },
+    {
+      network: 'MTN',
+      option: 'MTN Airtime Advance',
+      access: '*136#',
+      notes: 'May appear inside MTN self-service options depending on line eligibility.'
+    },
+    {
+      network: 'Telkom',
+      option: 'Telkom Emergency Airtime',
+      access: '*180#',
+      notes: 'Availability may depend on usage profile and account history.'
+    },
+    {
+      network: 'Cell C',
+      option: 'Cell C Airtime Advance',
+      access: '*147#',
+      notes: 'May be available via account services or airtime assistance options.'
+    }
+  ];
+
   const filteredCodes = useMemo(() => {
     return ussdRepository.filter((entry) => {
       const matchesNetwork = activeNetwork === 'All' || entry.network === activeNetwork;
@@ -462,6 +489,76 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
               <div className="bg-white border border-slate-100 rounded-xl p-4">
                 <h4 className="font-bold text-slate-900 mb-1">Why is my Please Call Me not working?</h4>
                 <p className="text-sm text-slate-600">You may have reached your daily limit, entered the wrong number, or your network may have updated the service.</p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">Borrow Airtime / Airtime Advance Codes in South Africa</h2>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            If you run out of airtime, some South African mobile networks let you borrow airtime or request an airtime advance using a USSD code. This can be useful in emergencies when you need to call, text, or buy a small data bundle before topping up.
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            Below are some of the most commonly used airtime advance or emergency airtime options across Vodacom, MTN, Telkom and Cell C.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="min-w-full border border-slate-200 rounded-2xl overflow-hidden text-sm">
+              <thead className="bg-slate-50">
+                <tr>
+                  <th className="text-left p-3 font-black text-slate-700">Network</th>
+                  <th className="text-left p-3 font-black text-slate-700">Borrow Airtime / Advance Option</th>
+                  <th className="text-left p-3 font-black text-slate-700">Example USSD / Access Method</th>
+                  <th className="text-left p-3 font-black text-slate-700">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {borrowAirtimeRows.map((row) => (
+                  <tr key={row.network} className="border-t border-slate-100">
+                    <td className="p-3 font-semibold text-slate-900">{row.network}</td>
+                    <td className="p-3 text-slate-700">{row.option}</td>
+                    <td className="p-3 font-black text-slate-900">{row.access}</td>
+                    <td className="p-3 text-slate-600">{row.notes}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <article className="mt-6 border border-slate-100 rounded-2xl p-5 bg-slate-50">
+            <h3 className="text-xl font-black tracking-tight mb-3">How Borrow Airtime Usually Works</h3>
+            <p className="text-slate-700 leading-relaxed mb-3">
+              Borrow airtime services usually allow eligible prepaid users to receive a small airtime advance, which is then deducted automatically from their next recharge.
+            </p>
+            <ul className="list-disc pl-5 space-y-1 text-slate-700">
+              <li>You usually need to have an active prepaid SIM</li>
+              <li>Your network may require previous recharge history</li>
+              <li>Not every number will qualify</li>
+              <li>Service fees or deductions may apply on your next top-up</li>
+            </ul>
+            <p className="text-slate-700 leading-relaxed mt-3">
+              If you do not see the option on your network, try the operator&apos;s self-service menu or app, as eligibility and menu paths can change.
+            </p>
+          </article>
+
+          <article className="mt-5 border border-slate-100 rounded-2xl p-5 bg-slate-50">
+            <h3 className="text-xl font-black tracking-tight mb-4">Borrow Airtime FAQs</h3>
+            <div className="space-y-3">
+              <div className="bg-white border border-slate-100 rounded-xl p-4">
+                <h4 className="font-bold text-slate-900 mb-1">Can I borrow airtime in South Africa?</h4>
+                <p className="text-sm text-slate-600">Yes, some South African networks offer airtime advance or emergency airtime for eligible prepaid users.</p>
+              </div>
+              <div className="bg-white border border-slate-100 rounded-xl p-4">
+                <h4 className="font-bold text-slate-900 mb-1">How do I borrow airtime on Vodacom?</h4>
+                <p className="text-sm text-slate-600">Vodacom users often access airtime advance options through *135# or related self-service menus.</p>
+              </div>
+              <div className="bg-white border border-slate-100 rounded-xl p-4">
+                <h4 className="font-bold text-slate-900 mb-1">Do I have to pay borrowed airtime back?</h4>
+                <p className="text-sm text-slate-600">Yes. Borrowed airtime is usually deducted automatically from your next recharge, and fees may apply.</p>
+              </div>
+              <div className="bg-white border border-slate-100 rounded-xl p-4">
+                <h4 className="font-bold text-slate-900 mb-1">Why can&apos;t I borrow airtime?</h4>
+                <p className="text-sm text-slate-600">Your number may not qualify yet, or your network may require recent recharge activity or a certain usage profile.</p>
               </div>
             </div>
           </article>
