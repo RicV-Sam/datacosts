@@ -19,7 +19,7 @@ import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structure
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 
 interface HomePageProps {
-  onNavigate: (page: 'home' | 'ussd' | 'guide' | 'network' | 'guides-index' | 'travel-sims', slug?: string) => void;
+  onNavigate: (page: 'home' | 'ussd' | 'alerts' | 'guide' | 'network' | 'guides-index' | 'travel-sims', slug?: string) => void;
   onScrollTo: (id: string) => void;
   activeSection: string;
   selectedNetwork: NetworkName | null;
@@ -199,6 +199,20 @@ export const HomePage: React.FC<HomePageProps> = ({
           </p>
         </section>
 
+        <section className="mb-12 bg-white border border-slate-100 rounded-[2rem] p-6 md:p-8 shadow-sm">
+          <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-3">Never Miss a Better Data Deal</h2>
+          <p className="text-slate-700 leading-relaxed font-medium mb-4">
+            Get free alerts for cheaper data deals, airtime specials, verified competitions, and useful mobile updates in South Africa.
+          </p>
+          <a
+            href="/alerts/"
+            onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }}
+            className="inline-flex min-h-[44px] items-center rounded-2xl bg-[#1b6d24] px-5 text-sm font-black text-white hover:bg-[#14521c] transition-colors"
+          >
+            Get Alerts
+          </a>
+        </section>
+
         <section className="mb-16">
           <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4">
             Quick Comparison Links
@@ -213,6 +227,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <a href="/guides/cheapest-1gb-data-south-africa/" onClick={(e) => { e.preventDefault(); onNavigate('guide', 'cheapest-1gb-data-south-africa'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Cheapest 1GB data in South Africa</a>
             <a href="/guides/best-prepaid-data-deals-south-africa/" onClick={(e) => { e.preventDefault(); onNavigate('guide', 'best-prepaid-data-deals-south-africa'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Best prepaid data deals South Africa</a>
             <a href="/travel-sims-south-africa/" onClick={(e) => { e.preventDefault(); onNavigate('travel-sims'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Travel SIMs and eSIMs for South Africa</a>
+            <a href="/alerts/" onClick={(e) => { e.preventDefault(); onNavigate('alerts'); }} className="bg-white border border-slate-100 rounded-2xl px-4 py-3 font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Get telecom alerts</a>
           </div>
         </section>
 

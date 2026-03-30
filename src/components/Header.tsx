@@ -22,6 +22,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
     { id: 'networks', label: 'Networks' },
     { id: 'guides', label: 'Guides' },
     { id: 'ussd', label: 'USSD Codes' },
+    { id: 'alerts', label: 'Alerts' },
     { id: 'scorecard', label: 'Scorecard' },
   ];
 
@@ -32,6 +33,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
     { id: 'networks', title: 'Networks', subtitle: 'Compare all mobile networks', type: 'scroll' as const, value: 'networks' },
     { id: 'guides', title: 'Guides', subtitle: 'Browse all guides', type: 'scroll' as const, value: 'guides' },
     { id: 'ussd', title: 'USSD Codes', subtitle: 'Find shortcode commands', type: 'scroll' as const, value: 'ussd' },
+    { id: 'alerts', title: 'Alerts', subtitle: 'Get telecom alerts and updates', type: 'route' as const, value: '/alerts/' },
     { id: 'scorecard', title: 'Scorecard', subtitle: 'View network scorecard', type: 'scroll' as const, value: 'scorecard' },
     { id: 'travel-sims', title: 'Best Travel SIMs & eSIMs for South Africa', subtitle: 'Tourist connectivity guide', type: 'route' as const, value: '/travel-sims-south-africa/' },
     ...guides.slice(0, 8).map((guide) => ({
@@ -109,6 +111,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                 key={item.id}
                 href={
                   item.id === 'ussd' ? '/ussd-codes-south-africa/' :
+                  item.id === 'alerts' ? '/alerts/' :
                   item.id === 'guides' ? '/guides/' :
                   item.id === 'networks' ? '/network/' :
                   `#${item.id}`
@@ -152,6 +155,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                     key={item.id}
                     href={
                       item.id === 'ussd' ? '/ussd-codes-south-africa/' :
+                      item.id === 'alerts' ? '/alerts/' :
                       item.id === 'guides' ? '/guides/' :
                       item.id === 'networks' ? '/network/' :
                       `#${item.id}`

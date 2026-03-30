@@ -40,6 +40,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo }) => {
             USSD Codes Directory
           </a>
 
+          <a href="/alerts/" onClick={(e) => { e.preventDefault(); onNavigateTo('alerts'); }} className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block">
+            Alerts
+          </a>
+
           <a href="/travel-sims-south-africa/" onClick={(e) => { e.preventDefault(); onNavigateTo('travel-sims'); }} className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block">
             Travel SIMs &amp; eSIMs
           </a>

@@ -170,7 +170,7 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
-      <Header onScrollTo={onScrollTo} activeSection="guides" />
+      <Header onScrollTo={onScrollTo} activeSection="alerts" />
 
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-5">
         <section className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
@@ -382,7 +382,7 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
-      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />
+      <MobileNav onScrollTo={onScrollTo} activeSection="alerts" />
       <AdUnit type="stickyMobile" />
 
       {toast ? (

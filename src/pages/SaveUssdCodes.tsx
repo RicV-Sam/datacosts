@@ -125,18 +125,29 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
 
         <section className="mt-5 rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
           <h2 className="text-xl font-black tracking-tight text-slate-900">
-            Want alerts for useful mobile deals, promos and competitions?
+            Want More Useful Mobile Alerts?
           </h2>
-          <button
-            type="button"
-            onClick={() => {
-              triggerOneSignalPrompt();
-              setAlertsHint("If your browser allows it, you'll see a prompt to enable alerts.");
-            }}
-            className="mt-3 min-h-[44px] rounded-xl bg-[#031636] px-4 text-sm font-black text-white hover:bg-[#1b6d24] transition-colors"
-          >
-            Turn On Alerts
-          </button>
+          <p className="mt-2 text-sm text-slate-600">
+            Get alerts for cheaper data deals, airtime promos, verified competitions and practical network updates.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                triggerOneSignalPrompt();
+                setAlertsHint("If your browser allows it, you'll see a prompt to enable alerts.");
+              }}
+              className="min-h-[44px] rounded-xl bg-[#031636] px-4 text-sm font-black text-white hover:bg-[#1b6d24] transition-colors"
+            >
+              Turn On Alerts
+            </button>
+            <Link
+              to="/alerts/"
+              className="inline-flex min-h-[44px] items-center rounded-xl border border-slate-200 px-4 text-sm font-black text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+            >
+              View Alerts Options
+            </Link>
+          </div>
           {alertsHint ? <p className="mt-2 text-sm text-slate-600">{alertsHint}</p> : null}
         </section>
 

@@ -394,6 +394,19 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
           </Link>
         </section>
 
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
+          <h2 className="text-xl font-black tracking-tight mb-2 text-slate-900">Want Useful Mobile Alerts?</h2>
+          <p className="text-sm text-slate-600 leading-relaxed mb-4">
+            Get alerts for cheaper data deals, airtime promos, verified competitions and practical network updates.
+          </p>
+          <Link
+            to="/alerts/"
+            className="inline-flex min-h-[44px] items-center rounded-xl bg-[#1b6d24] px-4 text-sm font-black text-white hover:bg-[#14521c] transition-colors"
+          >
+            Turn On Alerts
+          </Link>
+        </section>
+
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">

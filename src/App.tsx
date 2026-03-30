@@ -36,6 +36,7 @@ function AppContent() {
   const navigateTo: NavigateFunction = (page, slug) => {
     let path = '/';
     if (page === 'ussd') path = '/ussd-codes-south-africa/';
+    if (page === 'alerts') path = '/alerts/';
     if (page === 'guide' && slug) path = `/guides/${slug}/`;
     if (page === 'network') {
       path = slug ? `/network/${slug}/` : '/network/';
@@ -55,6 +56,10 @@ function AppContent() {
   const handleScrollTo = (id: string) => {
     if (id === 'ussd') {
       navigateTo('ussd');
+      return;
+    }
+    if (id === 'alerts') {
+      navigateTo('alerts');
       return;
     }
     if (id === 'guides') {
