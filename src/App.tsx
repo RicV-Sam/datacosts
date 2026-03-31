@@ -209,6 +209,26 @@ function AppContent() {
           element={<ComparisonGuidePage guideSlug="cheapest-10gb-data-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route
+          path="/guides/cheapest-2gb-data-south-africa/"
+          element={<ComparisonGuidePage guideSlug="cheapest-2gb-data-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/cheapest-5gb-data-south-africa/"
+          element={<ComparisonGuidePage guideSlug="cheapest-5gb-data-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/cheapest-15gb-data-south-africa/"
+          element={<ComparisonGuidePage guideSlug="cheapest-15gb-data-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/cheapest-20gb-data-south-africa/"
+          element={<ComparisonGuidePage guideSlug="cheapest-20gb-data-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/cheapest-50gb-data-south-africa/"
+          element={<ComparisonGuidePage guideSlug="cheapest-50gb-data-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
           path="/guides/cheapest-unlimited-data-south-africa/"
           element={<CheapestUnlimitedData onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />

@@ -2,7 +2,12 @@ import { NetworkName } from '../types';
 
 export type ComparisonGuideSlug =
   | 'cheapest-1gb-data-south-africa'
+  | 'cheapest-2gb-data-south-africa'
+  | 'cheapest-5gb-data-south-africa'
   | 'cheapest-10gb-data-south-africa'
+  | 'cheapest-15gb-data-south-africa'
+  | 'cheapest-20gb-data-south-africa'
+  | 'cheapest-50gb-data-south-africa'
   | 'best-monthly-data-deals-south-africa'
   | 'best-prepaid-data-deals-south-africa'
   | 'cheapest-whatsapp-bundles-south-africa'
@@ -10,7 +15,12 @@ export type ComparisonGuideSlug =
 
 export type ComparisonGuideMode =
   | 'cheapest-1gb'
+  | 'cheapest-2gb'
+  | 'cheapest-5gb'
   | 'cheapest-10gb'
+  | 'cheapest-15gb'
+  | 'cheapest-20gb'
+  | 'cheapest-50gb'
   | 'best-monthly'
   | 'best-prepaid'
   | 'cheapest-whatsapp'
@@ -25,6 +35,16 @@ export interface ComparisonLink {
 export interface ComparisonFaq {
   question: string;
   answer: string;
+}
+
+export interface ComparisonAudienceItem {
+  title: string;
+  description: string;
+}
+
+export interface ComparisonSizeFitItem {
+  title: string;
+  description: string;
 }
 
 export interface ComparisonGuideDefinition {
@@ -43,6 +63,10 @@ export interface ComparisonGuideDefinition {
   trustLine: string;
   faqs: ComparisonFaq[];
   links: ComparisonLink[];
+  whoShouldBuyTitle?: string;
+  whoShouldBuy?: ComparisonAudienceItem[];
+  sizeFitTitle?: string;
+  sizeFit?: ComparisonSizeFitItem[];
   coverageFirstNetwork?: NetworkName;
 }
 
@@ -142,12 +166,272 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       }
     ],
     links: [
+      { href: '/guides/cheapest-5gb-data-south-africa/', label: 'Cheapest 5GB Data', description: 'Downgrade to a lighter mid-range benchmark.' },
+      { href: '/guides/cheapest-15gb-data-south-africa/', label: 'Cheapest 15GB Data', description: 'Move up when 10GB is too tight.' },
+      { href: '/guides/cheapest-20gb-data-south-africa/', label: 'Cheapest 20GB Data', description: 'Compare higher monthly value options.' },
       { href: '/network/vodacom/monthly-data/', label: 'Vodacom monthly bundles', description: 'Vodacom monthly intent page.' },
       { href: '/network/mtn/monthly-data/', label: 'MTN monthly bundles', description: 'MTN monthly intent page.' },
-      { href: '/network/telkom/monthly-data/', label: 'Telkom monthly bundles', description: 'Telkom monthly intent page.' },
-      { href: '/network/cell-c/monthly-data/', label: 'Cell C monthly bundles', description: 'Cell C monthly intent page.' },
-      { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best monthly data deals', description: 'Compare broader monthly value.' },
-      { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB guide', description: 'Compare low-volume benchmark pricing.' }
+      { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best monthly data deals', description: 'Compare broader monthly value.' }
+    ],
+    coverageFirstNetwork: 'Vodacom'
+  },
+  'cheapest-2gb-data-south-africa': {
+    slug: 'cheapest-2gb-data-south-africa',
+    mode: 'cheapest-2gb',
+    canonicalPath: '/guides/cheapest-2gb-data-south-africa/',
+    title: 'Cheapest 2GB Data in South Africa (2026) | DataCost',
+    metaDescription:
+      'Compare the cheapest 2GB data bundles in South Africa across Vodacom, MTN, Telkom and Cell C. See who offers the best value and who 2GB suits.',
+    h1: 'Cheapest 2GB Data in South Africa (2026)',
+    intro:
+      '2GB bundles are usually for low-budget or emergency monthly usage. This page compares practical 2GB-style options across major networks so you can see whether a small bundle still makes sense for your real usage.',
+    tableTitle: '2GB Comparison Across Major Networks',
+    quickHeading: 'Is 2GB still worth buying in South Africa?',
+    watchOuts: [
+      '2GB can finish quickly with autoplay video, app updates, and cloud sync enabled.',
+      'Some operators have limited exact 2GB listings, so the closest practical size may be shown.',
+      'Using data after the bundle ends can drain airtime quickly at out-of-bundle rates.'
+    ],
+    savingsTips: [
+      'Keep updates and backups on Wi-Fi only if you are buying 2GB.',
+      'Use data-saver settings in social apps to stretch a small monthly bundle.',
+      'If you top up often, compare 5GB options because they can be better value over a month.'
+    ],
+    whoShouldBuyTitle: 'Who should buy 2GB bundles?',
+    whoShouldBuy: [
+      { title: 'Light users', description: 'Best for WhatsApp, email, light browsing, and short daily sessions.' },
+      { title: 'Emergency top-up buyers', description: 'Useful when you need temporary connectivity before your next full recharge.' },
+      { title: 'Strict budget users', description: 'Can work when your monthly data budget is very tight and usage is controlled.' }
+    ],
+    sizeFitTitle: 'When 2GB is not enough (or too much)',
+    sizeFit: [
+      { title: 'Usually not enough for regular video use', description: 'Frequent TikTok, YouTube, and Instagram video will normally finish 2GB fast.' },
+      { title: 'Sometimes too much for voice-only users', description: 'If your usage is mostly calls and occasional text, very short bundles can be enough.' },
+      { title: 'Upgrade path', description: 'If you often buy extra data mid-month, compare 5GB and 10GB guides for stronger value.' }
+    ],
+    trustLine:
+      'This 2GB guide focuses on practical low-budget telecom buying behavior in South Africa, including value risk when small bundles are repeatedly topped up.',
+    faqs: [
+      { question: 'Is 2GB enough for a month in South Africa?', answer: 'It can be enough for light chat, email, and browsing, but usually not enough for regular video streaming or hotspot use.' },
+      { question: 'Which network has the cheapest 2GB data?', answer: 'It changes as offers rotate. Use the current table as a benchmark and confirm final checkout pricing on operator channels.' },
+      { question: 'Is 2GB better than buying daily bundles?', answer: 'For many users, yes. A single 2GB purchase is often more manageable and can reduce repeated daily top-up costs.' },
+      { question: 'What is the biggest risk with 2GB bundles?', answer: 'The biggest risk is out-of-bundle airtime leakage once the bundle ends.' }
+    ],
+    links: [
+      { href: '/guides/cheapest-5gb-data-south-africa/', label: 'Cheapest 5GB Data', description: 'Upgrade to the next common prepaid size.' },
+      { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data', description: 'Compare a mainstream monthly benchmark.' },
+      { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'See overall market comparison first.' },
+      { href: '/guides/best-prepaid-data-deals-south-africa/', label: 'Best Prepaid Data Deals', description: 'Find stronger prepaid value options.' },
+      { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes', description: 'Quick ways to check balance and buy data.' },
+      { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Track usage before your 2GB runs out.' }
+    ],
+    coverageFirstNetwork: 'Vodacom'
+  },
+  'cheapest-5gb-data-south-africa': {
+    slug: 'cheapest-5gb-data-south-africa',
+    mode: 'cheapest-5gb',
+    canonicalPath: '/guides/cheapest-5gb-data-south-africa/',
+    title: 'Cheapest 5GB Data in South Africa (2026) | DataCost',
+    metaDescription:
+      'Compare the cheapest 5GB data bundles in South Africa. See network-by-network value, validity trade-offs, and who 5GB is best for.',
+    h1: 'Cheapest 5GB Data in South Africa (2026)',
+    intro:
+      '5GB is a common mid-level prepaid size for users who need more than basic chat but are still budget-conscious. This page helps you compare currently listed options and whether 5GB is enough for your month.',
+    tableTitle: '5GB Comparison Across Major Networks',
+    quickHeading: 'Is 5GB a good-value mid-range bundle?',
+    watchOuts: [
+      'Exact 5GB options may be limited on some networks, so nearby sizes can be more practical.',
+      'If your usage includes frequent video, 5GB can run out before month-end.',
+      'A low upfront price can still be weak value if validity is short.'
+    ],
+    savingsTips: [
+      'Use 5GB when your usage is mostly social, browsing, and occasional video.',
+      'Compare cost per GB and validity together, not price alone.',
+      'If 5GB keeps finishing early, move to 10GB instead of repeated top-ups.'
+    ],
+    whoShouldBuyTitle: 'Who should buy 5GB bundles?',
+    whoShouldBuy: [
+      { title: 'Moderate prepaid users', description: 'Suitable for mixed usage: chat, browsing, maps, and moderate social media.' },
+      { title: 'Commuters and students', description: 'Good for daily mobile use without jumping straight to large monthly plans.' },
+      { title: 'Value-focused users', description: 'Useful for buyers who want better value than 1GB or 2GB without a high upfront spend.' }
+    ],
+    sizeFitTitle: 'When 5GB is not enough (or too much)',
+    sizeFit: [
+      { title: 'Not enough for heavy streaming', description: 'Daily video watching and hotspot usage usually require 10GB or more.' },
+      { title: 'Too much for occasional users', description: 'If you mainly use WhatsApp and email, smaller bundles may be cheaper overall.' },
+      { title: 'Upgrade/downgrade path', description: 'Compare 2GB for tighter budgets and 10GB for heavier monthly use.' }
+    ],
+    trustLine:
+      'This 5GB guide is built for practical South African prepaid buying decisions where budget limits and usage fit matter as much as headline bundle price.',
+    faqs: [
+      { question: 'Which network has the cheapest 5GB data bundle?', answer: 'It varies by promo cycle. Use this page as a live benchmark and verify final menu pricing before checkout.' },
+      { question: 'Is 5GB enough for social media and browsing?', answer: 'For moderate use, yes. For heavy short-video use, it may finish quickly.' },
+      { question: 'Is 5GB better value than buying multiple 1GB bundles?', answer: 'Often yes, especially when validity is longer and cost per GB is lower.' },
+      { question: 'Should I choose 5GB or 10GB?', answer: 'If you regularly run out before month-end, 10GB is usually the better long-term option.' }
+    ],
+    links: [
+      { href: '/guides/cheapest-2gb-data-south-africa/', label: 'Cheapest 2GB Data', description: 'Lower-budget alternative for lighter usage.' },
+      { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data', description: 'Step up to a mainstream monthly size.' },
+      { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals', description: 'Compare 30-day value across networks.' },
+      { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Market-wide benchmark page.' },
+      { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs Contract', description: 'Choose the right billing model for your usage.' },
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Check balances and buy menus quickly.' }
+    ],
+    coverageFirstNetwork: 'Vodacom'
+  },
+  'cheapest-15gb-data-south-africa': {
+    slug: 'cheapest-15gb-data-south-africa',
+    mode: 'cheapest-15gb',
+    canonicalPath: '/guides/cheapest-15gb-data-south-africa/',
+    title: 'Cheapest 15GB Data in South Africa (2026) | DataCost',
+    metaDescription:
+      'Compare the cheapest 15GB data options in South Africa. See which network gives the best value and when 15GB is a smarter buy than 10GB.',
+    h1: 'Cheapest 15GB Data in South Africa (2026)',
+    intro:
+      '15GB is a practical step-up for users who find 10GB too tight but do not want to pay for very large plans. This guide compares the closest useful 15GB-style options and shows when this size makes financial sense.',
+    tableTitle: '15GB Comparison Across Major Networks',
+    quickHeading: 'When is 15GB the smartest middle-ground option?',
+    watchOuts: [
+      'Exact 15GB bundles are not always listed by every network, so nearest practical options may appear.',
+      'Some larger bundles include split usage windows or promo conditions that affect real value.',
+      'If you hotspot regularly, 15GB can still finish faster than expected.'
+    ],
+    savingsTips: [
+      'Use 15GB-style bundles when 10GB consistently ends early in your month.',
+      'Compare 15GB-style pricing against 20GB because bigger bundles can sometimes cost less per GB.',
+      'Track data usage by app so you know whether to upgrade or optimize first.'
+    ],
+    whoShouldBuyTitle: 'Who should buy 15GB bundles?',
+    whoShouldBuy: [
+      { title: 'Active social users', description: 'Good for users who browse and stream short video regularly but not all day.' },
+      { title: 'Mixed work-and-personal users', description: 'Useful for messaging, browsing, calls, and moderate cloud usage.' },
+      { title: 'Users moving up from 10GB', description: 'A common upgrade path for people who run out in week three or four.' }
+    ],
+    sizeFitTitle: 'When 15GB is not enough (or too much)',
+    sizeFit: [
+      { title: 'Not enough for heavy hotspot usage', description: 'If you tether devices often, compare 20GB or 50GB options.' },
+      { title: 'Too much for light chat users', description: 'If most usage is messaging only, 5GB or 10GB may be more cost-efficient.' },
+      { title: 'Upgrade/downgrade path', description: 'Compare 10GB for lower spend and 20GB for stronger heavy-month value.' }
+    ],
+    trustLine:
+      'This 15GB guide is designed for South African users choosing a practical mid-high bundle size, with clarity on value and fit rather than headline pricing alone.',
+    faqs: [
+      { question: 'Is 15GB enough for a month?', answer: 'For many active users, yes. For frequent streaming or hotspot use, 20GB may be safer.' },
+      { question: 'Why compare 15GB against 20GB?', answer: 'Because bigger bundles can sometimes have a better cost-per-GB, even if the upfront price is higher.' },
+      { question: 'Do all networks have an exact 15GB plan?', answer: 'Not always. This guide uses the closest practical options where exact 15GB is unavailable.' },
+      { question: 'Who benefits most from 15GB bundles?', answer: 'Users who outgrow 10GB but do not need very large 30GB to 50GB plans.' }
+    ],
+    links: [
+      { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data', description: 'Compare the lower mainstream benchmark.' },
+      { href: '/guides/cheapest-20gb-data-south-africa/', label: 'Cheapest 20GB Data', description: 'Compare the next higher-value size.' },
+      { href: '/guides/cheapest-50gb-data-south-africa/', label: 'Cheapest 50GB Data', description: 'For hotspot and heavy monthly usage.' },
+      { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals', description: 'Broader monthly comparison context.' },
+      { href: '/network/', label: 'Network Comparison Hub', description: 'Compare network-level strengths before buying.' },
+      { href: '/guides/why-is-my-data-finishing-so-fast/', label: 'Why Data Finishes Fast', description: 'Reduce avoidable monthly data drain.' }
+    ],
+    coverageFirstNetwork: 'Vodacom'
+  },
+  'cheapest-20gb-data-south-africa': {
+    slug: 'cheapest-20gb-data-south-africa',
+    mode: 'cheapest-20gb',
+    canonicalPath: '/guides/cheapest-20gb-data-south-africa/',
+    title: 'Cheapest 20GB Data in South Africa (2026) | DataCost',
+    metaDescription:
+      'Compare the cheapest 20GB data bundles in South Africa. See current network value, validity differences, and who should buy 20GB plans.',
+    h1: 'Cheapest 20GB Data in South Africa (2026)',
+    intro:
+      '20GB is one of the strongest monthly value points for many South African prepaid users who stream regularly or share data with family. This page compares currently listed 20GB-style offers by network.',
+    tableTitle: '20GB Comparison Across Major Networks',
+    quickHeading: 'Is 20GB better value than 10GB or 15GB?',
+    watchOuts: [
+      'A bigger headline bundle still needs the right validity and usage conditions.',
+      'Some 20GB plans are tied to promo windows and can change month to month.',
+      'Heavy hotspot users may still need 50GB-level planning.'
+    ],
+    savingsTips: [
+      'If you top up a 10GB bundle every month, compare your total spend against a single 20GB purchase.',
+      'Use app-level controls to keep 20GB from being consumed by background activity.',
+      'Compare monthly options and personalised promos before checkout.'
+    ],
+    whoShouldBuyTitle: 'Who should buy 20GB bundles?',
+    whoShouldBuy: [
+      { title: 'Regular streamers', description: 'Good for users watching moderate amounts of YouTube, TikTok, and Instagram video.' },
+      { title: 'Household support users', description: 'Useful when one SIM helps cover multiple devices occasionally.' },
+      { title: 'Heavy monthly prepaid users', description: 'Strong for people who consistently exceed 10GB but still want spend control.' }
+    ],
+    sizeFitTitle: 'When 20GB is not enough (or too much)',
+    sizeFit: [
+      { title: 'Not enough for full-time hotspot use', description: 'Daily tethering for work or home backup can require 50GB or unlimited options.' },
+      { title: 'Too much for light users', description: 'If you mostly chat and browse, 5GB to 10GB may be better value for your budget.' },
+      { title: 'Upgrade/downgrade path', description: 'Compare 15GB for a lower spend and 50GB for heavy consistent throughput.' }
+    ],
+    trustLine:
+      'This 20GB comparison focuses on practical month-long prepaid value and the trade-off between higher upfront cost and reduced repeat top-ups.',
+    faqs: [
+      { question: 'Which network has the cheapest 20GB data in South Africa?', answer: 'It depends on current promotions and listed terms. Use the table here as a benchmark and verify final checkout pricing.' },
+      { question: 'Is 20GB enough for streaming and social media?', answer: 'For many users it is enough, but heavy daily streaming or hotspot usage can still exceed 20GB.' },
+      { question: 'Is 20GB usually better value than 10GB?', answer: 'Often yes on cost per GB, especially if you regularly top up smaller bundles during the month.' },
+      { question: 'Should I buy 20GB prepaid or a contract plan?', answer: 'Prepaid is often better for spend control; contract may suit users who prefer fixed monthly billing and added services.' }
+    ],
+    links: [
+      { href: '/guides/cheapest-15gb-data-south-africa/', label: 'Cheapest 15GB Data', description: 'Lower mid-high size benchmark.' },
+      { href: '/guides/cheapest-50gb-data-south-africa/', label: 'Cheapest 50GB Data', description: 'Move up for heavy hotspot and backup usage.' },
+      { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data', description: 'Compare against the mainstream monthly size.' },
+      { href: '/guides/cheapest-unlimited-data-south-africa/', label: 'Cheapest Unlimited Data', description: 'Compare heavy-use alternatives.' },
+      { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs Contract', description: 'Choose the right purchase model.' },
+      { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Track usage and avoid overspend.' }
+    ],
+    coverageFirstNetwork: 'Vodacom'
+  },
+  'cheapest-50gb-data-south-africa': {
+    slug: 'cheapest-50gb-data-south-africa',
+    mode: 'cheapest-50gb',
+    canonicalPath: '/guides/cheapest-50gb-data-south-africa/',
+    title: 'Cheapest 50GB Data in South Africa (2026) | DataCost',
+    metaDescription:
+      'Compare the cheapest 50GB data options in South Africa for heavy users, hotspot usage, and work-from-phone setups. See value and watch-outs by network.',
+    h1: 'Cheapest 50GB Data in South Africa (2026)',
+    intro:
+      '50GB-level bundles are for heavy monthly users who rely on mobile internet for work, hotspot sharing, or home backup. This page compares currently listed large-size options and highlights where value and reliability matter most.',
+    tableTitle: '50GB Comparison Across Major Networks',
+    quickHeading: 'Who should buy 50GB data bundles?',
+    watchOuts: [
+      'Exact 50GB plans are not always available on every network at all times.',
+      'Large bundles can still be poor value if your coverage is weak in key locations.',
+      'If your usage is mostly chat and browsing, 50GB may be unnecessary spend.'
+    ],
+    savingsTips: [
+      'Only buy 50GB when your usage consistently justifies it month after month.',
+      'Check network performance in your area before prioritizing small price differences.',
+      'Compare 20GB and unlimited plans to confirm the best heavy-use option.'
+    ],
+    whoShouldBuyTitle: 'Who should buy 50GB bundles?',
+    whoShouldBuy: [
+      { title: 'Heavy mobile users', description: 'Suitable for users who stream often, download large files, and stay online most of the day.' },
+      { title: 'Hotspot and tethering users', description: 'Useful for people sharing internet with laptops or multiple devices.' },
+      { title: 'Home backup users', description: 'Can work as a backup connection where fixed internet is unreliable.' }
+    ],
+    sizeFitTitle: 'When 50GB is not enough (or too much)',
+    sizeFit: [
+      { title: 'Not enough for very high household usage', description: 'Large families with continuous streaming may still need unlimited or fixed options.' },
+      { title: 'Too much for moderate users', description: 'If you usually stay under 20GB, this size may not be cost-efficient.' },
+      { title: 'Upgrade/downgrade path', description: 'Compare 20GB for lighter heavy use and unlimited for consistently high throughput.' }
+    ],
+    trustLine:
+      'This 50GB guide is built for high-intent heavy-usage decisions in South Africa where total monthly spend and network stability are both critical.',
+    faqs: [
+      { question: 'What can I do with 50GB of data in a month?', answer: '50GB can support heavy browsing, regular streaming, remote work tasks, and moderate hotspot sharing depending on quality settings.' },
+      { question: 'Which network has the cheapest 50GB data bundle?', answer: 'The answer changes by cycle and promotions. Use this comparison as a benchmark and confirm final operator pricing before purchase.' },
+      { question: 'Is 50GB better than unlimited data?', answer: 'It depends on your usage and budget. 50GB can be more controlled on spend, while unlimited can suit very heavy users if terms are acceptable.' },
+      { question: 'Should I buy 50GB for hotspot use?', answer: 'Yes if your hotspot usage is regular and you monitor consumption. If usage is extreme, compare unlimited alternatives.' }
+    ],
+    links: [
+      { href: '/guides/cheapest-20gb-data-south-africa/', label: 'Cheapest 20GB Data', description: 'Lower heavy-use benchmark with lower upfront cost.' },
+      { href: '/guides/cheapest-unlimited-data-south-africa/', label: 'Cheapest Unlimited Data', description: 'Compare true heavy-use alternatives.' },
+      { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals', description: 'Broader monthly value context.' },
+      { href: '/network/', label: 'Network Comparison Hub', description: 'Compare network quality and practical fit.' },
+      { href: '/guides/why-is-my-data-finishing-so-fast/', label: 'Why Data Finishes Fast', description: 'Cut avoidable drain and stretch usage.' },
+      { href: '/methodology/', label: 'Methodology', description: 'See how DataCost compares network pricing.' }
     ],
     coverageFirstNetwork: 'Vodacom'
   },

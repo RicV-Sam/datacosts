@@ -35,6 +35,8 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
 
   const popularGuides = [
     { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', description: 'Start here for a quick market-level view of where prepaid data is cheapest right now.', path: '/guides/cheapest-data-south-africa/' },
+    { slug: 'cheapest-2gb-data-south-africa', title: 'Cheapest 2GB Data South Africa', description: 'Low-budget bundle benchmark for light monthly users.', path: '/guides/cheapest-2gb-data-south-africa/' },
+    { slug: 'cheapest-5gb-data-south-africa', title: 'Cheapest 5GB Data South Africa', description: 'Mid-range prepaid comparison for moderate users.', path: '/guides/cheapest-5gb-data-south-africa/' },
     { slug: 'why-is-my-airtime-disappearing-south-africa' },
     { slug: 'airtime-data-saving-tips-south-africa' },
     { slug: 'cheapest-1gb-data-south-africa' },
@@ -50,7 +52,12 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       links: [
         { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', path: '/guides/cheapest-data-south-africa/' },
         { slug: 'cheapest-1gb-data-south-africa' },
+        { slug: 'cheapest-2gb-data-south-africa', title: 'Cheapest 2GB Data South Africa', description: 'Practical low-budget benchmark for light users and emergency recharges.', path: '/guides/cheapest-2gb-data-south-africa/' },
+        { slug: 'cheapest-5gb-data-south-africa', title: 'Cheapest 5GB Data South Africa', description: 'A common prepaid mid-range size for regular mobile use.', path: '/guides/cheapest-5gb-data-south-africa/' },
         { slug: 'cheapest-10gb-data-south-africa', title: 'Cheapest 10GB Data South Africa', description: 'Compare currently listed 10GB bundles across networks and see who offers the strongest value profile.', path: '/guides/cheapest-10gb-data-south-africa/' },
+        { slug: 'cheapest-15gb-data-south-africa', title: 'Cheapest 15GB Data South Africa', description: 'Middle-ground option when 10GB feels too tight but 20GB is too expensive.', path: '/guides/cheapest-15gb-data-south-africa/' },
+        { slug: 'cheapest-20gb-data-south-africa', title: 'Cheapest 20GB Data South Africa', description: 'High-value monthly benchmark for heavier regular users.', path: '/guides/cheapest-20gb-data-south-africa/' },
+        { slug: 'cheapest-50gb-data-south-africa', title: 'Cheapest 50GB Data South Africa', description: 'Heavy-usage and hotspot-oriented buying guide.', path: '/guides/cheapest-50gb-data-south-africa/' },
         { slug: 'best-monthly-data-deals-south-africa', title: 'Best Monthly Data Deals South Africa', description: 'A focused 30-day bundle comparison for users who buy data monthly and want better value.', path: '/guides/best-monthly-data-deals-south-africa/' },
         { slug: 'best-prepaid-data-deals-south-africa', title: 'Best Prepaid Data Deals South Africa', description: 'Find practical prepaid options by network, use case, and currently listed cost-per-GB.', path: '/guides/best-prepaid-data-deals-south-africa/' },
         { slug: 'cheapest-unlimited-data-south-africa', title: 'Cheapest Unlimited Data South Africa', description: 'Compare unlimited-style plans and capped alternatives for heavy monthly usage.', path: '/guides/cheapest-unlimited-data-south-africa/' },

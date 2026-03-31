@@ -112,7 +112,12 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     '/guides/best-data-deals-south-africa/',
     '/guides/airtime-data-saving-tips-south-africa/',
     '/guides/cheapest-1gb-data-south-africa/',
+    '/guides/cheapest-2gb-data-south-africa/',
+    '/guides/cheapest-5gb-data-south-africa/',
     '/guides/cheapest-10gb-data-south-africa/',
+    '/guides/cheapest-15gb-data-south-africa/',
+    '/guides/cheapest-20gb-data-south-africa/',
+    '/guides/cheapest-50gb-data-south-africa/',
     '/guides/cheapest-unlimited-data-south-africa/',
     '/guides/cheapest-whatsapp-bundles-south-africa/',
     '/guides/vodacom-vs-mtn-data-prices/',
@@ -126,7 +131,12 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     '/guides/best-data-deals-south-africa/': 'Best Data Deals South Africa',
     '/guides/airtime-data-saving-tips-south-africa/': 'Airtime & Data Saving Tips South Africa',
     '/guides/cheapest-1gb-data-south-africa/': 'Cheapest 1GB Data South Africa',
+    '/guides/cheapest-2gb-data-south-africa/': 'Cheapest 2GB Data South Africa',
+    '/guides/cheapest-5gb-data-south-africa/': 'Cheapest 5GB Data South Africa',
     '/guides/cheapest-10gb-data-south-africa/': 'Cheapest 10GB Data South Africa',
+    '/guides/cheapest-15gb-data-south-africa/': 'Cheapest 15GB Data South Africa',
+    '/guides/cheapest-20gb-data-south-africa/': 'Cheapest 20GB Data South Africa',
+    '/guides/cheapest-50gb-data-south-africa/': 'Cheapest 50GB Data South Africa',
     '/guides/cheapest-unlimited-data-south-africa/': 'Cheapest Unlimited Data South Africa',
     '/guides/cheapest-whatsapp-bundles-south-africa/': 'Cheapest WhatsApp Bundles South Africa',
     '/guides/vodacom-vs-mtn-data-prices/': 'Vodacom vs MTN Data Prices',
@@ -247,19 +257,47 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
         </section>
 
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">Cheapest 1GB, 10GB and Unlimited Data</h2>
+          <h2 className="text-2xl font-black tracking-tight mb-4">Bundle Size Quick Access</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
               <h3 className="font-black mb-2">Cheapest 1GB</h3>
-              <p className="text-sm text-slate-700">{cheapest1Gb ? `${cheapest1Gb.network}: ${cheapest1Gb.name} (R${cheapest1Gb.price})` : 'Check the 1GB guide for current options.'}</p>
+              <p className="text-sm text-slate-700 mb-2">{cheapest1Gb ? `${cheapest1Gb.network}: ${cheapest1Gb.name} (R${cheapest1Gb.price})` : 'Check the 1GB guide for current options.'}</p>
+              <a href="/guides/cheapest-1gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 1GB guide</a>
+            </div>
+            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
+              <h3 className="font-black mb-2">Cheapest 2GB</h3>
+              <p className="text-sm text-slate-700 mb-2">Ideal for low-budget light usage and emergency monthly top-ups.</p>
+              <a href="/guides/cheapest-2gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 2GB guide</a>
+            </div>
+            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
+              <h3 className="font-black mb-2">Cheapest 5GB</h3>
+              <p className="text-sm text-slate-700 mb-2">Good mid-range benchmark for moderate prepaid usage.</p>
+              <a href="/guides/cheapest-5gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 5GB guide</a>
             </div>
             <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
               <h3 className="font-black mb-2">Cheapest 10GB</h3>
-              <p className="text-sm text-slate-700">{cheapest10Gb ? `${cheapest10Gb.network}: ${cheapest10Gb.name} (R${cheapest10Gb.price})` : 'Check the 10GB guide for current options.'}</p>
+              <p className="text-sm text-slate-700 mb-2">{cheapest10Gb ? `${cheapest10Gb.network}: ${cheapest10Gb.name} (R${cheapest10Gb.price})` : 'Check the 10GB guide for current options.'}</p>
+              <a href="/guides/cheapest-10gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 10GB guide</a>
+            </div>
+            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
+              <h3 className="font-black mb-2">Cheapest 15GB</h3>
+              <p className="text-sm text-slate-700 mb-2">Middle-ground choice when 10GB is not enough.</p>
+              <a href="/guides/cheapest-15gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 15GB guide</a>
+            </div>
+            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
+              <h3 className="font-black mb-2">Cheapest 20GB</h3>
+              <p className="text-sm text-slate-700 mb-2">Strong monthly value point for heavier regular users.</p>
+              <a href="/guides/cheapest-20gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 20GB guide</a>
+            </div>
+            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
+              <h3 className="font-black mb-2">Cheapest 50GB</h3>
+              <p className="text-sm text-slate-700 mb-2">For hotspot-heavy users and high monthly demand.</p>
+              <a href="/guides/cheapest-50gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 50GB guide</a>
             </div>
             <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
               <h3 className="font-black mb-2">Cheapest Unlimited</h3>
-              <p className="text-sm text-slate-700">{cheapestUnlimited ? `${cheapestUnlimited.network}: ${cheapestUnlimited.name} (R${cheapestUnlimited.price})` : 'Check the unlimited guide for current options.'}</p>
+              <p className="text-sm text-slate-700 mb-2">{cheapestUnlimited ? `${cheapestUnlimited.network}: ${cheapestUnlimited.name} (R${cheapestUnlimited.price})` : 'Check the unlimited guide for current options.'}</p>
+              <a href="/guides/cheapest-unlimited-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open unlimited guide</a>
             </div>
           </div>
         </section>

@@ -128,7 +128,12 @@ export function getIndexableRoutes(): string[] {
   routes.add('/guides/best-data-deals-south-africa/');
   routes.add('/guides/best-prepaid-data-deals-south-africa/');
   routes.add('/guides/best-monthly-data-deals-south-africa/');
+  routes.add('/guides/cheapest-2gb-data-south-africa/');
+  routes.add('/guides/cheapest-5gb-data-south-africa/');
   routes.add('/guides/cheapest-10gb-data-south-africa/');
+  routes.add('/guides/cheapest-15gb-data-south-africa/');
+  routes.add('/guides/cheapest-20gb-data-south-africa/');
+  routes.add('/guides/cheapest-50gb-data-south-africa/');
   routes.add('/guides/cheapest-unlimited-data-south-africa/');
   routes.add('/guides/best-sim-only-deals-south-africa/');
   routes.add('/guides/cheapest-whatsapp-bundles-south-africa/');

@@ -58,6 +58,19 @@ function isSocialBundle(bundle: Bundle): boolean {
   return bundle.type === 'Social' || bundle.name.toLowerCase().includes('whatsapp') || bundle.name.toLowerCase().includes('social');
 }
 
+function getTargetSizeGb(mode: string): number | null {
+  const targetMap: Record<string, number> = {
+    'cheapest-2gb': 2,
+    'cheapest-5gb': 5,
+    'cheapest-10gb': 10,
+    'cheapest-15gb': 15,
+    'cheapest-20gb': 20,
+    'cheapest-50gb': 50
+  };
+
+  return targetMap[mode] ?? null;
+}
+
 function filterBundlesByMode(mode: string): Bundle[] {
   const base = bundles.filter((bundle) => CORE_NETWORKS.includes(bundle.network));
 
@@ -67,6 +80,16 @@ function filterBundlesByMode(mode: string): Bundle[] {
 
   if (mode === 'cheapest-10gb') {
     return base.filter((bundle) => bundle.volume === '10GB' && !isNightBundle(bundle) && !isSocialBundle(bundle));
+  }
+
+  if (
+    mode === 'cheapest-2gb' ||
+    mode === 'cheapest-5gb' ||
+    mode === 'cheapest-15gb' ||
+    mode === 'cheapest-20gb' ||
+    mode === 'cheapest-50gb'
+  ) {
+    return base.filter((bundle) => !isNightBundle(bundle) && !isSocialBundle(bundle));
   }
 
   if (mode === 'best-monthly') {
@@ -88,8 +111,46 @@ function filterBundlesByMode(mode: string): Bundle[] {
   return base;
 }
 
+function pickClosestBundleForTarget(rows: Bundle[], targetGb: number): Bundle | null {
+  if (!rows.length) return null;
+
+  const exactMatches = rows.filter((bundle) => volumeToGb(bundle.volume) === targetGb);
+  if (exactMatches.length > 0) {
+    return [...exactMatches].sort((a, b) => a.price - b.price)[0];
+  }
+
+  const sizedRows = rows
+    .map((bundle) => ({ bundle, gb: volumeToGb(bundle.volume) }))
+    .filter((item) => Number.isFinite(item.gb) && item.gb > 0);
+
+  if (!sizedRows.length) {
+    return [...rows].sort((a, b) => a.price - b.price)[0];
+  }
+
+  const ranked = [...sizedRows].sort((a, b) => {
+    const aDistance = Math.abs(a.gb - targetGb);
+    const bDistance = Math.abs(b.gb - targetGb);
+    if (aDistance !== bDistance) return aDistance - bDistance;
+
+    // Slightly prefer same-or-higher sizes for users searching a target bundle amount.
+    const aPenalty = a.gb < targetGb ? 1 : 0;
+    const bPenalty = b.gb < targetGb ? 1 : 0;
+    if (aPenalty !== bPenalty) return aPenalty - bPenalty;
+
+    if (a.bundle.costPerGb !== b.bundle.costPerGb) return a.bundle.costPerGb - b.bundle.costPerGb;
+    return a.bundle.price - b.bundle.price;
+  });
+
+  return ranked[0].bundle;
+}
+
 function pickBestRowBundleForMode(rows: Bundle[], mode: string): Bundle | null {
   if (!rows.length) return null;
+
+  const targetGb = getTargetSizeGb(mode);
+  if (targetGb) {
+    return pickClosestBundleForTarget(rows, targetGb);
+  }
 
   if (mode === 'best-monthly' || mode === 'best-prepaid') {
     const byValue = rows.filter((bundle) => bundle.costPerGb > 0).sort((a, b) => a.costPerGb - b.costPerGb)[0];
@@ -148,6 +209,15 @@ function getWinners(mode: string, rows: ComparisonRow[], coverageFirstNetwork: N
       { label: 'Best prepaid value', text: bestValue ? `${bestValue.network}: ${bestValue.name} (~R${bestValue.costPerGb.toFixed(2)}/GB).` : `${cheapest.network}: ${cheapest.name}.` },
       { label: 'Cheapest upfront prepaid', text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}.` },
       { label: 'Coverage-first pick', text: `${coverageFirst.network}: usually preferred when stability is more important than absolute lowest price.` }
+    ];
+  }
+
+  const targetGb = getTargetSizeGb(mode);
+  if (targetGb) {
+    return [
+      { label: `Cheapest ${targetGb}GB-style pick`, text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}.` },
+      { label: `Best ${targetGb}GB-style value`, text: bestValue ? `${bestValue.network}: ${bestValue.name} (~R${bestValue.costPerGb.toFixed(2)}/GB).` : `${cheapest.network}: ${cheapest.name}.` },
+      { label: 'Coverage-first fallback', text: `${coverageFirst.network}: useful when stability is more important than the absolute lowest listed price.` }
     ];
   }
 
@@ -262,6 +332,11 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
 
       if (definition.mode === 'cheapest-1gb') return toCanonicalUrl(`/network/${networkSlug}/cheapest-1gb/`);
       if (definition.mode === 'cheapest-10gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'cheapest-2gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'cheapest-5gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'cheapest-15gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'cheapest-20gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'cheapest-50gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
       if (definition.mode === 'best-monthly') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
       if (definition.mode === 'best-prepaid') return toCanonicalUrl(`/network/${networkSlug}/`);
       if (definition.mode === 'cheapest-whatsapp') return toCanonicalUrl(`/network/${networkSlug}/social-data/`);
@@ -318,7 +393,19 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto">{definition.intro}</p>
         </header>
 
-        <section className="mb-10 bg-[#031636] text-white rounded-[2.5rem] p-8 md:p-10 shadow-2xl">
+        <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm">
+          <h2 className="text-lg font-black tracking-tight mb-4">On This Page</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a href="#quick-answer" className="min-h-[44px] rounded-2xl px-4 py-3 bg-slate-50 border border-slate-100 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Quick answer</a>
+            <a href="#comparison-table" className="min-h-[44px] rounded-2xl px-4 py-3 bg-slate-50 border border-slate-100 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Comparison table</a>
+            {definition.whoShouldBuy && definition.whoShouldBuy.length > 0 && <a href="#who-should-buy" className="min-h-[44px] rounded-2xl px-4 py-3 bg-slate-50 border border-slate-100 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">Who should buy this size</a>}
+            {definition.sizeFit && definition.sizeFit.length > 0 && <a href="#size-fit" className="min-h-[44px] rounded-2xl px-4 py-3 bg-slate-50 border border-slate-100 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">When it is not enough / too much</a>}
+            <a href="#watch-outs" className="min-h-[44px] rounded-2xl px-4 py-3 bg-slate-50 border border-slate-100 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">What to watch out for</a>
+            <a href="#faq" className="min-h-[44px] rounded-2xl px-4 py-3 bg-slate-50 border border-slate-100 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">FAQs</a>
+          </div>
+        </section>
+
+        <section id="quick-answer" className="mb-10 bg-[#031636] text-white rounded-[2.5rem] p-8 md:p-10 shadow-2xl scroll-mt-32">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#a0f399]/10 text-[#a0f399] rounded-full text-[10px] font-black uppercase tracking-widest mb-5 border border-[#a0f399]/20">
             <ShieldCheck className="w-3.5 h-3.5" />
             Quick Verdict
@@ -338,7 +425,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
           )}
         </section>
 
-        <section className="mb-12">
+        <section id="comparison-table" className="mb-12 scroll-mt-32">
           <h2 className="text-2xl font-black tracking-tighter mb-5">{definition.tableTitle}</h2>
           <div className="overflow-x-auto bg-white rounded-3xl border border-slate-100 shadow-xl">
             <table className="w-full text-left min-w-[780px]">
@@ -374,7 +461,35 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
 
         <AdUnit type="inContent" />
 
-        <section className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
+        {definition.whoShouldBuy && definition.whoShouldBuy.length > 0 && (
+          <section id="who-should-buy" className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm scroll-mt-32">
+            <h2 className="text-2xl font-black tracking-tighter mb-6">{definition.whoShouldBuyTitle || 'Who Should Buy This Size?'}</h2>
+            <div className="space-y-5">
+              {definition.whoShouldBuy.map((item) => (
+                <div key={item.title} className="border-b border-slate-100 pb-5 last:border-b-0 last:pb-0">
+                  <h3 className="text-lg font-black tracking-tight mb-2">{item.title}</h3>
+                  <p className="text-slate-700 font-medium leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {definition.sizeFit && definition.sizeFit.length > 0 && (
+          <section id="size-fit" className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm scroll-mt-32">
+            <h2 className="text-2xl font-black tracking-tighter mb-6">{definition.sizeFitTitle || 'When This Size Is Not Enough (Or Too Much)'}</h2>
+            <div className="space-y-5">
+              {definition.sizeFit.map((item) => (
+                <div key={item.title} className="border-b border-slate-100 pb-5 last:border-b-0 last:pb-0">
+                  <h3 className="text-lg font-black tracking-tight mb-2">{item.title}</h3>
+                  <p className="text-slate-700 font-medium leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section id="watch-outs" className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm scroll-mt-32">
           <h2 className="text-2xl font-black tracking-tighter mb-4">What to watch out for</h2>
           <div className="space-y-3">
             {definition.watchOuts.map((item) => (
@@ -413,7 +528,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
           </div>
         </section>
 
-        <section className="mb-12 bg-white rounded-[2.5rem] p-8 md:p-10 border border-slate-100 shadow-sm">
+        <section id="faq" className="mb-12 bg-white rounded-[2.5rem] p-8 md:p-10 border border-slate-100 shadow-sm scroll-mt-32">
           <h2 className="text-2xl font-black tracking-tighter mb-6">Frequently Asked Questions</h2>
           <div className="space-y-6">
             {definition.faqs.map((faq) => (
