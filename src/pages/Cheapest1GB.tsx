@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, BarChart3, ShieldCheck } from 'lucide-react';
@@ -7,6 +7,7 @@ import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
+import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface Cheapest1GBProps {
   onNavigate: NavigateFunction;
@@ -17,7 +18,7 @@ export const Cheapest1GB: React.FC<Cheapest1GBProps> = ({ onNavigate, onScrollTo
   const pageTitle = 'Cheapest 1GB Data in South Africa (2026) | DataCost';
   const metaDescription =
     'Find the cheapest 1GB data bundles in South Africa. Compare Vodacom, MTN, Telkom, and Cell C 1GB prices in one practical guide.';
-  const canonicalUrl = 'https://datacost.co.za/guides/cheapest-1gb-data-south-africa/';
+  const canonicalUrl = toCanonicalUrl('/guides/cheapest-1gb-data-south-africa/');
 
   const oneGbBundles = bundles
     .filter((bundle) => bundle.volume === '1GB')
@@ -82,11 +83,11 @@ export const Cheapest1GB: React.FC<Cheapest1GBProps> = ({ onNavigate, onScrollTo
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -294,3 +295,6 @@ export const Cheapest1GB: React.FC<Cheapest1GBProps> = ({ onNavigate, onScrollTo
     </div>
   );
 };
+
+
+

@@ -11,6 +11,7 @@ import { Bundle, NavigateFunction, NetworkName } from '../types';
 import { BUNDLE_TYPE_MAP } from '../config/routeCatalog';
 import { buildBundleItemListSchema } from '../utils/structuredData';
 import { formatIsoForDisplay, getBundleTypeModifiedIso, getDefaultPublishedIso } from '../seo/contentDates';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_ORIGIN, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface BundleTypePageProps {
   onNavigate: NavigateFunction;
@@ -554,7 +555,7 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
 
   const pageTitle = `${network.name} ${INTENT_LABELS[intent]} South Africa (${CURRENT_YEAR}) | DataCost`;
   const metaDescription = `Compare ${network.name} ${INTENT_META_FOCUS[intent]} in South Africa. See listed prices, validity, value notes, and practical prepaid watch-outs for ${CURRENT_YEAR}.`;
-  const canonicalUrl = `https://datacost.co.za/network/${networkSlug}/${normalizedBundleType}/`;
+  const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/${normalizedBundleType}/`);
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getBundleTypeModifiedIso(networkSlug);
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
@@ -578,8 +579,8 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
     dateModified: dateModifiedIso,
     isPartOf: {
       '@type': 'WebSite',
-      name: 'DataCost',
-      url: 'https://datacost.co.za/'
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
     }
   };
 
@@ -593,10 +594,10 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
     dateModified: dateModifiedIso,
     author: {
       '@type': 'Organization',
-      name: 'DataCost.co.za',
-      url: 'https://datacost.co.za'
+      name: SITE_BRAND_NAME,
+      url: SITE_ORIGIN
     },
-    image: 'https://datacost.co.za/og-image.jpg'
+    image: DEFAULT_OG_IMAGE_URL
   };
 
   const faqSchema = {
@@ -616,9 +617,9 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
-      { '@type': 'ListItem', position: 2, name: 'Networks', item: 'https://datacost.co.za/network/' },
-      { '@type': 'ListItem', position: 3, name: `${network.name} Data Prices`, item: `https://datacost.co.za/network/${networkSlug}/` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Networks', item: toCanonicalUrl('/network/') },
+      { '@type': 'ListItem', position: 3, name: `${network.name} Data Prices`, item: toCanonicalUrl(`/network/${networkSlug}/`) },
       { '@type': 'ListItem', position: 4, name: `${network.name} ${INTENT_LABELS[intent]}`, item: canonicalUrl }
     ]
   };
@@ -636,15 +637,15 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         {!matchingBundles.length && <meta name="robots" content="noindex,follow" />}
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>

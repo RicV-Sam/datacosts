@@ -1,9 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction } from '../types';
+import { toCanonicalUrl } from '../seo/siteConstants';
 
 interface TermsPageProps {
   onNavigate: NavigateFunction;
@@ -14,7 +15,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate, onScrollTo }) 
   const pageTitle = 'Terms of Service | DataCost';
   const metaDescription =
     'Terms of service for using DataCost, including content use, limitations, third-party links, and user responsibilities.';
-  const canonicalUrl = 'https://datacost.co.za/terms/';
+  const canonicalUrl = toCanonicalUrl('/terms/');
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -77,4 +78,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate, onScrollTo }) 
     </div>
   );
 };
+
+
+
 

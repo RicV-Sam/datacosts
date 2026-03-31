@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Check, Copy, Download, MessageCircle, Signal } from 'lucide-react';
 import { UssdNetworkKey, ussdCodesByNetwork, ussdMostUsed, ussdNetworkOrder } from '../data/ussdCodes';
+import { SITE_ORIGIN } from '../seo/siteConstants';
 
 const PREFERRED_NETWORK_KEY = 'preferredNetwork';
 
@@ -14,7 +15,7 @@ const toneByNetwork: Record<UssdNetworkKey, string> = {
 function buildWhatsappMessage(networkKey: UssdNetworkKey): string {
   const network = ussdCodesByNetwork[networkKey];
   const lines = network.codes.map((item) => `${item.label}: ${item.code}`).join('\n');
-  return `My saved ${network.name} USSD Codes from DataCost:\n\n${lines}\n\nhttps://datacost.co.za/ussd-codes-south-africa/`;
+  return `My saved ${network.name} USSD Codes from DataCost:\n\n${lines}\n\n${SITE_ORIGIN}/ussd-codes-south-africa/`;
 }
 
 async function copyText(value: string): Promise<boolean> {

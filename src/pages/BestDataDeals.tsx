@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, BarChart3, ShieldCheck, Tag, TrendingUp } from 'lucide-react';
@@ -9,6 +9,7 @@ import { AdUnit } from '../components/AdUnit';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { networkPages } from '../data/networks';
+import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface BestDataDealsProps {
   onNavigate: NavigateFunction;
@@ -26,7 +27,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
   const pageTitle = 'Best Data Deals in South Africa (2026) | Compare MTN, Vodacom, Telkom & More';
   const metaDescription =
     'Compare the best data deals in South Africa for 2026. See the cheapest bundles, best prepaid options, and which network gives the best value right now.';
-  const canonicalUrl = 'https://datacost.co.za/guides/best-data-deals-south-africa/';
+  const canonicalUrl = toCanonicalUrl('/guides/best-data-deals-south-africa/');
   const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   const validValueBundles = bundles
@@ -127,11 +128,11 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -331,3 +332,6 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     </div>
   );
 };
+
+
+

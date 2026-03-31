@@ -1,7 +1,8 @@
 import { Bundle, NetworkName } from '../types';
 import { networkPages } from '../data/networks';
+import { SITE_ORIGIN } from '../seo/siteConstants';
 
-const BASE_URL = 'https://datacost.co.za';
+const BASE_URL = SITE_ORIGIN;
 const DEFAULT_CATEGORY = 'Mobile Data Bundle';
 const DEFAULT_AVAILABILITY = 'https://schema.org/InStock';
 

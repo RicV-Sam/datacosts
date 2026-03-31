@@ -2,8 +2,9 @@ import { bundles } from '../data';
 import { networkPages } from '../data/networks';
 import { guides } from '../data/guides';
 import { Bundle } from '../types';
+import { SITE_ORIGIN } from '../seo/siteConstants';
 
-export const BASE_URL = 'https://datacost.co.za';
+export const BASE_URL = SITE_ORIGIN;
 
 export type BundleTypeConfig = {
   label: string;

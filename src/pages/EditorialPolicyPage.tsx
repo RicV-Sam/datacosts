@@ -1,9 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction } from '../types';
+import { toCanonicalUrl } from '../seo/siteConstants';
 
 interface EditorialPolicyPageProps {
   onNavigate: NavigateFunction;
@@ -13,8 +14,8 @@ interface EditorialPolicyPageProps {
 export const EditorialPolicyPage: React.FC<EditorialPolicyPageProps> = ({ onNavigate, onScrollTo }) => {
   const pageTitle = 'Editorial Policy | DataCost';
   const metaDescription =
-    'Read DataCost’s editorial standards, independence commitments, conflict disclosures, and corrections policy for telecom comparison content.';
-  const canonicalUrl = 'https://datacost.co.za/editorial-policy/';
+    'Read DataCostâ€™s editorial standards, independence commitments, conflict disclosures, and corrections policy for telecom comparison content.';
+  const canonicalUrl = toCanonicalUrl('/editorial-policy/');
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -50,7 +51,7 @@ export const EditorialPolicyPage: React.FC<EditorialPolicyPageProps> = ({ onNavi
             If content includes referral or partner links, this may generate revenue for DataCost. We aim to disclose this clearly and avoid hidden incentives.
           </p>
           <p className="text-slate-600 leading-relaxed">
-            Users should always verify final pricing and terms on the operator’s official page before purchase.
+            Users should always verify final pricing and terms on the operatorâ€™s official page before purchase.
           </p>
         </section>
 
@@ -70,4 +71,7 @@ export const EditorialPolicyPage: React.FC<EditorialPolicyPageProps> = ({ onNavi
     </div>
   );
 };
+
+
+
 

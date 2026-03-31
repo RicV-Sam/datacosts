@@ -5,6 +5,7 @@ import {defineConfig, loadEnv} from 'vite';
 import prerender from '@prerenderer/rollup-plugin';
 import PuppeteerRenderer from '@prerenderer/renderer-puppeteer';
 import { getPrerenderRoutes, validateIndexableRoutes } from './src/config/routeCatalog';
+import { SITE_ORIGIN } from './src/seo/siteConstants';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
@@ -25,7 +26,7 @@ export default defineConfig(({mode}) => {
         }),
         postProcess(renderedRoute: any) {
           renderedRoute.html = renderedRoute.html
-            .replace(/http:\/\/localhost:[0-9]+/g, 'https://datacost.co.za');
+            .replace(/http:\/\/localhost:[0-9]+/g, SITE_ORIGIN);
           renderedRoute.html = renderedRoute.html
             .replace(/<title(?![^>]*data-rh=)/g, '<title data-rh="true"')
             .replace(/<meta(?![^>]*data-rh=)([^>]*(?:name="description"|property="og:[^"]+"|name="twitter:[^"]+")[^>]*)>/g, '<meta data-rh="true"$1>')

@@ -12,6 +12,7 @@ import { getComparisonGuideBySlug } from '../data/comparisonGuides';
 import { buildBundleItemListSchema } from '../utils/structuredData';
 import { networkPages } from '../data/networks';
 import { formatIsoForDisplay, getComparisonGuideModifiedIso, getDefaultPublishedIso } from '../seo/contentDates';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_ORIGIN, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface ComparisonGuidePageProps {
   guideSlug: string;
@@ -194,7 +195,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
   const dateModifiedIso = getComparisonGuideModifiedIso(definition.slug);
   const datePublishedIso = getDefaultPublishedIso();
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
-  const canonicalUrl = `https://datacost.co.za${definition.canonicalPath}`;
+  const canonicalUrl = toCanonicalUrl(definition.canonicalPath);
   const isAliasPath = location.pathname !== definition.canonicalPath;
 
   const webPageSchema = {
@@ -207,8 +208,8 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
     dateModified: dateModifiedIso,
     isPartOf: {
       '@type': 'WebSite',
-      name: 'DataCost',
-      url: 'https://datacost.co.za/'
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
     }
   };
 
@@ -222,10 +223,10 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
     dateModified: dateModifiedIso,
     author: {
       '@type': 'Organization',
-      name: 'DataCost.co.za',
-      url: 'https://datacost.co.za'
+      name: SITE_BRAND_NAME,
+      url: SITE_ORIGIN
     },
-    image: 'https://datacost.co.za/og-image.jpg'
+    image: DEFAULT_OG_IMAGE_URL
   };
 
   const faqSchema = {
@@ -245,8 +246,8 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
-      { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://datacost.co.za/guides/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: toCanonicalUrl('/guides/') },
       { '@type': 'ListItem', position: 3, name: definition.h1, item: canonicalUrl }
     ]
   };
@@ -259,12 +260,12 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
       const networkSlug = Object.values(networkPages).find((page) => page.networkName === bundle.network)?.slug;
       if (!networkSlug) return canonicalUrl;
 
-      if (definition.mode === 'cheapest-1gb') return `https://datacost.co.za/network/${networkSlug}/cheapest-1gb/`;
-      if (definition.mode === 'cheapest-10gb') return `https://datacost.co.za/network/${networkSlug}/monthly-data/`;
-      if (definition.mode === 'best-monthly') return `https://datacost.co.za/network/${networkSlug}/monthly-data/`;
-      if (definition.mode === 'best-prepaid') return `https://datacost.co.za/network/${networkSlug}/`;
-      if (definition.mode === 'cheapest-whatsapp') return `https://datacost.co.za/network/${networkSlug}/social-data/`;
-      if (definition.mode === 'cheap-night') return `https://datacost.co.za/network/${networkSlug}/night-data/`;
+      if (definition.mode === 'cheapest-1gb') return toCanonicalUrl(`/network/${networkSlug}/cheapest-1gb/`);
+      if (definition.mode === 'cheapest-10gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'best-monthly') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'best-prepaid') return toCanonicalUrl(`/network/${networkSlug}/`);
+      if (definition.mode === 'cheapest-whatsapp') return toCanonicalUrl(`/network/${networkSlug}/social-data/`);
+      if (definition.mode === 'cheap-night') return toCanonicalUrl(`/network/${networkSlug}/night-data/`);
       return canonicalUrl;
     }
   );
@@ -277,15 +278,15 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
         <link rel="canonical" href={canonicalUrl} />
         {isAliasPath && <meta name="robots" content="noindex,follow" />}
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={definition.title} />
         <meta property="og:description" content={definition.metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={definition.title} />
         <meta name="twitter:description" content={definition.metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>

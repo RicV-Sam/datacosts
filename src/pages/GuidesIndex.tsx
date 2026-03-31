@@ -9,6 +9,7 @@ import { BookOpen, ArrowRight, ChevronDown, Zap, Smartphone, HelpCircle, Info, C
 import { motion, AnimatePresence } from 'motion/react';
 import { NavigateFunction } from '../types';
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_ORIGIN, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface GuidesIndexProps {
   onNavigate: NavigateFunction;
@@ -22,7 +23,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
 
-  const canonicalUrl = "https://datacost.co.za/guides/";
+  const canonicalUrl = toCanonicalUrl('/guides/');
   const pageTitle = "South Africa Mobile Data Guides Hub (2026) | DataCost";
   const metaDescription = "Explore practical South African telecom guides in one place. Compare data prices, network options, and fixes for common SIM and airtime issues.";
   const datePublishedIso = getDefaultPublishedIso();
@@ -126,13 +127,13 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         "@type": "ListItem",
         "position": index + 1,
         "name": guide.title,
-        "url": `https://datacost.co.za/guides/${guide.slug}/`
+        "url": toCanonicalUrl(`/guides/${guide.slug}/`)
       })),
       {
         "@type": "ListItem",
         "position": guides.length + 1,
         "name": "Best Travel SIMs & eSIMs for South Africa",
-        "url": "https://datacost.co.za/travel-sims-south-africa/"
+        "url": toCanonicalUrl('/travel-sims-south-africa/')
       }
     ]
   };
@@ -147,8 +148,8 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
     dateModified: dateModifiedIso,
     isPartOf: {
       '@type': 'WebSite',
-      name: 'DataCost',
-      url: 'https://datacost.co.za/'
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
     }
   };
 
@@ -156,7 +157,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
       { '@type': 'ListItem', position: 2, name: 'Guides', item: canonicalUrl }
     ]
   };
@@ -170,18 +171,18 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         "description": metaDescription,
         "datePublished": datePublishedIso,
         "dateModified": dateModifiedIso,
-        "image": "https://datacost.co.za/og-image.jpg",
+        "image": DEFAULT_OG_IMAGE_URL,
         "author": {
           "@type": "Organization",
-          "name": "DataCost.co.za",
-          "url": "https://datacost.co.za"
+          "name": SITE_BRAND_NAME,
+          "url": SITE_ORIGIN
         },
         "publisher": {
           "@type": "Organization",
-          "name": "DataCost.co.za",
+          "name": SITE_BRAND_NAME,
           "logo": {
             "@type": "ImageObject",
-            "url": "https://datacost.co.za/logo.png"
+            "url": SITE_LOGO_URL
           }
         },
         "mainEntityOfPage": {
@@ -210,15 +211,15 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">
           {JSON.stringify(webPageSchema)}
         </script>

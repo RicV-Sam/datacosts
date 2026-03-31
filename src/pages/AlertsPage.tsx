@@ -13,6 +13,7 @@ import {
 } from '../components/AlertsPreferences';
 import { AlertsSignupCard } from '../components/AlertsSignupCard';
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { triggerOneSignalPrompt } from '../utils/oneSignal';
 
 interface AlertsPageProps {
@@ -63,7 +64,7 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
   const pageTitle = 'Get Data Deal Alerts in South Africa | DataCost';
   const metaDescription =
     'Get free alerts for cheaper data deals, airtime specials, verified competitions, and useful network updates in South Africa.';
-  const canonicalUrl = 'https://datacost.co.za/alerts/';
+  const canonicalUrl = toCanonicalUrl('/alerts/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/alerts/');
 
@@ -135,8 +136,8 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
     dateModified: dateModifiedIso,
     isPartOf: {
       '@type': 'WebSite',
-      name: 'DataCost',
-      url: 'https://datacost.co.za/'
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
     }
   };
 
@@ -144,7 +145,7 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
       { '@type': 'ListItem', position: 2, name: 'Alerts', item: canonicalUrl }
     ]
   };
@@ -156,15 +157,15 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>

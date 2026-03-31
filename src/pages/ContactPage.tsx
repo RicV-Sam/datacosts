@@ -1,9 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction } from '../types';
+import { toCanonicalUrl } from '../seo/siteConstants';
 
 interface ContactPageProps {
   onNavigate: NavigateFunction;
@@ -14,7 +15,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo
   const pageTitle = 'Contact DataCost | Report Pricing Errors or Ask for Help';
   const metaDescription =
     'Contact DataCost for pricing corrections, editorial feedback, privacy requests, and site support related to South African mobile data comparisons.';
-  const canonicalUrl = 'https://datacost.co.za/contact/';
+  const canonicalUrl = toCanonicalUrl('/contact/');
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -70,4 +71,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo
     </div>
   );
 };
+
+
+
 

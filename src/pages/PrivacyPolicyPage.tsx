@@ -1,9 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction } from '../types';
+import { toCanonicalUrl } from '../seo/siteConstants';
 
 interface PrivacyPolicyPageProps {
   onNavigate: NavigateFunction;
@@ -14,7 +15,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
   const pageTitle = 'Privacy Policy | DataCost';
   const metaDescription =
     'DataCost privacy policy covering analytics, contact submissions, cookies, and how we handle personal information in line with South African POPIA principles.';
-  const canonicalUrl = 'https://datacost.co.za/privacy-policy/';
+  const canonicalUrl = toCanonicalUrl('/privacy-policy/');
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -79,4 +80,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
     </div>
   );
 };
+
+
+
 

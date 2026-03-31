@@ -9,6 +9,7 @@ import { AdUnit } from '../components/AdUnit';
 import { UssdTool } from '../components/UssdTool';
 import { NavigateFunction } from '../types';
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { triggerOneSignalPrompt } from '../utils/oneSignal';
 
 interface SaveUssdCodesProps {
@@ -40,7 +41,7 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
   const pageTitle = 'Save USSD Codes to Your Phone | MTN, Vodacom, Cell C & Telkom | DataCost';
   const metaDescription =
     'Quickly copy, WhatsApp share, and save South African USSD codes for MTN, Vodacom, Cell C, and Telkom. Mobile-friendly and easy to use.';
-  const canonicalUrl = 'https://datacost.co.za/save-ussd-codes/';
+  const canonicalUrl = toCanonicalUrl('/save-ussd-codes/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/save-ussd-codes/');
 
@@ -54,8 +55,8 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
     dateModified: dateModifiedIso,
     isPartOf: {
       '@type': 'WebSite',
-      name: 'DataCost',
-      url: 'https://datacost.co.za/'
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
     }
   };
 
@@ -63,7 +64,7 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
       { '@type': 'ListItem', position: 2, name: 'USSD Save Tool', item: canonicalUrl }
     ]
   };
@@ -88,15 +89,15 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>

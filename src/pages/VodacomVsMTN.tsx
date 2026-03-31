@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { bundles, networkStats } from '../data';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
@@ -7,6 +7,7 @@ import { MobileNav } from '../components/MobileNav';
 import { ArrowLeft, ShieldCheck, BarChart3, CalendarClock, HelpCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NavigateFunction } from '../types';
+import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface VodacomVsMTNProps {
   onNavigate: NavigateFunction;
@@ -17,7 +18,7 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
   const pageTitle = 'Vodacom vs MTN Data Prices (2026) - Speed vs Price Comparison | DataCost';
   const metaDescription =
     'Is Vodacom better than MTN for data? We compare the latest data prices, speeds, and coverage to help you choose the right network in 2026.';
-  const canonicalUrl = 'https://datacost.co.za/guides/vodacom-vs-mtn-data-prices/';
+  const canonicalUrl = toCanonicalUrl('/guides/vodacom-vs-mtn-data-prices/');
   const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   const vodacomStats = networkStats.find(n => n.network === 'Vodacom');
@@ -89,11 +90,11 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>
@@ -359,3 +360,6 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
     </div>
   );
 };
+
+
+

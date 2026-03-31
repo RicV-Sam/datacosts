@@ -17,6 +17,7 @@ import { bundles } from '../data';
 import { NetworkName } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_PRODUCT_NAME, SITE_URL } from '../seo/siteConstants';
 
 interface HomePageProps {
   onNavigate: (page: 'home' | 'ussd' | 'alerts' | 'guide' | 'network' | 'guides-index' | 'travel-sims', slug?: string) => void;
@@ -35,22 +36,22 @@ export const HomePage: React.FC<HomePageProps> = ({
 }) => {
   const pageTitle = "DataCost | Compare South Africa's Cheapest Data Bundles";
   const metaDescription = 'Compare mobile data prices in South Africa. Find the cheapest data bundles from MTN, Vodacom, Telkom, Cell C and Rain.';
-  const canonicalUrl = 'https://datacost.co.za/';
+  const canonicalUrl = SITE_URL;
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/');
 
   const homeSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'DataCost',
+    name: SITE_PRODUCT_NAME,
     url: canonicalUrl,
     description: 'Compare mobile data prices in South Africa.',
     publisher: {
       '@type': 'Organization',
-      name: 'DataCost.co.za',
+      name: SITE_BRAND_NAME,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://datacost.co.za/logo.png'
+        url: SITE_LOGO_URL
       }
     }
   };
@@ -65,7 +66,7 @@ export const HomePage: React.FC<HomePageProps> = ({
     dateModified: dateModifiedIso,
     isPartOf: {
       '@type': 'WebSite',
-      name: 'DataCost',
+      name: SITE_PRODUCT_NAME,
       url: canonicalUrl
     }
   };
@@ -116,15 +117,15 @@ export const HomePage: React.FC<HomePageProps> = ({
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">
           {JSON.stringify(webPageSchema)}
         </script>

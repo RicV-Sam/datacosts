@@ -7,6 +7,7 @@ import { Footer } from '../components/Footer';
 import { AdUnit } from '../components/AdUnit';
 import { RelatedPages } from '../components/RelatedPages';
 import { ArrowLeft, ExternalLink, ShieldCheck, Phone, CreditCard, Smartphone } from 'lucide-react';
+import { toCanonicalUrl } from '../seo/siteConstants';
 
 export const AirtimePage: React.FC = () => {
   const { networkSlug } = useParams<{ networkSlug: string }>();
@@ -51,7 +52,7 @@ export const AirtimePage: React.FC = () => {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
-        <link rel="canonical" href={`https://datacost.co.za/buy-airtime/${networkSlug}/`} />
+        <link rel="canonical" href={toCanonicalUrl(`/buy-airtime/${networkSlug}/`)} />
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>

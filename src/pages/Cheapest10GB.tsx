@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ShieldCheck, BarChart3, CalendarClock } from 'lucide-react';
@@ -7,6 +7,7 @@ import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
+import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface Cheapest10GBProps {
   onNavigate: NavigateFunction;
@@ -17,7 +18,7 @@ export const Cheapest10GB: React.FC<Cheapest10GBProps> = ({ onNavigate, onScroll
   const pageTitle = 'Cheapest 10GB Data South Africa (2026) | DataCost';
   const metaDescription =
     'Compare the cheapest 10GB data bundles in South Africa. See currently listed 10GB deals, value per GB, and who should choose a 10GB bundle.';
-  const canonicalUrl = 'https://datacost.co.za/guides/cheapest-10gb-data-south-africa/';
+  const canonicalUrl = toCanonicalUrl('/guides/cheapest-10gb-data-south-africa/');
   const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   const tenGbBundles = bundles
@@ -82,11 +83,11 @@ export const Cheapest10GB: React.FC<Cheapest10GBProps> = ({ onNavigate, onScroll
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -279,3 +280,6 @@ export const Cheapest10GB: React.FC<Cheapest10GBProps> = ({ onNavigate, onScroll
     </div>
   );
 };
+
+
+

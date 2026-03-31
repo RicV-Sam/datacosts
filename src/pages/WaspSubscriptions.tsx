@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -6,6 +6,7 @@ import { MobileNav } from '../components/MobileNav';
 import { ArrowLeft, ShieldCheck, AlertTriangle, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NavigateFunction } from '../types';
+import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface WaspSubscriptionsProps {
   onNavigate: NavigateFunction;
@@ -16,7 +17,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
   const pageTitle = 'How to Stop WASP Subscriptions in South Africa (2026 Guide) | DataCost';
   const metaDescription =
     'Learn how to stop WASP subscriptions in South Africa with simple steps for Vodacom, MTN, Telkom, and Cell C, plus what to do if charges continue.';
-  const canonicalUrl = 'https://datacost.co.za/guides/stop-wasp-subscriptions-south-africa/';
+  const canonicalUrl = toCanonicalUrl('/guides/stop-wasp-subscriptions-south-africa/');
 
   const networkSteps = [
     {
@@ -75,7 +76,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
       },
       {
         "@type": "Question",
-        "name": "Why am I being charged for services I didn’t subscribe to?",
+        "name": "Why am I being charged for services I didnâ€™t subscribe to?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "In many cases, charges come from premium content services that were accepted through pop-ups, links, or previous opt-ins. Check active subscriptions on your network menu and cancel any service you do not recognize."
@@ -95,11 +96,11 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>
@@ -218,7 +219,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
               <p className="text-sm text-slate-600">Dial your network code, open your subscription list, and cancel all paid services. Then enable a content block if your network menu offers one.</p>
             </div>
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-              <h3 className="font-bold text-slate-900 mb-2">Why am I being charged for services I didn’t subscribe to?</h3>
+              <h3 className="font-bold text-slate-900 mb-2">Why am I being charged for services I didnâ€™t subscribe to?</h3>
               <p className="text-sm text-slate-600">This is often linked to premium content sign-ups accepted through a link, popup, or old opt-in flow. Check active services on your network menu, cancel anything unfamiliar, and monitor airtime after cancellation.</p>
             </div>
           </div>
@@ -244,3 +245,6 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
     </div>
   );
 };
+
+
+

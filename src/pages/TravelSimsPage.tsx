@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { NavigateFunction } from '../types';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_ORIGIN, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface TravelSimsPageProps {
   onNavigate: NavigateFunction;
@@ -32,7 +33,7 @@ interface TravelSimsPageProps {
 export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onScrollTo }) => {
   const pageTitle = "Best Travel SIMs & eSIMs for South Africa (2026 Tourist Guide) | DataCost";
   const metaDescription = "Looking for the best SIM or eSIM for South Africa? Compare travel eSIMs, Vodacom, MTN, airport SIMs, setup, coverage, and the cheapest options for tourists.";
-  const canonicalUrl = "https://datacost.co.za/travel-sims-south-africa/";
+  const canonicalUrl = toCanonicalUrl('/travel-sims-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/travel-sims-south-africa/');
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
@@ -50,7 +51,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://datacost.co.za/"
+        "item": SITE_URL
       },
       {
         "@type": "ListItem",
@@ -71,8 +72,8 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
     "dateModified": dateModifiedIso,
     "isPartOf": {
       "@type": "WebSite",
-      "name": "DataCost",
-      "url": "https://datacost.co.za/"
+      "name": SITE_PRODUCT_NAME,
+      "url": SITE_URL
     }
   };
 
@@ -86,10 +87,10 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
     "dateModified": dateModifiedIso,
     "author": {
       "@type": "Organization",
-      "name": "DataCost.co.za",
-      "url": "https://datacost.co.za"
+      "name": SITE_BRAND_NAME,
+      "url": SITE_ORIGIN
     },
-    "image": "https://datacost.co.za/og-image.jpg"
+    "image": DEFAULT_OG_IMAGE_URL
   };
 
   const faqs = [
@@ -135,15 +136,15 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>

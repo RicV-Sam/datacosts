@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_ORIGIN, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface NetworkHubPageProps {
   onNavigate: NavigateFunction;
@@ -49,7 +50,7 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
     }
   ];
 
-  const canonicalUrl = 'https://datacost.co.za/network/';
+  const canonicalUrl = toCanonicalUrl('/network/');
   const pageTitle = 'Compare Mobile Networks in South Africa | Vodacom, MTN, Cell C, Telkom & Rain';
   const metaDescription = "Compare South Africa's mobile networks including Vodacom, MTN, Cell C, Telkom and Rain. See network strengths, data value, coverage, speeds and related guides.";
 
@@ -63,8 +64,8 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
     dateModified: dateModifiedIso,
     isPartOf: {
       '@type': 'WebSite',
-      name: 'DataCost',
-      url: 'https://datacost.co.za/'
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
     }
   };
 
@@ -72,7 +73,7 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
       { '@type': 'ListItem', position: 2, name: 'Networks', item: canonicalUrl }
     ]
   };
@@ -129,18 +130,18 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
         description: metaDescription,
         datePublished: datePublishedIso,
         dateModified: dateModifiedIso,
-        image: 'https://datacost.co.za/og-image.jpg',
+        image: DEFAULT_OG_IMAGE_URL,
         author: {
           '@type': 'Organization',
-          name: 'DataCost.co.za',
-          url: 'https://datacost.co.za'
+          name: SITE_BRAND_NAME,
+          url: SITE_ORIGIN
         },
         publisher: {
           '@type': 'Organization',
-          name: 'DataCost.co.za',
+          name: SITE_BRAND_NAME,
           logo: {
             '@type': 'ImageObject',
-            url: 'https://datacost.co.za/logo.png'
+            url: SITE_LOGO_URL
           }
         },
         mainEntityOfPage: {
@@ -183,15 +184,15 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">
           {JSON.stringify(webPageSchema)}
         </script>

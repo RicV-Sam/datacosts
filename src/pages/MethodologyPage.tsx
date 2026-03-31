@@ -1,9 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction } from '../types';
+import { toCanonicalUrl } from '../seo/siteConstants';
 
 interface MethodologyPageProps {
   onNavigate: NavigateFunction;
@@ -14,7 +15,7 @@ export const MethodologyPage: React.FC<MethodologyPageProps> = ({ onNavigate, on
   const pageTitle = 'Methodology | How DataCost Compares Mobile Data Prices';
   const metaDescription =
     'See how DataCost collects bundle information, calculates value, and decides rankings across Vodacom, MTN, Telkom, Cell C, and Rain.';
-  const canonicalUrl = 'https://datacost.co.za/methodology/';
+  const canonicalUrl = toCanonicalUrl('/methodology/');
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -58,7 +59,7 @@ export const MethodologyPage: React.FC<MethodologyPageProps> = ({ onNavigate, on
           <h2 className="text-2xl font-black tracking-tight">Ranking Principles</h2>
           <ul className="text-slate-600 leading-relaxed list-disc pl-5 space-y-2">
             <li>Prioritise transparent pricing over marketing labels.</li>
-            <li>Use category-specific comparisons rather than a single universal “winner”.</li>
+            <li>Use category-specific comparisons rather than a single universal â€œwinnerâ€.</li>
             <li>Highlight known limitations such as coverage context or night-only usage windows.</li>
             <li>Prefer clarity for consumers over network promotional language.</li>
           </ul>
@@ -80,4 +81,7 @@ export const MethodologyPage: React.FC<MethodologyPageProps> = ({ onNavigate, on
     </div>
   );
 };
+
+
+
 

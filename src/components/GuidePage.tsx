@@ -5,6 +5,7 @@ import { Guide, Bundle, GuideResourceLink } from '../types';
 import { bundles } from '../data';
 import { useNavigate } from 'react-router-dom';
 import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_LOGO_URL, SITE_ORIGIN, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface GuidePageProps {
   guide: Guide;
@@ -81,8 +82,8 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
   const dateModifiedIso = getGuideModifiedIso(guide.slug);
   const datePublishedIso = getDefaultPublishedIso();
   const lastUpdatedLabel = formatIsoForDisplay(dateModifiedIso);
-  const canonicalUrl = `https://datacost.co.za/guides/${guide.slug}/`;
-  const pageTitle = `${guide.title} | DataCost`;
+  const canonicalUrl = toCanonicalUrl(`/guides/${guide.slug}/`);
+  const pageTitle = `${guide.title} | ${SITE_PRODUCT_NAME}`;
   const showPriorityInternalLinks = guide.slug === 'why-is-my-data-finishing-so-fast' || guide.slug === 'how-to-check-data-balance';
 
   const relatedLinks: RelatedLink[] = GUIDE_RELATED_LINKS[guide.slug] || allGuides
@@ -129,8 +130,8 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
     dateModified: dateModifiedIso,
     isPartOf: {
       '@type': 'WebSite',
-      name: 'DataCost',
-      url: 'https://datacost.co.za/'
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
     }
   };
 
@@ -138,8 +139,8 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
-      { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://datacost.co.za/guides/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: toCanonicalUrl('/guides/') },
       { '@type': 'ListItem', position: 3, name: guide.h1, item: canonicalUrl }
     ]
   };
@@ -154,19 +155,19 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
         url: canonicalUrl,
         author: {
           '@type': 'Organization',
-          name: 'DataCost.co.za',
-          url: 'https://datacost.co.za'
+          name: SITE_BRAND_NAME,
+          url: SITE_ORIGIN
         },
-        image: 'https://datacost.co.za/og-image.jpg',
+        image: DEFAULT_OG_IMAGE_URL,
         datePublished: datePublishedIso,
         dateModified: dateModifiedIso,
         publisher: {
           '@type': 'Organization',
-          name: 'DataCost.co.za',
-          url: 'https://datacost.co.za',
+          name: SITE_BRAND_NAME,
+          url: SITE_ORIGIN,
           logo: {
             '@type': 'ImageObject',
-            url: 'https://datacost.co.za/logo.png'
+            url: SITE_LOGO_URL
           }
         }
       },
@@ -191,15 +192,15 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
         <meta name="description" content={guide.metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={guide.metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={guide.metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>

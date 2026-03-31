@@ -8,6 +8,7 @@ import { AdUnit } from '../components/AdUnit';
 import { RelatedPages } from '../components/RelatedPages';
 import { ArrowLeft, ExternalLink, ShieldCheck, Zap, Info, Clock, Volume2 } from 'lucide-react';
 import { buildBundleProductSchema } from '../utils/structuredData';
+import { toCanonicalUrl } from '../seo/siteConstants';
 
 export const BundlePage: React.FC = () => {
   const { networkSlug, bundleSlug } = useParams<{ networkSlug: string; bundleSlug: string }>();
@@ -24,7 +25,7 @@ export const BundlePage: React.FC = () => {
 
   const pageTitle = `${bundle.name} Price (2026) - ${bundle.volume} Data Bundle | DataCost`;
   const metaDescription = `How much is the ${bundle.name}? Full price breakdown: R${bundle.price} for ${bundle.volume}. Valid for ${bundle.validity}. Cost per GB: R${bundle.costPerGb.toFixed(2)}.`;
-  const canonicalUrl = `https://datacost.co.za/network/${networkSlug}/${bundleSlug}/`;
+  const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/${bundleSlug}/`);
 
   const jsonLd = {
     '@context': 'https://schema.org',

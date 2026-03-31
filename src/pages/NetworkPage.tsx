@@ -9,6 +9,7 @@ import { ArrowLeft, ChevronRight, ShieldCheck, Zap, Info, Smartphone, HelpCircle
 import { NetworkName, NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema } from '../utils/structuredData';
 import { formatIsoForDisplay, getDefaultPublishedIso, getNetworkModifiedIso } from '../seo/contentDates';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_ORIGIN, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface NetworkPageProps {
   networkSlug: string;
@@ -107,7 +108,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
   const pageTitle = `${network.name} Data Prices South Africa (2026) | DataCost`;
   const metaDescription = `Compare ${network.name} prepaid data prices in South Africa, including daily, weekly and monthly bundles, USSD codes, and practical savings tips updated for 2026.`;
-  const canonicalUrl = `https://datacost.co.za/network/${networkSlug}/`;
+  const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/`);
   const dateModifiedIso = getNetworkModifiedIso(networkSlug);
   const datePublishedIso = getDefaultPublishedIso();
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
@@ -122,8 +123,8 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     dateModified: dateModifiedIso,
     isPartOf: {
       '@type': 'WebSite',
-      name: 'DataCost',
-      url: 'https://datacost.co.za/'
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
     }
   };
 
@@ -137,10 +138,10 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     dateModified: dateModifiedIso,
     author: {
       '@type': 'Organization',
-      name: 'DataCost.co.za',
-      url: 'https://datacost.co.za'
+      name: SITE_BRAND_NAME,
+      url: SITE_ORIGIN
     },
-    image: 'https://datacost.co.za/og-image.jpg'
+    image: DEFAULT_OG_IMAGE_URL
   };
 
   const faqSchema = {
@@ -160,8 +161,8 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://datacost.co.za/' },
-      { '@type': 'ListItem', position: 2, name: 'Networks', item: 'https://datacost.co.za/network/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Networks', item: toCanonicalUrl('/network/') },
       { '@type': 'ListItem', position: 3, name: `${network.name} Data Prices`, item: canonicalUrl }
     ]
   };
@@ -222,15 +223,15 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://datacost.co.za/og-image.jpg" />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">
           {JSON.stringify(webPageSchema)}
         </script>

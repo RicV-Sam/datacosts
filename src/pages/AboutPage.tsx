@@ -1,9 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction } from '../types';
+import { toCanonicalUrl } from '../seo/siteConstants';
 
 interface AboutPageProps {
   onNavigate: NavigateFunction;
@@ -14,7 +15,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
   const pageTitle = 'About DataCost | South African Mobile Data Comparison';
   const metaDescription =
     'Learn what DataCost does, who we are for, how we keep our comparisons useful for South African consumers, and how the site is funded.';
-  const canonicalUrl = 'https://datacost.co.za/about/';
+  const canonicalUrl = toCanonicalUrl('/about/');
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -70,4 +71,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
     </div>
   );
 };
+
+
+
 
