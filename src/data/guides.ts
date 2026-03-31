@@ -284,6 +284,163 @@ export const guides: Guide[] = [
     ]
   },
   {
+    slug: 'why-does-my-data-finish-so-fast-south-africa',
+    title: 'Why Does My Data Finish So Fast in South Africa? (2026 Guide)',
+    metaDescription: 'Find out why your mobile data finishes so fast in South Africa and how to make it last longer. Learn the main causes, quick fixes, and better bundle choices.',
+    h1: 'Why Does My Data Finish So Fast in South Africa? (2026 Guide)',
+    intro: 'You are not imagining it: fast data drain is one of the most common mobile problems in South Africa. It affects users across all major networks and is often caused by hidden app behavior, phone settings, or bundle mismatch. The good news is that the cause is usually identifiable and fixable.',
+    quickSummaryTitle: 'The Short Version',
+    quickSummaryItems: [
+      'Background apps can consume data silently through syncing, refresh, and cloud backup.',
+      'Social and video apps (TikTok, Instagram, YouTube, Facebook) use much more data than most people expect.',
+      'Auto-updates, app downloads, and system updates can wipe out a bundle quickly.',
+      'Out-of-bundle usage after expiry can feel like data is disappearing instantly.',
+      'Hotspot sharing and wrong bundle choices are common reasons monthly data does not last.'
+    ],
+    jumpLinksTitle: 'Jump to Section',
+    jumpLinks: [
+      { label: 'Main causes', anchor: 'cause-background-apps' },
+      { label: 'How to check usage', anchor: 'check-data-usage' },
+      { label: 'How to reduce usage', anchor: 'reduce-data-usage' },
+      { label: 'Choose the right bundle', anchor: 'choose-right-bundle' },
+      { label: 'Common signs', anchor: 'common-signs-fast-drain' },
+      { label: 'When to contact your network', anchor: 'when-contact-network' },
+      { label: 'FAQ', anchor: 'faq' }
+    ],
+    comparisonType: 'all',
+    stepsTitle: 'Why Data Finishes Fast (And What To Do About It)',
+    steps: [
+      {
+        id: 'cause-background-apps',
+        title: '1) Background apps are using data without you noticing',
+        description: 'Many apps keep syncing in the background: email, cloud photos, messaging media, and notifications. This can consume meaningful data even when you are not actively using your phone. How to check: open your phone\'s data-usage screen and sort by app usage. How to reduce: limit background data for non-essential apps and keep backup/sync on Wi-Fi where possible.'
+      },
+      {
+        id: 'cause-social-video',
+        title: '2) Social media and video apps use large amounts of data',
+        description: 'Short-video and streaming apps are usually the biggest data consumers. Autoplay and high video quality increase usage quickly. How to reduce: disable autoplay, lower video quality, and turn on data saver settings in TikTok, Instagram, Facebook, YouTube, and similar apps.'
+      },
+      {
+        id: 'cause-auto-updates',
+        title: '3) App updates and phone downloads can drain data quickly',
+        description: 'Play Store/App Store updates, operating system updates, and auto-downloads can use large data blocks in a short time. How to reduce: set app updates and system updates to Wi-Fi only, and disable automatic media downloads in messaging apps.'
+      },
+      {
+        id: 'cause-wifi-switch',
+        title: '4) Your phone may be using mobile data instead of Wi-Fi',
+        description: 'If Wi-Fi drops or the signal is weak, your phone can fall back to mobile data. This is easy to miss during streaming or downloads. Check Wi-Fi stability and disable settings that automatically switch to mobile data when Wi-Fi quality drops.'
+      },
+      {
+        id: 'cause-hotspot',
+        title: '5) Hotspot and tethering can consume data very fast',
+        description: 'Sharing data with laptops, TVs, or other devices increases usage dramatically. Software updates, video streaming, and cloud syncing on connected devices can finish a bundle quickly. If you use hotspot often, monitor connected-device usage and consider higher bundle sizes.'
+      },
+      {
+        id: 'cause-out-of-bundle',
+        title: '6) Out-of-bundle usage after expiry is a major cost risk',
+        description: 'When your bundle expires or runs out, continued usage may be billed differently depending on your settings and network behavior. This is one reason people feel data or airtime disappears instantly. Check balance before heavy usage and top up proactively to avoid expensive fallback usage.'
+      },
+      {
+        id: 'cause-wrong-bundle',
+        title: '7) You may be using the wrong type of bundle for your usage',
+        description: 'Social bundles, night bundles, and standard anytime bundles solve different needs. If your bundle type does not match your behavior, data drains quickly and value drops. Also check validity windows: short validity bundles can force repeated repurchases that feel like “fast data loss.”'
+      },
+      {
+        id: 'check-data-usage',
+        title: 'How to Check What Is Using Your Data',
+        description: 'Use your phone data-usage dashboard to identify top apps and compare weekly patterns. Check usage after major updates, social-video sessions, and hotspot sessions. Pair this with regular USSD or app-based balance checks so you can spot abnormal usage early.'
+      },
+      {
+        id: 'reduce-data-usage',
+        title: 'How to Make Your Data Last Longer (Checklist)',
+        description: 'Use this practical checklist: (1) turn off background data for non-essential apps, (2) lower streaming quality, (3) disable autoplay, (4) set all updates to Wi-Fi only, (5) avoid uncontrolled hotspot sessions, (6) check balance frequently, and (7) review app usage weekly.'
+      },
+      {
+        id: 'choose-right-bundle',
+        title: 'Choosing the Right Data Bundle for Your Usage',
+        description: 'Match bundle size to real monthly behavior instead of buying too small and topping up repeatedly. Light users may fit 2GB to 5GB, moderate users often need 10GB, and heavier users may require 15GB to 50GB or more. Correct bundle matching is one of the easiest ways to reduce telecom spend.'
+      },
+      {
+        id: 'common-signs-fast-drain',
+        title: 'Common Signs Your Data Is Being Used Too Fast',
+        description: 'Typical warning signs include data finishing in a day, overnight drops, sudden loss after social-media sessions, or rapid depletion soon after bundle purchase. These patterns usually indicate background activity, high video usage, updates, hotspot usage, or bundle mismatch.'
+      },
+      {
+        id: 'when-contact-network',
+        title: 'When Should You Contact Your Network?',
+        description: 'Contact support if usage appears inconsistent with your behavior, if you suspect billing or activation issues, or if deductions continue after you changed settings and usage habits. Ask for a usage breakdown so you can verify where consumption is happening.'
+      }
+    ],
+    commonMistakesTitle: 'Common Data-Drain Mistakes',
+    commonMistakes: [
+      {
+        title: 'Assuming phone idle means zero data use',
+        description: 'Background syncing and app refresh can still consume data while your screen is off.'
+      },
+      {
+        title: 'Watching social video on default settings',
+        description: 'Autoplay and HD quality can use far more data than expected.'
+      },
+      {
+        title: 'Keeping updates on mobile data',
+        description: 'Automatic app and system updates can finish small bundles quickly.'
+      },
+      {
+        title: 'Underbuying bundles every month',
+        description: 'Repeated top-ups often cost more than buying the right size once.'
+      }
+    ],
+    nextStepsTitle: 'Useful Next Steps on DataCost',
+    nextSteps: [
+      { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Diagnose airtime deductions and out-of-bundle risk.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
+      { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Rule out recurring subscription deductions.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },
+      { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions', description: 'Use the full cancellation steps if needed.', action: 'route' },
+      { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Track data before and after heavy usage periods.', action: 'guide', slug: 'how-to-check-data-balance' },
+      { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes Hub', description: 'Find fast balance and self-service codes.', action: 'route' },
+      { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Quick MTN balance and service shortcuts.', action: 'route' },
+      { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes', description: 'Quick Vodacom balance and service shortcuts.', action: 'route' },
+      { href: '/telkom-ussd-codes/', label: 'Telkom USSD Codes', description: 'Quick Telkom balance and service shortcuts.', action: 'route' },
+      { href: '/cell-c-ussd-codes/', label: 'Cell C USSD Codes', description: 'Quick Cell C balance and service shortcuts.', action: 'route' },
+      { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare better overall bundle value.', action: 'route' },
+      { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find stronger monthly and prepaid value.', action: 'guide', slug: 'best-data-deals-south-africa' },
+      { href: '/guides/cheapest-2gb-data-south-africa/', label: 'Cheapest 2GB Data', description: 'For light monthly usage.', action: 'route' },
+      { href: '/guides/cheapest-5gb-data-south-africa/', label: 'Cheapest 5GB Data', description: 'For moderate monthly usage.', action: 'route' },
+      { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data', description: 'Mainstream monthly benchmark.', action: 'route' },
+      { href: '/guides/cheapest-20gb-data-south-africa/', label: 'Cheapest 20GB Data', description: 'Higher regular-usage option.', action: 'route' },
+      { href: '/guides/cheapest-50gb-data-south-africa/', label: 'Cheapest 50GB Data', description: 'Heavy and hotspot-focused usage.', action: 'route' }
+    ],
+    faq: [
+      {
+        question: 'Why does my data run out so fast?',
+        answer: 'The most common causes are background app activity, social/video usage, auto-updates, hotspot sharing, and bundle mismatch.'
+      },
+      {
+        question: 'Which apps usually use the most mobile data?',
+        answer: 'Video and social platforms like TikTok, Instagram, YouTube, and Facebook usually consume the most data.'
+      },
+      {
+        question: 'How do I check what is using my data?',
+        answer: 'Use your phone data-usage settings to view per-app consumption and monitor weekly trends.'
+      },
+      {
+        question: 'How do I make my data last longer?',
+        answer: 'Limit background data, lower video quality, disable autoplay and auto-updates on mobile data, and check balance frequently.'
+      },
+      {
+        question: 'Can my network be charging me incorrectly?',
+        answer: 'If usage seems inconsistent with your behavior after applying fixes, contact support and request a detailed usage or billing breakdown.'
+      },
+      {
+        question: 'Does hotspot usage finish data faster?',
+        answer: 'Yes. Hotspot sessions can consume large amounts quickly, especially when connected devices stream video or run updates.'
+      },
+      {
+        question: 'Is choosing the right bundle size really that important?',
+        answer: 'Yes. Consistently underbuying often causes repeat top-ups and higher monthly spend.'
+      }
+    ]
+  },
+  {
     slug: 'why-is-my-airtime-disappearing-south-africa',
     title: 'Why Is My Airtime Disappearing in South Africa? (2026 Guide)',
     metaDescription: 'Find out why your airtime keeps disappearing in South Africa and how to stop it. Learn the most common causes, how to check them, and what to do next.',

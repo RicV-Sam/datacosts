@@ -44,14 +44,23 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Avoid airtime leakage.', action: 'guide', slug: 'how-to-check-data-balance' }
   ],
   'why-is-my-data-finishing-so-fast': [
+    { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast (Full Guide)', description: 'Comprehensive causes, checks, and fixes.', action: 'guide', slug: 'why-does-my-data-finish-so-fast-south-africa' },
     { href: '/guides/airtime-data-saving-tips-south-africa/', label: '15 Airtime & Data Saving Tips', description: 'Complete consumer checklist for lower spend.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Track usage before bundles run out.', action: 'guide', slug: 'how-to-check-data-balance' },
     { href: '/guides/convert-airtime-to-data-south-africa/', label: 'Convert Airtime to Data', description: 'Avoid expensive raw-airtime browsing.', action: 'guide', slug: 'convert-airtime-to-data-south-africa' },
     { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare better-value alternatives.', action: 'route' },
-    { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Save balance and buy shortcuts.', action: 'route' },
-    { href: '/network/', label: 'Network Comparison Hub', description: 'Compare network-level value.', action: 'route' }
+    { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Save balance and buy shortcuts.', action: 'route' }
+  ],
+  'why-does-my-data-finish-so-fast-south-africa': [
+    { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Airtime Disappears', description: 'Check related airtime and out-of-bundle issues.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
+    { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Rule out recurring subscription deductions.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },
+    { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Track where usage goes week by week.', action: 'guide', slug: 'how-to-check-data-balance' },
+    { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare lower-cost bundle options.', action: 'route' },
+    { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals', description: 'Find stronger promo and value options.', action: 'guide', slug: 'best-data-deals-south-africa' },
+    { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Fast balance and buy shortcuts.', action: 'route' }
   ],
   'why-is-my-airtime-disappearing-south-africa': [
+    { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Diagnose the main mobile-data drain causes.', action: 'guide', slug: 'why-does-my-data-finish-so-fast-south-africa' },
     { href: '/guides/airtime-data-saving-tips-south-africa/', label: '15 Airtime & Data Saving Tips', description: 'Reduce repeat airtime loss with daily habits.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Verify balances before usage spikes.', action: 'guide', slug: 'how-to-check-data-balance' },
     { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Understand and diagnose recurring subscription deductions.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },

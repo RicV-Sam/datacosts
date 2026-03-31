@@ -119,7 +119,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       { href: '/network/telkom/cheapest-1gb/', label: 'Telkom cheapest 1GB', description: 'Compare Telkom 1GB intent page.' },
       { href: '/network/cell-c/cheapest-1gb/', label: 'Cell C cheapest 1GB', description: 'Compare Cell C 1GB intent page.' },
       { href: '/guides/how-to-buy-data-vodacom/', label: 'How to buy Vodacom data', description: 'Step-by-step Vodacom buy route.' },
-      { href: '/guides/how-to-buy-data-mtn/', label: 'How to buy MTN data', description: 'Step-by-step MTN buy route.' }
+      { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Fix hidden usage and bundle mismatch issues.', }
     ],
     coverageFirstNetwork: 'Vodacom'
   },
@@ -171,7 +171,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       { href: '/guides/cheapest-20gb-data-south-africa/', label: 'Cheapest 20GB Data', description: 'Compare higher monthly value options.' },
       { href: '/network/vodacom/monthly-data/', label: 'Vodacom monthly bundles', description: 'Vodacom monthly intent page.' },
       { href: '/network/mtn/monthly-data/', label: 'MTN monthly bundles', description: 'MTN monthly intent page.' },
-      { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best monthly data deals', description: 'Compare broader monthly value.' }
+      { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Reduce avoidable monthly data drain.' }
     ],
     coverageFirstNetwork: 'Vodacom'
   },
@@ -223,7 +223,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'See overall market comparison first.' },
       { href: '/guides/best-prepaid-data-deals-south-africa/', label: 'Best Prepaid Data Deals', description: 'Find stronger prepaid value options.' },
       { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes', description: 'Quick ways to check balance and buy data.' },
-      { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Track usage before your 2GB runs out.' }
+      { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Understand and fix rapid bundle depletion.' }
     ],
     coverageFirstNetwork: 'Vodacom'
   },
@@ -275,7 +275,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals', description: 'Compare 30-day value across networks.' },
       { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Market-wide benchmark page.' },
       { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs Contract', description: 'Choose the right billing model for your usage.' },
-      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Check balances and buy menus quickly.' }
+      { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Find the most common causes and fixes.', }
     ],
     coverageFirstNetwork: 'Vodacom'
   },
@@ -327,7 +327,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       { href: '/guides/cheapest-50gb-data-south-africa/', label: 'Cheapest 50GB Data', description: 'For hotspot and heavy monthly usage.' },
       { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals', description: 'Broader monthly comparison context.' },
       { href: '/network/', label: 'Network Comparison Hub', description: 'Compare network-level strengths before buying.' },
-      { href: '/guides/why-is-my-data-finishing-so-fast/', label: 'Why Data Finishes Fast', description: 'Reduce avoidable monthly data drain.' }
+      { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Reduce avoidable monthly data drain.' }
     ],
     coverageFirstNetwork: 'Vodacom'
   },
@@ -379,7 +379,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data', description: 'Compare against the mainstream monthly size.' },
       { href: '/guides/cheapest-unlimited-data-south-africa/', label: 'Cheapest Unlimited Data', description: 'Compare heavy-use alternatives.' },
       { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs Contract', description: 'Choose the right purchase model.' },
-      { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Track usage and avoid overspend.' }
+      { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Diagnose heavy-usage drain patterns.', }
     ],
     coverageFirstNetwork: 'Vodacom'
   },
@@ -430,7 +430,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       { href: '/guides/cheapest-unlimited-data-south-africa/', label: 'Cheapest Unlimited Data', description: 'Compare true heavy-use alternatives.' },
       { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals', description: 'Broader monthly value context.' },
       { href: '/network/', label: 'Network Comparison Hub', description: 'Compare network quality and practical fit.' },
-      { href: '/guides/why-is-my-data-finishing-so-fast/', label: 'Why Data Finishes Fast', description: 'Cut avoidable drain and stretch usage.' },
+      { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Cut avoidable drain and stretch usage.' },
       { href: '/methodology/', label: 'Methodology', description: 'See how DataCost compares network pricing.' }
     ],
     coverageFirstNetwork: 'Vodacom'
@@ -484,7 +484,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       { href: '/network/telkom/monthly-data/', label: 'Telkom monthly data', description: 'Telkom monthly intent page.' },
       { href: '/network/cell-c/monthly-data/', label: 'Cell C monthly data', description: 'Cell C monthly intent page.' },
       { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB guide', description: 'Mid-volume monthly benchmark.' },
-      { href: '/guides/why-is-my-data-finishing-so-fast/', label: 'Why data finishes fast', description: 'Reduce monthly data drain.' }
+      { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Reduce monthly data drain with practical fixes.' }
     ],
     coverageFirstNetwork: 'Vodacom'
   },
@@ -536,7 +536,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       { href: '/network/telkom/', label: 'Telkom network page', description: 'Telkom value-led prepaid context.' },
       { href: '/network/cell-c/', label: 'Cell C network page', description: 'Cell C promo-led prepaid context.' },
       { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs contract guide', description: 'Understand model trade-offs.' },
-      { href: '/ussd-codes-south-africa/', label: 'South Africa USSD codes', description: 'Check buy and balance short codes.' }
+      { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Fix hidden usage and reduce repeat top-ups.' }
     ],
     coverageFirstNetwork: 'Vodacom'
   },
