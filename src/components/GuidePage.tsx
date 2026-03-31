@@ -54,10 +54,18 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
   'why-is-my-airtime-disappearing-south-africa': [
     { href: '/guides/airtime-data-saving-tips-south-africa/', label: '15 Airtime & Data Saving Tips', description: 'Reduce repeat airtime loss with daily habits.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Verify balances before usage spikes.', action: 'guide', slug: 'how-to-check-data-balance' },
+    { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Understand and diagnose recurring subscription deductions.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },
     { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions', description: 'Check and stop unwanted premium deductions.', action: 'route' },
     { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Find quick codes for balance and bundle actions.', action: 'route' },
-    { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Switch to better-value bundle options.', action: 'route' },
-    { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices', description: 'Compare major-network price patterns.', action: 'route' }
+    { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Switch to better-value bundle options.', action: 'route' }
+  ],
+  'how-to-stop-wasp-vas-charges-south-africa': [
+    { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions (Step-by-Step)', description: 'Use the full network-by-network cancellation workflow.', action: 'route' },
+    { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Airtime Disappears', description: 'Diagnose broader airtime drain patterns.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
+    { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Quick access to balance and self-service codes.', action: 'route' },
+    { href: '/save-ussd-codes/', label: 'Save USSD Codes', description: 'Keep key troubleshooting codes ready.', action: 'route' },
+    { href: '/network/', label: 'Network Comparison Hub', description: 'View network context and support pages.', action: 'route' },
+    { href: '/methodology/', label: 'Methodology', description: 'See how DataCost structures telecom guidance.', action: 'route' }
   ],
   'convert-airtime-to-data-south-africa': [
     { href: '/guides/airtime-data-saving-tips-south-africa/', label: 'Airtime & Data Saving Tips', description: 'Reduce airtime waste with practical habits.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
@@ -106,6 +114,11 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
     }));
 
   const navigateToResource = (item: GuideResourceLink) => {
+    if (/^https?:\/\//i.test(item.href)) {
+      window.location.assign(item.href);
+      return;
+    }
+
     if (item.action === 'guide' && item.slug) {
       onNavigateToGuide(item.slug);
       return;
@@ -372,7 +385,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
           </section>
         )}
 
-        <section className="mb-16 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm">
+        <section id="faq" className="mb-16 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm scroll-mt-32">
           <h2 className="text-3xl font-black tracking-tighter mb-8">Frequently Asked Questions</h2>
           <div className="space-y-8">
             {guide.faq.map((item, index) => (

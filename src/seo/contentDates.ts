@@ -32,6 +32,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-buy-data-telkom': '2026-03-10T00:00:00.000Z',
   'how-to-buy-data-vodacom': '2026-03-10T00:00:00.000Z',
   'how-to-check-data-balance': '2026-03-16T00:00:00.000Z',
+  'how-to-stop-wasp-vas-charges-south-africa': '2026-03-31T00:00:00.000Z',
   'prepaid-vs-contract-south-africa': '2026-03-10T00:00:00.000Z',
   'why-is-my-airtime-disappearing-south-africa': '2026-03-31T00:00:00.000Z',
   'why-is-my-data-finishing-so-fast': '2026-03-15T00:00:00.000Z'

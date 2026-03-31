@@ -395,6 +395,7 @@ export const guides: Guide[] = [
       { href: '/cell-c-ussd-codes/', label: 'Cell C USSD Codes', description: 'Network-specific Cell C shortcuts for balances and bundles.', action: 'route' },
       { href: '/save-ussd-codes/', label: 'Save Important USSD Codes', description: 'Store your key short codes so checks are easy and repeatable.', action: 'route' },
       { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices', description: 'Compare two major networks before buying again.', action: 'route' },
+      { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Understand why subscription deductions happen and how to prevent them.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },
       { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions in South Africa', description: 'Practical steps to identify and stop unwanted premium deductions.', action: 'route' }
     ],
     faq: [
@@ -425,6 +426,152 @@ export const guides: Guide[] = [
       {
         question: 'How do I check my balance on MTN, Vodacom, Telkom, or Cell C?',
         answer: 'Use each network\'s USSD balance code from the South Africa USSD hub or the dedicated network-specific USSD pages on DataCost.'
+      }
+    ]
+  },
+  {
+    slug: 'how-to-stop-wasp-vas-charges-south-africa',
+    title: 'How to Stop Unwanted WASP / VAS Charges in South Africa (2026)',
+    metaDescription: 'Learn what WASP and VAS charges are, why they take your airtime, how to check for them, how to stop them, and what to do if the deductions continue.',
+    h1: 'How to Stop Unwanted WASP / VAS Charges in South Africa (2026)',
+    intro: 'If your airtime keeps dropping in small repeated amounts, unwanted subscription billing may be the reason. This guide explains how WASP and VAS charges work in South Africa, how to diagnose them, and how to stop and prevent them across Vodacom, MTN, Telkom, and Cell C.',
+    quickSummaryTitle: 'The Short Version',
+    quickSummaryItems: [
+      'Unwanted airtime deductions are often linked to recurring subscription-style mobile services.',
+      'Many users only notice the issue after repeated small deductions over several days.',
+      'In most cases you can check active services, stop them, and request a block to prevent future charges.',
+      'Not every charge is fraudulent, but unclear or unexpected deductions should always be reviewed quickly.',
+      'If charges continue after cancellation attempts, escalate through your network support process and, where relevant, WASPA channels.'
+    ],
+    jumpLinksTitle: 'On This Page',
+    jumpLinks: [
+      { label: 'What is WASP / VAS?', anchor: 'what-is-wasp-vas' },
+      { label: 'Why these charges happen', anchor: 'why-charges-happen' },
+      { label: 'Signs you may be subscribed', anchor: 'signs-subscribed' },
+      { label: 'How to check subscriptions', anchor: 'check-subscriptions' },
+      { label: 'How to stop charges', anchor: 'stop-charges-summary' },
+      { label: 'How to prevent it', anchor: 'prevent-future-charges' },
+      { label: 'What is WASPA?', anchor: 'what-is-waspa' },
+      { label: 'If charges continue', anchor: 'charges-continue' },
+      { label: 'Common networks affected', anchor: 'common-networks-affected' },
+      { label: 'FAQ', anchor: 'faq' }
+    ],
+    comparisonType: 'all',
+    stepsTitle: 'Unwanted WASP / VAS Charges: What To Check and What To Do',
+    steps: [
+      {
+        id: 'what-is-wasp-vas',
+        title: '1) What is a WASP / VAS charge?',
+        description: 'WASP means Wireless Application Service Provider, and VAS means Value Added Services. These can include paid alerts, games, entertainment content, quizzes, and other premium mobile services billed through your airtime or mobile account. For many users, the main issue is not the label - it is understanding what service is deducting money and why.'
+      },
+      {
+        id: 'why-charges-happen',
+        title: '2) Why do these charges happen?',
+        description: 'Common causes include accidental opt-ins, clicking subscription-style ads, entering a number on a promo page, misunderstanding confirmation flows, or older subscriptions that stayed active. In many cases users did not intentionally plan ongoing billing, but the service remains active until cancelled.'
+      },
+      {
+        id: 'signs-subscribed',
+        title: '3) Signs you may have an active WASP or VAS subscription',
+        description: 'Look for repeating small deductions, airtime dropping every day or every few days, SMS messages about services you do not remember joining, balance falling when phone usage is low, or airtime disappearing soon after top-up. These patterns usually point to recurring service billing rather than one-off usage.'
+      },
+      {
+        id: 'check-subscriptions',
+        title: '4) How to check if you have active subscriptions',
+        description: 'Start by checking recent deductions and SMS history. Then use your network self-service or USSD menus to review active services and premium billing entries. Keep records of what you find so you can compare before and after cancellation attempts. This is usually the fastest way to confirm whether recurring subscription billing is active on your line.'
+      },
+      {
+        id: 'stop-charges-summary',
+        title: '5) How to stop WASP / VAS charges (summary)',
+        description: 'In most cases, you need to identify active services, cancel each one, and request a future content or premium-service block where available. Keep confirmation messages and monitor your airtime for at least 24 to 48 hours. For full network-by-network cancellation actions, use our dedicated step-by-step page: /guides/stop-wasp-subscriptions-south-africa/.'
+      },
+      {
+        id: 'prevent-future-charges',
+        title: '6) How to prevent this from happening again',
+        description: 'Avoid entering your number on unknown pages, be cautious with "free prize" or promo-style links, review subscription terms before confirming, and monitor airtime soon after top-ups. Regular checks reduce the chance of unnoticed recurring deductions and help you spot issues early.'
+      },
+      {
+        id: 'what-is-waspa',
+        title: '7) What is WASPA and how does it relate to subscriptions?',
+        description: 'WASPA is the Wireless Application Service Providers\' Association of South Africa. It is an industry body linked to conduct and standards for member providers in the mobile content and subscription space. For consumers, WASPA is relevant for understanding expected transparency and cancellation standards, and can be a useful escalation reference when issues remain unresolved after normal support channels. You can learn more via the official WASPA website.'
+      },
+      {
+        id: 'charges-continue',
+        title: '8) What to do if charges continue after cancellation attempts',
+        description: 'If deductions continue, contact network support and request a detailed billing breakdown, ask for premium/content-service blocking on your line, and keep all cancellation records. If the issue is still unresolved after reasonable attempts, escalate through the appropriate formal complaint route with complete evidence.'
+      },
+      {
+        id: 'common-networks-affected',
+        title: '9) Common networks affected',
+        description: 'Users across Vodacom, MTN, Telkom, and Cell C can run into subscription-billing confusion. The practical approach is the same across networks: check active services, stop anything unwanted, monitor deductions, and escalate with records if the issue continues.'
+      }
+    ],
+    commonMistakesTitle: 'Common Mistakes That Keep WASP / VAS Charges Active',
+    commonMistakes: [
+      {
+        title: 'Ignoring repeated small deductions',
+        description: 'Small recurring charges are easy to miss, but over time they create meaningful airtime loss.'
+      },
+      {
+        title: 'Cancelling once and not re-checking',
+        description: 'Always verify that no active services remain and monitor deductions for at least 24 to 48 hours.'
+      },
+      {
+        title: 'Not keeping proof of cancellation',
+        description: 'Confirmation SMS records and timestamps are useful if you need to escalate with support.'
+      },
+      {
+        title: 'Treating every deduction as data usage',
+        description: 'Not all airtime loss is data-related. Subscription billing often looks different from normal internet usage.'
+      }
+    ],
+    nextStepsTitle: 'Need the Exact Actions? Use These Pages',
+    nextSteps: [
+      { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions (Full Step-by-Step)', description: 'Use this for the detailed cancellation workflow by network.', action: 'route' },
+      { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Broader troubleshooting guide for recurring airtime loss.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
+      { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes Hub', description: 'Find balance and self-service codes quickly.', action: 'route' },
+      { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Check MTN service and balance shortcuts.', action: 'route' },
+      { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes', description: 'Check Vodacom service and balance shortcuts.', action: 'route' },
+      { href: '/telkom-ussd-codes/', label: 'Telkom USSD Codes', description: 'Check Telkom service and balance shortcuts.', action: 'route' },
+      { href: '/cell-c-ussd-codes/', label: 'Cell C USSD Codes', description: 'Check Cell C service and balance shortcuts.', action: 'route' },
+      { href: '/save-ussd-codes/', label: 'Save Important USSD Codes', description: 'Keep key short codes handy on your phone.', action: 'route' },
+      { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Separate data drain from subscription deductions.', action: 'guide', slug: 'how-to-check-data-balance' },
+      { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare better-value bundles once charges are under control.', action: 'route' },
+      { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find practical data options after fixing deductions.', action: 'guide', slug: 'best-data-deals-south-africa' },
+      { href: '/network/', label: 'Network Comparison Hub', description: 'Browse network pages and support context.', action: 'route' },
+      { href: 'https://waspa.org.za/', label: 'WASPA Official Website', description: 'Reference industry guidance and complaint information where applicable.', action: 'route' }
+    ],
+    faq: [
+      {
+        question: 'What is a WASP subscription?',
+        answer: 'A WASP subscription is a mobile content or premium service billed through your airtime or account, often as recurring deductions.'
+      },
+      {
+        question: 'Why is my airtime disappearing every day?',
+        answer: 'Daily airtime drops are commonly linked to recurring subscriptions, out-of-bundle usage, or other repeated deductions. Check active services and recent billing entries first.'
+      },
+      {
+        question: 'How do I stop unwanted subscriptions in South Africa?',
+        answer: 'Identify active services, cancel them, and request a content-service block if available. Then use our full cancellation guide for network-specific steps.'
+      },
+      {
+        question: 'How do I check if I have a WASP or VAS charge?',
+        answer: 'Review your recent deductions and SMS history, then check active services in your network\'s self-service or USSD menu.'
+      },
+      {
+        question: 'Can I block mobile subscription services?',
+        answer: 'Many users can request a content or premium-service block through network support channels. Availability can vary by network and account type.'
+      },
+      {
+        question: 'Are WASP services scams?',
+        answer: 'Not all WASP or VAS services are scams. The issue is usually unwanted, unclear, or forgotten recurring billing, which should be checked and cancelled promptly.'
+      },
+      {
+        question: 'What is the difference between WASP and VAS?',
+        answer: 'WASP refers to providers of certain mobile services, while VAS refers more broadly to value-added services. In practice, users mostly care about whether a service is charging their airtime repeatedly.'
+      },
+      {
+        question: 'Can I complain to WASPA?',
+        answer: 'If you have checked services, tried cancellation, and contacted support but the issue remains unresolved, WASPA may be a relevant escalation channel for applicable cases.'
       }
     ]
   },

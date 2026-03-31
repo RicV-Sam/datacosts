@@ -139,6 +139,16 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
           </p>
         </section>
 
+        <section className="mb-10 bg-blue-50 rounded-3xl p-8 border border-blue-100 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-3">Need the full explanation first?</h2>
+          <p className="text-slate-700 text-sm leading-relaxed mb-4">
+            This page focuses on cancellation actions. If you want a full diagnostic and prevention guide covering what WASP/VAS charges are, why they happen, how to detect them, and when to escalate, start here:
+          </p>
+          <Link to="/guides/how-to-stop-wasp-vas-charges-south-africa/" className="text-[#1b6d24] font-black hover:underline">
+            How to Stop Unwanted WASP / VAS Charges in South Africa
+          </Link>
+        </section>
+
         <section className="mb-20 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-8">Direct Answer Summary</h2>
           <div className="space-y-8">
@@ -193,6 +203,9 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
           </p>
           <p className="text-sm text-slate-700 leading-relaxed">
             Airtime can also drop due to background data use. If you want a full check, use our <Link to="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">South Africa USSD codes guide</Link> and our <Link to="/guides/why-is-my-data-finishing-so-fast/" className="text-[#1b6d24] font-semibold hover:underline">data drain troubleshooting guide</Link>.
+          </p>
+          <p className="text-sm text-slate-700 leading-relaxed mt-4">
+            For a broader consumer-protection explanation of WASP/VAS billing patterns, use <Link to="/guides/how-to-stop-wasp-vas-charges-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">our main WASP / VAS guide</Link>.
           </p>
         </section>
 

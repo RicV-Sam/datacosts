@@ -38,6 +38,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
     { slug: 'cheapest-2gb-data-south-africa', title: 'Cheapest 2GB Data South Africa', description: 'Low-budget bundle benchmark for light monthly users.', path: '/guides/cheapest-2gb-data-south-africa/' },
     { slug: 'cheapest-5gb-data-south-africa', title: 'Cheapest 5GB Data South Africa', description: 'Mid-range prepaid comparison for moderate users.', path: '/guides/cheapest-5gb-data-south-africa/' },
     { slug: 'why-is-my-airtime-disappearing-south-africa' },
+    { slug: 'how-to-stop-wasp-vas-charges-south-africa' },
     { slug: 'airtime-data-saving-tips-south-africa' },
     { slug: 'cheapest-1gb-data-south-africa' },
     { slug: 'cheapest-10gb-data-south-africa', title: 'Cheapest 10GB Data South Africa', description: 'Compare currently listed 10GB bundles for practical monthly middle-usage plans.', path: '/guides/cheapest-10gb-data-south-africa/' },
@@ -84,6 +85,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       snippet: "Use these when airtime disappears, data runs out too quickly, or you need the quickest way to audit balances and subscriptions.",
       links: [
         { slug: 'why-is-my-airtime-disappearing-south-africa' },
+        { slug: 'how-to-stop-wasp-vas-charges-south-africa' },
         { slug: 'why-is-my-data-finishing-so-fast' },
         { slug: 'airtime-data-saving-tips-south-africa' },
         { slug: 'how-to-check-data-balance' },
