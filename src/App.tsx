@@ -5,6 +5,7 @@ import { NetworkName, NavigateFunction } from './types';
 
 const HomePage = lazy(() => import('./pages/HomePage').then((mod) => ({ default: mod.HomePage })));
 const USSDPage = lazy(() => import('./pages/USSDPage').then((mod) => ({ default: mod.USSDPage })));
+const NetworkUSSDPage = lazy(() => import('./pages/NetworkUSSDPage').then((mod) => ({ default: mod.NetworkUSSDPage })));
 const SaveUssdCodes = lazy(() => import('./pages/SaveUssdCodes').then((mod) => ({ default: mod.SaveUssdCodes })));
 const AlertsPage = lazy(() => import('./pages/AlertsPage').then((mod) => ({ default: mod.AlertsPage })));
 const GuidePage = lazy(() => import('./components/GuidePage').then((mod) => ({ default: mod.GuidePage })));
@@ -110,6 +111,22 @@ function AppContent() {
         <Route
           path="/ussd-codes-south-africa/"
           element={<USSDPage onBack={() => navigateTo('home')} onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
+        />
+        <Route
+          path="/mtn-ussd-codes/"
+          element={<NetworkUSSDPage networkSlug="mtn" onBack={() => navigateTo('ussd')} onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
+        />
+        <Route
+          path="/vodacom-ussd-codes/"
+          element={<NetworkUSSDPage networkSlug="vodacom" onBack={() => navigateTo('ussd')} onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
+        />
+        <Route
+          path="/telkom-ussd-codes/"
+          element={<NetworkUSSDPage networkSlug="telkom" onBack={() => navigateTo('ussd')} onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
+        />
+        <Route
+          path="/cell-c-ussd-codes/"
+          element={<NetworkUSSDPage networkSlug="cell-c" onBack={() => navigateTo('ussd')} onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
         />
         <Route
           path="/save-ussd-codes/"

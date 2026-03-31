@@ -9,12 +9,16 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/editorial-policy/': '2026-01-20T00:00:00.000Z',
   '/guides/': '2026-03-31T00:00:00.000Z',
   '/methodology/': '2026-01-20T00:00:00.000Z',
+  '/mtn-ussd-codes/': '2026-03-31T00:00:00.000Z',
   '/network/': '2026-03-24T00:00:00.000Z',
   '/privacy-policy/': '2026-01-20T00:00:00.000Z',
   '/save-ussd-codes/': '2026-03-30T00:00:00.000Z',
+  '/cell-c-ussd-codes/': '2026-03-31T00:00:00.000Z',
+  '/telkom-ussd-codes/': '2026-03-31T00:00:00.000Z',
   '/terms/': '2026-01-20T00:00:00.000Z',
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
-  '/ussd-codes-south-africa/': '2026-03-30T00:00:00.000Z'
+  '/ussd-codes-south-africa/': '2026-03-30T00:00:00.000Z',
+  '/vodacom-ussd-codes/': '2026-03-31T00:00:00.000Z'
 };
 
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {

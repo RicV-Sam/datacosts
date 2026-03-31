@@ -83,6 +83,21 @@ export const USSDCodeFinder: React.FC<USSDCodeFinderProps> = ({ onViewAll }) => 
         ))}
       </div>
 
+      <div className="mb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <a href="/mtn-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">
+          MTN USSD codes
+        </a>
+        <a href="/vodacom-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">
+          Vodacom USSD codes
+        </a>
+        <a href="/telkom-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">
+          Telkom USSD codes
+        </a>
+        <a href="/cell-c-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors">
+          Cell C USSD codes
+        </a>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
         <AnimatePresence mode="popLayout">
           {filteredCodes.slice(0, 6).map((code, idx) => (

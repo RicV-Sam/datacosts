@@ -311,6 +311,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   };
 
   const relatedPages = [
+    '/mtn-ussd-codes/',
+    '/vodacom-ussd-codes/',
+    '/telkom-ussd-codes/',
+    '/cell-c-ussd-codes/',
     '/guides/how-to-check-data-balance/',
     '/guides/how-to-buy-data-mtn/',
     '/guides/how-to-buy-data-vodacom/',
@@ -325,6 +329,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   ];
 
   const relatedLabels: Record<string, string> = {
+    '/mtn-ussd-codes/': 'MTN USSD Codes',
+    '/vodacom-ussd-codes/': 'Vodacom USSD Codes',
+    '/telkom-ussd-codes/': 'Telkom USSD Codes',
+    '/cell-c-ussd-codes/': 'Cell C USSD Codes',
     '/guides/how-to-check-data-balance/': 'How to Check Data Balance',
     '/guides/how-to-buy-data-mtn/': 'How to Buy Data on MTN',
     '/guides/how-to-buy-data-vodacom/': 'How to Buy Data on Vodacom',
@@ -413,6 +421,27 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
           <p className="text-slate-700 leading-relaxed">
             USSD codes are still the fastest no-data way to check balances, buy bundles, and recharge. The exact code differs by network, so use the task matrix and network sections below to dial the right shortcode.
           </p>
+        </section>
+
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">Network-Specific USSD Pages</h2>
+          <p className="text-slate-700 leading-relaxed mb-5">
+            Need codes for only one network? Use these dedicated pages for faster lookup, network-specific FAQs, and focused troubleshooting.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <Link to="/mtn-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-[#1b6d24] transition-colors">
+              <span className="font-bold text-slate-900">MTN USSD Codes</span>
+            </Link>
+            <Link to="/vodacom-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-[#1b6d24] transition-colors">
+              <span className="font-bold text-slate-900">Vodacom USSD Codes</span>
+            </Link>
+            <Link to="/telkom-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-[#1b6d24] transition-colors">
+              <span className="font-bold text-slate-900">Telkom USSD Codes</span>
+            </Link>
+            <Link to="/cell-c-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-[#1b6d24] transition-colors">
+              <span className="font-bold text-slate-900">Cell C USSD Codes</span>
+            </Link>
+          </div>
         </section>
 
         <AdUnit type="aboveFold" />
