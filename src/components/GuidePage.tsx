@@ -51,6 +51,14 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
     { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Save balance and buy shortcuts.', action: 'route' },
     { href: '/network/', label: 'Network Comparison Hub', description: 'Compare network-level value.', action: 'route' }
   ],
+  'why-is-my-airtime-disappearing-south-africa': [
+    { href: '/guides/airtime-data-saving-tips-south-africa/', label: '15 Airtime & Data Saving Tips', description: 'Reduce repeat airtime loss with daily habits.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
+    { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Verify balances before usage spikes.', action: 'guide', slug: 'how-to-check-data-balance' },
+    { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions', description: 'Check and stop unwanted premium deductions.', action: 'route' },
+    { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Find quick codes for balance and bundle actions.', action: 'route' },
+    { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Switch to better-value bundle options.', action: 'route' },
+    { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices', description: 'Compare major-network price patterns.', action: 'route' }
+  ],
   'convert-airtime-to-data-south-africa': [
     { href: '/guides/airtime-data-saving-tips-south-africa/', label: 'Airtime & Data Saving Tips', description: 'Reduce airtime waste with practical habits.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
     { href: '/guides/how-to-buy-data-vodacom/', label: 'How to Buy Vodacom Data', description: 'Operator-specific buy path.', action: 'guide', slug: 'how-to-buy-data-vodacom' },

@@ -284,6 +284,151 @@ export const guides: Guide[] = [
     ]
   },
   {
+    slug: 'why-is-my-airtime-disappearing-south-africa',
+    title: 'Why Is My Airtime Disappearing in South Africa? (2026 Guide)',
+    metaDescription: 'Find out why your airtime keeps disappearing in South Africa and how to stop it. Learn the most common causes, how to check them, and what to do next.',
+    h1: 'Why Is My Airtime Disappearing in South Africa? (2026 Guide)',
+    intro: 'If your airtime keeps dropping and you are not sure why, you are not imagining it. This guide covers the most common causes across Vodacom, MTN, Telkom, and Cell C, plus practical steps to identify, stop, and prevent airtime loss.',
+    quickSummaryTitle: 'The Short Version',
+    quickSummaryItems: [
+      'Airtime often disappears when your data bundle runs out and your phone continues browsing at out-of-bundle rates.',
+      'Background apps, auto-updates, and cloud syncing can quietly use mobile data and drain prepaid airtime.',
+      'Video-heavy social apps like TikTok, Instagram, Facebook, and YouTube can consume airtime much faster than expected.',
+      'Some users have active WASP or value-added subscriptions that deduct small recurring amounts.',
+      'You can reduce losses quickly by checking balances often, using the right bundle type, and saving key USSD codes.'
+    ],
+    jumpLinksTitle: 'Jump to Causes',
+    jumpLinks: [
+      { label: 'Using airtime after data runs out', anchor: 'cause-oob-airtime' },
+      { label: 'Background apps using data', anchor: 'cause-background-apps' },
+      { label: 'Auto-updates and downloads', anchor: 'cause-auto-updates' },
+      { label: 'Social video apps burning airtime', anchor: 'cause-social-video' },
+      { label: 'Subscriptions and WASP charges', anchor: 'cause-wasp' },
+      { label: 'Wrong bundle type for your usage', anchor: 'cause-wrong-bundle' },
+      { label: 'How to stop airtime disappearing', anchor: 'how-to-stop' },
+      { label: 'When to contact your network', anchor: 'when-contact-network' }
+    ],
+    comparisonType: 'all',
+    stepsTitle: 'Main Reasons Airtime Disappears (And How to Fix Each One)',
+    steps: [
+      {
+        id: 'cause-oob-airtime',
+        title: '1) Your phone is using airtime after your data bundle runs out',
+        description: 'This is one of the biggest causes of prepaid airtime loss in South Africa. When your data bundle expires or finishes, some sessions continue using airtime at out-of-bundle rates. Check your current data balance first, then buy a bundle before browsing again. If possible, disable out-of-bundle usage or set strict spend controls with your network support team.'
+      },
+      {
+        id: 'cause-background-apps',
+        title: '2) Background apps are using mobile data without you noticing',
+        description: 'Messaging apps, email sync, cloud photo sync, and system services can use data in the background even when your screen is off. Open your phone data-usage settings and identify which apps are consuming the most. Restrict background data for non-essential apps and keep large sync jobs on Wi-Fi.'
+      },
+      {
+        id: 'cause-auto-updates',
+        title: '3) Auto-updates, app installs, and phone downloads can eat airtime fast',
+        description: 'App-store updates, operating-system patches, and media auto-downloads are often large and can wipe out airtime quickly. Set app updates, OS updates, backups, and downloads to Wi-Fi only. If you must update on mobile data, do it only after confirming you still have enough active bundle balance.'
+      },
+      {
+        id: 'cause-social-video',
+        title: '4) TikTok, Facebook, Instagram and YouTube can burn through airtime quickly',
+        description: 'Autoplay and high-quality video use far more data than many prepaid users expect. If your airtime drops right after social browsing, this is usually the reason. Turn off autoplay, lower video quality, and use data-saver modes in each app to stretch your spend.'
+      },
+      {
+        id: 'cause-wasp',
+        title: '5) You may have an active subscription or WASP / VAS charge',
+        description: 'Some users have premium value-added services that deduct small amounts daily or weekly. These can look like random airtime loss if you are not checking transaction history often. Review your deductions, check for active subscriptions, and cancel anything you do not recognize through official network support channels.'
+      },
+      {
+        id: 'cause-wrong-bundle',
+        title: '6) You may be buying the wrong bundle for how you actually use your phone',
+        description: 'A cheap-looking bundle is not always good value if it does not match your usage pattern. For example, social bundles may not cover general browsing, and night bundles are poor for daytime use. Choose bundle types based on your real behavior: anytime, social, chat, or night usage.'
+      },
+      {
+        id: 'cause-balance-check',
+        title: '7) You may not be checking your balance often enough',
+        description: 'Many users only notice the problem once airtime is already gone. Check airtime and data balance before heavy sessions and after bundle purchases so you can catch unexpected deductions early. Saving your key USSD codes makes this a 10-second habit instead of a guess.'
+      },
+      {
+        id: 'how-to-stop',
+        title: 'How to Stop Airtime Disappearing: Practical Action Plan',
+        description: 'Use this checklist today: (1) confirm whether your bundle expired, (2) review app-level data usage, (3) switch all updates/downloads to Wi-Fi only, (4) disable autoplay in social apps, (5) review active subscriptions or WASP charges, (6) move to a bundle type that matches your usage, and (7) save your balance-check USSD codes for quick monitoring.'
+      },
+      {
+        id: 'common-signs',
+        title: 'Common Signs Your Airtime Is Being Wasted',
+        description: 'Look for patterns like airtime dropping overnight, balance falling right after social-media use, deductions soon after bundle expiry, or sudden drops after app updates. These signs usually point to out-of-bundle use, background data, or recurring subscription deductions.'
+      },
+      {
+        id: 'when-contact-network',
+        title: 'When Should You Contact Your Network?',
+        description: 'Escalate to your network if deductions keep happening after you applied these fixes, if bundle activation looks incorrect, or if charges are unclear. Ask for a usage or billing breakdown and request help with out-of-bundle controls, subscription checks, and account-level spend settings.'
+      }
+    ],
+    commonMistakesTitle: 'Common Airtime Mistakes That Cause Repeat Losses',
+    commonMistakes: [
+      {
+        title: 'Browsing after bundle expiry',
+        description: 'Many users keep browsing after a bundle finishes, not realizing airtime is being charged at out-of-bundle rates.'
+      },
+      {
+        title: 'Confusing airtime and data bundle behavior',
+        description: 'Airtime is wallet value, not a data plan. If not converted to a bundle first, internet use can become expensive very quickly.'
+      },
+      {
+        title: 'Ignoring subscription deductions',
+        description: 'Small recurring WASP or value-added charges are easy to miss unless you regularly check transaction details.'
+      },
+      {
+        title: 'Buying bundles without comparing usage fit',
+        description: 'Picking the first visible bundle often leads to poor value. Match bundles to how and when you actually use your phone.'
+      }
+    ],
+    nextStepsTitle: 'Useful Next Steps on DataCost',
+    nextSteps: [
+      { href: '/guides/', label: 'Guides Hub', description: 'Browse more telecom problem-solving and money-saving guides.', action: 'route' },
+      { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare lower-cost options before your next recharge.', action: 'route' },
+      { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find stronger value bundles by network and use case.', action: 'guide', slug: 'best-data-deals-south-africa' },
+      { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs Contract in South Africa', description: 'Choose the right billing model for your spending habits.', action: 'guide', slug: 'prepaid-vs-contract-south-africa' },
+      { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Use quick checks to catch problems before airtime is gone.', action: 'guide', slug: 'how-to-check-data-balance' },
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Get fast balance and bundle-buy shortcuts.', action: 'route' },
+      { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Network-specific MTN shortcuts for balances and bundles.', action: 'route' },
+      { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes', description: 'Network-specific Vodacom shortcuts for balances and bundles.', action: 'route' },
+      { href: '/telkom-ussd-codes/', label: 'Telkom USSD Codes', description: 'Network-specific Telkom shortcuts for balances and bundles.', action: 'route' },
+      { href: '/cell-c-ussd-codes/', label: 'Cell C USSD Codes', description: 'Network-specific Cell C shortcuts for balances and bundles.', action: 'route' },
+      { href: '/save-ussd-codes/', label: 'Save Important USSD Codes', description: 'Store your key short codes so checks are easy and repeatable.', action: 'route' },
+      { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices', description: 'Compare two major networks before buying again.', action: 'route' },
+      { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions in South Africa', description: 'Practical steps to identify and stop unwanted premium deductions.', action: 'route' }
+    ],
+    faq: [
+      {
+        question: 'Why does my airtime disappear even when I am not using my phone?',
+        answer: 'Background app activity, syncing, updates, and recurring subscriptions can use data or deduct airtime without active screen use.'
+      },
+      {
+        question: 'Can my phone use airtime instead of my data bundle?',
+        answer: 'Yes. If your bundle runs out or expires, data sessions can continue on airtime at out-of-bundle rates unless settings or controls prevent it.'
+      },
+      {
+        question: 'How do I stop my airtime from disappearing?',
+        answer: 'Check bundle status first, limit background data, disable auto-updates on mobile data, switch off autoplay in social apps, and review active subscriptions.'
+      },
+      {
+        question: 'How do I check if I have a subscription taking my airtime?',
+        answer: 'Review your deduction history and ask your network support team to list active value-added or premium services on your number.'
+      },
+      {
+        question: 'Which apps usually use the most airtime or mobile data?',
+        answer: 'Video-heavy apps such as TikTok, YouTube, Instagram, and Facebook are usually the biggest drivers of fast airtime and data depletion.'
+      },
+      {
+        question: 'Why does my airtime disappear after my bundle finishes?',
+        answer: 'This is usually out-of-bundle billing. Once your bundle ends, continued internet usage can be deducted from airtime at a higher per-MB rate.'
+      },
+      {
+        question: 'How do I check my balance on MTN, Vodacom, Telkom, or Cell C?',
+        answer: 'Use each network\'s USSD balance code from the South Africa USSD hub or the dedicated network-specific USSD pages on DataCost.'
+      }
+    ]
+  },
+  {
     slug: 'airtime-data-saving-tips-south-africa',
     title: '15 Smart Airtime & Data Saving Tips for South Africans (2026)',
     metaDescription: 'Learn how to make your airtime and mobile data last longer in South Africa with smart, practical tips on bundles, USSD, app settings, and avoiding costly mistakes.',
