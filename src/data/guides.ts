@@ -284,6 +284,164 @@ export const guides: Guide[] = [
     ]
   },
   {
+    slug: 'airtime-data-saving-tips-south-africa',
+    title: '15 Smart Airtime & Data Saving Tips for South Africans (2026)',
+    metaDescription: 'Learn how to make your airtime and mobile data last longer in South Africa with smart, practical tips on bundles, USSD, app settings, and avoiding costly mistakes.',
+    h1: '15 Smart Airtime & Data Saving Tips for South Africans (2026)',
+    intro: 'If your airtime disappears too fast or your bundle never lasts, this guide is for you. It explains how South African prepaid users can reduce waste, avoid out-of-bundle charges, and choose data bundles that actually match daily usage.',
+    quickSummaryTitle: 'The Short Version',
+    quickSummaryItems: [
+      'Buy data bundles before you browse. Browsing directly on airtime is usually the fastest way to lose money.',
+      'Use the right bundle type for your usage: anytime, social, chat, or night bundles each solve a different problem.',
+      'Most hidden waste comes from background apps, autoplay, updates, and cloud backups running on mobile data.',
+      'Check balances and expiry often using USSD so you can top up before out-of-bundle billing starts.',
+      'Compare across networks monthly. The first bundle you see is not always the best value for your pattern.'
+    ],
+    jumpLinksTitle: 'Jump to Tips',
+    jumpLinks: [
+      { label: 'Out-of-bundle protection tips', anchor: 'tip-1-oob-stop' },
+      { label: 'USSD and quick-access tips', anchor: 'tip-5-save-ussd' },
+      { label: 'Bundle buying strategy tips', anchor: 'tip-3-match-bundle-type' },
+      { label: 'App and phone data-saving tips', anchor: 'tip-7-track-app-usage' },
+      { label: 'Scam and fraud avoidance tips', anchor: 'tip-14-scam-check' },
+      { label: 'Common mistakes', anchor: 'common-mistakes' },
+      { label: 'Find cheaper options', anchor: 'find-cheaper-options' }
+    ],
+    comparisonType: 'all',
+    stepsTitle: '15 Practical Tips to Make Airtime and Data Last Longer',
+    steps: [
+      {
+        id: 'tip-1-oob-stop',
+        title: '1) Stop browsing when your bundle runs out',
+        description: 'When your bundle is finished, many networks switch you to out-of-bundle billing. That can burn airtime in minutes. Treat bundle expiry as a hard stop: reconnect only after buying another bundle.'
+      },
+      {
+        id: 'tip-2-buy-bundle-first',
+        title: '2) Buy a bundle before you use internet on prepaid',
+        description: 'Airtime and data are not the same thing. Airtime is cash value; data is discounted internet volume. Convert airtime to a proper bundle first so you do not pay high out-of-bundle rates.'
+      },
+      {
+        id: 'tip-3-match-bundle-type',
+        title: '3) Match bundle type to your actual usage',
+        description: 'If you mostly chat, a social or chat bundle can be cheaper. If you browse across many apps, you need anytime data. If you download at night, use night bundles. Buy for behavior, not habit.'
+      },
+      {
+        id: 'tip-4-validity-before-volume',
+        title: '4) Check validity first, then GB size',
+        description: 'A cheap-looking bundle with short validity can force repeat purchases, which raises your monthly spend. Always check expiry window before buying, especially on daily and promo bundles.'
+      },
+      {
+        id: 'tip-5-save-ussd',
+        title: '5) Save key USSD codes in your contacts',
+        description: 'Keep balance and buy codes one tap away so you can check usage fast before making another purchase. This reduces panic top-ups and helps you avoid accidental out-of-bundle sessions.'
+      },
+      {
+        id: 'tip-6-weekly-balance-check',
+        title: '6) Check data balance and expiry on a routine',
+        description: 'A quick USSD check once or twice a week is enough for most people. The goal is to catch low balance early, not after your airtime has already started disappearing.'
+      },
+      {
+        id: 'tip-7-track-app-usage',
+        title: '7) Track which apps are using the most mobile data',
+        description: 'Use your phone data-usage screen to find the top draining apps. Users are often surprised by cloud backup, streaming apps, and social media running in the background.'
+      },
+      {
+        id: 'tip-8-background-data',
+        title: '8) Restrict background data for non-essential apps',
+        description: 'Many apps sync, refresh, and fetch media even when closed. Restrict background data for shopping, gaming, and media apps that do not need constant updates.'
+      },
+      {
+        id: 'tip-9-autoplay-off',
+        title: '9) Disable autoplay on TikTok, Instagram, Facebook, and X',
+        description: 'Autoplay silently consumes large amounts of mobile data. Turning it off can extend a small bundle by days, especially for users who scroll often.'
+      },
+      {
+        id: 'tip-10-updates-wifi-only',
+        title: '10) Set app updates and cloud backups to Wi-Fi only',
+        description: 'System updates and auto-backups can be huge. Keep app-store updates, OS updates, and photo backup on Wi-Fi only unless you intentionally plan for that usage with a large bundle.'
+      },
+      {
+        id: 'tip-11-download-wifi',
+        title: '11) Download maps, playlists, and video on Wi-Fi first',
+        description: 'Pre-download for commute, travel, or study while on Wi-Fi. Offline maps and media reduce mobile-data bursts during the day when you are on prepaid.'
+      },
+      {
+        id: 'tip-12-data-warning-limit',
+        title: '12) Use data warning and hard limit controls on your phone',
+        description: 'Set a monthly warning below your budget and a hard cut-off near your limit. This gives you a safety net before you overspend.'
+      },
+      {
+        id: 'tip-13-compare-before-buy',
+        title: '13) Compare bundles monthly, not once a year',
+        description: 'Network promotions shift often in South Africa. Compare at least monthly so you do not stay stuck on an expensive option while better deals exist elsewhere.'
+      },
+      {
+        id: 'tip-14-scam-check',
+        title: '14) Ignore “free airtime” messages asking for codes or payment',
+        description: 'Scammers often promise free airtime or prize money, then ask for vouchers, OTPs, or personal details. Legit operators do not require you to pay to claim a free reward.'
+      },
+      {
+        id: 'tip-15-spend-review',
+        title: '15) Review your monthly airtime and data spend pattern',
+        description: 'After one month, check what you bought most: daily bundles, social bundles, or monthly bundles. Then switch to a simpler plan aligned with your real usage to reduce waste.'
+      }
+    ],
+    commonMistakesTitle: 'Common Airtime and Data Mistakes in South Africa',
+    commonMistakes: [
+      {
+        title: 'Browsing after bundle expiry',
+        description: 'Many users assume internet will stop when data ends. On some plans it continues from airtime at out-of-bundle rates unless settings are changed.'
+      },
+      {
+        title: 'Confusing airtime with data value',
+        description: 'Using airtime directly for data is usually expensive. Airtime should be treated as wallet value that you convert into cheaper bundles first.'
+      },
+      {
+        title: 'Ignoring network-specific bundle types',
+        description: 'Each network has different social, chat, night, and promo offers. Buying only the first visible bundle can mean paying much more than needed.'
+      },
+      {
+        title: 'Buying based on loyalty, not current value',
+        description: 'Brand habit is common, but monthly deal checks often reveal much better value. A quick compare step can significantly lower spend over time.'
+      }
+    ],
+    nextStepsTitle: 'How to Find Cheaper Options on DataCost',
+    nextSteps: [
+      { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Market-wide benchmark before you buy.', action: 'route' },
+      { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find promo-style and high-value bundles.', action: 'guide', slug: 'best-data-deals-south-africa' },
+      { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs Contract in South Africa', description: 'Choose the right billing model for your budget.', action: 'guide', slug: 'prepaid-vs-contract-south-africa' },
+      { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices', description: 'Compare two major networks side by side.', action: 'route' },
+      { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes', description: 'Quick access to buy and balance shortcuts.', action: 'route' },
+      { href: '/methodology/', label: 'Our Methodology & Trust Pages', description: 'See how DataCost compares telecom pricing.', action: 'route' }
+    ],
+    faq: [
+      {
+        question: 'Why does my airtime disappear so quickly when I have no data bundle?',
+        answer: 'If mobile data stays on after your bundle ends, usage can be billed at out-of-bundle airtime rates. Buying a bundle first and checking balance regularly is the safest approach.'
+      },
+      {
+        question: 'Is it cheaper to buy data bundles than using airtime directly for internet?',
+        answer: 'Yes. In almost all cases, buying a bundle gives far better value per MB or GB than raw airtime browsing.'
+      },
+      {
+        question: 'Do social bundles save money in South Africa?',
+        answer: 'They can save money if your usage is mostly within supported apps. They are not ideal for general browsing, updates, or video outside included platforms.'
+      },
+      {
+        question: 'What is the easiest way to stop out-of-bundle charges?',
+        answer: 'Check your balance before sessions, set device limits, and avoid browsing when your bundle is depleted. Operator support can also help with out-of-bundle control settings.'
+      },
+      {
+        question: 'Are free airtime prize messages trustworthy?',
+        answer: 'Treat unexpected prize messages as suspicious if they request payment, vouchers, OTPs, PINs, or personal codes. Verify only through official network channels.'
+      },
+      {
+        question: 'How often should I compare data prices?',
+        answer: 'A monthly check is practical for most prepaid users because promotions and bundle menus change frequently.'
+      }
+    ]
+  },
+  {
     slug: 'how-to-check-data-balance',
     title: 'How to Check Data Balance South Africa - All Networks (2026)',
     metaDescription: 'Never run out of data! Learn the USSD codes to check your data balance on Vodacom, MTN, Telkom, and Cell C instantly from your phone.',

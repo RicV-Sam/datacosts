@@ -65,8 +65,22 @@ export interface FAQ {
 }
 
 export interface GuideStep {
+  id?: string;
   title: string;
   description: string;
+}
+
+export interface GuideJumpLink {
+  label: string;
+  anchor: string;
+}
+
+export interface GuideResourceLink {
+  href: string;
+  label: string;
+  description: string;
+  action?: 'guide' | 'route';
+  slug?: string;
 }
 
 export interface Guide {
@@ -75,8 +89,16 @@ export interface Guide {
   metaDescription: string;
   h1: string;
   intro: string;
+  quickSummaryTitle?: string;
+  quickSummaryItems?: string[];
+  jumpLinksTitle?: string;
+  jumpLinks?: GuideJumpLink[];
   stepsTitle?: string;
   steps?: GuideStep[];
+  commonMistakesTitle?: string;
+  commonMistakes?: GuideStep[];
+  nextStepsTitle?: string;
+  nextSteps?: GuideResourceLink[];
   faq: FAQ[];
   comparisonType?: '1gb' | 'night' | 'best-value' | 'all';
   additionalContent?: string;

@@ -7,7 +7,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/about/': '2026-01-20T00:00:00.000Z',
   '/contact/': '2026-01-20T00:00:00.000Z',
   '/editorial-policy/': '2026-01-20T00:00:00.000Z',
-  '/guides/': '2026-03-24T00:00:00.000Z',
+  '/guides/': '2026-03-31T00:00:00.000Z',
   '/methodology/': '2026-01-20T00:00:00.000Z',
   '/network/': '2026-03-24T00:00:00.000Z',
   '/privacy-policy/': '2026-01-20T00:00:00.000Z',
@@ -18,6 +18,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
 };
 
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
+  'airtime-data-saving-tips-south-africa': '2026-03-31T00:00:00.000Z',
   'best-data-deals-south-africa': '2026-03-12T00:00:00.000Z',
   'cheap-night-data-south-africa': '2026-03-12T00:00:00.000Z',
   'cheapest-1gb-data-south-africa': '2026-03-18T00:00:00.000Z',

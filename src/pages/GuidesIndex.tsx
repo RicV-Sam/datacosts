@@ -34,9 +34,9 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
 
   const popularGuides = [
     { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', description: 'Start here for a quick market-level view of where prepaid data is cheapest right now.', path: '/guides/cheapest-data-south-africa/' },
+    { slug: 'airtime-data-saving-tips-south-africa' },
     { slug: 'cheapest-1gb-data-south-africa' },
     { slug: 'cheapest-10gb-data-south-africa', title: 'Cheapest 10GB Data South Africa', description: 'Compare currently listed 10GB bundles for practical monthly middle-usage plans.', path: '/guides/cheapest-10gb-data-south-africa/' },
-    { slug: 'best-data-deals-south-africa' },
     { slug: 'vodacom-vs-mtn-data-prices', title: 'Vodacom vs MTN Data Prices', description: 'A side-by-side comparison for travellers, commuters, and regular prepaid users.', path: '/guides/vodacom-vs-mtn-data-prices/' },
     { slug: 'travel-sims-south-africa', title: 'Best Travel SIMs & eSIMs for South Africa', description: 'Practical arrival advice for airport connectivity, local SIMs, and travel eSIM convenience.', path: '/travel-sims-south-africa/' }
   ];
@@ -75,6 +75,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       snippet: "Use these when airtime disappears, data runs out too quickly, or you need the quickest way to audit balances and subscriptions.",
       links: [
         { slug: 'why-is-my-data-finishing-so-fast' },
+        { slug: 'airtime-data-saving-tips-south-africa' },
         { slug: 'how-to-check-data-balance' },
         { slug: 'stop-wasp-subscriptions-south-africa', title: 'Stop WASP Subscriptions in South Africa', description: 'How to stop unwanted premium billing and protect your airtime.', path: '/guides/stop-wasp-subscriptions-south-africa/' },
         { slug: 'ussd-codes-south-africa', title: 'USSD Codes South Africa', description: 'Find operator codes for balances, bundle buying, and account help.', path: '/ussd-codes-south-africa/' },

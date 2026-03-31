@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Clock, Tag, Info, ChevronRight } from 'lucide-react';
-import { Guide, Bundle } from '../types';
+import { Guide, Bundle, GuideResourceLink } from '../types';
 import { bundles } from '../data';
 import { useNavigate } from 'react-router-dom';
 import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
@@ -13,12 +13,8 @@ interface GuidePageProps {
   allGuides: Guide[];
 }
 
-interface RelatedLink {
-  href: string;
-  label: string;
-  description: string;
+interface RelatedLink extends GuideResourceLink {
   action: 'guide' | 'route';
-  slug?: string;
 }
 
 const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
@@ -46,21 +42,37 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
     { href: '/network/cell-c/', label: 'Cell C Network Hub', description: 'Promo-led social alternatives.', action: 'route' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Avoid airtime leakage.', action: 'guide', slug: 'how-to-check-data-balance' }
   ],
+  'why-is-my-data-finishing-so-fast': [
+    { href: '/guides/airtime-data-saving-tips-south-africa/', label: '15 Airtime & Data Saving Tips', description: 'Complete consumer checklist for lower spend.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
+    { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Track usage before bundles run out.', action: 'guide', slug: 'how-to-check-data-balance' },
+    { href: '/guides/convert-airtime-to-data-south-africa/', label: 'Convert Airtime to Data', description: 'Avoid expensive raw-airtime browsing.', action: 'guide', slug: 'convert-airtime-to-data-south-africa' },
+    { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare better-value alternatives.', action: 'route' },
+    { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Save balance and buy shortcuts.', action: 'route' },
+    { href: '/network/', label: 'Network Comparison Hub', description: 'Compare network-level value.', action: 'route' }
+  ],
   'convert-airtime-to-data-south-africa': [
+    { href: '/guides/airtime-data-saving-tips-south-africa/', label: 'Airtime & Data Saving Tips', description: 'Reduce airtime waste with practical habits.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
     { href: '/guides/how-to-buy-data-vodacom/', label: 'How to Buy Vodacom Data', description: 'Operator-specific buy path.', action: 'guide', slug: 'how-to-buy-data-vodacom' },
     { href: '/guides/how-to-buy-data-mtn/', label: 'How to Buy MTN Data', description: 'Operator-specific buy path.', action: 'guide', slug: 'how-to-buy-data-mtn' },
     { href: '/guides/how-to-buy-data-telkom/', label: 'How to Buy Telkom Data', description: 'Operator-specific buy path.', action: 'guide', slug: 'how-to-buy-data-telkom' },
     { href: '/guides/how-to-buy-data-cell-c/', label: 'How to Buy Cell C Data', description: 'Operator-specific buy path.', action: 'guide', slug: 'how-to-buy-data-cell-c' },
-    { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Confirm active balance before buying.', action: 'guide', slug: 'how-to-check-data-balance' },
-    { href: '/network/', label: 'Network Comparison Hub', description: 'Compare operators in one place.', action: 'route' }
+    { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Confirm active balance before buying.', action: 'guide', slug: 'how-to-check-data-balance' }
   ],
   'how-to-check-data-balance': [
+    { href: '/guides/airtime-data-saving-tips-south-africa/', label: 'Airtime & Data Saving Tips', description: 'Full consumer playbook to reduce telecom spend.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
     { href: '/guides/how-to-buy-data-vodacom/', label: 'How to Buy Vodacom Data', description: 'Next action after balance checks.', action: 'guide', slug: 'how-to-buy-data-vodacom' },
     { href: '/guides/how-to-buy-data-mtn/', label: 'How to Buy MTN Data', description: 'Next action after balance checks.', action: 'guide', slug: 'how-to-buy-data-mtn' },
     { href: '/guides/how-to-buy-data-telkom/', label: 'How to Buy Telkom Data', description: 'Next action after balance checks.', action: 'guide', slug: 'how-to-buy-data-telkom' },
     { href: '/guides/how-to-buy-data-cell-c/', label: 'How to Buy Cell C Data', description: 'Next action after balance checks.', action: 'guide', slug: 'how-to-buy-data-cell-c' },
-    { href: '/guides/why-is-my-data-finishing-so-fast/', label: 'Why Data Finishes Fast', description: 'Fix rapid usage drain.', action: 'guide', slug: 'why-is-my-data-finishing-so-fast' },
-    { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Find buy and balance short codes.', action: 'route' }
+    { href: '/guides/why-is-my-data-finishing-so-fast/', label: 'Why Data Finishes Fast', description: 'Fix rapid usage drain.', action: 'guide', slug: 'why-is-my-data-finishing-so-fast' }
+  ],
+  'airtime-data-saving-tips-south-africa': [
+    { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare market-wide prepaid prices.', action: 'route' },
+    { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find promo-led value bundles.', action: 'guide', slug: 'best-data-deals-south-africa' },
+    { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs Contract South Africa', description: 'Choose a lower-risk billing model.', action: 'guide', slug: 'prepaid-vs-contract-south-africa' },
+    { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices', description: 'Compare pricing between major networks.', action: 'route' },
+    { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes', description: 'Save buy and balance short codes.', action: 'route' },
+    { href: '/methodology/', label: 'Methodology', description: 'See how DataCost compares prices.', action: 'route' }
   ]
 };
 
@@ -83,6 +95,14 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
       action: 'guide' as const,
       slug: g.slug
     }));
+
+  const navigateToResource = (item: GuideResourceLink) => {
+    if (item.action === 'guide' && item.slug) {
+      onNavigateToGuide(item.slug);
+      return;
+    }
+    navigate(item.href);
+  };
 
   const filteredBundles = React.useMemo(() => {
     let result = [...bundles];
@@ -205,6 +225,37 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
           <p className="text-xl text-slate-600 font-medium leading-relaxed">{guide.intro}</p>
         </header>
 
+        {guide.quickSummaryItems && guide.quickSummaryItems.length > 0 && (
+          <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+            <h2 className="text-2xl font-black tracking-tighter mb-4">{guide.quickSummaryTitle || 'The Short Version'}</h2>
+            <ul className="space-y-3">
+              {guide.quickSummaryItems.map((item) => (
+                <li key={item} className="text-slate-700 font-medium leading-relaxed flex gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#1b6d24] flex-shrink-0" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {guide.jumpLinks && guide.jumpLinks.length > 0 && (
+          <section className="mb-12 bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-sm">
+            <h2 className="text-lg font-black tracking-tight mb-4">{guide.jumpLinksTitle || 'On This Page'}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {guide.jumpLinks.map((jumpLink) => (
+                <a
+                  key={jumpLink.anchor}
+                  href={`#${jumpLink.anchor}`}
+                  className="min-h-[44px] rounded-2xl px-4 py-3 bg-slate-50 border border-slate-100 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+                >
+                  {jumpLink.label}
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
         {guide.comparisonType !== 'all' && filteredBundles.length > 0 && (
           <section className="mb-16">
             <h2 className="text-2xl font-black tracking-tighter mb-6 flex items-center gap-2">
@@ -249,13 +300,55 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
             <h2 className="text-2xl font-black tracking-tighter mb-8">{guide.stepsTitle || 'Step-by-Step Guide'}</h2>
             <div className="space-y-6">
               {guide.steps.map((step, index) => (
-                <div key={index} className="flex gap-6 group">
+                <div key={step.id || index} id={step.id} className="flex gap-6 group scroll-mt-32">
                   <div className="flex-shrink-0 w-12 h-12 bg-[#031636] text-white rounded-2xl flex items-center justify-center text-xl font-black shadow-lg group-hover:bg-[#1b6d24] transition-colors">{index + 1}</div>
                   <div className="pt-2">
                     <h3 className="text-xl font-black mb-2 tracking-tight">{step.title}</h3>
                     <p className="text-slate-600 leading-relaxed font-medium">{step.description}</p>
                   </div>
                 </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {guide.commonMistakes && guide.commonMistakes.length > 0 && (
+          <section id="common-mistakes" className="mb-16 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm scroll-mt-32">
+            <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-8">{guide.commonMistakesTitle || 'Common Mistakes'}</h2>
+            <div className="space-y-6">
+              {guide.commonMistakes.map((mistake, index) => (
+                <div key={mistake.id || index} className="border-b border-slate-100 pb-6 last:border-b-0 last:pb-0">
+                  <h3 className="text-lg font-black mb-2 tracking-tight">{mistake.title}</h3>
+                  <p className="text-slate-600 font-medium leading-relaxed">{mistake.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {guide.nextSteps && guide.nextSteps.length > 0 && (
+          <section id="find-cheaper-options" className="mb-16 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm scroll-mt-32">
+            <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-4">{guide.nextStepsTitle || 'Find Cheaper Options'}</h2>
+            <p className="text-slate-600 font-medium leading-relaxed mb-8">
+              Use these pages to compare current South Africa prices and choose bundles based on your actual usage pattern.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {guide.nextSteps.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateToResource(item);
+                  }}
+                  className="flex items-center justify-between p-6 bg-slate-50 border border-slate-100 rounded-3xl hover:border-[#1b6d24] transition-all group text-left"
+                >
+                  <div>
+                    <h3 className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors">{item.label}</h3>
+                    <p className="text-xs text-slate-500 font-medium">{item.description}</p>
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-[#1b6d24]" />
+                </a>
               ))}
             </div>
           </section>
@@ -294,11 +387,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  if (item.action === 'guide' && item.slug) {
-                    onNavigateToGuide(item.slug);
-                    return;
-                  }
-                  navigate(item.href);
+                  navigateToResource(item);
                 }}
                 className="flex items-center justify-between p-6 bg-white border border-slate-100 rounded-3xl hover:border-[#1b6d24] transition-all group text-left"
               >
