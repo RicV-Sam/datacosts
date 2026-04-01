@@ -17,24 +17,24 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
   const searchInputRef = React.useRef<HTMLInputElement>(null);
 
   const navItems = [
-    { id: 'deals', label: 'Deals' },
-    { id: 'calculator', label: 'Calculator' },
-    { id: 'networks', label: 'Networks' },
-    { id: 'guides', label: 'Guides' },
+    { id: 'home', label: 'Home' },
+    { id: 'compare-data', label: 'Compare Data' },
     { id: 'ussd', label: 'USSD Codes' },
-    { id: 'alerts', label: 'Alerts' },
-    { id: 'scorecard', label: 'Scorecard' },
+    { id: 'calculator', label: 'Calculator' },
+    { id: 'fix-problem', label: 'Fix a Problem' },
+    { id: 'networks', label: 'Networks' },
+    { id: 'guides', label: 'Guides' }
   ];
 
   const searchItems = React.useMemo(() => [
     { id: 'home', title: 'Home', subtitle: 'Back to homepage', type: 'scroll' as const, value: 'home' },
-    { id: 'deals', title: 'Deals', subtitle: 'Jump to latest data deals', type: 'scroll' as const, value: 'deals' },
+    { id: 'compare-data', title: 'Compare Data', subtitle: 'See current network data prices', type: 'scroll' as const, value: 'compare-data' },
+    { id: 'fix-problem', title: 'Fix a Problem', subtitle: 'Troubleshoot airtime, data, and WASP issues', type: 'scroll' as const, value: 'fix-problem' },
     { id: 'calculator', title: 'Calculator', subtitle: 'Estimate your data usage', type: 'scroll' as const, value: 'calculator' },
     { id: 'networks', title: 'Networks', subtitle: 'Compare all mobile networks', type: 'scroll' as const, value: 'networks' },
     { id: 'guides', title: 'Guides', subtitle: 'Browse all guides', type: 'scroll' as const, value: 'guides' },
     { id: 'ussd', title: 'USSD Codes', subtitle: 'Find shortcode commands', type: 'scroll' as const, value: 'ussd' },
     { id: 'alerts', title: 'Alerts', subtitle: 'Get telecom alerts and updates', type: 'route' as const, value: '/alerts/' },
-    { id: 'scorecard', title: 'Scorecard', subtitle: 'View network scorecard', type: 'scroll' as const, value: 'scorecard' },
     { id: 'travel-sims', title: 'Best Travel SIMs & eSIMs for South Africa', subtitle: 'Tourist connectivity guide', type: 'route' as const, value: '/travel-sims-south-africa/' },
     ...guides.slice(0, 8).map((guide) => ({
       id: guide.slug,
@@ -105,13 +105,15 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
             </a>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+          <nav className="hidden md:flex items-center gap-5" aria-label="Main Navigation">
             {navItems.map(item => (
               <a
                 key={item.id}
                 href={
+                  item.id === 'home' ? '/' :
+                  item.id === 'compare-data' ? '/network/' :
                   item.id === 'ussd' ? '/ussd-codes-south-africa/' :
-                  item.id === 'alerts' ? '/alerts/' :
+                  item.id === 'fix-problem' ? '/fix-mobile-problems/' :
                   item.id === 'guides' ? '/guides/' :
                   item.id === 'networks' ? '/network/' :
                   `#${item.id}`
@@ -120,7 +122,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                   e.preventDefault();
                   onScrollTo(item.id);
                 }}
-                className={`text-sm font-bold transition-all hover:translate-y-[-1px] ${
+                className={`text-xs font-bold transition-all hover:translate-y-[-1px] ${
                   activeSection === item.id ? 'text-[#1b6d24]' : 'text-slate-500 hover:text-slate-900'
                 }`}
               >
@@ -154,8 +156,10 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                   <a
                     key={item.id}
                     href={
+                      item.id === 'home' ? '/' :
+                      item.id === 'compare-data' ? '/network/' :
                       item.id === 'ussd' ? '/ussd-codes-south-africa/' :
-                      item.id === 'alerts' ? '/alerts/' :
+                      item.id === 'fix-problem' ? '/fix-mobile-problems/' :
                       item.id === 'guides' ? '/guides/' :
                       item.id === 'networks' ? '/network/' :
                       `#${item.id}`

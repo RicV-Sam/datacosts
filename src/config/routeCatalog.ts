@@ -115,6 +115,7 @@ export function getIndexableRoutes(): string[] {
   routes.add('/cell-c-ussd-codes/');
   routes.add('/save-ussd-codes/');
   routes.add('/alerts/');
+  routes.add('/fix-mobile-problems/');
   routes.add('/guides/');
   routes.add('/network/');
   routes.add('/privacy-policy/');

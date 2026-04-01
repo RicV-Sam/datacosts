@@ -7,6 +7,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/about/': '2026-01-20T00:00:00.000Z',
   '/contact/': '2026-01-20T00:00:00.000Z',
   '/editorial-policy/': '2026-01-20T00:00:00.000Z',
+  '/fix-mobile-problems/': '2026-04-01T00:00:00.000Z',
   '/guides/': '2026-03-31T00:00:00.000Z',
   '/methodology/': '2026-01-20T00:00:00.000Z',
   '/mtn-ussd-codes/': '2026-03-31T00:00:00.000Z',

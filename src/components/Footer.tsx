@@ -26,6 +26,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo }) => {
         </div>
 
         <div className="flex flex-col gap-4">
+          <a href="/fix-mobile-problems/" onClick={(e) => { e.preventDefault(); onNavigateTo('fix-problem'); }} className="font-bold text-sm uppercase tracking-wider hover:text-[#1b6d24] transition-colors">
+            Fix a Problem
+          </a>
+
           <a href="/guides/" onClick={(e) => { e.preventDefault(); onNavigateTo('guides-index'); }} className="font-bold text-sm uppercase tracking-wider hover:text-[#1b6d24] transition-colors">
             Guides
           </a>

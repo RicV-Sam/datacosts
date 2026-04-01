@@ -28,6 +28,7 @@ const VodacomVsMTN = lazy(() => import('./pages/VodacomVsMTN').then((mod) => ({ 
 const WaspSubscriptions = lazy(() => import('./pages/WaspSubscriptions').then((mod) => ({ default: mod.WaspSubscriptions })));
 const TravelSimsPage = lazy(() => import('./pages/TravelSimsPage').then((mod) => ({ default: mod.TravelSimsPage })));
 const ComparisonGuidePage = lazy(() => import('./pages/ComparisonGuidePage').then((mod) => ({ default: mod.ComparisonGuidePage })));
+const FixProblemPage = lazy(() => import('./pages/FixProblemPage').then((mod) => ({ default: mod.FixProblemPage })));
 
 function AppContent() {
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkName | null>(null);
@@ -44,6 +45,7 @@ function AppContent() {
     }
     if (page === 'guides-index') path = '/guides/';
     if (page === 'travel-sims') path = '/travel-sims-south-africa/';
+    if (page === 'fix-problem') path = '/fix-mobile-problems/';
 
     if (window.location.pathname === path && path === '/') {
       // already on home, scroll to top
@@ -67,9 +69,16 @@ function AppContent() {
       navigateTo('guides-index');
       return;
     }
+    if (id === 'fix-problem') {
+      navigateTo('fix-problem');
+      return;
+    }
     if (id === 'networks') {
       navigateTo('network');
       return;
+    }
+    if (id === 'compare-data') {
+      id = 'deals';
     }
     if (id === 'home' || id === 'deals' || id === 'calculator' || id === 'scorecard') {
       if (window.location.pathname !== '/') {
@@ -112,6 +121,9 @@ function AppContent() {
           path="/ussd-codes-south-africa/"
           element={<USSDPage onBack={() => navigateTo('home')} onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
         />
+        <Route path="/ussd-codes/" element={<Navigate to="/ussd-codes-south-africa/" replace />} />
+        <Route path="/ussd-codes" element={<Navigate to="/ussd-codes-south-africa/" replace />} />
+        <Route path="/ussd-codes-south-africa" element={<Navigate to="/ussd-codes-south-africa/" replace />} />
         <Route
           path="/mtn-ussd-codes/"
           element={<NetworkUSSDPage networkSlug="mtn" onBack={() => navigateTo('ussd')} onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
@@ -256,6 +268,11 @@ function AppContent() {
           path="/travel-sims-south-africa/"
           element={<TravelSimsPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
+        <Route
+          path="/fix-mobile-problems/"
+          element={<FixProblemPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route path="/fix-a-problem/" element={<Navigate to="/fix-mobile-problems/" replace />} />
         <Route
           path="*"
           element={<NotFoundPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
