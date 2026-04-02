@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "generate:sitemap": "tsx scripts/generate-sitemap.ts",
-    "build": "npm run generate:sitemap && vite build",
+    "check:seo": "tsx scripts/check-seo-output.ts",
+    "build": "npm run generate:sitemap && vite build && npm run check:seo",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"
