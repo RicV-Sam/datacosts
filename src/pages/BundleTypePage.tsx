@@ -11,7 +11,7 @@ import { Bundle, NavigateFunction, NetworkName } from '../types';
 import { BUNDLE_TYPE_MAP } from '../config/routeCatalog';
 import { buildBundleItemListSchema } from '../utils/structuredData';
 import { formatIsoForDisplay, getBundleTypeModifiedIso, getDefaultPublishedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_ORIGIN, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface BundleTypePageProps {
   onNavigate: NavigateFunction;
@@ -595,7 +595,7 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
     author: {
       '@type': 'Organization',
       name: SITE_BRAND_NAME,
-      url: SITE_ORIGIN
+      url: SITE_URL
     },
     image: DEFAULT_OG_IMAGE_URL
   };

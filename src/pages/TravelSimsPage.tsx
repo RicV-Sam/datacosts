@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import { NavigateFunction } from '../types';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_ORIGIN, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface TravelSimsPageProps {
   onNavigate: NavigateFunction;
@@ -88,7 +88,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
     "author": {
       "@type": "Organization",
       "name": SITE_BRAND_NAME,
-      "url": SITE_ORIGIN
+      "url": SITE_URL
     },
     "image": DEFAULT_OG_IMAGE_URL
   };

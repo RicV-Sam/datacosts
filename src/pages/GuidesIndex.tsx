@@ -9,7 +9,7 @@ import { BookOpen, ArrowRight, ChevronDown, Zap, Smartphone, HelpCircle, Info, C
 import { motion, AnimatePresence } from 'motion/react';
 import { NavigateFunction } from '../types';
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_ORIGIN, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface GuidesIndexProps {
   onNavigate: NavigateFunction;
@@ -188,7 +188,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         "author": {
           "@type": "Organization",
           "name": SITE_BRAND_NAME,
-          "url": SITE_ORIGIN
+          "url": SITE_URL
         },
         "publisher": {
           "@type": "Organization",

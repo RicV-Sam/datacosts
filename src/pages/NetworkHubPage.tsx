@@ -14,7 +14,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_ORIGIN, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface NetworkHubPageProps {
   onNavigate: NavigateFunction;
@@ -134,7 +134,7 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
         author: {
           '@type': 'Organization',
           name: SITE_BRAND_NAME,
-          url: SITE_ORIGIN
+          url: SITE_URL
         },
         publisher: {
           '@type': 'Organization',

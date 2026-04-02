@@ -5,7 +5,7 @@ import { Guide, Bundle, GuideResourceLink } from '../types';
 import { bundles } from '../data';
 import { useNavigate } from 'react-router-dom';
 import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_LOGO_URL, SITE_ORIGIN, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_LOGO_URL, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface GuidePageProps {
   guide: Guide;
@@ -186,7 +186,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
         author: {
           '@type': 'Organization',
           name: SITE_BRAND_NAME,
-          url: SITE_ORIGIN
+          url: SITE_URL
         },
         image: DEFAULT_OG_IMAGE_URL,
         datePublished: datePublishedIso,
@@ -194,7 +194,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
         publisher: {
           '@type': 'Organization',
           name: SITE_BRAND_NAME,
-          url: SITE_ORIGIN,
+          url: SITE_URL,
           logo: {
             '@type': 'ImageObject',
             url: SITE_LOGO_URL
