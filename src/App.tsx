@@ -19,6 +19,7 @@ const MethodologyPage = lazy(() => import('./pages/MethodologyPage').then((mod) 
 const EditorialPolicyPage = lazy(() => import('./pages/EditorialPolicyPage').then((mod) => ({ default: mod.EditorialPolicyPage })));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then((mod) => ({ default: mod.PrivacyPolicyPage })));
 const TermsPage = lazy(() => import('./pages/TermsPage').then((mod) => ({ default: mod.TermsPage })));
+const CookiePolicyPage = lazy(() => import('./pages/CookiePolicyPage').then((mod) => ({ default: mod.CookiePolicyPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then((mod) => ({ default: mod.ContactPage })));
 const CheapestData = lazy(() => import('./pages/CheapestData').then((mod) => ({ default: mod.CheapestData })));
 const BestDataDeals = lazy(() => import('./pages/BestDataDeals').then((mod) => ({ default: mod.BestDataDeals })));
@@ -29,6 +30,7 @@ const WaspSubscriptions = lazy(() => import('./pages/WaspSubscriptions').then((m
 const TravelSimsPage = lazy(() => import('./pages/TravelSimsPage').then((mod) => ({ default: mod.TravelSimsPage })));
 const ComparisonGuidePage = lazy(() => import('./pages/ComparisonGuidePage').then((mod) => ({ default: mod.ComparisonGuidePage })));
 const FixProblemPage = lazy(() => import('./pages/FixProblemPage').then((mod) => ({ default: mod.FixProblemPage })));
+const WhyAirtimeDisappearingPage = lazy(() => import('./pages/WhyAirtimeDisappearingPage').then((mod) => ({ default: mod.WhyAirtimeDisappearingPage })));
 
 function AppContent() {
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkName | null>(null);
@@ -153,6 +155,10 @@ function AppContent() {
           element={<GuidesIndex onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route
+          path="/guides/why-is-my-airtime-disappearing-south-africa/"
+          element={<WhyAirtimeDisappearingPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
           path="/guides/:slug/"
           element={<GuideRoute onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
@@ -187,6 +193,10 @@ function AppContent() {
         <Route
           path="/terms/"
           element={<TermsPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/cookie-policy/"
+          element={<CookiePolicyPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route
           path="/contact/"

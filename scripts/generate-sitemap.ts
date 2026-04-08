@@ -52,7 +52,16 @@ function buildSitemapIndexXml(sections: SitemapSection[]): string {
 }
 
 function buildSitemapSections(routes: string[]): SitemapSection[] {
-  const trustRoutes = routes.filter((route) => route === '/methodology/' || route === '/editorial-policy/');
+  const trustRouteSet = new Set([
+    '/about/',
+    '/contact/',
+    '/privacy-policy/',
+    '/terms/',
+    '/cookie-policy/',
+    '/methodology/',
+    '/editorial-policy/'
+  ]);
+  const trustRoutes = routes.filter((route) => trustRouteSet.has(route));
   const guideRoutes = routes.filter((route) => route.startsWith('/guides/') && route !== '/guides/');
   const networkRoutes = routes.filter((route) => route.startsWith('/network/') && route !== '/network/');
   const trustSet = new Set<string>(trustRoutes);

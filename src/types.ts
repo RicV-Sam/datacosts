@@ -45,6 +45,7 @@ export type USSDCategory =
   | 'Number / SIM info'
   | 'Self-service / Account'
   | 'Support / Customer care'
+  | 'Promotions'
   | 'Promotions / Advance airtime / Extras'
   | 'Other';
 

@@ -65,7 +65,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo }) => {
         <div className="flex flex-col gap-4">
           <h5 className="font-bold text-sm uppercase tracking-wider">Legal</h5>
           <a href="/privacy-policy/" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">Privacy Policy</a>
-          <a href="/terms/" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">Terms of Service</a>
+          <a href="/terms/" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">Terms &amp; Conditions</a>
+          <a href="/cookie-policy/" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">Cookie Policy</a>
         </div>
       </div>
     </footer>

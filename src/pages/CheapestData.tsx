@@ -1,99 +1,162 @@
-﻿import React from 'react';
-import { bundles } from '../data';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { ArrowLeft, BarChart3, ShieldCheck, TrendingUp } from 'lucide-react';
+import { bundles } from '../data';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { MobileNav } from '../components/MobileNav';
 import { AdUnit } from '../components/AdUnit';
-import { ArrowLeft, ShieldCheck, BarChart3, TrendingUp } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { NavigateFunction } from '../types';
-import { networkPages } from '../data/networks';
-import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { NavigateFunction, Bundle } from '../types';
+import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
+import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface CheapestDataProps {
   onNavigate: NavigateFunction;
   onScrollTo: (id: string) => void;
 }
 
-const NETWORK_ORDER: Array<'Vodacom' | 'MTN' | 'Telkom' | 'Cell C' | 'Rain'> = ['Vodacom', 'MTN', 'Telkom', 'Cell C', 'Rain'];
+const isNightBundle = (bundle: Bundle) =>
+  bundle.name.toLowerCase().includes('night') || (bundle.nightData !== undefined && bundle.nightData !== '');
 
-const isMonthlyBundle = (bundle: { validity: string; type: string }) => {
-  const validity = bundle.validity.toLowerCase();
-  return bundle.type === 'Monthly' || validity.includes('30 day') || validity.includes('month');
-};
+const isSocialBundle = (bundle: Bundle) =>
+  bundle.type === 'Social' ||
+  bundle.name.toLowerCase().includes('whatsapp') ||
+  bundle.name.toLowerCase().includes('social');
 
-const isUnlimited = (bundle: { name: string; volume: string }) =>
-  bundle.name.toLowerCase().includes('unlimited') || bundle.volume.toLowerCase().includes('unlimited');
+const isDailyBundle = (bundle: Bundle) =>
+  bundle.type === 'Daily' ||
+  (bundle.validity.toLowerCase().includes('day') &&
+    !bundle.validity.toLowerCase().includes('7 day') &&
+    !bundle.validity.toLowerCase().includes('30 day'));
+
+const isMonthlyBundle = (bundle: Bundle) =>
+  bundle.type === 'Monthly' ||
+  bundle.type === 'Prepaid' ||
+  bundle.validity.toLowerCase().includes('30 day') ||
+  bundle.validity.toLowerCase().includes('month');
+
+const regularBundles = bundles.filter((bundle) => !isNightBundle(bundle) && !isSocialBundle(bundle));
+const rankedBundles = regularBundles.filter((bundle) => bundle.costPerGb > 0).sort((a, b) => a.costPerGb - b.costPerGb);
+
+function getCheapestByVolume(volume: string) {
+  return regularBundles
+    .filter((bundle) => bundle.volume === volume)
+    .sort((a, b) => a.price - b.price)[0];
+}
+
+function getBestValueByFilter(filter: (bundle: Bundle) => boolean) {
+  return regularBundles
+    .filter((bundle) => filter(bundle) && bundle.costPerGb > 0)
+    .sort((a, b) => a.costPerGb - b.costPerGb)[0];
+}
 
 export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Cheapest Data in South Africa (2026) | Compare MTN, Vodacom, Telkom & More';
-  const metaDescription =
-    'Looking for the cheapest data in South Africa? Compare MTN, Vodacom, Telkom, Cell C and Rain to see which network gives the best value right now.';
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-data-south-africa/');
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const dateModifiedIso = getRouteModifiedIso('/guides/cheapest-data-south-africa/');
+  const lastUpdated = formatIsoForDisplay(dateModifiedIso);
+  const pageTitle = 'Cheapest Data in South Africa (2026) | Compare 1GB, 2GB, 5GB, 10GB & More';
+  const metaDescription =
+    'Compare the cheapest data in South Africa by 1GB, 2GB, 5GB, 10GB, daily, monthly, and night-data intent using DataCost’s dataset-backed prepaid comparison.';
 
-  const valueSorted = [...bundles]
-    .filter((bundle) => bundle.costPerGb > 0)
-    .sort((a, b) => a.costPerGb - b.costPerGb);
-
-  const topComparisonRows = valueSorted.slice(0, 8);
-  const cheapestOverall = [...bundles].sort((a, b) => a.price - b.price)[0];
-  const bestValue = valueSorted[0];
-  const cheapest1Gb = bundles.filter((bundle) => bundle.volume === '1GB').sort((a, b) => a.price - b.price)[0];
-  const cheapest10Gb = bundles.filter((bundle) => bundle.volume === '10GB').sort((a, b) => a.price - b.price)[0];
-  const cheapestUnlimited = bundles.filter((bundle) => isUnlimited(bundle)).sort((a, b) => a.price - b.price)[0];
-  const bestMonthly = valueSorted.filter((bundle) => isMonthlyBundle(bundle))[0];
-  const bestDaily = [...bundles]
-    .filter((bundle) => bundle.validity.toLowerCase().includes('day') && !bundle.validity.toLowerCase().includes('30 day') && bundle.costPerGb > 0)
+  const topSummaryRows = rankedBundles.slice(0, 8);
+  const cheapest1Gb = getCheapestByVolume('1GB');
+  const cheapest2Gb = getCheapestByVolume('2GB');
+  const cheapest5Gb = getCheapestByVolume('5GB');
+  const cheapest10Gb = getCheapestByVolume('10GB');
+  const cheapestDaily = getBestValueByFilter((bundle) => isDailyBundle(bundle) && !isNightBundle(bundle));
+  const cheapestMonthly = getBestValueByFilter((bundle) => isMonthlyBundle(bundle) && !isNightBundle(bundle));
+  const cheapestNight = bundles
+    .filter((bundle) => isNightBundle(bundle) && bundle.costPerGb > 0)
     .sort((a, b) => a.costPerGb - b.costPerGb)[0];
 
-  const networkSummary = NETWORK_ORDER.map((networkName) => {
-    const networkBundles = bundles.filter((bundle) => bundle.network === networkName);
-    const cheapest = [...networkBundles].sort((a, b) => a.price - b.price)[0];
-    const bestNetworkValue = [...networkBundles]
-      .filter((bundle) => bundle.costPerGb > 0)
-      .sort((a, b) => a.costPerGb - b.costPerGb)[0];
-    const networkSlug = Object.values(networkPages).find((page) => page.networkName === networkName)?.slug || '';
-
-    return {
-      networkName,
-      networkSlug,
-      cheapest,
-      bestNetworkValue
-    };
-  });
+  const intentSections = [
+    {
+      id: 'cheapest-1gb',
+      title: 'Cheapest 1GB data',
+      bundle: cheapest1Gb,
+      href: '/guides/cheapest-1gb-data-south-africa/',
+      helper: 'Best for low-volume monthly use or single-device top-ups.'
+    },
+    {
+      id: 'cheapest-2gb',
+      title: 'Cheapest 2GB data',
+      bundle: cheapest2Gb,
+      href: '/guides/cheapest-2gb-data-south-africa/',
+      helper: 'Useful when 1GB is too small but you still need to keep spend tight.'
+    },
+    {
+      id: 'cheapest-5gb',
+      title: 'Cheapest 5GB data',
+      bundle: cheapest5Gb,
+      href: '/guides/cheapest-5gb-data-south-africa/',
+      helper: 'A common mid-range benchmark for moderate prepaid usage.'
+    },
+    {
+      id: 'cheapest-10gb',
+      title: 'Cheapest 10GB data',
+      bundle: cheapest10Gb,
+      href: '/guides/cheapest-10gb-data-south-africa/',
+      helper: 'A strong indicator of mainstream monthly value for regular users.'
+    },
+    {
+      id: 'cheapest-daily-data',
+      title: 'Cheapest daily data',
+      bundle: cheapestDaily,
+      href: '',
+      helper: 'Daily bundles can keep upfront spend low, but repeating them through the month often costs more overall.'
+    },
+    {
+      id: 'cheapest-monthly-data',
+      title: 'Cheapest monthly data',
+      bundle: cheapestMonthly,
+      href: '/guides/best-monthly-data-deals-south-africa/',
+      helper: 'Monthly options usually offer a better long-term cost per GB than repeated short-validity top-ups.'
+    },
+    {
+      id: 'cheapest-night-data',
+      title: 'Cheapest night data',
+      bundle: cheapestNight,
+      href: '/guides/cheap-night-data-south-africa/',
+      helper: 'Night bundles can be strong value when downloads happen in off-peak hours only.'
+    }
+  ];
 
   const faqItems = [
     {
-      question: 'Which network has the cheapest data in South Africa?',
-      answer: cheapestOverall
-        ? `${cheapestOverall.network} currently has one of the lowest upfront options in this dataset with ${cheapestOverall.name} at R${cheapestOverall.price}.`
-        : 'The cheapest network changes by promotion cycle and bundle type.'
+      question: 'Which network has the cheapest data in South Africa right now?',
+      answer:
+        topSummaryRows[0]
+          ? `${topSummaryRows[0].network} currently leads this visible dataset-backed value table with ${topSummaryRows[0].name} at about R${topSummaryRows[0].costPerGb.toFixed(2)}/GB.`
+          : 'The leading network changes as the visible dataset changes.'
     },
     {
-      question: 'Is Telkom cheaper than Vodacom for data?',
-      answer: 'Telkom is often cheaper on cost-per-GB benchmarks, while Vodacom is often chosen for coverage consistency and reliability in more areas.'
+      question: 'Is the cheapest data always the best option?',
+      answer:
+        'Not always. The lowest upfront price can still be poor value if validity is short or coverage does not fit your real usage pattern.'
     },
     {
-      question: 'What is the cheapest prepaid data in South Africa?',
-      answer: bestValue
-        ? `${bestValue.network} currently shows one of the strongest prepaid value points in this dataset at about R${bestValue.costPerGb.toFixed(2)}/GB.`
-        : 'Cheapest prepaid value depends on current promos and validity terms.'
+      question: 'Do personalised offers beat standard bundle prices?',
+      answer:
+        'Sometimes, yes. Operator-specific personalised or app-only offers can be cheaper than baseline public prices, but they are not universal and may differ by SIM, history, or campaign.'
     },
     {
-      question: 'Is unlimited data worth it?',
-      answer: 'Unlimited data can be worth it for heavy users, but only when your area has stable coverage and the policy terms match your usage expectations.'
-    },
-    {
-      question: 'What is better value: daily or monthly data?',
-      answer: 'For regular users, monthly often gives better value over time. Daily can be practical for occasional use but can become expensive if repeated through the month.'
-    },
-    {
-      question: 'How can I buy cheap data without using the app?',
-      answer: 'Use USSD menus to compare and buy bundles directly from your phone. The USSD codes page gives operator-specific buy and balance shortcuts.'
+      question: 'How should I compare data prices fairly?',
+      answer:
+        'Compare volume, validity, cost per GB, and whether the bundle matches your actual usage pattern. Do not compare a short-validity promo directly with a 30-day bundle without accounting for repeat purchases.'
     }
   ];
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: toCanonicalUrl('/guides/') },
+      { '@type': 'ListItem', position: 3, name: 'Cheapest Data in South Africa', item: canonicalUrl }
+    ]
+  };
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -108,44 +171,39 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     }))
   };
 
+  const itemListSchema = buildBundleItemListSchema(
+    'Cheapest Data South Africa Summary',
+    canonicalUrl,
+    topSummaryRows,
+    (bundle) => getNetworkPageUrl(bundle.network)
+  );
+
   const relatedPages = [
     '/guides/best-data-deals-south-africa/',
-    '/guides/airtime-data-saving-tips-south-africa/',
-    '/guides/why-does-my-data-finish-so-fast-south-africa/',
     '/guides/cheapest-1gb-data-south-africa/',
     '/guides/cheapest-2gb-data-south-africa/',
     '/guides/cheapest-5gb-data-south-africa/',
     '/guides/cheapest-10gb-data-south-africa/',
-    '/guides/cheapest-15gb-data-south-africa/',
-    '/guides/cheapest-20gb-data-south-africa/',
-    '/guides/cheapest-50gb-data-south-africa/',
-    '/guides/cheapest-unlimited-data-south-africa/',
-    '/guides/cheapest-whatsapp-bundles-south-africa/',
-    '/guides/vodacom-vs-mtn-data-prices/',
+    '/guides/cheap-night-data-south-africa/',
+    '/guides/best-monthly-data-deals-south-africa/',
     '/guides/how-to-check-data-balance/',
+    '/ussd-codes-south-africa/',
     '/network/',
-    '/methodology/',
-    '/editorial-policy/'
+    '/methodology/'
   ];
 
   const relatedLabels: Record<string, string> = {
     '/guides/best-data-deals-south-africa/': 'Best Data Deals South Africa',
-    '/guides/airtime-data-saving-tips-south-africa/': 'Airtime & Data Saving Tips South Africa',
-    '/guides/why-does-my-data-finish-so-fast-south-africa/': 'Why Data Finishes Fast in South Africa',
     '/guides/cheapest-1gb-data-south-africa/': 'Cheapest 1GB Data South Africa',
     '/guides/cheapest-2gb-data-south-africa/': 'Cheapest 2GB Data South Africa',
     '/guides/cheapest-5gb-data-south-africa/': 'Cheapest 5GB Data South Africa',
     '/guides/cheapest-10gb-data-south-africa/': 'Cheapest 10GB Data South Africa',
-    '/guides/cheapest-15gb-data-south-africa/': 'Cheapest 15GB Data South Africa',
-    '/guides/cheapest-20gb-data-south-africa/': 'Cheapest 20GB Data South Africa',
-    '/guides/cheapest-50gb-data-south-africa/': 'Cheapest 50GB Data South Africa',
-    '/guides/cheapest-unlimited-data-south-africa/': 'Cheapest Unlimited Data South Africa',
-    '/guides/cheapest-whatsapp-bundles-south-africa/': 'Cheapest WhatsApp Bundles South Africa',
-    '/guides/vodacom-vs-mtn-data-prices/': 'Vodacom vs MTN Data Prices',
+    '/guides/cheap-night-data-south-africa/': 'Cheap Night Data South Africa',
+    '/guides/best-monthly-data-deals-south-africa/': 'Best Monthly Data Deals South Africa',
     '/guides/how-to-check-data-balance/': 'How to Check Data Balance',
+    '/ussd-codes-south-africa/': 'USSD Codes South Africa',
     '/network/': 'Network Comparison Hub',
-    '/methodology/': 'Methodology',
-    '/editorial-policy/': 'Editorial Policy'
+    '/methodology/': 'Methodology'
   };
 
   return (
@@ -155,7 +213,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="DataCost" />
+        <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
@@ -164,7 +222,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
       </Helmet>
 
       <Header onScrollTo={onScrollTo} activeSection="guides" />
@@ -180,57 +240,41 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
       </nav>
 
       <main className="max-w-4xl mx-auto px-4 py-12">
-        <header className="mb-12">
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
+        <header className="mb-10">
+          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-5 leading-[0.92]">
             Cheapest Data in <span className="text-[#1b6d24]">South Africa</span> (2026)
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Use this flagship comparison page to find the cheapest prepaid data in South Africa and decide which network actually gives the best value for your usage.
+            Compare the cheapest data by common search intent, including 1GB, 2GB, 5GB, 10GB, daily data, monthly data, and night data. Every price reference on this page comes from the current local DataCost dataset.
           </p>
         </header>
 
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
-          <p className="text-slate-700 leading-relaxed">
-            {cheapestOverall
-              ? `${cheapestOverall.network} currently shows one of the lowest upfront bundle prices in this dataset with ${cheapestOverall.name} at R${cheapestOverall.price}.`
-              : 'The cheapest upfront option changes frequently as promotions rotate.'}{' '}
-            {bestValue
-              ? `${bestValue.network} currently shows one of the strongest cost-per-GB value points at about R${bestValue.costPerGb.toFixed(2)}/GB.`
-              : 'Best value depends on current bundle validity and network promos.'}
+          <h2 className="text-2xl font-black tracking-tight mb-4">Top comparison summary</h2>
+          <p className="text-slate-700 leading-relaxed mb-5">
+            This summary table ranks the visible non-social, non-night bundles on this page by cost per GB. It is a comparison aid, not a claim that personalised operator offers are universally available to every user.
           </p>
-        </section>
-
-        <AdUnit type="aboveFold" />
-
-        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">Which network has the cheapest data?</h2>
-          <p className="text-slate-700 leading-relaxed">
-            There is no permanent winner every month. Telkom often leads on low cost-per-GB, MTN often performs strongly on promo-driven value, Vodacom is often chosen for coverage consistency, Cell C can be highly competitive on selected promos, and Rain can suit high-usage users when coverage fits.
-          </p>
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-black tracking-tight mb-6">Cheapest data comparison table</h2>
-          <div className="overflow-x-auto bg-white rounded-3xl border border-slate-100 shadow-xl">
-            <table className="w-full text-left min-w-[760px]">
+          <div className="overflow-x-auto rounded-3xl border border-slate-100">
+            <table className="w-full min-w-[720px] text-left bg-white">
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-100">
-                  <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Network</th>
-                  <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Bundle</th>
-                  <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Price</th>
-                  <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Validity</th>
-                  <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Cost per GB</th>
+                  <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Rank</th>
+                  <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Network</th>
+                  <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Bundle</th>
+                  <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Price</th>
+                  <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Validity</th>
+                  <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Cost per GB</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
-                {topComparisonRows.map((bundle) => (
-                  <tr key={bundle.id} className="hover:bg-slate-50 transition-colors">
-                    <td className="px-6 py-4 font-bold">{bundle.network}</td>
-                    <td className="px-6 py-4 text-slate-700">{bundle.name}</td>
-                    <td className="px-6 py-4 text-slate-700">R{bundle.price}</td>
-                    <td className="px-6 py-4 text-slate-700">{bundle.validity}</td>
-                    <td className="px-6 py-4 text-slate-700">~R{bundle.costPerGb.toFixed(2)}/GB</td>
+                {topSummaryRows.map((bundle, index) => (
+                  <tr key={bundle.id}>
+                    <td className="px-5 py-4 font-black text-slate-900">{index + 1}</td>
+                    <td className="px-5 py-4 font-bold text-slate-900">{bundle.network}</td>
+                    <td className="px-5 py-4 text-slate-700">{bundle.name}</td>
+                    <td className="px-5 py-4 text-slate-700">R{bundle.price}</td>
+                    <td className="px-5 py-4 text-slate-700">{bundle.validity}</td>
+                    <td className="px-5 py-4 text-slate-700">~R{bundle.costPerGb.toFixed(2)}/GB</td>
                   </tr>
                 ))}
               </tbody>
@@ -238,134 +282,92 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
           </div>
         </section>
 
+        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
+          <p className="text-slate-700 leading-relaxed">
+            {cheapestMonthly
+              ? `${cheapestMonthly.network} currently leads the monthly-style value view on this page with ${cheapestMonthly.name} at about R${cheapestMonthly.costPerGb.toFixed(2)}/GB. `
+              : 'Monthly value depends on the visible dataset. '}
+            {cheapestDaily
+              ? `${cheapestDaily.network} currently leads the daily-value view with ${cheapestDaily.name}. `
+              : 'Daily value depends on the visible dataset. '}
+            The best answer depends on whether you need the cheapest short-term top-up, the lowest monthly cost per GB, or a night-data bundle for off-peak use.
+          </p>
+        </section>
+
+        <AdUnit type="aboveFold" />
+
+        <section className="mb-10 space-y-5">
+          {intentSections.map((section) => (
+            <article key={section.id} id={section.id} className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+              <h2 className="text-2xl font-black tracking-tight mb-3">{section.title}</h2>
+              <p className="text-slate-700 leading-relaxed mb-4">{section.helper}</p>
+              {section.bundle ? (
+                <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Current dataset view</div>
+                  <div className="font-black text-slate-900 text-lg">{section.bundle.network}: {section.bundle.name}</div>
+                  <p className="text-slate-700 mt-2">
+                    Price: <strong>R{section.bundle.price}</strong> | Validity: <strong>{section.bundle.validity}</strong> | Approx. value:{' '}
+                    <strong>R{section.bundle.costPerGb.toFixed(2)}/GB</strong>
+                  </p>
+                </div>
+              ) : (
+                <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5 text-slate-700">
+                  This category is intentionally left descriptive here until a clear dataset-backed winner is available.
+                </div>
+              )}
+              {section.href ? (
+                <Link to={section.href} className="inline-block mt-4 text-sm font-bold text-[#1b6d24] hover:underline">
+                  Open dedicated guide
+                </Link>
+              ) : null}
+            </article>
+          ))}
+        </section>
+
         <AdUnit type="inContent" />
 
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-6">Cheapest data by user type</h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-black mb-2">Light users (chat and browsing)</h3>
-              <p className="text-slate-700">Start with 1GB and short-validity bundles, then compare whether weekly options are cheaper than repeated daily purchases.</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-black mb-2">Regular prepaid users</h3>
-              <p className="text-slate-700">Monthly bundles often deliver better overall value than constant top-ups. Focus on cost per GB plus realistic usage fit.</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-black mb-2">Heavy data users</h3>
-              <p className="text-slate-700">Compare 10GB and unlimited options, and prioritize stable coverage in your area before chasing headline discounts.</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">Bundle Size Quick Access</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-              <h3 className="font-black mb-2">Cheapest 1GB</h3>
-              <p className="text-sm text-slate-700 mb-2">{cheapest1Gb ? `${cheapest1Gb.network}: ${cheapest1Gb.name} (R${cheapest1Gb.price})` : 'Check the 1GB guide for current options.'}</p>
-              <a href="/guides/cheapest-1gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 1GB guide</a>
-            </div>
-            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-              <h3 className="font-black mb-2">Cheapest 2GB</h3>
-              <p className="text-sm text-slate-700 mb-2">Ideal for low-budget light usage and emergency monthly top-ups.</p>
-              <a href="/guides/cheapest-2gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 2GB guide</a>
-            </div>
-            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-              <h3 className="font-black mb-2">Cheapest 5GB</h3>
-              <p className="text-sm text-slate-700 mb-2">Good mid-range benchmark for moderate prepaid usage.</p>
-              <a href="/guides/cheapest-5gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 5GB guide</a>
-            </div>
-            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-              <h3 className="font-black mb-2">Cheapest 10GB</h3>
-              <p className="text-sm text-slate-700 mb-2">{cheapest10Gb ? `${cheapest10Gb.network}: ${cheapest10Gb.name} (R${cheapest10Gb.price})` : 'Check the 10GB guide for current options.'}</p>
-              <a href="/guides/cheapest-10gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 10GB guide</a>
-            </div>
-            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-              <h3 className="font-black mb-2">Cheapest 15GB</h3>
-              <p className="text-sm text-slate-700 mb-2">Middle-ground choice when 10GB is not enough.</p>
-              <a href="/guides/cheapest-15gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 15GB guide</a>
-            </div>
-            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-              <h3 className="font-black mb-2">Cheapest 20GB</h3>
-              <p className="text-sm text-slate-700 mb-2">Strong monthly value point for heavier regular users.</p>
-              <a href="/guides/cheapest-20gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 20GB guide</a>
-            </div>
-            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-              <h3 className="font-black mb-2">Cheapest 50GB</h3>
-              <p className="text-sm text-slate-700 mb-2">For hotspot-heavy users and high monthly demand.</p>
-              <a href="/guides/cheapest-50gb-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open 50GB guide</a>
-            </div>
-            <div className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-              <h3 className="font-black mb-2">Cheapest Unlimited</h3>
-              <p className="text-sm text-slate-700 mb-2">{cheapestUnlimited ? `${cheapestUnlimited.network}: ${cheapestUnlimited.name} (R${cheapestUnlimited.price})` : 'Check the unlimited guide for current options.'}</p>
-              <a href="/guides/cheapest-unlimited-data-south-africa/" className="text-xs font-bold text-[#1b6d24] hover:underline">Open unlimited guide</a>
-            </div>
-          </div>
-        </section>
-
-        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">Is the cheapest data always the best value?</h2>
-          <p className="text-slate-700 leading-relaxed">
-            Not always. The cheapest upfront bundle can still be expensive over a month if validity is short. In many cases, monthly bundles with a slightly higher upfront price give better value per GB.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
-            <div className="p-4 rounded-2xl border border-slate-100 bg-slate-50">
-              <h3 className="font-black mb-1">Daily benchmark</h3>
-              <p className="text-sm text-slate-700">{bestDaily ? `${bestDaily.network}: ~R${bestDaily.costPerGb.toFixed(2)}/GB` : 'Varies by network and promo'}</p>
-            </div>
-            <div className="p-4 rounded-2xl border border-slate-100 bg-slate-50">
-              <h3 className="font-black mb-1">Monthly benchmark</h3>
-              <p className="text-sm text-slate-700">{bestMonthly ? `${bestMonthly.network}: ~R${bestMonthly.costPerGb.toFixed(2)}/GB` : 'Varies by network and promo'}</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">How to find the cheapest data for your needs</h2>
-          <ol className="space-y-3 text-slate-700">
-            <li><strong>1.</strong> Shortlist two networks with reliable coverage where you live and work.</li>
-            <li><strong>2.</strong> Compare 1GB, 10GB, monthly and unlimited options for your usage profile.</li>
-            <li><strong>3.</strong> Check USSD/app promos before checkout because live deals can beat standard menu pricing.</li>
-            <li><strong>4.</strong> Avoid out-of-bundle leakage by checking balance and expiry regularly.</li>
-          </ol>
-        </section>
-
-        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-6">Network snapshots</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {networkSummary.map((network) => (
-              <div key={network.networkName} className="p-5 rounded-2xl border border-slate-100 bg-slate-50">
-                <h3 className="font-black mb-2">{network.networkName}</h3>
-                <p className="text-sm text-slate-700">Cheapest listed: {network.cheapest ? `${network.cheapest.name} (R${network.cheapest.price})` : 'N/A'}</p>
-                <p className="text-sm text-slate-700 mt-1">Best value listed: {network.bestNetworkValue ? `${network.bestNetworkValue.name} (~R${network.bestNetworkValue.costPerGb.toFixed(2)}/GB)` : 'N/A'}</p>
-                {network.networkSlug ? (
-                  <Link to={`/network/${network.networkSlug}/`} className="inline-block mt-3 text-sm font-bold text-[#1b6d24] hover:underline">
-                    View {network.networkName} network page
-                  </Link>
-                ) : null}
-              </div>
-            ))}
+          <h2 className="text-2xl font-black tracking-tight mb-6">Best for different user types</h2>
+          <div className="space-y-4">
+            <article className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+              <h3 className="font-black text-slate-900 mb-2">Best for ultra-light users</h3>
+              <p className="text-slate-700 leading-relaxed">Start with the 1GB and 2GB views, then compare whether a short-validity bundle or a small monthly bundle fits your real usage better.</p>
+            </article>
+            <article className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+              <h3 className="font-black text-slate-900 mb-2">Best for regular prepaid users</h3>
+              <p className="text-slate-700 leading-relaxed">Focus on monthly bundles and overall cost per GB rather than the cheapest one-day top-up.</p>
+            </article>
+            <article className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+              <h3 className="font-black text-slate-900 mb-2">Best for heavy users</h3>
+              <p className="text-slate-700 leading-relaxed">The 10GB and larger monthly bundles usually matter more than the cheapest small bundle headline.</p>
+            </article>
+            <article className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+              <h3 className="font-black text-slate-900 mb-2">Best for night-download users</h3>
+              <p className="text-slate-700 leading-relaxed">Use the night-data section and dedicated night guide rather than comparing it directly with daytime anytime bundles.</p>
+            </article>
+            <article className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+              <h3 className="font-black text-slate-900 mb-2">Best for coverage-first buyers</h3>
+              <p className="text-slate-700 leading-relaxed">Low price is only part of the decision. Always balance value against network reliability where you actually use your phone.</p>
+            </article>
           </div>
         </section>
 
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4 inline-flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-[#1b6d24]" />
-            Methodology and trust
+            Methodology and pricing notes
           </h2>
           <p className="text-slate-700 leading-relaxed">
-            <strong>Independent analysis:</strong> DataCost compares publicly listed bundle prices, validity terms, and cost-per-GB values across major South African operators.
+            <strong>Dataset-backed only:</strong> this page uses the visible DataCost bundle dataset as its price reference layer. It is intended to compare public baseline bundle pricing already captured in the site data.
           </p>
           <p className="text-slate-700 leading-relaxed mt-3">
-            <strong>Prices may change:</strong> Promotions and personalized offers can update frequently, so always verify final terms with the operator before buying.
+            <strong>Public vs personalised pricing:</strong> operator-specific personalised offers, app-only promotions, and USSD campaign deals may be cheaper for some users, but they are not guaranteed across all SIMs. For that reason, they are not treated here as universal baseline pricing unless clearly represented in the dataset.
           </p>
-          <p className="text-slate-700 mt-3">
-            See our <Link to="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</Link> and <Link to="/editorial-policy/" className="text-[#1b6d24] font-semibold hover:underline">editorial policy</Link>.
+          <p className="text-slate-700 leading-relaxed mt-3">
+            Before purchase, verify the final bundle on the operator side and use the <Link to="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">USSD codes hub</Link> or <Link to="/network/" className="text-[#1b6d24] font-semibold hover:underline">network comparison hub</Link> for the next step.
           </p>
         </section>
-
-        <AdUnit type="inContent" />
 
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6 inline-flex items-center gap-2">
@@ -388,10 +390,10 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
           </h2>
           <div className="space-y-4">
             {faqItems.map((faq) => (
-              <div key={faq.question} className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
+              <article key={faq.question} className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
                 <h3 className="font-bold text-slate-900 mb-2">{faq.question}</h3>
                 <p className="text-sm text-slate-600">{faq.answer}</p>
-              </div>
+              </article>
             ))}
           </div>
         </section>
@@ -402,6 +404,3 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     </div>
   );
 };
-
-
-

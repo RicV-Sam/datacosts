@@ -6,6 +6,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/alerts/': '2026-03-30T00:00:00.000Z',
   '/about/': '2026-01-20T00:00:00.000Z',
   '/contact/': '2026-01-20T00:00:00.000Z',
+  '/cookie-policy/': '2026-04-08T00:00:00.000Z',
   '/editorial-policy/': '2026-01-20T00:00:00.000Z',
   '/fix-mobile-problems/': '2026-04-01T00:00:00.000Z',
   '/guides/': '2026-03-31T00:00:00.000Z',
@@ -18,7 +19,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/telkom-ussd-codes/': '2026-03-31T00:00:00.000Z',
   '/terms/': '2026-01-20T00:00:00.000Z',
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
-  '/ussd-codes-south-africa/': '2026-03-30T00:00:00.000Z',
+  '/ussd-codes-south-africa/': '2026-04-08T00:00:00.000Z',
   '/vodacom-ussd-codes/': '2026-03-31T00:00:00.000Z'
 };
 
@@ -35,8 +36,9 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-check-data-balance': '2026-03-16T00:00:00.000Z',
   'how-to-stop-wasp-vas-charges-south-africa': '2026-03-31T00:00:00.000Z',
   'prepaid-vs-contract-south-africa': '2026-03-10T00:00:00.000Z',
+  'cheapest-data-south-africa': '2026-04-08T00:00:00.000Z',
   'why-does-my-data-finish-so-fast-south-africa': '2026-03-31T00:00:00.000Z',
-  'why-is-my-airtime-disappearing-south-africa': '2026-03-31T00:00:00.000Z',
+  'why-is-my-airtime-disappearing-south-africa': '2026-04-08T00:00:00.000Z',
   'why-is-my-data-finishing-so-fast': '2026-03-15T00:00:00.000Z'
 };
 

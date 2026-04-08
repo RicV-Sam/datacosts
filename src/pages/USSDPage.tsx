@@ -1,14 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { ArrowLeft, CheckCircle2, Copy, HelpCircle, Phone, Search, ShieldCheck } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { AdUnit } from '../components/AdUnit';
 import { ussdRepository } from '../data/ussd';
-import { networkPages } from '../data/networks';
 import { NavigateFunction, USSDEntry } from '../types';
-import { ArrowLeft, Search, Copy, CheckCircle2, Phone, ShieldCheck, HelpCircle } from 'lucide-react';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
@@ -18,7 +17,54 @@ interface USSDPageProps {
   onNavigate: NavigateFunction;
 }
 
-const NETWORKS = ['All', 'MTN', 'Vodacom', 'Telkom', 'Cell C', 'Rain'];
+type NetworkName = 'MTN' | 'Vodacom' | 'Telkom' | 'Cell C';
+
+const MAJOR_NETWORKS: Array<{ name: NetworkName; slug: string; id: string; summary: string; ussdPage: string; networkPage: string }> = [
+  {
+    name: 'MTN',
+    slug: 'mtn',
+    id: 'mtn-ussd-codes',
+    summary: 'Use MTN shortcuts for balance, buying bundles, and account self-service without opening the app.',
+    ussdPage: '/mtn-ussd-codes/',
+    networkPage: '/network/mtn/'
+  },
+  {
+    name: 'Vodacom',
+    slug: 'vodacom',
+    id: 'vodacom-ussd-codes',
+    summary: 'Vodacom users can check balances, buy data, and reach self-service menus from the dialler.',
+    ussdPage: '/vodacom-ussd-codes/',
+    networkPage: '/network/vodacom/'
+  },
+  {
+    name: 'Telkom',
+    slug: 'telkom',
+    id: 'telkom-ussd-codes',
+    summary: 'Telkom USSD is especially useful for balance checks, Mo’Nice access, and quick prepaid bundle actions.',
+    ussdPage: '/telkom-ussd-codes/',
+    networkPage: '/network/telkom/'
+  },
+  {
+    name: 'Cell C',
+    slug: 'cell-c',
+    id: 'cell-c-ussd-codes',
+    summary: 'Cell C USSD shortcuts help with balance checks, bundle buying, and account actions when airtime is tight.',
+    ussdPage: '/cell-c-ussd-codes/',
+    networkPage: '/network/cell-c/'
+  }
+];
+
+const ANCHOR_LINKS = [
+  { href: '#mtn-ussd-codes', label: 'MTN USSD codes' },
+  { href: '#vodacom-ussd-codes', label: 'Vodacom USSD codes' },
+  { href: '#telkom-ussd-codes', label: 'Telkom USSD codes' },
+  { href: '#cell-c-ussd-codes', label: 'Cell C USSD codes' },
+  { href: '#airtime-advance-codes', label: 'Airtime advance codes' },
+  { href: '#please-call-me-codes', label: 'Please call me codes' },
+  { href: '#data-balance-codes', label: 'Data balance codes' },
+  { href: '#buy-data-codes', label: 'Buy data codes' },
+  { href: '#faq', label: 'FAQ' }
+];
 
 function findFirstCode(network: string, patterns: string[]): string {
   const row = ussdRepository.find((entry) =>
@@ -28,17 +74,21 @@ function findFirstCode(network: string, patterns: string[]): string {
 }
 
 function isDialable(code: string): boolean {
-  return code.includes('*') || code.includes('#');
+  return code.includes('*') || code.includes('#') || /^\d+$/.test(code);
+}
+
+function getMajorNetworkCodes(network: NetworkName): USSDEntry[] {
+  return ussdRepository.filter((entry) => entry.network === network).slice(0, 8);
 }
 
 export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNavigate }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeNetwork, setActiveNetwork] = useState('All');
+  const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = 'South Africa USSD Codes (2026) | MTN, Vodacom, Telkom, Cell C & More';
+  const pageTitle = 'South Africa USSD Codes (2026) | MTN, Vodacom, Telkom & Cell C';
   const metaDescription =
-    'Find the most useful South African USSD codes for MTN, Vodacom, Telkom, Cell C and more. Check balance, buy data, recharge airtime and manage your line quickly.';
+    'Use the main South African USSD codes for MTN, Vodacom, Telkom and Cell C. Check balance, buy data, send Please Call Me, and find self-service shortcuts fast.';
   const canonicalUrl = toCanonicalUrl('/ussd-codes-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');
@@ -46,48 +96,24 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
 
   const faqItems = [
     {
-      question: 'What is the USSD code to check airtime balance in South Africa?',
+      question: 'What is the USSD code to check airtime or data balance in South Africa?',
       answer:
-        'Each network has its own code. Common options are Vodacom *135#, MTN *136#, Telkom *188#, and Cell C *101#. Always confirm the latest menu if a code changes.'
+        'Common balance shortcuts are MTN *136#, Vodacom *135#, Telkom *188#, and Cell C *101#. If a code routes differently on your line, use the network-specific USSD page for that operator.'
     },
     {
-      question: 'Can I buy data using USSD?',
+      question: 'How do I buy data using USSD in South Africa?',
       answer:
-        'Yes. You can buy data directly through USSD menus without the app. Typical examples include *135*2# (Vodacom), *136*2# (MTN), *180# (Telkom), and *147# (Cell C).'
+        'Typical buy-data shortcuts are MTN *136*2#, Vodacom *135*2#, Telkom *180#, and Cell C *147#. These let you buy bundles without relying on the app.'
     },
     {
-      question: 'Do USSD codes work without data?',
-      answer: 'Yes. USSD works through the mobile network signaling channel, so it does not require an active data connection.'
-    },
-    {
-      question: 'Are USSD codes different for MTN, Vodacom, Telkom and Cell C?',
-      answer: 'Yes. Each network uses different menu trees and shortcodes, so always use the code set for your own SIM network.'
-    },
-    {
-      question: 'Can I stop unwanted subscriptions using USSD?',
+      question: 'What is the Please Call Me code in South Africa?',
       answer:
-        'Often yes. Many subscription and content services can be managed or blocked through operator menus. For a focused walkthrough, use the Stop WASP Subscriptions guide.'
+        'The format differs by network and can change. This page lists commonly used formats for Vodacom, MTN, Telkom, and Cell C, but if a code fails you should use the operator’s self-service menu or support channel.'
     },
     {
-      question: 'Why is a USSD code not working?',
+      question: 'Can I borrow airtime with USSD?',
       answer:
-        'Codes can change, menus can be temporarily unavailable, or your tariff/profile may route differently. Retry, check signal strength, then verify the latest shortcode with your operator.'
-    },
-    {
-      question: 'What is the Vodacom Please Call Me code?',
-      answer: 'The most commonly used Vodacom Please Call Me format is *140*0821234567#.'
-    },
-    {
-      question: 'What is the MTN Please Call Me code?',
-      answer: 'A widely used MTN Please Call Me format is *121*0821234567#.'
-    },
-    {
-      question: 'Is Please Call Me free in South Africa?',
-      answer: 'In most cases, yes. Please Call Me messages are usually free, but daily limits may apply.'
-    },
-    {
-      question: 'Why is my Please Call Me not working?',
-      answer: 'You may have reached your daily limit, entered the wrong number, or your network may have updated the service.'
+        'Sometimes, yes. MTN has a verified XtraTime route on *151#. Other operators may place airtime-advance access inside their main self-service menus, so this page keeps that wording conservative where direct verification is less clear.'
     }
   ];
 
@@ -104,10 +130,19 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     }))
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'USSD Codes South Africa', item: canonicalUrl }
+    ]
+  };
+
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'South Africa USSD Codes (2026)',
+    name: 'South Africa USSD Codes',
     description: metaDescription,
     url: canonicalUrl,
     datePublished: datePublishedIso,
@@ -119,167 +154,46 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     }
   };
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-      { '@type': 'ListItem', position: 2, name: 'USSD Codes South Africa', item: canonicalUrl }
-    ]
-  };
-
-  const networkSummaries = [
+  const answerBlocks = [
     {
-      name: 'MTN',
-      slug: 'mtn',
-      summary: 'Strong all-round prepaid network with frequent promo menus and reliable urban performance.'
+      id: 'data-balance-codes',
+      title: 'Data balance codes',
+      description: 'Check balance before you browse again so airtime does not start paying out-of-bundle rates by mistake.',
+      items: MAJOR_NETWORKS.map((network) => ({
+        network: network.name,
+        code: findFirstCode(network.name, ['balance'])
+      }))
     },
     {
-      name: 'Vodacom',
-      slug: 'vodacom',
-      summary: 'Coverage-first option, often chosen for consistency and strong national footprint.'
+      id: 'buy-data-codes',
+      title: 'Buy data codes',
+      description: 'Use these shortcuts when you need a bundle fast and do not want to rely on the operator app.',
+      items: MAJOR_NETWORKS.map((network) => ({
+        network: network.name,
+        code: findFirstCode(network.name, ['buy data', 'bundles', 'data'])
+      }))
     },
     {
-      name: 'Telkom',
-      slug: 'telkom',
-      summary: 'Often one of the strongest value options on cost-per-GB, especially for monthly bundles.'
+      id: 'please-call-me-codes',
+      title: 'Please call me codes',
+      description: 'These are commonly used callback formats. If a format fails, use the operator menu or support path instead of guessing.',
+      items: [
+        { network: 'Vodacom', code: '*140*0821234567#' },
+        { network: 'MTN', code: '*121*0821234567#' },
+        { network: 'Telkom', code: '*140*0821234567#' },
+        { network: 'Cell C', code: '*111*0821234567#' }
+      ]
     },
     {
-      name: 'Cell C',
-      slug: 'cell-c',
-      summary: 'Promo-led prepaid value option with rotating campaign deals.'
-    },
-    {
-      name: 'Rain',
-      slug: 'rain',
-      summary: 'Digital-portal first network; account management is mainly app/web rather than classic USSD.'
-    }
-  ];
-
-  const mostCommonTasks = [
-    {
-      task: 'Check balance',
-      codes: {
-        MTN: findFirstCode('MTN', ['balance']),
-        Vodacom: findFirstCode('Vodacom', ['balance']),
-        Telkom: findFirstCode('Telkom', ['balance']),
-        'Cell C': findFirstCode('Cell C', ['balance'])
-      }
-    },
-    {
-      task: 'Buy data',
-      codes: {
-        MTN: findFirstCode('MTN', ['buy data', 'bundle', 'data']),
-        Vodacom: findFirstCode('Vodacom', ['buy data', 'bundle', 'data']),
-        Telkom: findFirstCode('Telkom', ['buy data', 'bundle', 'data']),
-        'Cell C': findFirstCode('Cell C', ['buy data', 'bundle', 'data'])
-      }
-    },
-    {
-      task: 'Recharge airtime',
-      codes: {
-        MTN: findFirstCode('MTN', ['recharge', 'voucher', 'airtime']),
-        Vodacom: findFirstCode('Vodacom', ['recharge', 'voucher', 'airtime']),
-        Telkom: findFirstCode('Telkom', ['recharge', 'voucher', 'airtime']),
-        'Cell C': findFirstCode('Cell C', ['recharge', 'voucher', 'airtime'])
-      }
-    }
-  ];
-
-  const utilityCoverageRows = [
-    {
-      task: 'Airtime balance',
-      codes: {
-        MTN: findFirstCode('MTN', ['balance']),
-        Vodacom: findFirstCode('Vodacom', ['balance']),
-        Telkom: findFirstCode('Telkom', ['balance']),
-        'Cell C': findFirstCode('Cell C', ['balance'])
-      },
-      note: 'Fast way to check available airtime before topping up or borrowing.'
-    },
-    {
-      task: 'Data balance',
-      codes: {
-        MTN: findFirstCode('MTN', ['balance']),
-        Vodacom: findFirstCode('Vodacom', ['detailed balance', 'balance']),
-        Telkom: findFirstCode('Telkom', ['balance']),
-        'Cell C': findFirstCode('Cell C', ['balance'])
-      },
-      note: 'Use this first to avoid buying duplicate bundles by mistake.'
-    },
-    {
-      task: 'Buy data with USSD',
-      codes: {
-        MTN: findFirstCode('MTN', ['buy data', 'bundle', 'data']),
-        Vodacom: findFirstCode('Vodacom', ['buy data', 'bundle', 'data']),
-        Telkom: findFirstCode('Telkom', ['buy data', 'bundle', 'data']),
-        'Cell C': findFirstCode('Cell C', ['buy data', 'bundle', 'data'])
-      },
-      note: 'Useful when apps are down or you need a quick bundle from basic signal.'
-    },
-    {
-      task: 'Airtime advance / borrow airtime',
-      codes: {
-        MTN: findFirstCode('MTN', ['xtratime', 'advance']),
-        Vodacom: 'Check menu',
-        Telkom: 'Check menu',
-        'Cell C': 'Check menu'
-      },
-      note: 'If no direct shortcode works, open your operator self-service menu and look for advance airtime.'
-    }
-  ];
-
-  const pleaseCallMeRows = [
-    {
-      network: 'Vodacom',
-      code: '*140*0821234567#',
-      verification: 'Commonly used format',
-      support: 'If this fails, open *135# and use callback/Please Call Me options.'
-    },
-    {
-      network: 'MTN',
-      code: '*121*0821234567#',
-      verification: 'Widely used format',
-      support: 'If unavailable on your line, check *136# self-service for callback options.'
-    },
-    {
-      network: 'Telkom',
-      code: '*140*0821234567#',
-      verification: 'Widely used format',
-      support: 'If not accepted, use *180# or *188# to find callback options on your profile.'
-    },
-    {
-      network: 'Cell C',
-      code: '*111*0821234567#',
-      verification: 'Widely used format',
-      support: 'If this format fails, use *147# account tools or contact support for active callback format.'
-    }
-  ];
-
-  const borrowAirtimeRows = [
-    {
-      network: 'Vodacom',
-      option: 'Vodacom Airtime Advance',
-      access: '*135#',
-      notes: 'Usually available through self-service or account menu options.'
-    },
-    {
-      network: 'MTN',
-      option: 'MTN Airtime Advance',
-      access: '*136#',
-      notes: 'May appear inside MTN self-service options depending on line eligibility.'
-    },
-    {
-      network: 'Telkom',
-      option: 'Telkom Emergency Airtime',
-      access: '*180#',
-      notes: 'Availability may depend on usage profile and account history.'
-    },
-    {
-      network: 'Cell C',
-      option: 'Cell C Airtime Advance',
-      access: '*147#',
-      notes: 'May be available via account services or airtime assistance options.'
+      id: 'airtime-advance-codes',
+      title: 'Airtime advance codes',
+      description: 'Borrow airtime routes vary more by operator and eligibility, so these entries stay conservative unless the shortcut is clearly verified.',
+      items: [
+        { network: 'Vodacom', code: '*135# menu' },
+        { network: 'MTN', code: findFirstCode('MTN', ['xtratime', 'advance']) },
+        { network: 'Telkom', code: '*180# menu' },
+        { network: 'Cell C', code: '*147# menu' }
+      ]
     }
   ];
 
@@ -292,13 +206,6 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     });
   }, [activeNetwork, searchTerm]);
 
-  const groupedByNetwork = useMemo(() => {
-    return networkSummaries.map((network) => ({
-      ...network,
-      codes: filteredCodes.filter((entry) => entry.network === network.name).slice(0, 8)
-    }));
-  }, [filteredCodes]);
-
   const dialCode = (code: string) => {
     const dialableCode = code.replace(/#/g, '%23');
     window.location.href = `tel:${dialableCode}`;
@@ -308,42 +215,6 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     await navigator.clipboard.writeText(code);
     setCopiedCode(code);
     setTimeout(() => setCopiedCode(null), 1500);
-  };
-
-  const relatedPages = [
-    '/mtn-ussd-codes/',
-    '/vodacom-ussd-codes/',
-    '/telkom-ussd-codes/',
-    '/cell-c-ussd-codes/',
-    '/guides/how-to-check-data-balance/',
-    '/guides/how-to-buy-data-mtn/',
-    '/guides/how-to-buy-data-vodacom/',
-    '/guides/how-to-buy-data-telkom/',
-    '/guides/how-to-buy-data-cell-c/',
-    '/guides/best-data-deals-south-africa/',
-    '/guides/cheapest-data-south-africa/',
-    '/guides/stop-wasp-subscriptions-south-africa/',
-    '/network/',
-    '/methodology/',
-    '/editorial-policy/'
-  ];
-
-  const relatedLabels: Record<string, string> = {
-    '/mtn-ussd-codes/': 'MTN USSD Codes',
-    '/vodacom-ussd-codes/': 'Vodacom USSD Codes',
-    '/telkom-ussd-codes/': 'Telkom USSD Codes',
-    '/cell-c-ussd-codes/': 'Cell C USSD Codes',
-    '/guides/how-to-check-data-balance/': 'How to Check Data Balance',
-    '/guides/how-to-buy-data-mtn/': 'How to Buy Data on MTN',
-    '/guides/how-to-buy-data-vodacom/': 'How to Buy Data on Vodacom',
-    '/guides/how-to-buy-data-telkom/': 'How to Buy Data on Telkom',
-    '/guides/how-to-buy-data-cell-c/': 'How to Buy Data on Cell C',
-    '/guides/best-data-deals-south-africa/': 'Best Data Deals South Africa',
-    '/guides/cheapest-data-south-africa/': 'Cheapest Data South Africa',
-    '/guides/stop-wasp-subscriptions-south-africa/': 'Stop WASP Subscriptions',
-    '/network/': 'Network Comparison Hub',
-    '/methodology/': 'Methodology',
-    '/editorial-policy/': 'Editorial Policy'
   };
 
   return (
@@ -380,279 +251,151 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
           </button>
         </nav>
 
-        <header className="mb-10">
+        <header className="mb-8">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 leading-[0.9]">
             South Africa <span className="text-[#1b6d24]">USSD Codes</span> (2026)
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Find the most useful USSD codes for MTN, Vodacom, Telkom, Cell C, and Rain workflows. Use this page to check balance, buy data, recharge airtime, and manage your line quickly without relying on apps.
+            Use this page to check balance, buy data, find self-service shortcuts, and troubleshoot common prepaid actions on MTN, Vodacom, Telkom, and Cell C.
           </p>
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
 
-        <section className="mb-10 bg-[#031636] text-white rounded-3xl p-6 shadow-sm">
-          <h2 className="text-xl font-black tracking-tight mb-2">Want to save these codes to your phone?</h2>
-          <p className="text-sm text-slate-200 leading-relaxed mb-4">
-            Use the quick tool to copy, WhatsApp, or save your network&apos;s USSD codes.
-          </p>
-          <Link
-            to="/save-ussd-codes/"
-            className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]"
-          >
-            Go to USSD Save Tool
-          </Link>
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
+          <h2 className="text-lg font-black tracking-tight mb-4">On this page</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {ANCHOR_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="min-h-[44px] rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </section>
 
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
-          <h2 className="text-xl font-black tracking-tight mb-2 text-slate-900">Want Useful Mobile Alerts?</h2>
-          <p className="text-sm text-slate-600 leading-relaxed mb-4">
-            Get alerts for cheaper data deals, airtime promos, verified competitions and practical network updates.
+        <section className="mb-10 bg-[#031636] text-white rounded-3xl p-6 shadow-sm">
+          <h2 className="text-xl font-black tracking-tight mb-2">Need quick access to network-specific codes?</h2>
+          <p className="text-sm text-slate-200 leading-relaxed mb-4">
+            Jump straight to the dedicated operator pages if you only need one network’s balance, buy-data, or account shortcuts.
           </p>
-          <Link
-            to="/alerts/"
-            className="inline-flex min-h-[44px] items-center rounded-xl bg-[#1b6d24] px-4 text-sm font-black text-white hover:bg-[#14521c] transition-colors"
-          >
-            Turn On Alerts
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link to="/mtn-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">MTN USSD</Link>
+            <Link to="/vodacom-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Vodacom USSD</Link>
+            <Link to="/telkom-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Telkom USSD</Link>
+            <Link to="/cell-c-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Cell C USSD</Link>
+          </div>
         </section>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            USSD codes are still the fastest no-data way to check balances, buy bundles, and recharge. The exact code differs by network, so use the task matrix and network sections below to dial the right shortcode.
+            The safest way to use USSD is to start with balance checks, then buy bundles before you browse again. The exact shortcode differs by operator, so use the answer sections below for the common actions most South African prepaid users need every week.
           </p>
         </section>
 
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">Network-Specific USSD Pages</h2>
-          <p className="text-slate-700 leading-relaxed mb-5">
-            Need codes for only one network? Use these dedicated pages for faster lookup, network-specific FAQs, and focused troubleshooting.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <Link to="/mtn-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-[#1b6d24] transition-colors">
-              <span className="font-bold text-slate-900">MTN USSD Codes</span>
-            </Link>
-            <Link to="/vodacom-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-[#1b6d24] transition-colors">
-              <span className="font-bold text-slate-900">Vodacom USSD Codes</span>
-            </Link>
-            <Link to="/telkom-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-[#1b6d24] transition-colors">
-              <span className="font-bold text-slate-900">Telkom USSD Codes</span>
-            </Link>
-            <Link to="/cell-c-ussd-codes/" className="rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-[#1b6d24] transition-colors">
-              <span className="font-bold text-slate-900">Cell C USSD Codes</span>
-            </Link>
-          </div>
+        <section className="mb-10 space-y-5">
+          {answerBlocks.map((block) => (
+            <article key={block.id} id={block.id} className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm scroll-mt-28">
+              <h2 className="text-2xl font-black tracking-tight mb-3">{block.title}</h2>
+              <p className="text-slate-700 leading-relaxed mb-5">{block.description}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {block.items.map((item) => (
+                  <div key={`${block.id}-${item.network}`} className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                    <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{item.network}</div>
+                    <div className="font-black text-slate-900">{item.code}</div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
         </section>
 
         <AdUnit type="aboveFold" />
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">What are USSD codes?</h2>
-          <p className="text-slate-700 leading-relaxed">
-            USSD (Unstructured Supplementary Service Data) codes are short commands like <strong>*135#</strong> that open network menus directly on your phone. They work on basic signal, do not require mobile data, and are useful when apps are slow, unavailable, or consuming too much data.
-          </p>
+          <h2 className="text-2xl font-black tracking-tight mb-6">Useful next steps</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <Link to="/guides/how-to-check-data-balance/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">How to Check Data Balance</div>
+              <p className="text-sm text-slate-600 mt-1">Use the balance guide before you buy another bundle.</p>
+            </Link>
+            <Link to="/guides/how-to-buy-data-mtn/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">How to Buy Data on MTN</div>
+              <p className="text-sm text-slate-600 mt-1">Operator-specific buy path for MTN users.</p>
+            </Link>
+            <Link to="/guides/how-to-buy-data-vodacom/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">How to Buy Data on Vodacom</div>
+              <p className="text-sm text-slate-600 mt-1">Use this when Vodacom app access is not the fastest option.</p>
+            </Link>
+            <Link to="/guides/how-to-buy-data-telkom/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">How to Buy Data on Telkom</div>
+              <p className="text-sm text-slate-600 mt-1">See the main Telkom bundle-buy flow and Mo’Nice context.</p>
+            </Link>
+            <Link to="/guides/how-to-buy-data-cell-c/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">How to Buy Data on Cell C</div>
+              <p className="text-sm text-slate-600 mt-1">Useful if you need a fast Cell C buy-data path from airtime.</p>
+            </Link>
+            <Link to="/guides/stop-wasp-subscriptions-south-africa/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Stop WASP Subscriptions</div>
+              <p className="text-sm text-slate-600 mt-1">Use this if airtime keeps disappearing in small recurring deductions.</p>
+            </Link>
+          </div>
         </section>
 
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-6">Most common USSD tasks</h2>
-          <div className="space-y-6">
-            {mostCommonTasks.map((taskRow) => (
-              <div key={taskRow.task} className="border border-slate-100 rounded-2xl p-5 bg-slate-50">
-                <h3 className="font-black text-slate-900 mb-3">{taskRow.task}</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {Object.entries(taskRow.codes).map(([networkName, code]) => (
-                    <button
-                      key={`${taskRow.task}-${networkName}`}
-                      onClick={() => isDialable(code) && dialCode(code)}
-                      className="text-left p-4 rounded-2xl bg-white border border-slate-100 hover:border-[#1b6d24] transition-colors"
-                    >
-                      <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{networkName}</div>
-                      <div className="font-black text-slate-900">{code}</div>
-                    </button>
+        <section className="mb-10 space-y-6">
+          {MAJOR_NETWORKS.map((network) => {
+            const codes = getMajorNetworkCodes(network.name);
+            return (
+              <section key={network.name} id={network.id} className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm scroll-mt-28">
+                <h2 className="text-2xl font-black tracking-tight mb-3">{network.name} USSD codes</h2>
+                <p className="text-slate-700 leading-relaxed mb-5">{network.summary}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
+                  {codes.map((entry, index) => (
+                    <div key={`${network.name}-${entry.code}-${index}`} className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                      <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{entry.category}</div>
+                      <div className="font-black text-slate-900">{entry.action}</div>
+                      <div className="text-sm text-slate-600 mb-3">{entry.explanation}</div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => copyToClipboard(entry.code)}
+                          className="px-3 py-2 rounded-lg border border-slate-200 text-xs font-black uppercase tracking-wider hover:border-[#1b6d24] hover:text-[#1b6d24]"
+                        >
+                          {copiedCode === entry.code ? (
+                            <span className="inline-flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Copied</span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1"><Copy className="w-3 h-3" /> Copy</span>
+                          )}
+                        </button>
+                        {isDialable(entry.code) ? (
+                          <button
+                            onClick={() => dialCode(entry.code)}
+                            className="px-3 py-2 rounded-lg bg-[#031636] text-white text-xs font-black uppercase tracking-wider hover:bg-[#1b6d24] inline-flex items-center gap-1"
+                          >
+                            <Phone className="w-3 h-3" /> Dial
+                          </button>
+                        ) : null}
+                      </div>
+                    </div>
                   ))}
                 </div>
-              </div>
-            ))}
-          </div>
+                <div className="flex flex-wrap gap-3">
+                  <Link to={network.ussdPage} className="text-sm font-bold text-[#1b6d24] hover:underline">Open full {network.name} USSD page</Link>
+                  <Link to={network.networkPage} className="text-sm font-bold text-[#1b6d24] hover:underline">View {network.name} network page</Link>
+                </div>
+              </section>
+            );
+          })}
         </section>
 
         <AdUnit type="inContent" />
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-6">Essential utility USSD actions in South Africa</h2>
-          <p className="text-slate-700 leading-relaxed mb-6">
-            These are the high-utility tasks most prepaid users rely on daily: airtime balance, data balance, buying data with USSD, and airtime advance/borrow airtime access.
-          </p>
-          <div className="space-y-4">
-            {utilityCoverageRows.map((row) => (
-              <article key={row.task} className="border border-slate-100 rounded-2xl p-5 bg-slate-50">
-                <h3 className="font-black text-slate-900 mb-3">{row.task}</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
-                  {Object.entries(row.codes).map(([networkName, code]) => (
-                    <button
-                      key={`${row.task}-${networkName}`}
-                      onClick={() => isDialable(code) && dialCode(code)}
-                      className="text-left p-4 rounded-2xl bg-white border border-slate-100 hover:border-[#1b6d24] transition-colors"
-                    >
-                      <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{networkName}</div>
-                      <div className="font-black text-slate-900">{code}</div>
-                    </button>
-                  ))}
-                </div>
-                <p className="text-sm text-slate-600">{row.note}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">Please Call Me USSD Codes in South Africa</h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
-            If you have no airtime, you can still send a free Please Call Me message using a USSD code on most South African networks. This is one of the most useful prepaid mobile features in South Africa, especially when you need someone to call you back urgently.
-          </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
-            Use the comparison table below to find the most commonly used Please Call Me or Call Me Back format for Vodacom, MTN, Telkom and Cell C.
-          </p>
-          <div className="overflow-x-auto">
-            <table className="min-w-full border border-slate-200 rounded-2xl overflow-hidden text-sm">
-              <thead className="bg-slate-50">
-                <tr>
-                  <th className="text-left p-3 font-black text-slate-700">Network</th>
-                  <th className="text-left p-3 font-black text-slate-700">Please Call Me USSD</th>
-                  <th className="text-left p-3 font-black text-slate-700">Verification status</th>
-                  <th className="text-left p-3 font-black text-slate-700">If code does not work</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pleaseCallMeRows.map((row) => (
-                  <tr key={row.network} className="border-t border-slate-100">
-                    <td className="p-3 font-semibold text-slate-900">{row.network}</td>
-                    <td className="p-3 font-black text-slate-900">{row.code}</td>
-                    <td className="p-3 text-slate-700">{row.verification}</td>
-                    <td className="p-3 text-slate-600">{row.support}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="text-sm text-slate-600 mt-4">
-            Codes and menu paths can change by campaign, tariff plan, or SIM profile. If a shortcode fails, use your operator self-service menu first, then support.
-          </p>
-
-          <article className="mt-6 border border-slate-100 rounded-2xl p-5 bg-slate-50">
-            <h3 className="text-xl font-black tracking-tight mb-3">How to Send a Please Call Me</h3>
-            <p className="text-slate-700 leading-relaxed mb-3">
-              Sending a Please Call Me is quick and free on most South African networks.
-            </p>
-            <ol className="list-decimal pl-5 space-y-1 text-slate-700">
-              <li>Open your phone dialler</li>
-              <li>Enter the Please Call Me code for your network</li>
-              <li>Replace the sample number with the number you want to contact</li>
-              <li>Press call</li>
-              <li>The other person should receive a free callback request message</li>
-            </ol>
-            <p className="text-slate-700 leading-relaxed mt-3">
-              If the code does not work, your network may have changed the service or moved it into a self-service USSD menu.
-            </p>
-          </article>
-
-          <article className="mt-5 border border-slate-100 rounded-2xl p-5 bg-slate-50">
-            <h3 className="text-xl font-black tracking-tight mb-4">Please Call Me FAQs</h3>
-            <div className="space-y-3">
-              <div className="bg-white border border-slate-100 rounded-xl p-4">
-                <h4 className="font-bold text-slate-900 mb-1">What is the Vodacom Please Call Me code?</h4>
-                <p className="text-sm text-slate-600">The most commonly used Vodacom Please Call Me format is *140*0821234567#.</p>
-              </div>
-              <div className="bg-white border border-slate-100 rounded-xl p-4">
-                <h4 className="font-bold text-slate-900 mb-1">What is the MTN Please Call Me code?</h4>
-                <p className="text-sm text-slate-600">A widely used MTN Please Call Me format is *121*0821234567#.</p>
-              </div>
-              <div className="bg-white border border-slate-100 rounded-xl p-4">
-                <h4 className="font-bold text-slate-900 mb-1">Is Please Call Me free in South Africa?</h4>
-                <p className="text-sm text-slate-600">In most cases, yes. Please Call Me messages are usually free, but daily limits may apply.</p>
-              </div>
-              <div className="bg-white border border-slate-100 rounded-xl p-4">
-                <h4 className="font-bold text-slate-900 mb-1">Why is my Please Call Me not working?</h4>
-                <p className="text-sm text-slate-600">You may have reached your daily limit, entered the wrong number, or your network may have updated the service.</p>
-              </div>
-            </div>
-          </article>
-        </section>
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">Borrow Airtime / Airtime Advance Codes in South Africa</h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
-            If you run out of airtime, some South African mobile networks let you borrow airtime or request an airtime advance using a USSD code. This can be useful in emergencies when you need to call, text, or buy a small data bundle before topping up.
-          </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
-            Below are some of the most commonly used airtime advance or emergency airtime options across Vodacom, MTN, Telkom and Cell C.
-          </p>
-          <div className="overflow-x-auto">
-            <table className="min-w-full border border-slate-200 rounded-2xl overflow-hidden text-sm">
-              <thead className="bg-slate-50">
-                <tr>
-                  <th className="text-left p-3 font-black text-slate-700">Network</th>
-                  <th className="text-left p-3 font-black text-slate-700">Borrow Airtime / Advance Option</th>
-                  <th className="text-left p-3 font-black text-slate-700">Example USSD / Access Method</th>
-                  <th className="text-left p-3 font-black text-slate-700">Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {borrowAirtimeRows.map((row) => (
-                  <tr key={row.network} className="border-t border-slate-100">
-                    <td className="p-3 font-semibold text-slate-900">{row.network}</td>
-                    <td className="p-3 text-slate-700">{row.option}</td>
-                    <td className="p-3 font-black text-slate-900">{row.access}</td>
-                    <td className="p-3 text-slate-600">{row.notes}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <article className="mt-6 border border-slate-100 rounded-2xl p-5 bg-slate-50">
-            <h3 className="text-xl font-black tracking-tight mb-3">How Borrow Airtime Usually Works</h3>
-            <p className="text-slate-700 leading-relaxed mb-3">
-              Borrow airtime services usually allow eligible prepaid users to receive a small airtime advance, which is then deducted automatically from their next recharge.
-            </p>
-            <ul className="list-disc pl-5 space-y-1 text-slate-700">
-              <li>You usually need to have an active prepaid SIM</li>
-              <li>Your network may require previous recharge history</li>
-              <li>Not every number will qualify</li>
-              <li>Service fees or deductions may apply on your next top-up</li>
-            </ul>
-            <p className="text-slate-700 leading-relaxed mt-3">
-              If you do not see the option on your network, try the operator&apos;s self-service menu or app, as eligibility and menu paths can change.
-            </p>
-          </article>
-
-          <article className="mt-5 border border-slate-100 rounded-2xl p-5 bg-slate-50">
-            <h3 className="text-xl font-black tracking-tight mb-4">Borrow Airtime FAQs</h3>
-            <div className="space-y-3">
-              <div className="bg-white border border-slate-100 rounded-xl p-4">
-                <h4 className="font-bold text-slate-900 mb-1">Can I borrow airtime in South Africa?</h4>
-                <p className="text-sm text-slate-600">Yes, some South African networks offer airtime advance or emergency airtime for eligible prepaid users.</p>
-              </div>
-              <div className="bg-white border border-slate-100 rounded-xl p-4">
-                <h4 className="font-bold text-slate-900 mb-1">How do I borrow airtime on Vodacom?</h4>
-                <p className="text-sm text-slate-600">Vodacom users often access airtime advance options through *135# or related self-service menus.</p>
-              </div>
-              <div className="bg-white border border-slate-100 rounded-xl p-4">
-                <h4 className="font-bold text-slate-900 mb-1">Do I have to pay borrowed airtime back?</h4>
-                <p className="text-sm text-slate-600">Yes. Borrowed airtime is usually deducted automatically from your next recharge, and fees may apply.</p>
-              </div>
-              <div className="bg-white border border-slate-100 rounded-xl p-4">
-                <h4 className="font-bold text-slate-900 mb-1">Why can&apos;t I borrow airtime?</h4>
-                <p className="text-sm text-slate-600">Your number may not qualify yet, or your network may require recent recharge activity or a certain usage profile.</p>
-              </div>
-            </div>
-          </article>
-        </section>
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-6">Network USSD sections</h2>
-          <div className="flex flex-wrap gap-2 mb-6">
-            {NETWORKS.map((network) => (
+          <h2 className="text-2xl font-black tracking-tight mb-4">Search all available codes</h2>
+          <div className="flex flex-wrap gap-2 mb-5">
+            {(['All', ...MAJOR_NETWORKS.map((network) => network.name)] as Array<'All' | NetworkName>).map((network) => (
               <button
                 key={network}
                 onClick={() => setActiveNetwork(network)}
@@ -666,8 +409,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
               </button>
             ))}
           </div>
-
-          <div className="relative mb-8">
+          <div className="relative mb-6">
             <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
             <input
               type="text"
@@ -677,100 +419,45 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
               className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-[#1b6d24]"
             />
           </div>
-
-          <div className="space-y-8">
-            {groupedByNetwork.map((network) => (
-              <section key={network.name}>
-                <h3 className="text-xl font-black mb-2">{network.name} USSD codes</h3>
-                <p className="text-slate-600 mb-3">{network.summary}</p>
-                {network.slug ? (
-                  <Link to={`/network/${network.slug}/`} className="inline-block mb-4 text-sm font-bold text-[#1b6d24] hover:underline">
-                    View {network.name} network hub
-                  </Link>
-                ) : null}
-
-                {network.codes.length ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {network.codes.map((entry: USSDEntry, index: number) => (
-                      <div key={`${network.name}-${entry.code}-${index}`} className="p-4 rounded-2xl border border-slate-100 bg-slate-50">
-                        <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{entry.category}</div>
-                        <div className="font-black text-slate-900">{entry.action}</div>
-                        <div className="text-sm text-slate-600 mb-3">{entry.explanation}</div>
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => copyToClipboard(entry.code)}
-                            className="px-3 py-2 rounded-lg border border-slate-200 text-xs font-black uppercase tracking-wider hover:border-[#1b6d24] hover:text-[#1b6d24]"
-                          >
-                            {copiedCode === entry.code ? (
-                              <span className="inline-flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Copied</span>
-                            ) : (
-                              <span className="inline-flex items-center gap-1"><Copy className="w-3 h-3" /> Copy</span>
-                            )}
-                          </button>
-                          {isDialable(entry.code) ? (
-                            <button
-                              onClick={() => dialCode(entry.code)}
-                              className="px-3 py-2 rounded-lg bg-[#031636] text-white text-xs font-black uppercase tracking-wider hover:bg-[#1b6d24] inline-flex items-center gap-1"
-                            >
-                              <Phone className="w-3 h-3" /> Dial
-                            </button>
-                          ) : null}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-sm text-slate-500 italic">No matching codes for this filter.</p>
-                )}
-              </section>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {filteredCodes.map((entry, index) => (
+              <div key={`${entry.network}-${entry.code}-${index}`} className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{entry.network} / {entry.category}</div>
+                <div className="font-black text-slate-900">{entry.action}</div>
+                <div className="text-sm text-slate-600 mb-3">{entry.explanation}</div>
+                <div className="font-black text-slate-900">{entry.code}</div>
+              </div>
             ))}
           </div>
         </section>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">Why USSD codes still matter</h2>
+          <h2 className="text-2xl font-black tracking-tight mb-4 inline-flex items-center gap-2">
+            <ShieldCheck className="w-5 h-5 text-[#1b6d24]" />
+            Methodology and trust
+          </h2>
           <p className="text-slate-700 leading-relaxed">
-            USSD remains the most reliable fallback when data is low, apps fail to load, or you need a quick balance and recharge action in seconds. For prepaid users, it is often the fastest way to compare live menu offers before buying.
-          </p>
-        </section>
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">Methodology and trust</h2>
-          <p className="text-slate-700 leading-relaxed">
-            <strong>Independent analysis:</strong> DataCost compiles and reviews commonly used telecom shortcodes from network documentation and consumer workflows.
+            <strong>Independent analysis:</strong> DataCost compiles public network shortcuts and common consumer workflows so users can solve prepaid tasks faster.
           </p>
           <p className="text-slate-700 leading-relaxed mt-3">
-            <strong>USSD codes can change:</strong> operators update menus and campaigns regularly, so always verify final options on your own line.
+            Codes and menu trees can change. Where a direct network-wide shortcut is not clearly supported, this page keeps the wording conservative and points users back to the operator menu instead of inventing a direct code.
           </p>
           <p className="text-slate-700 mt-3">
-            See our <Link to="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</Link> and <Link to="/editorial-policy/" className="text-[#1b6d24] font-semibold hover:underline">editorial policy</Link>.
+            See our <Link to="/guides/cheapest-data-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">cheapest data guide</Link>, <Link to="/network/" className="text-[#1b6d24] font-semibold hover:underline">network comparison hub</Link>, and <Link to="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</Link>.
           </p>
         </section>
 
-        <AdUnit type="inContent" />
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-6">Related guides and tools</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {relatedPages.map((href) => (
-              <Link key={href} to={href} className="p-4 rounded-2xl border border-slate-100 bg-slate-50 hover:border-[#1b6d24] transition-colors">
-                <div className="font-bold text-slate-900">{relatedLabels[href]}</div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-black tracking-tight mb-6 inline-flex items-center gap-2">
+        <section id="faq" className="mb-12">
+          <h2 className="text-2xl font-black tracking-tight mb-6 inline-flex items-center gap-2 scroll-mt-28">
             <HelpCircle className="w-5 h-5 text-[#1b6d24]" />
             Frequently Asked Questions
           </h2>
           <div className="space-y-4">
             {faqItems.map((item) => (
-              <div key={item.question} className="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm">
+              <article key={item.question} className="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm">
                 <h3 className="font-bold text-slate-900 mb-2">{item.question}</h3>
                 <p className="text-sm text-slate-600">{item.answer}</p>
-              </div>
+              </article>
             ))}
           </div>
         </section>

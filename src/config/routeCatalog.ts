@@ -120,6 +120,7 @@ export function getIndexableRoutes(): string[] {
   routes.add('/network/');
   routes.add('/privacy-policy/');
   routes.add('/terms/');
+  routes.add('/cookie-policy/');
   routes.add('/about/');
   routes.add('/methodology/');
   routes.add('/editorial-policy/');
