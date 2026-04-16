@@ -940,6 +940,305 @@ export const guides: Guide[] = [
     ]
   },
   {
+    slug: 'why-is-my-data-disappearing-south-africa',
+    title: 'Why Is My Data Disappearing in South Africa? (Fix Guide 2026)',
+    metaDescription: 'Data disappearing in South Africa? Learn the top causes, how to check usage, and the fastest fixes across Vodacom, MTN, Telkom, and Cell C.',
+    h1: 'Why Is My Data Disappearing in South Africa? (Fix Guide 2026)',
+    intro: 'Data loss complaints in South Africa are usually linked to expiry timing, background usage, and incorrect bundle fit. This parent page gives you the national diagnosis path before moving to network-specific fix pages.',
+    quickSummaryTitle: 'Quick Answer',
+    quickSummaryItems: [
+      'Most fast data loss comes from background apps, mobile auto-updates, or short-validity bundle mismatch.',
+      'Check phone-level app usage and your network balance history together for accurate diagnosis.',
+      'Then move to your specific network page for exact USSD codes and self-service fixes.'
+    ],
+    comparisonType: 'all',
+    stepsTitle: 'South Africa Parent Workflow',
+    steps: [
+      {
+        title: 'Start with shared causes',
+        description: 'Confirm whether your issue is app behaviour, bundle expiry, out-of-bundle fallback, or subscription-related deductions.'
+      },
+      {
+        title: 'Choose your network fix page',
+        description: 'Use the dedicated Vodacom or MTN fix guide for operator-specific controls, tools, and USSD steps.'
+      }
+    ],
+    nextStepsTitle: 'Go to Network-Specific Fixes',
+    nextSteps: [
+      { href: '/guides/why-is-my-data-disappearing-vodacom/', label: 'Vodacom Data Disappearing Fix Guide', description: 'Vodacom-only causes, USSD checks, and MyVodacom workflow.', action: 'guide', slug: 'why-is-my-data-disappearing-vodacom' },
+      { href: '/guides/why-is-my-data-disappearing-mtn/', label: 'MTN Data Disappearing Fix Guide', description: 'MTN-only causes, USSD checks, and MTN app workflow.', action: 'guide', slug: 'why-is-my-data-disappearing-mtn' },
+      { href: '/guides/airtime-data-problems-south-africa/', label: 'Airtime & Data Problems Hub', description: 'Open the broader issue cluster for related fixes.', action: 'guide', slug: 'airtime-data-problems-south-africa' }
+    ],
+    faq: [
+      {
+        question: 'Is this page network-specific?',
+        answer: 'No. This is the South Africa parent page that routes you to network-specific fixes.'
+      },
+      {
+        question: 'Where do I get Vodacom and MTN exact codes?',
+        answer: 'Use the dedicated Vodacom and MTN disappearing-data guides linked above.'
+      },
+      {
+        question: 'Can one fix work for all networks?',
+        answer: 'Some device-level changes are universal, but USSD and self-service workflows are network-specific.'
+      },
+      {
+        question: 'What should I check first?',
+        answer: 'Check recent app usage and confirm bundle validity before buying more data.'
+      }
+    ]
+  },
+  {
+    slug: 'airtime-data-problems-south-africa',
+    title: 'Airtime & Data Problems in South Africa (Hub 2026)',
+    metaDescription: 'Fix airtime and data problems in South Africa with this hub: disappearing data, out-of-bundle billing, WASP charges, and USSD troubleshooting links.',
+    h1: 'Airtime & Data Problems in South Africa (Hub 2026)',
+    intro: 'Use this hub to move quickly to the right troubleshooting page for airtime and data issues in South Africa. It connects network-specific and issue-specific guides in one place.',
+    comparisonType: 'all',
+    stepsTitle: 'Problem Cluster Navigation',
+    steps: [
+      {
+        title: 'Data disappearing problems',
+        description: 'If your bundle vanishes too quickly, start with the national parent page then open your network-specific fix guide.'
+      },
+      {
+        title: 'Airtime disappearing problems',
+        description: 'If airtime is reducing without clear usage, use the airtime diagnostics and WASP cancellation pages.'
+      },
+      {
+        title: 'USSD troubleshooting',
+        description: 'Use the USSD codes hub for fast balance checks, bundle actions, and support shortcuts.'
+      }
+    ],
+    nextStepsTitle: 'Core Hub Links',
+    nextSteps: [
+      { href: '/guides/why-is-my-data-disappearing-south-africa/', label: 'Why Is My Data Disappearing? (Parent)', description: 'Start here for South Africa-wide data-loss diagnosis.', action: 'guide', slug: 'why-is-my-data-disappearing-south-africa' },
+      { href: '/guides/why-is-my-data-disappearing-vodacom/', label: 'Vodacom Data Disappearing Fix Guide', description: 'Vodacom-specific causes and controls.', action: 'guide', slug: 'why-is-my-data-disappearing-vodacom' },
+      { href: '/guides/why-is-my-data-disappearing-mtn/', label: 'MTN Data Disappearing Fix Guide', description: 'MTN-specific causes and controls.', action: 'guide', slug: 'why-is-my-data-disappearing-mtn' },
+      { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Diagnose unexplained airtime deductions.', action: 'route' },
+      { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Cancel recurring premium services.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Open full USSD troubleshooting references.', action: 'route' }
+    ],
+    faq: [
+      {
+        question: 'What is this hub for?',
+        answer: 'It is a central navigation page for fixing common airtime and data issues in South Africa.'
+      },
+      {
+        question: 'Does this hub replace network-specific guides?',
+        answer: 'No. It helps you find the correct network-specific fix page faster.'
+      },
+      {
+        question: 'Where can I check all USSD codes?',
+        answer: 'Use the South Africa USSD codes page linked in this hub.'
+      },
+      {
+        question: 'Can I use this for both prepaid and contract?',
+        answer: 'Yes, but most rapid-loss troubleshooting patterns are most visible on prepaid usage.'
+      }
+    ]
+  },
+  {
+    slug: 'why-is-my-data-disappearing-vodacom',
+    title: 'Why Your Data Disappears on Vodacom (Fix Guide 2026)',
+    metaDescription: 'Vodacom data disappearing in South Africa? Learn how to check usage, stop out-of-bundle charges, and fix MyVodacom + USSD settings fast.',
+    h1: 'Why Your Data Disappears on Vodacom (Fix Guide 2026)',
+    intro: 'If your Vodacom data seems to vanish quickly, the cause is usually trackable. In most South African cases, it is a combination of out-of-bundle fallback, background app traffic, active content subscriptions, and automatic mobile-data updates. This guide focuses only on Vodacom behaviour and practical fixes.',
+    quickSummaryTitle: 'Quick Answer',
+    quickSummaryItems: [
+      'On Vodacom prepaid, data can disappear fast when your bundle expires and usage falls back to airtime at out-of-bundle rates.',
+      'MyVodacom usage history and Vodacom USSD checks usually reveal the exact cause within minutes.',
+      'Turning off mobile updates, auditing content services, and using strict device limits can stop repeat losses.'
+    ],
+    jumpLinksTitle: 'Jump to Vodacom Sections',
+    jumpLinks: [
+      { label: 'Vodacom-specific causes', anchor: 'vodacom-causes' },
+      { label: 'How to fix step-by-step', anchor: 'vodacom-fixes' },
+      { label: 'Vodacom tools', anchor: 'vodacom-tools' },
+      { label: 'Vodacom USSD checks', anchor: 'vodacom-ussd' },
+      { label: 'Prevention tips', anchor: 'vodacom-prevention' },
+      { label: 'FAQ', anchor: 'faq' }
+    ],
+    comparisonType: 'all',
+    stepsTitle: 'Vodacom Data Disappearing: Causes and Fixes',
+    steps: [
+      {
+        id: 'vodacom-causes',
+        title: 'Vodacom-Specific Causes',
+        description: '1) Out-of-bundle fallback: once a bundle runs out or expires, continued browsing can consume airtime rapidly. 2) Background usage spikes: video apps, cloud backup, and autoplay often drain data silently. 3) WASP/content services: premium content or recurring service charges can reduce value unexpectedly. 4) App auto-updates on mobile data: Play Store/App Store updates can burn large chunks at once. 5) Vodacom quirks: personalized Just4You bundles can have short validity windows, so expired promos can lead to unplanned fallback usage.'
+      },
+      {
+        id: 'vodacom-fixes',
+        title: 'How to Fix It on Vodacom (Step-by-Step)',
+        description: 'Step 1: Check current balance and bundle validity on Vodacom USSD before using more data. Step 2: Open MyVodacom and inspect recent usage by day/session to find spikes. Step 3: Disable app auto-updates and cloud backup on mobile data only. Step 4: Restrict background data for high-drain apps (social/video/storage). Step 5: If out-of-bundle spend keeps happening, top up to a suitable anytime bundle before heavy use and avoid relying on promo bundles with short expiry.'
+      },
+      {
+        id: 'vodacom-tools',
+        title: 'Vodacom Network Tools to Use',
+        description: 'Use MyVodacom for usage timelines, bundle purchase history, and account-level checks. Use Vodacom self-service channels to manage subscriptions and monitor recurring services. For fast checks during the day, combine app usage reports with short USSD balance checks so you can verify deductions immediately.'
+      },
+      {
+        id: 'vodacom-ussd',
+        title: 'Vodacom USSD Codes That Help',
+        description: 'Start with the main menu on *135# for bundles and balances, and use *136# for quick balance snapshots. Keep the full South Africa reference in the DataCost USSD hub for fallback and cross-network checks: /ussd-codes-south-africa/.'
+      },
+      {
+        id: 'vodacom-prevention',
+        title: 'Vodacom Prevention Checklist',
+        description: 'Set device-level monthly data warning and hard cap, keep media auto-download disabled in chat apps, turn off autoplay in social apps, and review MyVodacom usage weekly. When using Just4You bundles, always verify validity so you do not assume long-duration coverage that has already expired.'
+      }
+    ],
+    commonMistakesTitle: 'Vodacom Prevention Tips',
+    commonMistakes: [
+      {
+        title: 'Do not rely on memory for bundle expiry',
+        description: 'Check expiry in MyVodacom or USSD before peak usage periods to avoid sudden airtime fallback.'
+      },
+      {
+        title: 'Treat app updates as scheduled events',
+        description: 'Keep app-store and OS updates on Wi-Fi only unless you intentionally bought extra anytime data.'
+      },
+      {
+        title: 'Audit subscriptions monthly',
+        description: 'If data value drops unexpectedly, check for content-service or premium billing activity and cancel unwanted services quickly.'
+      },
+      {
+        title: 'Use one consistent balance routine',
+        description: 'Checking balance at the same time daily helps identify abnormal deductions early instead of after airtime is already gone.'
+      }
+    ],
+    nextStepsTitle: 'Vodacom Internal Links',
+    nextSteps: [
+      { href: '/guides/why-is-my-data-disappearing-south-africa/', label: 'South Africa Parent Guide: Why Data Disappears', description: 'Use the national overview for cross-network causes and baseline checks.', action: 'route' },
+      { href: '/guides/airtime-data-problems-south-africa/', label: 'Airtime & Data Problems Hub (South Africa)', description: 'Open the full problem-cluster hub for related diagnostics.', action: 'route' },
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa: Vodacom Checks', description: 'Open the USSD reference for balance and troubleshooting shortcuts.', action: 'route' },
+      { href: '/guides/how-to-check-subscriptions-on-vodacom/', label: 'How to Check Subscriptions on Vodacom', description: 'Verify active services that may be reducing airtime or data value.', action: 'route' },
+      { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'Stop WASP / VAS Charges', description: 'Follow cancellation steps if recurring charges are detected.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' }
+    ],
+    faq: [
+      {
+        question: 'Why does my Vodacom data finish so quickly even when I buy bundles?',
+        answer: 'The main reasons are short bundle validity, background app usage, and out-of-bundle fallback once the bundle ends. Check validity and usage logs first.'
+      },
+      {
+        question: 'How do I check Vodacom data usage history properly?',
+        answer: 'Use the MyVodacom app for detailed usage tracking and combine it with USSD balance checks to confirm real-time deductions.'
+      },
+      {
+        question: 'Can Vodacom content services make my airtime look like disappearing data?',
+        answer: 'Yes. Recurring premium services can reduce airtime, which then affects your ability to buy replacement data. Review and cancel unwanted services.'
+      },
+      {
+        question: 'Which Vodacom USSD codes are most useful for this issue?',
+        answer: 'Use *135# for bundle and balance workflows and *136# for quick balance checks, then compare results against your app usage timeline.'
+      },
+      {
+        question: 'What is the fastest way to stop repeat data loss on Vodacom?',
+        answer: 'Set strict device limits, disable mobile-data updates, monitor MyVodacom weekly, and avoid browsing after bundle expiry unless you have topped up.'
+      }
+    ]
+  },
+  {
+    slug: 'why-is-my-data-disappearing-mtn',
+    title: 'Why Your Data Disappears on MTN (Fix Guide 2026)',
+    metaDescription: 'MTN data disappearing in South Africa? Check MTN app usage, stop out-of-bundle fallback, and fix auto-updates and subscription drains quickly.',
+    h1: 'Why Your Data Disappears on MTN (Fix Guide 2026)',
+    intro: 'If your MTN bundle is finishing too quickly, there is usually a specific pattern behind it. In South Africa, common MTN triggers include out-of-bundle billing after expiry, heavy background app activity, unnoticed content services, and mobile-data auto-updates. This page focuses on MTN-only causes and actions.',
+    quickSummaryTitle: 'Quick Answer',
+    quickSummaryItems: [
+      'On MTN, data can drop sharply when a bundle expires and usage switches to out-of-bundle charging from airtime.',
+      'MTN app usage logs plus quick USSD checks help you identify where data is going in real time.',
+      'Disabling mobile auto-updates, tightening app permissions, and auditing recurring services usually fixes repeat loss.'
+    ],
+    jumpLinksTitle: 'Jump to MTN Sections',
+    jumpLinks: [
+      { label: 'MTN-specific causes', anchor: 'mtn-causes' },
+      { label: 'How to fix step-by-step', anchor: 'mtn-fixes' },
+      { label: 'MTN tools', anchor: 'mtn-tools' },
+      { label: 'MTN USSD checks', anchor: 'mtn-ussd' },
+      { label: 'Prevention tips', anchor: 'mtn-prevention' },
+      { label: 'FAQ', anchor: 'faq' }
+    ],
+    comparisonType: 'all',
+    stepsTitle: 'MTN Data Disappearing: Causes and Fixes',
+    steps: [
+      {
+        id: 'mtn-causes',
+        title: 'MTN-Specific Causes',
+        description: '1) Out-of-bundle behaviour: once your MTN bundle is depleted, airtime can drain quickly if browsing continues. 2) Background data bursts from social/video/cloud apps. 3) WASP/content subscriptions reducing available airtime value. 4) Auto-downloads and app updates on mobile data. 5) MTN promo behaviour: some personalized offers have strict validity rules, and once expired, normal usage can become far more expensive.'
+      },
+      {
+        id: 'mtn-fixes',
+        title: 'How to Fix It on MTN (Step-by-Step)',
+        description: 'Step 1: Confirm remaining balance and bundle validity with MTN USSD before further browsing. Step 2: Use the MTN app to review recent data usage and identify spike periods. Step 3: Set app updates, media backup, and OS downloads to Wi-Fi only. Step 4: Restrict background data permissions for high-consumption apps. Step 5: Buy a suitable anytime bundle before heavy sessions and avoid running on expired promo balances.'
+      },
+      {
+        id: 'mtn-tools',
+        title: 'MTN Network Tools to Use',
+        description: 'Use the MTN app for usage tracking, bundle management, and account controls. Use MTN self-service flows for subscription management and service checks. Combine app analytics with quick USSD checks during the month to detect abnormal usage faster.'
+      },
+      {
+        id: 'mtn-ussd',
+        title: 'MTN USSD Codes That Help',
+        description: 'Use *136# and *136*1# for fast balance checks, and *136*2# for data bundle purchase access. Keep the full reference on DataCost for additional troubleshooting shortcuts and cross-network comparisons: /ussd-codes-south-africa/.'
+      },
+      {
+        id: 'mtn-prevention',
+        title: 'MTN Prevention Checklist',
+        description: 'Set monthly data warning and hard-limit controls on your phone, disable social autoplay, keep messaging media downloads manual, and review MTN app usage weekly. If you use personalized MTN offers, always verify validity and terms before assuming normal 30-day behaviour.'
+      }
+    ],
+    commonMistakesTitle: 'MTN Prevention Tips',
+    commonMistakes: [
+      {
+        title: 'Do not wait until data hits zero to investigate',
+        description: 'Daily or twice-weekly checks in the MTN app and USSD menus catch unusual deductions earlier.'
+      },
+      {
+        title: 'Avoid mixed update settings',
+        description: 'If even one store or backup setting allows mobile updates, it can consume your MTN bundle unexpectedly.'
+      },
+      {
+        title: 'Review paid services routinely',
+        description: 'Recurring subscriptions can reduce airtime value and increase refill pressure, making losses feel like a data-only issue.'
+      },
+      {
+        title: 'Match bundle type to usage behaviour',
+        description: 'Using short promo data for long daily usage often causes avoidable out-of-bundle fallback.'
+      }
+    ],
+    nextStepsTitle: 'MTN Internal Links',
+    nextSteps: [
+      { href: '/guides/why-is-my-data-disappearing-south-africa/', label: 'South Africa Parent Guide: Why Data Disappears', description: 'See the broader national diagnosis flow and compare behaviours across networks.', action: 'route' },
+      { href: '/guides/airtime-data-problems-south-africa/', label: 'Airtime & Data Problems Hub (South Africa)', description: 'Return to the full problem-cluster hub for adjacent fixes.', action: 'route' },
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa: MTN Checks', description: 'Use this page for MTN balance and service shortcuts.', action: 'route' },
+      { href: '/guides/how-to-check-subscriptions-on-mtn/', label: 'How to Check Subscriptions on MTN', description: 'Identify recurring services affecting spend and deductions.', action: 'route' },
+      { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'Stop WASP / VAS Charges', description: 'Use the SA-wide cancellation workflow when recurring charges appear.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' }
+    ],
+    faq: [
+      {
+        question: 'Why does MTN data disappear overnight?',
+        answer: 'Typical causes are background sync, cloud backup, autoplay, or downloads running while the phone is idle. Check app-level usage timelines in the MTN app and your device settings.'
+      },
+      {
+        question: 'How do I stop MTN out-of-bundle charges from draining airtime?',
+        answer: 'Monitor balance before heavy usage, top up an appropriate bundle early, and avoid browsing once your active bundle expires.'
+      },
+      {
+        question: 'Can MTN subscriptions cause this issue too?',
+        answer: 'Yes. Recurring paid services can reduce airtime and increase how often you need to rebuy data, which feels like constant data loss.'
+      },
+      {
+        question: 'What MTN codes should I use first when troubleshooting?',
+        answer: 'Start with *136# or *136*1# for balance confirmation, then use *136*2# if you need to restore bundle cover immediately.'
+      },
+      {
+        question: 'What is the best long-term fix on MTN?',
+        answer: 'Use weekly usage reviews, strict phone-level limits, Wi-Fi-only updates, and bundle sizes that match your real monthly pattern.'
+      }
+    ]
+  },
+  {
     slug: 'how-to-buy-data-vodacom',
     title: 'How to Buy Data on Vodacom - USSD Codes & App Guide 2026',
     metaDescription: 'Learn how to buy data on Vodacom using USSD codes, the MyVodacom app, and airtime conversion. Find the fastest way to get connected on SA\'s biggest network.',

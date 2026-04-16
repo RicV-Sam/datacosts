@@ -47,7 +47,9 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-check-subscriptions-on-vodacom': '2026-04-16T00:00:00.000Z',
   'how-to-stop-wasp-services-south-africa': '2026-04-16T00:00:00.000Z',
   'how-to-protect-airtime-from-being-used': '2026-04-16T00:00:00.000Z',
-  'airtime-data-problems-south-africa': '2026-04-16T00:00:00.000Z'
+  'airtime-data-problems-south-africa': '2026-04-16T00:00:00.000Z',
+  'why-is-my-data-disappearing-vodacom': '2026-04-16T00:00:00.000Z',
+  'why-is-my-data-disappearing-mtn': '2026-04-16T00:00:00.000Z'
 };
 
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
