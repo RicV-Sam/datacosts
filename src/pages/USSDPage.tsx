@@ -296,6 +296,31 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
           </p>
         </section>
 
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">Fix Airtime and Data Problems</h2>
+          <p className="text-slate-700 leading-relaxed mb-5">
+            If your airtime is disappearing, see our full fix guide before topping up again. If bundles are dropping too quickly, follow the dedicated data troubleshooting pages.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <Link to="/guides/how-to-stop-airtime-being-used-automatically/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Stop airtime being used automatically</div>
+              <p className="text-sm text-slate-600 mt-1">Fix recurring deductions, WASP charges, and premium SMS issues.</p>
+            </Link>
+            <Link to="/guides/why-is-my-data-disappearing-south-africa/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Why your data disappears</div>
+              <p className="text-sm text-slate-600 mt-1">Check background data, app updates, and out-of-bundle triggers.</p>
+            </Link>
+            <Link to="/guides/why-is-my-data-finishing-so-fast/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Why data finishes so fast</div>
+              <p className="text-sm text-slate-600 mt-1">Apply practical mobile settings that make bundles last longer.</p>
+            </Link>
+            <Link to="/guides/how-to-stop-wasp-services-south-africa/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">How to stop WASP services</div>
+              <p className="text-sm text-slate-600 mt-1">Cancel hidden subscription billing and protect future recharges.</p>
+            </Link>
+          </div>
+        </section>
+
         <section className="mb-10 space-y-5">
           {answerBlocks.map((block) => (
             <article key={block.id} id={block.id} className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm scroll-mt-28">

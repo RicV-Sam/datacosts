@@ -39,7 +39,15 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'cheapest-data-south-africa': '2026-04-08T00:00:00.000Z',
   'why-does-my-data-finish-so-fast-south-africa': '2026-03-31T00:00:00.000Z',
   'why-is-my-airtime-disappearing-south-africa': '2026-04-08T00:00:00.000Z',
-  'why-is-my-data-finishing-so-fast': '2026-03-15T00:00:00.000Z'
+  'why-is-my-data-finishing-so-fast': '2026-04-16T00:00:00.000Z',
+  'why-is-my-data-disappearing-south-africa': '2026-04-16T00:00:00.000Z',
+  'how-to-stop-airtime-being-used-automatically': '2026-04-16T00:00:00.000Z',
+  'how-to-cancel-subscriptions-mtn-vodacom-telkom': '2026-04-16T00:00:00.000Z',
+  'how-to-check-subscriptions-on-mtn': '2026-04-16T00:00:00.000Z',
+  'how-to-check-subscriptions-on-vodacom': '2026-04-16T00:00:00.000Z',
+  'how-to-stop-wasp-services-south-africa': '2026-04-16T00:00:00.000Z',
+  'how-to-protect-airtime-from-being-used': '2026-04-16T00:00:00.000Z',
+  'airtime-data-problems-south-africa': '2026-04-16T00:00:00.000Z'
 };
 
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {

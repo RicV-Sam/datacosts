@@ -228,6 +228,38 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
         </section>
 
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm">
+          <div className="mb-5">
+            <h2 className="text-2xl md:text-3xl font-black tracking-tight">Fix Airtime & Data Issues</h2>
+            <p className="text-slate-600 font-medium mt-2">
+              Use these high-intent fix guides when airtime or data drops unexpectedly on South African networks.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <a
+              href="/guides/why-is-my-data-disappearing-south-africa/"
+              onClick={(e) => { e.preventDefault(); onNavigate('guide', 'why-is-my-data-disappearing-south-africa'); }}
+              className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-4 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+            >
+              Why your data disappears on Vodacom, MTN, Telkom, and Cell C
+            </a>
+            <a
+              href="/guides/how-to-stop-airtime-being-used-automatically/"
+              onClick={(e) => { e.preventDefault(); onNavigate('guide', 'how-to-stop-airtime-being-used-automatically'); }}
+              className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-4 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+            >
+              Stop airtime being used automatically in South Africa
+            </a>
+            <a
+              href="/guides/how-to-stop-wasp-services-south-africa/"
+              onClick={(e) => { e.preventDefault(); onNavigate('guide', 'how-to-stop-wasp-services-south-africa'); }}
+              className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-4 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+            >
+              How to stop WASP services and premium deductions
+            </a>
+          </div>
+        </section>
+
         <section className="mb-12">
           <USSDCodeFinder onViewAll={() => onNavigate('ussd')} />
         </section>

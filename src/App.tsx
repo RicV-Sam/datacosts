@@ -31,6 +31,8 @@ const TravelSimsPage = lazy(() => import('./pages/TravelSimsPage').then((mod) =>
 const ComparisonGuidePage = lazy(() => import('./pages/ComparisonGuidePage').then((mod) => ({ default: mod.ComparisonGuidePage })));
 const FixProblemPage = lazy(() => import('./pages/FixProblemPage').then((mod) => ({ default: mod.FixProblemPage })));
 const WhyAirtimeDisappearingPage = lazy(() => import('./pages/WhyAirtimeDisappearingPage').then((mod) => ({ default: mod.WhyAirtimeDisappearingPage })));
+const ProblemSolvingGuidePage = lazy(() => import('./pages/ProblemSolvingGuidePage').then((mod) => ({ default: mod.ProblemSolvingGuidePage })));
+const AirtimeDataProblemsHubPage = lazy(() => import('./pages/AirtimeDataProblemsHubPage').then((mod) => ({ default: mod.AirtimeDataProblemsHubPage })));
 
 function AppContent() {
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkName | null>(null);
@@ -157,6 +159,42 @@ function AppContent() {
         <Route
           path="/guides/why-is-my-airtime-disappearing-south-africa/"
           element={<WhyAirtimeDisappearingPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/why-is-my-data-disappearing-south-africa/"
+          element={<ProblemSolvingGuidePage guideKey="why-is-my-data-disappearing-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/how-to-stop-airtime-being-used-automatically/"
+          element={<ProblemSolvingGuidePage guideKey="how-to-stop-airtime-being-used-automatically" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/how-to-cancel-subscriptions-mtn-vodacom-telkom/"
+          element={<ProblemSolvingGuidePage guideKey="how-to-cancel-subscriptions-mtn-vodacom-telkom" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/how-to-check-subscriptions-on-mtn/"
+          element={<ProblemSolvingGuidePage guideKey="how-to-check-subscriptions-on-mtn" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/how-to-check-subscriptions-on-vodacom/"
+          element={<ProblemSolvingGuidePage guideKey="how-to-check-subscriptions-on-vodacom" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/how-to-stop-wasp-services-south-africa/"
+          element={<ProblemSolvingGuidePage guideKey="how-to-stop-wasp-services-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/why-is-my-data-finishing-so-fast/"
+          element={<ProblemSolvingGuidePage guideKey="why-is-my-data-finishing-so-fast" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/how-to-protect-airtime-from-being-used/"
+          element={<ProblemSolvingGuidePage guideKey="how-to-protect-airtime-from-being-used" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/airtime-data-problems-south-africa/"
+          element={<AirtimeDataProblemsHubPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route
           path="/guides/:slug/"
