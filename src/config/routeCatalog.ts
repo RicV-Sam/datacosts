@@ -74,21 +74,32 @@ export const BUNDLE_TYPE_MAP: Record<string, BundleTypeConfig> = {
   }
 };
 
-const PHASE1_FILTER_ROUTES: Array<{ network: string; bundleType: string }> = [
+const FILTER_ROUTES: Array<{ network: string; bundleType: string }> = [
   { network: 'vodacom', bundleType: 'cheapest-1gb' },
   { network: 'vodacom', bundleType: 'daily-data' },
+  { network: 'vodacom', bundleType: 'weekly-data' },
   { network: 'vodacom', bundleType: 'monthly-data' },
   { network: 'vodacom', bundleType: 'night-data' },
+  { network: 'vodacom', bundleType: 'social-data' },
   { network: 'mtn', bundleType: 'cheapest-1gb' },
   { network: 'mtn', bundleType: 'daily-data' },
+  { network: 'mtn', bundleType: 'weekly-data' },
   { network: 'mtn', bundleType: 'monthly-data' },
   { network: 'mtn', bundleType: 'night-data' },
+  { network: 'mtn', bundleType: 'social-data' },
   { network: 'telkom', bundleType: 'cheapest-1gb' },
   { network: 'telkom', bundleType: 'daily-data' },
+  { network: 'telkom', bundleType: 'weekly-data' },
   { network: 'telkom', bundleType: 'monthly-data' },
+  { network: 'telkom', bundleType: 'night-data' },
+  { network: 'telkom', bundleType: 'social-data' },
   { network: 'cell-c', bundleType: 'cheapest-1gb' },
   { network: 'cell-c', bundleType: 'daily-data' },
-  { network: 'cell-c', bundleType: 'monthly-data' }
+  { network: 'cell-c', bundleType: 'weekly-data' },
+  { network: 'cell-c', bundleType: 'monthly-data' },
+  { network: 'cell-c', bundleType: 'night-data' },
+  { network: 'cell-c', bundleType: 'social-data' },
+  { network: 'rain', bundleType: 'monthly-data' }
 ];
 
 function normalizeCanonicalPath(path: string): string {
@@ -161,9 +172,9 @@ export function getIndexableRoutes(): string[] {
     routes.add(`/network/${networkPage.slug}/`);
   }
 
-  for (const phase1Route of PHASE1_FILTER_ROUTES) {
-    const networkPage = networkPages[phase1Route.network];
-    const bundleTypeConfig = BUNDLE_TYPE_MAP[phase1Route.bundleType];
+  for (const filterRoute of FILTER_ROUTES) {
+    const networkPage = networkPages[filterRoute.network];
+    const bundleTypeConfig = BUNDLE_TYPE_MAP[filterRoute.bundleType];
     if (!networkPage || !bundleTypeConfig) {
       continue;
     }
@@ -174,7 +185,7 @@ export function getIndexableRoutes(): string[] {
       continue;
     }
 
-    routes.add(`/network/${networkPage.slug}/${phase1Route.bundleType}/`);
+    routes.add(`/network/${networkPage.slug}/${filterRoute.bundleType}/`);
   }
 
   return [...routes].map(normalizeCanonicalPath);
