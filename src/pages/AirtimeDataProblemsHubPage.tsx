@@ -129,7 +129,7 @@ export const AirtimeDataProblemsHubPage: React.FC<AirtimeDataProblemsHubPageProp
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
       <Helmet>
-        <title>Airtime & Data Problems (Vodacom, MTN Fix Guide 2026)</title>
+        <title>Airtime & Data Problems South Africa (2026)</title>
         <meta
           name="description"
           content="Fix airtime and data problems in South Africa. Check guides for Vodacom, MTN, Telkom, and Cell C to stop deductions, WASP billing, and fast data loss."

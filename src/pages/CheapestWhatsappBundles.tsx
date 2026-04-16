@@ -15,7 +15,7 @@ interface CheapestWhatsappBundlesProps {
 }
 
 export const CheapestWhatsappBundles: React.FC<CheapestWhatsappBundlesProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Cheapest WhatsApp Bundles South Africa (2026) | DataCost';
+  const pageTitle = 'WhatsApp Bundles South Africa (2026)';
   const metaDescription =
     'Find the cheapest WhatsApp-friendly bundle options in South Africa and compare practical low-data choices by network.';
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-whatsapp-bundles-south-africa/');

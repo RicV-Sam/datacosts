@@ -15,7 +15,7 @@ interface BestSimOnlyDealsProps {
 }
 
 export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Best SIM-Only Deals South Africa (2026) | DataCost';
+  const pageTitle = 'SIM-Only Deals South Africa (2026)';
   const metaDescription =
     'Compare currently listed SIM-only style data options in South Africa and see how they stack up against prepaid choices.';
   const canonicalUrl = toCanonicalUrl('/guides/best-sim-only-deals-south-africa/');

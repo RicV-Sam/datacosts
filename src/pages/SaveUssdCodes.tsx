@@ -38,7 +38,7 @@ const faqItems = [
 
 export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo, onNavigate }) => {
   const [alertsHint, setAlertsHint] = useState<string | null>(null);
-  const pageTitle = 'Save USSD Codes to Your Phone | MTN, Vodacom, Cell C & Telkom | DataCost';
+  const pageTitle = 'Save USSD Codes South Africa (2026)';
   const metaDescription =
     'Quickly copy, WhatsApp share, and save South African USSD codes for MTN, Vodacom, Cell C, and Telkom. Mobile-friendly and easy to use.';
   const canonicalUrl = toCanonicalUrl('/save-ussd-codes/');

@@ -204,7 +204,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
   const [searchTerm, setSearchTerm] = useState('');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = `${config.titlePrefix} - Balance, Data, Airtime & Help | DataCost`;
+  const pageTitle = `${config.titlePrefix} | Balance, Data & Airtime`;
   const canonicalUrl = toCanonicalUrl(config.route);
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso(config.route);

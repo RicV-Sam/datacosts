@@ -24,7 +24,7 @@ const isMonthlyBundle = (validity: string, type: string) => {
 };
 
 export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Best Data Deals in South Africa (2026) | Compare MTN, Vodacom, Telkom & More';
+  const pageTitle = 'Data Deals South Africa (2026)';
   const metaDescription =
     'Compare the best data deals in South Africa for 2026. See the cheapest bundles, best prepaid options, and which network gives the best value right now.';
   const canonicalUrl = toCanonicalUrl('/guides/best-data-deals-south-africa/');

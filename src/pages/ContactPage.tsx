@@ -12,7 +12,7 @@ interface ContactPageProps {
 }
 
 export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Contact DataCost | Report Pricing Errors or Ask for Help';
+  const pageTitle = 'Contact DataCost South Africa';
   const metaDescription =
     'Contact DataCost for pricing corrections, editorial feedback, privacy requests, and site support related to South African mobile data comparisons.';
   const canonicalUrl = toCanonicalUrl('/contact/');

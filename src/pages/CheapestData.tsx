@@ -56,7 +56,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-data-south-africa/');
   const dateModifiedIso = getRouteModifiedIso('/guides/cheapest-data-south-africa/');
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
-  const pageTitle = 'Cheapest Data in South Africa (2026) | Compare 1GB, 2GB, 5GB, 10GB & More';
+  const pageTitle = 'Cheapest Data South Africa (2026)';
   const metaDescription =
     'Compare the cheapest data in South Africa by 1GB, 2GB, 5GB, 10GB, daily, monthly, and night-data intent using DataCost’s dataset-backed prepaid comparison.';
 

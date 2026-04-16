@@ -15,7 +15,7 @@ interface Cheapest10GBProps {
 }
 
 export const Cheapest10GB: React.FC<Cheapest10GBProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Cheapest 10GB Data South Africa (2026) | DataCost';
+  const pageTitle = 'Cheapest 10GB Data South Africa (2026)';
   const metaDescription =
     'Compare the cheapest 10GB data bundles in South Africa. See currently listed 10GB deals, value per GB, and who should choose a 10GB bundle.';
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-10gb-data-south-africa/');

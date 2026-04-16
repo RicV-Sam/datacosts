@@ -14,7 +14,7 @@ interface WaspSubscriptionsProps {
 }
 
 export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'How to Stop WASP Subscriptions in South Africa (2026 Guide) | DataCost';
+  const pageTitle = 'Stop WASP Subscriptions South Africa (2026)';
   const metaDescription =
     'Learn how to stop WASP subscriptions in South Africa with simple steps for Vodacom, MTN, Telkom, and Cell C, plus what to do if charges continue.';
   const canonicalUrl = toCanonicalUrl('/guides/stop-wasp-subscriptions-south-africa/');

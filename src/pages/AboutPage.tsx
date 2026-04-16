@@ -12,7 +12,7 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'About DataCost | South African Mobile Data Comparison';
+  const pageTitle = 'About DataCost South Africa';
   const metaDescription =
     'Learn what DataCost does, who we are for, how we keep our comparisons useful for South African consumers, and how the site is funded.';
   const canonicalUrl = toCanonicalUrl('/about/');

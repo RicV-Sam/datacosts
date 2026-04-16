@@ -15,7 +15,7 @@ interface Cheapest1GBProps {
 }
 
 export const Cheapest1GB: React.FC<Cheapest1GBProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Cheapest 1GB Data in South Africa (2026) | DataCost';
+  const pageTitle = 'Cheapest 1GB Data South Africa (2026)';
   const metaDescription =
     'Find the cheapest 1GB data bundles in South Africa. Compare Vodacom, MTN, Telkom, and Cell C 1GB prices in one practical guide.';
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-1gb-data-south-africa/');

@@ -24,7 +24,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
   };
 
   const canonicalUrl = toCanonicalUrl('/guides/');
-  const pageTitle = "South Africa Mobile Data Guides Hub (2026) | DataCost";
+  const pageTitle = "Mobile Data Guides South Africa (2026)";
   const metaDescription = "Explore practical South African telecom guides in one place. Compare data prices, network options, and fixes for common SIM and airtime issues.";
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/guides/');

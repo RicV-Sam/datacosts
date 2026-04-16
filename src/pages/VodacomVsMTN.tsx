@@ -15,7 +15,7 @@ interface VodacomVsMTNProps {
 }
 
 export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Vodacom vs MTN Data Prices (2026) - Speed vs Price Comparison | DataCost';
+  const pageTitle = 'Vodacom vs MTN Data Prices (2026)';
   const metaDescription =
     'Is Vodacom better than MTN for data? We compare the latest data prices, speeds, and coverage to help you choose the right network in 2026.';
   const canonicalUrl = toCanonicalUrl('/guides/vodacom-vs-mtn-data-prices/');

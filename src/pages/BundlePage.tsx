@@ -23,7 +23,7 @@ export const BundlePage: React.FC = () => {
     return <div>Bundle not found</div>;
   }
 
-  const pageTitle = `${bundle.name} Price (2026) - ${bundle.volume} Data Bundle | DataCost`;
+  const pageTitle = `${bundle.name} Data Bundle Price (2026)`;
   const metaDescription = `How much is the ${bundle.name}? Full price breakdown: R${bundle.price} for ${bundle.volume}. Valid for ${bundle.validity}. Cost per GB: R${bundle.costPerGb.toFixed(2)}.`;
   const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/${bundleSlug}/`);
 

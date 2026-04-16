@@ -86,7 +86,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = 'South Africa USSD Codes (2026) | MTN, Vodacom, Telkom & Cell C';
+  const pageTitle = 'USSD Codes South Africa (All Networks)';
   const metaDescription =
     'Use the main South African USSD codes for MTN, Vodacom, Telkom and Cell C. Check balance, buy data, send Please Call Me, and find self-service shortcuts fast.';
   const canonicalUrl = toCanonicalUrl('/ussd-codes-south-africa/');

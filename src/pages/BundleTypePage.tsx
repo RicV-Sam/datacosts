@@ -152,7 +152,7 @@ function buildFaqs(network: NetworkName, bundleType: NetworkTemplateBundleType, 
 
 function buildSeoTitle(network: NetworkName, bundleType: NetworkTemplateBundleType): string {
   const label = toBundleTypeLabel(bundleType);
-  return `${network} ${label} Data Deals (2026) | DataCost SA`;
+  return `${network} ${label} Data Deals (2026)`;
 }
 
 function buildSeoDescription(network: NetworkName, bundleType: NetworkTemplateBundleType): string {

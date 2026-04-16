@@ -21,7 +21,7 @@ export const AirtimePage: React.FC = () => {
     return <div>Network not found</div>;
   }
 
-  const pageTitle = `Buy ${network.name} Airtime Online - Quick & Easy (2026) | DataCost`;
+  const pageTitle = `Buy ${network.name} Airtime South Africa (2026)`;
   const metaDescription = `Need to top up your ${network.name} account? Compare the best ways to buy ${network.name} airtime online, via app, or USSD in South Africa.`;
 
   const faqSchema = {

@@ -73,7 +73,7 @@ const faqItems = [
 ];
 
 export const WhyAirtimeDisappearingPage: React.FC<WhyAirtimeDisappearingPageProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Why Is My Airtime Disappearing Fast in South Africa? Fix Airtime Loss';
+  const pageTitle = 'Why Is My Airtime Disappearing? (SA 2026)';
   const metaDescription =
     'Airtime disappearing on Vodacom, MTN, Telkom or Cell C? Learn the main causes, quick fixes, operator-specific checks, and how to stop airtime loss fast.';
   const canonicalUrl = toCanonicalUrl('/guides/why-is-my-airtime-disappearing-south-africa/');

@@ -12,7 +12,7 @@ interface MethodologyPageProps {
 }
 
 export const MethodologyPage: React.FC<MethodologyPageProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Methodology | How DataCost Compares Mobile Data Prices';
+  const pageTitle = 'DataCost Methodology';
   const metaDescription =
     'See how DataCost collects bundle information, calculates value, and decides rankings across Vodacom, MTN, Telkom, Cell C, and Rain.';
   const canonicalUrl = toCanonicalUrl('/methodology/');

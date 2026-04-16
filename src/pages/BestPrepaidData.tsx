@@ -15,7 +15,7 @@ interface BestPrepaidDataProps {
 }
 
 export const BestPrepaidData: React.FC<BestPrepaidDataProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Best Prepaid Data Deals South Africa (2026) | DataCost';
+  const pageTitle = 'Prepaid Data Deals South Africa (2026)';
   const metaDescription =
     'Compare the best prepaid data deals in South Africa. See currently listed prepaid bundles, value per GB, and practical options by use case.';
   const canonicalUrl = toCanonicalUrl('/guides/best-prepaid-data-deals-south-africa/');

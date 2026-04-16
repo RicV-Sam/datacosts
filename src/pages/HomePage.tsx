@@ -67,7 +67,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   selectedNetwork,
   setSelectedNetwork
 }) => {
-  const pageTitle = "DataCost | Compare South Africa's Cheapest Data Bundles";
+  const pageTitle = "Cheapest Data Bundles South Africa (2026)";
   const metaDescription = 'Compare mobile data prices in South Africa. Find the cheapest data bundles from MTN, Vodacom, Telkom, Cell C and Rain.';
   const canonicalUrl = SITE_URL;
   const datePublishedIso = getDefaultPublishedIso();
@@ -92,7 +92,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: "DataCost | Compare South Africa's Cheapest Data Bundles",
+    name: "Cheapest Data Bundles South Africa (2026)",
     description: metaDescription,
     url: canonicalUrl,
     datePublished: datePublishedIso,

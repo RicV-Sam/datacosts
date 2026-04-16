@@ -61,7 +61,7 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
   const [firstName, setFirstName] = useState('');
   const [toast, setToast] = useState<string | null>(null);
 
-  const pageTitle = 'Get Data Deal Alerts in South Africa | DataCost';
+  const pageTitle = 'Data Deal Alerts South Africa';
   const metaDescription =
     'Get free alerts for cheaper data deals, airtime specials, verified competitions, and useful network updates in South Africa.';
   const canonicalUrl = toCanonicalUrl('/alerts/');

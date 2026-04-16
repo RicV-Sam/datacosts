@@ -39,11 +39,6 @@ type PreparedBundle = NetworkTemplateBundle & {
   costPerGb: number | null;
 };
 
-function clamp(input: string, maxLength: number): string {
-  if (input.length <= maxLength) return input;
-  return `${input.slice(0, maxLength - 1).trimEnd()}…`;
-}
-
 function toBundleTypeLabel(bundleType: NetworkTemplateBundleType): string {
   const fromMap: Record<string, string> = {
     'cheapest-1gb': 'Cheapest 1GB',
@@ -221,8 +216,8 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
   const bundleTypeLabel = toBundleTypeLabel(bundleType);
   const keyword = `${bundleTypeLabel.toLowerCase()} data`;
   const canonicalUrl = toCanonicalUrl(seoData.canonicalPath);
-  const title = clamp(seoData.title, 60);
-  const description = clamp(seoData.description, 160);
+  const title = seoData.title;
+  const description = seoData.description;
 
   const preparedBundles = useMemo<PreparedBundle[]>(() => {
     return [...bundleData]

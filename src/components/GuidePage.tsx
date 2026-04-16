@@ -5,7 +5,7 @@ import { Guide, Bundle, GuideResourceLink } from '../types';
 import { bundles } from '../data';
 import { useNavigate } from 'react-router-dom';
 import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_LOGO_URL, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { AdUnit } from './AdUnit';
 
 interface GuidePageProps {
@@ -109,7 +109,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
   const datePublishedIso = getDefaultPublishedIso();
   const lastUpdatedLabel = formatIsoForDisplay(dateModifiedIso);
   const canonicalUrl = toCanonicalUrl(`/guides/${guide.slug}/`);
-  const pageTitle = `${guide.title} | ${SITE_PRODUCT_NAME}`;
+  const pageTitle = guide.title;
   const showPriorityInternalLinks = guide.slug === 'why-is-my-data-finishing-so-fast' || guide.slug === 'how-to-check-data-balance';
   const showNetworkDisappearingAdLayout =
     guide.slug === 'why-is-my-data-disappearing-vodacom' || guide.slug === 'why-is-my-data-disappearing-mtn';

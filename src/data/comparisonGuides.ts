@@ -75,7 +75,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'cheapest-1gb-data-south-africa',
     mode: 'cheapest-1gb',
     canonicalPath: '/guides/cheapest-1gb-data-south-africa/',
-    title: 'Cheapest 1GB Data in South Africa (2026) | DataCost',
+    title: 'Cheapest 1GB Data South Africa (2026)',
     metaDescription:
       'Compare the cheapest 1GB data in South Africa. See network-by-network prices, validity, value trade-offs, and practical prepaid watch-outs for 2026.',
     h1: 'Cheapest 1GB Data in South Africa (2026)',
@@ -127,7 +127,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'cheapest-10gb-data-south-africa',
     mode: 'cheapest-10gb',
     canonicalPath: '/guides/cheapest-10gb-data-south-africa/',
-    title: 'Cheapest 10GB Data Deals South Africa (2026) | DataCost',
+    title: 'Cheapest 10GB Data South Africa (2026)',
     metaDescription:
       'Find the cheapest 10GB data deals in South Africa. Compare 10GB bundles by network, cost per GB, and practical fit for heavier prepaid users.',
     h1: 'Cheapest 10GB Data Deals South Africa (2026)',
@@ -179,7 +179,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'cheapest-2gb-data-south-africa',
     mode: 'cheapest-2gb',
     canonicalPath: '/guides/cheapest-2gb-data-south-africa/',
-    title: 'Cheapest 2GB Data in South Africa (2026) | DataCost',
+    title: 'Cheapest 2GB Data South Africa (2026)',
     metaDescription:
       'Compare the cheapest 2GB data bundles in South Africa across Vodacom, MTN, Telkom and Cell C. See who offers the best value and who 2GB suits.',
     h1: 'Cheapest 2GB Data in South Africa (2026)',
@@ -231,7 +231,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'cheapest-5gb-data-south-africa',
     mode: 'cheapest-5gb',
     canonicalPath: '/guides/cheapest-5gb-data-south-africa/',
-    title: 'Cheapest 5GB Data in South Africa (2026) | DataCost',
+    title: 'Cheapest 5GB Data South Africa (2026)',
     metaDescription:
       'Compare the cheapest 5GB data bundles in South Africa. See network-by-network value, validity trade-offs, and who 5GB is best for.',
     h1: 'Cheapest 5GB Data in South Africa (2026)',
@@ -283,7 +283,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'cheapest-15gb-data-south-africa',
     mode: 'cheapest-15gb',
     canonicalPath: '/guides/cheapest-15gb-data-south-africa/',
-    title: 'Cheapest 15GB Data in South Africa (2026) | DataCost',
+    title: 'Cheapest 15GB Data South Africa (2026)',
     metaDescription:
       'Compare the cheapest 15GB data options in South Africa. See which network gives the best value and when 15GB is a smarter buy than 10GB.',
     h1: 'Cheapest 15GB Data in South Africa (2026)',
@@ -335,7 +335,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'cheapest-20gb-data-south-africa',
     mode: 'cheapest-20gb',
     canonicalPath: '/guides/cheapest-20gb-data-south-africa/',
-    title: 'Cheapest 20GB Data in South Africa (2026) | DataCost',
+    title: 'Cheapest 20GB Data South Africa (2026)',
     metaDescription:
       'Compare the cheapest 20GB data bundles in South Africa. See current network value, validity differences, and who should buy 20GB plans.',
     h1: 'Cheapest 20GB Data in South Africa (2026)',
@@ -387,7 +387,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'cheapest-50gb-data-south-africa',
     mode: 'cheapest-50gb',
     canonicalPath: '/guides/cheapest-50gb-data-south-africa/',
-    title: 'Cheapest 50GB Data in South Africa (2026) | DataCost',
+    title: 'Cheapest 50GB Data South Africa (2026)',
     metaDescription:
       'Compare the cheapest 50GB data options in South Africa for heavy users, hotspot usage, and work-from-phone setups. See value and watch-outs by network.',
     h1: 'Cheapest 50GB Data in South Africa (2026)',
@@ -440,7 +440,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     mode: 'best-monthly',
     canonicalPath: '/guides/best-monthly-data-deals-south-africa/',
     aliases: ['/guides/cheapest-monthly-data-south-africa/'],
-    title: 'Best Monthly Data Deals South Africa (2026) | DataCost',
+    title: 'Monthly Data Deals South Africa (2026)',
     metaDescription:
       'Compare the best monthly data deals in South Africa. See 30-day prepaid options by network, cost per GB, and who each monthly deal is best for.',
     h1: 'Best Monthly Data Deals South Africa (2026)',
@@ -492,7 +492,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'best-prepaid-data-deals-south-africa',
     mode: 'best-prepaid',
     canonicalPath: '/guides/best-prepaid-data-deals-south-africa/',
-    title: 'Best Prepaid Data Deals South Africa (2026) | DataCost',
+    title: 'Prepaid Data Deals South Africa (2026)',
     metaDescription:
       'Compare the best prepaid data deals in South Africa. See value picks for budget users, regular users, and heavy users across major networks.',
     h1: 'Best Prepaid Data Deals South Africa (2026)',
@@ -544,7 +544,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'cheapest-whatsapp-bundles-south-africa',
     mode: 'cheapest-whatsapp',
     canonicalPath: '/guides/cheapest-whatsapp-bundles-south-africa/',
-    title: 'Cheapest WhatsApp Bundles South Africa (2026) | DataCost',
+    title: 'WhatsApp Bundles South Africa (2026)',
     metaDescription:
       'Find the cheapest WhatsApp bundles in South Africa. Compare social bundle prices by network and see key restrictions before you buy.',
     h1: 'Cheapest WhatsApp Bundles South Africa (2026)',
@@ -596,7 +596,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'cheap-night-data-south-africa',
     mode: 'cheap-night',
     canonicalPath: '/guides/cheap-night-data-south-africa/',
-    title: 'Cheap Night Data South Africa (2026) | DataCost',
+    title: 'Night Data South Africa (2026)',
     metaDescription:
       'Compare cheap night data bundles in South Africa. See which networks offer the lowest night-bundle prices, usage windows, and practical watch-outs.',
     h1: 'Cheap Night Data South Africa (2026)',
@@ -658,3 +658,4 @@ export function getComparisonGuideBySlug(slug: string): ComparisonGuideDefinitio
 
   return matchedAlias || null;
 }
+

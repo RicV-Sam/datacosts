@@ -15,7 +15,7 @@ interface CheapestUnlimitedDataProps {
 }
 
 export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Cheapest Unlimited Data South Africa (2026) | DataCost';
+  const pageTitle = 'Unlimited Data Deals South Africa (2026)';
   const metaDescription =
     'Compare currently listed unlimited-style data options in South Africa and see when unlimited plans beat capped monthly bundles.';
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-unlimited-data-south-africa/');

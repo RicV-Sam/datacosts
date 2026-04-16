@@ -49,7 +49,7 @@ const troubleshootingLinks = [
 ];
 
 export const FixProblemPage: React.FC<FixProblemPageProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Fix Mobile Problems South Africa (2026) | DataCost';
+  const pageTitle = 'Fix Mobile Problems South Africa (2026)';
   const metaDescription =
     'Fix airtime, data drain, and WASP subscription problems quickly. Use DataCost troubleshooting guides and USSD tools for South African mobile networks.';
   const canonicalUrl = toCanonicalUrl('/fix-mobile-problems/');
@@ -191,4 +191,3 @@ export const FixProblemPage: React.FC<FixProblemPageProps> = ({ onNavigate, onSc
     </div>
   );
 };
-

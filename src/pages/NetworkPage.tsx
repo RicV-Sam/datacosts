@@ -106,7 +106,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
   const comparisonRows = pageData.comparisonSummary || [];
 
-  const pageTitle = `${network.name} Data Prices South Africa (2026) | DataCost`;
+  const pageTitle = `${network.name} Data Prices South Africa (2026)`;
   const metaDescription = `Compare ${network.name} prepaid data prices in South Africa, including daily, weekly and monthly bundles, USSD codes, and practical savings tips updated for 2026.`;
   const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/`);
   const dateModifiedIso = getNetworkModifiedIso(networkSlug);

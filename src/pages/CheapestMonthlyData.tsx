@@ -15,7 +15,7 @@ interface CheapestMonthlyDataProps {
 }
 
 export const CheapestMonthlyData: React.FC<CheapestMonthlyDataProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Cheapest Monthly Data South Africa (2026) | DataCost';
+  const pageTitle = 'Monthly Data Deals South Africa (2026)';
   const metaDescription =
     'Find the cheapest monthly data bundles in South Africa. Compare current 30-day prices, value per GB, and best monthly options by use case.';
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-monthly-data-south-africa/');

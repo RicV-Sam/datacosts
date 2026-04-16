@@ -142,7 +142,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'best-data-deals-south-africa',
-    title: 'Best Data Deals South Africa 2026: Top Value Bundles Compared',
+    title: 'Data Deals South Africa (2026)',
     metaDescription: 'Find the best data deals in South Africa. We compare Vodacom Just4You, MTN Boosta, and Telkom Mo\'Nice to find you the most data for your money.',
     h1: 'Best Data Deals in South Africa 2026: Top Value Bundles',
     intro: 'Finding the best data deals in South Africa requires looking beyond the standard monthly bundles. From "Just4You" on Vodacom to "MTN Boosta" and Telkom\'s "Mo\'Nice," there are dozens of hidden promotions that offer significantly better value than what you see on a recharge voucher. We have compared the latest offers to find the best value for every type of user.',
@@ -187,7 +187,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'prepaid-vs-contract-south-africa',
-    title: 'Prepaid vs. Contract South Africa: Which is Cheaper in 2026?',
+    title: 'Prepaid vs Contract South Africa (2026)',
     metaDescription: 'Choosing between prepaid and contract? We compare the costs, flexibility, and data rates of prepaid vs contract in SA to find the best option for you.',
     h1: 'Prepaid vs. Contract in South Africa: Which is Cheaper?',
     intro: 'Choosing between a prepaid SIM and a long-term contract is a major financial decision for many South Africans. While contracts often offer a "free" smartphone, prepaid gives you total control over your spending without being locked into a 24-month commitment. In this guide, we weigh the pros and cons of both options to help you decide which is better for your wallet.',
@@ -285,7 +285,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'why-does-my-data-finish-so-fast-south-africa',
-    title: 'Why Does My Data Finish So Fast in South Africa? (2026 Guide)',
+    title: 'Why Does My Data Finish So Fast? (SA 2026)',
     metaDescription: 'Find out why your mobile data finishes so fast in South Africa and how to make it last longer. Learn the main causes, quick fixes, and better bundle choices.',
     h1: 'Why Does My Data Finish So Fast in South Africa? (2026 Guide)',
     intro: 'You are not imagining it: fast data drain is one of the most common mobile problems in South Africa. It affects users across all major networks and is often caused by hidden app behavior, phone settings, or bundle mismatch. The good news is that the cause is usually identifiable and fixable.',
@@ -442,7 +442,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'why-is-my-airtime-disappearing-south-africa',
-    title: 'Why Is My Airtime Disappearing in South Africa? (2026 Guide)',
+    title: 'Why Is My Airtime Disappearing? (SA 2026)',
     metaDescription: 'Find out why your airtime keeps disappearing in South Africa and how to stop it. Learn the most common causes, how to check them, and what to do next.',
     h1: 'Why Is My Airtime Disappearing in South Africa? (2026 Guide)',
     intro: 'If your airtime keeps dropping and you are not sure why, you are not imagining it. This guide covers the most common causes across Vodacom, MTN, Telkom, and Cell C, plus practical steps to identify, stop, and prevent airtime loss.',
@@ -588,7 +588,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-stop-wasp-vas-charges-south-africa',
-    title: 'How to Stop Unwanted WASP / VAS Charges in South Africa (2026)',
+    title: 'Stop WASP / VAS Charges South Africa (2026)',
     metaDescription: 'Learn what WASP and VAS charges are, why they take your airtime, how to check for them, how to stop them, and what to do if the deductions continue.',
     h1: 'How to Stop Unwanted WASP / VAS Charges in South Africa (2026)',
     intro: 'If your airtime keeps dropping in small repeated amounts, unwanted subscription billing may be the reason. This guide explains how WASP and VAS charges work in South Africa, how to diagnose them, and how to stop and prevent them across Vodacom, MTN, Telkom, and Cell C.',
@@ -734,7 +734,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'airtime-data-saving-tips-south-africa',
-    title: '15 Smart Airtime & Data Saving Tips for South Africans (2026)',
+    title: '15 Airtime & Data Saving Tips South Africa (2026)',
     metaDescription: 'Learn how to make your airtime and mobile data last longer in South Africa with smart, practical tips on bundles, USSD, app settings, and avoiding costly mistakes.',
     h1: '15 Smart Airtime & Data Saving Tips for South Africans (2026)',
     intro: 'If your airtime disappears too fast or your bundle never lasts, this guide is for you. It explains how South African prepaid users can reduce waste, avoid out-of-bundle charges, and choose data bundles that actually match daily usage.',
@@ -892,7 +892,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-check-data-balance',
-    title: 'How to Check Data Balance South Africa - All Networks (2026)',
+    title: 'Check Data Balance South Africa (2026)',
     metaDescription: 'Never run out of data! Learn the USSD codes to check your data balance on Vodacom, MTN, Telkom, and Cell C instantly from your phone.',
     h1: 'How to Check Your Data Balance (All SA Networks)',
     intro: 'Running out of data in the middle of a task is frustrating. In South Africa, every network provides a free USSD code that allows you to check your remaining data balance in seconds. This guide lists the official codes for Vodacom, MTN, Telkom, and Cell C so you can always stay on top of your usage.',
@@ -941,7 +941,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'why-is-my-data-disappearing-south-africa',
-    title: 'Why Is My Data Disappearing in South Africa? (Fix Guide 2026)',
+    title: 'Why Is My Data Disappearing? (SA 2026)',
     metaDescription: 'Data disappearing in South Africa? Learn the top causes, how to check usage, and the fastest fixes across Vodacom, MTN, Telkom, and Cell C.',
     h1: 'Why Is My Data Disappearing in South Africa? (Fix Guide 2026)',
     intro: 'Data loss complaints in South Africa are usually linked to expiry timing, background usage, and incorrect bundle fit. This parent page gives you the national diagnosis path before moving to network-specific fix pages.',
@@ -990,7 +990,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'airtime-data-problems-south-africa',
-    title: 'Airtime & Data Problems in South Africa (Hub 2026)',
+    title: 'Airtime & Data Problems South Africa (2026)',
     metaDescription: 'Fix airtime and data problems in South Africa with this hub: disappearing data, out-of-bundle billing, WASP charges, and USSD troubleshooting links.',
     h1: 'Airtime & Data Problems in South Africa (Hub 2026)',
     intro: 'Use this hub to move quickly to the right troubleshooting page for airtime and data issues in South Africa. It connects network-specific and issue-specific guides in one place.',
@@ -1419,3 +1419,4 @@ export const guides: Guide[] = [
     ]
   }
 ];
+
