@@ -142,6 +142,15 @@ export function getIndexableRoutes(): string[] {
   routes.add('/guides/cheap-night-data-south-africa/');
   routes.add('/guides/vodacom-vs-mtn-data-prices/');
   routes.add('/guides/stop-wasp-subscriptions-south-africa/');
+  routes.add('/guides/why-is-my-data-disappearing-south-africa/');
+  routes.add('/guides/how-to-stop-airtime-being-used-automatically/');
+  routes.add('/guides/how-to-cancel-subscriptions-mtn-vodacom-telkom/');
+  routes.add('/guides/how-to-check-subscriptions-on-mtn/');
+  routes.add('/guides/how-to-check-subscriptions-on-vodacom/');
+  routes.add('/guides/how-to-stop-wasp-services-south-africa/');
+  routes.add('/guides/why-is-my-data-finishing-so-fast/');
+  routes.add('/guides/how-to-protect-airtime-from-being-used/');
+  routes.add('/guides/airtime-data-problems-south-africa/');
   routes.add('/travel-sims-south-africa/');
 
   for (const guide of guides) {
