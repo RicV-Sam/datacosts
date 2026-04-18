@@ -30,6 +30,7 @@ const WaspSubscriptions = lazy(() => import('./pages/WaspSubscriptions').then((m
 const TravelSimsPage = lazy(() => import('./pages/TravelSimsPage').then((mod) => ({ default: mod.TravelSimsPage })));
 const ComparisonGuidePage = lazy(() => import('./pages/ComparisonGuidePage').then((mod) => ({ default: mod.ComparisonGuidePage })));
 const FixProblemPage = lazy(() => import('./pages/FixProblemPage').then((mod) => ({ default: mod.FixProblemPage })));
+const DataProblemSeoPage = lazy(() => import('./pages/DataProblemSeoPage').then((mod) => ({ default: mod.DataProblemSeoPage })));
 const WhyAirtimeDisappearingPage = lazy(() => import('./pages/WhyAirtimeDisappearingPage').then((mod) => ({ default: mod.WhyAirtimeDisappearingPage })));
 const ProblemSolvingGuidePage = lazy(() => import('./pages/ProblemSolvingGuidePage').then((mod) => ({ default: mod.ProblemSolvingGuidePage })));
 const AirtimeDataProblemsHubPage = lazy(() => import('./pages/AirtimeDataProblemsHubPage').then((mod) => ({ default: mod.AirtimeDataProblemsHubPage })));
@@ -320,6 +321,21 @@ function AppContent() {
           path="/fix-mobile-problems/"
           element={<FixProblemPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
+        <Route
+          path="/data-problems/why-is-my-data-disappearing-vodacom/"
+          element={<DataProblemSeoPage routePath="/data-problems/why-is-my-data-disappearing-vodacom/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-wasp-charges-vodacom/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-wasp-charges-vodacom/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-check-data-balance-vodacom-ussd/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-check-data-balance-vodacom-ussd/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route path="/data-problems/why-is-my-data-disappearing-vodacom" element={<Navigate to="/data-problems/why-is-my-data-disappearing-vodacom/" replace />} />
+        <Route path="/data-problems/how-to-stop-wasp-charges-vodacom" element={<Navigate to="/data-problems/how-to-stop-wasp-charges-vodacom/" replace />} />
+        <Route path="/data-problems/how-to-check-data-balance-vodacom-ussd" element={<Navigate to="/data-problems/how-to-check-data-balance-vodacom-ussd/" replace />} />
         <Route path="/fix-a-problem/" element={<Navigate to="/fix-mobile-problems/" replace />} />
         <Route
           path="*"

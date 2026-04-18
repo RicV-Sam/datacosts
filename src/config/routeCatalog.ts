@@ -127,6 +127,9 @@ export function getIndexableRoutes(): string[] {
   routes.add('/save-ussd-codes/');
   routes.add('/alerts/');
   routes.add('/fix-mobile-problems/');
+  routes.add('/data-problems/why-is-my-data-disappearing-vodacom/');
+  routes.add('/data-problems/how-to-stop-wasp-charges-vodacom/');
+  routes.add('/data-problems/how-to-check-data-balance-vodacom-ussd/');
   routes.add('/guides/');
   routes.add('/network/');
   routes.add('/privacy-policy/');
