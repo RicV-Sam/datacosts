@@ -1,6 +1,6 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'path';
 import {defineConfig, loadEnv, Plugin} from 'vite';
 import prerender from '@prerenderer/rollup-plugin';
@@ -8,7 +8,12 @@ import PuppeteerRenderer from '@prerenderer/renderer-puppeteer';
 import { getPrerenderRoutes, validateIndexableRoutes } from './src/config/routeCatalog';
 import { SITE_ORIGIN } from './src/seo/siteConstants';
 
-const DEFAULT_DATA_PROBLEMS_SOURCE_DIR = 'C:/Users/ricca/Desktop/DataCost-SEO-Engine/seo-engine/output/data-problems';
+const DEFAULT_DEV_DATA_PROBLEMS_SOURCE_DIR = 'C:/Users/ricca/Desktop/DataCost-SEO-Engine/seo-engine/output/data-problems';
+const LOCAL_DATA_PROBLEMS_SOURCE_DIR = path.resolve(__dirname, 'src/data/seo-pages/data-problems');
+const DEV_EXTERNAL_DATA_PROBLEMS_SOURCE_DIRS = [
+  DEFAULT_DEV_DATA_PROBLEMS_SOURCE_DIR,
+  path.resolve(__dirname, '../DataCost-SEO-Engine/seo-engine/output/data-problems')
+];
 const DATA_PROBLEMS_SOURCE_FILES = [
   'why-is-my-data-disappearing-vodacom.json',
   'how-to-stop-wasp-charges-vodacom.json',
@@ -24,6 +29,39 @@ type ExternalDataProblemJson = {
 function normalizeRoute(pathname: string): string {
   const withLeadingSlash = pathname.startsWith('/') ? pathname : `/${pathname}`;
   return withLeadingSlash.replace(/\/+$/, '') + '/';
+}
+
+function resolveDataProblemsSourceDir(options: { configuredPath?: string; isProductionBuild: boolean }): string {
+  const { configuredPath, isProductionBuild } = options;
+
+  if (!isProductionBuild && configuredPath && existsSync(configuredPath)) {
+    return configuredPath;
+  }
+
+  if (existsSync(LOCAL_DATA_PROBLEMS_SOURCE_DIR)) {
+    return LOCAL_DATA_PROBLEMS_SOURCE_DIR;
+  }
+
+  if (!isProductionBuild) {
+    const externalFallbackDir = DEV_EXTERNAL_DATA_PROBLEMS_SOURCE_DIRS.find((candidate) => existsSync(candidate));
+    if (externalFallbackDir) {
+      return externalFallbackDir;
+    }
+  }
+
+  const attemptedPaths = [
+    ...(!isProductionBuild && configuredPath ? [configuredPath] : []),
+    LOCAL_DATA_PROBLEMS_SOURCE_DIR,
+    ...(!isProductionBuild ? DEV_EXTERNAL_DATA_PROBLEMS_SOURCE_DIRS : [])
+  ];
+
+  throw new Error(
+    [
+      'External SEO JSON directory was not found.',
+      `Checked: ${attemptedPaths.join(', ')}`,
+      'In development, set VITE_SEO_ENGINE_PATH to use the external SEO engine output. In production and CI, the checked-in JSON files under src/data/seo-pages/data-problems are required.'
+    ].join(' ')
+  );
 }
 
 function readExternalDataProblem(fileName: string, sourceDir: string): ExternalDataProblemJson {
@@ -67,7 +105,11 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   const prerenderRoutes = getPrerenderRoutes();
   validateIndexableRoutes(prerenderRoutes);
-  const dataProblemsSourceDir = env.VITE_SEO_ENGINE_PATH || process.env.VITE_SEO_ENGINE_PATH || DEFAULT_DATA_PROBLEMS_SOURCE_DIR;
+  const configuredSeoEnginePath = env.VITE_SEO_ENGINE_PATH || process.env.VITE_SEO_ENGINE_PATH;
+  const dataProblemsSourceDir = resolveDataProblemsSourceDir({
+    configuredPath: configuredSeoEnginePath,
+    isProductionBuild: mode === 'production' || process.env.CI === 'true'
+  });
 
   return {
     base: '/',

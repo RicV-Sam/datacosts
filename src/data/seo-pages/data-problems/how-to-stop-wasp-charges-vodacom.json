@@ -1,0 +1,104 @@
+{
+  "pageType": "problem-solver",
+  "keyword": "how to stop wasp charges vodacom",
+  "slug": "data-problems/how-to-stop-wasp-charges-vodacom",
+  "pageTitle": "How to stop WASP charges on Vodacom | DataCost",
+  "metaDescription": "Vodacom WASP charges come from active content services or premium billing. Follow these steps to cancel subscriptions and stop repeat deductions on your line.",
+  "h1": "How to stop WASP charges on Vodacom",
+  "networks": [
+    "vodacom"
+  ],
+  "intentScore": 4,
+  "quickAnswer": "Vodacom WASP charges usually happen because one content service keeps billing the line on a repeated cycle. Check My Vodacom app and the cancellation menu before the next deduction window.",
+  "causes": [
+    {
+      "cause": "Vodacom content service is still active",
+      "explanation": "Most users notice this the morning after a top-up when the same daily deduction appears again on Vodacom. Vodacom makes content-service controls more visible, so repeat deductions usually point to one active service. Users usually spot it when the same deduction returns the next day."
+    },
+    {
+      "cause": "A subscription SMS or short-code sign-up started billing",
+      "explanation": "One tap on a content prompt can attach premium billing until the service is cancelled properly."
+    },
+    {
+      "cause": "The first cancellation did not fully close",
+      "explanation": "A service can keep charging until both the provider and Vodacom register the stop request."
+    }
+  ],
+  "fixSteps": {
+    "general": [],
+    "byNetwork": {
+      "vodacom": [
+        "Open My Vodacom app.",
+        "Check active content services.",
+        "Cancel the service or stop all.",
+        "Ask Vodacom to block future content-service sign-ups.",
+        "Check the next daily deduction window and escalate if it returns."
+      ],
+      "mtn": [],
+      "cellc": [],
+      "telkom": []
+    }
+  },
+  "preventionTips": [
+    "Keep proof of every cancellation request until deductions stop.",
+    "Avoid signing up through unknown SMS links or pop-ups.",
+    "Check active subscriptions after any new unexpected airtime loss.",
+    "Ask support about premium-content blocking if this has happened before."
+  ],
+  "faqs": [
+    {
+      "question": "How do I cancel WASP charges on Vodacom?",
+      "answer": "Open My Vodacom app and cancel the active content service first. Then confirm the next deduction does not return."
+    },
+    {
+      "question": "Why am I getting WASP charges on Vodacom?",
+      "answer": "WASP charges usually come from content service subscriptions started through SMS prompts, links, or previous sign-ups. They continue until the service is cancelled properly."
+    },
+    {
+      "question": "Can Vodacom block new WASP subscriptions?",
+      "answer": "Yes. Vodacom can usually place a content-service block on the line after the active subscriptions are removed."
+    },
+    {
+      "question": "Why did my Vodacom airtime disappear overnight again?",
+      "answer": "A daily premium billing cycle is often the reason. If the same amount disappears by morning, check whether one service is still active."
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchorText": "See why your Vodacom airtime is disappearing",
+      "url": "/data-problems/why-is-my-airtime-disappearing-vodacom",
+      "reason": "same billing-loss cluster",
+      "status": "live"
+    },
+    {
+      "anchorText": "See why your Vodacom data is disappearing",
+      "url": "/data-problems/why-is-my-data-disappearing-vodacom",
+      "reason": "same network related problem",
+      "status": "live"
+    },
+    {
+      "anchorText": "Compare Vodacom and MTN prepaid data",
+      "url": "/comparisons/vodacom-vs-mtn-prepaid-data",
+      "reason": "related comparison, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Estimate Vodacom data costs",
+      "url": "/tools/vodacom-data-cost-calculator",
+      "reason": "same network tool",
+      "status": "live"
+    }
+  ],
+  "verifyFlags": [],
+  "monetisation": {
+    "adPlacement1": "after-quick-answer",
+    "adPlacement2": "after-fix-steps",
+    "affiliateLink": null
+  },
+  "schemaTypes": [
+    "FAQPage",
+    "Article"
+  ],
+  "lastReviewed": "2026-04-18",
+  "reviewDueDate": "2027-04-18"
+}

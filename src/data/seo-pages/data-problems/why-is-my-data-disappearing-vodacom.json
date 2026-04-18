@@ -1,0 +1,112 @@
+{
+  "pageType": "problem-solver",
+  "keyword": "why is my data disappearing vodacom",
+  "slug": "data-problems/why-is-my-data-disappearing-vodacom",
+  "pageTitle": "Why is my data disappearing Vodacom | DataCost",
+  "metaDescription": "Vodacom data disappears when bundle settings, app behaviour, or fallback usage keep using your balance. Use these checks to stop hidden data loss quickly.",
+  "h1": "Why is my data disappearing Vodacom",
+  "networks": [
+    "vodacom"
+  ],
+  "intentScore": 5,
+  "quickAnswer": "Vodacom data usually happens because one app, hotspot use, or fallback browsing keeps the session alive after you think it has stopped. Check My Vodacom app and *135# before you top up again.",
+  "causes": [
+    {
+      "cause": "Vodacom video or social bundles end before the main balance",
+      "explanation": "Most users notice this after a normal-looking session, then a surprise drain the next morning or after a second top-up on Vodacom. Vodacom often splits usage across bundle types, so fallback use appears faster. Users usually notice it after overnight refreshes or repeated top-ups."
+    },
+    {
+      "cause": "The wrong bundle type finished first",
+      "explanation": "Video, social, night, or promo bundles can end before the main Vodacom balance and make the data loss look random."
+    },
+    {
+      "cause": "Hotspot or background apps kept running",
+      "explanation": "Another device or one busy app can keep consuming data even after the screen is off."
+    },
+    {
+      "cause": "Vodacom account checks happened too late",
+      "explanation": "Users often buy another Vodacom bundle before checking which app or setting actually caused the drain."
+    }
+  ],
+  "fixSteps": {
+    "general": [],
+    "byNetwork": {
+      "vodacom": [
+        "Open My Vodacom app.",
+        "Dial *135#.",
+        "Turn off fallback browsing.",
+        "Check whether hotspot, updates, or backup used data in the background.",
+        "Confirm which bundle type expired before topping up again."
+      ],
+      "mtn": [],
+      "cellc": [],
+      "telkom": []
+    }
+  },
+  "preventionTips": [
+    "Set a data warning before the bundle reaches the last part of the month.",
+    "Keep app updates and backups on Wi-Fi only.",
+    "Turn hotspot off as soon as you finish sharing data.",
+    "Check usage before buying another bundle so you stop the real drain first."
+  ],
+  "faqs": [
+    {
+      "question": "Why does my Vodacom data keep disappearing?",
+      "answer": "Vodacom data disappears when one app, hotspot use, or fallback browsing stays active. Check recent usage before buying another bundle."
+    },
+    {
+      "question": "How do I stop data from disappearing on Vodacom?",
+      "answer": "Use My Vodacom app and *135# to confirm which bundle is being used, then switch off fallback browsing and block the heaviest background app."
+    },
+    {
+      "question": "Why did my Vodacom data disappear overnight?",
+      "answer": "Overnight drain usually means background refresh, backup, or hotspot use stayed active after the screen was off. The next-morning usage history normally shows the culprit."
+    },
+    {
+      "question": "Can a social or video bundle end before my main Vodacom data?",
+      "answer": "Yes. A short-validity or limited-use bundle can finish first and make the rest of the data loss look random."
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchorText": "See why Vodacom data runs out fast",
+      "url": "/data-problems/why-does-my-data-run-out-so-fast-vodacom",
+      "reason": "same data-loss cluster",
+      "status": "live"
+    },
+    {
+      "anchorText": "See why your Vodacom airtime is disappearing",
+      "url": "/data-problems/why-is-my-airtime-disappearing-vodacom",
+      "reason": "same network related problem",
+      "status": "live"
+    },
+    {
+      "anchorText": "Compare Vodacom and MTN prepaid data",
+      "url": "/comparisons/vodacom-vs-mtn-prepaid-data",
+      "reason": "related comparison, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Estimate Vodacom data costs",
+      "url": "/tools/vodacom-data-cost-calculator",
+      "reason": "same network tool",
+      "status": "live"
+    }
+  ],
+  "verifyFlags": [
+    "quickAnswer",
+    "fixSteps.byNetwork.vodacom[1]",
+    "faqs[1].answer"
+  ],
+  "monetisation": {
+    "adPlacement1": "after-quick-answer",
+    "adPlacement2": "after-fix-steps",
+    "affiliateLink": null
+  },
+  "schemaTypes": [
+    "FAQPage",
+    "Article"
+  ],
+  "lastReviewed": "2026-04-18",
+  "reviewDueDate": "2026-07-18"
+}

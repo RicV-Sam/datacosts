@@ -1,0 +1,104 @@
+{
+  "pageType": "problem-solver",
+  "keyword": "how to check data balance vodacom ussd",
+  "slug": "data-problems/how-to-check-data-balance-vodacom-ussd",
+  "pageTitle": "How to check data balance Vodacom USSD | DataCost",
+  "metaDescription": "Check your Vodacom data balance with the app or USSD menu. Use these steps to confirm remaining data, bundles, and airtime fallback quickly. Use the right.",
+  "h1": "How to check data balance Vodacom USSD",
+  "networks": [
+    "vodacom"
+  ],
+  "intentScore": 3,
+  "quickAnswer": "Vodacom balance confusion usually happens because the latest bundle view appears in one account route before another. Check *135# and My Vodacom app before you assume the bundle is gone.",
+  "causes": [
+    {
+      "cause": "Vodacom shows different bundle views in app and USSD",
+      "explanation": "Most users check only one screen, then think the bundle vanished when the latest Vodacom balance has not refreshed yet. Vodacom balance views often separate bundle categories, so users can miss the active one. Users usually notice it after a morning check or a recent top-up."
+    },
+    {
+      "cause": "A recent top-up has not fully reflected",
+      "explanation": "A new recharge can take a moment to align across app, USSD, and account history."
+    },
+    {
+      "cause": "The wrong bundle type is being checked",
+      "explanation": "Social, night, and anytime bundles can sit in different balance views."
+    }
+  ],
+  "fixSteps": {
+    "general": [],
+    "byNetwork": {
+      "vodacom": [
+        "Open My Vodacom app.",
+        "Dial *135#.",
+        "Check the right bundle type.",
+        "Refresh the account after any recent top-up or transfer.",
+        "Compare the latest session in My Vodacom app before assuming the bundle"
+      ],
+      "mtn": [],
+      "cellc": [],
+      "telkom": []
+    }
+  },
+  "preventionTips": [
+    "Check balance before you load more airtime or buy another bundle.",
+    "Use the USSD route when the app is slow or data is weak.",
+    "Compare the balance view with recent usage if numbers look wrong."
+  ],
+  "faqs": [
+    {
+      "question": "How do I check my Vodacom data balance?",
+      "answer": "Use *135# or My Vodacom app to view the latest balance. Check both if one screen looks delayed."
+    },
+    {
+      "question": "Can I check Vodacom airtime and data in the same place?",
+      "answer": "Yes. My Vodacom app usually shows both, while *135# gives a quick live menu on the line."
+    },
+    {
+      "question": "Why does my Vodacom balance look different in the morning?",
+      "answer": "A recent top-up, rollover, or delayed refresh can make the first morning check look different from the previous night."
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchorText": "See why your Vodacom data is disappearing",
+      "url": "/data-problems/why-is-my-data-disappearing-vodacom",
+      "reason": "same account-usage cluster",
+      "status": "live"
+    },
+    {
+      "anchorText": "See why your Vodacom airtime is disappearing",
+      "url": "/data-problems/why-is-my-airtime-disappearing-vodacom",
+      "reason": "same network related problem",
+      "status": "live"
+    },
+    {
+      "anchorText": "Compare Vodacom and MTN prepaid data",
+      "url": "/comparisons/vodacom-vs-mtn-prepaid-data",
+      "reason": "related comparison, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Estimate Vodacom data costs",
+      "url": "/tools/vodacom-data-cost-calculator",
+      "reason": "same network tool",
+      "status": "live"
+    }
+  ],
+  "verifyFlags": [
+    "quickAnswer",
+    "fixSteps.byNetwork.vodacom[1]",
+    "faqs[0].answer",
+    "faqs[1].answer"
+  ],
+  "monetisation": {
+    "adPlacement1": "after-quick-answer",
+    "adPlacement2": "after-fix-steps",
+    "affiliateLink": null
+  },
+  "schemaTypes": [
+    "FAQPage",
+    "Article"
+  ],
+  "lastReviewed": "2026-04-18",
+  "reviewDueDate": "2026-07-18"
+}
