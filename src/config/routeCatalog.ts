@@ -144,6 +144,7 @@ export function getIndexableRoutes(): string[] {
   routes.add('/data-problems/how-to-stop-airtime-disappearing-telkom/');
   routes.add('/data-problems/why-is-my-data-disappearing-overnight-android/');
   routes.add('/data-problems/how-to-stop-wasp-charges-cell-c/');
+  routes.add('/data-problems/how-to-stop-wasp-charges-mtn/');
   routes.add('/data-problems/how-to-stop-wasp-charges-telkom/');
   routes.add('/data-problems/how-to-check-wasp-subscriptions-vodacom/');
   routes.add('/data-problems/how-to-check-wasp-subscriptions-mtn/');

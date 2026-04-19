@@ -390,6 +390,10 @@ function AppContent() {
           element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-wasp-charges-cell-c/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route
+          path="/data-problems/how-to-stop-wasp-charges-mtn/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-wasp-charges-mtn/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
           path="/data-problems/how-to-stop-wasp-charges-telkom/"
           element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-wasp-charges-telkom/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
@@ -426,6 +430,7 @@ function AppContent() {
         <Route path="/data-problems/how-to-stop-airtime-disappearing-telkom" element={<Navigate to="/data-problems/how-to-stop-airtime-disappearing-telkom/" replace />} />
         <Route path="/data-problems/why-is-my-data-disappearing-overnight-android" element={<Navigate to="/data-problems/why-is-my-data-disappearing-overnight-android/" replace />} />
         <Route path="/data-problems/how-to-stop-wasp-charges-cell-c" element={<Navigate to="/data-problems/how-to-stop-wasp-charges-cell-c/" replace />} />
+        <Route path="/data-problems/how-to-stop-wasp-charges-mtn" element={<Navigate to="/data-problems/how-to-stop-wasp-charges-mtn/" replace />} />
         <Route path="/data-problems/how-to-stop-wasp-charges-telkom" element={<Navigate to="/data-problems/how-to-stop-wasp-charges-telkom/" replace />} />
         <Route path="/data-problems/how-to-check-wasp-subscriptions-vodacom" element={<Navigate to="/data-problems/how-to-check-wasp-subscriptions-vodacom/" replace />} />
         <Route path="/data-problems/how-to-check-wasp-subscriptions-mtn" element={<Navigate to="/data-problems/how-to-check-wasp-subscriptions-mtn/" replace />} />

@@ -32,6 +32,7 @@ const DATA_PROBLEMS_SOURCE_FILES = [
   'how-to-stop-airtime-disappearing-telkom.json',
   'why-is-my-data-disappearing-overnight-android.json',
   'how-to-stop-wasp-charges-cell-c.json',
+  'how-to-stop-wasp-charges-mtn.json',
   'how-to-stop-wasp-charges-telkom.json',
   'how-to-check-wasp-subscriptions-vodacom.json',
   'how-to-check-wasp-subscriptions-mtn.json',
