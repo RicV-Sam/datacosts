@@ -1,0 +1,110 @@
+{
+  "pageType": "problem-solver",
+  "keyword": "how to stop airtime disappearing cell c",
+  "slug": "data-problems/how-to-stop-airtime-disappearing-cell-c",
+  "pageTitle": "How to stop airtime disappearing Cell C | DataCost",
+  "metaDescription": "How to stop airtime disappearing Cell C shows the main airtime loss causes and gives direct steps to stop premium billing, out-of-bundle data, and other repeat.",
+  "h1": "How to stop airtime disappearing Cell C",
+  "networks": [
+    "cellc"
+  ],
+  "intentScore": 5,
+  "quickAnswer": "Cell C airtime usually disappears because premium billing, out-of-bundle data, app purchases, or normal call and SMS spend are still active on the line. Check the deduction pattern first, then stop the service that keeps charging.",
+  "causes": [
+    {
+      "cause": "WASP or premium billing is active",
+      "explanation": "Small daily deductions often point to a content service on the line."
+    },
+    {
+      "cause": "Out-of-bundle data is using airtime",
+      "explanation": "When the bundle ends, airtime can take over if mobile data stays open."
+    },
+    {
+      "cause": "Carrier-billed app purchases are linked",
+      "explanation": "In-app purchases or digital store charges can keep using airtime."
+    },
+    {
+      "cause": "Call or SMS spend is higher than expected",
+      "explanation": "Long calls, voicemail, or premium numbers can drain airtime quickly."
+    }
+  ],
+  "fixSteps": {
+    "general": [],
+    "byNetwork": {
+      "vodacom": [],
+      "mtn": [],
+      "cellc": [
+        "Open your network app and review the last airtime deductions on the line.",
+        "Look for a repeating amount that suggests a subscription or premium content charge.",
+        "Switch off out-of-bundle data so airtime does not carry mobile data after the bundle ends.",
+        "Check whether app purchases or carrier billing are turned on for your number.",
+        "Contact support if you still cannot match the deduction to a call, SMS, data session, or subscription."
+      ],
+      "telkom": []
+    }
+  },
+  "preventionTips": [
+    "Keep a bundle active so airtime does not become fallback data.",
+    "Review recent deductions after every unexpected airtime drop.",
+    "Turn off carrier billing if you do not use app store purchases.",
+    "Check active subscriptions before you top up again."
+  ],
+  "faqs": [
+    {
+      "question": "Why does How to stop airtime disappearing Cell C keep happening every day?",
+      "answer": "A daily pattern usually points to a recurring content charge or scheduled out-of-bundle usage."
+    },
+    {
+      "question": "Can a data bundle stop airtime from disappearing?",
+      "answer": "It helps when the real issue is out-of-bundle data, but it will not fix a premium subscription charge on its own."
+    },
+    {
+      "question": "Should you check subscriptions when How to stop airtime disappearing Cell C starts?",
+      "answer": "Yes. Subscription checks are one of the fastest ways to explain repeated airtime loss on a prepaid line."
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchorText": "Fix Why is my airtime disappearing Cell C",
+      "url": "/data-problems/why-is-my-airtime-disappearing-cell-c",
+      "reason": "same network, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Fix Why is my Cell C data so slow",
+      "url": "/data-problems/why-is-my-cell-c-data-so-slow",
+      "reason": "same network, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Fix Why is my data disappearing Cell C",
+      "url": "/data-problems/why-is-my-data-disappearing-cell-c",
+      "reason": "same network, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Fix Why does my data run out so fast Cell C",
+      "url": "/data-problems/why-does-my-data-run-out-so-fast-cell-c",
+      "reason": "same network, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Fix How to stop data disappearing Cell C",
+      "url": "/data-problems/how-to-stop-data-disappearing-cell-c",
+      "reason": "same network, already in the registry",
+      "status": "live"
+    }
+  ],
+  "verifyFlags": [],
+  "monetisation": {
+    "adPlacement1": "after-quick-answer",
+    "adPlacement2": "after-fix-steps",
+    "affiliateLink": null
+  },
+  "schemaTypes": [
+    "FAQPage",
+    "Article"
+  ],
+  "lastReviewed": "2026-04-19",
+  "reviewDueDate": "2026-10-19"
+}

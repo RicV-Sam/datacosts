@@ -17,7 +17,26 @@ const DEV_EXTERNAL_DATA_PROBLEMS_SOURCE_DIRS = [
 const DATA_PROBLEMS_SOURCE_FILES = [
   'why-is-my-data-disappearing-vodacom.json',
   'how-to-stop-wasp-charges-vodacom.json',
-  'how-to-check-data-balance-vodacom-ussd.json'
+  'how-to-check-data-balance-vodacom-ussd.json',
+  'why-does-my-data-run-out-so-fast-mtn.json',
+  'why-does-my-data-run-out-so-fast-cell-c.json',
+  'why-does-my-data-run-out-so-fast-telkom.json',
+  'how-to-stop-data-disappearing-vodacom.json',
+  'how-to-stop-data-disappearing-mtn.json',
+  'how-to-stop-data-disappearing-cell-c.json',
+  'how-to-stop-data-disappearing-telkom.json',
+  'why-is-my-airtime-disappearing-vodacom-prepaid.json',
+  'why-is-my-airtime-disappearing-mtn-prepaid.json',
+  'how-to-stop-airtime-disappearing-vodacom.json',
+  'how-to-stop-airtime-disappearing-cell-c.json',
+  'how-to-stop-airtime-disappearing-telkom.json',
+  'why-is-my-data-disappearing-overnight-android.json',
+  'how-to-stop-wasp-charges-cell-c.json',
+  'how-to-stop-wasp-charges-telkom.json',
+  'how-to-check-wasp-subscriptions-vodacom.json',
+  'how-to-check-wasp-subscriptions-mtn.json',
+  'how-to-stop-background-data-usage-android.json',
+  'how-to-stop-apps-using-data-in-background-samsung.json'
 ];
 const DATA_PROBLEMS_VIRTUAL_MODULE_ID = 'virtual:data-problems-content';
 const DATA_PROBLEMS_VIRTUAL_RESOLVED_ID = `\0${DATA_PROBLEMS_VIRTUAL_MODULE_ID}`;

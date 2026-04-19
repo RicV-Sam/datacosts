@@ -333,9 +333,104 @@ function AppContent() {
           path="/data-problems/how-to-check-data-balance-vodacom-ussd/"
           element={<DataProblemSeoPage routePath="/data-problems/how-to-check-data-balance-vodacom-ussd/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
+        <Route
+          path="/data-problems/why-does-my-data-run-out-so-fast-mtn/"
+          element={<DataProblemSeoPage routePath="/data-problems/why-does-my-data-run-out-so-fast-mtn/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/why-does-my-data-run-out-so-fast-cell-c/"
+          element={<DataProblemSeoPage routePath="/data-problems/why-does-my-data-run-out-so-fast-cell-c/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/why-does-my-data-run-out-so-fast-telkom/"
+          element={<DataProblemSeoPage routePath="/data-problems/why-does-my-data-run-out-so-fast-telkom/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-data-disappearing-vodacom/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-data-disappearing-vodacom/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-data-disappearing-mtn/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-data-disappearing-mtn/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-data-disappearing-cell-c/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-data-disappearing-cell-c/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-data-disappearing-telkom/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-data-disappearing-telkom/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/why-is-my-airtime-disappearing-vodacom-prepaid/"
+          element={<DataProblemSeoPage routePath="/data-problems/why-is-my-airtime-disappearing-vodacom-prepaid/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/why-is-my-airtime-disappearing-mtn-prepaid/"
+          element={<DataProblemSeoPage routePath="/data-problems/why-is-my-airtime-disappearing-mtn-prepaid/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-airtime-disappearing-vodacom/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-airtime-disappearing-vodacom/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-airtime-disappearing-cell-c/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-airtime-disappearing-cell-c/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-airtime-disappearing-telkom/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-airtime-disappearing-telkom/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/why-is-my-data-disappearing-overnight-android/"
+          element={<DataProblemSeoPage routePath="/data-problems/why-is-my-data-disappearing-overnight-android/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-wasp-charges-cell-c/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-wasp-charges-cell-c/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-wasp-charges-telkom/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-wasp-charges-telkom/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-check-wasp-subscriptions-vodacom/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-check-wasp-subscriptions-vodacom/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-check-wasp-subscriptions-mtn/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-check-wasp-subscriptions-mtn/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-background-data-usage-android/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-background-data-usage-android/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/data-problems/how-to-stop-apps-using-data-in-background-samsung/"
+          element={<DataProblemSeoPage routePath="/data-problems/how-to-stop-apps-using-data-in-background-samsung/" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
         <Route path="/data-problems/why-is-my-data-disappearing-vodacom" element={<Navigate to="/data-problems/why-is-my-data-disappearing-vodacom/" replace />} />
         <Route path="/data-problems/how-to-stop-wasp-charges-vodacom" element={<Navigate to="/data-problems/how-to-stop-wasp-charges-vodacom/" replace />} />
         <Route path="/data-problems/how-to-check-data-balance-vodacom-ussd" element={<Navigate to="/data-problems/how-to-check-data-balance-vodacom-ussd/" replace />} />
+        <Route path="/data-problems/why-does-my-data-run-out-so-fast-mtn" element={<Navigate to="/data-problems/why-does-my-data-run-out-so-fast-mtn/" replace />} />
+        <Route path="/data-problems/why-does-my-data-run-out-so-fast-cell-c" element={<Navigate to="/data-problems/why-does-my-data-run-out-so-fast-cell-c/" replace />} />
+        <Route path="/data-problems/why-does-my-data-run-out-so-fast-telkom" element={<Navigate to="/data-problems/why-does-my-data-run-out-so-fast-telkom/" replace />} />
+        <Route path="/data-problems/how-to-stop-data-disappearing-vodacom" element={<Navigate to="/data-problems/how-to-stop-data-disappearing-vodacom/" replace />} />
+        <Route path="/data-problems/how-to-stop-data-disappearing-mtn" element={<Navigate to="/data-problems/how-to-stop-data-disappearing-mtn/" replace />} />
+        <Route path="/data-problems/how-to-stop-data-disappearing-cell-c" element={<Navigate to="/data-problems/how-to-stop-data-disappearing-cell-c/" replace />} />
+        <Route path="/data-problems/how-to-stop-data-disappearing-telkom" element={<Navigate to="/data-problems/how-to-stop-data-disappearing-telkom/" replace />} />
+        <Route path="/data-problems/why-is-my-airtime-disappearing-vodacom-prepaid" element={<Navigate to="/data-problems/why-is-my-airtime-disappearing-vodacom-prepaid/" replace />} />
+        <Route path="/data-problems/why-is-my-airtime-disappearing-mtn-prepaid" element={<Navigate to="/data-problems/why-is-my-airtime-disappearing-mtn-prepaid/" replace />} />
+        <Route path="/data-problems/how-to-stop-airtime-disappearing-vodacom" element={<Navigate to="/data-problems/how-to-stop-airtime-disappearing-vodacom/" replace />} />
+        <Route path="/data-problems/how-to-stop-airtime-disappearing-cell-c" element={<Navigate to="/data-problems/how-to-stop-airtime-disappearing-cell-c/" replace />} />
+        <Route path="/data-problems/how-to-stop-airtime-disappearing-telkom" element={<Navigate to="/data-problems/how-to-stop-airtime-disappearing-telkom/" replace />} />
+        <Route path="/data-problems/why-is-my-data-disappearing-overnight-android" element={<Navigate to="/data-problems/why-is-my-data-disappearing-overnight-android/" replace />} />
+        <Route path="/data-problems/how-to-stop-wasp-charges-cell-c" element={<Navigate to="/data-problems/how-to-stop-wasp-charges-cell-c/" replace />} />
+        <Route path="/data-problems/how-to-stop-wasp-charges-telkom" element={<Navigate to="/data-problems/how-to-stop-wasp-charges-telkom/" replace />} />
+        <Route path="/data-problems/how-to-check-wasp-subscriptions-vodacom" element={<Navigate to="/data-problems/how-to-check-wasp-subscriptions-vodacom/" replace />} />
+        <Route path="/data-problems/how-to-check-wasp-subscriptions-mtn" element={<Navigate to="/data-problems/how-to-check-wasp-subscriptions-mtn/" replace />} />
+        <Route path="/data-problems/how-to-stop-background-data-usage-android" element={<Navigate to="/data-problems/how-to-stop-background-data-usage-android/" replace />} />
+        <Route path="/data-problems/how-to-stop-apps-using-data-in-background-samsung" element={<Navigate to="/data-problems/how-to-stop-apps-using-data-in-background-samsung/" replace />} />
         <Route path="/fix-a-problem/" element={<Navigate to="/fix-mobile-problems/" replace />} />
         <Route
           path="*"
