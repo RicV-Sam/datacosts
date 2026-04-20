@@ -9,7 +9,7 @@
     "vodacom"
   ],
   "intentScore": 4,
-  "quickAnswer": "Vodacom WASP charges usually happen because one content service keeps billing the line on a repeated cycle. Check My Vodacom app and the cancellation menu before the next deduction window.",
+  "quickAnswer": "Vodacom WASP charges happen because an active content service keeps billing your line on a repeat cycle. Open My Vodacom app, cancel the service, and ask Vodacom to block new content-service sign-ups.",
   "causes": [
     {
       "cause": "Vodacom content service is still active",
@@ -48,7 +48,7 @@
   "faqs": [
     {
       "question": "How do I cancel WASP charges on Vodacom?",
-      "answer": "Open My Vodacom app and cancel the active content service first. Then confirm the next deduction does not return."
+      "answer": "Cancel WASP charges by removing the active content service in My Vodacom app. Then ask Vodacom to block new content-service sign-ups and check that the next deduction does not return."
     },
     {
       "question": "Why am I getting WASP charges on Vodacom?",

@@ -9,7 +9,7 @@
     "vodacom"
   ],
   "intentScore": 5,
-  "quickAnswer": "Vodacom data usually disappears because background apps, auto-updates, hotspot sharing, or out-of-bundle access keep using the bundle after you stop watching it. Check usage first, then block the app or setting that is draining the line.",
+  "quickAnswer": "Vodacom data disappears because background apps, auto-updates, hotspot sharing, or out-of-bundle access keep using the bundle after you stop watching it. Check phone data usage, then block the app or setting draining the line.",
   "causes": [
     {
       "cause": "Background apps keep syncing",
@@ -32,9 +32,9 @@
     "general": [],
     "byNetwork": {
       "vodacom": [
-        "Open your phone data-usage screen and find the app that used the most mobile data today.",
-        "Turn off background data for the heaviest app, especially video, cloud, and social apps.",
-        "Pause app updates, photo backup, and video autoplay until you are back on Wi-Fi.",
+        "Open phone data usage.",
+        "Block the heaviest app.",
+        "Pause mobile auto-updates.",
         "Check whether hotspot sharing is still on and switch it off if nobody is using it.",
         "Use the network app to block out-of-bundle data so airtime does not carry the line after the bundle ends."
       ],
@@ -60,7 +60,7 @@
     },
     {
       "question": "How do you stop out-of-bundle browsing on Vodacom?",
-      "answer": "Use the network app or support channel to switch off out-of-bundle access before you load more airtime."
+      "answer": "Stop out-of-bundle browsing by switching off out-of-bundle access before loading more airtime. Use the Vodacom app or support channel, then confirm mobile data stops when the bundle ends."
     }
   ],
   "internalLinks": [

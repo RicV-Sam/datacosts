@@ -9,7 +9,7 @@
     "vodacom"
   ],
   "intentScore": 5,
-  "quickAnswer": "Vodacom airtime loss usually happens because fallback data use, repeated deductions, or mixed charges keep billing after a top-up. Check My Vodacom app and *135# before you load more airtime.",
+  "quickAnswer": "Vodacom airtime disappears because fallback data use, subscriptions, or mixed charges keep billing the line after a top-up. Check My Vodacom app or dial *135#, then block the charge source before loading more airtime.",
   "causes": [
     {
       "cause": "Vodacom out-of-bundle browsing keeps billing after a bundle ends",
@@ -52,7 +52,7 @@
   "faqs": [
     {
       "question": "Why does my Vodacom airtime keep disappearing?",
-      "answer": "Vodacom airtime disappears when fallback data use, subscriptions, or mixed charges keep billing the line. Check recent deductions first."
+      "answer": "Vodacom airtime keeps disappearing because fallback data use, subscriptions, or mixed charges are billing the line. Check recent deductions first, then block the repeated charge source before topping up again."
     },
     {
       "question": "How do I stop Vodacom airtime from disappearing?",

@@ -9,7 +9,7 @@
     "vodacom"
   ],
   "intentScore": 5,
-  "quickAnswer": "Vodacom data usually happens because one app, hotspot use, or fallback browsing keeps the session alive after you think it has stopped. Check My Vodacom app and *135# before you top up again.",
+  "quickAnswer": "Vodacom data disappears because background apps, hotspot sharing, or fallback browsing keep using your bundle after you stop watching it. Check usage in My Vodacom app or dial *135#, then switch off the app or setting draining the line.",
   "causes": [
     {
       "cause": "Vodacom video or social bundles end before the main balance",
@@ -52,7 +52,7 @@
   "faqs": [
     {
       "question": "Why does my Vodacom data keep disappearing?",
-      "answer": "Vodacom data disappears when one app, hotspot use, or fallback browsing stays active. Check recent usage before buying another bundle."
+      "answer": "Vodacom data keeps disappearing because one app, hotspot session, or fallback setting is still using the line. Check recent usage, then switch off the app or setting before buying another bundle."
     },
     {
       "question": "How do I stop data from disappearing on Vodacom?",
