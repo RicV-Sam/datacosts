@@ -1,0 +1,111 @@
+{
+  "pageType": "problem-solver",
+  "keyword": "why is my airtime disappearing mtn",
+  "slug": "data-problems/why-is-my-airtime-disappearing-mtn",
+  "pageTitle": "Why MTN airtime is disappearing",
+  "metaDescription": "Find why your MTN airtime is disappearing, check subscriptions and fallback data, then block repeat charges before your next top-up loses value again.",
+  "h1": "Why is my airtime disappearing MTN",
+  "networks": [
+    "mtn"
+  ],
+  "intentScore": 5,
+  "quickAnswer": "MTN airtime loss usually happens because fallback data use, repeated deductions, or mixed charges keep billing after a top-up. Check MyMTN app and *136# before you load more airtime.",
+  "causes": [
+    {
+      "cause": "MTN fallback browsing or a recurring charge restarts after each top-up",
+      "explanation": "Most users notice this after loading airtime in the evening, then finding less balance the next morning on MTN. MTN airtime loss often stands out after a top-up because fallback use resumes quickly. Users usually notice it after a fresh top-up or by the next morning."
+    },
+    {
+      "cause": "A premium service or subscription is billing",
+      "explanation": "Recurring content charges can look like random airtime loss until you inspect recent deductions."
+    },
+    {
+      "cause": "Calls, SMS, or app purchases are mixing with data use",
+      "explanation": "Small charges across several actions can add up faster than one user expects."
+    },
+    {
+      "cause": "The wrong bundle type ran out first",
+      "explanation": "When a limited bundle ends, the line can drop back to airtime charging without a strong warning."
+    }
+  ],
+  "fixSteps": {
+    "general": [],
+    "byNetwork": {
+      "vodacom": [],
+      "mtn": [
+        "Open MyMTN app.",
+        "Dial *136#.",
+        "Turn off fallback data use.",
+        "Check calls, SMS, app purchases, and subscriptions from the same period.",
+        "Monitor the next morning balance to see which charge repeats."
+      ],
+      "cellc": [],
+      "telkom": []
+    }
+  },
+  "preventionTips": [
+    "Keep a bundle active so airtime does not become fallback data.",
+    "Review recent deductions after every unexpected airtime drop.",
+    "Turn off carrier billing if you do not use app store purchases.",
+    "Check active subscriptions before you top up again."
+  ],
+  "faqs": [
+    {
+      "question": "Why does my MTN airtime keep disappearing?",
+      "answer": "MTN airtime disappears when fallback data use, subscriptions, or mixed charges keep billing the line. Check recent deductions first."
+    },
+    {
+      "question": "How do I stop MTN airtime from disappearing?",
+      "answer": "Open MyMTN app, check recent deductions, and turn off any fallback data setting first. Then watch the next deduction window before topping up again."
+    },
+    {
+      "question": "Can MTN data use airtime overnight?",
+      "answer": "Yes. If the bundle finishes and fallback use stays on, airtime can disappear by the next morning."
+    },
+    {
+      "question": "Could a subscription be draining my MTN airtime every day?",
+      "answer": "Yes. A recurring content charge can deduct daily until it is cancelled or blocked."
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchorText": "Stop MTN airtime from disappearing",
+      "url": "/data-problems/how-to-stop-airtime-disappearing-mtn",
+      "reason": "same airtime-loss cluster",
+      "status": "live"
+    },
+    {
+      "anchorText": "See why your MTN data is disappearing",
+      "url": "/data-problems/why-is-my-data-disappearing-mtn",
+      "reason": "same network related problem",
+      "status": "live"
+    },
+    {
+      "anchorText": "Compare Vodacom and MTN prepaid data",
+      "url": "/comparisons/vodacom-vs-mtn-prepaid-data",
+      "reason": "related comparison, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Find MTN USSD codes",
+      "url": "/tools/mtn-ussd-codes",
+      "reason": "same network tool",
+      "status": "live"
+    }
+  ],
+  "verifyFlags": [
+    "quickAnswer",
+    "fixSteps.byNetwork.mtn[1]"
+  ],
+  "monetisation": {
+    "adPlacement1": "after-quick-answer",
+    "adPlacement2": "after-fix-steps",
+    "affiliateLink": null
+  },
+  "schemaTypes": [
+    "FAQPage",
+    "Article"
+  ],
+  "lastReviewed": "2026-04-18",
+  "reviewDueDate": "2026-07-18"
+}

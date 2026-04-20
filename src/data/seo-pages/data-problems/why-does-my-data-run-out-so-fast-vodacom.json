@@ -1,10 +1,10 @@
 {
   "pageType": "problem-solver",
-  "keyword": "why is my data disappearing vodacom",
-  "slug": "data-problems/why-is-my-data-disappearing-vodacom",
-  "pageTitle": "Why Vodacom data is disappearing",
-  "metaDescription": "Find why your Vodacom data is disappearing, check apps, hotspot, bundle expiry, and fallback settings, then stop hidden usage before buying more data.",
-  "h1": "Why is my data disappearing Vodacom",
+  "keyword": "why does my data run out so fast vodacom",
+  "slug": "data-problems/why-does-my-data-run-out-so-fast-vodacom",
+  "pageTitle": "Why Vodacom data runs out so fast",
+  "metaDescription": "Find why your Vodacom data runs out so fast, check the biggest usage drains, and stop background apps or fallback settings wasting your bundle each day.",
+  "h1": "Why does my data run out so fast Vodacom",
   "networks": [
     "vodacom"
   ],
@@ -44,10 +44,9 @@
     }
   },
   "preventionTips": [
-    "Set a data warning before the bundle reaches the last part of the month.",
-    "Keep app updates and backups on Wi-Fi only.",
-    "Turn hotspot off as soon as you finish sharing data.",
-    "Check usage before buying another bundle so you stop the real drain first."
+    "Check account activity before buying more airtime or data.",
+    "Change one setting at a time so you can see what fixed the issue.",
+    "Keep background updates off mobile data where possible."
   ],
   "faqs": [
     {
@@ -69,8 +68,8 @@
   ],
   "internalLinks": [
     {
-      "anchorText": "See why Vodacom data runs out fast",
-      "url": "/data-problems/why-does-my-data-run-out-so-fast-vodacom",
+      "anchorText": "See why your Vodacom data is disappearing",
+      "url": "/data-problems/why-is-my-data-disappearing-vodacom",
       "reason": "same data-loss cluster",
       "status": "live"
     },

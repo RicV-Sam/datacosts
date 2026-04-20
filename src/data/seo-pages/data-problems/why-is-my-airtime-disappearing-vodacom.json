@@ -1,0 +1,111 @@
+{
+  "pageType": "problem-solver",
+  "keyword": "why is my airtime disappearing vodacom",
+  "slug": "data-problems/why-is-my-airtime-disappearing-vodacom",
+  "pageTitle": "Why Vodacom airtime is disappearing",
+  "metaDescription": "Find why your Vodacom airtime is disappearing, check subscriptions and fallback data, then block repeat charges before your next top-up loses value again.",
+  "h1": "Why is my airtime disappearing Vodacom",
+  "networks": [
+    "vodacom"
+  ],
+  "intentScore": 5,
+  "quickAnswer": "Vodacom airtime loss usually happens because fallback data use, repeated deductions, or mixed charges keep billing after a top-up. Check My Vodacom app and *135# before you load more airtime.",
+  "causes": [
+    {
+      "cause": "Vodacom out-of-bundle browsing keeps billing after a bundle ends",
+      "explanation": "Most users notice this after loading airtime in the evening, then finding less balance the next morning on Vodacom. Vodacom users often notice airtime loss when out-of-bundle access stays active. Users usually notice it after a fresh top-up or by the next morning."
+    },
+    {
+      "cause": "A premium service or subscription is billing",
+      "explanation": "Recurring content charges can look like random airtime loss until you inspect recent deductions."
+    },
+    {
+      "cause": "Calls, SMS, or app purchases are mixing with data use",
+      "explanation": "Small charges across several actions can add up faster than one user expects."
+    },
+    {
+      "cause": "The wrong bundle type ran out first",
+      "explanation": "When a limited bundle ends, the line can drop back to airtime charging without a strong warning."
+    }
+  ],
+  "fixSteps": {
+    "general": [],
+    "byNetwork": {
+      "vodacom": [
+        "Open My Vodacom app.",
+        "Dial *135#.",
+        "Turn off fallback data use.",
+        "Check calls, SMS, app purchases, and subscriptions from the same period.",
+        "Monitor the next morning balance to see which charge repeats."
+      ],
+      "mtn": [],
+      "cellc": [],
+      "telkom": []
+    }
+  },
+  "preventionTips": [
+    "Keep a bundle active so airtime does not become fallback data.",
+    "Review recent deductions after every unexpected airtime drop.",
+    "Turn off carrier billing if you do not use app store purchases.",
+    "Check active subscriptions before you top up again."
+  ],
+  "faqs": [
+    {
+      "question": "Why does my Vodacom airtime keep disappearing?",
+      "answer": "Vodacom airtime disappears when fallback data use, subscriptions, or mixed charges keep billing the line. Check recent deductions first."
+    },
+    {
+      "question": "How do I stop Vodacom airtime from disappearing?",
+      "answer": "Open My Vodacom app, check recent deductions, and turn off any fallback data setting first. Then watch the next deduction window before topping up again."
+    },
+    {
+      "question": "Can Vodacom data use airtime overnight?",
+      "answer": "Yes. If the bundle finishes and fallback use stays on, airtime can disappear by the next morning."
+    },
+    {
+      "question": "Could a subscription be draining my Vodacom airtime every day?",
+      "answer": "Yes. A recurring content charge can deduct daily until it is cancelled or blocked."
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchorText": "Stop Vodacom WASP charges",
+      "url": "/data-problems/how-to-stop-wasp-charges-vodacom",
+      "reason": "same airtime-loss cluster",
+      "status": "live"
+    },
+    {
+      "anchorText": "See why your Vodacom data is disappearing",
+      "url": "/data-problems/why-is-my-data-disappearing-vodacom",
+      "reason": "same network related problem",
+      "status": "live"
+    },
+    {
+      "anchorText": "Compare Vodacom and MTN prepaid data",
+      "url": "/comparisons/vodacom-vs-mtn-prepaid-data",
+      "reason": "related comparison, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Estimate Vodacom data costs",
+      "url": "/tools/vodacom-data-cost-calculator",
+      "reason": "same network tool",
+      "status": "live"
+    }
+  ],
+  "verifyFlags": [
+    "quickAnswer",
+    "fixSteps.byNetwork.vodacom[1]"
+  ],
+  "monetisation": {
+    "adPlacement1": "after-quick-answer",
+    "adPlacement2": "after-fix-steps",
+    "affiliateLink": null
+  },
+  "schemaTypes": [
+    "FAQPage",
+    "Article"
+  ],
+  "lastReviewed": "2026-04-18",
+  "reviewDueDate": "2026-07-18"
+}

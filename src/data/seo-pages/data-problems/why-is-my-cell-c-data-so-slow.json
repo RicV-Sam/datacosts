@@ -1,0 +1,104 @@
+{
+  "pageType": "problem-solver",
+  "keyword": "why is my cell c data so slow",
+  "slug": "data-problems/why-is-my-cell-c-data-so-slow",
+  "pageTitle": "Why Cell C data is so slow",
+  "metaDescription": "Find why your Cell C data is so slow, check coverage, congestion, and phone settings, then fix the causes holding your connection back before buying data.",
+  "h1": "Why is my Cell C data so slow",
+  "networks": [
+    "cellc"
+  ],
+  "intentScore": 5,
+  "quickAnswer": "Cell C slow data usually happens because local coverage conditions or congestion keep forcing a weaker session. Test another spot, change network mode, and compare usage before buying more data.",
+  "causes": [
+    {
+      "cause": "Cell C signal quality keeps shifting",
+      "explanation": "Most users notice this in one room, one route, or one time window where Cell C coverage keeps changing. Cell C data often feels slower when coverage shifts force the phone to keep retrying traffic. Users usually notice it at busy times or on the same daily route."
+    },
+    {
+      "cause": "The tower is congested",
+      "explanation": "Busy times can slow speeds even when the signal bars still look normal."
+    },
+    {
+      "cause": "The phone is on the wrong network mode",
+      "explanation": "A bad 3G or LTE selection can make the data session feel worse than it should."
+    },
+    {
+      "cause": "Background apps are filling the connection",
+      "explanation": "Cloud backup, autoplay, or updates can leave little room for the task you are trying to load."
+    }
+  ],
+  "fixSteps": {
+    "general": [],
+    "byNetwork": {
+      "vodacom": [],
+      "mtn": [],
+      "cellc": [
+        "Test Cell C elsewhere.",
+        "Switch network mode.",
+        "Pause heavy background apps.",
+        "Run a quick speed test in two locations and compare the result.",
+        "Report the area issue if Cell C stays slow in one place"
+      ],
+      "telkom": []
+    }
+  },
+  "preventionTips": [
+    "Download large files on Wi-Fi where possible.",
+    "Avoid judging speed from one room or one busy hour only.",
+    "Keep the phone software current so network settings stay up to date.",
+    "Pause heavy background sync before an important tethering or browsing session."
+  ],
+  "faqs": [
+    {
+      "question": "Why is Cell C data so slow right now?",
+      "answer": "Cell C data is usually slow because of weak signal, congestion, or the wrong network mode. Test another spot before buying more data."
+    },
+    {
+      "question": "How do I fix slow Cell C data on my phone?",
+      "answer": "Move to a stronger coverage area, switch network mode, and pause heavy background use. Then test the same site or app again."
+    },
+    {
+      "question": "Why is Cell C slow every evening?",
+      "answer": "Evening slowdown often means tower congestion in the same area. If the problem clears later, the location is usually the clue."
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchorText": "See why your Cell C data is disappearing",
+      "url": "/data-problems/why-is-my-data-disappearing-cell-c",
+      "reason": "same network-usage cluster",
+      "status": "live"
+    },
+    {
+      "anchorText": "See why your Cell C airtime is disappearing",
+      "url": "/data-problems/why-is-my-airtime-disappearing-cell-c",
+      "reason": "same network related problem",
+      "status": "live"
+    },
+    {
+      "anchorText": "See the cheapest prepaid data options",
+      "url": "/comparisons/cheapest-prepaid-data-south-africa",
+      "reason": "related comparison, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Check common Cell C USSD codes",
+      "url": "/tools/cell-c-ussd-codes",
+      "reason": "same network tool",
+      "status": "pending"
+    }
+  ],
+  "verifyFlags": [],
+  "monetisation": {
+    "adPlacement1": "after-quick-answer",
+    "adPlacement2": "after-fix-steps",
+    "affiliateLink": null
+  },
+  "schemaTypes": [
+    "FAQPage",
+    "Article"
+  ],
+  "lastReviewed": "2026-04-18",
+  "reviewDueDate": "2027-04-18"
+}

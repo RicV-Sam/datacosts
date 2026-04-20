@@ -1,0 +1,112 @@
+{
+  "pageType": "problem-solver",
+  "keyword": "why is my data disappearing telkom",
+  "slug": "data-problems/why-is-my-data-disappearing-telkom",
+  "pageTitle": "Why Telkom data is disappearing",
+  "metaDescription": "Find why your Telkom data is disappearing, check apps, hotspot, bundle expiry, and fallback settings, then stop hidden usage before buying more data today.",
+  "h1": "Why is my data disappearing Telkom",
+  "networks": [
+    "telkom"
+  ],
+  "intentScore": 5,
+  "quickAnswer": "Telkom data usually happens because one app, hotspot use, or fallback browsing keeps the session alive after you think it has stopped. Check Telkom app and *188# [VERIFY BEFORE PUBLISH] before you top up again.",
+  "causes": [
+    {
+      "cause": "Telkom the phone drops off the preferred coverage area and keeps using a fallback connection",
+      "explanation": "Most users notice this after a normal-looking session, then a surprise drain the next morning or after a second top-up on Telkom. Telkom data loss often stands out when the line drops off the preferred coverage area. Users usually notice it after overnight refreshes or repeated top-ups."
+    },
+    {
+      "cause": "The wrong bundle type finished first",
+      "explanation": "Video, social, night, or promo bundles can end before the main Telkom balance and make the data loss look random."
+    },
+    {
+      "cause": "Hotspot or background apps kept running",
+      "explanation": "Another device or one busy app can keep consuming data even after the screen is off."
+    },
+    {
+      "cause": "Telkom account checks happened too late",
+      "explanation": "Users often buy another Telkom bundle before checking which app or setting actually caused the drain."
+    }
+  ],
+  "fixSteps": {
+    "general": [],
+    "byNetwork": {
+      "vodacom": [],
+      "mtn": [],
+      "cellc": [],
+      "telkom": [
+        "Open Telkom app.",
+        "Dial *188# [VERIFY BEFORE PUBLISH].",
+        "Turn off fallback browsing.",
+        "Check whether hotspot, updates, or backup used data in the background.",
+        "Confirm which bundle type expired before topping up again."
+      ]
+    }
+  },
+  "preventionTips": [
+    "Set a data warning before the bundle reaches the last part of the month.",
+    "Keep app updates and backups on Wi-Fi only.",
+    "Turn hotspot off as soon as you finish sharing data.",
+    "Check usage before buying another bundle so you stop the real drain first."
+  ],
+  "faqs": [
+    {
+      "question": "Why does my Telkom data keep disappearing?",
+      "answer": "Telkom data disappears when one app, hotspot use, or fallback browsing stays active. Check recent usage before buying another bundle."
+    },
+    {
+      "question": "How do I stop data from disappearing on Telkom?",
+      "answer": "Use Telkom app and *188# [VERIFY BEFORE PUBLISH] to confirm which bundle is being used, then switch off fallback browsing and block the heaviest background app."
+    },
+    {
+      "question": "Why did my Telkom data disappear overnight?",
+      "answer": "Overnight drain usually means background refresh, backup, or hotspot use stayed active after the screen was off. The next-morning usage history normally shows the culprit."
+    },
+    {
+      "question": "Can a social or video bundle end before my main Telkom data?",
+      "answer": "Yes. A short-validity or limited-use bundle can finish first and make the rest of the data loss look random."
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchorText": "Stop hidden data drain on Android",
+      "url": "/data-problems/how-to-stop-data-from-disappearing-android",
+      "reason": "same data-loss cluster",
+      "status": "live"
+    },
+    {
+      "anchorText": "See why your Telkom airtime is disappearing",
+      "url": "/data-problems/why-is-my-airtime-disappearing-telkom",
+      "reason": "same network related problem",
+      "status": "live"
+    },
+    {
+      "anchorText": "See the cheapest prepaid data options",
+      "url": "/comparisons/cheapest-prepaid-data-south-africa",
+      "reason": "related comparison, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Check common Telkom USSD codes",
+      "url": "/tools/telkom-ussd-codes",
+      "reason": "same network tool",
+      "status": "pending"
+    }
+  ],
+  "verifyFlags": [
+    "quickAnswer",
+    "fixSteps.byNetwork.telkom[1]",
+    "faqs[1].answer"
+  ],
+  "monetisation": {
+    "adPlacement1": "after-quick-answer",
+    "adPlacement2": "after-fix-steps",
+    "affiliateLink": null
+  },
+  "schemaTypes": [
+    "FAQPage",
+    "Article"
+  ],
+  "lastReviewed": "2026-04-18",
+  "reviewDueDate": "2026-07-18"
+}

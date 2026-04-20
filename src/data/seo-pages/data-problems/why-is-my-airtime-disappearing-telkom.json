@@ -1,0 +1,111 @@
+{
+  "pageType": "problem-solver",
+  "keyword": "why is my airtime disappearing telkom",
+  "slug": "data-problems/why-is-my-airtime-disappearing-telkom",
+  "pageTitle": "Why Telkom airtime is disappearing",
+  "metaDescription": "Find why your Telkom airtime is disappearing, check subscriptions and fallback data, then block repeat charges before your next top-up loses value again.",
+  "h1": "Why is my airtime disappearing Telkom",
+  "networks": [
+    "telkom"
+  ],
+  "intentScore": 5,
+  "quickAnswer": "Telkom airtime loss usually happens because fallback data use, repeated deductions, or mixed charges keep billing after a top-up. Check Telkom app and *188# [VERIFY BEFORE PUBLISH] before you load more airtime.",
+  "causes": [
+    {
+      "cause": "Telkom a bundle expires and the line quietly falls back to pay-as-you-go use",
+      "explanation": "Most users notice this after loading airtime in the evening, then finding less balance the next morning on Telkom. Telkom airtime loss often starts after a bundle ends and the line falls back quietly. Users usually notice it after a fresh top-up or by the next morning."
+    },
+    {
+      "cause": "A premium service or subscription is billing",
+      "explanation": "Recurring content charges can look like random airtime loss until you inspect recent deductions."
+    },
+    {
+      "cause": "Calls, SMS, or app purchases are mixing with data use",
+      "explanation": "Small charges across several actions can add up faster than one user expects."
+    },
+    {
+      "cause": "The wrong bundle type ran out first",
+      "explanation": "When a limited bundle ends, the line can drop back to airtime charging without a strong warning."
+    }
+  ],
+  "fixSteps": {
+    "general": [],
+    "byNetwork": {
+      "vodacom": [],
+      "mtn": [],
+      "cellc": [],
+      "telkom": [
+        "Open Telkom app.",
+        "Dial *188# [VERIFY BEFORE PUBLISH].",
+        "Turn off fallback data use.",
+        "Check calls, SMS, app purchases, and subscriptions from the same period.",
+        "Monitor the next morning balance to see which charge repeats."
+      ]
+    }
+  },
+  "preventionTips": [
+    "Keep a bundle active so airtime does not become fallback data.",
+    "Review recent deductions after every unexpected airtime drop.",
+    "Turn off carrier billing if you do not use app store purchases.",
+    "Check active subscriptions before you top up again."
+  ],
+  "faqs": [
+    {
+      "question": "Why does my Telkom airtime keep disappearing?",
+      "answer": "Telkom airtime disappears when fallback data use, subscriptions, or mixed charges keep billing the line. Check recent deductions first."
+    },
+    {
+      "question": "How do I stop Telkom airtime from disappearing?",
+      "answer": "Open Telkom app, check recent deductions, and turn off any fallback data setting first. Then watch the next deduction window before topping up again."
+    },
+    {
+      "question": "Can Telkom data use airtime overnight?",
+      "answer": "Yes. If the bundle finishes and fallback use stays on, airtime can disappear by the next morning."
+    },
+    {
+      "question": "Could a subscription be draining my Telkom airtime every day?",
+      "answer": "Yes. A recurring content charge can deduct daily until it is cancelled or blocked."
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchorText": "See why your Telkom airtime is disappearing",
+      "url": "/data-problems/why-is-my-airtime-disappearing-telkom",
+      "reason": "same airtime-loss cluster",
+      "status": "live"
+    },
+    {
+      "anchorText": "See why your Telkom data is disappearing",
+      "url": "/data-problems/why-is-my-data-disappearing-telkom",
+      "reason": "same network related problem",
+      "status": "live"
+    },
+    {
+      "anchorText": "See the cheapest prepaid data options",
+      "url": "/comparisons/cheapest-prepaid-data-south-africa",
+      "reason": "related comparison, already in the registry",
+      "status": "live"
+    },
+    {
+      "anchorText": "Check common Telkom USSD codes",
+      "url": "/tools/telkom-ussd-codes",
+      "reason": "same network tool",
+      "status": "pending"
+    }
+  ],
+  "verifyFlags": [
+    "quickAnswer",
+    "fixSteps.byNetwork.telkom[1]"
+  ],
+  "monetisation": {
+    "adPlacement1": "after-quick-answer",
+    "adPlacement2": "after-fix-steps",
+    "affiliateLink": null
+  },
+  "schemaTypes": [
+    "FAQPage",
+    "Article"
+  ],
+  "lastReviewed": "2026-04-18",
+  "reviewDueDate": "2026-07-18"
+}
