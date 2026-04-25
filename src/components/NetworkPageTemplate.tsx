@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { AdUnit } from './AdUnit';
 import { NetworkName } from '../types';
 import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, toCanonicalUrl } from '../seo/siteConstants';
 
@@ -296,7 +297,7 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
         </p>
       </header>
 
-      <div className="ad-slot mb-8 min-h-[90px] rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-2" aria-label="Top ad slot" />
+      <AdUnit type="aboveFold" className="mb-8" />
 
       <div className="space-y-10">
         <QuickAnswerCard
@@ -306,7 +307,7 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
           bundles={preparedBundles}
         />
         <BundleTable bundles={preparedBundles} />
-        <div className="ad-slot min-h-[250px] rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-2" aria-label="Mid-content ad slot" />
+        <AdUnit type="inContent" />
         <BestForSection bundleTypeLabel={bundleTypeLabel} points={bestForItems} />
         <section>
           <h2 className="text-2xl font-black tracking-tight text-slate-900">
@@ -318,7 +319,7 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
         <FAQSection faqs={faqs} />
       </div>
 
-      <div className="ad-slot mt-10 min-h-[250px] rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-2" aria-label="Bottom ad slot" />
+      <AdUnit type="inContent" className="mt-10" />
     </main>
   );
 };
