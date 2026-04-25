@@ -26,9 +26,10 @@ function dispatchPrerenderReadyEvent(): void {
   document.dispatchEvent(new Event('render-event'));
 }
 
-function isAboveFoldContentStable(): boolean {
+function isPrerenderContentStable(): boolean {
   const heading = document.querySelector('main h1, h1') as HTMLElement | null;
   if (!heading) return false;
+  if (!document.querySelector('link[rel="canonical"]')) return false;
 
   const styles = window.getComputedStyle(heading);
   const opacity = Number(styles.opacity || '1');
@@ -44,7 +45,7 @@ function waitForStableAboveFoldAndDispatch(): void {
   let stableChecks = 0;
 
   const tick = () => {
-    if (isAboveFoldContentStable()) {
+    if (isPrerenderContentStable()) {
       stableChecks += 1;
     } else {
       stableChecks = 0;
