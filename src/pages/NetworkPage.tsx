@@ -9,7 +9,7 @@ import { TrustPanel } from '../components/TrustPanel';
 import { ArrowLeft, ChevronRight, ShieldCheck, Zap, Info, Smartphone, HelpCircle, Clock, Tag, ExternalLink, CheckCircle2, Link as LinkIcon } from 'lucide-react';
 import { NetworkName, NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema } from '../utils/structuredData';
-import { formatIsoForDisplay, getDefaultPublishedIso, getNetworkModifiedIso } from '../seo/contentDates';
+import { formatIsoForDisplay, getDefaultPublishedIso, getNetworkModifiedIso, getNetworkPageModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface NetworkPageProps {
@@ -110,9 +110,11 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const pageTitle = `${network.name} Data Prices South Africa (2026)`;
   const metaDescription = `Compare ${network.name} prepaid data prices in South Africa, including daily, weekly and monthly bundles, USSD codes, and practical savings tips updated for 2026.`;
   const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/`);
-  const dateModifiedIso = getNetworkModifiedIso(networkSlug);
+  const dateModifiedIso = getNetworkPageModifiedIso(networkSlug);
+  const sourceCheckedIso = getNetworkModifiedIso(networkSlug);
   const datePublishedIso = getDefaultPublishedIso();
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
+  const sourceCheckedLabel = formatIsoForDisplay(sourceCheckedIso);
 
   const webPageSchema = {
     '@context': 'https://schema.org',
@@ -382,7 +384,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         <section className="mb-16">
           <h2 className="text-2xl font-black tracking-tighter mb-6 flex items-center gap-2">
             <Tag className="w-6 h-6 text-[#1b6d24]" />
-            {network.name} prepaid bundle prices ({lastUpdated})
+            {network.name} prepaid bundle prices ({sourceCheckedLabel})
           </h2>
           <p className="text-slate-600 font-medium leading-relaxed mb-5">
             We track publicly listed prepaid bundle pricing, USSD access routes and network-specific offer patterns in South Africa to compare real value, not just headline GB size.
@@ -550,7 +552,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             </p>
           )}
           <div className="mt-5 text-xs text-slate-500 font-medium">
-            Last checked {lastUpdated}. USSD codes can change by campaign or customer profile.
+            Last checked {sourceCheckedLabel}. USSD codes can change by campaign or customer profile.
             {' '}
             <a href="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">View full South Africa USSD directory</a>.
           </div>

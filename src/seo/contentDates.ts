@@ -4,22 +4,23 @@ const DEFAULT_MODIFIED_ISO = '2026-02-15T00:00:00.000Z';
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/': '2026-03-25T00:00:00.000Z',
   '/alerts/': '2026-03-30T00:00:00.000Z',
-  '/about/': '2026-01-20T00:00:00.000Z',
-  '/contact/': '2026-01-20T00:00:00.000Z',
+  '/about/': '2026-04-25T00:00:00.000Z',
+  '/contact/': '2026-04-25T00:00:00.000Z',
   '/cookie-policy/': '2026-04-08T00:00:00.000Z',
   '/editorial-policy/': '2026-01-20T00:00:00.000Z',
   '/fix-mobile-problems/': '2026-04-01T00:00:00.000Z',
   '/guides/': '2026-03-31T00:00:00.000Z',
-  '/methodology/': '2026-01-20T00:00:00.000Z',
+  '/methodology/': '2026-04-25T00:00:00.000Z',
   '/mtn-ussd-codes/': '2026-03-31T00:00:00.000Z',
   '/network/': '2026-03-24T00:00:00.000Z',
-  '/privacy-policy/': '2026-01-20T00:00:00.000Z',
+  '/privacy-policy/': '2026-04-25T00:00:00.000Z',
   '/save-ussd-codes/': '2026-03-30T00:00:00.000Z',
   '/cell-c-ussd-codes/': '2026-03-31T00:00:00.000Z',
   '/telkom-ussd-codes/': '2026-03-31T00:00:00.000Z',
-  '/terms/': '2026-01-20T00:00:00.000Z',
+  '/terms/': '2026-04-25T00:00:00.000Z',
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
-  '/ussd-codes-south-africa/': '2026-04-08T00:00:00.000Z',
+  '/ussd-codes-south-africa/': '2026-04-25T00:00:00.000Z',
+  '/data-problems/how-to-check-data-balance-vodacom-ussd/': '2026-04-25T00:00:00.000Z',
   '/vodacom-ussd-codes/': '2026-03-31T00:00:00.000Z'
 };
 
@@ -77,6 +78,11 @@ const NETWORK_MODIFIED_BY_SLUG: Record<string, string> = {
   vodacom: '2026-03-17T00:00:00.000Z'
 };
 
+const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
+  mtn: '2026-04-25T00:00:00.000Z',
+  vodacom: '2026-04-25T00:00:00.000Z'
+};
+
 const BUNDLE_TYPE_MODIFIED_ISO = '2026-03-17T00:00:00.000Z';
 
 function normalizeRoute(route: string): string {
@@ -110,6 +116,10 @@ export function getComparisonGuideModifiedIso(slug: string): string {
 
 export function getNetworkModifiedIso(slug: string): string {
   return fromMapOrFallback(NETWORK_MODIFIED_BY_SLUG, slug, '2026-03-14T00:00:00.000Z');
+}
+
+export function getNetworkPageModifiedIso(slug: string): string {
+  return fromMapOrFallback(NETWORK_PAGE_MODIFIED_BY_SLUG, slug, getNetworkModifiedIso(slug));
 }
 
 export function getBundleTypeModifiedIso(networkSlug: string): string {
@@ -148,7 +158,7 @@ export function getRouteModifiedIso(routeInput: string): string {
     if (segments.length >= 2) {
       const networkSlug = segments[1];
       if (segments.length === 2) {
-        return getNetworkModifiedIso(networkSlug);
+        return getNetworkPageModifiedIso(networkSlug);
       }
       return getBundleTypeModifiedIso(networkSlug);
     }
