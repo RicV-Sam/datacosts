@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { AdUnit } from './AdUnit';
+import { TrustPanel } from './TrustPanel';
 
 interface GuidePageProps {
   guide: Guide;
@@ -87,11 +88,35 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
   ],
   'how-to-check-data-balance': [
     { href: '/guides/airtime-data-saving-tips-south-africa/', label: 'Airtime & Data Saving Tips', description: 'Full consumer playbook to reduce telecom spend.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
+    { href: '/guides/how-to-check-mtn-data-balance/', label: 'How to Check MTN Data Balance', description: 'MTN-specific USSD and app workflow.', action: 'guide', slug: 'how-to-check-mtn-data-balance' },
+    { href: '/data-problems/how-to-check-data-balance-vodacom-ussd/', label: 'How to Check Vodacom Data Balance', description: 'Vodacom-specific USSD workflow.', action: 'route' },
     { href: '/guides/how-to-buy-data-vodacom/', label: 'How to Buy Vodacom Data', description: 'Next action after balance checks.', action: 'guide', slug: 'how-to-buy-data-vodacom' },
     { href: '/guides/how-to-buy-data-mtn/', label: 'How to Buy MTN Data', description: 'Next action after balance checks.', action: 'guide', slug: 'how-to-buy-data-mtn' },
-    { href: '/guides/how-to-buy-data-telkom/', label: 'How to Buy Telkom Data', description: 'Next action after balance checks.', action: 'guide', slug: 'how-to-buy-data-telkom' },
-    { href: '/guides/how-to-buy-data-cell-c/', label: 'How to Buy Cell C Data', description: 'Next action after balance checks.', action: 'guide', slug: 'how-to-buy-data-cell-c' },
     { href: '/guides/why-is-my-data-finishing-so-fast/', label: 'Why Data Finishes Fast', description: 'Fix rapid usage drain.', action: 'guide', slug: 'why-is-my-data-finishing-so-fast' }
+  ],
+  'how-to-check-mtn-data-balance': [
+    { href: '/guides/how-to-check-data-balance/', label: 'Check Data Balance on All Networks', description: 'Compare balance routes across SA networks.', action: 'guide', slug: 'how-to-check-data-balance' },
+    { href: '/guides/how-to-check-mtn-airtime-balance/', label: 'How to Check MTN Airtime Balance', description: 'Confirm airtime before out-of-bundle use.', action: 'guide', slug: 'how-to-check-mtn-airtime-balance' },
+    { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Open all MTN USSD shortcuts.', action: 'route' },
+    { href: '/network/mtn/', label: 'MTN Network Page', description: 'Review MTN bundle and network context.', action: 'route' },
+    { href: '/network/mtn/monthly-data/', label: 'MTN Monthly Data', description: 'Compare longer-validity MTN bundles.', action: 'route' },
+    { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Airtime Disappears', description: 'Diagnose balance drops after data runs out.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' }
+  ],
+  'how-to-check-mtn-airtime-balance': [
+    { href: '/guides/how-to-check-mtn-data-balance/', label: 'How to Check MTN Data Balance', description: 'Rule out out-of-bundle usage.', action: 'guide', slug: 'how-to-check-mtn-data-balance' },
+    { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Open all MTN balance and account shortcuts.', action: 'route' },
+    { href: '/network/mtn/', label: 'MTN Network Page', description: 'Review MTN pricing and account context.', action: 'route' },
+    { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Airtime Disappears', description: 'Find common airtime deduction causes.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
+    { href: '/guides/how-to-check-subscriptions-on-mtn/', label: 'How to Check Subscriptions on MTN', description: 'Check recurring services that may use airtime.', action: 'guide', slug: 'how-to-check-subscriptions-on-mtn' },
+    { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Compare balance shortcuts across networks.', action: 'route' }
+  ],
+  'how-to-check-vodacom-airtime-balance': [
+    { href: '/data-problems/how-to-check-data-balance-vodacom-ussd/', label: 'How to Check Vodacom Data Balance', description: 'Rule out out-of-bundle usage.', action: 'route' },
+    { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes', description: 'Open all Vodacom balance and account shortcuts.', action: 'route' },
+    { href: '/network/vodacom/', label: 'Vodacom Network Page', description: 'Review Vodacom pricing and account context.', action: 'route' },
+    { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Airtime Disappears', description: 'Find common airtime deduction causes.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
+    { href: '/guides/how-to-check-subscriptions-on-vodacom/', label: 'How to Check Subscriptions on Vodacom', description: 'Check recurring services that may use airtime.', action: 'guide', slug: 'how-to-check-subscriptions-on-vodacom' },
+    { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Compare balance shortcuts across networks.', action: 'route' }
   ],
   'airtime-data-saving-tips-south-africa': [
     { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare market-wide prepaid prices.', action: 'route' },
@@ -259,6 +284,8 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
           {showNetworkDisappearingAdLayout && <AdUnit type="aboveFold" className="mb-6" />}
           <p className="text-xl text-slate-600 font-medium leading-relaxed">{guide.intro}</p>
         </header>
+
+        <TrustPanel lastReviewed={lastUpdatedLabel} className="mb-10" />
 
         {guide.quickSummaryItems && guide.quickSummaryItems.length > 0 && (
           <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">

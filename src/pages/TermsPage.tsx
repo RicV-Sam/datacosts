@@ -41,6 +41,9 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate, onScrollTo }) 
             DataCost is provided for general informational and comparison purposes. You may use the site for lawful personal use and decision support.
           </p>
           <p className="text-slate-600 leading-relaxed">
+            You may link to DataCost pages, but you may not copy substantial portions of our content, tables, or page structure for republication without permission.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
             You may not misuse the site, interfere with availability, or attempt to access restricted systems.
           </p>
         </section>
@@ -53,12 +56,18 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate, onScrollTo }) 
           <p className="text-slate-600 leading-relaxed">
             Always verify checkout details on the official provider page before purchase.
           </p>
+          <p className="text-slate-600 leading-relaxed">
+            DataCost is not a live billing system and cannot see your individual SIM profile, personalised offers, credit eligibility, or retailer checkout terms.
+          </p>
         </section>
 
         <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
-          <h2 className="text-2xl font-black tracking-tight">Third-Party Links</h2>
+          <h2 className="text-2xl font-black tracking-tight">Third-Party Links and Network Affiliation</h2>
           <p className="text-slate-600 leading-relaxed">
             DataCost links to operator and partner websites for purchases or additional information. We are not responsible for third-party content, terms, privacy, or service delivery.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            Unless a page clearly states otherwise, DataCost is not affiliated with, endorsed by, or operated by MTN, Vodacom, Telkom, Cell C, Rain, or any retailer mentioned on the site.
           </p>
         </section>
 

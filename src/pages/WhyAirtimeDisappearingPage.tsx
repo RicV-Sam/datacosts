@@ -20,6 +20,7 @@ const operatorSections = [
     balanceCode: '*135#',
     networkHref: '/network/vodacom/',
     ussdHref: '/vodacom-ussd-codes/',
+    balanceGuideHref: '/guides/how-to-check-vodacom-airtime-balance/',
     notes: 'Start by checking whether a bundle expired, then review app usage and any active value-added services through self-service paths.',
     action: 'If airtime drops after browsing or social video, treat out-of-bundle usage as the first thing to rule out.'
   },
@@ -28,6 +29,7 @@ const operatorSections = [
     balanceCode: '*136#',
     networkHref: '/network/mtn/',
     ussdHref: '/mtn-ussd-codes/',
+    balanceGuideHref: '/guides/how-to-check-mtn-airtime-balance/',
     notes: 'Check your active balance first, then review background data use and any recurring extras or airtime-advance activity.',
     action: 'If the issue started after a bundle finished, switch off mobile data until you confirm a fresh bundle is active.'
   },
@@ -234,6 +236,12 @@ export const WhyAirtimeDisappearingPage: React.FC<WhyAirtimeDisappearingPageProp
                     <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Balance check</div>
                     <div className="font-black text-slate-900">{operator.balanceCode}</div>
                   </div>
+                  {'balanceGuideHref' in operator && operator.balanceGuideHref ? (
+                    <Link to={operator.balanceGuideHref} className="rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-[#1b6d24] transition-colors">
+                      <div className="font-black text-slate-900">Check {operator.name} airtime balance</div>
+                      <p className="text-sm text-slate-600 mt-1">Follow the step-by-step airtime balance workflow.</p>
+                    </Link>
+                  ) : null}
                   <Link to={operator.ussdHref} className="rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-[#1b6d24] transition-colors">
                     <div className="font-black text-slate-900">Open {operator.name} USSD page</div>
                     <p className="text-sm text-slate-600 mt-1">Use network-specific balance and self-service shortcuts.</p>

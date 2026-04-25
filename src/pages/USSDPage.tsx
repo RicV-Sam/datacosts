@@ -6,6 +6,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { AdUnit } from '../components/AdUnit';
+import { TrustPanel } from '../components/TrustPanel';
 import { ussdRepository } from '../data/ussd';
 import { NavigateFunction, USSDEntry } from '../types';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
@@ -261,6 +262,12 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
 
+        <TrustPanel
+          lastReviewed={lastUpdated}
+          sources="Operator USSD menus, public support pages, and in-page conservative notes where direct shortcuts can vary by SIM or tariff."
+          className="mb-10"
+        />
+
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
           <h2 className="text-lg font-black tracking-tight mb-4">On this page</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -346,6 +353,22 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
             <Link to="/guides/how-to-check-data-balance/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
               <div className="font-black text-slate-900">How to Check Data Balance</div>
               <p className="text-sm text-slate-600 mt-1">Use the balance guide before you buy another bundle.</p>
+            </Link>
+            <Link to="/guides/how-to-check-mtn-data-balance/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Check MTN data balance</div>
+              <p className="text-sm text-slate-600 mt-1">Use MTN USSD and app routes before browsing again.</p>
+            </Link>
+            <Link to="/data-problems/how-to-check-data-balance-vodacom-ussd/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Check Vodacom data balance</div>
+              <p className="text-sm text-slate-600 mt-1">Use Vodacom USSD and MyVodacom to confirm active bundles.</p>
+            </Link>
+            <Link to="/guides/how-to-check-mtn-airtime-balance/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Check MTN airtime balance</div>
+              <p className="text-sm text-slate-600 mt-1">Confirm airtime before out-of-bundle usage starts.</p>
+            </Link>
+            <Link to="/guides/how-to-check-vodacom-airtime-balance/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Check Vodacom airtime balance</div>
+              <p className="text-sm text-slate-600 mt-1">Useful if airtime keeps dropping after data ends.</p>
             </Link>
             <Link to="/guides/how-to-buy-data-mtn/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
               <div className="font-black text-slate-900">How to Buy Data on MTN</div>

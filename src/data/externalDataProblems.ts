@@ -33,6 +33,7 @@ type RawDataProblemPage = {
   preventionTips: string[];
   schemaTypes?: string[];
   slug: string;
+  lastReviewed?: string;
 };
 
 export type DataProblemPage = {
@@ -47,6 +48,7 @@ export type DataProblemPage = {
   preventionTips: string[];
   quickAnswer: string;
   supportsArticleSchema: boolean;
+  lastReviewed?: string;
 };
 
 function normalizePath(pathname: string): string {
@@ -97,7 +99,8 @@ function toDataProblemPage(pathname: string, raw: RawDataProblemPage): DataProbl
     preventionTips: (raw.preventionTips ?? []).filter(hasText),
     faqs: (raw.faqs ?? []).filter((faq) => hasText(faq.question) && hasText(faq.answer)),
     internalLinks,
-    supportsArticleSchema: (raw.schemaTypes ?? []).includes('Article')
+    supportsArticleSchema: (raw.schemaTypes ?? []).includes('Article'),
+    lastReviewed: raw.lastReviewed
   };
 }
 

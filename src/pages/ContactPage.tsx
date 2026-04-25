@@ -41,7 +41,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo
             Email: <a className="text-[#1b6d24] font-bold hover:underline" href="mailto:hello@datacost.co.za">hello@datacost.co.za</a>
           </p>
           <p className="text-slate-600 leading-relaxed">
-            Include the affected page URL and a short summary to help us action the request quickly.
+            If this mailbox changes, this page will be updated with the current contact route. Include the affected page URL and a short summary to help us action the request quickly.
+          </p>
+          <p id="corrections" className="text-slate-600 leading-relaxed">
+            For corrections, please include the network, the code or price you checked, where you checked it, and the date you saw it.
           </p>
         </section>
 
@@ -52,6 +55,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo
             <li>USSD code accuracy feedback</li>
             <li>Editorial policy or methodology questions</li>
             <li>Privacy-related requests</li>
+            <li>Advertising, analytics, or partnership queries</li>
           </ul>
         </section>
 

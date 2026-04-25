@@ -31,7 +31,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
         <header className="text-center">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4">About DataCost</h1>
           <p className="text-slate-600 font-medium max-w-2xl mx-auto">
-            DataCost is a South African consumer-help site focused on one job: making mobile data prices easier to compare and harder to overpay.
+            DataCost helps South Africans compare mobile data, airtime, USSD codes, network pages, and practical mobile cost-saving information.
           </p>
         </header>
 
@@ -41,7 +41,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
             We built DataCost for prepaid users, students, families, gig workers, and anyone who needs practical answers on data pricing, bundle value, and USSD shortcuts in South Africa.
           </p>
           <p className="text-slate-600 leading-relaxed">
-            Our content is written for real decisions: which bundle to buy today, which network offers better value for your usage, and how to avoid out-of-bundle surprises.
+            Our content is written for real telecom decisions: which bundle type to compare, how to check balances, which USSD route to try first, and how to avoid out-of-bundle surprises.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            DataCost is independent and is not owned by MTN, Vodacom, Telkom, Cell C, or Rain unless clearly stated on a specific page.
           </p>
         </section>
 
@@ -61,7 +64,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
             Pricing and offer structures change often. We periodically refresh bundle tables and guide pages, and we encourage users to verify current offers before checkout.
           </p>
           <p className="text-slate-600 leading-relaxed">
-            If you spot an outdated price or code, please contact us so we can review and correct it quickly.
+            We use public operator information, app or USSD menu checks where practical, and conservative wording when a menu can vary by SIM, tariff, or promotion.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            If you spot an outdated price or code, please use the contact page and include the affected URL, network, and what you saw so we can review and correct it.
           </p>
         </section>
       </main>

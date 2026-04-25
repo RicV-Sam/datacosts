@@ -6,8 +6,9 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { AdUnit } from '../components/AdUnit';
+import { TrustPanel } from '../components/TrustPanel';
 import { NavigateFunction } from '../types';
-import { getDefaultPublishedIso } from '../seo/contentDates';
+import { formatIsoForDisplay, getDefaultPublishedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { getExternalDataProblemPage } from '../data/externalDataProblems';
 import { NotFoundPage } from './NotFoundPage';
@@ -27,6 +28,7 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
 
   const canonicalUrl = toCanonicalUrl(page.canonicalPath);
   const datePublishedIso = getDefaultPublishedIso();
+  const lastReviewed = page.lastReviewed ? formatIsoForDisplay(`${page.lastReviewed}T00:00:00.000Z`) : formatIsoForDisplay(datePublishedIso);
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -49,7 +51,7 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
     url: canonicalUrl,
     image: DEFAULT_OG_IMAGE_URL,
     datePublished: datePublishedIso,
-    dateModified: datePublishedIso,
+    dateModified: page.lastReviewed ? `${page.lastReviewed}T00:00:00.000Z` : datePublishedIso,
     author: {
       '@type': 'Organization',
       name: 'DataCost',
@@ -104,6 +106,12 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">{page.quickAnswer}</p>
         </section>
+
+        <TrustPanel
+          lastReviewed={lastReviewed}
+          sources="Network apps, USSD menus, public support pages, and user-facing operator account flows where available."
+          className="mb-10"
+        />
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6">Causes</h2>

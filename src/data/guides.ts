@@ -1417,6 +1417,222 @@ export const guides: Guide[] = [
         answer: 'No, if you have an active data bundle, it will be used even when roaming on MTN or Vodacom towers (where applicable) at no extra cost.'
       }
     ]
+  },
+  {
+    slug: 'how-to-check-mtn-data-balance',
+    title: 'How to Check MTN Data Balance in South Africa',
+    metaDescription: 'Check your MTN data balance using USSD, the MTN app, and safe fallback methods. Includes troubleshooting and useful South African MTN links.',
+    h1: 'How to Check MTN Data Balance',
+    intro: 'If you are on MTN prepaid or top-up in South Africa, check your data balance before streaming, hotspotting, or buying another bundle. The safest routine is to confirm your balance with USSD first, then use the MTN app when you need a fuller breakdown by bundle type.',
+    quickSummaryTitle: 'Quick Answer',
+    quickSummaryItems: [
+      'Dial *136# for the main MTN balance menu.',
+      'Use *136*1# if your line supports the direct balance shortcut.',
+      'Use the MTN app for a fuller view of remaining bundles, validity, and recent usage.'
+    ],
+    jumpLinksTitle: 'On This Page',
+    jumpLinks: [
+      { label: 'USSD method', anchor: 'ussd-method' },
+      { label: 'MTN app method', anchor: 'app-method' },
+      { label: 'Other methods', anchor: 'alternative-methods' },
+      { label: 'Troubleshooting', anchor: 'troubleshooting' },
+      { label: 'FAQ', anchor: 'faq' }
+    ],
+    comparisonType: 'all',
+    stepsTitle: 'MTN Data Balance Methods',
+    steps: [
+      {
+        id: 'ussd-method',
+        title: 'USSD method: dial *136# or *136*1#',
+        description: 'From your MTN SIM, dial *136# and choose the balance option. Some lines also support *136*1# as a direct balance shortcut. If the direct shortcut does not return the detail you need, use the main *136# menu.'
+      },
+      {
+        id: 'app-method',
+        title: 'App method: check the MTN app',
+        description: 'Open the MTN app while signed in on your MTN number. Look for balances or account summary, then check bundle validity as well as remaining MB or GB. The app is best when you need more detail than a USSD pop-up.'
+      },
+      {
+        id: 'alternative-methods',
+        title: 'SMS or alternative method',
+        description: 'MTN menu options can change by tariff and SIM profile. If SMS balance options are not visible on your line, the safest route is USSD first and the MTN app second. Avoid third-party balance-check apps that ask for PINs or OTPs.'
+      },
+      {
+        id: 'troubleshooting',
+        title: 'Troubleshooting if the balance looks wrong',
+        description: 'Wait a few minutes after buying or using data, then check again. Compare USSD with the MTN app, confirm you are looking at anytime versus promotional or night data, and restart the phone if the SIM has just reconnected.'
+      }
+    ],
+    nextStepsTitle: 'Useful MTN Links',
+    nextSteps: [
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'See MTN and other network balance shortcuts in one place.', action: 'route' },
+      { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Open the MTN-specific code reference.', action: 'route' },
+      { href: '/network/mtn/', label: 'MTN Network Page', description: 'Compare MTN data prices, bundle types, and savings notes.', action: 'route' },
+      { href: '/network/mtn/monthly-data/', label: 'MTN Monthly Data', description: 'Compare longer-validity MTN data options.', action: 'route' },
+      { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Use this if data runs out and airtime starts dropping.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
+      { href: '/guides/how-to-check-mtn-airtime-balance/', label: 'How to Check MTN Airtime Balance', description: 'Check airtime before out-of-bundle browsing starts.', action: 'guide', slug: 'how-to-check-mtn-airtime-balance' }
+    ],
+    faq: [
+      {
+        question: 'What is the MTN code to check data balance?',
+        answer: 'Start with *136# from your MTN SIM. Some lines support *136*1# as a direct balance shortcut, but the main *136# menu is the safest fallback.'
+      },
+      {
+        question: 'Can I check MTN data balance in the app?',
+        answer: 'Yes. The MTN app is useful for checking remaining bundle amount, validity, and recent usage detail.'
+      },
+      {
+        question: 'Why does my MTN data balance show different amounts?',
+        answer: 'Different views can separate anytime, promotional, night, or app-specific data. Check each bundle category before assuming data is missing.'
+      },
+      {
+        question: 'Should I buy more data before checking my balance?',
+        answer: 'No. Check your data and airtime balance first so you know whether the issue is usage, expiry, or out-of-bundle billing.'
+      }
+    ]
+  },
+  {
+    slug: 'how-to-check-mtn-airtime-balance',
+    title: 'How to Check MTN Airtime Balance in South Africa',
+    metaDescription: 'Check your MTN airtime balance with USSD and the MTN app. Includes safe alternatives, troubleshooting, and related DataCost links.',
+    h1: 'How to Check MTN Airtime Balance',
+    intro: 'MTN airtime can drop quickly if a data bundle expires, a subscription renews, or browsing continues out of bundle. Check airtime before and after buying data so you can spot unexpected deductions early.',
+    quickSummaryTitle: 'Quick Answer',
+    quickSummaryItems: [
+      'Dial *136# from your MTN SIM and choose the balance option.',
+      'Use the MTN app for a fuller account view when USSD is unclear.',
+      'If airtime keeps dropping, check data balance and subscriptions next.'
+    ],
+    jumpLinksTitle: 'On This Page',
+    jumpLinks: [
+      { label: 'USSD method', anchor: 'ussd-method' },
+      { label: 'MTN app method', anchor: 'app-method' },
+      { label: 'Other methods', anchor: 'alternative-methods' },
+      { label: 'Troubleshooting', anchor: 'troubleshooting' },
+      { label: 'FAQ', anchor: 'faq' }
+    ],
+    comparisonType: 'all',
+    stepsTitle: 'MTN Airtime Balance Methods',
+    steps: [
+      {
+        id: 'ussd-method',
+        title: 'USSD method: dial *136#',
+        description: 'Dial *136# from your MTN phone and follow the balance prompts. This is the most practical method when you do not have mobile data available.'
+      },
+      {
+        id: 'app-method',
+        title: 'App method: use the MTN app',
+        description: 'Open the MTN app and check your account summary. The app can help you compare airtime, active data bundles, and recent account activity in one place.'
+      },
+      {
+        id: 'alternative-methods',
+        title: 'SMS or alternative method',
+        description: 'If your SIM menu does not show an SMS balance option, use USSD or the MTN app. Do not share OTPs, SIM PINs, or banking details with any third-party service promising airtime recovery.'
+      },
+      {
+        id: 'troubleshooting',
+        title: 'Troubleshooting if airtime keeps dropping',
+        description: 'Check whether your data bundle expired, whether mobile data stayed on after depletion, and whether any paid subscriptions are active. Screenshot your before-and-after balance if you need to contact MTN support.'
+      }
+    ],
+    nextStepsTitle: 'Useful MTN Links',
+    nextSteps: [
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Find balance and account shortcuts across networks.', action: 'route' },
+      { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Open the MTN-specific USSD reference.', action: 'route' },
+      { href: '/network/mtn/', label: 'MTN Network Page', description: 'Review MTN pricing and network guidance.', action: 'route' },
+      { href: '/network/mtn/monthly-data/', label: 'MTN Monthly Data', description: 'Compare MTN bundles before using raw airtime for browsing.', action: 'route' },
+      { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Diagnose common airtime deductions and subscription issues.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
+      { href: '/guides/how-to-check-mtn-data-balance/', label: 'How to Check MTN Data Balance', description: 'Confirm data before airtime pays for browsing.', action: 'guide', slug: 'how-to-check-mtn-data-balance' }
+    ],
+    faq: [
+      {
+        question: 'What is the MTN airtime balance code?',
+        answer: 'Dial *136# from your MTN SIM and choose the balance option. This is the safest starting point because menu details can vary by SIM profile.'
+      },
+      {
+        question: 'Can I check MTN airtime without data?',
+        answer: 'Yes. USSD works from the dialler and does not require an active data bundle.'
+      },
+      {
+        question: 'Why did my MTN airtime disappear after my data ended?',
+        answer: 'If mobile data stays on after a bundle is depleted or expires, usage may continue from airtime at out-of-bundle rates. Check data balance and bundle validity.'
+      },
+      {
+        question: 'What should I check after airtime disappears?',
+        answer: 'Check your MTN data balance, active subscriptions, recent usage, and whether any app updates or cloud backups used mobile data.'
+      }
+    ]
+  },
+  {
+    slug: 'how-to-check-vodacom-airtime-balance',
+    title: 'How to Check Vodacom Airtime Balance in South Africa',
+    metaDescription: 'Check your Vodacom airtime balance with USSD and the MyVodacom app. Includes troubleshooting, safe alternatives, and helpful DataCost links.',
+    h1: 'How to Check Vodacom Airtime Balance',
+    intro: 'Vodacom airtime balance checks are useful before buying data, after loading a voucher, and whenever airtime seems to be dropping unexpectedly. Use USSD for a quick check, then use the MyVodacom app if you need more account detail.',
+    quickSummaryTitle: 'Quick Answer',
+    quickSummaryItems: [
+      'Dial *135# for the main Vodacom self-service and balance menu.',
+      'Use *136# if your line supports a quick balance summary.',
+      'Use the MyVodacom app to review airtime, bundles, and account activity together.'
+    ],
+    jumpLinksTitle: 'On This Page',
+    jumpLinks: [
+      { label: 'USSD method', anchor: 'ussd-method' },
+      { label: 'MyVodacom method', anchor: 'app-method' },
+      { label: 'Other methods', anchor: 'alternative-methods' },
+      { label: 'Troubleshooting', anchor: 'troubleshooting' },
+      { label: 'FAQ', anchor: 'faq' }
+    ],
+    comparisonType: 'all',
+    stepsTitle: 'Vodacom Airtime Balance Methods',
+    steps: [
+      {
+        id: 'ussd-method',
+        title: 'USSD method: dial *135# or *136#',
+        description: 'Dial *135# from your Vodacom SIM and choose balances. Some lines also support *136# for a quick balance summary. If one shortcut looks incomplete, check the main *135# menu.'
+      },
+      {
+        id: 'app-method',
+        title: 'App method: use the MyVodacom app',
+        description: 'Open the MyVodacom app and check your account or balances screen. This is useful when you want to compare airtime with remaining data bundles or recent activity.'
+      },
+      {
+        id: 'alternative-methods',
+        title: 'SMS or alternative method',
+        description: 'Vodacom menu options can vary, so USSD and MyVodacom are the safest balance routes. Avoid giving OTPs, PINs, or banking details to third-party services claiming to check airtime.'
+      },
+      {
+        id: 'troubleshooting',
+        title: 'Troubleshooting if airtime keeps dropping',
+        description: 'Check whether your bundle expired, whether out-of-bundle usage is active, and whether paid content services or subscriptions are running. Keep a screenshot before contacting support.'
+      }
+    ],
+    nextStepsTitle: 'Useful Vodacom Links',
+    nextSteps: [
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'See Vodacom and other network balance shortcuts.', action: 'route' },
+      { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes', description: 'Open the Vodacom-specific USSD reference.', action: 'route' },
+      { href: '/network/vodacom/', label: 'Vodacom Network Page', description: 'Compare Vodacom data prices and network guidance.', action: 'route' },
+      { href: '/network/vodacom/monthly-data/', label: 'Vodacom Monthly Data', description: 'Compare bundle options before browsing from airtime.', action: 'route' },
+      { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Diagnose content services, out-of-bundle use, and repeat deductions.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
+      { href: '/data-problems/how-to-check-data-balance-vodacom-ussd/', label: 'How to Check Vodacom Data Balance', description: 'Check data balance before airtime starts paying for usage.', action: 'route' }
+    ],
+    faq: [
+      {
+        question: 'What is the Vodacom airtime balance code?',
+        answer: 'Dial *135# and choose balances. Some Vodacom lines also support *136# for a quick balance summary.'
+      },
+      {
+        question: 'Can I check Vodacom airtime without data?',
+        answer: 'Yes. USSD balance checks work from the dialler and do not require an active mobile data bundle.'
+      },
+      {
+        question: 'Why did my Vodacom airtime drop after my data finished?',
+        answer: 'If your data bundle is depleted or expired, mobile usage can start deducting from airtime unless your settings or tariff block out-of-bundle usage.'
+      },
+      {
+        question: 'What should I do if Vodacom airtime keeps disappearing?',
+        answer: 'Check data balance, subscription or content-service status, and recent app usage. If deductions continue, contact Vodacom support with timestamps and screenshots.'
+      }
+    ]
   }
 ];
 

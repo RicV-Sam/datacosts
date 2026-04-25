@@ -9,7 +9,7 @@
     "vodacom"
   ],
   "intentScore": 3,
-  "quickAnswer": "Vodacom balance confusion usually happens because the latest bundle view appears in one account route before another. Check *135# and My Vodacom app before you assume the bundle is gone.",
+  "quickAnswer": "To check Vodacom data balance, start with *135# from your Vodacom SIM and choose balances. If your line supports a quick summary, *136# may also help. Use the MyVodacom app when you need a fuller breakdown by bundle type.",
   "causes": [
     {
       "cause": "Vodacom shows different bundle views in app and USSD",
@@ -28,11 +28,12 @@
     "general": [],
     "byNetwork": {
       "vodacom": [
-        "Open My Vodacom app.",
-        "Dial *135#.",
-        "Check the right bundle type.",
+        "Dial *135# and choose the balance option.",
+        "Use *136# if your line supports a quick balance summary.",
+        "Open the MyVodacom app for a fuller bundle breakdown.",
+        "Check the right bundle type, such as anytime, night, promotional, or social data.",
         "Refresh the account after any recent top-up or transfer.",
-        "Compare the latest session in My Vodacom app before assuming the bundle"
+        "Compare USSD with MyVodacom before assuming the bundle is gone."
       ],
       "mtn": [],
       "cellc": [],
@@ -42,12 +43,13 @@
   "preventionTips": [
     "Check balance before you load more airtime or buy another bundle.",
     "Use the USSD route when the app is slow or data is weak.",
-    "Compare the balance view with recent usage if numbers look wrong."
+    "Compare the balance view with recent usage if numbers look wrong.",
+    "If airtime starts dropping after data ends, check out-of-bundle settings and subscriptions."
   ],
   "faqs": [
     {
       "question": "How do I check my Vodacom data balance?",
-      "answer": "Use *135# or My Vodacom app to view the latest balance. Check both if one screen looks delayed."
+      "answer": "Use *135# and choose balances, or use the MyVodacom app to view the latest balance. If one screen looks delayed, check both before buying more data."
     },
     {
       "question": "Can I check Vodacom airtime and data in the same place?",
@@ -61,26 +63,32 @@
   "internalLinks": [
     {
       "anchorText": "See why your Vodacom data is disappearing",
-      "url": "/data-problems/why-is-my-data-disappearing-vodacom",
+      "url": "/data-problems/why-is-my-data-disappearing-vodacom/",
       "reason": "same account-usage cluster",
       "status": "live"
     },
     {
-      "anchorText": "See why your Vodacom airtime is disappearing",
-      "url": "/data-problems/why-is-my-airtime-disappearing-vodacom",
-      "reason": "same network related problem",
+      "anchorText": "Check Vodacom airtime balance",
+      "url": "/guides/how-to-check-vodacom-airtime-balance/",
+      "reason": "same network balance cluster",
       "status": "live"
     },
     {
-      "anchorText": "Compare Vodacom and MTN prepaid data",
-      "url": "/comparisons/vodacom-vs-mtn-prepaid-data",
-      "reason": "related comparison, already in the registry",
+      "anchorText": "Open Vodacom USSD codes",
+      "url": "/vodacom-ussd-codes/",
+      "reason": "same network USSD reference",
       "status": "live"
     },
     {
-      "anchorText": "Estimate Vodacom data costs",
-      "url": "/tools/vodacom-data-cost-calculator",
-      "reason": "same network tool",
+      "anchorText": "View Vodacom network page",
+      "url": "/network/vodacom/",
+      "reason": "same network context",
+      "status": "live"
+    },
+    {
+      "anchorText": "Use the full South Africa USSD directory",
+      "url": "/ussd-codes-south-africa/",
+      "reason": "broader balance and account shortcuts",
       "status": "live"
     }
   ],

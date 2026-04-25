@@ -5,6 +5,7 @@ import { ussdRepository } from '../data/ussd';
 import { networkPages } from '../data/networks';
 import { Footer } from '../components/Footer';
 import { AdUnit } from '../components/AdUnit';
+import { TrustPanel } from '../components/TrustPanel';
 import { ArrowLeft, ChevronRight, ShieldCheck, Zap, Info, Smartphone, HelpCircle, Clock, Tag, ExternalLink, CheckCircle2, Link as LinkIcon } from 'lucide-react';
 import { NetworkName, NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema } from '../utils/structuredData';
@@ -193,6 +194,16 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     'cell-c': '/guides/how-to-buy-data-cell-c/'
   };
   const howToBuyGuideHref = howToBuyGuideBySlug[networkSlug];
+  const balanceGuideLinksBySlug: Record<string, Array<{ href: string; label: string; description: string }>> = {
+    mtn: [
+      { href: '/guides/how-to-check-mtn-data-balance/', label: 'How to check MTN data balance', description: 'USSD and app steps for MTN data checks.' },
+      { href: '/guides/how-to-check-mtn-airtime-balance/', label: 'How to check MTN airtime balance', description: 'Confirm airtime before out-of-bundle use.' }
+    ],
+    vodacom: [
+      { href: '/data-problems/how-to-check-data-balance-vodacom-ussd/', label: 'How to check Vodacom data balance', description: 'USSD and MyVodacom steps for data checks.' },
+      { href: '/guides/how-to-check-vodacom-airtime-balance/', label: 'How to check Vodacom airtime balance', description: 'Confirm airtime and troubleshoot deductions.' }
+    ]
+  };
   const operatorActionLinks = [
     ...availableTypes
       .filter(([slug]) => ['daily-data', 'monthly-data', 'night-data', 'cheapest-1gb'].includes(slug))
@@ -204,6 +215,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     ...(howToBuyGuideHref
       ? [{ href: howToBuyGuideHref, label: `How to buy ${network.name} data`, description: `Step-by-step buy flow for ${network.name}.` }]
       : []),
+    ...(balanceGuideLinksBySlug[networkSlug] || []),
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Keep track of active bundles and expiry.' },
     { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data South Africa', description: 'National comparison for regular users.' },
     { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa', description: 'National low-volume benchmark.' }
@@ -261,7 +273,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
               <ArrowLeft className="w-4 h-4" />
               <span>Home</span>
             </a>
-            <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-slate-300">
+            <div className="hidden sm:flex items-center gap-2 text-sm font-black uppercase tracking-widest text-slate-300">
               <ChevronRight className="w-4 h-4" />
               <a
                 href="/network/"
@@ -274,7 +286,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
               <span className="text-slate-400">{network.name}</span>
             </div>
           </div>
-          <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+          <div className="hidden md:block text-[10px] font-black uppercase tracking-widest text-slate-400">
             {network.name} / 2026 Data Prices
           </div>
         </div>
@@ -300,6 +312,12 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           </h1>
           <p className="text-xl text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto">{pageData.intro}</p>
         </header>
+
+        <TrustPanel
+          lastReviewed={lastUpdated}
+          sources={`${network.name} public bundle pages, app or USSD self-service routes, listed prepaid bundles, and DataCost comparison tables.`}
+          className="mb-12"
+        />
 
         <AdUnit type="aboveFold" />
 
