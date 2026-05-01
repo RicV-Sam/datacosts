@@ -60,6 +60,7 @@ const ANCHOR_LINKS = [
   { href: '#vodacom-ussd-codes', label: 'Vodacom USSD codes' },
   { href: '#telkom-ussd-codes', label: 'Telkom USSD codes' },
   { href: '#cell-c-ussd-codes', label: 'Cell C USSD codes' },
+  { href: '#rain-ussd-note', label: 'Rain support path' },
   { href: '#airtime-advance-codes', label: 'Airtime advance codes' },
   { href: '#please-call-me-codes', label: 'Please call me codes' },
   { href: '#data-balance-codes', label: 'Data balance codes' },
@@ -293,6 +294,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
             <Link to="/vodacom-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Vodacom USSD</Link>
             <Link to="/telkom-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Telkom USSD</Link>
             <Link to="/cell-c-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Cell C USSD</Link>
+            <Link to="/network/rain/" className="inline-flex min-h-[44px] items-center rounded-xl bg-white px-4 text-sm font-black text-[#031636]">Rain support</Link>
           </div>
         </section>
 
@@ -436,6 +438,14 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
               </section>
             );
           })}
+
+          <section id="rain-ussd-note" className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm scroll-mt-28">
+            <h2 className="text-2xl font-black tracking-tight mb-3">Rain support path</h2>
+            <p className="text-slate-700 leading-relaxed mb-5">
+              Rain plans are usually managed through online account tools rather than a public prepaid USSD menu. Use the Rain network page when you want current package context, and verify account actions inside Rain&apos;s official account area.
+            </p>
+            <Link to="/network/rain/" className="text-sm font-bold text-[#1b6d24] hover:underline">View Rain data prices and packages</Link>
+          </section>
         </section>
 
         <AdUnit type="inContent" />

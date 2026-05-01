@@ -58,6 +58,22 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo
         </section>
 
         <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
+          <h2 className="text-2xl font-black tracking-tight">Report Pricing or USSD Errors</h2>
+          <p className="text-slate-600 leading-relaxed">
+            The fastest correction reports include enough detail for us to reproduce the issue without guessing.
+          </p>
+          <ul className="text-slate-600 leading-relaxed list-disc pl-5 space-y-2">
+            <li>The DataCost page URL where you saw the issue</li>
+            <li>The network name, bundle, USSD code, or menu path involved</li>
+            <li>The price, validity, or code you saw on the operator side</li>
+            <li>The date you checked it and whether it was in an app, USSD menu, SMS, or website</li>
+          </ul>
+          <p className="text-slate-600 leading-relaxed">
+            We prioritize corrections that affect buying decisions, airtime loss, subscription cancellation, or balance-checking instructions.
+          </p>
+        </section>
+
+        <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
           <h2 className="text-2xl font-black tracking-tight">What We Can Help With</h2>
           <ul className="text-slate-600 leading-relaxed list-disc pl-5 space-y-2">
             <li>Price or bundle table corrections</li>

@@ -3,6 +3,7 @@ import { networkPages } from '../data/networks';
 import { guides } from '../data/guides';
 import { Bundle } from '../types';
 import { SITE_ORIGIN } from '../seo/siteConstants';
+import { getRedirectAliasRoutes } from './redirectAliases';
 
 export const BASE_URL = SITE_ORIGIN;
 
@@ -131,6 +132,7 @@ export function getIndexableRoutes(): string[] {
   routes.add('/cell-c-ussd-codes/');
   routes.add('/save-ussd-codes/');
   routes.add('/alerts/');
+  routes.add('/sitemap/');
   routes.add('/fix-mobile-problems/');
   routes.add('/data-problems/why-is-my-data-disappearing-vodacom/');
   routes.add('/data-problems/how-to-stop-wasp-charges-vodacom/');
@@ -220,7 +222,7 @@ export function getIndexableRoutes(): string[] {
 }
 
 export function getPrerenderRoutes(): string[] {
-  return getIndexableRoutes();
+  return [...getIndexableRoutes(), ...getRedirectAliasRoutes()].map(normalizeCanonicalPath);
 }
 
 export function getSitemapRoutes(): string[] {

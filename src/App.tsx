@@ -1,6 +1,7 @@
-import { Suspense, lazy, useState } from 'react';
+import { Fragment, Suspense, lazy, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes, useNavigate, useParams } from 'react-router-dom';
 import { guides } from './data/guides';
+import { REDIRECT_ALIASES } from './config/redirectAliases';
 import { NetworkName, NavigateFunction } from './types';
 
 const HomePage = lazy(() => import('./pages/HomePage').then((mod) => ({ default: mod.HomePage })));
@@ -34,6 +35,8 @@ const DataProblemSeoPage = lazy(() => import('./pages/DataProblemSeoPage').then(
 const WhyAirtimeDisappearingPage = lazy(() => import('./pages/WhyAirtimeDisappearingPage').then((mod) => ({ default: mod.WhyAirtimeDisappearingPage })));
 const ProblemSolvingGuidePage = lazy(() => import('./pages/ProblemSolvingGuidePage').then((mod) => ({ default: mod.ProblemSolvingGuidePage })));
 const AirtimeDataProblemsHubPage = lazy(() => import('./pages/AirtimeDataProblemsHubPage').then((mod) => ({ default: mod.AirtimeDataProblemsHubPage })));
+const RedirectPage = lazy(() => import('./pages/RedirectPage').then((mod) => ({ default: mod.RedirectPage })));
+const SitemapPage = lazy(() => import('./pages/SitemapPage').then((mod) => ({ default: mod.SitemapPage })));
 
 function AppContent() {
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkName | null>(null);
@@ -126,7 +129,6 @@ function AppContent() {
           path="/ussd-codes-south-africa/"
           element={<USSDPage onBack={() => navigateTo('home')} onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
         />
-        <Route path="/ussd-codes/" element={<Navigate to="/ussd-codes-south-africa/" replace />} />
         <Route path="/ussd-codes" element={<Navigate to="/ussd-codes-south-africa/" replace />} />
         <Route path="/ussd-codes-south-africa" element={<Navigate to="/ussd-codes-south-africa/" replace />} />
         <Route
@@ -153,6 +155,11 @@ function AppContent() {
           path="/alerts/"
           element={<AlertsPage onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
         />
+        <Route
+          path="/sitemap/"
+          element={<SitemapPage onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
+        />
+        <Route path="/sitemap" element={<Navigate to="/sitemap/" replace />} />
         <Route
           path="/guides/"
           element={<GuidesIndex onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
@@ -437,6 +444,11 @@ function AppContent() {
         <Route path="/data-problems/how-to-stop-background-data-usage-android" element={<Navigate to="/data-problems/how-to-stop-background-data-usage-android/" replace />} />
         <Route path="/data-problems/how-to-stop-apps-using-data-in-background-samsung" element={<Navigate to="/data-problems/how-to-stop-apps-using-data-in-background-samsung/" replace />} />
         <Route path="/fix-a-problem/" element={<Navigate to="/fix-mobile-problems/" replace />} />
+        {REDIRECT_ALIASES.map((alias) => (
+          <Fragment key={alias.from}>
+            <Route path={alias.from} element={<RedirectPage />} />
+          </Fragment>
+        ))}
         <Route
           path="*"
           element={<NotFoundPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}

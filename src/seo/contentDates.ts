@@ -4,8 +4,8 @@ const DEFAULT_MODIFIED_ISO = '2026-02-15T00:00:00.000Z';
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/': '2026-03-25T00:00:00.000Z',
   '/alerts/': '2026-03-30T00:00:00.000Z',
-  '/about/': '2026-04-25T00:00:00.000Z',
-  '/contact/': '2026-04-25T00:00:00.000Z',
+  '/about/': '2026-05-01T00:00:00.000Z',
+  '/contact/': '2026-05-01T00:00:00.000Z',
   '/cookie-policy/': '2026-04-08T00:00:00.000Z',
   '/editorial-policy/': '2026-01-20T00:00:00.000Z',
   '/fix-mobile-problems/': '2026-05-01T00:00:00.000Z',
@@ -15,11 +15,12 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/network/': '2026-03-24T00:00:00.000Z',
   '/privacy-policy/': '2026-04-25T00:00:00.000Z',
   '/save-ussd-codes/': '2026-03-30T00:00:00.000Z',
+  '/sitemap/': '2026-05-01T00:00:00.000Z',
   '/cell-c-ussd-codes/': '2026-05-01T00:00:00.000Z',
   '/telkom-ussd-codes/': '2026-05-01T00:00:00.000Z',
   '/terms/': '2026-04-25T00:00:00.000Z',
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
-  '/ussd-codes-south-africa/': '2026-04-25T00:00:00.000Z',
+  '/ussd-codes-south-africa/': '2026-05-01T00:00:00.000Z',
   '/data-problems/how-to-check-data-balance-vodacom-ussd/': '2026-04-25T00:00:00.000Z',
   '/vodacom-ussd-codes/': '2026-05-01T00:00:00.000Z'
 };

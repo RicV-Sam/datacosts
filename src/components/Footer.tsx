@@ -73,6 +73,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo }) => {
           <a href="/network/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">Network Comparison</a>
           <a href="/methodology/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">Methodology</a>
           <a href="/editorial-policy/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">Editorial Policy</a>
+          <a href="/sitemap/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">Sitemap</a>
           <a href="/contact/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">Contact</a>
         </div>
 

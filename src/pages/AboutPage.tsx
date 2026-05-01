@@ -58,12 +58,28 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
         </section>
 
         <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
+          <h2 className="text-2xl font-black tracking-tight">Who Runs the Editorial Process</h2>
+          <p className="text-slate-600 leading-relaxed">
+            DataCost is maintained by a small independent editorial operation focused on South African mobile-data costs, prepaid usability, and consumer troubleshooting.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            Pages are reviewed by the DataCost editorial team before publication. When a page includes prices, bundle validity, USSD codes, or operator instructions, the team checks the information against public operator sources, app or USSD flows where practical, and user correction reports.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            We do not present operator marketing claims as rankings. Our comparisons prioritize practical consumer signals such as total bundle price, included data, validity, cost per GB, restrictions, and whether a deal is easy to repeat.
+          </p>
+        </section>
+
+        <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
           <h2 className="text-2xl font-black tracking-tight">How DataCost Is Funded</h2>
           <p className="text-slate-600 leading-relaxed">
             DataCost may earn revenue from advertising placements and referral links. That does not change our comparison method or rankings criteria.
           </p>
           <p className="text-slate-600 leading-relaxed">
             We do not sell SIM cards or telecom plans directly. Final purchases are always completed on the operator or partner website.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            Sponsored placements, if used, must not override the editorial comparison tables or hide cheaper consumer options.
           </p>
         </section>
 
@@ -77,6 +93,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
           </p>
           <p className="text-slate-600 leading-relaxed">
             If you spot an outdated price or code, please use the contact page and include the affected URL, network, and what you saw so we can review and correct it.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            We are based around South African consumer search intent, so guide wording favors local network names, prepaid terminology, rand pricing, and USSD/app actions that are useful to people checking bundles on a phone.
           </p>
         </section>
       </main>
