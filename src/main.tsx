@@ -38,7 +38,7 @@ function isPrerenderContentStable(): boolean {
 }
 
 function waitForStableAboveFoldAndDispatch(): void {
-  const maxWaitMs = 6000;
+  const maxWaitMs = 15000;
   const pollMs = 100;
   const requiredStableChecks = 2;
   const start = Date.now();
