@@ -8,6 +8,7 @@ import { ArrowLeft, ShieldCheck, BarChart3, CalendarClock, HelpCircle } from 'lu
 import { Link } from 'react-router-dom';
 import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 
 interface VodacomVsMTNProps {
   onNavigate: NavigateFunction;
@@ -20,6 +21,11 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
     'Is Vodacom better than MTN for data? We compare the latest data prices, speeds, and coverage to help you choose the right network in 2026.';
   const canonicalUrl = toCanonicalUrl('/guides/vodacom-vs-mtn-data-prices/');
   const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Guides', href: '/guides/' },
+    { label: 'Vodacom vs MTN', href: '/guides/vodacom-vs-mtn-data-prices/' }
+  ];
 
   const vodacomStats = networkStats.find(n => n.network === 'Vodacom');
   const mtnStats = networkStats.find(n => n.network === 'MTN');
@@ -79,6 +85,8 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
     ]
   };
 
+  const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
+
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
       <Helmet>
@@ -95,6 +103,9 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>
@@ -113,6 +124,8 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
       </nav>
 
       <main className="max-w-4xl mx-auto px-4 py-12">
+        <Breadcrumbs items={breadcrumbItems} />
+
         <header className="mb-16 text-center">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
             <span className="text-[#E60000]">Vodacom</span> vs <span className="text-[#FFCC00]">MTN</span> Data Prices (2026)

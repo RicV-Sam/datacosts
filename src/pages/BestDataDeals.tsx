@@ -10,6 +10,7 @@ import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { networkPages } from '../data/networks';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 
 interface BestDataDealsProps {
   onNavigate: NavigateFunction;
@@ -29,6 +30,11 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     'Compare the best data deals in South Africa for 2026. See the cheapest bundles, best prepaid options, and which network gives the best value right now.';
   const canonicalUrl = toCanonicalUrl('/guides/best-data-deals-south-africa/');
   const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Guides', href: '/guides/' },
+    { label: 'Best Data Deals', href: '/guides/best-data-deals-south-africa/' }
+  ];
 
   const validValueBundles = bundles
     .filter((bundle) => bundle.costPerGb > 0)
@@ -105,6 +111,8 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     }))
   };
 
+  const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
+
   const relatedPages = [
     { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa', description: 'Best low-volume benchmark.' },
     { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data South Africa', description: 'Medium-to-heavy usage comparison.' },
@@ -133,6 +141,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -149,6 +158,8 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
       </nav>
 
       <main className="max-w-4xl mx-auto px-4 py-12">
+        <Breadcrumbs items={breadcrumbItems} />
+
         <header className="mb-12">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
             Best <span className="text-[#1b6d24]">Data Deals</span> in South Africa (2026)

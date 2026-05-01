@@ -8,6 +8,7 @@ import { MobileNav } from '../components/MobileNav';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 
 interface BestSimOnlyDealsProps {
   onNavigate: NavigateFunction;
@@ -20,6 +21,11 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
     'Compare currently listed SIM-only style data options in South Africa and see how they stack up against prepaid choices.';
   const canonicalUrl = toCanonicalUrl('/guides/best-sim-only-deals-south-africa/');
   const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Guides', href: '/guides/' },
+    { label: 'SIM-Only Deals', href: '/guides/best-sim-only-deals-south-africa/' }
+  ];
 
   const simOnlyStyle = bundles
     .filter((bundle) => bundle.type === 'Monthly')
@@ -67,6 +73,8 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
     ],
   };
 
+  const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
+
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
       <Helmet>
@@ -83,6 +91,7 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -101,6 +110,8 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
       </nav>
 
       <main className="max-w-4xl mx-auto px-4 py-12">
+        <Breadcrumbs items={breadcrumbItems} />
+
         <header className="mb-16 text-center">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
             Best <span className="text-[#1b6d24]">SIM-Only Deals</span> South Africa

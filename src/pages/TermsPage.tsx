@@ -5,6 +5,7 @@ import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction } from '../types';
 import { toCanonicalUrl } from '../seo/siteConstants';
+import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 
 interface TermsPageProps {
   onNavigate: NavigateFunction;
@@ -16,6 +17,11 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate, onScrollTo }) 
   const metaDescription =
     'Terms of service for using DataCost, including content use, limitations, third-party links, and user responsibilities.';
   const canonicalUrl = toCanonicalUrl('/terms/');
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Terms', href: '/terms/' }
+  ];
+  const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -23,11 +29,14 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate, onScrollTo }) 
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
       <Header onScrollTo={onScrollTo} activeSection="home" />
 
       <main className="max-w-4xl mx-auto px-4 py-12 space-y-10">
+        <Breadcrumbs items={breadcrumbItems} className="mb-0" />
+
         <header className="text-center">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4">Terms of Service</h1>
           <p className="text-slate-600 font-medium max-w-2xl mx-auto">

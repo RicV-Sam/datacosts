@@ -17,9 +17,13 @@ interface ProblemSolvingGuidePageProps {
   guideKey: ProblemGuideKey;
 }
 
+const CANONICAL_PROBLEM_GUIDE_PATH_OVERRIDES: Partial<Record<ProblemGuideKey, string>> = {
+  'how-to-stop-wasp-services-south-africa': '/guides/stop-wasp-subscriptions-south-africa/'
+};
+
 export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = ({ onNavigate, onScrollTo, guideKey }) => {
   const guide = problemGuides[guideKey];
-  const canonicalUrl = toCanonicalUrl(`/guides/${guide.slug}/`);
+  const canonicalUrl = toCanonicalUrl(CANONICAL_PROBLEM_GUIDE_PATH_OVERRIDES[guideKey] || `/guides/${guide.slug}/`);
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getGuideModifiedIso(guide.slug);
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);

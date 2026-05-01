@@ -8,6 +8,7 @@ import { MobileNav } from '../components/MobileNav';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 
 interface CheapestUnlimitedDataProps {
   onNavigate: NavigateFunction;
@@ -20,6 +21,11 @@ export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ on
     'Compare currently listed unlimited-style data options in South Africa and see when unlimited plans beat capped monthly bundles.';
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-unlimited-data-south-africa/');
   const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Guides', href: '/guides/' },
+    { label: 'Unlimited Data', href: '/guides/cheapest-unlimited-data-south-africa/' }
+  ];
 
   const unlimitedBundles = bundles
     .filter((bundle) => bundle.volume === 'Unlimited' || bundle.name.toLowerCase().includes('unlimited'))
@@ -65,6 +71,8 @@ export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ on
     ],
   };
 
+  const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
+
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
       <Helmet>
@@ -81,6 +89,7 @@ export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ on
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -99,6 +108,8 @@ export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ on
       </nav>
 
       <main className="max-w-4xl mx-auto px-4 py-12">
+        <Breadcrumbs items={breadcrumbItems} />
+
         <header className="mb-16 text-center">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
             Cheapest <span className="text-[#1b6d24]">Unlimited Data</span> South Africa

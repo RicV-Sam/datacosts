@@ -128,12 +128,16 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
   ]
 };
 
+const CANONICAL_GUIDE_PATH_OVERRIDES: Record<string, string> = {
+  'how-to-stop-wasp-vas-charges-south-africa': '/guides/stop-wasp-subscriptions-south-africa/'
+};
+
 export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateToGuide, allGuides }) => {
   const navigate = useNavigate();
   const dateModifiedIso = getGuideModifiedIso(guide.slug);
   const datePublishedIso = getDefaultPublishedIso();
   const lastUpdatedLabel = formatIsoForDisplay(dateModifiedIso);
-  const canonicalUrl = toCanonicalUrl(`/guides/${guide.slug}/`);
+  const canonicalUrl = toCanonicalUrl(CANONICAL_GUIDE_PATH_OVERRIDES[guide.slug] || `/guides/${guide.slug}/`);
   const pageTitle = guide.title;
   const showPriorityInternalLinks = guide.slug === 'why-is-my-data-finishing-so-fast' || guide.slug === 'how-to-check-data-balance';
   const showNetworkDisappearingAdLayout =

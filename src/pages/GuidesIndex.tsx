@@ -94,6 +94,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         { slug: 'how-to-check-subscriptions-on-vodacom', title: 'How to Check Subscriptions on Vodacom', description: 'Audit and remove Vodacom recurring services.', path: '/guides/how-to-check-subscriptions-on-vodacom/' },
         { slug: 'how-to-stop-wasp-services-south-africa', title: 'How to Stop WASP Services in South Africa', description: 'Stop premium-service airtime deductions.', path: '/guides/how-to-stop-wasp-services-south-africa/' },
         { slug: 'how-to-protect-airtime-from-being-used', title: 'How to Protect Airtime from Being Used', description: 'Prevent hidden deductions before they start.', path: '/guides/how-to-protect-airtime-from-being-used/' },
+        { slug: 'out-of-bundle-data-costs-south-africa', title: 'Out-of-Bundle Data Costs South Africa', description: 'Understand OOB rates, airtime protection, and what to do after unexpected billing.', path: '/guides/out-of-bundle-data-costs-south-africa/' },
         { slug: 'why-does-my-data-finish-so-fast-south-africa' },
         { slug: 'how-to-stop-wasp-vas-charges-south-africa' },
         { slug: 'why-is-my-data-finishing-so-fast' },
@@ -113,6 +114,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         { slug: 'how-to-buy-data-telkom' },
         { slug: 'how-to-buy-data-cell-c' },
         { slug: 'convert-airtime-to-data-south-africa' },
+        { slug: 'out-of-bundle-data-costs-south-africa' },
         { slug: 'how-to-check-data-balance' }
       ]
     }

@@ -141,6 +141,99 @@ export const guides: Guide[] = [
     ]
   },
   {
+    slug: 'out-of-bundle-data-costs-south-africa',
+    title: 'Out-of-Bundle Data Costs South Africa (2026)',
+    metaDescription: 'Understand out-of-bundle data costs in South Africa. Compare Vodacom, MTN, Telkom, and Cell C risks, and learn how to protect airtime.',
+    h1: 'Out-of-Bundle Data Costs in South Africa (2026)',
+    intro: 'Out-of-bundle data is what your network may charge when you keep using mobile data after a bundle runs out, expires, or does not cover the type of traffic you are using. This guide explains the risk, where to check current rates, and how to protect airtime before a small browsing session becomes expensive.',
+    comparisonType: 'all',
+    quickSummaryTitle: 'Quick Answer',
+    quickSummaryItems: [
+      'Out-of-bundle data usually means mobile usage charged from airtime instead of an active data bundle.',
+      'The safest fix is to keep mobile data off when no valid bundle is active, then buy a bundle before browsing.',
+      'Check current operator rules before relying on an old per-MB rate because pricing and spend limits can change.'
+    ],
+    jumpLinksTitle: 'On This Page',
+    jumpLinks: [
+      { label: 'What OOB means', anchor: 'what-oob-means' },
+      { label: 'Network checks', anchor: 'network-checks' },
+      { label: 'Protect airtime', anchor: 'protect-airtime' },
+      { label: 'Unexpected billing', anchor: 'unexpected-billing' },
+      { label: 'FAQ', anchor: 'faq' }
+    ],
+    stepsTitle: 'How to Avoid Out-of-Bundle Charges',
+    steps: [
+      {
+        id: 'what-oob-means',
+        title: 'Confirm whether you have an active bundle',
+        description: 'Check your balance and expiry before streaming, downloading, tethering, or opening app updates. If no active bundle shows, assume mobile browsing may use airtime.'
+      },
+      {
+        id: 'network-checks',
+        title: 'Check the current out-of-bundle setting for your network',
+        description: 'Use the operator app, USSD menu, or support channel to confirm whether out-of-bundle data is blocked, limited, or allowed on your SIM profile.'
+      },
+      {
+        id: 'protect-airtime',
+        title: 'Turn off mobile data until you buy a bundle',
+        description: 'If your bundle is empty or expired, switch mobile data off before topping up airtime. Then buy a data bundle first, and only switch mobile data back on once the bundle is active.'
+      },
+      {
+        id: 'unexpected-billing',
+        title: 'Escalate unexpected billing with evidence',
+        description: 'If airtime disappears unexpectedly, capture balance screenshots, timestamps, active bundle status, and recent app usage before contacting your network support team.'
+      }
+    ],
+    commonMistakesTitle: 'Common Out-of-Bundle Triggers',
+    commonMistakes: [
+      {
+        title: 'Leaving mobile data on after a bundle expires',
+        description: 'A phone can continue syncing messages, backups, and feeds after the bundle ends, which can turn airtime into data spend.'
+      },
+      {
+        title: 'Assuming night or social data covers everything',
+        description: 'Night data and app-specific bundles may not cover daytime browsing, video, app updates, hotspots, or links opened outside the included app.'
+      },
+      {
+        title: 'Topping up airtime before buying data',
+        description: 'If mobile data is already on, fresh airtime may be used immediately before you finish buying the intended data bundle.'
+      }
+    ],
+    nextStepsTitle: 'Useful Next Steps',
+    nextSteps: [
+      { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions', description: 'Rule out recurring paid services if airtime keeps dropping.', action: 'route' },
+      { href: '/guides/how-to-stop-airtime-being-used-automatically/', label: 'Stop Airtime Being Used Automatically', description: 'Protect airtime from background usage and subscriptions.', action: 'guide', slug: 'how-to-stop-airtime-being-used-automatically' },
+      { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Confirm active bundles before browsing.', action: 'guide', slug: 'how-to-check-data-balance' },
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Find balance and bundle shortcuts for all major networks.', action: 'route' },
+      { href: '/network/vodacom/', label: 'Vodacom Data Prices', description: 'Review Vodacom bundle options and network context.', action: 'route' },
+      { href: '/network/mtn/', label: 'MTN Data Prices', description: 'Review MTN bundle options and network context.', action: 'route' },
+      { href: '/network/telkom/', label: 'Telkom Data Prices', description: 'Review Telkom bundle options and network context.', action: 'route' },
+      { href: '/network/cell-c/', label: 'Cell C Data Prices', description: 'Review Cell C bundle options and network context.', action: 'route' }
+    ],
+    faq: [
+      {
+        question: 'What does out-of-bundle data mean?',
+        answer: 'Out-of-bundle data is mobile data usage that is not covered by an active data bundle, so the network may bill it from airtime or under a separate spend rule.'
+      },
+      {
+        question: 'Which networks have out-of-bundle data rates?',
+        answer: 'Vodacom, MTN, Telkom, and Cell C can all have out-of-bundle rules, but the exact rate or block behavior can change by tariff, account type, and current network policy.'
+      },
+      {
+        question: 'How do I stop airtime from being used for data?',
+        answer: 'Turn mobile data off when no bundle is active, buy a valid data bundle first, and use your network app or USSD menu to check whether out-of-bundle usage can be blocked or limited.'
+      },
+      {
+        question: 'Can WhatsApp or night data cause out-of-bundle billing?',
+        answer: 'Yes. App-specific and night bundles only cover certain usage. Traffic outside the included app, outside the time window, or after expiry may fall back to normal data or airtime.'
+      },
+      {
+        question: 'What should I do if I was billed unexpectedly?',
+        answer: 'Take screenshots of your balance, active bundles, expiry times, and recent phone data usage. Then contact your network and ask for a usage and billing trace.'
+      }
+    ]
+  },
+  {
     slug: 'best-data-deals-south-africa',
     title: 'Data Deals South Africa (2026)',
     metaDescription: 'Find the best data deals in South Africa. We compare Vodacom Just4You, MTN Boosta, and Telkom Mo\'Nice to find you the most data for your money.',

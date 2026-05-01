@@ -39,11 +39,10 @@ export function shouldRenderHouseAd(pathname: string, placement: AdPlacement): b
   if (isAdSenseApproved) return false;
   if (!areHouseAdsEnabled) return false;
   if (placement === 'stickyMobile') return false;
-  return true;
+  return placement === 'aboveFold';
 }
 
 export function shouldReserveManualAdSlot(pathname: string): boolean {
   if (isAdRouteExcluded(pathname)) return false;
   return areManualAdSlotsEnabled && isAdSenseApproved;
 }
-

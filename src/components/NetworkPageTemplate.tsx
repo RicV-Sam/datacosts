@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { AdUnit } from './AdUnit';
 import { NetworkName } from '../types';
 import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, toCanonicalUrl } from '../seo/siteConstants';
+import { Breadcrumbs, buildBreadcrumbSchema } from './Breadcrumbs';
 
 export type NetworkTemplateBundleType = 'weekly-data' | 'social-data' | 'night-data' | 'monthly-data' | string;
 
@@ -139,9 +140,12 @@ function buildRelatedLinks(network: NetworkName, bundleType: NetworkTemplateBund
         description: 'Use this smaller-bundle benchmark when monthly data feels too large.'
       },
       {
-        href: `/network/${networkSlug}/cheapest-1gb/`,
-        label: `${network} cheapest 1GB`,
-        description: 'Compare the smaller top-up path before buying a monthly bundle.'
+        href: network === 'Rain' ? `/network/${networkSlug}/` : `/network/${networkSlug}/cheapest-1gb/`,
+        label: network === 'Rain' ? `${network} data prices` : `${network} cheapest 1GB`,
+        description:
+          network === 'Rain'
+            ? 'Review Rain network context before choosing a monthly data plan.'
+            : 'Compare the smaller top-up path before buying a monthly bundle.'
       }
     );
   }
@@ -358,6 +362,15 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
     }))
   };
 
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Network', href: '/network/' },
+    { label: network, href: `/network/${getNetworkSlug(network)}/` },
+    { label: `${network} ${bundleTypeLabel} Data`, href: seoData.canonicalPath }
+  ];
+
+  const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
+
   return (
     <main className="mx-auto max-w-5xl px-4 py-10 text-slate-900">
       <Helmet>
@@ -375,9 +388,12 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
       </Helmet>
+
+      <Breadcrumbs items={breadcrumbItems} />
 
       <header className="mb-8">
         <h1 className="text-4xl font-black tracking-tight md:text-5xl">

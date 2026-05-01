@@ -7,6 +7,7 @@ import { ArrowLeft, ShieldCheck, AlertTriangle, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 
 interface WaspSubscriptionsProps {
   onNavigate: NavigateFunction;
@@ -18,6 +19,11 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
   const metaDescription =
     'Learn how to stop WASP subscriptions in South Africa with simple steps for Vodacom, MTN, Telkom, and Cell C, plus what to do if charges continue.';
   const canonicalUrl = toCanonicalUrl('/guides/stop-wasp-subscriptions-south-africa/');
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Guides', href: '/guides/' },
+    { label: 'Stop WASP Subscriptions', href: '/guides/stop-wasp-subscriptions-south-africa/' }
+  ];
 
   const networkSteps = [
     {
@@ -85,6 +91,8 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
     ]
   };
 
+  const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
+
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
       <Helmet>
@@ -101,6 +109,9 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>
@@ -119,6 +130,8 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
       </nav>
 
       <main className="max-w-4xl mx-auto px-4 py-12">
+        <Breadcrumbs items={breadcrumbItems} />
+
         <header className="mb-16 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-6 border border-red-100">
             <AlertTriangle className="w-3.5 h-3.5" />

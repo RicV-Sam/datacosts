@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { BASE_URL, getIndexableRoutes, validateIndexableRoutes } from '../src/config/routeCatalog';
+import { BASE_URL, getSitemapRoutes, validateIndexableRoutes } from '../src/config/routeCatalog';
 import { getRouteLastMod } from '../src/seo/contentDates';
 
 type SitemapSection = {
@@ -82,7 +82,7 @@ function buildSitemapSections(routes: string[]): SitemapSection[] {
 }
 
 async function main(): Promise<void> {
-  const routes = getIndexableRoutes();
+  const routes = getSitemapRoutes();
   validateIndexableRoutes(routes);
 
   const sitemapSections = buildSitemapSections(routes);

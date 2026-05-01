@@ -102,6 +102,11 @@ const FILTER_ROUTES: Array<{ network: string; bundleType: string }> = [
   { network: 'rain', bundleType: 'monthly-data' }
 ];
 
+const DEEMPHASIZED_SITEMAP_ROUTES = new Set([
+  '/guides/how-to-stop-wasp-vas-charges-south-africa/',
+  '/guides/how-to-stop-wasp-services-south-africa/'
+]);
+
 function normalizeCanonicalPath(path: string): string {
   if (!path.startsWith('/')) {
     throw new Error(`Route must start with "/": ${path}`);
@@ -216,6 +221,10 @@ export function getIndexableRoutes(): string[] {
 
 export function getPrerenderRoutes(): string[] {
   return getIndexableRoutes();
+}
+
+export function getSitemapRoutes(): string[] {
+  return getIndexableRoutes().filter((route) => !DEEMPHASIZED_SITEMAP_ROUTES.has(route));
 }
 
 export function validateIndexableRoutes(routes: string[]): void {

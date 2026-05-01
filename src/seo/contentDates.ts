@@ -39,6 +39,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-check-mtn-airtime-balance': '2026-04-25T00:00:00.000Z',
   'how-to-check-vodacom-airtime-balance': '2026-04-25T00:00:00.000Z',
   'how-to-stop-wasp-vas-charges-south-africa': '2026-03-31T00:00:00.000Z',
+  'out-of-bundle-data-costs-south-africa': '2026-05-01T00:00:00.000Z',
   'prepaid-vs-contract-south-africa': '2026-03-10T00:00:00.000Z',
   'cheapest-data-south-africa': '2026-05-01T00:00:00.000Z',
   'why-does-my-data-finish-so-fast-south-africa': '2026-03-31T00:00:00.000Z',

@@ -5,6 +5,7 @@ import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction } from '../types';
 import { toCanonicalUrl } from '../seo/siteConstants';
+import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 
 interface CookiePolicyPageProps {
   onNavigate: NavigateFunction;
@@ -16,6 +17,11 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate, 
   const metaDescription =
     'DataCost cookie policy explaining what cookies or similar technologies may be used for analytics, usability, advertising, and how you can control them.';
   const canonicalUrl = toCanonicalUrl('/cookie-policy/');
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Cookie Policy', href: '/cookie-policy/' }
+  ];
+  const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -23,11 +29,14 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate, 
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
       <Header onScrollTo={onScrollTo} activeSection="home" />
 
       <main className="max-w-4xl mx-auto px-4 py-12 space-y-10">
+        <Breadcrumbs items={breadcrumbItems} className="mb-0" />
+
         <header className="text-center">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4">Cookie Policy</h1>
           <p className="text-slate-600 font-medium max-w-2xl mx-auto">
