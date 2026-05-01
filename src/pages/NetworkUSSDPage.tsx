@@ -36,7 +36,7 @@ type NetworkConfig = {
 const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   mtn: {
     networkName: 'MTN',
-    titlePrefix: 'MTN USSD Codes (2026)',
+    titlePrefix: 'MTN USSD Codes South Africa (2026)',
     route: '/mtn-ussd-codes/',
     networkHubHref: '/network/mtn/',
     buyDataGuideHref: '/guides/how-to-buy-data-mtn/',
@@ -68,7 +68,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   vodacom: {
     networkName: 'Vodacom',
-    titlePrefix: 'Vodacom USSD Codes (2026)',
+    titlePrefix: 'Vodacom USSD Codes South Africa (2026)',
     route: '/vodacom-ussd-codes/',
     networkHubHref: '/network/vodacom/',
     buyDataGuideHref: '/guides/how-to-buy-data-vodacom/',
@@ -100,7 +100,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   telkom: {
     networkName: 'Telkom',
-    titlePrefix: 'Telkom USSD Codes (2026)',
+    titlePrefix: 'Telkom USSD Codes South Africa (2026)',
     route: '/telkom-ussd-codes/',
     networkHubHref: '/network/telkom/',
     buyDataGuideHref: '/guides/how-to-buy-data-telkom/',
@@ -131,7 +131,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   'cell-c': {
     networkName: 'Cell C',
-    titlePrefix: 'Cell C USSD Codes (2026)',
+    titlePrefix: 'Cell C USSD Codes South Africa (2026)',
     route: '/cell-c-ussd-codes/',
     networkHubHref: '/network/cell-c/',
     buyDataGuideHref: '/guides/how-to-buy-data-cell-c/',

@@ -8,20 +8,20 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/contact/': '2026-04-25T00:00:00.000Z',
   '/cookie-policy/': '2026-04-08T00:00:00.000Z',
   '/editorial-policy/': '2026-01-20T00:00:00.000Z',
-  '/fix-mobile-problems/': '2026-04-01T00:00:00.000Z',
+  '/fix-mobile-problems/': '2026-05-01T00:00:00.000Z',
   '/guides/': '2026-03-31T00:00:00.000Z',
   '/methodology/': '2026-04-25T00:00:00.000Z',
-  '/mtn-ussd-codes/': '2026-03-31T00:00:00.000Z',
+  '/mtn-ussd-codes/': '2026-05-01T00:00:00.000Z',
   '/network/': '2026-03-24T00:00:00.000Z',
   '/privacy-policy/': '2026-04-25T00:00:00.000Z',
   '/save-ussd-codes/': '2026-03-30T00:00:00.000Z',
-  '/cell-c-ussd-codes/': '2026-03-31T00:00:00.000Z',
-  '/telkom-ussd-codes/': '2026-03-31T00:00:00.000Z',
+  '/cell-c-ussd-codes/': '2026-05-01T00:00:00.000Z',
+  '/telkom-ussd-codes/': '2026-05-01T00:00:00.000Z',
   '/terms/': '2026-04-25T00:00:00.000Z',
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
   '/ussd-codes-south-africa/': '2026-04-25T00:00:00.000Z',
   '/data-problems/how-to-check-data-balance-vodacom-ussd/': '2026-04-25T00:00:00.000Z',
-  '/vodacom-ussd-codes/': '2026-03-31T00:00:00.000Z'
+  '/vodacom-ussd-codes/': '2026-05-01T00:00:00.000Z'
 };
 
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
@@ -40,7 +40,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-check-vodacom-airtime-balance': '2026-04-25T00:00:00.000Z',
   'how-to-stop-wasp-vas-charges-south-africa': '2026-03-31T00:00:00.000Z',
   'prepaid-vs-contract-south-africa': '2026-03-10T00:00:00.000Z',
-  'cheapest-data-south-africa': '2026-04-08T00:00:00.000Z',
+  'cheapest-data-south-africa': '2026-05-01T00:00:00.000Z',
   'why-does-my-data-finish-so-fast-south-africa': '2026-03-31T00:00:00.000Z',
   'why-is-my-airtime-disappearing-south-africa': '2026-04-08T00:00:00.000Z',
   'why-is-my-data-finishing-so-fast': '2026-04-16T00:00:00.000Z',
@@ -57,11 +57,11 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
 };
 
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
-  'best-monthly-data-deals-south-africa': '2026-03-21T00:00:00.000Z',
+  'best-monthly-data-deals-south-africa': '2026-05-01T00:00:00.000Z',
   'best-prepaid-data-deals-south-africa': '2026-03-18T00:00:00.000Z',
   'cheap-night-data-south-africa': '2026-03-18T00:00:00.000Z',
   'cheapest-1gb-data-south-africa': '2026-03-18T00:00:00.000Z',
-  'cheapest-2gb-data-south-africa': '2026-03-31T00:00:00.000Z',
+  'cheapest-2gb-data-south-africa': '2026-05-01T00:00:00.000Z',
   'cheapest-5gb-data-south-africa': '2026-03-31T00:00:00.000Z',
   'cheapest-10gb-data-south-africa': '2026-03-19T00:00:00.000Z',
   'cheapest-15gb-data-south-africa': '2026-03-31T00:00:00.000Z',
@@ -83,7 +83,7 @@ const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
   vodacom: '2026-04-25T00:00:00.000Z'
 };
 
-const BUNDLE_TYPE_MODIFIED_ISO = '2026-03-17T00:00:00.000Z';
+const BUNDLE_TYPE_MODIFIED_ISO = '2026-05-01T00:00:00.000Z';
 
 function normalizeRoute(route: string): string {
   if (route === '/') return route;

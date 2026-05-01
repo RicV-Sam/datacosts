@@ -56,7 +56,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-data-south-africa/');
   const dateModifiedIso = getRouteModifiedIso('/guides/cheapest-data-south-africa/');
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
-  const pageTitle = 'Cheapest Data South Africa (2026)';
+  const pageTitle = 'Cheapest Data Prices South Africa (2026)';
   const metaDescription =
     'Compare the cheapest data in South Africa by 1GB, 2GB, 5GB, 10GB, daily, monthly, and night-data intent using DataCost’s dataset-backed prepaid comparison.';
 
@@ -186,6 +186,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     '/guides/cheapest-10gb-data-south-africa/',
     '/guides/cheap-night-data-south-africa/',
     '/guides/best-monthly-data-deals-south-africa/',
+    '/network/vodacom/cheapest-1gb/',
+    '/network/vodacom/monthly-data/',
+    '/network/telkom/monthly-data/',
     '/guides/how-to-check-data-balance/',
     '/ussd-codes-south-africa/',
     '/network/',
@@ -200,6 +203,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     '/guides/cheapest-10gb-data-south-africa/': 'Cheapest 10GB Data South Africa',
     '/guides/cheap-night-data-south-africa/': 'Cheap Night Data South Africa',
     '/guides/best-monthly-data-deals-south-africa/': 'Best Monthly Data Deals South Africa',
+    '/network/vodacom/cheapest-1gb/': 'Vodacom Cheapest 1GB Data',
+    '/network/vodacom/monthly-data/': 'Vodacom Monthly Data',
+    '/network/telkom/monthly-data/': 'Telkom Monthly Data',
     '/guides/how-to-check-data-balance/': 'How to Check Data Balance',
     '/ussd-codes-south-africa/': 'USSD Codes South Africa',
     '/network/': 'Network Comparison Hub',

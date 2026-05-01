@@ -37,6 +37,11 @@ const troubleshootingLinks = [
     description: 'Follow network-by-network cancellation steps.'
   },
   {
+    to: '/data-problems/how-to-check-wasp-subscriptions-mtn/',
+    title: 'Check MTN WASP subscriptions',
+    description: 'Audit MTN subscriptions before airtime disappears again.'
+  },
+  {
     to: '/guides/how-to-check-data-balance/',
     title: 'How to check data balance',
     description: 'Verify your balance before buying another bundle.'

@@ -41,6 +41,15 @@ function toBundleTypeLabel(bundleType: NetworkTemplateBundleType): string {
 
 function getIntro(network: NetworkName, bundleType: NetworkTemplateBundleType): string {
   const label = toBundleTypeLabel(bundleType).toLowerCase();
+
+  if (bundleType === 'monthly-data') {
+    return `Compare ${network} monthly data bundles in South Africa with 30-day pricing, validity notes, and cost-per-GB context so regular prepaid users can choose a stable monthly option instead of repeating short top-ups.`;
+  }
+
+  if (bundleType === 'cheapest-1gb') {
+    return `Compare ${network} 1GB data options in South Africa with listed prices, validity checks, and cost-per-GB context for prepaid users who want a small top-up without overpaying.`;
+  }
+
   return `Compare ${network} ${label} data deals in South Africa with a pricing table, bundle validity checks, and cost-per-GB context built for prepaid decision-making in 2026.`;
 }
 
@@ -152,11 +161,29 @@ function buildFaqs(network: NetworkName, bundleType: NetworkTemplateBundleType, 
 
 function buildSeoTitle(network: NetworkName, bundleType: NetworkTemplateBundleType): string {
   const label = toBundleTypeLabel(bundleType);
+
+  if (bundleType === 'monthly-data') {
+    return `${network} Monthly Data Deals South Africa (2026)`;
+  }
+
+  if (bundleType === 'cheapest-1gb') {
+    return `${network} Cheapest 1GB Data Deals (2026)`;
+  }
+
   return `${network} ${label} Data Deals (2026)`;
 }
 
 function buildSeoDescription(network: NetworkName, bundleType: NetworkTemplateBundleType): string {
   const label = toBundleTypeLabel(bundleType).toLowerCase();
+
+  if (bundleType === 'monthly-data') {
+    return `Compare ${network} monthly data deals in South Africa by price, validity, and cost per GB. Find practical 30-day prepaid options for 2026.`;
+  }
+
+  if (bundleType === 'cheapest-1gb') {
+    return `Compare ${network} 1GB data deals in South Africa by price, validity, and cost per GB. Check small prepaid top-up value for 2026.`;
+  }
+
   return `Compare ${network} ${label} data deals in South Africa with live pricing, validity, and cost per GB insights. Find the cheapest options for 2026 prepaid buyers.`;
 }
 

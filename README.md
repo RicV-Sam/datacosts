@@ -40,6 +40,9 @@ The project is designed as a reusable blueprint for future content-driven sites 
 - [Starter Checklist](docs/starter-checklist.md)
   A reusable launch checklist for future websites based on this project.
 
+- [SEO And GSC Baseline](docs/seo-gsc-baseline.md)
+  Records the DataCosts search baseline, weekly review inputs, and FreeHub exclusion rules.
+
 ## Local Development
 
 ### Prerequisites

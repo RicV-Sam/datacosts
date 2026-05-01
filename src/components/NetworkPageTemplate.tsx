@@ -18,6 +18,12 @@ export interface NetworkTemplateFAQ {
   answer: string;
 }
 
+interface RelatedLink {
+  href: string;
+  label: string;
+  description: string;
+}
+
 export interface NetworkTemplateSeoData {
   title: string;
   description: string;
@@ -77,6 +83,96 @@ function formatRand(value: number): string {
 function formatCostPerGb(value: number | null): string {
   if (value === null || Number.isNaN(value) || value <= 0) return 'N/A';
   return `R${value.toFixed(2)}`;
+}
+
+function getNetworkSlug(network: NetworkName): string {
+  const slugMap: Record<NetworkName, string> = {
+    Vodacom: 'vodacom',
+    MTN: 'mtn',
+    Telkom: 'telkom',
+    'Cell C': 'cell-c',
+    Rain: 'rain'
+  };
+  return slugMap[network];
+}
+
+function buildRelatedLinks(network: NetworkName, bundleType: NetworkTemplateBundleType): RelatedLink[] {
+  const networkSlug = getNetworkSlug(network);
+  const links: RelatedLink[] = [
+    {
+      href: `/network/${networkSlug}/`,
+      label: `${network} data prices`,
+      description: `See the full ${network} data page before choosing a filtered bundle type.`
+    },
+    {
+      href: '/guides/cheapest-data-south-africa/',
+      label: 'Cheapest data in South Africa',
+      description: 'Compare this network page against the full market benchmark.'
+    }
+  ];
+
+  if (bundleType === 'cheapest-1gb') {
+    links.push(
+      {
+        href: '/guides/cheapest-1gb-data-south-africa/',
+        label: 'Cheapest 1GB data guide',
+        description: 'Compare 1GB-style options across Vodacom, MTN, Telkom, and Cell C.'
+      },
+      {
+        href: `/network/${networkSlug}/monthly-data/`,
+        label: `${network} monthly data`,
+        description: 'Check whether a monthly bundle is better value than repeated 1GB top-ups.'
+      }
+    );
+  }
+
+  if (bundleType === 'monthly-data') {
+    links.push(
+      {
+        href: '/guides/best-monthly-data-deals-south-africa/',
+        label: 'Best monthly data deals',
+        description: 'Compare 30-day prepaid value across major South African networks.'
+      },
+      {
+        href: '/guides/cheapest-2gb-data-south-africa/',
+        label: 'Cheapest 2GB data guide',
+        description: 'Use this smaller-bundle benchmark when monthly data feels too large.'
+      },
+      {
+        href: `/network/${networkSlug}/cheapest-1gb/`,
+        label: `${network} cheapest 1GB`,
+        description: 'Compare the smaller top-up path before buying a monthly bundle.'
+      }
+    );
+  }
+
+  if (network !== 'Rain') {
+    links.push(
+      {
+        href: `/${networkSlug}-ussd-codes/`,
+        label: `${network} USSD codes`,
+        description: `Find ${network} balance, buy-data, and self-service shortcuts.`
+      },
+      {
+        href: `/guides/how-to-buy-data-${networkSlug}/`,
+        label: `How to buy ${network} data`,
+        description: `Use the step-by-step ${network} data buying guide.`
+      }
+    );
+  }
+
+  links.push({
+    href: '/ussd-codes-south-africa/',
+    label: 'South Africa USSD codes',
+    description: 'Check balance and buy-data codes for all major networks.'
+  });
+
+  const seen = new Set<string>();
+  return links.filter((link) => {
+    if (seen.has(link.href)) return false;
+    seen.add(link.href);
+    return true;
+  });
 }
 
 export function QuickAnswerCard({
@@ -163,26 +259,21 @@ export function BestForSection({
   );
 }
 
-export function InternalLinks() {
+export function InternalLinks({ network, bundleType }: { network: NetworkName; bundleType: NetworkTemplateBundleType }) {
+  const links = buildRelatedLinks(network, bundleType);
+
   return (
     <section>
       <h2 className="text-2xl font-black tracking-tight text-slate-900">Useful Next Steps</h2>
-      <ul className="mt-4 grid gap-3 md:grid-cols-3">
-        <li>
-          <a className="block rounded-xl border border-slate-200 bg-white p-4 hover:border-emerald-500" href="/guides/cheapest-data-south-africa/">
-            Compare the cheapest data deals in South Africa
-          </a>
-        </li>
-        <li>
-          <a className="block rounded-xl border border-slate-200 bg-white p-4 hover:border-emerald-500" href="/guides/how-to-check-data-balance/">
-            Learn how to check your data balance correctly
-          </a>
-        </li>
-        <li>
-          <a className="block rounded-xl border border-slate-200 bg-white p-4 hover:border-emerald-500" href="/ussd-codes-south-africa/">
-            View all South Africa USSD codes by network
-          </a>
-        </li>
+      <ul className="mt-4 grid gap-3 md:grid-cols-2">
+        {links.map((link) => (
+          <li key={link.href}>
+            <a className="block h-full rounded-xl border border-slate-200 bg-white p-4 hover:border-emerald-500" href={link.href}>
+              <span className="font-black text-slate-900">{link.label}</span>
+              <span className="mt-2 block text-sm leading-relaxed text-slate-600">{link.description}</span>
+            </a>
+          </li>
+        ))}
       </ul>
     </section>
   );
@@ -315,7 +406,7 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
           </h2>
           <p className="mt-3 text-slate-700 leading-relaxed">{networkInsight}</p>
         </section>
-        <InternalLinks />
+        <InternalLinks network={network} bundleType={bundleType} />
         <FAQSection faqs={faqs} />
       </div>
 

@@ -220,6 +220,8 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     links: [
       { href: '/guides/cheapest-5gb-data-south-africa/', label: 'Cheapest 5GB Data', description: 'Upgrade to the next common prepaid size.' },
       { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data', description: 'Compare a mainstream monthly benchmark.' },
+      { href: '/network/vodacom/monthly-data/', label: 'Vodacom Monthly Data', description: 'Check Vodacom monthly bundles if 2GB is too small.' },
+      { href: '/network/telkom/monthly-data/', label: 'Telkom Monthly Data', description: 'Compare Telkom monthly value against small top-ups.' },
       { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'See overall market comparison first.' },
       { href: '/guides/best-prepaid-data-deals-south-africa/', label: 'Best Prepaid Data Deals', description: 'Find stronger prepaid value options.' },
       { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes', description: 'Quick ways to check balance and buy data.' },
@@ -440,9 +442,9 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     mode: 'best-monthly',
     canonicalPath: '/guides/best-monthly-data-deals-south-africa/',
     aliases: ['/guides/cheapest-monthly-data-south-africa/'],
-    title: 'Monthly Data Deals South Africa (2026)',
+    title: 'Best Monthly Data Deals South Africa (2026)',
     metaDescription:
-      'Compare the best monthly data deals in South Africa. See 30-day prepaid options by network, cost per GB, and who each monthly deal is best for.',
+      'Compare the best monthly data deals in South Africa. See 30-day prepaid options from Vodacom, MTN, Telkom and Cell C by cost per GB.',
     h1: 'Best Monthly Data Deals South Africa (2026)',
     intro:
       'Monthly bundles are where most prepaid users make or lose value over time. This page compares currently listed 30-day style options so regular users can evaluate Rand-per-GB, practical fit, and coverage trade-offs in one place.',

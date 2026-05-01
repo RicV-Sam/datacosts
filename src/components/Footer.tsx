@@ -10,8 +10,16 @@ const featuredGuides = [
   { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data South Africa' },
   { href: '/guides/airtime-data-saving-tips-south-africa/', label: 'Airtime & Data Saving Tips' },
   { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data' },
+  { href: '/guides/cheapest-2gb-data-south-africa/', label: 'Cheapest 2GB Data' },
   { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals' },
   { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices' }
+];
+
+const operatorUssdLinks = [
+  { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes' },
+  { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes' },
+  { href: '/telkom-ussd-codes/', label: 'Telkom USSD Codes' },
+  { href: '/cell-c-ussd-codes/', label: 'Cell C USSD Codes' }
 ];
 
 export const Footer: React.FC<FooterProps> = ({ onNavigateTo }) => {
@@ -43,6 +51,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo }) => {
           <a href="/ussd-codes-south-africa/" onClick={(e) => { e.preventDefault(); onNavigateTo('ussd'); }} className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block">
             USSD Codes Directory
           </a>
+
+          {operatorUssdLinks.map((link) => (
+            <a key={link.href} href={link.href} className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block">
+              {link.label}
+            </a>
+          ))}
 
           <a href="/alerts/" onClick={(e) => { e.preventDefault(); onNavigateTo('alerts'); }} className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block">
             Alerts
