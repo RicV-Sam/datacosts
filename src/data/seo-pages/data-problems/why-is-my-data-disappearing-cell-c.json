@@ -9,7 +9,7 @@
     "cellc"
   ],
   "intentScore": 5,
-  "quickAnswer": "Cell C data usually happens because one app, hotspot use, or fallback browsing keeps the session alive after you think it has stopped. Check Cell C app and *101# [VERIFY BEFORE PUBLISH] before you top up again.",
+  "quickAnswer": "Cell C data usually happens because one app, hotspot use, or fallback browsing keeps the session alive after you think it has stopped. Check the Cell C app and *101# before you top up again.",
   "causes": [
     {
       "cause": "Cell C the phone keeps retrying downloads while signal shifts between coverage areas",
@@ -35,7 +35,7 @@
       "mtn": [],
       "cellc": [
         "Open Cell C app.",
-        "Dial *101# [VERIFY BEFORE PUBLISH].",
+        "Dial *101#.",
         "Turn off fallback browsing.",
         "Check whether hotspot, updates, or backup used data in the background.",
         "Confirm which bundle type expired before topping up again."
@@ -56,7 +56,7 @@
     },
     {
       "question": "How do I stop data from disappearing on Cell C?",
-      "answer": "Use Cell C app and *101# [VERIFY BEFORE PUBLISH] to confirm which bundle is being used, then switch off fallback browsing and block the heaviest background app."
+      "answer": "Use the Cell C app and *101# to confirm which bundle is being used, then switch off fallback browsing and block the heaviest background app."
     },
     {
       "question": "Why did my Cell C data disappear overnight?",
@@ -107,6 +107,6 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-04-18",
+  "lastReviewed": "2026-05-02",
   "reviewDueDate": "2026-07-18"
 }

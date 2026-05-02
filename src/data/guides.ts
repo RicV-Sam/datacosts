@@ -1664,7 +1664,7 @@ export const guides: Guide[] = [
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *135# for the main Vodacom self-service and balance menu.',
-      'Use *136# if your line supports a quick balance summary.',
+      'Use the main *135# balance flow first if you need a live USSD check.',
       'Use the MyVodacom app to review airtime, bundles, and account activity together.'
     ],
     jumpLinksTitle: 'On This Page',
@@ -1680,8 +1680,8 @@ export const guides: Guide[] = [
     steps: [
       {
         id: 'ussd-method',
-        title: 'USSD method: dial *135# or *136#',
-        description: 'Dial *135# from your Vodacom SIM and choose balances. Some lines also support *136# for a quick balance summary. If one shortcut looks incomplete, check the main *135# menu.'
+        title: 'USSD method: dial *135#',
+        description: 'Dial *135# from your Vodacom SIM and choose balances. If a submenu looks incomplete, retry from the main *135# self-service menu before assuming the balance is missing.'
       },
       {
         id: 'app-method',
@@ -1711,7 +1711,7 @@ export const guides: Guide[] = [
     faq: [
       {
         question: 'What is the Vodacom airtime balance code?',
-        answer: 'Dial *135# and choose balances. Some Vodacom lines also support *136# for a quick balance summary.'
+        answer: 'Dial *135# and choose balances. That is the safest current Vodacom self-service route for an airtime check.'
       },
       {
         question: 'Can I check Vodacom airtime without data?',

@@ -9,7 +9,7 @@
     "vodacom"
   ],
   "intentScore": 3,
-  "quickAnswer": "To check Vodacom data balance, start with *135# from your Vodacom SIM and choose balances. If your line supports a quick summary, *136# may also help. Use the MyVodacom app when you need a fuller breakdown by bundle type.",
+  "quickAnswer": "To check Vodacom data balance, start with *135# from your Vodacom SIM and choose balances. Use the MyVodacom app when you need a fuller breakdown by bundle type or want to compare active bundles after a top-up.",
   "causes": [
     {
       "cause": "Vodacom shows different bundle views in app and USSD",
@@ -29,7 +29,7 @@
     "byNetwork": {
       "vodacom": [
         "Dial *135# and choose the balance option.",
-        "Use *136# if your line supports a quick balance summary.",
+        "If the first menu looks incomplete, retry from the main *135# self-service flow.",
         "Open the MyVodacom app for a fuller bundle breakdown.",
         "Check the right bundle type, such as anytime, night, promotional, or social data.",
         "Refresh the account after any recent top-up or transfer.",
@@ -107,6 +107,6 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-04-25",
+  "lastReviewed": "2026-05-02",
   "reviewDueDate": "2026-07-25"
 }

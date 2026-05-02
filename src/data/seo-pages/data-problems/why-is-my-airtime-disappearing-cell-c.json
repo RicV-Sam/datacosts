@@ -9,7 +9,7 @@
     "cellc"
   ],
   "intentScore": 5,
-  "quickAnswer": "Cell C airtime loss usually happens because fallback data use, repeated deductions, or mixed charges keep billing after a top-up. Check Cell C app and *101# [VERIFY BEFORE PUBLISH] before you load more airtime.",
+  "quickAnswer": "Cell C airtime loss usually happens because fallback data use, repeated deductions, or mixed charges keep billing after a top-up. Check the Cell C app and *101# before you load more airtime.",
   "causes": [
     {
       "cause": "Cell C mixed voice, SMS, and data charging starts after the wrong bundle type runs out",
@@ -35,7 +35,7 @@
       "mtn": [],
       "cellc": [
         "Open Cell C app.",
-        "Dial *101# [VERIFY BEFORE PUBLISH].",
+        "Dial *101#.",
         "Turn off fallback data use.",
         "Check calls, SMS, app purchases, and subscriptions from the same period.",
         "Monitor the next morning balance to see which charge repeats."
@@ -106,6 +106,6 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-04-18",
+  "lastReviewed": "2026-05-02",
   "reviewDueDate": "2026-07-18"
 }

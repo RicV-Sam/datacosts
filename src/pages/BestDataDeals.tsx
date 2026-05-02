@@ -9,6 +9,7 @@ import { AdUnit } from '../components/AdUnit';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { networkPages } from '../data/networks';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 
@@ -29,7 +30,8 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
   const metaDescription =
     'Compare the best data deals in South Africa for 2026. See the cheapest bundles, best prepaid options, and which network gives the best value right now.';
   const canonicalUrl = toCanonicalUrl('/guides/best-data-deals-south-africa/');
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const dateModifiedIso = getRouteModifiedIso('/guides/best-data-deals-south-africa/');
+  const lastUpdated = formatIsoForDisplay(dateModifiedIso);
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Guides', href: '/guides/' },

@@ -135,7 +135,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'What is the cheapest Vodacom 1GB data bundle?',
-        answer: 'For standard prepaid pricing, daily or weekly 1GB bundles are often cheaper upfront than 30-day options. The monthly 1GB bundle is usually priced higher per GB, but Just 4 You may offer better personalised rates.'
+        answer: 'On Vodacom’s public prepaid menu, the daily and weekly 1GB options are usually the cheaper entry points upfront, while the 30-day once-off 1GB bundle costs more per GB. Just 4 You can still beat listed menu pricing for some users.'
       },
       {
         question: 'Does Vodacom have unlimited data?',
@@ -143,7 +143,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'How do I check my Vodacom data balance?',
-        answer: 'Dial *135# for a quick balance view. For more detailed bundle visibility, use *135*502# or check in the My Vodacom app.'
+        answer: 'Dial *135# for the main balance menu, then use the My Vodacom or VodaPay app when you want a fuller bundle breakdown.'
       },
       {
         question: 'What is Vodacom Just 4 You?',

@@ -9,7 +9,7 @@
     "telkom"
   ],
   "intentScore": 5,
-  "quickAnswer": "Telkom airtime loss usually happens because fallback data use, repeated deductions, or mixed charges keep billing after a top-up. Check Telkom app and *188# [VERIFY BEFORE PUBLISH] before you load more airtime.",
+  "quickAnswer": "Telkom airtime loss usually happens because fallback data use, repeated deductions, or mixed charges keep billing after a top-up. Check the Telkom app and *188# before you load more airtime.",
   "causes": [
     {
       "cause": "Telkom a bundle expires and the line quietly falls back to pay-as-you-go use",
@@ -36,7 +36,7 @@
       "cellc": [],
       "telkom": [
         "Open Telkom app.",
-        "Dial *188# [VERIFY BEFORE PUBLISH].",
+        "Dial *188#.",
         "Turn off fallback data use.",
         "Check calls, SMS, app purchases, and subscriptions from the same period.",
         "Monitor the next morning balance to see which charge repeats."
@@ -106,6 +106,6 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-04-18",
+  "lastReviewed": "2026-05-02",
   "reviewDueDate": "2026-07-18"
 }

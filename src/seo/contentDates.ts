@@ -21,15 +21,46 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/terms/': '2026-04-25T00:00:00.000Z',
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
   '/ussd-codes-south-africa/': '2026-05-01T00:00:00.000Z',
-  '/data-problems/how-to-check-data-balance-vodacom-ussd/': '2026-04-25T00:00:00.000Z',
   '/vodacom-ussd-codes/': '2026-05-01T00:00:00.000Z'
+};
+
+const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
+  '/data-problems/how-to-check-data-balance-vodacom-ussd/': '2026-05-02T00:00:00.000Z',
+  '/data-problems/how-to-check-wasp-subscriptions-mtn/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-check-wasp-subscriptions-vodacom/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-airtime-disappearing-cell-c/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-airtime-disappearing-mtn/': '2026-04-18T00:00:00.000Z',
+  '/data-problems/how-to-stop-airtime-disappearing-telkom/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-airtime-disappearing-vodacom/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-apps-using-data-in-background-samsung/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-background-data-usage-android/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-data-disappearing-cell-c/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-data-disappearing-mtn/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-data-disappearing-telkom/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-data-disappearing-vodacom/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-wasp-charges-cell-c/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-wasp-charges-mtn/': '2026-04-18T00:00:00.000Z',
+  '/data-problems/how-to-stop-wasp-charges-telkom/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-wasp-charges-vodacom/': '2026-04-18T00:00:00.000Z',
+  '/data-problems/why-does-my-data-run-out-so-fast-cell-c/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/why-does-my-data-run-out-so-fast-mtn/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/why-does-my-data-run-out-so-fast-telkom/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/why-is-my-airtime-disappearing-cell-c/': '2026-05-02T00:00:00.000Z',
+  '/data-problems/why-is-my-airtime-disappearing-mtn-prepaid/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/why-is-my-airtime-disappearing-telkom/': '2026-05-02T00:00:00.000Z',
+  '/data-problems/why-is-my-airtime-disappearing-vodacom-prepaid/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/why-is-my-data-disappearing-cell-c/': '2026-05-02T00:00:00.000Z',
+  '/data-problems/why-is-my-data-disappearing-mtn/': '2026-04-18T00:00:00.000Z',
+  '/data-problems/why-is-my-data-disappearing-overnight-android/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/why-is-my-data-disappearing-telkom/': '2026-05-02T00:00:00.000Z',
+  '/data-problems/why-is-my-data-disappearing-vodacom/': '2026-04-18T00:00:00.000Z'
 };
 
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'airtime-data-saving-tips-south-africa': '2026-03-31T00:00:00.000Z',
-  'best-data-deals-south-africa': '2026-03-12T00:00:00.000Z',
-  'cheap-night-data-south-africa': '2026-03-12T00:00:00.000Z',
-  'cheapest-1gb-data-south-africa': '2026-03-18T00:00:00.000Z',
+  'best-data-deals-south-africa': '2026-05-02T00:00:00.000Z',
+  'cheap-night-data-south-africa': '2026-05-02T00:00:00.000Z',
+  'cheapest-1gb-data-south-africa': '2026-05-02T00:00:00.000Z',
   'convert-airtime-to-data-south-africa': '2026-03-14T00:00:00.000Z',
   'how-to-buy-data-cell-c': '2026-03-10T00:00:00.000Z',
   'how-to-buy-data-mtn': '2026-03-10T00:00:00.000Z',
@@ -38,7 +69,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-check-data-balance': '2026-03-16T00:00:00.000Z',
   'how-to-check-mtn-data-balance': '2026-04-25T00:00:00.000Z',
   'how-to-check-mtn-airtime-balance': '2026-04-25T00:00:00.000Z',
-  'how-to-check-vodacom-airtime-balance': '2026-04-25T00:00:00.000Z',
+  'how-to-check-vodacom-airtime-balance': '2026-05-02T00:00:00.000Z',
   'how-to-stop-wasp-vas-charges-south-africa': '2026-03-31T00:00:00.000Z',
   'out-of-bundle-data-costs-south-africa': '2026-05-01T00:00:00.000Z',
   'prepaid-vs-contract-south-africa': '2026-03-10T00:00:00.000Z',
@@ -59,16 +90,16 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
 };
 
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
-  'best-monthly-data-deals-south-africa': '2026-05-01T00:00:00.000Z',
-  'best-prepaid-data-deals-south-africa': '2026-03-18T00:00:00.000Z',
-  'cheap-night-data-south-africa': '2026-03-18T00:00:00.000Z',
-  'cheapest-1gb-data-south-africa': '2026-03-18T00:00:00.000Z',
-  'cheapest-2gb-data-south-africa': '2026-05-01T00:00:00.000Z',
-  'cheapest-5gb-data-south-africa': '2026-03-31T00:00:00.000Z',
-  'cheapest-10gb-data-south-africa': '2026-03-19T00:00:00.000Z',
+  'best-monthly-data-deals-south-africa': '2026-05-02T00:00:00.000Z',
+  'best-prepaid-data-deals-south-africa': '2026-05-02T00:00:00.000Z',
+  'cheap-night-data-south-africa': '2026-05-02T00:00:00.000Z',
+  'cheapest-1gb-data-south-africa': '2026-05-02T00:00:00.000Z',
+  'cheapest-2gb-data-south-africa': '2026-05-02T00:00:00.000Z',
+  'cheapest-5gb-data-south-africa': '2026-05-02T00:00:00.000Z',
+  'cheapest-10gb-data-south-africa': '2026-05-02T00:00:00.000Z',
   'cheapest-15gb-data-south-africa': '2026-03-31T00:00:00.000Z',
-  'cheapest-20gb-data-south-africa': '2026-03-31T00:00:00.000Z',
-  'cheapest-50gb-data-south-africa': '2026-03-31T00:00:00.000Z',
+  'cheapest-20gb-data-south-africa': '2026-05-02T00:00:00.000Z',
+  'cheapest-50gb-data-south-africa': '2026-05-02T00:00:00.000Z',
   'cheapest-whatsapp-bundles-south-africa': '2026-03-20T00:00:00.000Z'
 };
 
@@ -77,12 +108,12 @@ const NETWORK_MODIFIED_BY_SLUG: Record<string, string> = {
   mtn: '2026-03-17T00:00:00.000Z',
   rain: '2026-03-14T00:00:00.000Z',
   telkom: '2026-03-17T00:00:00.000Z',
-  vodacom: '2026-03-17T00:00:00.000Z'
+  vodacom: '2026-05-02T00:00:00.000Z'
 };
 
 const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
   mtn: '2026-04-25T00:00:00.000Z',
-  vodacom: '2026-04-25T00:00:00.000Z'
+  vodacom: '2026-05-02T00:00:00.000Z'
 };
 
 const BUNDLE_TYPE_MODIFIED_ISO = '2026-05-01T00:00:00.000Z';
@@ -164,6 +195,10 @@ export function getRouteModifiedIso(routeInput: string): string {
       }
       return getBundleTypeModifiedIso(networkSlug);
     }
+  }
+
+  if (route.startsWith('/data-problems/')) {
+    return fromMapOrFallback(DATA_PROBLEM_ROUTE_MODIFIED_ISO, route, DEFAULT_MODIFIED_ISO);
   }
 
   return DEFAULT_MODIFIED_ISO;
