@@ -26,8 +26,10 @@ type NetworkConfig = {
   route: string;
   networkHubHref: string;
   buyDataGuideHref: string;
+  balanceGuideHref: string;
   metaDescription: string;
   intro: string;
+  quickAnswer: string;
   supportNote: string;
   faq: Array<{ question: string; answer: string }>;
   comparisonHref?: string;
@@ -36,15 +38,18 @@ type NetworkConfig = {
 const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   mtn: {
     networkName: 'MTN',
-    titlePrefix: 'MTN USSD Codes South Africa (2026)',
+    titlePrefix: 'MTN USSD Codes South Africa',
     route: '/mtn-ussd-codes/',
     networkHubHref: '/network/mtn/',
     buyDataGuideHref: '/guides/how-to-buy-data-mtn/',
+    balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find the most useful MTN USSD codes in South Africa for checking balance, buying data, topping up airtime, support, and self-service actions.',
+      'Find MTN USSD codes in South Africa for checking data balance, airtime balance, buying bundles, and opening self-service menus quickly.',
     intro:
-      'Use this MTN USSD utility page to quickly check balances, buy data bundles, recharge airtime, and access core self-service actions when you have low data or no app access.',
+      'Use this MTN USSD page to check data balance, airtime balance, buy bundles, recharge, and open the core self-service routes you need when the app is slow or you have no data.',
+    quickAnswer:
+      'For a quick MTN check, start with *136# for balance and account options, then use the data and airtime shortcuts below before you browse again or buy another bundle.',
     supportNote:
       'MTN menus can vary by prepaid profile and active campaigns. If a code path changes, use *136# as your fallback entry point.',
     faq: [
@@ -68,15 +73,18 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   vodacom: {
     networkName: 'Vodacom',
-    titlePrefix: 'Vodacom USSD Codes South Africa (2026)',
+    titlePrefix: 'Vodacom USSD Codes South Africa',
     route: '/vodacom-ussd-codes/',
     networkHubHref: '/network/vodacom/',
     buyDataGuideHref: '/guides/how-to-buy-data-vodacom/',
+    balanceGuideHref: '/data-problems/how-to-check-data-balance-vodacom-ussd/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find the most useful Vodacom USSD codes in South Africa for balance checks, data bundles, airtime top-ups, transfers, and customer support.',
+      'Find Vodacom USSD codes in South Africa for data balance, airtime balance, buying bundles, transfers, and customer self-service.',
     intro:
-      'This Vodacom USSD page gives you the key shortcodes for daily prepaid tasks including data purchases, airtime top-ups, balance checks, and quick account actions.',
+      'Use this Vodacom USSD page to check data balance, airtime balance, buy bundles, top up, and handle the everyday prepaid actions that are faster from the dialler than the app.',
+    quickAnswer:
+      'For a quick Vodacom check, start with *135# for balances and self-service, then use the shortcuts below to confirm data, airtime, and bundle-buying options.',
     supportNote:
       'Vodacom often updates self-service menu flows. If a direct code fails, start from *135# and navigate to the same task.',
     faq: [
@@ -100,14 +108,17 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   telkom: {
     networkName: 'Telkom',
-    titlePrefix: 'Telkom USSD Codes South Africa (2026)',
+    titlePrefix: 'Telkom USSD Codes South Africa',
     route: '/telkom-ussd-codes/',
     networkHubHref: '/network/telkom/',
     buyDataGuideHref: '/guides/how-to-buy-data-telkom/',
+    balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find useful Telkom USSD codes in South Africa to check balance, buy data bundles, check your number, and access customer support quickly.',
+      'Find Telkom USSD codes in South Africa to check balance, buy data bundles, check your number, and reach customer support quickly.',
     intro:
-      'Use this Telkom USSD utility to manage your line quickly: check balances, buy bundles, confirm your number, and reach support without relying on app data.',
+      'Use this Telkom USSD page to check balance, buy bundles, confirm your number, and reach support without relying on app data or browser access.',
+    quickAnswer:
+      'For a quick Telkom check, use *188# for balances and *180# for bundle actions, then use the Telkom-specific links below if you need pricing or a fuller troubleshooting path.',
     supportNote:
       'Telkom promo and Mo’Nice menu paths can change over time. If one shortcode fails, use *180# or *188# to find the same action.',
     faq: [
@@ -131,14 +142,17 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   'cell-c': {
     networkName: 'Cell C',
-    titlePrefix: 'Cell C USSD Codes South Africa (2026)',
+    titlePrefix: 'Cell C USSD Codes South Africa',
     route: '/cell-c-ussd-codes/',
     networkHubHref: '/network/cell-c/',
     buyDataGuideHref: '/guides/how-to-buy-data-cell-c/',
+    balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find practical Cell C USSD codes for South Africa, including balance checks, buying bundles, checking your number, and customer care access.',
+      'Find Cell C USSD codes in South Africa for balance checks, buying bundles, checking your number, and customer care access.',
     intro:
-      'This Cell C USSD page helps prepaid users quickly run core actions: balance checks, bundle purchases, number lookups, and support access from one place.',
+      'Use this Cell C USSD page to check balance, buy bundles, confirm your number, and reach support from one place when airtime or data is tight.',
+    quickAnswer:
+      'For a quick Cell C check, start with *101# for balance or *147# for broader account and bundle actions, then use the related guides below if you need pricing or troubleshooting.',
     supportNote:
       'Cell C code paths can differ by account profile and campaign period. If a shortcode fails, use *147# as your fallback menu.',
     faq: [
@@ -204,7 +218,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
   const [searchTerm, setSearchTerm] = useState('');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = `${config.titlePrefix} | Balance, Data & Airtime`;
+  const pageTitle = `${config.titlePrefix} | Check Balance, Airtime and Data`;
   const canonicalUrl = toCanonicalUrl(config.route);
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso(config.route);
@@ -290,8 +304,8 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
 
   const relatedLinks: Array<{ href: string; label: string }> = [
     { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes Hub' },
-    { href: '/save-ussd-codes/', label: 'Save USSD Codes Tool' },
     { href: config.networkHubHref, label: `${config.networkName} Network Page` },
+    { href: config.balanceGuideHref, label: `Check ${config.networkName} balance and bundles` },
     { href: config.buyDataGuideHref, label: `How to Buy Data on ${config.networkName}` },
     { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa' },
     { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa' },
@@ -345,6 +359,11 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">{config.intro}</p>
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
+
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
+          <p className="text-slate-700 leading-relaxed">{config.quickAnswer}</p>
+        </section>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
           <h2 className="text-xl font-black tracking-tight mb-4">Jump to Section</h2>

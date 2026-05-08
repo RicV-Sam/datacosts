@@ -30,7 +30,7 @@ export const networkPages: Record<string, NetworkPageData> = {
   'vodacom': {
     slug: 'vodacom',
     networkName: 'Vodacom',
-    intro: 'Vodacom is usually chosen for coverage consistency, not because it is always the cheapest network. In many areas, users pay a premium for reliability, while savings often come from selecting the right bundle type and checking personalised offers first.',
+    intro: 'Compare Vodacom data prices, bundle types, and Just 4 You context before you buy. Vodacom is usually chosen for coverage consistency, while savings often come from matching validity to usage and checking personalised offers first.',
     bestFor: 'Coverage consistency and premium network reliability',
     verdictSummary: 'Vodacom is usually chosen for coverage and consistency rather than being the cheapest option. Most savings come from matching bundle validity to usage and checking personalised offers first.',
     strengths: [
@@ -166,7 +166,7 @@ export const networkPages: Record<string, NetworkPageData> = {
   'mtn': {
     slug: 'mtn',
     networkName: 'MTN',
-    intro: 'MTN is usually the strongest all-round prepaid option when you want broad coverage plus frequent promotions. It is often compared directly with Vodacom, and value can improve a lot when you check personalised offers first.',
+    intro: 'Compare MTN data prices and bundles before you buy, especially if you are weighing promo value against coverage. MTN is usually a strong all-round prepaid option, and value often improves when personalised offers are active.',
     bestFor: 'Strong all-round prepaid performance',
     verdictSummary: 'MTN is often a balanced choice for users who want strong coverage plus regular promo value, especially when personalised deals are active.',
     strengths: [
@@ -273,7 +273,7 @@ export const networkPages: Record<string, NetworkPageData> = {
   'telkom': {
     slug: 'telkom',
     networkName: 'Telkom',
-    intro: 'Telkom is usually the value-first choice for prepaid users chasing lower Rand-per-GB, especially on larger monthly bundles. Pricing is often excellent, but user experience can still vary by area.',
+    intro: 'Compare Telkom data prices and monthly-value bundles before you buy. Telkom is usually the value-first choice for lower Rand-per-GB, but network experience can still vary a lot by area.',
     bestFor: 'Value-led prepaid data pricing',
     verdictSummary: 'Telkom often leads on prepaid value, but best results depend on your local coverage quality and choosing the right validity period.',
     strengths: [
@@ -380,7 +380,7 @@ export const networkPages: Record<string, NetworkPageData> = {
   'cell-c': {
     slug: 'cell-c',
     networkName: 'Cell C',
-    intro: 'Cell C is a deal-driven prepaid option that can be very competitive on selected bundles and promos. It is often used by bargain-hunters willing to compare campaigns and validity terms carefully.',
+    intro: 'Compare Cell C data prices and promo-led bundle options before you buy. Cell C can be very competitive on selected deals, but the best pick usually depends on current promos, validity, and local network experience.',
     bestFor: 'Promo-driven prepaid value alternatives',
     verdictSummary: 'Cell C can deliver strong value on targeted promotions, but users should verify validity limits and local network experience before committing.',
     strengths: [

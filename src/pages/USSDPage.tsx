@@ -88,9 +88,9 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = 'USSD Codes South Africa (All Networks)';
+  const pageTitle = 'USSD Codes South Africa for MTN, Vodacom, Telkom and Cell C';
   const metaDescription =
-    'Use the main South African USSD codes for MTN, Vodacom, Telkom and Cell C. Check balance, buy data, send Please Call Me, and find self-service shortcuts fast.';
+    'Find South Africa USSD codes for MTN, Vodacom, Telkom, and Cell C. Check airtime or data balance, buy bundles, and open self-service menus fast.';
   const canonicalUrl = toCanonicalUrl('/ussd-codes-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');
@@ -255,10 +255,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
 
         <header className="mb-8">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 leading-[0.9]">
-            South Africa <span className="text-[#1b6d24]">USSD Codes</span> (2026)
+            <span className="text-[#1b6d24]">USSD Codes</span> South Africa
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Use this page to check balance, buy data, find self-service shortcuts, and troubleshoot common prepaid actions on MTN, Vodacom, Telkom, and Cell C.
+            Start here if you need the main USSD codes for MTN, Vodacom, Telkom, and Cell C. Use the shortcuts below to check airtime or data balance, buy bundles, and reach self-service menus quickly.
           </p>
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
@@ -301,7 +301,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            The safest way to use USSD is to start with balance checks, then buy bundles before you browse again. The exact shortcode differs by operator, so use the answer sections below for the common actions most South African prepaid users need every week.
+            If you need a fast answer, start with the balance code for your network, then buy a bundle before you browse again. The operator sections below give you the main USSD shortcuts South African prepaid users use most often for balance checks, data buying, and account help.
           </p>
         </section>
 
@@ -350,7 +350,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <AdUnit type="aboveFold" />
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-6">Useful next steps</h2>
+          <h2 className="text-2xl font-black tracking-tight mb-6">Balance checks and next steps</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <Link to="/guides/how-to-check-data-balance/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
               <div className="font-black text-slate-900">How to Check Data Balance</div>

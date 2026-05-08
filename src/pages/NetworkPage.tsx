@@ -107,8 +107,8 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
   const comparisonRows = pageData.comparisonSummary || [];
 
-  const pageTitle = `${network.name} Data Prices South Africa (2026)`;
-  const metaDescription = `Compare ${network.name} prepaid data prices in South Africa, including daily, weekly and monthly bundles, USSD codes, and practical savings tips updated for 2026.`;
+  const pageTitle = `${network.name} Data Prices and Bundles South Africa`;
+  const metaDescription = `Compare ${network.name} prepaid data prices and bundles in South Africa. Check daily, weekly, and monthly options, balance codes, and the next pages to use before you buy.`;
   const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/`);
   const dateModifiedIso = getNetworkPageModifiedIso(networkSlug);
   const sourceCheckedIso = getNetworkModifiedIso(networkSlug);
@@ -119,7 +119,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: `${network.name} Data Prices South Africa (2026)`,
+    name: `${network.name} Data Prices and Bundles South Africa`,
     description: metaDescription,
     url: canonicalUrl,
     datePublished: datePublishedIso,
@@ -134,7 +134,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${network.name} Data Prices South Africa (2026)`,
+    headline: `${network.name} Data Prices and Bundles South Africa`,
     description: metaDescription,
     url: canonicalUrl,
     datePublished: datePublishedIso,
@@ -219,6 +219,8 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
       : []),
     ...(balanceGuideLinksBySlug[networkSlug] || []),
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Keep track of active bundles and expiry.' },
+    { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals South Africa', description: 'Compare best-value prepaid bundle options.' },
+    { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data South Africa', description: 'Compare the lowest-cost bundle options by intent.' },
     { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data South Africa', description: 'National comparison for regular users.' },
     { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa', description: 'National low-volume benchmark.' }
   ];
@@ -310,7 +312,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             Updated {lastUpdated}
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
-            {network.name} Data Prices <span className="text-[#1b6d24]">South Africa</span> (2026)
+            {network.name} Data Prices and <span className="text-[#1b6d24]">Bundles</span> South Africa
           </h1>
           <p className="text-xl text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto">{pageData.intro}</p>
         </header>

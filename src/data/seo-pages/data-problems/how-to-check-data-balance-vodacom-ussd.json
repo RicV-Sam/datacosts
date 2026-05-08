@@ -2,14 +2,14 @@
   "pageType": "problem-solver",
   "keyword": "how to check data balance vodacom ussd",
   "slug": "data-problems/how-to-check-data-balance-vodacom-ussd",
-  "pageTitle": "How to check Vodacom data balance by USSD",
-  "metaDescription": "Check your Vodacom data balance by USSD, confirm active bundles and airtime, and spot fallback charges before they drain your remaining balance today.",
-  "h1": "How to check data balance Vodacom USSD",
+  "pageTitle": "How to Check Vodacom Data Balance by USSD",
+  "metaDescription": "Check your Vodacom data balance with *135# or *136#, confirm active bundles, and spot fallback charges before you buy more data.",
+  "h1": "How to Check Vodacom Data Balance",
   "networks": [
     "vodacom"
   ],
   "intentScore": 3,
-  "quickAnswer": "To check Vodacom data balance, start with *135# from your Vodacom SIM and choose balances. Use the MyVodacom app when you need a fuller breakdown by bundle type or want to compare active bundles after a top-up.",
+  "quickAnswer": "To check Vodacom data balance, start with *135# from your Vodacom SIM and choose balances. If your line supports a quick summary, *136# may also help. Use MyVodacom when you need a fuller bundle breakdown or want to compare active bundles after a top-up.",
   "causes": [
     {
       "cause": "Vodacom shows different bundle views in app and USSD",

@@ -1034,15 +1034,15 @@ export const guides: Guide[] = [
   },
   {
     slug: 'why-is-my-data-disappearing-south-africa',
-    title: 'Why Is My Data Disappearing? (SA 2026)',
-    metaDescription: 'Data disappearing in South Africa? Learn the top causes, how to check usage, and the fastest fixes across Vodacom, MTN, Telkom, and Cell C.',
-    h1: 'Why Is My Data Disappearing in South Africa? (Fix Guide 2026)',
-    intro: 'Data loss complaints in South Africa are usually linked to expiry timing, background usage, and incorrect bundle fit. This parent page gives you the national diagnosis path before moving to network-specific fix pages.',
+    title: 'Why Is My Data Disappearing in South Africa?',
+    metaDescription: 'Find out why data disappears on Vodacom, MTN, Telkom, or Cell C. Check bundle expiry, app usage, and balance history before buying more data.',
+    h1: 'Why Is My Data Disappearing in South Africa?',
+    intro: 'If your data keeps disappearing, start by checking bundle expiry, background app usage, and whether your bundle type matches how you actually use your phone. This page gives you the quickest national diagnosis path before you move to network-specific fixes.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
-      'Most fast data loss comes from background apps, mobile auto-updates, or short-validity bundle mismatch.',
-      'Check phone-level app usage and your network balance history together for accurate diagnosis.',
-      'Then move to your specific network page for exact USSD codes and self-service fixes.'
+      'Most fast data loss starts with background apps, auto-updates, hotspot use, or a short-validity bundle finishing sooner than expected.',
+      'Check phone-level app usage and your network balance history together before you buy more data.',
+      'Then use the network-specific pages below for exact balance checks, USSD codes, and self-service fixes.'
     ],
     comparisonType: 'all',
     stepsTitle: 'South Africa Parent Workflow',
@@ -1056,10 +1056,13 @@ export const guides: Guide[] = [
         description: 'Use the dedicated Vodacom or MTN fix guide for operator-specific controls, tools, and USSD steps.'
       }
     ],
-    nextStepsTitle: 'Go to Network-Specific Fixes',
+    nextStepsTitle: 'Balance checks and network-specific fixes',
     nextSteps: [
+      { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Start with a general balance-check workflow before buying again.', action: 'route' },
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Use the main balance and self-service shortcuts for all major networks.', action: 'route' },
       { href: '/guides/why-is-my-data-disappearing-vodacom/', label: 'Vodacom Data Disappearing Fix Guide', description: 'Vodacom-only causes, USSD checks, and MyVodacom workflow.', action: 'guide', slug: 'why-is-my-data-disappearing-vodacom' },
       { href: '/guides/why-is-my-data-disappearing-mtn/', label: 'MTN Data Disappearing Fix Guide', description: 'MTN-only causes, USSD checks, and MTN app workflow.', action: 'guide', slug: 'why-is-my-data-disappearing-mtn' },
+      { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Use this if data loss turns into airtime deductions after expiry.', action: 'route' },
       { href: '/guides/airtime-data-problems-south-africa/', label: 'Airtime & Data Problems Hub', description: 'Open the broader issue cluster for related fixes.', action: 'guide', slug: 'airtime-data-problems-south-africa' }
     ],
     faq: [
@@ -1513,15 +1516,15 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-check-mtn-data-balance',
-    title: 'How to Check MTN Data Balance in South Africa',
-    metaDescription: 'Check your MTN data balance using USSD, the MTN app, and safe fallback methods. Includes troubleshooting and useful South African MTN links.',
+    title: 'Check MTN Data Balance in South Africa',
+    metaDescription: 'Check your MTN data balance with *136# or *136*1#, then use the MTN app for bundle details and troubleshooting.',
     h1: 'How to Check MTN Data Balance',
-    intro: 'If you are on MTN prepaid or top-up in South Africa, check your data balance before streaming, hotspotting, or buying another bundle. The safest routine is to confirm your balance with USSD first, then use the MTN app when you need a fuller breakdown by bundle type.',
+    intro: 'If you are on MTN prepaid or top-up in South Africa, check your data balance before streaming, hotspotting, or buying another bundle. Start with *136# or *136*1#, then use the MTN app if you need a fuller bundle breakdown.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *136# for the main MTN balance menu.',
-      'Use *136*1# if your line supports the direct balance shortcut.',
-      'Use the MTN app for a fuller view of remaining bundles, validity, and recent usage.'
+      'Use *136*1# if your line supports the direct MTN data balance shortcut.',
+      'Use the MTN app to confirm bundle validity, remaining data, and recent usage.'
     ],
     jumpLinksTitle: 'On This Page',
     jumpLinks: [
@@ -1557,9 +1560,9 @@ export const guides: Guide[] = [
     ],
     nextStepsTitle: 'Useful MTN Links',
     nextSteps: [
-      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'See MTN and other network balance shortcuts in one place.', action: 'route' },
       { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Open the MTN-specific code reference.', action: 'route' },
       { href: '/network/mtn/', label: 'MTN Network Page', description: 'Compare MTN data prices, bundle types, and savings notes.', action: 'route' },
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'See MTN and other network balance shortcuts in one place.', action: 'route' },
       { href: '/network/mtn/monthly-data/', label: 'MTN Monthly Data', description: 'Compare longer-validity MTN data options.', action: 'route' },
       { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Use this if data runs out and airtime starts dropping.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
       { href: '/guides/how-to-check-mtn-airtime-balance/', label: 'How to Check MTN Airtime Balance', description: 'Check airtime before out-of-bundle browsing starts.', action: 'guide', slug: 'how-to-check-mtn-airtime-balance' }
@@ -1585,15 +1588,15 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-check-mtn-airtime-balance',
-    title: 'How to Check MTN Airtime Balance in South Africa',
-    metaDescription: 'Check your MTN airtime balance with USSD and the MTN app. Includes safe alternatives, troubleshooting, and related DataCost links.',
+    title: 'Check MTN Airtime Balance in South Africa',
+    metaDescription: 'Check your MTN airtime balance with *136# and the MTN app, then confirm whether data or subscriptions are causing deductions.',
     h1: 'How to Check MTN Airtime Balance',
-    intro: 'MTN airtime can drop quickly if a data bundle expires, a subscription renews, or browsing continues out of bundle. Check airtime before and after buying data so you can spot unexpected deductions early.',
+    intro: 'MTN airtime can drop quickly if a data bundle expires, a subscription renews, or browsing continues out of bundle. Start with *136#, then compare the result with your MTN app and recent usage if deductions look wrong.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *136# from your MTN SIM and choose the balance option.',
       'Use the MTN app for a fuller account view when USSD is unclear.',
-      'If airtime keeps dropping, check data balance and subscriptions next.'
+      'If airtime keeps dropping, check MTN data balance and active subscriptions next.'
     ],
     jumpLinksTitle: 'On This Page',
     jumpLinks: [
@@ -1629,9 +1632,9 @@ export const guides: Guide[] = [
     ],
     nextStepsTitle: 'Useful MTN Links',
     nextSteps: [
-      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Find balance and account shortcuts across networks.', action: 'route' },
       { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Open the MTN-specific USSD reference.', action: 'route' },
       { href: '/network/mtn/', label: 'MTN Network Page', description: 'Review MTN pricing and network guidance.', action: 'route' },
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Find balance and account shortcuts across networks.', action: 'route' },
       { href: '/network/mtn/monthly-data/', label: 'MTN Monthly Data', description: 'Compare MTN bundles before using raw airtime for browsing.', action: 'route' },
       { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Diagnose common airtime deductions and subscription issues.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
       { href: '/guides/how-to-check-mtn-data-balance/', label: 'How to Check MTN Data Balance', description: 'Confirm data before airtime pays for browsing.', action: 'guide', slug: 'how-to-check-mtn-data-balance' }
@@ -1657,16 +1660,16 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-check-vodacom-airtime-balance',
-    title: 'How to Check Vodacom Airtime Balance in South Africa',
-    metaDescription: 'Check your Vodacom airtime balance with USSD and the MyVodacom app. Includes troubleshooting, safe alternatives, and helpful DataCost links.',
+    title: 'Check Vodacom Airtime Balance in South Africa',
+    metaDescription: 'Check your Vodacom airtime balance with *135# or *136#, then use MyVodacom to confirm bundles, airtime, and recent account activity.',
     h1: 'How to Check Vodacom Airtime Balance',
-    intro: 'Vodacom airtime balance checks are useful before buying data, after loading a voucher, and whenever airtime seems to be dropping unexpectedly. Use USSD for a quick check, then use the MyVodacom app if you need more account detail.',
+    intro: 'Vodacom airtime balance checks are useful before buying data, after loading a voucher, and whenever airtime seems to be dropping unexpectedly. Start with *135# or *136#, then use MyVodacom if you need more account detail.',
     quickSummaryTitle: 'Quick Answer',
-    quickSummaryItems: [
-      'Dial *135# for the main Vodacom self-service and balance menu.',
-      'Use the main *135# balance flow first if you need a live USSD check.',
-      'Use the MyVodacom app to review airtime, bundles, and account activity together.'
-    ],
+      quickSummaryItems: [
+        'Dial *135# for the main Vodacom self-service and balance menu.',
+        'Use *136# if your line supports a quick balance summary, but fall back to the main *135# flow for the clearest live USSD check.',
+        'Use MyVodacom to review airtime, bundles, and recent account activity together.'
+      ],
     jumpLinksTitle: 'On This Page',
     jumpLinks: [
       { label: 'USSD method', anchor: 'ussd-method' },
@@ -1701,9 +1704,9 @@ export const guides: Guide[] = [
     ],
     nextStepsTitle: 'Useful Vodacom Links',
     nextSteps: [
-      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'See Vodacom and other network balance shortcuts.', action: 'route' },
       { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes', description: 'Open the Vodacom-specific USSD reference.', action: 'route' },
       { href: '/network/vodacom/', label: 'Vodacom Network Page', description: 'Compare Vodacom data prices and network guidance.', action: 'route' },
+      { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'See Vodacom and other network balance shortcuts.', action: 'route' },
       { href: '/network/vodacom/monthly-data/', label: 'Vodacom Monthly Data', description: 'Compare bundle options before browsing from airtime.', action: 'route' },
       { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Diagnose content services, out-of-bundle use, and repeat deductions.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
       { href: '/data-problems/how-to-check-data-balance-vodacom-ussd/', label: 'How to Check Vodacom Data Balance', description: 'Check data balance before airtime starts paying for usage.', action: 'route' }

@@ -56,7 +56,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-data-south-africa/');
   const dateModifiedIso = getRouteModifiedIso('/guides/cheapest-data-south-africa/');
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
-  const pageTitle = 'Cheapest Data Prices South Africa (2026)';
+  const pageTitle = 'Cheapest Data South Africa | Compare Budget Bundle Prices';
+  const pageMetaDescription =
+    'Find the cheapest data in South Africa by budget and bundle size. Compare 1GB, 2GB, 5GB, 10GB, daily, monthly, and night data across major networks.';
   const metaDescription =
     'Compare the cheapest data in South Africa by 1GB, 2GB, 5GB, 10GB, daily, monthly, and night-data intent using DataCost’s dataset-backed prepaid comparison.';
 
@@ -186,9 +188,10 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     '/guides/cheapest-10gb-data-south-africa/',
     '/guides/cheap-night-data-south-africa/',
     '/guides/best-monthly-data-deals-south-africa/',
-    '/network/vodacom/cheapest-1gb/',
-    '/network/vodacom/monthly-data/',
-    '/network/telkom/monthly-data/',
+    '/network/mtn/',
+    '/network/vodacom/',
+    '/network/telkom/',
+    '/network/cell-c/',
     '/guides/how-to-check-data-balance/',
     '/ussd-codes-south-africa/',
     '/network/',
@@ -203,9 +206,10 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     '/guides/cheapest-10gb-data-south-africa/': 'Cheapest 10GB Data South Africa',
     '/guides/cheap-night-data-south-africa/': 'Cheap Night Data South Africa',
     '/guides/best-monthly-data-deals-south-africa/': 'Best Monthly Data Deals South Africa',
-    '/network/vodacom/cheapest-1gb/': 'Vodacom Cheapest 1GB Data',
-    '/network/vodacom/monthly-data/': 'Vodacom Monthly Data',
-    '/network/telkom/monthly-data/': 'Telkom Monthly Data',
+    '/network/mtn/': 'MTN Network Page',
+    '/network/vodacom/': 'Vodacom Network Page',
+    '/network/telkom/': 'Telkom Network Page',
+    '/network/cell-c/': 'Cell C Network Page',
     '/guides/how-to-check-data-balance/': 'How to Check Data Balance',
     '/ussd-codes-south-africa/': 'USSD Codes South Africa',
     '/network/': 'Network Comparison Hub',
@@ -216,17 +220,17 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
       <Helmet>
         <title>{pageTitle}</title>
-        <meta name="description" content={metaDescription} />
+        <meta name="description" content={pageMetaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={metaDescription} />
+        <meta property="og:description" content={pageMetaDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:description" content={pageMetaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
@@ -248,15 +252,15 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
       <main className="max-w-4xl mx-auto px-4 py-12">
         <header className="mb-10">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-5 leading-[0.92]">
-            Cheapest Data in <span className="text-[#1b6d24]">South Africa</span> (2026)
+            Cheapest Data in <span className="text-[#1b6d24]">South Africa</span>
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Compare the cheapest data by common search intent, including 1GB, 2GB, 5GB, 10GB, daily data, monthly data, and night data. Every price reference on this page comes from the current local DataCost dataset.
+            Use this page when your goal is the lowest-cost data option by budget and bundle size. Compare 1GB, 2GB, 5GB, 10GB, daily, monthly, and night-data choices before you buy.
           </p>
         </header>
 
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight mb-4">Top comparison summary</h2>
+          <h2 className="text-2xl font-black tracking-tight mb-4">Cheapest data quick comparison</h2>
           <p className="text-slate-700 leading-relaxed mb-5">
             This summary table ranks the visible non-social, non-night bundles on this page by cost per GB. It is a comparison aid, not a claim that personalised operator offers are universally available to every user.
           </p>
@@ -291,13 +295,13 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
+            {cheapest1Gb
+              ? `${cheapest1Gb.network} currently shows the cheapest visible 1GB-style option on this page with ${cheapest1Gb.name} at R${cheapest1Gb.price}. `
+              : 'The cheapest 1GB view depends on the visible dataset. '}
             {cheapestMonthly
-              ? `${cheapestMonthly.network} currently leads the monthly-style value view on this page with ${cheapestMonthly.name} at about R${cheapestMonthly.costPerGb.toFixed(2)}/GB. `
-              : 'Monthly value depends on the visible dataset. '}
-            {cheapestDaily
-              ? `${cheapestDaily.network} currently leads the daily-value view with ${cheapestDaily.name}. `
-              : 'Daily value depends on the visible dataset. '}
-            The best answer depends on whether you need the cheapest short-term top-up, the lowest monthly cost per GB, or a night-data bundle for off-peak use.
+              ? `${cheapestMonthly.network} currently leads the monthly budget view with ${cheapestMonthly.name} at about R${cheapestMonthly.costPerGb.toFixed(2)}/GB. `
+              : 'Monthly budget value depends on the visible dataset. '}
+            Use the sections below to separate lowest upfront price from monthly value before you top up again.
           </p>
         </section>
 
