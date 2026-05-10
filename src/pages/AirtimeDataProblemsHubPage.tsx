@@ -6,10 +6,19 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { AdUnit } from '../components/AdUnit';
+import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { NavigateFunction } from '../types';
-import { getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
+import {
+  DEFAULT_OG_IMAGE_URL,
+  SITE_EDITOR_BIO,
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_PRODUCT_NAME,
+  SITE_URL,
+  toCanonicalUrl
+} from '../seo/siteConstants';
 
 interface AirtimeDataProblemsHubPageProps {
   onNavigate: NavigateFunction;
@@ -91,6 +100,7 @@ export const AirtimeDataProblemsHubPage: React.FC<AirtimeDataProblemsHubPageProp
   const canonicalUrl = toCanonicalUrl('/guides/airtime-data-problems-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getGuideModifiedIso('airtime-data-problems-south-africa');
+  const lastUpdated = formatIsoForDisplay(dateModifiedIso);
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Guides', href: '/guides/' },
@@ -108,13 +118,19 @@ export const AirtimeDataProblemsHubPage: React.FC<AirtimeDataProblemsHubPageProp
     datePublished: datePublishedIso,
     dateModified: dateModifiedIso,
     author: {
-      '@type': 'Organization',
-      name: 'DataCost',
-      url: SITE_URL
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE,
+      description: SITE_EDITOR_BIO
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE
     },
     publisher: {
       '@type': 'Organization',
-      name: 'DataCost',
+      name: SITE_PRODUCT_NAME,
       url: SITE_URL
     }
   };
@@ -184,8 +200,8 @@ export const AirtimeDataProblemsHubPage: React.FC<AirtimeDataProblemsHubPageProp
             Airtime & Data Problems in South Africa (Fix Guide 2026)
           </h1>
           <div className="mb-5 rounded-2xl border border-slate-200 bg-white p-4">
-            <p className="text-sm font-semibold text-slate-700">Last updated: April 2026</p>
-            <p className="text-sm text-slate-600">Reviewed by DataCost Telecom Insights Team</p>
+            <p className="text-sm font-semibold text-slate-700">Last reviewed: {lastUpdated}</p>
+            <p className="text-sm text-slate-600">Reviewed by {SITE_EDITOR_NAME}, {SITE_EDITOR_ROLE}</p>
           </div>
           <AdUnit type="aboveFold" className="mb-6" />
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
@@ -276,6 +292,12 @@ export const AirtimeDataProblemsHubPage: React.FC<AirtimeDataProblemsHubPageProp
             ))}
           </div>
         </section>
+
+        <AuthorReviewBlock
+          lastReviewed={lastUpdated}
+          trustSummary="Based on public operator support paths, USSD workflows, and South African prepaid troubleshooting needs."
+          className="mb-12"
+        />
 
         <AdUnit type="inContent" className="mt-8" />
       </main>

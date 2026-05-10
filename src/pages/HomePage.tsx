@@ -17,7 +17,16 @@ import { bundles } from '../data';
 import { NetworkName } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_PRODUCT_NAME, SITE_URL } from '../seo/siteConstants';
+import {
+  DEFAULT_OG_IMAGE_URL,
+  SITE_BRAND_NAME,
+  SITE_EDITOR_BIO,
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_LOGO_URL,
+  SITE_PRODUCT_NAME,
+  SITE_URL
+} from '../seo/siteConstants';
 
 interface HomePageProps {
   onNavigate: (page: 'home' | 'ussd' | 'alerts' | 'guide' | 'network' | 'guides-index' | 'travel-sims' | 'fix-problem', slug?: string) => void;
@@ -101,6 +110,12 @@ export const HomePage: React.FC<HomePageProps> = ({
       '@type': 'WebSite',
       name: SITE_PRODUCT_NAME,
       url: canonicalUrl
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE,
+      description: SITE_EDITOR_BIO
     }
   };
 
@@ -188,6 +203,19 @@ export const HomePage: React.FC<HomePageProps> = ({
             >
               Fix a Problem
             </button>
+          </div>
+        </section>
+
+        <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-4 md:p-6 shadow-sm">
+          <h2 className="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-3">How DataCost Builds Trust</h2>
+          <p className="text-sm text-slate-700 leading-relaxed">
+            DataCost is edited by {SITE_EDITOR_NAME}, {SITE_EDITOR_ROLE}. We compare public operator pricing, USSD flows, bundle validity, and cost-per-GB signals so South African prepaid users can make clearer decisions before buying.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <a href="/about/" className="text-sm font-bold text-[#1b6d24] hover:underline">About DataCost</a>
+            <a href="/methodology/" className="text-sm font-bold text-[#1b6d24] hover:underline">Methodology</a>
+            <a href="/editorial-policy/" className="text-sm font-bold text-[#1b6d24] hover:underline">Editorial Policy</a>
+            <a href="/contact/#corrections" className="text-sm font-bold text-[#1b6d24] hover:underline">Report an error</a>
           </div>
         </section>
 

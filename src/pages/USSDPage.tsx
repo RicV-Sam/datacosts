@@ -10,7 +10,16 @@ import { TrustPanel } from '../components/TrustPanel';
 import { ussdRepository } from '../data/ussd';
 import { NavigateFunction, USSDEntry } from '../types';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import {
+  DEFAULT_OG_IMAGE_URL,
+  SITE_EDITOR_BIO,
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_PRODUCT_NAME,
+  SITE_URL,
+  toCanonicalUrl
+} from '../seo/siteConstants';
+import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 
 interface USSDPageProps {
   onBack: () => void;
@@ -153,6 +162,12 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
       '@type': 'WebSite',
       name: SITE_PRODUCT_NAME,
       url: SITE_URL
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE,
+      description: SITE_EDITOR_BIO
     }
   };
 
@@ -519,6 +534,12 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
             ))}
           </div>
         </section>
+
+        <AuthorReviewBlock
+          lastReviewed={lastUpdated}
+          trustSummary="Based on public network USSD menus, operator support pages, conservative shortcut wording, and South African prepaid user workflows."
+          className="mb-12"
+        />
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />

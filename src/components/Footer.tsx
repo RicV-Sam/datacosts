@@ -29,7 +29,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo }) => {
         <div className="col-span-2 lg:col-span-2">
           <span className="text-lg font-black text-[#031636] mb-4 block">DataCost.co.za</span>
           <p className="text-xs text-slate-500 max-w-xs leading-relaxed">
-            © 2026 DataCost.co.za - South Africa&apos;s Independent Data Comparison. We help you find the best value without the bias.
+            Copyright 2026 DataCost.co.za. Independent South African mobile-data comparison, USSD guidance, and prepaid troubleshooting.
           </p>
         </div>
 

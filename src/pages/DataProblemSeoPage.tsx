@@ -7,10 +7,19 @@ import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { AdUnit } from '../components/AdUnit';
 import { TrustPanel } from '../components/TrustPanel';
+import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { NavigateFunction } from '../types';
 import { formatIsoForDisplay, getDefaultPublishedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import {
+  DEFAULT_OG_IMAGE_URL,
+  SITE_EDITOR_BIO,
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_PRODUCT_NAME,
+  SITE_URL,
+  toCanonicalUrl
+} from '../seo/siteConstants';
 import { getExternalDataProblemPage } from '../data/externalDataProblems';
 import { NotFoundPage } from './NotFoundPage';
 
@@ -54,13 +63,19 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
     datePublished: datePublishedIso,
     dateModified: page.lastReviewed ? `${page.lastReviewed}T00:00:00.000Z` : datePublishedIso,
     author: {
-      '@type': 'Organization',
-      name: 'DataCost',
-      url: SITE_URL
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE,
+      description: SITE_EDITOR_BIO
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE
     },
     publisher: {
       '@type': 'Organization',
-      name: 'DataCost',
+      name: SITE_PRODUCT_NAME,
       url: SITE_URL
     }
   };
@@ -180,6 +195,12 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
             </ul>
           </section>
         )}
+
+        <AuthorReviewBlock
+          lastReviewed={lastReviewed}
+          trustSummary="Based on public operator support pages, USSD and app-account workflows where available, and South African prepaid troubleshooting needs."
+          className="mb-12"
+        />
 
         <AdUnit type="inContent" className="mt-8" />
       </main>

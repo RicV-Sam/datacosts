@@ -4,7 +4,13 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction } from '../types';
-import { toCanonicalUrl } from '../seo/siteConstants';
+import {
+  SITE_BRAND_NAME,
+  SITE_EDITOR_NAME,
+  SITE_PRODUCT_NAME,
+  SITE_URL,
+  toCanonicalUrl
+} from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 
 interface ContactPageProps {
@@ -15,13 +21,35 @@ interface ContactPageProps {
 export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo }) => {
   const pageTitle = 'Contact DataCost South Africa';
   const metaDescription =
-    'Contact DataCost for pricing corrections, editorial feedback, privacy requests, and site support related to South African mobile data comparisons.';
+    'Contact DataCost for South African mobile data price corrections, USSD updates, editorial feedback, privacy requests, and site support.';
   const canonicalUrl = toCanonicalUrl('/contact/');
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Contact', href: '/contact/' }
   ];
   const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
+  const contactSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: pageTitle,
+    description: metaDescription,
+    url: canonicalUrl,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
+    },
+    about: {
+      '@type': 'Organization',
+      name: SITE_BRAND_NAME,
+      url: SITE_URL,
+      contactPoint: {
+        '@type': 'ContactPoint',
+        email: 'hello@datacost.co.za',
+        contactType: 'customer support and editorial corrections'
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -30,6 +58,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(contactSchema)}</script>
       </Helmet>
 
       <Header onScrollTo={onScrollTo} activeSection="home" />
@@ -40,7 +69,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo
         <header className="text-center">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4">Contact</h1>
           <p className="text-slate-600 font-medium max-w-2xl mx-auto">
-            Spotted an incorrect price or outdated USSD code? Send us the page URL and details so we can verify and update.
+            Spotted an incorrect price, changed USSD code, or missing limitation? Send enough detail for DataCost to verify it without guessing.
           </p>
         </header>
 
@@ -50,10 +79,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo
             Email: <a className="text-[#1b6d24] font-bold hover:underline" href="mailto:hello@datacost.co.za">hello@datacost.co.za</a>
           </p>
           <p className="text-slate-600 leading-relaxed">
-            If this mailbox changes, this page will be updated with the current contact route. Include the affected page URL and a short summary to help us action the request quickly.
+            DataCost is edited by {SITE_EDITOR_NAME}. If this mailbox changes, this page will be updated with the current contact route.
           </p>
           <p id="corrections" className="text-slate-600 leading-relaxed">
-            For corrections, please include the network, the code or price you checked, where you checked it, and the date you saw it.
+            For corrections, please include the affected page URL, network, the code or price you checked, where you checked it, and the date you saw it.
           </p>
         </section>
 
@@ -85,12 +114,25 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo
         </section>
 
         <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
+          <h2 className="text-2xl font-black tracking-tight">What DataCost Cannot Do</h2>
+          <p className="text-slate-600 leading-relaxed">
+            DataCost cannot access your SIM account, reverse a charge, cancel a subscription directly, or confirm a private personalised offer on your behalf. For account-specific billing, contact your mobile network and keep screenshots, timestamps, SMS confirmations, and balance records.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            We can use those details to improve public guides, but operator support remains the correct route for private account action.
+          </p>
+        </section>
+
+        <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
           <h2 className="text-2xl font-black tracking-tight">Response Expectations</h2>
           <p className="text-slate-600 leading-relaxed">
-            We review requests in queue order and prioritize factual corrections that can affect consumer decisions.
+            We review requests in queue order and prioritise factual corrections that can affect consumer decisions.
           </p>
           <p className="text-slate-600 leading-relaxed">
             Some updates require verification with official operator channels before publication.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            Privacy requests, editorial complaints, and advertising or partnership questions should use the same email address with a clear subject line.
           </p>
         </section>
       </main>

@@ -8,8 +8,17 @@ import { MobileNav } from '../components/MobileNav';
 import { AdUnit } from '../components/AdUnit';
 import { NavigateFunction } from '../types';
 import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import {
+  DEFAULT_OG_IMAGE_URL,
+  SITE_EDITOR_BIO,
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_PRODUCT_NAME,
+  SITE_URL,
+  toCanonicalUrl
+} from '../seo/siteConstants';
 import { ProblemGuideKey, problemGuides } from '../data/problemGuides';
+import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 
 interface ProblemSolvingGuidePageProps {
   onNavigate: NavigateFunction;
@@ -93,13 +102,19 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
     datePublished: datePublishedIso,
     dateModified: dateModifiedIso,
     author: {
-      '@type': 'Organization',
-      name: 'DataCost',
-      url: SITE_URL
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE,
+      description: SITE_EDITOR_BIO
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE
     },
     publisher: {
       '@type': 'Organization',
-      name: 'DataCost',
+      name: SITE_PRODUCT_NAME,
       url: SITE_URL
     }
   };
@@ -141,9 +156,9 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
         <header className="mb-10">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-5 leading-[0.95]">{guide.h1}</h1>
           <div className="mb-5 rounded-2xl border border-slate-200 bg-white p-4">
-            <p className="text-sm font-semibold text-slate-700">Last updated: April 2026</p>
-            <p className="text-sm text-slate-600">Reviewed by DataCost Telecom Insights Team</p>
-            <p className="text-xs text-slate-500 mt-1">Schema updated on {lastUpdated}</p>
+            <p className="text-sm font-semibold text-slate-700">Last reviewed: {lastUpdated}</p>
+            <p className="text-sm text-slate-600">Reviewed by {SITE_EDITOR_NAME}, {SITE_EDITOR_ROLE}</p>
+            <p className="text-xs text-slate-500 mt-1">Based on public operator support paths, USSD guidance, and prepaid troubleshooting patterns.</p>
           </div>
           <AdUnit type="aboveFold" className="mb-6" />
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">{guide.intro}</p>
@@ -255,6 +270,12 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
           </h2>
           <p className="text-slate-700 leading-relaxed">{guide.whenToEscalate}</p>
         </section>
+
+        <AuthorReviewBlock
+          lastReviewed={lastUpdated}
+          trustSummary="Based on public operator support paths, USSD flows, South African prepaid billing patterns, and user correction signals."
+          className="mb-12"
+        />
 
         <AdUnit type="inContent" className="mt-8" />
       </main>

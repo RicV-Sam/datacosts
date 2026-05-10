@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck } from 'lucide-react';
+import {
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_EDITOR_TRUST_SUMMARY
+} from '../seo/siteConstants';
 
 interface TrustPanelProps {
   lastReviewed: string;
@@ -13,7 +18,7 @@ interface TrustPanelProps {
 export const TrustPanel: React.FC<TrustPanelProps> = ({
   lastReviewed,
   sources = 'Operator websites, public USSD menus, network apps, and official support pages where available.',
-  reviewer = 'Reviewed by DataCost editorial team',
+  reviewer = `Reviewed by ${SITE_EDITOR_NAME}, ${SITE_EDITOR_ROLE}`,
   correctionHref = '/contact/',
   className = ''
 }) => {
@@ -25,6 +30,7 @@ export const TrustPanel: React.FC<TrustPanelProps> = ({
           <p className="font-black text-slate-900">{reviewer}</p>
           <p><strong>Last reviewed:</strong> {lastReviewed}</p>
           <p><strong>Sources we check:</strong> {sources}</p>
+          <p><strong>Why trust this:</strong> {SITE_EDITOR_TRUST_SUMMARY}</p>
           <p>
             Found outdated info?{' '}
             <Link to={correctionHref} className="text-[#1b6d24] font-semibold hover:underline">

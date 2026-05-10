@@ -12,7 +12,16 @@ import { getComparisonGuideBySlug } from '../data/comparisonGuides';
 import { buildBundleItemListSchema } from '../utils/structuredData';
 import { networkPages } from '../data/networks';
 import { formatIsoForDisplay, getComparisonGuideModifiedIso, getDefaultPublishedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import {
+  DEFAULT_OG_IMAGE_URL,
+  SITE_EDITOR_BIO,
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_PRODUCT_NAME,
+  SITE_URL,
+  toCanonicalUrl
+} from '../seo/siteConstants';
+import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 
 interface ComparisonGuidePageProps {
   guideSlug: string;
@@ -292,9 +301,15 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
     datePublished: datePublishedIso,
     dateModified: dateModifiedIso,
     author: {
-      '@type': 'Organization',
-      name: SITE_BRAND_NAME,
-      url: SITE_URL
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE,
+      description: SITE_EDITOR_BIO
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE
     },
     image: DEFAULT_OG_IMAGE_URL
   };
@@ -539,6 +554,8 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
             ))}
           </div>
         </section>
+
+        <AuthorReviewBlock lastReviewed={lastUpdated} className="mb-12" />
 
         <div className="bg-white border border-slate-100 rounded-2xl p-6 text-sm text-slate-500 flex items-start gap-3 shadow-sm">
           <Info className="w-5 h-5 text-slate-400 mt-0.5" />

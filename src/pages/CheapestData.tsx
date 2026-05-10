@@ -9,8 +9,17 @@ import { MobileNav } from '../components/MobileNav';
 import { AdUnit } from '../components/AdUnit';
 import { NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
-import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import {
+  DEFAULT_OG_IMAGE_URL,
+  SITE_EDITOR_BIO,
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_PRODUCT_NAME,
+  SITE_URL,
+  toCanonicalUrl
+} from '../seo/siteConstants';
+import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 
 interface CheapestDataProps {
   onNavigate: NavigateFunction;
@@ -54,6 +63,7 @@ function getBestValueByFilter(filter: (bundle: Bundle) => boolean) {
 
 export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScrollTo }) => {
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-data-south-africa/');
+  const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/guides/cheapest-data-south-africa/');
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
   const pageTitle = 'Cheapest Data South Africa | Compare Budget Bundle Prices';
@@ -179,6 +189,32 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     topSummaryRows,
     (bundle) => getNetworkPageUrl(bundle.network)
   );
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Cheapest Data in South Africa',
+    description: pageMetaDescription,
+    url: canonicalUrl,
+    image: DEFAULT_OG_IMAGE_URL,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    author: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE,
+      description: SITE_EDITOR_BIO
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
+    }
+  };
 
   const relatedPages = [
     '/guides/best-data-deals-south-africa/',
@@ -233,6 +269,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
         <meta name="twitter:description" content={pageMetaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
       </Helmet>
@@ -407,6 +444,8 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
             ))}
           </div>
         </section>
+
+        <AuthorReviewBlock lastReviewed={lastUpdated} className="mb-12" />
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />

@@ -9,9 +9,18 @@ import { AdUnit } from '../components/AdUnit';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { networkPages } from '../data/networks';
-import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import {
+  DEFAULT_OG_IMAGE_URL,
+  SITE_EDITOR_BIO,
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_PRODUCT_NAME,
+  SITE_URL,
+  toCanonicalUrl
+} from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
+import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 
 interface BestDataDealsProps {
   onNavigate: NavigateFunction;
@@ -30,6 +39,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
   const metaDescription =
     'Compare the best data deals in South Africa across MTN, Vodacom, Telkom, Cell C, and Rain. Find the best-value prepaid bundles and monthly picks.';
   const canonicalUrl = toCanonicalUrl('/guides/best-data-deals-south-africa/');
+  const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/guides/best-data-deals-south-africa/');
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
   const breadcrumbItems = [
@@ -114,6 +124,32 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
   };
 
   const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Best Data Deals in South Africa',
+    description: metaDescription,
+    url: canonicalUrl,
+    image: DEFAULT_OG_IMAGE_URL,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    author: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE,
+      description: SITE_EDITOR_BIO
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
+    }
+  };
 
   const relatedPages = [
     { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa', description: 'Best low-volume benchmark.' },
@@ -148,6 +184,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -342,6 +379,8 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
             ))}
           </div>
         </section>
+
+        <AuthorReviewBlock lastReviewed={lastUpdated} className="mb-12" />
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />

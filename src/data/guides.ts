@@ -1340,21 +1340,63 @@ export const guides: Guide[] = [
     metaDescription: 'Learn how to buy data on Vodacom using USSD codes, the MyVodacom app, and airtime conversion. Find the fastest way to get connected on SA\'s biggest network.',
     h1: 'How to Buy Data on Vodacom: Step-by-Step Guide',
     intro: 'Vodacom offers several ways to purchase data bundles, whether you are looking for a quick daily fix or a large monthly allocation. The most common method is using USSD codes, which work even if you don\'t have an active data connection. This guide covers all the ways you can buy Vodacom data bundles in seconds.',
+    quickSummaryTitle: 'Quick Answer',
+    quickSummaryItems: [
+      'Dial *135# from a Vodacom SIM for the main buy-data route.',
+      'Check *123# for Just4You personalised deals before paying standard menu prices.',
+      'Use MyVodacom when you need app-only offers, card payment, or a clearer bundle breakdown.',
+      'Always confirm validity, data type, and final price before accepting the purchase.'
+    ],
+    jumpLinksTitle: 'On This Page',
+    jumpLinks: [
+      { label: 'USSD method', anchor: 'vodacom-ussd-method' },
+      { label: 'Just4You deals', anchor: 'vodacom-just4you' },
+      { label: 'MyVodacom app', anchor: 'vodacom-app-method' },
+      { label: 'Common mistakes', anchor: 'common-mistakes' },
+      { label: 'FAQ', anchor: 'faq' }
+    ],
     comparisonType: 'all',
     stepsTitle: '3 Ways to Buy Vodacom Data',
     steps: [
       {
+        id: 'vodacom-ussd-method',
         title: 'Option 1: Using USSD Codes (Fastest)',
         description: 'Dial *135# from your Vodacom SIM. Select "Buy" (usually option 2), then select "Data". Follow the prompts to choose your bundle size and validity period.'
       },
       {
+        id: 'vodacom-just4you',
         title: 'Option 2: Just4You Personalised Deals',
         description: 'Dial *123# to access "Just4You" deals. These are often significantly cheaper than standard bundles and are tailored to your usage patterns.'
       },
       {
+        id: 'vodacom-app-method',
         title: 'Option 3: Using the MyVodacom App',
         description: 'Open the MyVodacom app, tap "Buy Bundles", and select "Data". The app often features exclusive "App-only" deals that you won\'t find on USSD.'
       }
+    ],
+    commonMistakesTitle: 'When This Advice May Not Apply',
+    commonMistakes: [
+      {
+        title: 'Personalised prices can differ by SIM',
+        description: 'Just4You offers are not guaranteed for every Vodacom customer. Treat them as a channel to check, not as a universal national price.'
+      },
+      {
+        title: 'Social, night, and promotional data are not the same',
+        description: 'Some bundles include app-specific, night-only, or split allocations. Confirm whether the data works for your intended usage before buying.'
+      },
+      {
+        title: 'A low daily price can cost more over a month',
+        description: 'If you repeatedly buy short-validity bundles, compare monthly options because a larger 30-day bundle may be cheaper overall.'
+      }
+    ],
+    nextStepsTitle: 'Useful Next Steps',
+    nextSteps: [
+      { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes', description: 'Open Vodacom balance, buy-data, and account shortcuts.', action: 'route' },
+      { href: '/network/vodacom/', label: 'Vodacom Network Page', description: 'Compare Vodacom prices, bundle types, and coverage-led tradeoffs.', action: 'route' },
+      { href: '/network/vodacom/monthly-data/', label: 'Vodacom Monthly Data', description: 'Review longer-validity Vodacom bundle options.', action: 'route' },
+      { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data', description: 'Compare 1GB benchmark pricing across major networks.', action: 'guide', slug: 'cheapest-1gb-data-south-africa' },
+      { href: '/guides/how-to-check-vodacom-airtime-balance/', label: 'Check Vodacom Airtime Balance', description: 'Confirm airtime before buying or browsing.', action: 'guide', slug: 'how-to-check-vodacom-airtime-balance' },
+      { href: '/data-problems/how-to-check-data-balance-vodacom-ussd/', label: 'Check Vodacom Data Balance', description: 'Verify active data before topping up again.', action: 'route' }
     ],
     faq: [
       {
@@ -1385,21 +1427,63 @@ export const guides: Guide[] = [
     metaDescription: 'Step-by-step guide on how to buy MTN data bundles using USSD codes like *136*2# and the MTN app. Get the best MTN Boosta and personalized deals.',
     h1: 'How to Buy Data on MTN: Easy USSD & App Methods',
     intro: 'MTN is known for its high-speed network and wide variety of data options. Whether you need a small WhatsApp bundle or a massive 100GB package, MTN makes it easy to recharge using your airtime. This guide will show you the exact USSD codes and steps needed to buy MTN data bundles quickly.',
+    quickSummaryTitle: 'Quick Answer',
+    quickSummaryItems: [
+      'Dial *136*2# from an MTN SIM for the direct data-bundle menu.',
+      'Use *136# when you want the broader self-service path first.',
+      'Check *142# for Boosta or promotional offers that may be cheaper than standard bundles.',
+      'Confirm validity, data type, and final price before accepting the transaction.'
+    ],
+    jumpLinksTitle: 'On This Page',
+    jumpLinks: [
+      { label: 'Standard USSD', anchor: 'mtn-standard-ussd' },
+      { label: 'MTN Pulse', anchor: 'mtn-pulse' },
+      { label: 'Boosta deals', anchor: 'mtn-boosta' },
+      { label: 'Common mistakes', anchor: 'common-mistakes' },
+      { label: 'FAQ', anchor: 'faq' }
+    ],
     comparisonType: 'all',
     stepsTitle: 'How to Purchase MTN Data Bundles',
     steps: [
       {
+        id: 'mtn-standard-ussd',
         title: 'Method 1: The Standard USSD Code',
         description: 'Dial *136*2# on your phone. This will take you directly to the data bundle selection menu where you can choose between Daily, Weekly, and Monthly options.'
       },
       {
+        id: 'mtn-pulse',
         title: 'Method 2: MTN Pulse (For Youth)',
         description: 'If you are under 25, dial *411# to join MTN Pulse. This gives you access to exclusive, ultra-cheap data deals like 500MB for R10.'
       },
       {
+        id: 'mtn-boosta',
         title: 'Method 3: MTN Boosta & Personalised Deals',
         description: 'Dial *142# to see "Boosta" deals. These are promotional offers that provide much better value than the standard data menu.'
       }
+    ],
+    commonMistakesTitle: 'When This Advice May Not Apply',
+    commonMistakes: [
+      {
+        title: 'Boosta deals are not universal',
+        description: 'MTN promotional and personalised offers can vary by SIM, usage history, tariff, age band, and campaign period.'
+      },
+      {
+        title: 'Not every cheap bundle is anytime data',
+        description: 'Check whether the offer is social, night, time-limited, promotional, or split between different usage windows.'
+      },
+      {
+        title: 'Buying before checking balance can waste airtime',
+        description: 'Check active bundles and expiry first so you do not buy duplicate cover or lose value through short validity.'
+      }
+    ],
+    nextStepsTitle: 'Useful Next Steps',
+    nextSteps: [
+      { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Open MTN balance, buy-data, and self-service shortcuts.', action: 'route' },
+      { href: '/network/mtn/', label: 'MTN Network Page', description: 'Compare MTN bundle prices, promos, and network context.', action: 'route' },
+      { href: '/network/mtn/monthly-data/', label: 'MTN Monthly Data', description: 'Review longer-validity MTN data options.', action: 'route' },
+      { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data', description: 'Compare low-volume benchmark pricing across networks.', action: 'guide', slug: 'cheapest-1gb-data-south-africa' },
+      { href: '/guides/how-to-check-mtn-data-balance/', label: 'Check MTN Data Balance', description: 'Verify remaining bundle and validity before buying.', action: 'guide', slug: 'how-to-check-mtn-data-balance' },
+      { href: '/guides/how-to-check-mtn-airtime-balance/', label: 'Check MTN Airtime Balance', description: 'Confirm airtime before purchase or out-of-bundle usage.', action: 'guide', slug: 'how-to-check-mtn-airtime-balance' }
     ],
     faq: [
       {

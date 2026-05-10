@@ -31,27 +31,27 @@ const DEFAULT_PREFERENCES: AlertsPreferenceState = {
 
 const faqItems = [
   {
-    question: 'Are DataCost alerts free?',
+    question: 'Are DataCost alerts live yet?',
     answer:
-      'Yes. Alerts are free to subscribe to. Standard data charges may apply when you visit websites or use mobile services.'
+      'DataCost alerts are being prepared as a low-noise feature. Some browser prompt testing may be available, but email and WhatsApp alerts should be treated as planned features until clearly launched.'
   },
   {
-    question: 'What kind of alerts will I receive?',
+    question: 'What kind of alerts are planned?',
     answer:
-      'You can choose alerts for data deals, airtime specials, verified competitions, network updates, and useful telecom tools.'
+      'Planned alert topics include data-deal updates, airtime specials, verified competitions, network updates, and useful telecom tools.'
   },
   {
-    question: 'Can I unsubscribe anytime?',
-    answer: 'Yes. You should be able to unsubscribe or opt out at any time.'
+    question: 'Will users be able to unsubscribe?',
+    answer: 'Yes. Any launched email, browser, or messaging alert channel should include a clear opt-out route.'
   },
   {
-    question: 'Will I get spammed?',
+    question: 'Will alerts be high volume?',
     answer:
-      'No. DataCost alerts should focus on useful, practical telecom updates rather than excessive notifications.'
+      'The intended alert model is low-noise and practical. The goal is to highlight useful telecom updates rather than send frequent promotional messages.'
   },
   {
-    question: 'Do alerts include MTN, Vodacom, Cell C, and Telkom?',
-    answer: 'Yes. Users should be able to select network-specific preferences.'
+    question: 'Will alerts include MTN, Vodacom, Cell C, and Telkom?',
+    answer: 'The planned preference model includes major South African networks so users can choose network-specific interests.'
   }
 ];
 
@@ -61,9 +61,9 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
   const [firstName, setFirstName] = useState('');
   const [toast, setToast] = useState<string | null>(null);
 
-  const pageTitle = 'Data Deal Alerts South Africa';
+  const pageTitle = 'Data Deal Alerts South Africa | Planned Feature';
   const metaDescription =
-    'Get free alerts for cheaper data deals, airtime specials, verified competitions, and useful network updates in South Africa.';
+    'Preview DataCost planned alerts for cheaper data deals, airtime specials, verified competitions, and useful South African network updates.';
   const canonicalUrl = toCanonicalUrl('/alerts/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/alerts/');
@@ -103,7 +103,7 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
       return;
     }
 
-    showToast('Thanks. Email alerts request captured.');
+    showToast('Email alerts are planned. This form is not an active subscription yet.');
     setEmail('');
   };
 
@@ -175,34 +175,38 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
 
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-5">
         <section className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
+          <div className="mb-3 inline-flex rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-amber-800">
+            Planned feature
+          </div>
           <h1 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">
-            Get Free Data Deal Alerts in South Africa
+            Data Deal Alerts for South Africa
           </h1>
           <p className="mt-3 text-base text-slate-600 leading-relaxed">
-            Don&apos;t miss cheaper bundles, airtime promos, verified competitions, or useful network updates.
-            Choose the alerts you want and stay in control.
+            DataCost is preparing low-noise alerts for cheaper bundles, airtime promos, verified competitions, and useful network updates.
+            The preference controls below show the intended alert experience while rollout is still in progress.
           </p>
 
           <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3">
             <AlertsSignupCard
-              title="Browser Alerts"
-              description="Get instant alerts when new data deals or promos go live."
-              ctaLabel="Turn On Browser Alerts"
+              title="Browser Alerts Pilot"
+              description="Test whether your browser can show a prompt when browser alerts are enabled."
+              ctaLabel="Try Browser Prompt"
               onCtaClick={handleBrowserAlerts}
               icon={Bell}
             />
             <AlertsSignupCard
-              title="Email Alerts"
-              description="Get a simple weekly roundup of the best deals and useful updates."
-              ctaLabel="Get Email Alerts"
+              title="Email Alerts Planned"
+              description="A future weekly roundup of best deals and useful telecom updates."
+              ctaLabel="Preview Email Option"
               onCtaClick={() => {
                 document.getElementById('email-alert-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
               }}
               icon={Mail}
+              comingSoon
             />
             <AlertsSignupCard
               title="WhatsApp Alerts (Coming Soon)"
-              description="For high-value telecom alerts you'll actually want to see."
+              description="Planned only after a clear opt-in and opt-out flow is ready."
               ctaLabel="Notify Me When Live"
               onCtaClick={handleWhatsAppNotify}
               icon={MessageCircle}
@@ -212,14 +216,14 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
         </section>
 
         <section className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight text-slate-900">What You&apos;ll Get Alerts For</h2>
+          <h2 className="text-2xl font-black tracking-tight text-slate-900">Planned Alert Topics</h2>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
             <article className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
               <h3 className="inline-flex items-center gap-2 font-black text-slate-900"><Zap className="w-4 h-4 text-[#1b6d24]" /> Data Deals</h3>
               <ul className="mt-2 text-sm text-slate-600 space-y-1">
                 <li>Cheapest bundle updates</li>
                 <li>Better prepaid deals</li>
-                <li>Hidden bundle options</li>
+                <li>Personalised-deal reminders to check your own operator menu</li>
               </ul>
             </article>
             <article className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
@@ -261,24 +265,24 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
         <AlertsPreferences value={preferences} onChange={setPreferences} />
 
         <section className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight text-slate-900">Turn Alerts On</h2>
+          <h2 className="text-2xl font-black tracking-tight text-slate-900">Alert Options Under Testing</h2>
 
           <div className="mt-4 space-y-4">
             <article className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-              <h3 className="font-black text-slate-900">Browser Alerts</h3>
-              <p className="text-sm text-slate-600 mt-1">Best for instant alerts when deals drop.</p>
+              <h3 className="font-black text-slate-900">Browser Alerts Pilot</h3>
+              <p className="text-sm text-slate-600 mt-1">If your browser and site configuration allow it, this can show a prompt. It is not a guarantee that a live alert stream is active.</p>
               <button
                 type="button"
                 onClick={handleBrowserAlerts}
                 className="mt-3 min-h-[44px] rounded-xl bg-[#031636] px-4 text-sm font-black text-white hover:bg-[#1b6d24] transition-colors"
               >
-                Turn On Browser Alerts
+                Try Browser Prompt
               </button>
             </article>
 
             <article id="email-alert-form" className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-              <h3 className="font-black text-slate-900">Email Alerts</h3>
-              <p className="text-sm text-slate-600 mt-1">Simple weekly updates with practical telecom value.</p>
+              <h3 className="font-black text-slate-900">Email Alerts Planned</h3>
+              <p className="text-sm text-slate-600 mt-1">Email alerts are not presented as live yet. This form is a preview of the planned preference flow.</p>
               <form onSubmit={handleEmailSignup} className="mt-3 grid grid-cols-1 gap-2">
                 <input
                   type="email"
@@ -298,7 +302,7 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
                   type="submit"
                   className="min-h-[44px] rounded-xl bg-[#1b6d24] px-4 text-sm font-black text-white hover:bg-[#14521c] transition-colors"
                 >
-                  Get Email Alerts
+                  Preview Email Alert Signup
                 </button>
               </form>
             </article>
@@ -320,12 +324,11 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
         <section className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight text-slate-900">Why DataCost Alerts Are Different</h2>
           <ul className="mt-4 space-y-2 text-sm text-slate-700">
-            <li className="inline-flex items-start gap-2"><ShieldCheck className="w-4 h-4 mt-0.5 text-[#1b6d24]" /> We focus on useful telecom alerts, not noise</li>
-            <li className="inline-flex items-start gap-2"><ShieldCheck className="w-4 h-4 mt-0.5 text-[#1b6d24]" /> We don&apos;t send fake prize or &quot;claim now&quot; messages</li>
-            <li className="inline-flex items-start gap-2"><ShieldCheck className="w-4 h-4 mt-0.5 text-[#1b6d24]" /> You can unsubscribe anytime</li>
-            <li className="inline-flex items-start gap-2"><ShieldCheck className="w-4 h-4 mt-0.5 text-[#1b6d24]" /> We only alert you when something is worth your attention</li>
-            <li className="inline-flex items-start gap-2"><ShieldCheck className="w-4 h-4 mt-0.5 text-[#1b6d24]" /> Competitions are highlighted only when verified</li>
-            <li className="inline-flex items-start gap-2"><ShieldCheck className="w-4 h-4 mt-0.5 text-[#1b6d24]" /> Alerts stay practical, relevant, and low-noise</li>
+            <li className="inline-flex items-start gap-2"><ShieldCheck className="w-4 h-4 mt-0.5 text-[#1b6d24]" /> Alert channels will launch only when the opt-in and opt-out flow is clear</li>
+            <li className="inline-flex items-start gap-2"><ShieldCheck className="w-4 h-4 mt-0.5 text-[#1b6d24]" /> We will not send fake prize or &quot;claim now&quot; messages</li>
+            <li className="inline-flex items-start gap-2"><ShieldCheck className="w-4 h-4 mt-0.5 text-[#1b6d24]" /> Live channels should include a visible unsubscribe or disable route</li>
+            <li className="inline-flex items-start gap-2"><ShieldCheck className="w-4 h-4 mt-0.5 text-[#1b6d24]" /> The intended alert model is practical, relevant, and low-noise</li>
+            <li className="inline-flex items-start gap-2"><ShieldCheck className="w-4 h-4 mt-0.5 text-[#1b6d24]" /> Competitions should be highlighted only when verified</li>
           </ul>
 
           <div className="mt-4 rounded-2xl border border-amber-300 bg-amber-50 p-4">
@@ -338,7 +341,7 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
         </section>
 
         <section className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
-          <h2 className="text-2xl font-black tracking-tight text-slate-900">How Alerts Work</h2>
+          <h2 className="text-2xl font-black tracking-tight text-slate-900">How Alerts Are Planned to Work</h2>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
             <article className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
               <p className="text-xs font-black uppercase tracking-widest text-slate-400">Step 1</p>
@@ -346,11 +349,11 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
             </article>
             <article className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
               <p className="text-xs font-black uppercase tracking-widest text-slate-400">Step 2</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">We notify you when something useful happens</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">A launched channel sends updates only when something useful happens</p>
             </article>
             <article className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
               <p className="text-xs font-black uppercase tracking-widest text-slate-400">Step 3</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">Tap through to the relevant deal, promo, or tool</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">Users can opt out if the channel is no longer useful</p>
             </article>
           </div>
         </section>

@@ -6,8 +6,18 @@ import { MobileNav } from '../components/MobileNav';
 import { ArrowLeft, ShieldCheck, AlertTriangle, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NavigateFunction } from '../types';
-import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import {
+  DEFAULT_OG_IMAGE_URL,
+  SITE_EDITOR_BIO,
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_PRODUCT_NAME,
+  SITE_URL,
+  toCanonicalUrl
+} from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
+import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 
 interface WaspSubscriptionsProps {
   onNavigate: NavigateFunction;
@@ -19,6 +29,9 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
   const metaDescription =
     'Learn how to stop WASP subscriptions in South Africa with simple steps for Vodacom, MTN, Telkom, and Cell C, plus what to do if charges continue.';
   const canonicalUrl = toCanonicalUrl('/guides/stop-wasp-subscriptions-south-africa/');
+  const datePublishedIso = getDefaultPublishedIso();
+  const dateModifiedIso = getRouteModifiedIso('/guides/stop-wasp-subscriptions-south-africa/');
+  const lastUpdated = formatIsoForDisplay(dateModifiedIso);
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Guides', href: '/guides/' },
@@ -82,7 +95,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
       },
       {
         "@type": "Question",
-        "name": "Why am I being charged for services I didnâ€™t subscribe to?",
+        "name": "Why am I being charged for services I didn't subscribe to?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "In many cases, charges come from premium content services that were accepted through pop-ups, links, or previous opt-ins. Check active subscriptions on your network menu and cancel any service you do not recognize."
@@ -92,6 +105,32 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
   };
 
   const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: pageTitle,
+    description: metaDescription,
+    url: canonicalUrl,
+    image: DEFAULT_OG_IMAGE_URL,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    author: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE,
+      description: SITE_EDITOR_BIO
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
+    }
+  };
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -111,6 +150,9 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(articleSchema)}
         </script>
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
@@ -143,6 +185,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
           <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto mb-8">
             If your airtime keeps dropping, paid content services may be one reason. Use this guide to check, cancel, and block unwanted WASP charges on your network.
           </p>
+          <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">Reviewed {lastUpdated}</p>
         </header>
 
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
@@ -245,11 +288,17 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
               <p className="text-sm text-slate-600">Dial your network code, open your subscription list, and cancel all paid services. Then enable a content block if your network menu offers one.</p>
             </div>
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-              <h3 className="font-bold text-slate-900 mb-2">Why am I being charged for services I didnâ€™t subscribe to?</h3>
+              <h3 className="font-bold text-slate-900 mb-2">Why am I being charged for services I didn't subscribe to?</h3>
               <p className="text-sm text-slate-600">This is often linked to premium content sign-ups accepted through a link, popup, or old opt-in flow. Check active services on your network menu, cancel anything unfamiliar, and monitor airtime after cancellation.</p>
             </div>
           </div>
         </section>
+
+        <AuthorReviewBlock
+          lastReviewed={lastUpdated}
+          trustSummary="Based on public operator subscription-management routes, WASP/VAS billing patterns, USSD flows, and South African prepaid user needs."
+          className="mb-12"
+        />
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link

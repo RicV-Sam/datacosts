@@ -5,9 +5,20 @@ import { Guide, Bundle, GuideResourceLink } from '../types';
 import { bundles } from '../data';
 import { useNavigate } from 'react-router-dom';
 import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
-import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import {
+  DEFAULT_OG_IMAGE_URL,
+  SITE_BRAND_NAME,
+  SITE_EDITOR_BIO,
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_LOGO_URL,
+  SITE_PRODUCT_NAME,
+  SITE_URL,
+  toCanonicalUrl
+} from '../seo/siteConstants';
 import { AdUnit } from './AdUnit';
 import { TrustPanel } from './TrustPanel';
+import { AuthorReviewBlock } from './AuthorReviewBlock';
 
 interface GuidePageProps {
   guide: Guide;
@@ -216,9 +227,15 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
         description: guide.metaDescription,
         url: canonicalUrl,
         author: {
-          '@type': 'Organization',
-          name: SITE_PRODUCT_NAME,
-          url: SITE_URL
+          '@type': 'Person',
+          name: SITE_EDITOR_NAME,
+          jobTitle: SITE_EDITOR_ROLE,
+          description: SITE_EDITOR_BIO
+        },
+        reviewedBy: {
+          '@type': 'Person',
+          name: SITE_EDITOR_NAME,
+          jobTitle: SITE_EDITOR_ROLE
         },
         image: DEFAULT_OG_IMAGE_URL,
         datePublished: datePublishedIso,
@@ -468,6 +485,8 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
             ))}
           </div>
         </section>
+
+        <AuthorReviewBlock lastReviewed={lastUpdatedLabel} className="mb-16" />
 
         <section className="mb-16 bg-white border border-slate-100 rounded-2xl p-6 text-sm text-slate-500 flex items-start gap-3 shadow-sm">
           <Info className="w-5 h-5 text-slate-400 mt-0.5" />
