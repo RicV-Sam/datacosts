@@ -6,6 +6,7 @@ import {defineConfig, loadEnv, Plugin} from 'vite';
 import prerender from '@prerenderer/rollup-plugin';
 import PuppeteerRenderer from '@prerenderer/renderer-puppeteer';
 import { getPrerenderRoutes, validateIndexableRoutes } from './src/config/routeCatalog';
+import { getRedirectAliasRoutes } from './src/config/redirectAliases';
 import { SITE_ORIGIN } from './src/seo/siteConstants';
 
 const DEFAULT_DEV_DATA_PROBLEMS_SOURCE_DIR = 'C:/Users/ricca/Desktop/DataCost-SEO-Engine/seo-engine/output/data-problems';
@@ -49,6 +50,14 @@ type ExternalDataProblemJson = {
 function normalizeRoute(pathname: string): string {
   const withLeadingSlash = pathname.startsWith('/') ? pathname : `/${pathname}`;
   return withLeadingSlash.replace(/\/+$/, '') + '/';
+}
+
+function getPrerenderOutputPath(route: string, indexPath = 'index.html'): string {
+  let outputPath = path.join(normalizeRoute(route), indexPath);
+  if (outputPath.startsWith('/') || outputPath.startsWith('\\')) {
+    outputPath = outputPath.slice(1);
+  }
+  return outputPath;
 }
 
 function resolveDataProblemsSourceDir(options: { configuredPath?: string; isProductionBuild: boolean }): string {
@@ -124,6 +133,7 @@ function externalDataProblemsPlugin(sourceDir: string): Plugin {
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   const prerenderRoutes = getPrerenderRoutes();
+  const redirectAliasRoutes = new Set(getRedirectAliasRoutes().map(normalizeRoute));
   validateIndexableRoutes(prerenderRoutes);
   const configuredSeoEnginePath = env.VITE_SEO_ENGINE_PATH || process.env.VITE_SEO_ENGINE_PATH;
   const dataProblemsSourceDir = resolveDataProblemsSourceDir({
@@ -145,6 +155,13 @@ export default defineConfig(({mode}) => {
           args: ['--no-sandbox', '--disable-setuid-sandbox']
         }),
         postProcess(renderedRoute: any) {
+          if (
+            typeof renderedRoute.originalRoute === 'string' &&
+            redirectAliasRoutes.has(normalizeRoute(renderedRoute.originalRoute))
+          ) {
+            renderedRoute.outputPath = getPrerenderOutputPath(renderedRoute.originalRoute);
+          }
+
           renderedRoute.html = renderedRoute.html
             .replace(/http:\/\/localhost:[0-9]+/g, SITE_ORIGIN);
           renderedRoute.html = renderedRoute.html
