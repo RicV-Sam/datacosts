@@ -4,13 +4,7 @@ import { Calculator, Youtube, Instagram, MessageCircle, Globe, Info, Zap, Trendi
 import { bundles } from '../data';
 import { Bundle } from '../types';
 import { trackAndRedirect } from '../utils/tracking';
-
-const USAGE_RATES = {
-  video: 1.5, // GB per hour (HD)
-  social: 0.2, // GB per hour
-  chat: 0.05, // GB per hour
-  web: 0.1, // GB per hour
-};
+import { calculateMonthlyNeed, getDataRecommendations } from '../utils/dataCalculator';
 
 export const DataCalculator: React.FC = () => {
   const [usage, setUsage] = useState({
@@ -23,44 +17,11 @@ export const DataCalculator: React.FC = () => {
   const [showMethodology, setShowMethodology] = useState(false);
 
   const totalDataNeeded = useMemo(() => {
-    const daily = 
-      usage.video * USAGE_RATES.video +
-      usage.social * USAGE_RATES.social +
-      usage.chat * USAGE_RATES.chat +
-      usage.web * USAGE_RATES.web;
-    return daily * 30; // Monthly
+    return calculateMonthlyNeed(usage);
   }, [usage]);
 
   const recommendations = useMemo(() => {
-    const validBundles = bundles.filter(b => {
-      if (b.volume === 'Unlimited') return true;
-      const vol = parseInt(b.volume.replace('GB', ''));
-      return vol >= totalDataNeeded;
-    });
-
-    if (validBundles.length === 0) return null;
-
-    // Best Value (lowest cost per GB)
-    const bestValue = [...validBundles].sort((a, b) => {
-      const aCost = a.volume === 'Unlimited' ? 0.01 : a.costPerGb;
-      const bCost = b.volume === 'Unlimited' ? 0.01 : b.costPerGb;
-      return aCost - bCost;
-    })[0];
-
-    // Cheapest (absolute lowest price)
-    const cheapest = [...validBundles].sort((a, b) => a.price - b.price)[0];
-
-    // Heavy User Recommend (if usage > 50GB)
-    const heavyUser = totalDataNeeded > 50
-      ? validBundles.find(b => b.volume === 'Unlimited')
-      : null;
-
-    let savings = 0;
-    if (typeof currentSpend === 'number' && cheapest) {
-      savings = Math.max(0, currentSpend - cheapest.price);
-    }
-
-    return { bestValue, cheapest, heavyUser, savings };
+    return getDataRecommendations(bundles, totalDataNeeded, currentSpend);
   }, [totalDataNeeded, currentSpend]);
 
   return (
@@ -151,7 +112,7 @@ export const DataCalculator: React.FC = () => {
                     </motion.div>
                   )}
                   <RecommendationCard
-                    type="Cheapest Option"
+                    type="Lowest Suitable Option"
                     bundle={recommendations.cheapest}
                     icon={<TrendingDown className="w-3.5 h-3.5" />}
                     color="blue"
@@ -172,9 +133,19 @@ export const DataCalculator: React.FC = () => {
                       color="orange"
                     />
                   )}
+                  {recommendations.topUp && (
+                    <RecommendationCard
+                      type="Emergency Top-Up Only"
+                      bundle={recommendations.topUp}
+                      icon={<Info className="w-3.5 h-3.5" />}
+                      color="orange"
+                      note="Does not cover the estimated monthly need."
+                    />
+                  )}
                   <p className="text-[10px] text-slate-500 font-medium mt-4 italic leading-relaxed">
                     {recommendations.cheapest.network} gives you {recommendations.cheapest.volume} for R{recommendations.cheapest.price}
                     {recommendations.cheapest.volume !== 'Unlimited' && `, which is R${recommendations.cheapest.costPerGb.toFixed(2)} per GB`}.
+                    {' '}{recommendations.note}
                   </p>
 
                   <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col items-center gap-4">
@@ -186,7 +157,7 @@ export const DataCalculator: React.FC = () => {
                       <ArrowRight className="w-4 h-4" />
                     </button>
                     <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-center">
-                      You will be redirected to the operator’s official website
+                      You will be redirected to the operator's official website
                     </p>
                   </div>
                 </>
@@ -235,7 +206,7 @@ export const DataCalculator: React.FC = () => {
                 <div>
                   <h4 className="text-xs font-black text-[#031636] uppercase mb-2">Data Sources</h4>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    Pricing is pulled directly from network provider websites and updated daily. We only include standard prepaid and monthly bundles.
+                    Pricing is compared against public network provider information using the DataCost methodology. We only include standard prepaid and monthly bundles in these recommendations.
                   </p>
                 </div>
               </div>
@@ -252,7 +223,8 @@ const RecommendationCard: React.FC<{
   bundle: Bundle;
   icon: React.ReactNode;
   color: 'blue' | 'green' | 'orange';
-}> = ({ type, bundle, icon, color }) => {
+  note?: string;
+}> = ({ type, bundle, icon, color, note }) => {
   const colorClasses = {
     blue: 'bg-blue-50 text-blue-700 border-blue-100',
     green: 'bg-[#a0f399]/20 text-[#217128] border-[#a0f399]/30',
@@ -275,7 +247,8 @@ const RecommendationCard: React.FC<{
       <div className="flex justify-between items-end">
         <div>
           <h4 className="font-bold text-slate-900 text-sm leading-tight">{bundle.name}</h4>
-          <span className="text-[10px] text-slate-500 font-medium">{bundle.volume} • {bundle.validity}</span>
+          <span className="text-[10px] text-slate-500 font-medium">{bundle.volume} - {bundle.validity}</span>
+          {note && <span className="mt-1 block text-[10px] font-bold text-amber-700">{note}</span>}
         </div>
         <div className="text-xl font-black text-[#031636]">R{bundle.price}</div>
       </div>

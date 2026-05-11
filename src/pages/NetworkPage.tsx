@@ -4,7 +4,6 @@ import { bundles, networkMetadata } from '../data';
 import { ussdRepository } from '../data/ussd';
 import { networkPages } from '../data/networks';
 import { Footer } from '../components/Footer';
-import { AdUnit } from '../components/AdUnit';
 import { TrustPanel } from '../components/TrustPanel';
 import { ArrowLeft, ChevronRight, ShieldCheck, Zap, Info, Smartphone, HelpCircle, Clock, Tag, ExternalLink, CheckCircle2, Link as LinkIcon } from 'lucide-react';
 import { NetworkName, NavigateFunction, Bundle } from '../types';
@@ -107,8 +106,8 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
   const comparisonRows = pageData.comparisonSummary || [];
 
-  const pageTitle = `${network.name} Data Prices and Bundles South Africa`;
-  const metaDescription = `Compare ${network.name} prepaid data prices and bundles in South Africa. Check daily, weekly, and monthly options, balance codes, and the next pages to use before you buy.`;
+  const pageTitle = `${network.name} Data Prices South Africa: Prepaid Bundles and USSD Codes`;
+  const metaDescription = `Compare ${network.name} data prices in South Africa, including prepaid bundles, monthly options, USSD balance codes, and value notes before you buy.`;
   const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/`);
   const dateModifiedIso = getNetworkPageModifiedIso(networkSlug);
   const sourceCheckedIso = getNetworkModifiedIso(networkSlug);
@@ -119,7 +118,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: `${network.name} Data Prices and Bundles South Africa`,
+    name: pageTitle,
     description: metaDescription,
     url: canonicalUrl,
     datePublished: datePublishedIso,
@@ -134,7 +133,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${network.name} Data Prices and Bundles South Africa`,
+    headline: pageTitle,
     description: metaDescription,
     url: canonicalUrl,
     datePublished: datePublishedIso,
@@ -177,18 +176,6 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     () => canonicalUrl
   );
 
-  const bundleTypeMap: Record<string, { label: string; filter: (b: Bundle) => boolean }> = {
-    'cheapest-1gb': { label: `Cheapest 1GB ${network.name} data`, filter: (b) => b.volume === '1GB' && !isSocialBundle(b) },
-    'daily-data': { label: `${network.name} daily bundles`, filter: (b) => isDailyBundle(b) },
-    'weekly-data': { label: `${network.name} weekly bundles`, filter: (b) => isWeeklyBundle(b) },
-    'monthly-data': { label: `${network.name} monthly bundles`, filter: (b) => isMonthlyBundle(b) },
-    'night-data': { label: `${network.name} night bundles`, filter: (b) => isNightBundle(b) },
-    'social-data': { label: `${network.name} social bundles`, filter: (b) => isSocialBundle(b) }
-  };
-
-  const availableTypes = Object.entries(bundleTypeMap).filter(([_, config]) =>
-    networkBundles.some(b => config.filter(b))
-  );
   const howToBuyGuideBySlug: Record<string, string> = {
     vodacom: '/guides/how-to-buy-data-vodacom/',
     mtn: '/guides/how-to-buy-data-mtn/',
@@ -207,13 +194,6 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     ]
   };
   const operatorActionLinks = [
-    ...availableTypes
-      .filter(([slug]) => ['daily-data', 'monthly-data', 'night-data', 'cheapest-1gb'].includes(slug))
-      .map(([slug, config]) => ({
-        href: `/network/${networkSlug}/${slug}/`,
-        label: config.label,
-        description: `${network.name} ${config.label.toLowerCase()} page`
-      })),
     ...(howToBuyGuideHref
       ? [{ href: howToBuyGuideHref, label: `How to buy ${network.name} data`, description: `Step-by-step buy flow for ${network.name}.` }]
       : []),
@@ -312,7 +292,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             Updated {lastUpdated}
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
-            {network.name} Data Prices and <span className="text-[#1b6d24]">Bundles</span> South Africa
+            {network.name} Data Prices <span className="text-[#1b6d24]">South Africa</span>
           </h1>
           <p className="text-xl text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto">{pageData.intro}</p>
         </header>
@@ -323,8 +303,14 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           className="mb-12"
         />
 
-        <AdUnit type="aboveFold" />
-
+        {network.name === 'Rain' && (
+          <section className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
+            <h2 className="text-2xl font-black tracking-tighter mb-4">Why Rain has fewer listed bundles</h2>
+            <p className="text-slate-700 font-medium leading-relaxed">
+              Rain is structurally different from prepaid mobile networks such as Vodacom, MTN, Telkom and Cell C. It is mainly app-managed and focused on unlimited-style monthly data products, so it has fewer standard prepaid bundle SKUs to list in a table.
+            </p>
+          </section>
+        )}
         {/* SECTION: STRENGTHS & BEST FOR - Card style */}
         <section className="mb-16 grid md:grid-cols-2 gap-6">
           <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm">
@@ -440,11 +426,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
               </p>
             </div>
           </div>
-        </section>
-
-        <AdUnit type="inContent" />
-
-        {pageData.howToBuySection && (
+        </section>        {pageData.howToBuySection && (
           <>
             <section className="mb-16 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
               <h2 className="text-2xl font-black tracking-tighter mb-6">{pageData.howToBuySection.title}</h2>
@@ -630,33 +612,16 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
               ))}
             </div>
           </section>
-        )}
-
-        <AdUnit type="inContent" />
-
-        {/* SECTION 5: QUICK LINKS - Category drill-downs */}
-        {availableTypes.length > 0 && (
+        )}        {/* SECTION 5: QUICK LINKS */}
+        {pageData.narrowSearchLinks && pageData.narrowSearchLinks.length > 0 && (
           <section className="mb-16">
             <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Narrow your search</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {availableTypes.map(([slug, config]) => (
-                <a
-                  key={slug}
-                  href={`/network/${networkSlug}/${slug}/`}
-                  className="px-4 py-4 bg-white border border-slate-100 rounded-2xl text-center hover:border-[#1b6d24] hover:shadow-sm transition-all group"
-                >
-                  <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors text-sm">{config.label}</div>
+              {pageData.narrowSearchLinks.map((link) => (
+                <a key={link.href} href={link.href} className="px-4 py-4 bg-white border border-slate-100 rounded-2xl text-center hover:border-[#1b6d24] hover:shadow-sm transition-all group">
+                  <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors text-sm">{link.label}</div>
                 </a>
               ))}
-              {pageData.narrowSearchLinks && pageData.narrowSearchLinks.length > 0 && (
-                <>
-                  {pageData.narrowSearchLinks.map((link) => (
-                    <a key={link.href} href={link.href} className="px-4 py-4 bg-white border border-slate-100 rounded-2xl text-center hover:border-[#1b6d24] hover:shadow-sm transition-all group">
-                      <div className="font-bold text-slate-900 group-hover:text-[#1b6d24] transition-colors text-sm">{link.label}</div>
-                    </a>
-                  ))}
-                </>
-              )}
             </div>
           </section>
         )}
@@ -733,8 +698,6 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         </div>
       </main>
 
-      <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
-      <AdUnit type="stickyMobile" />
-    </div>
+      <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />    </div>
   );
 };

@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { AdUnit } from './AdUnit';
 import { NetworkName } from '../types';
 import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, toCanonicalUrl } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from './Breadcrumbs';
+import { isNoindexRoute } from '../config/routeCatalog';
 
 export type NetworkTemplateBundleType = 'weekly-data' | 'social-data' | 'night-data' | 'monthly-data' | string;
 
@@ -172,7 +172,26 @@ function buildRelatedLinks(network: NetworkName, bundleType: NetworkTemplateBund
   });
 
   const seen = new Set<string>();
-  return links.filter((link) => {
+  return links.map((link) => {
+    const networkFacetMatch = link.href.match(/^\/network\/([^/]+)\/[^/]+\/$/);
+    if (networkFacetMatch && isNoindexRoute(link.href)) {
+      return {
+        href: `/network/${networkFacetMatch[1]}/`,
+        label: `${network} data prices`,
+        description: 'Use the full parent network page for broader bundle context.'
+      };
+    }
+
+    if (isNoindexRoute(link.href)) {
+      return {
+        href: '/guides/cheapest-data-south-africa/',
+        label: 'Cheapest data in South Africa',
+        description: 'Use the main comparison page for broader, indexable bundle context.'
+      };
+    }
+
+    return link;
+  }).filter((link) => {
     if (seen.has(link.href)) return false;
     seen.add(link.href);
     return true;
@@ -314,6 +333,7 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
   const canonicalUrl = toCanonicalUrl(seoData.canonicalPath);
   const title = seoData.title;
   const description = seoData.description;
+  const shouldNoindex = isNoindexRoute(seoData.canonicalPath);
 
   const preparedBundles = useMemo<PreparedBundle[]>(() => {
     return [...bundleData]
@@ -376,6 +396,7 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
+        {shouldNoindex && <meta name="robots" content="noindex,follow" />}
         <meta name="keywords" content={seoData.keywords.join(', ')} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="article" />
@@ -403,9 +424,6 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
           {introText}
         </p>
       </header>
-
-      <AdUnit type="aboveFold" className="mb-8" />
-
       <div className="space-y-10">
         <QuickAnswerCard
           network={network}
@@ -414,7 +432,6 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
           bundles={preparedBundles}
         />
         <BundleTable bundles={preparedBundles} />
-        <AdUnit type="inContent" />
         <BestForSection bundleTypeLabel={bundleTypeLabel} points={bestForItems} />
         <section>
           <h2 className="text-2xl font-black tracking-tight text-slate-900">
@@ -425,8 +442,6 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
         <InternalLinks network={network} bundleType={bundleType} />
         <FAQSection faqs={faqs} />
       </div>
-
-      <AdUnit type="inContent" className="mt-10" />
     </main>
   );
 };

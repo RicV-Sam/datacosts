@@ -2,7 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import {
   ArrowLeft,
   ChevronRight,
@@ -187,9 +186,6 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
             Landing at OR Tambo or Cape Town and need Uber, Bolt, WhatsApp, and Maps to work immediately? This guide helps you choose between travel eSIM, Vodacom, and MTN based on trip length, convenience, and value.
           </p>
         </header>
-
-        <AdUnit type="aboveFold" />
-
         {/* 2. QUICK ANSWER SUMMARY BLOCK */}
         <section className="mb-16 bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-[#1b6d24] rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-emerald-100">
@@ -526,9 +522,6 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
             </p>
           </div>
         </section>
-
-        <AdUnit type="inContent" />
-
         {/* 10. VODACOM VS MTN COMPARISON SECTION */}
         <section className="mb-16">
           <h2 className="text-3xl font-black tracking-tighter mb-8 text-center">Battle of the Giants: Vodacom vs. MTN</h2>
@@ -780,11 +773,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
               </button>
             </div>
           </div>
-        </section>
-
-        <AdUnit type="inContent" />
-
-        {/* 18. FAQ SECTION */}
+        </section>        {/* 18. FAQ SECTION */}
         <section className="mb-16 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm">
           <h2 className="text-3xl font-black tracking-tighter mb-8">Frequently Asked Questions</h2>
           <div className="space-y-8">
@@ -860,8 +849,6 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
-      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />
-      <AdUnit type="stickyMobile" />
-    </div>
+      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />    </div>
   );
 };

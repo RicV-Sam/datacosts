@@ -5,7 +5,6 @@ import { ArrowLeft, HelpCircle, ShieldCheck, Wrench } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { NavigateFunction } from '../types';
 import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
 import {
@@ -160,7 +159,6 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
             <p className="text-sm text-slate-600">Reviewed by {SITE_EDITOR_NAME}, {SITE_EDITOR_ROLE}</p>
             <p className="text-xs text-slate-500 mt-1">Based on public operator support paths, USSD guidance, and prepaid troubleshooting patterns.</p>
           </div>
-          <AdUnit type="aboveFold" className="mb-6" />
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">{guide.intro}</p>
         </header>
 
@@ -171,11 +169,7 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
               <p key={item}>{item}</p>
             ))}
           </div>
-        </section>
-
-        <AdUnit type="inContent" className="my-8" />
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+        </section>        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6">Causes</h2>
           <ul className="space-y-4">
             {guide.causes.map((cause) => (
@@ -213,11 +207,7 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
               </article>
             ))}
           </div>
-        </section>
-
-        <AdUnit type="inContent" className="my-8" />
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+        </section>        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">USSD Codes Section</h2>
           <p className="text-slate-700 leading-relaxed mb-3">{guide.ussdSummary}</p>
           <Link to="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">
@@ -276,13 +266,9 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
           trustSummary="Based on public operator support paths, USSD flows, South African prepaid billing patterns, and user correction signals."
           className="mb-12"
         />
-
-        <AdUnit type="inContent" className="mt-8" />
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
-      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />
-      <AdUnit type="stickyMobile" />
-    </div>
+      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />    </div>
   );
 };

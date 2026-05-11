@@ -1,6 +1,7 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { SITE_URL } from '../src/seo/siteConstants';
+import { getIndexableRoutes, getNoindexRoutes } from '../src/config/routeCatalog';
 
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
 const CANONICAL_PREFIX = SITE_URL;
@@ -28,6 +29,18 @@ function pushError(errors: ValidationError[], filePath: string, message: string)
     file: toDisplayPath(filePath),
     message
   });
+}
+
+function normalizeRoute(pathname: string): string {
+  if (pathname === '/') return '/';
+  const withLeadingSlash = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  return `${withLeadingSlash.replace(/\/+$/, '')}/`;
+}
+
+function getRouteFromHtmlPath(filePath: string): string {
+  const relativePath = path.relative(DIST_DIR, filePath).replace(/\\/g, '/');
+  if (relativePath === 'index.html') return '/';
+  return normalizeRoute(relativePath.replace(/\/index\.html$/i, ''));
 }
 
 async function walkFiles(directory: string): Promise<string[]> {
@@ -150,6 +163,29 @@ function validateMetaSeoUrls(filePath: string, html: string, errors: ValidationE
   }
 }
 
+function validateRobotsMeta(filePath: string, html: string, route: string, errors: ValidationError[]): void {
+  const noindexRoutes = new Set(getNoindexRoutes().map(normalizeRoute));
+  const indexableRoutes = new Set(getIndexableRoutes().map(normalizeRoute));
+  const metaTags = html.match(/<meta\b[^>]*>/gi) ?? [];
+  const robotsTag = metaTags.find((tag) => getAttributeValue(tag, 'name')?.toLowerCase() === 'robots');
+  const robotsContent = robotsTag ? getAttributeValue(robotsTag, 'content')?.toLowerCase() ?? '' : '';
+
+  if (noindexRoutes.has(route)) {
+    if (!robotsContent.includes('noindex')) {
+      pushError(errors, filePath, `${route} is configured noindex but is missing robots noindex`);
+    }
+
+    if (!robotsContent.includes('follow')) {
+      pushError(errors, filePath, `${route} is configured noindex but is missing robots follow`);
+    }
+    return;
+  }
+
+  if (indexableRoutes.has(route) && robotsContent.includes('noindex')) {
+    pushError(errors, filePath, `${route} is indexable but contains robots noindex`);
+  }
+}
+
 function walkJsonLd(value: unknown, filePath: string, context: string, errors: ValidationError[]): void {
   if (typeof value === 'string') {
     if (/^https?:\/\//i.test(value)) {
@@ -196,9 +232,15 @@ function validateJsonLd(filePath: string, html: string, errors: ValidationError[
 }
 
 function validateSitemapFile(filePath: string, xml: string, errors: ValidationError[]): void {
+  const siteOrigin = SITE_URL.replace(/\/$/, '');
+  const noindexUrls = new Set(getNoindexRoutes().map((route) => `${siteOrigin}${route}`));
   const urls = getAbsoluteUrls(xml);
   for (const url of urls) {
     validateOwnDomainUrl(url, filePath, 'sitemap URL', errors);
+
+    if (noindexUrls.has(url)) {
+      pushError(errors, filePath, `sitemap includes noindex route: ${url}`);
+    }
   }
 }
 
@@ -235,8 +277,10 @@ async function main(): Promise<void> {
     validateForbiddenLiterals(filePath, text, errors);
 
     if (filePath.endsWith('.html')) {
+      const route = getRouteFromHtmlPath(filePath);
       validateCanonicalTags(filePath, text, errors);
       validateMetaSeoUrls(filePath, text, errors);
+      validateRobotsMeta(filePath, text, route, errors);
       validateJsonLd(filePath, text, errors);
       continue;
     }

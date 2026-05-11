@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { guides } from '../data/guides';
 import { BookOpen, ArrowRight, ChevronDown, Zap, Smartphone, HelpCircle, Info, Calculator } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -35,13 +34,15 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
 
   const popularGuides = [
     { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', description: 'Start here for a quick market-level view of where prepaid data is cheapest right now.', path: '/guides/cheapest-data-south-africa/' },
-    { slug: 'cheapest-2gb-data-south-africa', title: 'Cheapest 2GB Data South Africa', description: 'Low-budget bundle benchmark for light monthly users.', path: '/guides/cheapest-2gb-data-south-africa/' },
-    { slug: 'cheapest-5gb-data-south-africa', title: 'Cheapest 5GB Data South Africa', description: 'Mid-range prepaid comparison for moderate users.', path: '/guides/cheapest-5gb-data-south-africa/' },
+    { slug: 'best-data-deals-south-africa', title: 'Best Data Deals South Africa', description: 'Compare overall value across prepaid, monthly, and heavy-use options.', path: '/guides/best-data-deals-south-africa/' },
+    { slug: 'best-monthly-data-deals-south-africa', title: 'Best Monthly Data Deals South Africa', description: 'Focused monthly comparison for users who buy data every month.', path: '/guides/best-monthly-data-deals-south-africa/' },
     { slug: 'why-does-my-data-finish-so-fast-south-africa' },
     { slug: 'why-is-my-airtime-disappearing-south-africa' },
     { slug: 'how-to-stop-wasp-vas-charges-south-africa' },
     { slug: 'airtime-data-saving-tips-south-africa' },
     { slug: 'cheapest-1gb-data-south-africa' },
+    { slug: 'cheapest-2gb-data-south-africa', title: 'Cheapest 2GB Data South Africa', description: 'Low-budget comparison for light prepaid users and emergency monthly top-ups.', path: '/guides/cheapest-2gb-data-south-africa/' },
+    { slug: 'cheapest-5gb-data-south-africa', title: 'Cheapest 5GB Data South Africa', description: 'Mid-range prepaid comparison for moderate monthly usage.', path: '/guides/cheapest-5gb-data-south-africa/' },
     { slug: 'cheapest-10gb-data-south-africa', title: 'Cheapest 10GB Data South Africa', description: 'Compare currently listed 10GB bundles for practical monthly middle-usage plans.', path: '/guides/cheapest-10gb-data-south-africa/' },
     { slug: 'vodacom-vs-mtn-data-prices', title: 'Vodacom vs MTN Data Prices', description: 'A side-by-side comparison for travellers, commuters, and regular prepaid users.', path: '/guides/vodacom-vs-mtn-data-prices/' },
     { slug: 'travel-sims-south-africa', title: 'Best Travel SIMs & eSIMs for South Africa', description: 'Practical arrival advice for airport connectivity, local SIMs, and travel eSIM convenience.', path: '/travel-sims-south-africa/' }
@@ -54,16 +55,16 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       links: [
         { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', path: '/guides/cheapest-data-south-africa/' },
         { slug: 'cheapest-1gb-data-south-africa' },
-        { slug: 'cheapest-2gb-data-south-africa', title: 'Cheapest 2GB Data South Africa', description: 'Practical low-budget benchmark for light users and emergency recharges.', path: '/guides/cheapest-2gb-data-south-africa/' },
-        { slug: 'cheapest-5gb-data-south-africa', title: 'Cheapest 5GB Data South Africa', description: 'A common prepaid mid-range size for regular mobile use.', path: '/guides/cheapest-5gb-data-south-africa/' },
+        { slug: 'cheapest-2gb-data-south-africa', title: 'Cheapest 2GB Data South Africa', description: 'Low-budget bundle benchmark for light users.', path: '/guides/cheapest-2gb-data-south-africa/' },
+        { slug: 'cheapest-5gb-data-south-africa', title: 'Cheapest 5GB Data South Africa', description: 'A practical mid-range comparison before jumping to 10GB.', path: '/guides/cheapest-5gb-data-south-africa/' },
         { slug: 'cheapest-10gb-data-south-africa', title: 'Cheapest 10GB Data South Africa', description: 'Compare currently listed 10GB bundles across networks and see who offers the strongest value profile.', path: '/guides/cheapest-10gb-data-south-africa/' },
-        { slug: 'cheapest-15gb-data-south-africa', title: 'Cheapest 15GB Data South Africa', description: 'Middle-ground option when 10GB feels too tight but 20GB is too expensive.', path: '/guides/cheapest-15gb-data-south-africa/' },
-        { slug: 'cheapest-20gb-data-south-africa', title: 'Cheapest 20GB Data South Africa', description: 'High-value monthly benchmark for heavier regular users.', path: '/guides/cheapest-20gb-data-south-africa/' },
-        { slug: 'cheapest-50gb-data-south-africa', title: 'Cheapest 50GB Data South Africa', description: 'Heavy-usage and hotspot-oriented buying guide.', path: '/guides/cheapest-50gb-data-south-africa/' },
+        { slug: 'cheapest-15gb-data-south-africa', title: 'Cheapest 15GB Data South Africa', description: 'A step-up option for users who outgrow 10GB.', path: '/guides/cheapest-15gb-data-south-africa/' },
+        { slug: 'cheapest-20gb-data-south-africa', title: 'Cheapest 20GB Data South Africa', description: 'Higher-volume prepaid comparison for regular streaming and hotspot use.', path: '/guides/cheapest-20gb-data-south-africa/' },
+        { slug: 'cheapest-50gb-data-south-africa', title: 'Cheapest 50GB Data South Africa', description: 'Heavy-use comparison for hotspot, work, and home backup usage.', path: '/guides/cheapest-50gb-data-south-africa/' },
+        { slug: 'cheapest-unlimited-data-south-africa', title: 'Unlimited Data Deals South Africa', description: 'Compare unlimited-style plans and capped monthly alternatives.', path: '/guides/cheapest-unlimited-data-south-africa/' },
         { slug: 'best-monthly-data-deals-south-africa', title: 'Best Monthly Data Deals South Africa', description: 'A focused 30-day bundle comparison for users who buy data monthly and want better value.', path: '/guides/best-monthly-data-deals-south-africa/' },
         { slug: 'best-prepaid-data-deals-south-africa', title: 'Best Prepaid Data Deals South Africa', description: 'Find practical prepaid options by network, use case, and currently listed cost-per-GB.', path: '/guides/best-prepaid-data-deals-south-africa/' },
-        { slug: 'cheapest-unlimited-data-south-africa', title: 'Cheapest Unlimited Data South Africa', description: 'Compare unlimited-style plans and capped alternatives for heavy monthly usage.', path: '/guides/cheapest-unlimited-data-south-africa/' },
-        { slug: 'best-sim-only-deals-south-africa', title: 'Best SIM-Only Deals South Africa', description: 'See current SIM-only style options and how they compare with prepaid value.', path: '/guides/best-sim-only-deals-south-africa/' },
+        { slug: 'best-sim-only-deals-south-africa', title: 'Best SIM-Only Deals South Africa', description: 'Compare SIM-only style monthly data options against prepaid alternatives.', path: '/guides/best-sim-only-deals-south-africa/' },
         { slug: 'cheapest-whatsapp-bundles-south-africa', title: 'Cheapest WhatsApp Bundles South Africa', description: 'Find low-cost WhatsApp-focused bundle options and practical alternatives.', path: '/guides/cheapest-whatsapp-bundles-south-africa/' },
         { slug: 'best-data-deals-south-africa' },
         { slug: 'cheap-night-data-south-africa' },
@@ -95,6 +96,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         { slug: 'how-to-stop-wasp-services-south-africa', title: 'How to Stop WASP Services in South Africa', description: 'Stop premium-service airtime deductions.', path: '/guides/how-to-stop-wasp-services-south-africa/' },
         { slug: 'how-to-protect-airtime-from-being-used', title: 'How to Protect Airtime from Being Used', description: 'Prevent hidden deductions before they start.', path: '/guides/how-to-protect-airtime-from-being-used/' },
         { slug: 'out-of-bundle-data-costs-south-africa', title: 'Out-of-Bundle Data Costs South Africa', description: 'Understand OOB rates, airtime protection, and what to do after unexpected billing.', path: '/guides/out-of-bundle-data-costs-south-africa/' },
+        { slug: 'airtime-advance-codes', title: 'Airtime Advance Codes South Africa', description: 'Compare borrow-airtime routes, eligibility caveats, and repayment notes.', path: '/airtime-advance-codes/' },
         { slug: 'why-does-my-data-finish-so-fast-south-africa' },
         { slug: 'how-to-stop-wasp-vas-charges-south-africa' },
         { slug: 'why-is-my-data-finishing-so-fast' },
@@ -259,10 +261,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
 
       <Header onScrollTo={onScrollTo} activeSection="guides" />
 
-      <main className="max-w-7xl mx-auto px-4 py-8 md:py-12">
-        <AdUnit type="aboveFold" />
-
-        {/* HERO SECTION */}
+      <main className="max-w-7xl mx-auto px-4 py-8 md:py-12">        {/* HERO SECTION */}
         <div className="mb-16 text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#a0f399]/20 text-[#1b6d24] text-sm font-bold mb-6">
             <BookOpen className="w-4 h-4" />
@@ -420,9 +419,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
                   </motion.a>
                 );
               })}
-            </div>
-            {sectionIndex === 0 && <AdUnit type="inContent" />}
-          </section>
+            </div>          </section>
         ))}
 
         <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-12 shadow-sm mb-24">
@@ -495,8 +492,6 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
-      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />
-      <AdUnit type="stickyMobile" />
-    </div>
+      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />    </div>
   );
 };

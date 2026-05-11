@@ -34,6 +34,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
     { id: 'networks', title: 'Networks', subtitle: 'Compare all mobile networks', type: 'scroll' as const, value: 'networks' },
     { id: 'guides', title: 'Guides', subtitle: 'Browse all guides', type: 'scroll' as const, value: 'guides' },
     { id: 'ussd', title: 'USSD Codes', subtitle: 'Find shortcode commands', type: 'scroll' as const, value: 'ussd' },
+    { id: 'airtime-advance-codes', title: 'Airtime Advance Codes', subtitle: 'Borrow-airtime routes for MTN, Vodacom, Telkom, and Cell C', type: 'route' as const, value: '/airtime-advance-codes/' },
     { id: 'alerts', title: 'Alerts', subtitle: 'Get telecom alerts and updates', type: 'route' as const, value: '/alerts/' },
     { id: 'travel-sims', title: 'Best Travel SIMs & eSIMs for South Africa', subtitle: 'Tourist connectivity guide', type: 'route' as const, value: '/travel-sims-south-africa/' },
     ...guides.slice(0, 8).map((guide) => ({

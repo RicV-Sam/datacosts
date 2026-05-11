@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async';
 import { networkMetadata } from '../data';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { AdUnit } from '../components/AdUnit';
 import { RelatedPages } from '../components/RelatedPages';
 import { ArrowLeft, ExternalLink, ShieldCheck, Phone, CreditCard, Smartphone } from 'lucide-react';
 import { toCanonicalUrl } from '../seo/siteConstants';
@@ -70,10 +69,7 @@ export const AirtimePage: React.FC = () => {
         </div>
       </nav>
 
-      <main className="max-w-4xl mx-auto px-4 py-12">
-        <AdUnit type="aboveFold" />
-
-        <header className="mb-16 text-center">
+      <main className="max-w-4xl mx-auto px-4 py-12">        <header className="mb-16 text-center">
           <div
             className="w-20 h-20 rounded-3xl mx-auto mb-6 flex items-center justify-center text-4xl font-black shadow-2xl"
             style={{ backgroundColor: network.color, color: network.textColor }}
@@ -131,11 +127,7 @@ export const AirtimePage: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
-
-        <AdUnit type="inContent" />
-
-        <div className="bg-[#031636] rounded-3xl p-8 md:p-12 text-center text-white mb-16 relative overflow-hidden">
+        </section>        <div className="bg-[#031636] rounded-3xl p-8 md:p-12 text-center text-white mb-16 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#a0f399] blur-[120px] opacity-10 -mr-32 -mt-32"></div>
           <div className="relative z-10">
             <h2 className="text-3xl font-black tracking-tighter mb-4 text-[#a0f399]">Ready to buy?</h2>

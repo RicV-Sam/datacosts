@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { NavigateFunction, USSDEntry } from '../types';
 import { ussdRepository } from '../data/ussd';
 import { Copy, CheckCircle2, Phone, ArrowLeft, Search, HelpCircle } from 'lucide-react';
@@ -45,7 +44,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
     balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find MTN USSD codes in South Africa for checking data balance, airtime balance, buying bundles, and opening self-service menus quickly.',
+      'Find MTN USSD codes in South Africa: *136# for balance, *136*2# for data bundles, *151# for XtraTime, and key self-service shortcuts.',
     intro:
       'Use this MTN USSD page to check data balance, airtime balance, buy bundles, recharge, and open the core self-service routes you need when the app is slow or you have no data.',
     quickAnswer:
@@ -80,7 +79,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
     balanceGuideHref: '/data-problems/how-to-check-data-balance-vodacom-ussd/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find Vodacom USSD codes in South Africa for data balance, airtime balance, buying bundles, transfers, and customer self-service.',
+      'Find Vodacom USSD codes in South Africa: *135# for balance and self-service, *135*2# for data bundles, transfers, and account help.',
     intro:
       'Use this Vodacom USSD page to check data balance, airtime balance, buy bundles, top up, and handle the everyday prepaid actions that are faster from the dialler than the app.',
     quickAnswer:
@@ -114,7 +113,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
     buyDataGuideHref: '/guides/how-to-buy-data-telkom/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find Telkom USSD codes in South Africa to check balance, buy data bundles, check your number, and reach customer support quickly.',
+      'Find Telkom USSD codes in South Africa: *188# for balance, *180# for data bundles, *1# to check your number, and support shortcuts.',
     intro:
       'Use this Telkom USSD page to check balance, buy bundles, confirm your number, and reach support without relying on app data or browser access.',
     quickAnswer:
@@ -148,7 +147,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
     buyDataGuideHref: '/guides/how-to-buy-data-cell-c/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find Cell C USSD codes in South Africa for balance checks, buying bundles, checking your number, and customer care access.',
+      'Find Cell C USSD codes in South Africa: *101# for balance, *147# for bundles and account menus, plus number and support shortcuts.',
     intro:
       'Use this Cell C USSD page to check balance, buy bundles, confirm your number, and reach support from one place when airtime or data is tight.',
     quickAnswer:
@@ -218,7 +217,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
   const [searchTerm, setSearchTerm] = useState('');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = `${config.titlePrefix} | Check Balance, Airtime and Data`;
+  const pageTitle = `${config.titlePrefix}: Balance, Data and Airtime Codes`;
   const canonicalUrl = toCanonicalUrl(config.route);
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso(config.route);
@@ -426,11 +425,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
               </div>
             ))}
           </div>
-        </section>
-
-        <AdUnit type="aboveFold" />
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+        </section>        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Find a {config.networkName} Code Quickly</h2>
           <p className="text-slate-700 leading-relaxed mb-4">
             Search by action or code, for example: <strong>balance</strong>, <strong>buy data</strong>, <strong>support</strong>, or a specific shortcode.
@@ -516,11 +511,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
             <li>4. Try again later if menus are temporarily unavailable during maintenance.</li>
           </ul>
           <p className="text-slate-600 text-sm mt-4">{config.supportNote}</p>
-        </section>
-
-        <AdUnit type="inContent" />
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+        </section>        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6">Related Pages</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {relatedLinks.map((item) => (
@@ -548,8 +539,6 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
-      <MobileNav onScrollTo={onScrollTo} activeSection="ussd" />
-      <AdUnit type="stickyMobile" />
-    </div>
+      <MobileNav onScrollTo={onScrollTo} activeSection="ussd" />    </div>
   );
 };

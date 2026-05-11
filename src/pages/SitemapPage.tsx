@@ -35,9 +35,17 @@ const sitemapGroups: SitemapGroup[] = [
     links: [
       { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data South Africa' },
       { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa' },
+      { href: '/guides/cheapest-2gb-data-south-africa/', label: 'Cheapest 2GB Data South Africa' },
+      { href: '/guides/cheapest-5gb-data-south-africa/', label: 'Cheapest 5GB Data South Africa' },
+      { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data South Africa' },
+      { href: '/guides/cheapest-15gb-data-south-africa/', label: 'Cheapest 15GB Data South Africa' },
+      { href: '/guides/cheapest-20gb-data-south-africa/', label: 'Cheapest 20GB Data South Africa' },
+      { href: '/guides/cheapest-50gb-data-south-africa/', label: 'Cheapest 50GB Data South Africa' },
+      { href: '/guides/cheapest-unlimited-data-south-africa/', label: 'Unlimited Data Deals South Africa' },
       { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals South Africa' },
       { href: '/guides/best-prepaid-data-deals-south-africa/', label: 'Best Prepaid Data Deals' },
       { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals' },
+      { href: '/guides/best-sim-only-deals-south-africa/', label: 'Best SIM-Only Deals' },
       { href: '/guides/cheap-night-data-south-africa/', label: 'Cheap Night Data South Africa' },
       { href: '/guides/cheapest-whatsapp-bundles-south-africa/', label: 'Cheapest WhatsApp Bundles' },
       { href: '/guides/out-of-bundle-data-costs-south-africa/', label: 'Out-of-bundle Data Costs' }
@@ -47,13 +55,13 @@ const sitemapGroups: SitemapGroup[] = [
     title: 'Network Pages',
     links: [
       { href: '/network/vodacom/', label: 'Vodacom Data Prices' },
+      { href: '/network/vodacom/cheapest-1gb/', label: 'Vodacom Cheapest 1GB Data' },
+      { href: '/network/vodacom/monthly-data/', label: 'Vodacom Monthly Data' },
       { href: '/network/mtn/', label: 'MTN Data Prices' },
       { href: '/network/telkom/', label: 'Telkom Data Prices' },
+      { href: '/network/telkom/monthly-data/', label: 'Telkom Monthly Data' },
       { href: '/network/cell-c/', label: 'Cell C Data Prices' },
-      { href: '/network/rain/', label: 'Rain Data Prices' },
-      { href: '/network/telkom/night-data/', label: 'Telkom Night Data' },
-      { href: '/network/mtn/night-data/', label: 'MTN Night Data' },
-      { href: '/network/vodacom/monthly-data/', label: 'Vodacom Monthly Data' }
+      { href: '/network/rain/', label: 'Rain Data Prices' }
     ]
   },
   {
@@ -64,6 +72,7 @@ const sitemapGroups: SitemapGroup[] = [
       { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes' },
       { href: '/telkom-ussd-codes/', label: 'Telkom USSD Codes' },
       { href: '/cell-c-ussd-codes/', label: 'Cell C USSD Codes' },
+      { href: '/airtime-advance-codes/', label: 'Airtime Advance Codes' },
       { href: '/save-ussd-codes/', label: 'Save USSD Codes' }
     ]
   },

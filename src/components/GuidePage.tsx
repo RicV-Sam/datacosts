@@ -16,9 +16,9 @@ import {
   SITE_URL,
   toCanonicalUrl
 } from '../seo/siteConstants';
-import { AdUnit } from './AdUnit';
 import { TrustPanel } from './TrustPanel';
 import { AuthorReviewBlock } from './AuthorReviewBlock';
+import { isNoindexRoute } from '../config/routeCatalog';
 
 interface GuidePageProps {
   guide: Guide;
@@ -139,6 +139,44 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
   ]
 };
 
+function toIndexableResourceLink(item: GuideResourceLink): GuideResourceLink {
+  if (!item.href.startsWith('/')) return item;
+
+  const networkFacetMatch = item.href.match(/^\/network\/([^/]+)\/[^/]+\/$/);
+  if (networkFacetMatch && isNoindexRoute(item.href)) {
+    return {
+      ...item,
+      href: `/network/${networkFacetMatch[1]}/`,
+      label: item.label.replace(/monthly data|night data|cheapest 1gb/i, 'network page'),
+      description: 'Use the full parent network page for broader bundle context.',
+      action: 'route',
+      slug: undefined
+    };
+  }
+
+  if (isNoindexRoute(item.href)) {
+    return {
+      ...item,
+      href: '/guides/cheapest-data-south-africa/',
+      label: 'Cheapest Data in South Africa',
+      description: 'Use the main comparison page for broader, indexable bundle context.',
+      action: 'route',
+      slug: undefined
+    };
+  }
+
+  return item;
+}
+
+function dedupeResourceLinks(items: GuideResourceLink[]): GuideResourceLink[] {
+  const seen = new Set<string>();
+  return items.filter((item) => {
+    if (seen.has(item.href)) return false;
+    seen.add(item.href);
+    return true;
+  });
+}
+
 const CANONICAL_GUIDE_PATH_OVERRIDES: Record<string, string> = {
   'how-to-stop-wasp-vas-charges-south-africa': '/guides/stop-wasp-subscriptions-south-africa/'
 };
@@ -154,7 +192,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
   const showNetworkDisappearingAdLayout =
     guide.slug === 'why-is-my-data-disappearing-vodacom' || guide.slug === 'why-is-my-data-disappearing-mtn';
 
-  const relatedLinks: RelatedLink[] = GUIDE_RELATED_LINKS[guide.slug] || allGuides
+  const rawRelatedLinks: RelatedLink[] = GUIDE_RELATED_LINKS[guide.slug] || allGuides
     .filter((g) => g.slug !== guide.slug)
     .slice(0, 6)
     .map((g) => ({
@@ -164,6 +202,8 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
       action: 'guide' as const,
       slug: g.slug
     }));
+  const relatedLinks = dedupeResourceLinks(rawRelatedLinks.map(toIndexableResourceLink));
+  const nextStepLinks = dedupeResourceLinks((guide.nextSteps ?? []).map(toIndexableResourceLink));
 
   const navigateToResource = (item: GuideResourceLink) => {
     if (/^https?:\/\//i.test(item.href)) {
@@ -301,9 +341,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
             <Clock className="w-3 h-3" />
             Updated {lastUpdatedLabel}
           </div>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">{guide.h1}</h1>
-          {showNetworkDisappearingAdLayout && <AdUnit type="aboveFold" className="mb-6" />}
-          <p className="text-xl text-slate-600 font-medium leading-relaxed">{guide.intro}</p>
+          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">{guide.h1}</h1>          <p className="text-xl text-slate-600 font-medium leading-relaxed">{guide.intro}</p>
         </header>
 
         <TrustPanel lastReviewed={lastUpdatedLabel} className="mb-10" />
@@ -320,10 +358,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
               ))}
             </ul>
           </section>
-        )}
-        {showNetworkDisappearingAdLayout && guide.quickSummaryItems && guide.quickSummaryItems.length > 0 && <AdUnit type="inContent" className="my-10" />}
-
-        {guide.jumpLinks && guide.jumpLinks.length > 0 && (
+        )}        {guide.jumpLinks && guide.jumpLinks.length > 0 && (
           <section className="mb-12 bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-sm">
             <h2 className="text-lg font-black tracking-tight mb-4">{guide.jumpLinksTitle || 'On This Page'}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -394,10 +429,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
               ))}
             </div>
           </section>
-        )}
-        {showNetworkDisappearingAdLayout && <AdUnit type="inContent" className="my-10" />}
-
-        {guide.commonMistakes && guide.commonMistakes.length > 0 && (
+        )}        {guide.commonMistakes && guide.commonMistakes.length > 0 && (
           <section id="common-mistakes" className="mb-16 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm scroll-mt-32">
             <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-8">{guide.commonMistakesTitle || 'Common Mistakes'}</h2>
             <div className="space-y-6">
@@ -411,14 +443,14 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
           </section>
         )}
 
-        {guide.nextSteps && guide.nextSteps.length > 0 && (
+        {nextStepLinks.length > 0 && (
           <section id="find-cheaper-options" className="mb-16 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm scroll-mt-32">
             <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-4">{guide.nextStepsTitle || 'Find Cheaper Options'}</h2>
             <p className="text-slate-600 font-medium leading-relaxed mb-8">
               Use these pages to compare current South Africa prices and choose bundles based on your actual usage pattern.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {guide.nextSteps.map((item) => (
+              {nextStepLinks.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
@@ -496,10 +528,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
             and{' '}
             <a href="/editorial-policy/" onClick={(e) => { e.preventDefault(); navigate('/editorial-policy/'); }} className="text-[#1b6d24] font-semibold hover:underline">editorial policy</a>.
           </p>
-        </section>
-        {showNetworkDisappearingAdLayout && <AdUnit type="inContent" className="mt-0 mb-16" />}
-
-        <section className="bg-[#031636] rounded-[2.5rem] p-8 md:p-12 text-center text-white relative overflow-hidden">
+        </section>        <section className="bg-[#031636] rounded-[2.5rem] p-8 md:p-12 text-center text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#a0f399] blur-[120px] opacity-10 -mr-32 -mt-32"></div>
           <h2 className="text-3xl font-black tracking-tighter mb-4 relative z-10">Stop overpaying for data.</h2>
           <p className="text-slate-400 font-medium mb-8 max-w-xl mx-auto relative z-10">Compare all networks in one place and find the best deals for your needs today.</p>

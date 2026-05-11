@@ -52,6 +52,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo }) => {
             USSD Codes Directory
           </a>
 
+          <a href="/airtime-advance-codes/" className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block">
+            Airtime Advance Codes
+          </a>
+
           {operatorUssdLinks.map((link) => (
             <a key={link.href} href={link.href} className="text-left text-[11px] text-slate-500 hover:text-slate-900 transition-colors block">
               {link.label}

@@ -5,7 +5,6 @@ import { ArrowLeft, CheckCircle2, Copy, HelpCircle, Phone, Search, ShieldCheck }
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { TrustPanel } from '../components/TrustPanel';
 import { ussdRepository } from '../data/ussd';
 import { NavigateFunction, USSDEntry } from '../types';
@@ -97,9 +96,9 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = 'USSD Codes South Africa for MTN, Vodacom, Telkom and Cell C';
+  const pageTitle = 'USSD Codes South Africa: MTN, Vodacom, Telkom and Cell C';
   const metaDescription =
-    'Find South Africa USSD codes for MTN, Vodacom, Telkom, and Cell C. Check airtime or data balance, buy bundles, and open self-service menus fast.';
+    'Find USSD codes for South Africa: MTN, Vodacom, Telkom and Cell C balance checks, data buying, airtime advance menus and self-service shortcuts.';
   const canonicalUrl = toCanonicalUrl('/ussd-codes-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');
@@ -270,10 +269,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
 
         <header className="mb-8">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 leading-[0.9]">
-            <span className="text-[#1b6d24]">USSD Codes</span> South Africa
+            <span className="text-[#1b6d24]">USSD Codes</span> South Africa: Balance, Data and Airtime
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Start here if you need the main USSD codes for MTN, Vodacom, Telkom, and Cell C. Use the shortcuts below to check airtime or data balance, buy bundles, and reach self-service menus quickly.
+            Start here if you need MTN, Vodacom, Telkom, or Cell C USSD codes. Use the shortcuts below to check airtime or data balance, buy bundles, find advance-airtime routes, and reach self-service menus quickly.
           </p>
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
@@ -302,13 +301,14 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-[#031636] text-white rounded-3xl p-6 shadow-sm">
           <h2 className="text-xl font-black tracking-tight mb-2">Need quick access to network-specific codes?</h2>
           <p className="text-sm text-slate-200 leading-relaxed mb-4">
-            Jump straight to the dedicated operator pages if you only need one network’s balance, buy-data, or account shortcuts.
+            Jump straight to the dedicated operator pages if you only need one network's balance, buy-data, or account shortcuts.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link to="/mtn-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">MTN USSD</Link>
             <Link to="/vodacom-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Vodacom USSD</Link>
             <Link to="/telkom-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Telkom USSD</Link>
             <Link to="/cell-c-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Cell C USSD</Link>
+            <Link to="/airtime-advance-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-white px-4 text-sm font-black text-[#031636]">Airtime advance</Link>
             <Link to="/network/rain/" className="inline-flex min-h-[44px] items-center rounded-xl bg-white px-4 text-sm font-black text-[#031636]">Rain support</Link>
           </div>
         </section>
@@ -316,7 +316,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            If you need a fast answer, start with the balance code for your network, then buy a bundle before you browse again. The operator sections below give you the main USSD shortcuts South African prepaid users use most often for balance checks, data buying, and account help.
+            If you need a fast answer, start with the balance code for your network, then buy a bundle before you browse again. For advance airtime, use the dedicated airtime-advance page because eligibility, fees, and repayment rules can differ by network.
           </p>
         </section>
 
@@ -360,11 +360,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
               </div>
             </article>
           ))}
-        </section>
-
-        <AdUnit type="aboveFold" />
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+        </section>        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6">Balance checks and next steps</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <Link to="/guides/how-to-check-data-balance/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
@@ -461,11 +457,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
             </p>
             <Link to="/network/rain/" className="text-sm font-bold text-[#1b6d24] hover:underline">View Rain data prices and packages</Link>
           </section>
-        </section>
-
-        <AdUnit type="inContent" />
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+        </section>        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Search all available codes</h2>
           <div className="flex flex-wrap gap-2 mb-5">
             {(['All', ...MAJOR_NETWORKS.map((network) => network.name)] as Array<'All' | NetworkName>).map((network) => (
@@ -543,8 +535,6 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
-      <MobileNav onScrollTo={onScrollTo} activeSection="ussd" />
-      <AdUnit type="stickyMobile" />
-    </div>
+      <MobileNav onScrollTo={onScrollTo} activeSection="ussd" />    </div>
   );
 };

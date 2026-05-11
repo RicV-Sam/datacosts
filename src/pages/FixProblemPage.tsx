@@ -5,7 +5,6 @@ import { AlertTriangle, ArrowRight, LifeBuoy, ShieldCheck } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { NavigateFunction } from '../types';
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
@@ -120,9 +119,6 @@ export const FixProblemPage: React.FC<FixProblemPageProps> = ({ onNavigate, onSc
             Start with the exact issue you are seeing. These are practical South African troubleshooting paths for airtime loss, data drain, USSD checks, and subscription problems.
           </p>
         </section>
-
-        <AdUnit type="aboveFold" />
-
         <section className="mb-8 bg-[#031636] text-white rounded-3xl p-6 shadow-sm">
           <h2 className="text-xl font-black tracking-tight mb-2">Quick Next Steps</h2>
           <p className="text-slate-200 text-sm leading-relaxed mb-4">
@@ -152,9 +148,6 @@ export const FixProblemPage: React.FC<FixProblemPageProps> = ({ onNavigate, onSc
             ))}
           </div>
         </section>
-
-        <AdUnit type="inContent" />
-
         <section className="mb-12 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
           <h2 className="text-xl font-black tracking-tight mb-3 inline-flex items-center gap-2">
             <LifeBuoy className="w-5 h-5 text-[#1b6d24]" />
@@ -192,7 +185,6 @@ export const FixProblemPage: React.FC<FixProblemPageProps> = ({ onNavigate, onSc
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
       <MobileNav onScrollTo={onScrollTo} activeSection="fix-problem" />
-      <AdUnit type="stickyMobile" />
     </div>
   );
 };

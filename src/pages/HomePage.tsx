@@ -10,7 +10,6 @@ import { Verdict } from '../components/Verdict';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { NetworkModal } from '../components/NetworkModal';
-import { AdUnit } from '../components/AdUnit';
 import { guides } from '../data/guides';
 import { networkPages } from '../data/networks';
 import { bundles } from '../data';
@@ -218,9 +217,6 @@ export const HomePage: React.FC<HomePageProps> = ({
             <a href="/contact/#corrections" className="text-sm font-bold text-[#1b6d24] hover:underline">Report an error</a>
           </div>
         </section>
-
-        <AdUnit type="aboveFold" />
-
         <section className="mb-10">
           <DataCalculator />
         </section>
@@ -351,20 +347,13 @@ export const HomePage: React.FC<HomePageProps> = ({
           <p className="text-slate-700 leading-relaxed font-medium">
             We focus on practical next steps: compare prices, check USSD codes, and fix airtime or subscription problems quickly.
           </p>
-        </section>
-
-        <AdUnit type="inContent" />
-
-        <Scorecard />
+        </section>        <Scorecard />
 
         <Verdict />
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
-      <MobileNav onScrollTo={onScrollTo} activeSection={activeSection} />
-      <AdUnit type="stickyMobile" />
-
-      <NetworkModal network={selectedNetwork} onClose={() => setSelectedNetwork(null)} />
+      <MobileNav onScrollTo={onScrollTo} activeSection={activeSection} />      <NetworkModal network={selectedNetwork} onClose={() => setSelectedNetwork(null)} />
     </div>
   );
 };

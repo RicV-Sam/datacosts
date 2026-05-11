@@ -1,11 +1,10 @@
-﻿import React from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, BarChart3, ShieldCheck, Tag, TrendingUp } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { networkPages } from '../data/networks';
@@ -154,7 +153,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
   const relatedPages = [
     { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa', description: 'Best low-volume benchmark.' },
     { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data South Africa', description: 'Medium-to-heavy usage comparison.' },
-    { href: '/guides/cheapest-unlimited-data-south-africa/', label: 'Cheapest Unlimited Data South Africa', description: 'High-usage and uncapped alternatives.' },
+    { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals South Africa', description: 'Monthly high-usage and value alternatives.' },
     { href: '/guides/cheapest-whatsapp-bundles-south-africa/', label: 'Cheapest WhatsApp Bundles South Africa', description: 'Social-bundle comparison intent.' },
     { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices', description: 'Head-to-head operator comparison.' },
     { href: '/network/mtn/', label: 'MTN Network Page', description: 'Review MTN bundle prices and network context.' },
@@ -222,11 +221,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
           <p className="text-sm text-slate-600 mt-3">
             If you want a fast shortlist, start with the top comparison table below, then compare it with the cheapest-data guide if your priority is the lowest upfront spend.
           </p>
-        </section>
-
-        <AdUnit type="aboveFold" />
-
-        <section className="mb-16">
+        </section>        <section className="mb-16">
           <h2 className="text-2xl font-black tracking-tight mb-6">Best Data Deals Comparison Table</h2>
           <div className="overflow-x-auto bg-white rounded-3xl border border-slate-100 shadow-xl">
             <table className="w-full text-left min-w-[760px]">
@@ -253,11 +248,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
             </table>
           </div>
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
-        </section>
-
-        <AdUnit type="inContent" />
-
-        <section className="mb-16 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+        </section>        <section className="mb-16 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6">Network-by-Network Best Deals</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {networkBreakdown.map((row) => (
@@ -346,11 +337,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
           <p className="text-slate-700 mt-4">
             Read our <Link to="/methodology/" className="text-[#1b6d24] font-semibold hover:underline">methodology</Link> and <Link to="/editorial-policy/" className="text-[#1b6d24] font-semibold hover:underline">editorial policy</Link> for full transparency.
           </p>
-        </section>
-
-        <AdUnit type="inContent" />
-
-        <section className="mb-16 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+        </section>        <section className="mb-16 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6 flex items-center gap-2">
             <BarChart3 className="w-6 h-6 text-[#1b6d24]" />
             Related comparison pages

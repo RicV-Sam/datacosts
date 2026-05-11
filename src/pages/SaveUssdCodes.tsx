@@ -5,7 +5,6 @@ import { ArrowLeft } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { UssdTool } from '../components/UssdTool';
 import { NavigateFunction } from '../types';
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
@@ -151,9 +150,6 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
           </div>
           {alertsHint ? <p className="mt-2 text-sm text-slate-600">{alertsHint}</p> : null}
         </section>
-
-        <AdUnit type="inContent" />
-
         <section className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
           <h2 className="text-xl font-black tracking-tight text-slate-900">Helpful Links</h2>
           <div className="mt-4 grid grid-cols-1 gap-2 text-sm">
@@ -168,9 +164,6 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
             <Link className="rounded-xl border border-slate-200 px-3 py-2 font-semibold text-slate-700" to="/guides/best-data-deals-south-africa/">Guide: best data deals</Link>
           </div>
         </section>
-
-        <AdUnit type="inContent" />
-
         <section className="mt-5 rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
           <h2 className="text-xl font-black tracking-tight text-slate-900">Frequently Asked Questions</h2>
           <div className="mt-4 space-y-3">
@@ -186,7 +179,6 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
       <MobileNav onScrollTo={onScrollTo} activeSection="ussd" />
-      <AdUnit type="stickyMobile" />
     </div>
   );
 };

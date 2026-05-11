@@ -75,9 +75,9 @@ const faqItems = [
 ];
 
 export const WhyAirtimeDisappearingPage: React.FC<WhyAirtimeDisappearingPageProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Why Is My Airtime Disappearing in South Africa?';
+  const pageTitle = 'Why Is My Airtime Disappearing? Vodacom, MTN, Telkom and Cell C Fixes';
   const metaDescription =
-    'Find out why airtime disappears on Vodacom, MTN, Telkom, or Cell C. Check balances, stop out-of-bundle use, and rule out subscriptions fast.';
+    'Find why airtime disappears on Vodacom, MTN, Telkom or Cell C. Check bundle expiry, background data, WASP charges, and airtime advance deductions.';
   const canonicalUrl = toCanonicalUrl('/guides/why-is-my-airtime-disappearing-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getGuideModifiedIso('why-is-my-airtime-disappearing-south-africa');
@@ -109,7 +109,7 @@ export const WhyAirtimeDisappearingPage: React.FC<WhyAirtimeDisappearingPageProp
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: 'Why Is My Airtime Disappearing in South Africa?',
+    headline: pageTitle,
     description: metaDescription,
     url: canonicalUrl,
     image: DEFAULT_OG_IMAGE_URL,
@@ -166,17 +166,17 @@ export const WhyAirtimeDisappearingPage: React.FC<WhyAirtimeDisappearingPageProp
             Updated {lastUpdated}
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-5 leading-[0.95]">
-            Why Is My <span className="text-[#1b6d24]">Airtime Disappearing</span> in South Africa?
+            Why Is My <span className="text-[#1b6d24]">Airtime Disappearing?</span>
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            If your airtime keeps dropping on Vodacom, MTN, Telkom, or Cell C, start by checking whether a data bundle expired, out-of-bundle browsing continued, or a subscription deduction is active. This page gives you the quickest checks first.
+            If your airtime keeps dropping on Vodacom, MTN, Telkom, or Cell C, start by checking whether a data bundle expired, out-of-bundle browsing continued, an airtime advance was repaid, or a subscription deduction is active. This page gives you the quickest checks first.
           </p>
         </header>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            Airtime usually disappears because your phone kept using mobile data after a bundle expired, background apps kept syncing, or a recurring subscription deduction is active. Check your balance first, stop browsing until you confirm an active bundle, then rule out WASP and value-added charges.
+            Airtime usually disappears because your phone kept using mobile data after a bundle expired, background apps kept syncing, an airtime advance was repaid, or a recurring subscription deduction is active. Check your balance first, stop browsing until you confirm an active bundle, then rule out WASP and value-added charges.
           </p>
         </section>
 

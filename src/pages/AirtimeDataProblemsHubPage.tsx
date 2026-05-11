@@ -5,7 +5,6 @@ import { ArrowLeft, HelpCircle } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { NavigateFunction } from '../types';
@@ -203,7 +202,6 @@ export const AirtimeDataProblemsHubPage: React.FC<AirtimeDataProblemsHubPageProp
             <p className="text-sm font-semibold text-slate-700">Last reviewed: {lastUpdated}</p>
             <p className="text-sm text-slate-600">Reviewed by {SITE_EDITOR_NAME}, {SITE_EDITOR_ROLE}</p>
           </div>
-          <AdUnit type="aboveFold" className="mb-6" />
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
             Use this hub when airtime keeps disappearing, data finishes too quickly, or unknown subscriptions keep charging your number.
           </p>
@@ -217,11 +215,7 @@ export const AirtimeDataProblemsHubPage: React.FC<AirtimeDataProblemsHubPageProp
           <p className="text-slate-700 leading-relaxed">
             This page groups the fastest fixes by issue type so you can go straight to the right guide for Vodacom, MTN, Telkom, or Cell C.
           </p>
-        </section>
-
-        <AdUnit type="inContent" className="mb-8" />
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+        </section>        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6">Airtime Issues</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {problemPages
@@ -261,11 +255,7 @@ export const AirtimeDataProblemsHubPage: React.FC<AirtimeDataProblemsHubPageProp
                 </Link>
               ))}
           </div>
-        </section>
-
-        <AdUnit type="inContent" className="mb-8" />
-
-        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+        </section>        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">How to Prevent Problems</h2>
           <ul className="space-y-3 list-disc pl-5 text-slate-700 leading-relaxed">
             <li>Run a monthly subscription audit and cancel unknown paid services.</li>
@@ -298,14 +288,10 @@ export const AirtimeDataProblemsHubPage: React.FC<AirtimeDataProblemsHubPageProp
           trustSummary="Based on public operator support paths, USSD workflows, and South African prepaid troubleshooting needs."
           className="mb-12"
         />
-
-        <AdUnit type="inContent" className="mt-8" />
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
-      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />
-      <AdUnit type="stickyMobile" />
-    </div>
+      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />    </div>
   );
 };
 

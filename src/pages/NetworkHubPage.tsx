@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { NetworkCard } from '../components/NetworkCards';
 import { Scorecard } from '../components/Scorecard';
 import { NetworkName, NavigateFunction } from '../types';
@@ -210,8 +209,6 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
       <Header onScrollTo={onScrollTo} activeSection="networks" />
 
       <main className="max-w-7xl mx-auto px-4 py-8 md:py-12">
-        <AdUnit type="aboveFold" />
-
         <div className="mb-16 text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#a0f399]/20 text-[#1b6d24] text-sm font-bold mb-6">
             <TowerControl className="w-4 h-4" />
@@ -308,9 +305,6 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
             ))}
           </div>
         </section>
-
-        <AdUnit type="inContent" />
-
         <section className="mb-20 bg-slate-50/50 rounded-[2.5rem] p-8 md:p-10 border border-slate-100">
           <h2 className="text-2xl font-black tracking-tighter mb-4">Supporting Guides for Better Decisions</h2>
           <p className="text-slate-600 font-medium mb-6 max-w-3xl">
@@ -416,7 +410,6 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
       <MobileNav onScrollTo={onScrollTo} activeSection="networks" />
-      <AdUnit type="stickyMobile" />
     </div>
   );
 };

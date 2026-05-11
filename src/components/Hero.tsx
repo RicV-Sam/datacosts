@@ -44,14 +44,14 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-[#1b6d24] to-[#a0f399] blur-2xl opacity-20 group-hover:opacity-30 transition-opacity rounded-3xl" />
           <div className="relative bg-white p-8 rounded-3xl shadow-xl border border-white/50 flex flex-col items-center justify-center text-center min-w-[240px]">
-            <span className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-2 block">Avg. 10GB Cost</span>
+            <span className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-2 block">10GB Benchmark</span>
             <div className="flex items-baseline gap-1">
-              <span className="text-5xl font-black text-[#031636]">R149</span>
-              <span className="text-sm font-bold text-[#1b6d24]">-12% YoY</span>
+              <span className="text-4xl font-black text-[#031636]">Compare</span>
+              <span className="text-sm font-bold text-[#1b6d24]">before buying</span>
             </div>
             <div className="mt-6 pt-6 border-t border-slate-50 w-full flex items-center justify-center gap-2 text-slate-500">
               <Info className="w-3.5 h-3.5" />
-              <span className="text-[10px] font-bold uppercase tracking-wider">March 2026 Benchmark</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider">DataCost internal benchmark</span>
             </div>
           </div>
         </motion.div>

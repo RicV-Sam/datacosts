@@ -487,19 +487,20 @@ export const networkPages: Record<string, NetworkPageData> = {
   'rain': {
     slug: 'rain',
     networkName: 'Rain',
-    intro: 'Rain has revolutionized the South African market by focusing on unlimited data plans. Unlike traditional networks, Rain is app-managed and does not use USSD codes, making it a favorite for home office setups and heavy data users in 5G-enabled areas.',
-    bestFor: 'Best for Home 5G & Unlimited Data',
+    intro: 'Rain is different from the prepaid mobile networks in this comparison because it focuses on app-managed unlimited-style monthly data plans instead of large prepaid USSD bundle menus. It can be useful for home, fixed-use, or heavy data needs where Rain coverage is strong.',
+    bestFor: 'Home, fixed-use, and high-volume data where Rain coverage fits',
     strengths: [
-      'Truly unlimited 4G and 5G data plans',
+      'Unlimited-style 4G and 5G data plans',
       'No contracts or long-term commitments',
-      'Very high speeds in strong 5G coverage areas',
+      'Performance can be strong in suitable 5G coverage areas',
       'Simple, app-based account management'
     ],
     tips: [
-      'Rain is best used as a "Fixed" or "Home" internet solution rather than mobile-only.',
+      'Rain is often best evaluated as a fixed or home internet-style option rather than a normal prepaid mobile bundle.',
       'Check your 5G coverage before committing to the premium unlimited plans.',
       'Manage everything through the Rain dashboard or mobile app for instant control.'
     ],
+    verdictSummary: 'Rain has fewer listed deals here because its product structure is narrower than prepaid mobile bundle menus: the comparison should focus on coverage fit, monthly price, and plan terms rather than SKU count.',
     faqs: [
       {
         question: 'Does Rain have USSD codes?',
@@ -507,7 +508,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'Is Rain data truly unlimited?',
-        answer: 'Rain offers several "Unlimited" plans. While they don\'t have a hard data cap, they do have policies regarding streaming quality (e.g., Basic vs. HD) depending on the specific plan you choose.'
+        answer: 'Rain markets unlimited-style plans, but product terms, streaming quality rules, and coverage conditions still matter. Check the plan terms in Rain\'s official account area before relying on it as a home connection.'
       },
       {
         question: 'Is Rain better for home internet or mobile?',

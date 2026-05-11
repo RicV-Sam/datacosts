@@ -5,7 +5,6 @@ import { Bell, Mail, MessageCircle, Zap, ShieldCheck, Gift, Signal, Wrench } fro
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { NavigateFunction } from '../types';
 import {
   AlertsPreferences,
@@ -357,9 +356,6 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
             </article>
           </div>
         </section>
-
-        <AdUnit type="inContent" />
-
         <section className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight text-slate-900">Frequently Asked Questions</h2>
           <div className="mt-4 space-y-3">
@@ -387,8 +383,6 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
       <MobileNav onScrollTo={onScrollTo} activeSection="alerts" />
-      <AdUnit type="stickyMobile" />
-
       {toast ? (
         <div className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-[#031636] px-4 py-2 text-xs font-bold text-white shadow-lg">
           {toast}

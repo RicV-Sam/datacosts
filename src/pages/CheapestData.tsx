@@ -6,7 +6,6 @@ import { bundles } from '../data';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
@@ -66,9 +65,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/guides/cheapest-data-south-africa/');
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
-  const pageTitle = 'Cheapest Data South Africa | Compare Budget Bundle Prices';
+  const pageTitle = 'Cheapest Data South Africa: Compare 1GB, 5GB and 10GB Deals';
   const pageMetaDescription =
-    'Find the cheapest data in South Africa by budget and bundle size. Compare 1GB, 2GB, 5GB, 10GB, daily, monthly, and night data across major networks.';
+    'Compare cheap data bundles in South Africa by 1GB, 2GB, 5GB, 10GB, daily and monthly intent. Check price, validity and value before you buy.';
   const metaDescription =
     'Compare the cheapest data in South Africa by 1GB, 2GB, 5GB, 10GB, daily, monthly, and night-data intent using DataCost’s dataset-backed prepaid comparison.';
 
@@ -222,6 +221,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     '/guides/cheapest-2gb-data-south-africa/',
     '/guides/cheapest-5gb-data-south-africa/',
     '/guides/cheapest-10gb-data-south-africa/',
+    '/guides/cheapest-20gb-data-south-africa/',
     '/guides/cheap-night-data-south-africa/',
     '/guides/best-monthly-data-deals-south-africa/',
     '/network/mtn/',
@@ -340,11 +340,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
               : 'Monthly budget value depends on the visible dataset. '}
             Use the sections below to separate lowest upfront price from monthly value before you top up again.
           </p>
-        </section>
-
-        <AdUnit type="aboveFold" />
-
-        <section className="mb-10 space-y-5">
+        </section>        <section className="mb-10 space-y-5">
           {intentSections.map((section) => (
             <article key={section.id} id={section.id} className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
               <h2 className="text-2xl font-black tracking-tight mb-3">{section.title}</h2>
@@ -370,11 +366,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
               ) : null}
             </article>
           ))}
-        </section>
-
-        <AdUnit type="inContent" />
-
-        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+        </section>        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6">Best for different user types</h2>
           <div className="space-y-4">
             <article className="rounded-2xl border border-slate-100 bg-slate-50 p-5">

@@ -6,6 +6,7 @@ import { NetworkName, NavigateFunction } from './types';
 
 const HomePage = lazy(() => import('./pages/HomePage').then((mod) => ({ default: mod.HomePage })));
 const USSDPage = lazy(() => import('./pages/USSDPage').then((mod) => ({ default: mod.USSDPage })));
+const AirtimeAdvanceCodesPage = lazy(() => import('./pages/AirtimeAdvanceCodesPage').then((mod) => ({ default: mod.AirtimeAdvanceCodesPage })));
 const NetworkUSSDPage = lazy(() => import('./pages/NetworkUSSDPage').then((mod) => ({ default: mod.NetworkUSSDPage })));
 const SaveUssdCodes = lazy(() => import('./pages/SaveUssdCodes').then((mod) => ({ default: mod.SaveUssdCodes })));
 const AlertsPage = lazy(() => import('./pages/AlertsPage').then((mod) => ({ default: mod.AlertsPage })));
@@ -131,6 +132,11 @@ function AppContent() {
         />
         <Route path="/ussd-codes" element={<Navigate to="/ussd-codes-south-africa/" replace />} />
         <Route path="/ussd-codes-south-africa" element={<Navigate to="/ussd-codes-south-africa/" replace />} />
+        <Route
+          path="/airtime-advance-codes/"
+          element={<AirtimeAdvanceCodesPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route path="/airtime-advance-codes" element={<Navigate to="/airtime-advance-codes/" replace />} />
         <Route
           path="/mtn-ussd-codes/"
           element={<NetworkUSSDPage networkSlug="mtn" onBack={() => navigateTo('ussd')} onScrollTo={handleScrollTo} onNavigate={navigateTo} />}

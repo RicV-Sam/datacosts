@@ -3,12 +3,12 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, BarChart3, CheckCircle2, ExternalLink, Info, ShieldCheck, Tag } from 'lucide-react';
 import { bundles } from '../data';
-import { AdUnit } from '../components/AdUnit';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction, Bundle, NetworkName } from '../types';
 import { getComparisonGuideBySlug } from '../data/comparisonGuides';
+import { isNoindexRoute } from '../config/routeCatalog';
 import { buildBundleItemListSchema } from '../utils/structuredData';
 import { networkPages } from '../data/networks';
 import { formatIsoForDisplay, getComparisonGuideModifiedIso, getDefaultPublishedIso } from '../seo/contentDates';
@@ -237,6 +237,36 @@ function getWinners(mode: string, rows: ComparisonRow[], coverageFirstNetwork: N
   ];
 }
 
+function getIndexableFallbackLink(link: { href: string; label: string; description: string }) {
+  const networkFacetMatch = link.href.match(/^\/network\/([^/]+)\/[^/]+\/$/);
+  if (networkFacetMatch && isNoindexRoute(link.href)) {
+    const networkName = networkFacetMatch[1]
+      .split('-')
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
+
+    return {
+      href: `/network/${networkFacetMatch[1]}/`,
+      label: `${networkName} network page`,
+      description: 'Use the full parent network page for broader bundle context.'
+    };
+  }
+
+  if (isNoindexRoute(link.href)) {
+    return {
+      href: '/guides/cheapest-data-south-africa/',
+      label: 'Cheapest data South Africa',
+      description: 'Use the main comparison page for broader, indexable bundle context.'
+    };
+  }
+
+  return link;
+}
+
+function toIndexableNetworkBundleUrl(networkSlug: string, path: string): string {
+  return toCanonicalUrl(isNoindexRoute(path) ? `/network/${networkSlug}/` : path);
+}
+
 export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideSlug, onNavigate, onScrollTo }) => {
   const location = useLocation();
   const definition = getComparisonGuideBySlug(guideSlug);
@@ -276,6 +306,15 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
   const canonicalUrl = toCanonicalUrl(definition.canonicalPath);
   const isAliasPath = location.pathname !== definition.canonicalPath;
+  const shouldNoindex = isAliasPath || isNoindexRoute(definition.canonicalPath);
+  const seenRelatedLinks = new Set<string>();
+  const relatedLinks = definition.links
+    .map(getIndexableFallbackLink)
+    .filter((link) => {
+      if (seenRelatedLinks.has(link.href)) return false;
+      seenRelatedLinks.add(link.href);
+      return true;
+    });
 
   const webPageSchema = {
     '@context': 'https://schema.org',
@@ -345,17 +384,17 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
       const networkSlug = Object.values(networkPages).find((page) => page.networkName === bundle.network)?.slug;
       if (!networkSlug) return canonicalUrl;
 
-      if (definition.mode === 'cheapest-1gb') return toCanonicalUrl(`/network/${networkSlug}/cheapest-1gb/`);
-      if (definition.mode === 'cheapest-10gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
-      if (definition.mode === 'cheapest-2gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
-      if (definition.mode === 'cheapest-5gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
-      if (definition.mode === 'cheapest-15gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
-      if (definition.mode === 'cheapest-20gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
-      if (definition.mode === 'cheapest-50gb') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
-      if (definition.mode === 'best-monthly') return toCanonicalUrl(`/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'cheapest-1gb') return toIndexableNetworkBundleUrl(networkSlug, `/network/${networkSlug}/cheapest-1gb/`);
+      if (definition.mode === 'cheapest-10gb') return toIndexableNetworkBundleUrl(networkSlug, `/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'cheapest-2gb') return toIndexableNetworkBundleUrl(networkSlug, `/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'cheapest-5gb') return toIndexableNetworkBundleUrl(networkSlug, `/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'cheapest-15gb') return toIndexableNetworkBundleUrl(networkSlug, `/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'cheapest-20gb') return toIndexableNetworkBundleUrl(networkSlug, `/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'cheapest-50gb') return toIndexableNetworkBundleUrl(networkSlug, `/network/${networkSlug}/monthly-data/`);
+      if (definition.mode === 'best-monthly') return toIndexableNetworkBundleUrl(networkSlug, `/network/${networkSlug}/monthly-data/`);
       if (definition.mode === 'best-prepaid') return toCanonicalUrl(`/network/${networkSlug}/`);
-      if (definition.mode === 'cheapest-whatsapp') return toCanonicalUrl(`/network/${networkSlug}/social-data/`);
-      if (definition.mode === 'cheap-night') return toCanonicalUrl(`/network/${networkSlug}/night-data/`);
+      if (definition.mode === 'cheapest-whatsapp') return toIndexableNetworkBundleUrl(networkSlug, `/network/${networkSlug}/social-data/`);
+      if (definition.mode === 'cheap-night') return toIndexableNetworkBundleUrl(networkSlug, `/network/${networkSlug}/night-data/`);
       return canonicalUrl;
     }
   );
@@ -366,7 +405,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
         <title>{definition.title}</title>
         <meta name="description" content={definition.metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
-        {isAliasPath && <meta name="robots" content="noindex,follow" />}
+        {shouldNoindex && <meta name="robots" content="noindex,follow" />}
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
         <meta property="og:title" content={definition.title} />
@@ -397,8 +436,6 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
       </nav>
 
       <main className="max-w-4xl mx-auto px-4 py-12">
-        <AdUnit type="aboveFold" />
-
         <header className="mb-12 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#a0f399]/20 text-[#217128] rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-[#a0f399]/30">
             <Tag className="w-3 h-3" />
@@ -473,9 +510,6 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
             </table>
           </div>
         </section>
-
-        <AdUnit type="inContent" />
-
         {definition.whoShouldBuy && definition.whoShouldBuy.length > 0 && (
           <section id="who-should-buy" className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm scroll-mt-32">
             <h2 className="text-2xl font-black tracking-tighter mb-6">{definition.whoShouldBuyTitle || 'Who Should Buy This Size?'}</h2>
@@ -534,7 +568,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
             Internal links for deeper comparison
           </h2>
           <div className="grid md:grid-cols-2 gap-4">
-            {definition.links.map((link) => (
+            {relatedLinks.map((link) => (
               <a key={link.href} href={link.href} className="p-5 bg-slate-50 border border-slate-100 rounded-2xl hover:border-[#1b6d24] transition-colors">
                 <div className="font-black text-slate-900">{link.label}</div>
                 <p className="text-sm text-slate-600 mt-2">{link.description}</p>
@@ -588,7 +622,6 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
       <MobileNav onScrollTo={onScrollTo} activeSection="guides" />
-      <AdUnit type="stickyMobile" />
     </div>
   );
 };

@@ -108,6 +108,14 @@ const DEEMPHASIZED_SITEMAP_ROUTES = new Set([
   '/guides/how-to-stop-wasp-services-south-africa/'
 ]);
 
+const ORGANIC_PROTECTED_FACET_ROUTES = new Set([
+  '/network/vodacom/cheapest-1gb/',
+  '/network/vodacom/monthly-data/',
+  '/network/telkom/monthly-data/'
+]);
+
+const NOINDEX_DEAL_GUIDE_ROUTES = new Set<string>();
+
 function normalizeCanonicalPath(path: string): string {
   if (!path.startsWith('/')) {
     throw new Error(`Route must start with "/": ${path}`);
@@ -121,6 +129,43 @@ function normalizeCanonicalPath(path: string): string {
   return `${trimmed}/`;
 }
 
+export function getNetworkFacetRoutes(): string[] {
+  const routes = new Set<string>();
+
+  for (const filterRoute of FILTER_ROUTES) {
+    const networkPage = networkPages[filterRoute.network];
+    const bundleTypeConfig = BUNDLE_TYPE_MAP[filterRoute.bundleType];
+    if (!networkPage || !bundleTypeConfig) {
+      continue;
+    }
+
+    const networkBundles = bundles.filter((bundle) => bundle.network === networkPage.networkName);
+    const hasMatchingBundle = networkBundles.some((bundle) => bundleTypeConfig.filter(bundle));
+    if (!hasMatchingBundle) {
+      continue;
+    }
+
+    routes.add(`/network/${networkPage.slug}/${filterRoute.bundleType}/`);
+  }
+
+  return [...routes].map(normalizeCanonicalPath);
+}
+
+export function getNoindexRoutes(): string[] {
+  const noindexFacetRoutes = getNetworkFacetRoutes().filter(
+    (route) => !ORGANIC_PROTECTED_FACET_ROUTES.has(route)
+  );
+
+  return [
+    ...noindexFacetRoutes,
+    ...NOINDEX_DEAL_GUIDE_ROUTES
+  ].map(normalizeCanonicalPath);
+}
+
+export function isNoindexRoute(path: string): boolean {
+  return new Set(getNoindexRoutes()).has(normalizeCanonicalPath(path));
+}
+
 export function getIndexableRoutes(): string[] {
   const routes = new Set<string>();
 
@@ -131,6 +176,7 @@ export function getIndexableRoutes(): string[] {
   routes.add('/telkom-ussd-codes/');
   routes.add('/cell-c-ussd-codes/');
   routes.add('/save-ussd-codes/');
+  routes.add('/airtime-advance-codes/');
   routes.add('/alerts/');
   routes.add('/sitemap/');
   routes.add('/fix-mobile-problems/');
@@ -202,27 +248,20 @@ export function getIndexableRoutes(): string[] {
     routes.add(`/network/${networkPage.slug}/`);
   }
 
-  for (const filterRoute of FILTER_ROUTES) {
-    const networkPage = networkPages[filterRoute.network];
-    const bundleTypeConfig = BUNDLE_TYPE_MAP[filterRoute.bundleType];
-    if (!networkPage || !bundleTypeConfig) {
-      continue;
+  for (const route of getNetworkFacetRoutes()) {
+    if (ORGANIC_PROTECTED_FACET_ROUTES.has(route)) {
+      routes.add(route);
     }
-
-    const networkBundles = bundles.filter((bundle) => bundle.network === networkPage.networkName);
-    const hasMatchingBundle = networkBundles.some((bundle) => bundleTypeConfig.filter(bundle));
-    if (!hasMatchingBundle) {
-      continue;
-    }
-
-    routes.add(`/network/${networkPage.slug}/${filterRoute.bundleType}/`);
   }
 
-  return [...routes].map(normalizeCanonicalPath);
+  const noindexRoutes = new Set(getNoindexRoutes());
+  return [...routes]
+    .map(normalizeCanonicalPath)
+    .filter((route) => !noindexRoutes.has(route));
 }
 
 export function getPrerenderRoutes(): string[] {
-  return [...getIndexableRoutes(), ...getRedirectAliasRoutes()].map(normalizeCanonicalPath);
+  return [...getIndexableRoutes(), ...getNoindexRoutes(), ...getRedirectAliasRoutes()].map(normalizeCanonicalPath);
 }
 
 export function getSitemapRoutes(): string[] {

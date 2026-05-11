@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { bundles, networkStats } from '../data';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
@@ -307,17 +307,17 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
               <h3 className="font-black text-slate-900">MTN Network Page</h3>
               <p className="text-sm text-slate-600 mt-2">View current MTN bundles and value breakdowns.</p>
             </Link>
-              <Link to="/network/vodacom/cheapest-1gb/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
+              <Link to="/guides/cheapest-1gb-data-south-africa/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
               <h3 className="font-black text-slate-900">Vodacom 1GB Deals</h3>
-              <p className="text-sm text-slate-600 mt-2">Check currently listed 1GB options on Vodacom.</p>
+              <p className="text-sm text-slate-600 mt-2">Use the national 1GB benchmark before checking operator menus.</p>
             </Link>
-            <Link to="/network/mtn/monthly-data/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
+            <Link to="/guides/best-monthly-data-deals-south-africa/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
               <h3 className="font-black text-slate-900">MTN Monthly Data Deals</h3>
-              <p className="text-sm text-slate-600 mt-2">Compare currently listed monthly options on MTN.</p>
+              <p className="text-sm text-slate-600 mt-2">Compare monthly data value across major networks.</p>
             </Link>
-            <Link to="/network/mtn/night-data/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
+            <Link to="/guides/cheap-night-data-south-africa/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
               <h3 className="font-black text-slate-900">MTN Night Data</h3>
-              <p className="text-sm text-slate-600 mt-2">Review currently listed night-data value on MTN.</p>
+              <p className="text-sm text-slate-600 mt-2">Review night-data value with usage-window context.</p>
             </Link>
             <Link to="/ussd-codes-south-africa/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
               <h3 className="font-black text-slate-900">USSD Codes Directory</h3>

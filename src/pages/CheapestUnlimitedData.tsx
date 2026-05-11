@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ShieldCheck, BarChart3, CalendarClock } from 'lucide-react';
@@ -228,8 +228,8 @@ export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ on
             <Link to="/guides/best-data-deals-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Best Data Deals South Africa</Link>
             <Link to="/network/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Network Hub</Link>
             <Link to="/network/rain/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Rain Network Page</Link>
-            <Link to="/network/rain/monthly-data/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Rain Monthly Data</Link>
-            <Link to="/network/telkom/monthly-data/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Telkom Monthly Data</Link>
+            <Link to="/network/rain/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Rain Data Prices</Link>
+            <Link to="/network/telkom/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Telkom Network Page</Link>
             <Link to="/ussd-codes-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">USSD Codes South Africa</Link>
             <Link to="/methodology/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Methodology</Link>
           </div>
@@ -241,6 +241,5 @@ export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ on
     </div>
   );
 };
-
 
 

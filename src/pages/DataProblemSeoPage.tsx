@@ -5,7 +5,6 @@ import { ArrowLeft } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
-import { AdUnit } from '../components/AdUnit';
 import { TrustPanel } from '../components/TrustPanel';
 import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
@@ -126,7 +125,6 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
 
         <header className="mb-10">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-5 leading-[0.95]">{page.h1}</h1>
-          <AdUnit type="aboveFold" className="mb-6" />
         </header>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
@@ -148,9 +146,6 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
             ))}
           </ul>
         </section>
-
-        <AdUnit type="inContent" className="my-8" />
-
         <section className="mb-10 bg-[#031636] text-white rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">How to Fix</h2>
           <ol className="space-y-3 list-decimal pl-5 text-slate-200 leading-relaxed">
@@ -201,13 +196,10 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
           trustSummary="Based on public operator support pages, USSD and app-account workflows where available, and South African prepaid troubleshooting needs."
           className="mb-12"
         />
-
-        <AdUnit type="inContent" className="mt-8" />
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
       <MobileNav onScrollTo={onScrollTo} activeSection="guides" />
-      <AdUnit type="stickyMobile" />
     </div>
   );
 };

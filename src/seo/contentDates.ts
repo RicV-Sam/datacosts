@@ -5,6 +5,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/': '2026-05-10T00:00:00.000Z',
   '/alerts/': '2026-05-10T00:00:00.000Z',
   '/about/': '2026-05-10T00:00:00.000Z',
+  '/airtime-advance-codes/': '2026-05-11T00:00:00.000Z',
   '/contact/': '2026-05-10T00:00:00.000Z',
   '/cookie-policy/': '2026-04-08T00:00:00.000Z',
   '/editorial-policy/': '2026-05-10T00:00:00.000Z',

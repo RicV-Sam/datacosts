@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ShieldCheck, BarChart3, CalendarClock } from 'lucide-react';
@@ -262,6 +262,5 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
     </div>
   );
 };
-
 
 

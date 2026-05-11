@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async';
 import { bundles, networkMetadata } from '../data';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { AdUnit } from '../components/AdUnit';
 import { RelatedPages } from '../components/RelatedPages';
 import { ArrowLeft, ExternalLink, ShieldCheck, Zap, Info, Clock, Volume2 } from 'lucide-react';
 import { buildBundleProductSchema } from '../utils/structuredData';
@@ -85,10 +84,7 @@ export const BundlePage: React.FC = () => {
         </div>
       </nav>
 
-      <main className="max-w-4xl mx-auto px-4 py-12">
-        <AdUnit type="aboveFold" />
-
-        <header className="mb-16">
+      <main className="max-w-4xl mx-auto px-4 py-12">        <header className="mb-16">
           <div className="flex items-center gap-4 mb-6">
             <div
               className="w-16 h-16 rounded-3xl flex items-center justify-center text-3xl font-black shadow-xl"
@@ -163,11 +159,7 @@ export const BundlePage: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
-
-        <AdUnit type="inContent" />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+        </section>        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           <div className="bg-[#031636] rounded-3xl p-8 text-white flex flex-col justify-between">
             <h3 className="text-xl font-black mb-4 flex items-center gap-2">
               <Zap className="w-5 h-5 text-[#a0f399]" />
@@ -217,8 +209,6 @@ export const BundlePage: React.FC = () => {
         <RelatedPages currentBundle={bundle} />
       </main>
 
-      <Footer onScrollTo={() => {}} />
-      <AdUnit type="stickyMobile" />
-    </div>
+      <Footer onScrollTo={() => {}} />    </div>
   );
 };

@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async';
 import { bundles, networkMetadata } from '../data';
 import { networkPages } from '../data/networks';
 import { Footer } from '../components/Footer';
-import { AdUnit } from '../components/AdUnit';
 import { BUNDLE_TYPE_MAP } from '../config/routeCatalog';
 import { NavigateFunction, NetworkName } from '../types';
 import {
@@ -251,7 +250,6 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
         faqs={buildFaqs(network.name, bundleTypeKey, cheapestName)}
       />
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
-      <AdUnit type="stickyMobile" />
     </div>
   );
 };

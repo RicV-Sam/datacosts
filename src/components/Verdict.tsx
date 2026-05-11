@@ -13,10 +13,10 @@ export const Verdict: React.FC = () => {
               <Trophy className="w-6 h-6 text-[#217128]" />
             </div>
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">Winner for Value</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">Value Watch</p>
               <h4 className="text-xl font-bold">MTN</h4>
               <p className="text-sm text-slate-300 leading-relaxed mt-2">
-                With a lower average cost per GB and frequent "Boosta" bundles, MTN consistently delivers more data for less Rand.
+                MTN often looks competitive in DataCost's bundle comparisons, especially where Boosta-style offers are available.
               </p>
             </div>
           </div>
@@ -25,10 +25,10 @@ export const Verdict: React.FC = () => {
               <Banknote className="w-6 h-6 text-blue-400" />
             </div>
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">Budget Champion</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">Budget Fit</p>
               <h4 className="text-xl font-bold">Telkom</h4>
               <p className="text-sm text-slate-300 leading-relaxed mt-2">
-                Telkom's prepaid data remains the cheapest "Anytime" data in the country, often dropping below R5/GB for urban users.
+                Telkom can be a strong budget option in the current DataCost dataset, especially for users who have reliable local coverage.
               </p>
             </div>
           </div>
@@ -37,10 +37,10 @@ export const Verdict: React.FC = () => {
               <Bolt className="w-6 h-6 text-[#8293ba]" />
             </div>
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">Winner for Speed</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">Performance Fit</p>
               <h4 className="text-xl font-bold">Vodacom</h4>
               <p className="text-sm text-slate-300 leading-relaxed mt-2">
-                Vodacom's 5G footprint and throughput remain the most consistent in urban metros according to recent benchmarks.
+                Vodacom is positioned as a coverage-first option in this comparison; verify performance where you actually use data.
               </p>
             </div>
           </div>
