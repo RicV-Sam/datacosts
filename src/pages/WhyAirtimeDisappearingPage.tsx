@@ -75,9 +75,9 @@ const faqItems = [
 ];
 
 export const WhyAirtimeDisappearingPage: React.FC<WhyAirtimeDisappearingPageProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Why Is My Airtime Disappearing? Vodacom, MTN, Telkom and Cell C Fixes';
+  const pageTitle = 'Why Is My Airtime Disappearing? Stop WASP & Data Charges';
   const metaDescription =
-    'Find why airtime disappears on Vodacom, MTN, Telkom or Cell C. Check bundle expiry, background data, WASP charges, and airtime advance deductions.';
+    'Find out why airtime disappears on MTN, Vodacom, Telkom or Cell C. Check WASP subscriptions, out-of-bundle data and premium SMS charges.';
   const canonicalUrl = toCanonicalUrl('/guides/why-is-my-airtime-disappearing-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getGuideModifiedIso('why-is-my-airtime-disappearing-south-africa');
@@ -169,14 +169,17 @@ export const WhyAirtimeDisappearingPage: React.FC<WhyAirtimeDisappearingPageProp
             Why Is My <span className="text-[#1b6d24]">Airtime Disappearing?</span>
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            If your airtime keeps dropping on Vodacom, MTN, Telkom, or Cell C, start by checking whether a data bundle expired, out-of-bundle browsing continued, an airtime advance was repaid, or a subscription deduction is active. This page gives you the quickest checks first.
+            If your airtime keeps dropping on Vodacom, MTN, Telkom, or Cell C, start by checking WASP subscriptions, out-of-bundle data, premium SMS charges, network-specific balance checks, and any airtime advance repayment. This page gives you the quickest checks first.
           </p>
         </header>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            Airtime usually disappears because your phone kept using mobile data after a bundle expired, background apps kept syncing, an airtime advance was repaid, or a recurring subscription deduction is active. Check your balance first, stop browsing until you confirm an active bundle, then rule out WASP and value-added charges.
+            Airtime usually disappears because your phone kept using mobile data after a bundle expired, background apps kept syncing, an airtime advance was repaid, premium SMS was billed, or a recurring WASP / value-added subscription is active. Check your balance first, stop browsing until you confirm an active bundle, then rule out paid services and SMS charges.
+          </p>
+          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            If your balance dropped after borrowing credit, compare the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">airtime advance codes</Link> and repayment notes before assuming a billing fault.
           </p>
         </section>
 
@@ -202,6 +205,10 @@ export const WhyAirtimeDisappearingPage: React.FC<WhyAirtimeDisappearingPageProp
               <div className="font-black text-white mb-1">4. Move to a better-fit bundle</div>
               <p className="text-slate-300">Switch to a bundle size and validity that matches your real usage pattern.</p>
             </Link>
+            <Link to="/airtime-advance-codes/" className="rounded-2xl border border-white/15 bg-white/5 p-5 hover:border-[#a0f399] transition-colors md:col-span-2">
+              <div className="font-black text-white mb-1">Need to borrow airtime when you are out of credit?</div>
+              <p className="text-slate-300">Use airtime advance codes to check eligibility, fees, and repayment before topping up again.</p>
+            </Link>
           </div>
         </section>
 
@@ -219,6 +226,10 @@ export const WhyAirtimeDisappearingPage: React.FC<WhyAirtimeDisappearingPageProp
             <article className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
               <h3 className="font-black text-slate-900 mb-2">Subscriptions, WASP, or value-added services</h3>
               <p className="text-slate-700 leading-relaxed">Small daily or weekly deductions can feel random unless you check your account history and active services.</p>
+            </article>
+            <article className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+              <h3 className="font-black text-slate-900 mb-2">Premium SMS or short-code billing</h3>
+              <p className="text-slate-700 leading-relaxed">Premium SMS replies, short-code services, and content billing can also reduce prepaid airtime, so check recent messages and account activity.</p>
             </article>
           </div>
         </section>

@@ -535,16 +535,16 @@ export const guides: Guide[] = [
   },
   {
     slug: 'why-is-my-airtime-disappearing-south-africa',
-    title: 'Why Is My Airtime Disappearing? (SA 2026)',
-    metaDescription: 'Find out why your airtime keeps disappearing in South Africa and how to stop it. Learn the most common causes, how to check them, and what to do next.',
-    h1: 'Why Is My Airtime Disappearing in South Africa? (2026 Guide)',
-    intro: 'If your airtime keeps dropping and you are not sure why, you are not imagining it. This guide covers the most common causes across Vodacom, MTN, Telkom, and Cell C, plus practical steps to identify, stop, and prevent airtime loss.',
+    title: 'Why Is My Airtime Disappearing? Stop WASP & Data Charges',
+    metaDescription: 'Find out why airtime disappears on MTN, Vodacom, Telkom or Cell C. Check WASP subscriptions, out-of-bundle data and premium SMS charges.',
+    h1: 'Why Is My Airtime Disappearing? Stop WASP & Data Charges',
+    intro: 'If your airtime keeps dropping on MTN, Vodacom, Telkom, or Cell C, check out-of-bundle data first, then rule out WASP subscriptions, premium SMS charges, background app usage, and airtime advance repayment.',
     quickSummaryTitle: 'The Short Version',
     quickSummaryItems: [
       'Airtime often disappears when your data bundle runs out and your phone continues browsing at out-of-bundle rates.',
       'Background apps, auto-updates, and cloud syncing can quietly use mobile data and drain prepaid airtime.',
       'Video-heavy social apps like TikTok, Instagram, Facebook, and YouTube can consume airtime much faster than expected.',
-      'Some users have active WASP or value-added subscriptions that deduct small recurring amounts.',
+      'Some users have active WASP, value-added, or premium SMS subscriptions that deduct small recurring amounts.',
       'You can reduce losses quickly by checking balances often, using the right bundle type, and saving key USSD codes.'
     ],
     jumpLinksTitle: 'Jump to Causes',
@@ -1510,25 +1510,66 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-buy-data-telkom',
-    title: 'How to Buy Data on Telkom - USSD Codes & Mo\'Nice Guide 2026',
-    metaDescription: 'Get the best Telkom data deals. Learn how to buy Telkom data using USSD *180#, Mo\'Nice personalized offers, and the Telkom app.',
-    h1: 'How to Buy Data on Telkom: Best Value Methods',
-    intro: 'Telkom is famous for offering some of the cheapest data in South Africa. Whether you are looking for their massive "Mo\'Nice" deals or standard anytime bundles, buying Telkom data is straightforward. This guide shows you how to use Telkom USSD codes and their mobile app to get the most data for your money.',
+    title: 'How to Buy Telkom Data: USSD, App, Voucher & Bank Options',
+    metaDescription: 'Step-by-step ways to buy Telkom data in South Africa using USSD, the Telkom app, vouchers, banking apps and airtime.',
+    h1: 'How to Buy Telkom Data: USSD, App, Voucher & Bank Options',
+    intro: 'Start with the Telkom buy-data route that matches your situation: USSD when you have no data, the Telkom app when you want a clearer bundle view, vouchers or banking apps when you are topping up from outside the Telkom menu, and airtime when you already have prepaid credit available.',
+    quickSummaryTitle: 'Quick Answer',
+    quickSummaryItems: [
+      'Dial *180# from a Telkom SIM for the main prepaid data bundle menu.',
+      'Check *123# for Mo\'Nice-style personalised offers before accepting standard menu pricing.',
+      'Use the Telkom app, vouchers, or banking apps when you need a clearer checkout or external top-up route.',
+      'Confirm price, validity, and data type before buying so airtime is not wasted on the wrong bundle.'
+    ],
+    jumpLinksTitle: 'On This Page',
+    jumpLinks: [
+      { label: 'USSD method', anchor: 'telkom-ussd-method' },
+      { label: 'Mo\'Nice offers', anchor: 'telkom-monice' },
+      { label: 'App, voucher, and bank options', anchor: 'telkom-app-voucher-bank' },
+      { label: 'Common mistakes', anchor: 'common-mistakes' },
+      { label: 'FAQ', anchor: 'faq' }
+    ],
     comparisonType: 'all',
-    stepsTitle: '3 Ways to Buy Telkom Data',
+    stepsTitle: 'Ways to Buy Telkom Data',
     steps: [
       {
-        title: 'Option 1: Telkom Mo\'Nice (Cheapest)',
-        description: 'Dial *123# to access Mo\'Nice. These are personalized deals that are often 50-80% cheaper than standard data bundles.'
+        id: 'telkom-ussd-method',
+        title: 'Option 1: Buy data with Telkom USSD',
+        description: 'Dial *180# from your Telkom SIM, choose the data bundle menu, then compare the available daily, weekly, and monthly options. USSD is the most useful route when you do not have active mobile data.'
       },
       {
-        title: 'Option 2: The Main USSD Menu',
-        description: 'Dial *180# to access the standard Telkom mobile menu. From here you can select "Data Bundles" and choose from Daily, Weekly, or Monthly options.'
+        id: 'telkom-monice',
+        title: 'Option 2: Check Mo\'Nice-style personalised offers',
+        description: 'Dial *123# where available and compare any personalised Telkom offers against the standard *180# menu. Treat these as account-specific promotional offers, not guaranteed public prices.'
       },
       {
-        title: 'Option 3: Using the Telkom App',
-        description: 'Download and log in to the Telkom app to purchase bundles and track your usage in real-time. The app sometimes features exclusive promotional bundles.'
+        id: 'telkom-app-voucher-bank',
+        title: 'Option 3: Use the app, vouchers, banking apps, or airtime',
+        description: 'Use the Telkom app when you want a fuller bundle breakdown, load a voucher when you have a recharge PIN, or buy through a supported banking app. If you already have airtime, confirm the final price and validity before converting it into data.'
       }
+    ],
+    commonMistakesTitle: 'Common Telkom Data Buying Mistakes',
+    commonMistakes: [
+      {
+        title: 'Assuming every personalised offer is available to every SIM',
+        description: 'Mo\'Nice-style offers can vary by account profile and campaign period. Check what your own line shows before planning around a specific deal.'
+      },
+      {
+        title: 'Buying before checking balance and validity',
+        description: 'Check current airtime, data balance, and expiry first so you do not duplicate a bundle or lose value on a short-validity offer.'
+      },
+      {
+        title: 'Choosing the lowest price without matching use case',
+        description: 'Daily, night, social, and monthly bundles serve different needs. Compare price, validity, and where the data can be used before buying.'
+      }
+    ],
+    nextStepsTitle: 'Useful Telkom Links',
+    nextSteps: [
+      { href: '/telkom-ussd-codes/', label: 'Telkom USSD Codes', description: 'Open Telkom balance, buy-data, and self-service shortcuts.', action: 'route' },
+      { href: '/network/telkom/', label: 'Telkom Network Page', description: 'Compare Telkom prepaid data prices and value notes.', action: 'route' },
+      { href: '/airtime-advance-codes/', label: 'Telkom airtime advance USSD code', description: 'Check borrow-airtime routes, eligibility, and repayment notes.', action: 'route' },
+      { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare Telkom against MTN, Vodacom, and Cell C by price and validity.', action: 'route' },
+      { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals South Africa', description: 'Review broader prepaid data deals by use case.', action: 'guide', slug: 'best-data-deals-south-africa' }
     ],
     faq: [
       {
@@ -1549,7 +1590,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Is Telkom data cheaper than Vodacom?',
-        answer: 'In most cases, yes. Telkom\'s standard prepaid data rates are among the lowest in South Africa, especially for their Mo\'Nice offers.'
+        answer: 'Telkom is often competitive on price-per-GB, especially on larger or personalised offers, but the better choice still depends on bundle size, validity, and coverage where you use it.'
       }
     ]
   },

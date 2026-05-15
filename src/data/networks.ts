@@ -30,7 +30,7 @@ export const networkPages: Record<string, NetworkPageData> = {
   'vodacom': {
     slug: 'vodacom',
     networkName: 'Vodacom',
-    intro: 'Compare Vodacom data prices, bundle types, and Just 4 You context before you buy. Vodacom is usually chosen for coverage consistency, while savings often come from matching validity to usage and checking personalised offers first.',
+    intro: 'Compare Vodacom data bundles, prepaid deals, USSD codes, price, validity, and use case before you buy. Vodacom is usually chosen for coverage consistency, while savings often come from matching bundle validity to usage and checking personalised offers first.',
     bestFor: 'Coverage consistency and premium network reliability',
     verdictSummary: 'Vodacom is usually chosen for coverage and consistency rather than being the cheapest option. Most savings come from matching bundle validity to usage and checking personalised offers first.',
     strengths: [
@@ -166,7 +166,7 @@ export const networkPages: Record<string, NetworkPageData> = {
   'mtn': {
     slug: 'mtn',
     networkName: 'MTN',
-    intro: 'Compare MTN data prices and bundles before you buy, especially if you are weighing promo value against coverage. MTN is usually a strong all-round prepaid option, and value often improves when personalised offers are active.',
+    intro: 'Compare MTN data bundles, prepaid deals, USSD codes, price, validity, and use case before you buy. MTN is usually a strong all-round prepaid option, and value often improves when personalised offers are active.',
     bestFor: 'Strong all-round prepaid performance',
     verdictSummary: 'MTN is often a balanced choice for users who want strong coverage plus regular promo value, especially when personalised deals are active.',
     strengths: [
@@ -380,12 +380,12 @@ export const networkPages: Record<string, NetworkPageData> = {
   'cell-c': {
     slug: 'cell-c',
     networkName: 'Cell C',
-    intro: 'Compare Cell C data prices and promo-led bundle options before you buy. Cell C can be very competitive on selected deals, but the best pick usually depends on current promos, validity, and local network experience.',
+    intro: 'Compare Cell C data deals, Cell C data bundles, prepaid data, promo-led offers, price, validity, and value before you buy. Use the Cell C USSD help below to check bundle and account routes, then match the offer to your real use case.',
     bestFor: 'Promo-driven prepaid value alternatives',
     verdictSummary: 'Cell C can deliver strong value on targeted promotions, but users should verify validity limits and local network experience before committing.',
     strengths: [
-      'Competitive pricing on selected weekly and monthly bundles',
-      'Frequent promotional mechanics for value seekers',
+      'Competitive pricing on selected Cell C data deals and monthly bundles',
+      'Promo-led offers for value seekers who check current menus first',
       'Social and targeted bundles for app-heavy users',
       'Alternative pricing route versus premium networks'
     ],

@@ -37,18 +37,18 @@ type NetworkConfig = {
 const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   mtn: {
     networkName: 'MTN',
-    titlePrefix: 'MTN USSD Codes South Africa',
+    titlePrefix: 'MTN USSD Codes: Airtime, Data, Balance & Advance',
     route: '/mtn-ussd-codes/',
     networkHubHref: '/network/mtn/',
     buyDataGuideHref: '/guides/how-to-buy-data-mtn/',
     balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find MTN USSD codes in South Africa: *136# for balance, *136*2# for data bundles, *151# for XtraTime, and key self-service shortcuts.',
+      'Use MTN USSD codes to check balances, buy data, transfer airtime, borrow airtime and manage prepaid services in South Africa.',
     intro:
       'Use this MTN USSD page to check data balance, airtime balance, buy bundles, recharge, and open the core self-service routes you need when the app is slow or you have no data.',
     quickAnswer:
-      'For a quick MTN check, start with *136# for balance and account options, then use the data and airtime shortcuts below before you browse again or buy another bundle.',
+      'For a quick MTN check, start with *136# for balance, *136*2# to buy data, and *151# for MTN airtime advance help before you browse again or buy another bundle.',
     supportNote:
       'MTN menus can vary by prepaid profile and active campaigns. If a code path changes, use *136# as your fallback entry point.',
     faq: [
@@ -72,14 +72,14 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   vodacom: {
     networkName: 'Vodacom',
-    titlePrefix: 'Vodacom USSD Codes South Africa',
+    titlePrefix: 'Vodacom USSD Codes: Data, Airtime, Balance & Services',
     route: '/vodacom-ussd-codes/',
     networkHubHref: '/network/vodacom/',
     buyDataGuideHref: '/guides/how-to-buy-data-vodacom/',
     balanceGuideHref: '/data-problems/how-to-check-data-balance-vodacom-ussd/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find Vodacom USSD codes in South Africa: *135# for balance and self-service, *135*2# for data bundles, transfers, and account help.',
+      'Find Vodacom USSD codes for checking airtime, buying data, managing services, checking balances and stopping unwanted mobile charges.',
     intro:
       'Use this Vodacom USSD page to check data balance, airtime balance, buy bundles, top up, and handle the everyday prepaid actions that are faster from the dialler than the app.',
     quickAnswer:
@@ -107,17 +107,17 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   telkom: {
     networkName: 'Telkom',
-    titlePrefix: 'Telkom USSD Codes South Africa',
+    titlePrefix: 'Telkom USSD Codes: Balance, Buy Data & Airtime Advance',
     route: '/telkom-ussd-codes/',
     networkHubHref: '/network/telkom/',
     buyDataGuideHref: '/guides/how-to-buy-data-telkom/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find Telkom USSD codes in South Africa: *188# for balance, *180# for data bundles, *1# to check your number, and support shortcuts.',
+      'Use Telkom USSD codes to check balances, buy data, manage prepaid services and find airtime advance options in South Africa.',
     intro:
       'Use this Telkom USSD page to check balance, buy bundles, confirm your number, and reach support without relying on app data or browser access.',
     quickAnswer:
-      'For a quick Telkom check, use *188# for balances and *180# for bundle actions, then use the Telkom-specific links below if you need pricing or a fuller troubleshooting path.',
+      'For a quick Telkom check, use *188# for balances and *180# for bundle actions, then use the Telkom-specific links below for airtime advance, pricing, and troubleshooting paths.',
     supportNote:
       'Telkom promo and Mo’Nice menu paths can change over time. If one shortcode fails, use *180# or *188# to find the same action.',
     faq: [
@@ -141,17 +141,17 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   'cell-c': {
     networkName: 'Cell C',
-    titlePrefix: 'Cell C USSD Codes South Africa',
+    titlePrefix: 'Cell C USSD Codes: Balance, Data Bundles & Airtime Advance',
     route: '/cell-c-ussd-codes/',
     networkHubHref: '/network/cell-c/',
     buyDataGuideHref: '/guides/how-to-buy-data-cell-c/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find Cell C USSD codes in South Africa: *101# for balance, *147# for bundles and account menus, plus number and support shortcuts.',
+      'Find Cell C USSD codes for airtime balance, data bundles, airtime advance, account services and prepaid help in South Africa.',
     intro:
       'Use this Cell C USSD page to check balance, buy bundles, confirm your number, and reach support from one place when airtime or data is tight.',
     quickAnswer:
-      'For a quick Cell C check, start with *101# for balance or *147# for broader account and bundle actions, then use the related guides below if you need pricing or troubleshooting.',
+      'For a quick Cell C check, start with *101# for balance or *147# for data bundles, airtime advance menus, broader account actions, and Cell C data deals.',
     supportNote:
       'Cell C code paths can differ by account profile and campaign period. If a shortcode fails, use *147# as your fallback menu.',
     faq: [
@@ -217,7 +217,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
   const [searchTerm, setSearchTerm] = useState('');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = `${config.titlePrefix}: Balance, Data and Airtime Codes`;
+  const pageTitle = config.titlePrefix;
   const canonicalUrl = toCanonicalUrl(config.route);
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso(config.route);
@@ -303,7 +303,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
 
   const relatedLinks: Array<{ href: string; label: string }> = [
     { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes Hub' },
-    { href: config.networkHubHref, label: `${config.networkName} Network Page` },
+    { href: config.networkHubHref, label: networkSlug === 'cell-c' ? 'Cell C data deals' : `${config.networkName} Network Page` },
     { href: config.balanceGuideHref, label: `Check ${config.networkName} balance and bundles` },
     { href: config.buyDataGuideHref, label: `How to Buy Data on ${config.networkName}` },
     { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa' },
@@ -362,6 +362,9 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">{config.quickAnswer}</p>
+          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            Need to borrow airtime when you are out of credit? Use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">{config.networkName} airtime advance USSD code</Link> guide to compare eligibility, fees, and repayment notes.
+          </p>
         </section>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">

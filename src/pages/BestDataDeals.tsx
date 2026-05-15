@@ -34,9 +34,9 @@ const isMonthlyBundle = (validity: string, type: string) => {
 };
 
 export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Best Data Deals South Africa | Compare Bundle Value';
+  const pageTitle = 'Best Data Deals in South Africa: MTN, Vodacom, Telkom & Cell C';
   const metaDescription =
-    'Compare the best data deals in South Africa across MTN, Vodacom, Telkom, Cell C, and Rain. Find the best-value prepaid bundles and monthly picks.';
+    'Compare South Africa\'s prepaid data deals by network, price, validity and use case before buying your next bundle.';
   const canonicalUrl = toCanonicalUrl('/guides/best-data-deals-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/guides/best-data-deals-south-africa/');
@@ -159,7 +159,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     { href: '/network/mtn/', label: 'MTN Network Page', description: 'Review MTN bundle prices and network context.' },
     { href: '/network/vodacom/', label: 'Vodacom Network Page', description: 'Review Vodacom prices, bundles, and coverage-led tradeoffs.' },
     { href: '/network/telkom/', label: 'Telkom Network Page', description: 'Review Telkom monthly-value and budget bundle context.' },
-    { href: '/network/cell-c/', label: 'Cell C Network Page', description: 'Review Cell C pricing and promo-led bundle options.' },
+    { href: '/network/cell-c/', label: 'Cell C data deals', description: 'Review Cell C prepaid data prices, bundles, and promo-led offers.' },
     { href: '/network/', label: 'Network Comparison Hub', description: 'Browse all operator hub pages.' },
     { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Buy and balance shortcuts without the app.' },
     { href: '/methodology/', label: 'Methodology', description: 'How DataCost scores value and comparisons.' },
@@ -207,7 +207,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
             Best <span className="text-[#1b6d24]">Data Deals</span> in South Africa
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed">
-            Use this guide when you want the best overall value, not just the lowest upfront price. It compares MTN, Vodacom, Telkom, Cell C, and Rain across prepaid bundle value, monthly picks, and network fit.
+            Use this guide when you want the best overall value, not just the lowest upfront price. It compares MTN, Vodacom, Telkom, Cell C, and Rain by network, price, validity, and use case.
           </p>
         </header>
 
@@ -219,7 +219,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
               : 'The best deal changes by month, so compare by cost per GB, validity, and local coverage before buying.'}
           </p>
           <p className="text-sm text-slate-600 mt-3">
-            If you want a fast shortlist, start with the top comparison table below, then compare it with the cheapest-data guide if your priority is the lowest upfront spend.
+            If you want a fast shortlist, start with the top comparison table below, compare it with the cheapest-data guide if your priority is the lowest upfront spend, or check <Link to="/network/cell-c/" className="font-semibold text-[#1b6d24] hover:underline">Cell C data deals</Link> when you are comparing promo-led offers.
           </p>
         </section>        <section className="mb-16">
           <h2 className="text-2xl font-black tracking-tight mb-6">Best Data Deals Comparison Table</h2>
@@ -375,6 +375,5 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     </div>
   );
 };
-
 
 

@@ -96,9 +96,9 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = 'USSD Codes South Africa: MTN, Vodacom, Telkom and Cell C';
+  const pageTitle = 'USSD Codes South Africa: MTN, Vodacom, Telkom & Cell C';
   const metaDescription =
-    'Find USSD codes for South Africa: MTN, Vodacom, Telkom and Cell C balance checks, data buying, airtime advance menus and self-service shortcuts.';
+    'Find South African USSD codes for MTN, Vodacom, Telkom, Cell C and rain. Check airtime, buy data, borrow airtime and stop unwanted charges.';
   const canonicalUrl = toCanonicalUrl('/ussd-codes-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');
@@ -213,6 +213,15 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     }
   ];
 
+  const priorityCodes = [
+    { network: 'MTN', task: 'Check balance', code: '*136#', href: '/mtn-ussd-codes/' },
+    { network: 'Vodacom', task: 'Self-service and balance', code: '*135#', href: '/vodacom-ussd-codes/' },
+    { network: 'Telkom', task: 'Check balance', code: '*188#', href: '/telkom-ussd-codes/' },
+    { network: 'Cell C', task: 'Check balance', code: '*101#', href: '/cell-c-ussd-codes/' },
+    { network: 'Cell C', task: 'Buy bundles and account menu', code: '*147#', href: '/network/cell-c/' },
+    { network: 'Airtime advance', task: 'Compare borrow-airtime routes', code: 'See guide', href: '/airtime-advance-codes/' }
+  ];
+
   const filteredCodes = useMemo(() => {
     return ussdRepository.filter((entry) => {
       const matchesNetwork = activeNetwork === 'All' || entry.network === activeNetwork;
@@ -277,6 +286,39 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
 
+        <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-3">Quick USSD codes</h2>
+          <p className="text-sm text-slate-600 leading-relaxed mb-5">
+            Start with these common South African USSD shortcuts for balance checks, data bundles, Cell C data deals, and airtime advance help.
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-slate-100">
+            <table className="w-full min-w-[640px] text-left text-sm">
+              <thead className="bg-slate-50">
+                <tr>
+                  <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Network</th>
+                  <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Use this for</th>
+                  <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Code or route</th>
+                  <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Next step</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {priorityCodes.map((row) => (
+                  <tr key={`${row.network}-${row.task}`}>
+                    <td className="px-4 py-3 font-black text-slate-900">{row.network}</td>
+                    <td className="px-4 py-3 text-slate-700">{row.task}</td>
+                    <td className="px-4 py-3 font-mono font-black text-slate-900">{row.code}</td>
+                    <td className="px-4 py-3">
+                      <Link to={row.href} className="font-bold text-[#1b6d24] hover:underline">
+                        Open
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         <TrustPanel
           lastReviewed={lastUpdated}
           sources="Operator USSD menus, public support pages, and in-page conservative notes where direct shortcuts can vary by SIM or tariff."
@@ -316,7 +358,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            If you need a fast answer, start with the balance code for your network, then buy a bundle before you browse again. For advance airtime, use the dedicated airtime-advance page because eligibility, fees, and repayment rules can differ by network.
+            If you need a fast answer, start with the balance code for your network, then buy a bundle before you browse again. For advance airtime, use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">airtime advance codes</Link> page because eligibility, fees, and repayment rules can differ by network.
           </p>
         </section>
 

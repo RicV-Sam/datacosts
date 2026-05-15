@@ -106,8 +106,28 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
   const comparisonRows = pageData.comparisonSummary || [];
 
-  const pageTitle = `${network.name} Data Prices South Africa: Prepaid Bundles and USSD Codes`;
-  const metaDescription = `Compare ${network.name} data prices in South Africa, including prepaid bundles, monthly options, USSD balance codes, and value notes before you buy.`;
+  const priorityNetworkMeta: Record<string, { title: string; description: string; heroHeading: string }> = {
+    mtn: {
+      title: 'MTN Data Bundles, Deals & USSD Codes in South Africa',
+      description: 'Compare MTN data bundles, prepaid options, USSD codes and ways to save on MTN data in South Africa.',
+      heroHeading: 'MTN Data Bundles, Deals & USSD Codes'
+    },
+    vodacom: {
+      title: 'Vodacom Data Bundles, Deals & USSD Codes in South Africa',
+      description: 'Compare Vodacom data bundles, prepaid deals, USSD codes and ways to save on Vodacom data in South Africa.',
+      heroHeading: 'Vodacom Data Bundles, Deals & USSD Codes'
+    },
+    'cell-c': {
+      title: 'Cell C Data Deals, Bundles & USSD Codes in South Africa',
+      description: 'Compare Cell C data deals, prepaid bundles, promo-led offers, USSD codes and ways to save on Cell C data in South Africa.',
+      heroHeading: 'Cell C Data Deals, Bundles & USSD Codes'
+    }
+  };
+  const routeMeta = priorityNetworkMeta[networkSlug];
+  const pageTitle = routeMeta?.title || `${network.name} Data Prices South Africa: Prepaid Bundles and USSD Codes`;
+  const metaDescription =
+    routeMeta?.description || `Compare ${network.name} data prices in South Africa, including prepaid bundles, monthly options, USSD balance codes, and value notes before you buy.`;
+  const heroHeading = routeMeta?.heroHeading || `${network.name} Data Prices`;
   const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/`);
   const dateModifiedIso = getNetworkPageModifiedIso(networkSlug);
   const sourceCheckedIso = getNetworkModifiedIso(networkSlug);
@@ -198,6 +218,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
       ? [{ href: howToBuyGuideHref, label: `How to buy ${network.name} data`, description: `Step-by-step buy flow for ${network.name}.` }]
       : []),
     ...(balanceGuideLinksBySlug[networkSlug] || []),
+    { href: '/airtime-advance-codes/', label: `${network.name} airtime advance codes`, description: 'Check borrow-airtime routes, eligibility, fees and repayment notes.' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Keep track of active bundles and expiry.' },
     { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals South Africa', description: 'Compare best-value prepaid bundle options.' },
     { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data South Africa', description: 'Compare the lowest-cost bundle options by intent.' },
@@ -292,7 +313,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             Updated {lastUpdated}
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
-            {network.name} Data Prices <span className="text-[#1b6d24]">South Africa</span>
+            {heroHeading} <span className="text-[#1b6d24]">South Africa</span>
           </h1>
           <p className="text-xl text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto">{pageData.intro}</p>
         </header>

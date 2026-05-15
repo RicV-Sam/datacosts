@@ -81,9 +81,9 @@ const faqItems = [
 ];
 
 export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Airtime Advance Codes South Africa: Borrow Airtime on MTN, Vodacom, Telkom and Cell C';
+  const pageTitle = 'Airtime Advance Codes: MTN, Telkom & Cell C USSD Help';
   const metaDescription =
-    'Compare airtime advance and borrow-airtime USSD routes for MTN, Vodacom, Telkom and Cell C. See eligibility, repayment, fees, and common failures.';
+    'Find airtime advance codes for MTN, Vodacom, Telkom and Cell C. Compare USSD starting points, eligibility, fees and repayment notes.';
   const canonicalUrl = toCanonicalUrl('/airtime-advance-codes/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/airtime-advance-codes/');
@@ -223,6 +223,11 @@ export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = (
                       <Link to={row.href} className="mt-2 inline-flex font-bold text-[#1b6d24] hover:underline">
                         See {row.network} USSD codes
                       </Link>
+                      {row.network === 'Cell C' ? (
+                        <Link to="/network/cell-c/" className="mt-2 block font-bold text-[#1b6d24] hover:underline">
+                          Compare Cell C data deals
+                        </Link>
+                      ) : null}
                     </td>
                   </tr>
                 ))}

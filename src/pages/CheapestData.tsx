@@ -65,12 +65,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/guides/cheapest-data-south-africa/');
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
-  const pageTitle = 'Cheapest Data South Africa: Compare 1GB, 5GB and 10GB Deals';
+  const pageTitle = 'Cheapest Data in South Africa: Compare Network Prices';
   const pageMetaDescription =
-    'Compare cheap data bundles in South Africa by 1GB, 2GB, 5GB, 10GB, daily and monthly intent. Check price, validity and value before you buy.';
-  const metaDescription =
-    'Compare the cheapest data in South Africa by 1GB, 2GB, 5GB, 10GB, daily, monthly, and night-data intent using DataCost’s dataset-backed prepaid comparison.';
-
+    'Compare cheap prepaid data options in South Africa across MTN, Vodacom, Telkom and Cell C by price, validity and value.';
   const topSummaryRows = rankedBundles.slice(0, 8);
   const cheapest1Gb = getCheapestByVolume('1GB');
   const cheapest2Gb = getCheapestByVolume('2GB');
@@ -245,7 +242,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     '/network/mtn/': 'MTN Network Page',
     '/network/vodacom/': 'Vodacom Network Page',
     '/network/telkom/': 'Telkom Network Page',
-    '/network/cell-c/': 'Cell C Network Page',
+    '/network/cell-c/': 'Cell C prepaid data prices',
     '/guides/how-to-check-data-balance/': 'How to Check Data Balance',
     '/ussd-codes-south-africa/': 'USSD Codes South Africa',
     '/network/': 'Network Comparison Hub',
@@ -292,14 +289,14 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
             Cheapest Data in <span className="text-[#1b6d24]">South Africa</span>
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Use this page when your goal is the lowest-cost data option by budget and bundle size. Compare 1GB, 2GB, 5GB, 10GB, daily, monthly, and night-data choices before you buy.
+            Use this page when your goal is the lowest-cost data option by budget and bundle size. Compare MTN, Vodacom, Telkom, and Cell C by price, validity, and value before you buy.
           </p>
         </header>
 
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Cheapest data quick comparison</h2>
           <p className="text-slate-700 leading-relaxed mb-5">
-            This summary table ranks the visible non-social, non-night bundles on this page by cost per GB. It is a comparison aid, not a claim that personalised operator offers are universally available to every user.
+            This summary table ranks the visible non-social, non-night bundles on this page by cost per GB. It is a comparison aid, not a claim that personalised operator offers are universally available to every user. For Cell C-specific deal intent, use the <Link to="/network/cell-c/" className="font-semibold text-[#1b6d24] hover:underline">Cell C data bundles</Link> page.
           </p>
           <div className="overflow-x-auto rounded-3xl border border-slate-100">
             <table className="w-full min-w-[720px] text-left bg-white">
