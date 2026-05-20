@@ -1,6 +1,7 @@
 import { bundles } from '../data';
 import { networkPages } from '../data/networks';
 import { guides } from '../data/guides';
+import { fixPages, getFixPath } from '../data/fixes';
 import { Bundle } from '../types';
 import { SITE_ORIGIN } from '../seo/siteConstants';
 import { getRedirectAliasRoutes } from './redirectAliases';
@@ -179,7 +180,7 @@ export function getIndexableRoutes(): string[] {
   routes.add('/airtime-advance-codes/');
   routes.add('/alerts/');
   routes.add('/sitemap/');
-  routes.add('/fix-mobile-problems/');
+  routes.add('/fix/');
   routes.add('/data-problems/why-is-my-data-disappearing-vodacom/');
   routes.add('/data-problems/how-to-stop-wasp-charges-vodacom/');
   routes.add('/data-problems/how-to-check-data-balance-vodacom-ussd/');
@@ -242,6 +243,10 @@ export function getIndexableRoutes(): string[] {
 
   for (const guide of guides) {
     routes.add(`/guides/${guide.slug}/`);
+  }
+
+  for (const page of fixPages) {
+    routes.add(getFixPath(page.slug));
   }
 
   for (const networkPage of Object.values(networkPages)) {

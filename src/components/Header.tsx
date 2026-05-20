@@ -29,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
   const searchItems = React.useMemo(() => [
     { id: 'home', title: 'Home', subtitle: 'Back to homepage', type: 'scroll' as const, value: 'home' },
     { id: 'compare-data', title: 'Compare Data', subtitle: 'See current network data prices', type: 'scroll' as const, value: 'compare-data' },
-    { id: 'fix-problem', title: 'Fix a Problem', subtitle: 'Troubleshoot airtime, data, and WASP issues', type: 'scroll' as const, value: 'fix-problem' },
+    { id: 'fix-problem', title: 'DataCost Fixes', subtitle: 'Troubleshoot mobile, USSD, electricity, decoder, and router issues', type: 'route' as const, value: '/fix/' },
     { id: 'calculator', title: 'Calculator', subtitle: 'Estimate your data usage', type: 'scroll' as const, value: 'calculator' },
     { id: 'networks', title: 'Networks', subtitle: 'Compare all mobile networks', type: 'scroll' as const, value: 'networks' },
     { id: 'guides', title: 'Guides', subtitle: 'Browse all guides', type: 'scroll' as const, value: 'guides' },
@@ -114,7 +114,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                   item.id === 'home' ? '/' :
                   item.id === 'compare-data' ? '/network/' :
                   item.id === 'ussd' ? '/ussd-codes-south-africa/' :
-                  item.id === 'fix-problem' ? '/fix-mobile-problems/' :
+                  item.id === 'fix-problem' ? '/fix/' :
                   item.id === 'guides' ? '/guides/' :
                   item.id === 'networks' ? '/network/' :
                   `#${item.id}`
@@ -160,7 +160,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                       item.id === 'home' ? '/' :
                       item.id === 'compare-data' ? '/network/' :
                       item.id === 'ussd' ? '/ussd-codes-south-africa/' :
-                      item.id === 'fix-problem' ? '/fix-mobile-problems/' :
+                  item.id === 'fix-problem' ? '/fix/' :
                       item.id === 'guides' ? '/guides/' :
                       item.id === 'networks' ? '/network/' :
                       `#${item.id}`

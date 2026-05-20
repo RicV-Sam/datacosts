@@ -7,6 +7,7 @@ import { MobileNav } from '../components/MobileNav';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { NavigateFunction } from '../types';
 import { toCanonicalUrl } from '../seo/siteConstants';
+import { fixPages, fixClusterLabelById, getFixPath } from '../data/fixes';
 
 interface SitemapPageProps {
   onNavigate: NavigateFunction;
@@ -27,7 +28,7 @@ const sitemapGroups: SitemapGroup[] = [
       { href: '/guides/', label: 'South Africa Mobile Data Guides' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa' },
       { href: '/alerts/', label: 'Data Deal Alerts' },
-      { href: '/fix-mobile-problems/', label: 'Fix Mobile Problems' }
+      { href: '/fix/', label: 'DataCost Fixes' }
     ]
   },
   {
@@ -87,6 +88,13 @@ const sitemapGroups: SitemapGroup[] = [
       { href: '/data-problems/how-to-stop-wasp-charges-vodacom/', label: 'Stop WASP Charges on Vodacom' },
       { href: '/data-problems/how-to-stop-wasp-charges-mtn/', label: 'Stop WASP Charges on MTN' }
     ]
+  },
+  {
+    title: 'DataCost Fixes',
+    links: fixPages.map((page) => ({
+      href: getFixPath(page.slug),
+      label: `${page.title} (${fixClusterLabelById[page.cluster]})`
+    }))
   },
   {
     title: 'Trust and Legal',

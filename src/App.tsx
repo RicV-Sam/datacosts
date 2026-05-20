@@ -32,6 +32,7 @@ const WaspSubscriptions = lazy(() => import('./pages/WaspSubscriptions').then((m
 const TravelSimsPage = lazy(() => import('./pages/TravelSimsPage').then((mod) => ({ default: mod.TravelSimsPage })));
 const ComparisonGuidePage = lazy(() => import('./pages/ComparisonGuidePage').then((mod) => ({ default: mod.ComparisonGuidePage })));
 const FixProblemPage = lazy(() => import('./pages/FixProblemPage').then((mod) => ({ default: mod.FixProblemPage })));
+const FixDetailPage = lazy(() => import('./pages/FixProblemPage').then((mod) => ({ default: mod.FixDetailPage })));
 const DataProblemSeoPage = lazy(() => import('./pages/DataProblemSeoPage').then((mod) => ({ default: mod.DataProblemSeoPage })));
 const WhyAirtimeDisappearingPage = lazy(() => import('./pages/WhyAirtimeDisappearingPage').then((mod) => ({ default: mod.WhyAirtimeDisappearingPage })));
 const ProblemSolvingGuidePage = lazy(() => import('./pages/ProblemSolvingGuidePage').then((mod) => ({ default: mod.ProblemSolvingGuidePage })));
@@ -54,7 +55,7 @@ function AppContent() {
     }
     if (page === 'guides-index') path = '/guides/';
     if (page === 'travel-sims') path = '/travel-sims-south-africa/';
-    if (page === 'fix-problem') path = '/fix-mobile-problems/';
+    if (page === 'fix-problem') path = '/fix/';
 
     if (window.location.pathname === path && path === '/') {
       // already on home, scroll to top
@@ -331,8 +332,12 @@ function AppContent() {
           element={<TravelSimsPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route
-          path="/fix-mobile-problems/"
+          path="/fix/"
           element={<FixProblemPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/fix/:slug/"
+          element={<FixRoute onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route
           path="/data-problems/why-is-my-data-disappearing-vodacom/"
@@ -449,7 +454,10 @@ function AppContent() {
         <Route path="/data-problems/how-to-check-wasp-subscriptions-mtn" element={<Navigate to="/data-problems/how-to-check-wasp-subscriptions-mtn/" replace />} />
         <Route path="/data-problems/how-to-stop-background-data-usage-android" element={<Navigate to="/data-problems/how-to-stop-background-data-usage-android/" replace />} />
         <Route path="/data-problems/how-to-stop-apps-using-data-in-background-samsung" element={<Navigate to="/data-problems/how-to-stop-apps-using-data-in-background-samsung/" replace />} />
-        <Route path="/fix-a-problem/" element={<Navigate to="/fix-mobile-problems/" replace />} />
+        <Route path="/fix-mobile-problems/" element={<Navigate to="/fix/" replace />} />
+        <Route path="/fix-mobile-problems" element={<Navigate to="/fix/" replace />} />
+        <Route path="/fix-a-problem/" element={<Navigate to="/fix/" replace />} />
+        <Route path="/fix-a-problem" element={<Navigate to="/fix/" replace />} />
         {REDIRECT_ALIASES.map((alias) => (
           <Fragment key={alias.from}>
             <Route path={alias.from} element={<RedirectPage />} />
@@ -486,6 +494,11 @@ function NetworkRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction
 
 function BundleTypeRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction, onScrollTo: (id: string) => void }) {
   return <BundleTypePage onNavigate={onNavigate} onScrollTo={onScrollTo} />;
+}
+
+function FixRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction, onScrollTo: (id: string) => void }) {
+  const { slug } = useParams();
+  return <FixDetailPage slug={slug} onNavigate={onNavigate} onScrollTo={onScrollTo} />;
 }
 
 export default function App() {

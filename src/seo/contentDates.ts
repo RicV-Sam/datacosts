@@ -9,7 +9,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/contact/': '2026-05-10T00:00:00.000Z',
   '/cookie-policy/': '2026-04-08T00:00:00.000Z',
   '/editorial-policy/': '2026-05-10T00:00:00.000Z',
-  '/fix-mobile-problems/': '2026-05-01T00:00:00.000Z',
+  '/fix/': '2026-05-20T00:00:00.000Z',
   '/guides/': '2026-03-31T00:00:00.000Z',
   '/methodology/': '2026-05-10T00:00:00.000Z',
   '/mtn-ussd-codes/': '2026-05-15T00:00:00.000Z',
@@ -202,6 +202,10 @@ export function getRouteModifiedIso(routeInput: string): string {
 
   if (route.startsWith('/data-problems/')) {
     return fromMapOrFallback(DATA_PROBLEM_ROUTE_MODIFIED_ISO, route, DEFAULT_MODIFIED_ISO);
+  }
+
+  if (route.startsWith('/fix/')) {
+    return '2026-05-20T00:00:00.000Z';
   }
 
   return DEFAULT_MODIFIED_ISO;
