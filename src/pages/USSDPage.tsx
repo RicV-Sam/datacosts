@@ -96,9 +96,9 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = 'USSD Codes South Africa: MTN, Vodacom, Telkom & Cell C';
+  const pageTitle = 'USSD Codes South Africa: MTN, Cell C, Telkom & Airtime Advance';
   const metaDescription =
-    'Find South African USSD codes for MTN, Vodacom, Telkom, Cell C and rain. Check airtime, buy data, borrow airtime and stop unwanted charges.';
+    'Find USSD codes South Africa users search for: MTN, Cell C, Telkom, Vodacom, data balance, buying data and airtime advance routes.';
   const canonicalUrl = toCanonicalUrl('/ussd-codes-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');
@@ -278,10 +278,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
 
         <header className="mb-8">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 leading-[0.9]">
-            <span className="text-[#1b6d24]">USSD Codes</span> South Africa: Balance, Data and Airtime
+            <span className="text-[#1b6d24]">USSD Codes</span> South Africa: MTN, Cell C, Telkom and Airtime Advance
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Start here if you need MTN, Vodacom, Telkom, or Cell C USSD codes. Use the shortcuts below to check airtime or data balance, buy bundles, find advance-airtime routes, and reach self-service menus quickly.
+            Start here if you need an all-network South African USSD directory. This hub summarises MTN USSD codes, Cell C USSD codes, Telkom USSD codes, Vodacom shortcuts, and airtime advance codes, then sends you to the dedicated page when you need full operator detail.
           </p>
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
@@ -343,14 +343,14 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-[#031636] text-white rounded-3xl p-6 shadow-sm">
           <h2 className="text-xl font-black tracking-tight mb-2">Need quick access to network-specific codes?</h2>
           <p className="text-sm text-slate-200 leading-relaxed mb-4">
-            Jump straight to the dedicated operator pages if you only need one network's balance, buy-data, or account shortcuts.
+            Jump straight to the dedicated operator pages if you only need one network's balance, buy-data, airtime advance, or account shortcuts.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link to="/mtn-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">MTN USSD</Link>
+            <Link to="/mtn-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">MTN USSD codes</Link>
             <Link to="/vodacom-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Vodacom USSD</Link>
-            <Link to="/telkom-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Telkom USSD</Link>
-            <Link to="/cell-c-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Cell C USSD</Link>
-            <Link to="/airtime-advance-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-white px-4 text-sm font-black text-[#031636]">Airtime advance</Link>
+            <Link to="/telkom-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Telkom USSD codes</Link>
+            <Link to="/cell-c-ussd-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-[#a0f399] px-4 text-sm font-black text-[#031636]">Cell C USSD codes</Link>
+            <Link to="/airtime-advance-codes/" className="inline-flex min-h-[44px] items-center rounded-xl bg-white px-4 text-sm font-black text-[#031636]">airtime advance codes</Link>
             <Link to="/network/rain/" className="inline-flex min-h-[44px] items-center rounded-xl bg-white px-4 text-sm font-black text-[#031636]">Rain support</Link>
           </div>
         </section>
@@ -358,7 +358,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            If you need a fast answer, start with the balance code for your network, then buy a bundle before you browse again. For advance airtime, use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">airtime advance codes</Link> page because eligibility, fees, and repayment rules can differ by network.
+            Use this hub to choose the right operator page first: <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN USSD codes</Link>, <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Cell C USSD codes</Link>, or <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link>. For borrow-airtime routes, use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">airtime advance codes</Link> page because eligibility, fees, and repayment rules can differ by network.
           </p>
         </section>
 

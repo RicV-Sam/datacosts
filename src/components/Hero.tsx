@@ -1,6 +1,7 @@
 import React from 'react';
 import { BadgeCheck, Info, ArrowRight, Calculator, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 
 interface HeroProps {
   onScrollTo: (id: string) => void;
@@ -25,7 +26,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-7xl font-black tracking-tighter text-[#031636] leading-[0.95] md:leading-[0.85] mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#031636] to-[#1b6d24]"
           >
-            Find the Cheapest Data in South Africa Right Now
+            Compare Data Deals in South Africa
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -33,8 +34,27 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
             transition={{ delay: 0.2 }}
             className="text-slate-600 text-lg md:text-xl max-w-lg leading-relaxed font-medium mx-auto md:mx-0"
           >
-            Compare MTN, Vodacom, Telkom, Cell C and Rain. Get practical tools and clear next steps.
+            Compare Cell C, Telkom, MTN, Vodacom and Rain data options, then use guides and USSD pages to save money or solve mobile problems before you buy.
           </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="mt-5 flex flex-col sm:flex-row items-center md:items-start gap-3"
+          >
+            <Link
+              to="/guides/cheapest-data-south-africa/"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-2xl bg-[#031636] px-5 text-sm font-black text-white hover:bg-[#1b6d24] transition-colors"
+            >
+              Compare cheapest data in South Africa
+            </Link>
+            <button
+              onClick={() => onScrollTo('ussd')}
+              className="inline-flex min-h-[44px] items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 text-sm font-black text-[#031636] hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+            >
+              Find USSD codes
+            </button>
+          </motion.div>
         </div>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}

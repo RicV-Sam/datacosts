@@ -65,9 +65,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/guides/cheapest-data-south-africa/');
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
-  const pageTitle = 'Cheapest Data in South Africa: Compare Network Prices';
+  const pageTitle = 'Which Network Has the Cheapest Data in South Africa?';
   const pageMetaDescription =
-    'Compare cheap prepaid data options in South Africa across MTN, Vodacom, Telkom and Cell C by price, validity and value.';
+    'Find which network has the cheapest data in South Africa by comparing bundle size, validity, network and cost per GB before you buy.';
   const topSummaryRows = rankedBundles.slice(0, 8);
   const cheapest1Gb = getCheapestByVolume('1GB');
   const cheapest2Gb = getCheapestByVolume('2GB');
@@ -188,7 +188,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: 'Cheapest Data in South Africa',
+    headline: pageTitle,
     description: pageMetaDescription,
     url: canonicalUrl,
     image: DEFAULT_OG_IMAGE_URL,
@@ -286,17 +286,17 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
       <main className="max-w-4xl mx-auto px-4 py-12">
         <header className="mb-10">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-5 leading-[0.92]">
-            Cheapest Data in <span className="text-[#1b6d24]">South Africa</span>
+            Which Network Has the <span className="text-[#1b6d24]">Cheapest Data in South Africa?</span>
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Use this page when your goal is the lowest-cost data option by budget and bundle size. Compare MTN, Vodacom, Telkom, and Cell C by price, validity, and value before you buy.
+            The cheapest network depends on bundle size, validity period, public pricing, and how you actually use data. Use this guide to compare MTN, Vodacom, Telkom and Cell C by cost per GB, upfront price, and expiry rules before you buy.
           </p>
         </header>
 
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Cheapest data quick comparison</h2>
           <p className="text-slate-700 leading-relaxed mb-5">
-            This summary table ranks the visible non-social, non-night bundles on this page by cost per GB. It is a comparison aid, not a claim that personalised operator offers are universally available to every user. For Cell C-specific deal intent, use the <Link to="/network/cell-c/" className="font-semibold text-[#1b6d24] hover:underline">Cell C data bundles</Link> page.
+            This summary table ranks the visible non-social, non-night bundles in the DataCost dataset by cost per GB. It is a comparison aid, not a permanent cheapest-network claim or a promise that personalised operator offers are available to every SIM. For a broader starting point, use the <Link to="/" className="font-semibold text-[#1b6d24] hover:underline">compare data deals in South Africa</Link> homepage.
           </p>
           <div className="overflow-x-auto rounded-3xl border border-slate-100">
             <table className="w-full min-w-[720px] text-left bg-white">
@@ -329,13 +329,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            {cheapest1Gb
-              ? `${cheapest1Gb.network} currently shows the cheapest visible 1GB-style option on this page with ${cheapest1Gb.name} at R${cheapest1Gb.price}. `
-              : 'The cheapest 1GB view depends on the visible dataset. '}
-            {cheapestMonthly
-              ? `${cheapestMonthly.network} currently leads the monthly budget view with ${cheapestMonthly.name} at about R${cheapestMonthly.costPerGb.toFixed(2)}/GB. `
-              : 'Monthly budget value depends on the visible dataset. '}
-            Use the sections below to separate lowest upfront price from monthly value before you top up again.
+            There is no single cheapest network for every South African user. The best answer changes by bundle size, validity, public price, and whether you need a once-off top-up or better monthly value. Start with cost per GB, then check the validity period and whether the bundle fits your real usage pattern.
           </p>
         </section>        <section className="mb-10 space-y-5">
           {intentSections.map((section) => (

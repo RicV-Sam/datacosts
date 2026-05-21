@@ -75,8 +75,8 @@ export const HomePage: React.FC<HomePageProps> = ({
   selectedNetwork,
   setSelectedNetwork
 }) => {
-  const pageTitle = "Cheapest Data Bundles South Africa (2026)";
-  const metaDescription = 'Compare mobile data prices in South Africa. Find the cheapest data bundles from MTN, Vodacom, Telkom, Cell C and Rain.';
+  const pageTitle = 'Compare Data Deals South Africa: Cell C, Telkom, MTN & Vodacom';
+  const metaDescription = 'Compare Cell C, Telkom, MTN, Vodacom and Rain data deals in South Africa. Check prices, USSD pages and guides before choosing a bundle.';
   const canonicalUrl = SITE_URL;
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/');
@@ -100,7 +100,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: "Cheapest Data Bundles South Africa (2026)",
+    name: pageTitle,
     description: metaDescription,
     url: canonicalUrl,
     datePublished: datePublishedIso,
@@ -177,6 +177,9 @@ export const HomePage: React.FC<HomePageProps> = ({
 
         <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-4 md:p-6 shadow-sm">
           <h2 className="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-3">Quick Tools</h2>
+          <p className="text-sm text-slate-700 leading-relaxed mb-4">
+            Start with network comparison, then use the calculator, USSD directory, and buying guides to match Cell C, Telkom, MTN, Vodacom or Rain data to your budget and usage.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <button
               onClick={() => onScrollTo('calculator')}
@@ -203,6 +206,9 @@ export const HomePage: React.FC<HomePageProps> = ({
               Fix a Problem
             </button>
           </div>
+          <p className="text-sm text-slate-700 leading-relaxed mt-4">
+            Want the detailed answer to which network is cheapest? Read the <a href="/guides/cheapest-data-south-africa/" className="font-bold text-[#1b6d24] hover:underline">cheapest data in South Africa</a> guide before comparing bundles below.
+          </p>
         </section>
 
         <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-4 md:p-6 shadow-sm">

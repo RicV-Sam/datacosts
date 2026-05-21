@@ -37,18 +37,18 @@ type NetworkConfig = {
 const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   mtn: {
     networkName: 'MTN',
-    titlePrefix: 'MTN USSD Codes: Airtime, Data, Balance & Advance',
+    titlePrefix: 'MTN USSD Codes: Balance, Data USSD & Airtime Advance',
     route: '/mtn-ussd-codes/',
     networkHubHref: '/network/mtn/',
     buyDataGuideHref: '/guides/how-to-buy-data-mtn/',
     balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Use MTN USSD codes to check balances, buy data, transfer airtime, borrow airtime and manage prepaid services in South Africa.',
+      'Find MTN USSD codes for data balance, buying data, airtime checks, XtraTime, transfers and prepaid service options in South Africa.',
     intro:
-      'Use this MTN USSD page to check data balance, airtime balance, buy bundles, recharge, and open the core self-service routes you need when the app is slow or you have no data.',
+      'Use this MTN USSD codes page when you need MTN data USSD options, balance checks, bundle-buying routes, airtime management, recharge help, or common service codes without opening the app.',
     quickAnswer:
-      'For a quick MTN check, start with *136# for balance, *136*2# to buy data, and *151# for MTN airtime advance help before you browse again or buy another bundle.',
+      'For a quick MTN USSD check, start with *136# for balances, *136*2# to buy data, and *151# for MTN airtime advance help. Use the sections below for recharge, transfer, number-check and support routes.',
     supportNote:
       'MTN menus can vary by prepaid profile and active campaigns. If a code path changes, use *136# as your fallback entry point.',
     faq: [
@@ -107,17 +107,17 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   telkom: {
     networkName: 'Telkom',
-    titlePrefix: 'Telkom USSD Codes: Balance, Buy Data & Airtime Advance',
+    titlePrefix: 'Telkom USSD Codes: Telkom Codes for Balance, Data & Airtime',
     route: '/telkom-ussd-codes/',
     networkHubHref: '/network/telkom/',
     buyDataGuideHref: '/guides/how-to-buy-data-telkom/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Use Telkom USSD codes to check balances, buy data, manage prepaid services and find airtime advance options in South Africa.',
+      'Find Telkom USSD codes and Telkom codes for balance checks, data bundles, airtime actions, self-service menus and prepaid help in South Africa.',
     intro:
-      'Use this Telkom USSD page to check balance, buy bundles, confirm your number, and reach support without relying on app data or browser access.',
+      'Use this Telkom USSD codes page when you need Telkom codes for balance checks, data bundle actions, number checks, airtime-related menus, or support paths without relying on app data.',
     quickAnswer:
-      'For a quick Telkom check, use *188# for balances and *180# for bundle actions, then use the Telkom-specific links below for airtime advance, pricing, and troubleshooting paths.',
+      'For a quick Telkom USSD check, use *188# for balances and *180# for bundle actions. Then use the Telkom-specific sections below for number checks, airtime-related menus, support and troubleshooting paths.',
     supportNote:
       'Telkom promo and Mo’Nice menu paths can change over time. If one shortcode fails, use *180# or *188# to find the same action.',
     faq: [
@@ -141,17 +141,17 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   'cell-c': {
     networkName: 'Cell C',
-    titlePrefix: 'Cell C USSD Codes: Balance, Data Bundles & Airtime Advance',
+    titlePrefix: 'Cell C USSD Codes: Cell C Codes, Dial Codes & Data',
     route: '/cell-c-ussd-codes/',
     networkHubHref: '/network/cell-c/',
     buyDataGuideHref: '/guides/how-to-buy-data-cell-c/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find Cell C USSD codes for airtime balance, data bundles, airtime advance, account services and prepaid help in South Africa.',
+      'Find Cell C USSD codes, Cell C codes and dial codes for balance checks, data bundles, account services, airtime advance menus and prepaid help.',
     intro:
-      'Use this Cell C USSD page to check balance, buy bundles, confirm your number, and reach support from one place when airtime or data is tight.',
+      'Use this Cell C USSD codes page when you need Cell C codes or dial codes for balance checks, data bundles, number checks, account services, airtime advance menus, or prepaid support.',
     quickAnswer:
-      'For a quick Cell C check, start with *101# for balance or *147# for data bundles, airtime advance menus, broader account actions, and Cell C data deals.',
+      'For a quick Cell C USSD check, start with *101# for balance or *147# for data bundles, airtime advance menus and broader account actions. Use the sections below to match the Cell C dial code to the task.',
     supportNote:
       'Cell C code paths can differ by account profile and campaign period. If a shortcode fails, use *147# as your fallback menu.',
     faq: [
@@ -302,11 +302,12 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
   };
 
   const relatedLinks: Array<{ href: string; label: string }> = [
-    { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes Hub' },
+    { href: '/ussd-codes-south-africa/', label: 'USSD codes South Africa' },
     { href: config.networkHubHref, label: networkSlug === 'cell-c' ? 'Cell C data deals' : `${config.networkName} Network Page` },
     { href: config.balanceGuideHref, label: `Check ${config.networkName} balance and bundles` },
     { href: config.buyDataGuideHref, label: `How to Buy Data on ${config.networkName}` },
-    { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa' },
+    { href: '/airtime-advance-codes/', label: 'airtime advance codes' },
+    { href: '/guides/cheapest-data-south-africa/', label: 'cheapest data in South Africa' },
     { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance' },
     { href: '/alerts/', label: 'Mobile Alerts' }
