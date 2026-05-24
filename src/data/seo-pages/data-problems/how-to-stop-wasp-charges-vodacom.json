@@ -100,5 +100,20 @@
     "Article"
   ],
   "lastReviewed": "2026-04-18",
-  "reviewDueDate": "2027-04-18"
+  "reviewDueDate": "2027-04-18",
+  "sourceNotes": [
+    "Vodacom self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
+    "Operator-controlled context for premium content subscriptions and wasp billing: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Vodacom.",
+    "Device-side evidence for Vodacom: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
+  ],
+  "uniqueValueSummary": "This Vodacom stop-charges guide is built around the moment after a user has already seen airtime disappear and needs to stop the next billing cycle. It focuses on identifying the content-service name, checking whether the line still has active premium permissions, recording the cancellation confirmation, and deciding when to ask Vodacom for a block or dispute reference. That is different from a general subscription-check page: the goal here is interruption of repeat billing and preservation of evidence if the deduction continues.",
+  "officialSupportContext": "DataCost can help a Vodacom user collect the right cancellation evidence, but it cannot access the private account, block a WASP service, reverse a deduction, or promise the same menu labels every user will see. For this stop-charges route, support should be asked about the named content service, the exact deduction date, whether a content-service block is available, and what confirmation proves the cancellation has taken effect. If billing continues after cancellation, use Vodacom's official app, USSD, store, or support channel and keep the reference number.",
+  "evidenceToCollect": [
+    "A screenshot or note of the Vodacom balance before and after the suspected loss, including date, approximate time, and the exact balance category shown.",
+    "The active bundle name, validity window, and whether the remaining balance is anytime, night, social, promo, app-specific, or airtime credit.",
+    "App or device usage for the same period, especially hotspot, video, app updates, cloud backups, streaming quality, and messaging media downloads.",
+    "Any SMS, in-app confirmation, USSD result, or support reference that proves a service was cancelled, bought, expired, blocked, or changed."
+  ],
+  "whenThisDoesNotApply": "This page is not the right fit when the Vodacom deduction is a normal data bundle renewal, out-of-bundle browsing, app-store billing, airtime advance repayment, roaming charge, or contract invoice item. It also cannot prove that every WASP charge is unauthorised. If another person manages the SIM, the account is business-linked, or the line is on a contract, the current account record and Vodacom's official support response are more important than this general stop-charges guide.",
+  "indexingStatus": "index"
 }

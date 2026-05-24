@@ -100,5 +100,20 @@
     "Article"
   ],
   "lastReviewed": "2026-04-19",
-  "reviewDueDate": "2026-10-19"
+  "reviewDueDate": "2026-10-19",
+  "sourceNotes": [
+    "Telkom self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
+    "Operator-controlled context for fast bundle depletion: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Telkom.",
+    "Device-side evidence for Telkom: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
+  ],
+  "uniqueValueSummary": "This guide is intentionally scoped to fast bundle depletion for Telkom. It does not simply repeat a generic data-saving checklist: it separates account-side signals, device-side usage, and bundle-validity clues so a user can decide whether to change a phone setting, cancel a service, buy a different bundle, or escalate to Telkom support. The main check is Telkom usage history, hotspot sessions, streaming quality, app updates, and short-validity promotional bundles. The page remains conservative until more route-specific checks are available. That distinction matters because many South African prepaid problems look similar after the balance has already dropped, while the useful evidence is usually visible only in the first few minutes after the user notices the loss.",
+  "officialSupportContext": "DataCost can help users narrow fast bundle depletion, but it cannot see a private Telkom account, reverse a charge, cancel a service on behalf of the user, or guarantee a personalised menu. For this route, the support question should be framed around Telkom usage history, hotspot sessions, streaming quality, app updates, and short-validity promotional bundles. If the evidence points to a billing fault, failed cancellation, SIM-specific offer, disputed deduction, or account-level block, the user should use the official Telkom app, USSD flow, store, or support channel and keep the reference number or confirmation SMS.",
+  "evidenceToCollect": [
+    "A screenshot or note of the Telkom balance before and after the suspected loss, including date, approximate time, and the exact balance category shown.",
+    "The active bundle name, validity window, and whether the remaining balance is anytime, night, social, promo, app-specific, or airtime credit.",
+    "App or device usage for the same period, especially hotspot, video, app updates, cloud backups, streaming quality, and messaging media downloads.",
+    "Any SMS, in-app confirmation, USSD result, or support reference that proves a service was cancelled, bought, expired, blocked, or changed."
+  ],
+  "whenThisDoesNotApply": "This page should not be treated as proof that Telkom made an error on every line with fast bundle depletion. It may not fit contract billing, business accounts, router-only SIMs, roaming, family-linked accounts, app-store purchases, or cases where another person controls the SIM. In those situations, account-specific support, live terms, and the latest official checkout or USSD wording matter more than a general troubleshooting guide.",
+  "indexingStatus": "index"
 }

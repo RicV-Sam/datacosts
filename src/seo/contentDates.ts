@@ -1,25 +1,27 @@
 const DEFAULT_PUBLISHED_ISO = '2025-01-15T00:00:00.000Z';
 const DEFAULT_MODIFIED_ISO = '2026-02-15T00:00:00.000Z';
+const PUBLISHER_REVIEW_MODIFIED_ISO = '2026-05-24T00:00:00.000Z';
 
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
-  '/': '2026-05-10T00:00:00.000Z',
+  '/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/alerts/': '2026-05-10T00:00:00.000Z',
   '/about/': '2026-05-10T00:00:00.000Z',
   '/airtime-advance-codes/': '2026-05-15T00:00:00.000Z',
   '/contact/': '2026-05-10T00:00:00.000Z',
-  '/cookie-policy/': '2026-04-08T00:00:00.000Z',
+  '/cookie-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/editorial-policy/': '2026-05-10T00:00:00.000Z',
-  '/fix/': '2026-05-20T00:00:00.000Z',
-  '/guides/': '2026-03-31T00:00:00.000Z',
+  '/fix/': PUBLISHER_REVIEW_MODIFIED_ISO,
+  '/guides/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/methodology/': '2026-05-10T00:00:00.000Z',
   '/mtn-ussd-codes/': '2026-05-15T00:00:00.000Z',
   '/network/': '2026-03-24T00:00:00.000Z',
-  '/privacy-policy/': '2026-05-10T00:00:00.000Z',
+  '/privacy-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/save-ussd-codes/': '2026-03-30T00:00:00.000Z',
-  '/sitemap/': '2026-05-01T00:00:00.000Z',
+  '/sitemap/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/cell-c-ussd-codes/': '2026-05-15T00:00:00.000Z',
   '/telkom-ussd-codes/': '2026-05-15T00:00:00.000Z',
   '/terms/': '2026-05-10T00:00:00.000Z',
+  '/trust/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
   '/ussd-codes-south-africa/': '2026-05-15T00:00:00.000Z',
   '/vodacom-ussd-codes/': '2026-05-15T00:00:00.000Z'
@@ -201,11 +203,14 @@ export function getRouteModifiedIso(routeInput: string): string {
   }
 
   if (route.startsWith('/data-problems/')) {
-    return fromMapOrFallback(DATA_PROBLEM_ROUTE_MODIFIED_ISO, route, DEFAULT_MODIFIED_ISO);
+    const dataProblemModifiedIso = fromMapOrFallback(DATA_PROBLEM_ROUTE_MODIFIED_ISO, route, DEFAULT_MODIFIED_ISO);
+    return dataProblemModifiedIso > PUBLISHER_REVIEW_MODIFIED_ISO
+      ? dataProblemModifiedIso
+      : PUBLISHER_REVIEW_MODIFIED_ISO;
   }
 
   if (route.startsWith('/fix/')) {
-    return '2026-05-20T00:00:00.000Z';
+    return PUBLISHER_REVIEW_MODIFIED_ISO;
   }
 
   return DEFAULT_MODIFIED_ISO;

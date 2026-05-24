@@ -2,6 +2,16 @@
 
 DataCost is a static-first React website for comparing South African mobile data prices, publishing evergreen telecom guides, and shipping SEO-friendly utility content such as USSD directories and troubleshooting pages.
 
+## Core Growth Principle
+
+DataCost is first and foremost an organic-search growth project and a trust portal for South African mobile-data users. Every product, SEO, monetization, routing, content, or technical decision should be judged by whether it helps the site earn more qualified organic traffic over time.
+
+- Protect pages that already show search traction unless there is clear evidence they are harming the wider site.
+- Question any change that removes indexable routes, weakens internal linking, hides useful content, slows pages down, or makes the experience feel less trustworthy.
+- Treat AdSense and other monetization as secondary to organic growth. Ads should never crowd the first useful answer, create thin ad-first pages, or push the site away from independent editorial value.
+- Prefer improving thin or overlapping pages with better original analysis, source notes, review dates, and practical user context before considering `noindex`.
+- Use Google Search Console, crawl/indexing evidence, query demand, and page-level performance before making broad SEO reductions.
+
 The project is designed as a reusable blueprint for future content-driven sites that need:
 
 - strong technical SEO

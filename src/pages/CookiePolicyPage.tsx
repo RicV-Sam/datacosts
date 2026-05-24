@@ -6,6 +6,11 @@ import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction } from '../types';
 import { toCanonicalUrl } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
+import {
+  GOOGLE_ADVERTISING_DISCLOSURE,
+  GOOGLE_PARTNER_DATA_LINK_COPY,
+  GOOGLE_PARTNER_DATA_POLICY_URL
+} from '../config/publisherReadiness';
 
 interface CookiePolicyPageProps {
   onNavigate: NavigateFunction;
@@ -64,7 +69,13 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate, 
         <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
           <h2 className="text-2xl font-black tracking-tight">Third-Party Services</h2>
           <p className="text-slate-600 leading-relaxed">
-            Some analytics, advertising, or embedded services may set their own cookies or similar identifiers. Those providers operate under their own policies and controls.
+            Some analytics, advertising, or embedded services may set their own cookies or similar identifiers. {GOOGLE_ADVERTISING_DISCLOSURE}
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            You can read Google's partner-site explanation here:{' '}
+            <a href={GOOGLE_PARTNER_DATA_POLICY_URL} className="text-[#1b6d24] font-semibold hover:underline">
+              {GOOGLE_PARTNER_DATA_LINK_COPY}
+            </a>.
           </p>
         </section>
 

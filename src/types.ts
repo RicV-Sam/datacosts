@@ -106,6 +106,6 @@ export interface Guide {
 }
 
 export type NavigateFunction = (
-  page: 'home' | 'ussd' | 'alerts' | 'guide' | 'network' | 'guides-index' | 'travel-sims' | 'fix-problem',
+  page: 'home' | 'ussd' | 'alerts' | 'guide' | 'network' | 'guides-index' | 'travel-sims' | 'fix-problem' | 'trust',
   slug?: string
 ) => void;

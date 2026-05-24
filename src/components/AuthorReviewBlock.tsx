@@ -10,12 +10,14 @@ import {
 
 interface AuthorReviewBlockProps {
   lastReviewed: string;
+  reviewDueDate?: string;
   className?: string;
   trustSummary?: string;
 }
 
 export const AuthorReviewBlock: React.FC<AuthorReviewBlockProps> = ({
   lastReviewed,
+  reviewDueDate,
   className = '',
   trustSummary = SITE_EDITOR_TRUST_SUMMARY
 }) => {
@@ -37,6 +39,11 @@ export const AuthorReviewBlock: React.FC<AuthorReviewBlockProps> = ({
               <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#1b6d24]" />
               Reviewed / updated: {lastReviewed}
             </p>
+            {reviewDueDate && (
+              <p className="mt-2 text-xs font-bold uppercase tracking-widest text-slate-500">
+                Next scheduled review: {reviewDueDate}
+              </p>
+            )}
             <p className="mt-2 leading-relaxed">
               <strong>Why trust this guide:</strong> {trustSummary}
             </p>

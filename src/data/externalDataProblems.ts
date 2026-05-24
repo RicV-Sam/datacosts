@@ -1,4 +1,5 @@
 import { getIndexableRoutes } from '../config/routeCatalog';
+import { DataProblemIndexingStatus } from '../config/dataProblemPublishing';
 import { externalDataProblems } from 'virtual:data-problems-content';
 
 type DataProblemCause = {
@@ -29,11 +30,18 @@ type RawDataProblemPage = {
     general?: string[];
   };
   internalLinks: DataProblemInternalLink[];
+  sourceNotes: string[];
+  uniqueValueSummary: string;
+  officialSupportContext: string;
+  evidenceToCollect: string[];
+  whenThisDoesNotApply: string;
+  indexingStatus: DataProblemIndexingStatus;
   networks?: string[];
   preventionTips: string[];
   schemaTypes?: string[];
   slug: string;
   lastReviewed?: string;
+  reviewDueDate?: string;
 };
 
 export type DataProblemPage = {
@@ -43,12 +51,19 @@ export type DataProblemPage = {
   fixSteps: string[];
   h1: string;
   internalLinks: Array<{ anchorText: string; href: string }>;
+  sourceNotes: string[];
+  uniqueValueSummary: string;
+  officialSupportContext: string;
+  evidenceToCollect: string[];
+  whenThisDoesNotApply: string;
+  indexingStatus: DataProblemIndexingStatus;
   metaDescription: string;
   pageTitle: string;
   preventionTips: string[];
   quickAnswer: string;
   supportsArticleSchema: boolean;
   lastReviewed?: string;
+  reviewDueDate?: string;
 };
 
 function normalizePath(pathname: string): string {
@@ -99,8 +114,15 @@ function toDataProblemPage(pathname: string, raw: RawDataProblemPage): DataProbl
     preventionTips: (raw.preventionTips ?? []).filter(hasText),
     faqs: (raw.faqs ?? []).filter((faq) => hasText(faq.question) && hasText(faq.answer)),
     internalLinks,
+    sourceNotes: (raw.sourceNotes ?? []).filter(hasText),
+    uniqueValueSummary: raw.uniqueValueSummary,
+    officialSupportContext: raw.officialSupportContext,
+    evidenceToCollect: (raw.evidenceToCollect ?? []).filter(hasText),
+    whenThisDoesNotApply: raw.whenThisDoesNotApply,
+    indexingStatus: raw.indexingStatus,
     supportsArticleSchema: (raw.schemaTypes ?? []).includes('Article'),
-    lastReviewed: raw.lastReviewed
+    lastReviewed: raw.lastReviewed,
+    reviewDueDate: raw.reviewDueDate
   };
 }
 

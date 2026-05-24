@@ -9,6 +9,7 @@ import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { TrustPanel } from '../components/TrustPanel';
 import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 import { FixPage, fixClusters, fixClusterLabelById, fixPages, getFixPage, getFixPagesByCluster, getFixPath } from '../data/fixes';
+import { isNoindexRoute } from '../config/routeCatalog';
 import { NavigateFunction } from '../types';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
@@ -163,6 +164,7 @@ export const FixProblemPage: React.FC<FixProblemPageProps> = ({ onNavigate, onSc
   const canonicalUrl = toCanonicalUrl('/fix/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/fix/');
+  const shouldNoindex = isNoindexRoute('/fix/');
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Fixes', href: '/fix/' }
@@ -211,9 +213,10 @@ export const FixProblemPage: React.FC<FixProblemPageProps> = ({ onNavigate, onSc
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
-        <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
+        {shouldNoindex && <meta name="robots" content="noindex,follow" />}
+        {!shouldNoindex && <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>}
         <script type="application/ld+json">{JSON.stringify(buildBreadcrumbSchema(breadcrumbItems))}</script>
-        <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
+        {!shouldNoindex && <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>}
       </Helmet>
 
       <Header onScrollTo={onScrollTo} activeSection="fix-problem" />
@@ -325,6 +328,7 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso(routePath);
   const lastReviewed = formatIsoForDisplay(dateModifiedIso);
+  const shouldNoindex = isNoindexRoute(routePath);
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Fixes', href: '/fix/' },
@@ -349,10 +353,11 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
         <meta name="twitter:title" content={page.seoTitle} />
         <meta name="twitter:description" content={page.metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
-        <script type="application/ld+json">{JSON.stringify(buildArticleSchema(page, canonicalUrl, datePublishedIso, dateModifiedIso))}</script>
-        <script type="application/ld+json">{JSON.stringify(buildHowToSchema(page, canonicalUrl))}</script>
+        {shouldNoindex && <meta name="robots" content="noindex,follow" />}
+        {!shouldNoindex && <script type="application/ld+json">{JSON.stringify(buildArticleSchema(page, canonicalUrl, datePublishedIso, dateModifiedIso))}</script>}
+        {!shouldNoindex && <script type="application/ld+json">{JSON.stringify(buildHowToSchema(page, canonicalUrl))}</script>}
         <script type="application/ld+json">{JSON.stringify(buildBreadcrumbSchema(breadcrumbItems))}</script>
-        <script type="application/ld+json">{JSON.stringify(buildFaqSchema(page))}</script>
+        {!shouldNoindex && <script type="application/ld+json">{JSON.stringify(buildFaqSchema(page))}</script>}
       </Helmet>
 
       <Header onScrollTo={onScrollTo} activeSection="fix-problem" />

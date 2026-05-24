@@ -20,10 +20,10 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
     { id: 'home', label: 'Home' },
     { id: 'compare-data', label: 'Compare Data' },
     { id: 'ussd', label: 'USSD Codes' },
-    { id: 'calculator', label: 'Calculator' },
     { id: 'fix-problem', label: 'Fix a Problem' },
     { id: 'networks', label: 'Networks' },
-    { id: 'guides', label: 'Guides' }
+    { id: 'guides', label: 'Guides' },
+    { id: 'trust', label: 'Trust' }
   ];
 
   const searchItems = React.useMemo(() => [
@@ -33,6 +33,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
     { id: 'calculator', title: 'Calculator', subtitle: 'Estimate your data usage', type: 'scroll' as const, value: 'calculator' },
     { id: 'networks', title: 'Networks', subtitle: 'Compare all mobile networks', type: 'scroll' as const, value: 'networks' },
     { id: 'guides', title: 'Guides', subtitle: 'Browse all guides', type: 'scroll' as const, value: 'guides' },
+    { id: 'trust', title: 'Trust Center', subtitle: 'Editorial standards, methodology, corrections, and privacy', type: 'route' as const, value: '/trust/' },
     { id: 'ussd', title: 'USSD Codes', subtitle: 'Find shortcode commands', type: 'scroll' as const, value: 'ussd' },
     { id: 'airtime-advance-codes', title: 'Airtime Advance Codes', subtitle: 'Borrow-airtime routes for MTN, Vodacom, Telkom, and Cell C', type: 'route' as const, value: '/airtime-advance-codes/' },
     { id: 'alerts', title: 'Alerts', subtitle: 'Get telecom alerts and updates', type: 'route' as const, value: '/alerts/' },
@@ -117,6 +118,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                   item.id === 'fix-problem' ? '/fix/' :
                   item.id === 'guides' ? '/guides/' :
                   item.id === 'networks' ? '/network/' :
+                  item.id === 'trust' ? '/trust/' :
                   `#${item.id}`
                 }
                 onClick={(e) => {
@@ -160,9 +162,10 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                       item.id === 'home' ? '/' :
                       item.id === 'compare-data' ? '/network/' :
                       item.id === 'ussd' ? '/ussd-codes-south-africa/' :
-                  item.id === 'fix-problem' ? '/fix/' :
+                      item.id === 'fix-problem' ? '/fix/' :
                       item.id === 'guides' ? '/guides/' :
                       item.id === 'networks' ? '/network/' :
+                      item.id === 'trust' ? '/trust/' :
                       `#${item.id}`
                     }
                     onClick={(e) => {

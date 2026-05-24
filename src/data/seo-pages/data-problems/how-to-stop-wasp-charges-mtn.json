@@ -100,5 +100,20 @@
     "Article"
   ],
   "lastReviewed": "2026-04-18",
-  "reviewDueDate": "2027-04-18"
+  "reviewDueDate": "2027-04-18",
+  "sourceNotes": [
+    "MTN self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
+    "Operator-controlled context for premium content subscriptions and wasp billing: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for MTN.",
+    "Device-side evidence for MTN: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
+  ],
+  "uniqueValueSummary": "This guide is intentionally scoped to premium content subscriptions and wasp billing for MTN. It does not simply repeat a generic data-saving checklist: it separates account-side signals, device-side usage, and bundle-validity clues so a user can decide whether to change a phone setting, cancel a service, buy a different bundle, or escalate to MTN support. The main check is active MTN content services, recurring billing entries, premium-rate permissions, and the confirmation message after cancellation. The page remains conservative until more route-specific checks are available. That distinction matters because many South African prepaid problems look similar after the balance has already dropped, while the useful evidence is usually visible only in the first few minutes after the user notices the loss.",
+  "officialSupportContext": "DataCost can help an MTN user prepare the cancellation and dispute trail, but it cannot view the SIM account, remove a content service, refund a deduction, or confirm the current MyMTN menu wording. For this stop-charges page, the support route should focus on the date of the last deduction, the service name shown on the account, whether the cancellation menu produced a confirmation, and whether billing continued afterwards. If any of those points are unclear, use an official MTN app, USSD, store, or support channel and save the reference number or SMS confirmation.",
+  "evidenceToCollect": [
+    "A screenshot or note of the MTN balance before and after the suspected loss, including date, approximate time, and the exact balance category shown.",
+    "The active bundle name, validity window, and whether the remaining balance is anytime, night, social, promo, app-specific, or airtime credit.",
+    "App or device usage for the same period, especially hotspot, video, app updates, cloud backups, streaming quality, and messaging media downloads.",
+    "Any SMS, in-app confirmation, USSD result, or support reference that proves a service was cancelled, bought, expired, blocked, or changed."
+  ],
+  "whenThisDoesNotApply": "This stop-charges guide may not fit an MTN line where the deduction is from airtime advance, a once-off bundle, banking carrier billing, roaming, a contract invoice, or a family account controlled by someone else. It also should not be used as a refund guarantee after a content service has already billed. Those cases need the account record, live support notes, and the latest official MTN wording rather than a general WASP cancellation checklist.",
+  "indexingStatus": "index"
 }

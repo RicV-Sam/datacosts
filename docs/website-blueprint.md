@@ -18,6 +18,12 @@ DataCost is a content-rich React + Vite website focused on:
 
 The site is designed as a static-first SEO project rather than a dashboard or API-heavy app. The important idea is that most valuable pages are prerendered into HTML, with canonical URLs, metadata, structured data, sitemap coverage, and predictable deployment behavior.
 
+### Organic growth rule
+
+DataCost should be optimized for qualified organic traffic first. Monetization, including AdSense, must support the trust and usefulness of the site rather than drive the architecture.
+
+Before changing route indexing, sitemap inclusion, internal links, page templates, scripts, ads, or content pruning rules, ask whether the change could reduce organic discovery, user trust, page speed, content depth, or the ability of a useful page to rank. If it could, use page-level evidence from Google Search Console, crawl data, or query demand before proceeding. The default response to weak-but-relevant content is to improve and differentiate it, not to remove it from search.
+
 ## 2. Why This Is A Good Blueprint
 
 This setup is strong because it combines:

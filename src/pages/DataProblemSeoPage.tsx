@@ -38,6 +38,8 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
   const canonicalUrl = toCanonicalUrl(page.canonicalPath);
   const datePublishedIso = getDefaultPublishedIso();
   const lastReviewed = page.lastReviewed ? formatIsoForDisplay(`${page.lastReviewed}T00:00:00.000Z`) : formatIsoForDisplay(datePublishedIso);
+  const reviewDueDate = page.reviewDueDate ? formatIsoForDisplay(`${page.reviewDueDate}T00:00:00.000Z`) : undefined;
+  const shouldNoindex = page.indexingStatus !== 'index';
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -81,7 +83,7 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
 
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
-    { label: 'Fix Mobile Problems', href: '/fix-mobile-problems/' },
+    { label: 'Airtime and Data Problem Guides', href: '/guides/airtime-data-problems-south-africa/' },
     { label: page.h1, href: page.canonicalPath }
   ];
 
@@ -103,9 +105,10 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
         <meta name="twitter:title" content={page.pageTitle} />
         <meta name="twitter:description" content={page.metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
-        {page.supportsArticleSchema && <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>}
+        {shouldNoindex && <meta name="robots" content="noindex,follow" />}
+        {page.supportsArticleSchema && !shouldNoindex && <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>}
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        {!shouldNoindex && <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>}
       </Helmet>
 
       <Header onScrollTo={onScrollTo} activeSection="guides" />
@@ -115,11 +118,11 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
 
         <nav className="mb-8">
           <button
-            onClick={() => onNavigate('fix-problem')}
+            onClick={() => onNavigate('guide', 'airtime-data-problems-south-africa')}
             className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-500 hover:text-[#1b6d24] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to fix mobile problems
+            Back to airtime and data problem guides
           </button>
         </nav>
 
@@ -132,9 +135,15 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
           <p className="text-slate-700 leading-relaxed">{page.quickAnswer}</p>
         </section>
 
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">What This Page Adds</h2>
+          <p className="text-slate-700 leading-relaxed">{page.uniqueValueSummary}</p>
+        </section>
+
         <TrustPanel
           lastReviewed={lastReviewed}
-          sources="Network apps, USSD menus, public support pages, and user-facing operator account flows where available."
+          reviewDueDate={reviewDueDate}
+          sources={page.sourceNotes.join(' ')}
           className="mb-10"
         />
 
@@ -153,6 +162,25 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
               <li key={step}>{step}</li>
             ))}
           </ol>
+        </section>
+
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-6">Evidence to Check Before Support</h2>
+          <ul className="space-y-4 list-disc pl-6 text-slate-700 leading-relaxed">
+            {page.evidenceToCollect.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">Official Support Context</h2>
+          <p className="text-slate-700 leading-relaxed">{page.officialSupportContext}</p>
+        </section>
+
+        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
+          <h2 className="text-2xl font-black tracking-tight mb-4">When This Guide May Not Fit</h2>
+          <p className="text-slate-700 leading-relaxed">{page.whenThisDoesNotApply}</p>
         </section>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
@@ -193,6 +221,7 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
 
         <AuthorReviewBlock
           lastReviewed={lastReviewed}
+          reviewDueDate={reviewDueDate}
           trustSummary="Based on public operator support pages, USSD and app-account workflows where available, and South African prepaid troubleshooting needs."
           className="mb-12"
         />

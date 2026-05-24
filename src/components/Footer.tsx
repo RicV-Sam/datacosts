@@ -73,6 +73,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo }) => {
 
         <div className="flex flex-col gap-4">
           <h5 className="font-bold text-sm uppercase tracking-wider">Resources</h5>
+          <a href="/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">Home</a>
+          <a href="/trust/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">Trust Center</a>
           <a href="/about/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">About</a>
           <a href="/network/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">Network Comparison</a>
           <a href="/methodology/" className="text-left text-xs text-slate-500 hover:text-slate-900 transition-colors block">Methodology</a>

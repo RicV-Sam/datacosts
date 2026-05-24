@@ -6,6 +6,11 @@ import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction } from '../types';
 import { SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
+import {
+  GOOGLE_ADVERTISING_DISCLOSURE,
+  GOOGLE_PARTNER_DATA_LINK_COPY,
+  GOOGLE_PARTNER_DATA_POLICY_URL
+} from '../config/publisherReadiness';
 
 interface PrivacyPolicyPageProps {
   onNavigate: NavigateFunction;
@@ -77,7 +82,13 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
             We use measurement tools to improve content quality and site usability. These tools may place cookies or similar technologies in your browser.
           </p>
           <p className="text-slate-600 leading-relaxed">
-            DataCost may display advertising. Advertising partners may use cookies or similar technologies to measure ad performance, prevent fraud, and show more relevant ads, subject to their own policies and browser controls.
+            DataCost may display advertising. {GOOGLE_ADVERTISING_DISCLOSURE}
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            Google explains its advertising data practices here:{' '}
+            <a href={GOOGLE_PARTNER_DATA_POLICY_URL} className="text-[#1b6d24] font-semibold hover:underline">
+              {GOOGLE_PARTNER_DATA_LINK_COPY}
+            </a>.
           </p>
           <p className="text-slate-600 leading-relaxed">
             You can manage cookies in your browser settings, though some site functions may be affected.

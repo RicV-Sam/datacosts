@@ -54,6 +54,7 @@ function buildSitemapIndexXml(sections: SitemapSection[]): string {
 
 function buildSitemapSections(routes: string[]): SitemapSection[] {
   const trustRouteSet = new Set([
+    '/trust/',
     '/about/',
     '/contact/',
     '/privacy-policy/',

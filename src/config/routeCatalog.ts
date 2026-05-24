@@ -5,6 +5,7 @@ import { fixPages, getFixPath } from '../data/fixes';
 import { Bundle } from '../types';
 import { SITE_ORIGIN } from '../seo/siteConstants';
 import { getRedirectAliasRoutes } from './redirectAliases';
+import { getDataProblemRoutesByIndexingStatus } from './dataProblemPublishing';
 
 export const BASE_URL = SITE_ORIGIN;
 
@@ -116,6 +117,23 @@ const ORGANIC_PROTECTED_FACET_ROUTES = new Set([
 ]);
 
 const NOINDEX_DEAL_GUIDE_ROUTES = new Set<string>();
+const ORGANIC_PROTECTED_FIX_SECTION = true;
+
+export function getIndexableFixRoutes(): string[] {
+  if (!ORGANIC_PROTECTED_FIX_SECTION) {
+    return [];
+  }
+
+  return fixPages.map((page) => getFixPath(page.slug));
+}
+
+export function getNoindexFixRoutes(): string[] {
+  if (ORGANIC_PROTECTED_FIX_SECTION) {
+    return [];
+  }
+
+  return ['/fix/', ...fixPages.map((page) => getFixPath(page.slug))];
+}
 
 function normalizeCanonicalPath(path: string): string {
   if (!path.startsWith('/')) {
@@ -159,6 +177,8 @@ export function getNoindexRoutes(): string[] {
 
   return [
     ...noindexFacetRoutes,
+    ...getDataProblemRoutesByIndexingStatus(['noindex']),
+    ...getNoindexFixRoutes(),
     ...NOINDEX_DEAL_GUIDE_ROUTES
   ].map(normalizeCanonicalPath);
 }
@@ -181,34 +201,15 @@ export function getIndexableRoutes(): string[] {
   routes.add('/alerts/');
   routes.add('/sitemap/');
   routes.add('/fix/');
-  routes.add('/data-problems/why-is-my-data-disappearing-vodacom/');
-  routes.add('/data-problems/how-to-stop-wasp-charges-vodacom/');
-  routes.add('/data-problems/how-to-check-data-balance-vodacom-ussd/');
-  routes.add('/data-problems/why-does-my-data-run-out-so-fast-mtn/');
-  routes.add('/data-problems/why-does-my-data-run-out-so-fast-cell-c/');
-  routes.add('/data-problems/why-does-my-data-run-out-so-fast-telkom/');
-  routes.add('/data-problems/how-to-stop-data-disappearing-vodacom/');
-  routes.add('/data-problems/how-to-stop-data-disappearing-mtn/');
-  routes.add('/data-problems/how-to-stop-data-disappearing-cell-c/');
-  routes.add('/data-problems/how-to-stop-data-disappearing-telkom/');
-  routes.add('/data-problems/why-is-my-airtime-disappearing-vodacom-prepaid/');
-  routes.add('/data-problems/why-is-my-airtime-disappearing-mtn-prepaid/');
-  routes.add('/data-problems/how-to-stop-airtime-disappearing-vodacom/');
-  routes.add('/data-problems/how-to-stop-airtime-disappearing-cell-c/');
-  routes.add('/data-problems/how-to-stop-airtime-disappearing-telkom/');
-  routes.add('/data-problems/why-is-my-data-disappearing-overnight-android/');
-  routes.add('/data-problems/how-to-stop-wasp-charges-cell-c/');
-  routes.add('/data-problems/how-to-stop-wasp-charges-mtn/');
-  routes.add('/data-problems/how-to-stop-wasp-charges-telkom/');
-  routes.add('/data-problems/how-to-check-wasp-subscriptions-vodacom/');
-  routes.add('/data-problems/how-to-check-wasp-subscriptions-mtn/');
-  routes.add('/data-problems/how-to-stop-background-data-usage-android/');
-  routes.add('/data-problems/how-to-stop-apps-using-data-in-background-samsung/');
+  for (const dataProblemRoute of getDataProblemRoutesByIndexingStatus(['index'])) {
+    routes.add(dataProblemRoute);
+  }
   routes.add('/guides/');
   routes.add('/network/');
   routes.add('/privacy-policy/');
   routes.add('/terms/');
   routes.add('/cookie-policy/');
+  routes.add('/trust/');
   routes.add('/about/');
   routes.add('/methodology/');
   routes.add('/editorial-policy/');
@@ -245,8 +246,8 @@ export function getIndexableRoutes(): string[] {
     routes.add(`/guides/${guide.slug}/`);
   }
 
-  for (const page of fixPages) {
-    routes.add(getFixPath(page.slug));
+  for (const fixRoute of getIndexableFixRoutes()) {
+    routes.add(fixRoute);
   }
 
   for (const networkPage of Object.values(networkPages)) {

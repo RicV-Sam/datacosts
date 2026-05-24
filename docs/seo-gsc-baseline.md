@@ -2,6 +2,19 @@
 
 This note records the starting context for ongoing weekly SEO and Google Search Console reviews for `datacost.co.za`.
 
+## Organic Growth Guardrail
+
+DataCost's primary objective is to grow qualified organic traffic and become a trusted South African mobile-data portal. AdSense readiness is useful, but it is not the main strategy.
+
+For every SEO, routing, content, or monetization change:
+
+- Start from organic growth impact, not ad approval impact.
+- Do not remove, noindex, merge, or de-emphasize pages with search traction without page-level GSC evidence and a clear replacement path.
+- Prefer expanding and differentiating useful pages over pruning them.
+- Preserve internal links into pages that are gaining impressions or ranking near the first page.
+- Challenge any ad, consent, push, layout, or script change that could reduce trust, slow key pages, obscure the answer, or weaken search performance.
+- Use AdSense policy work to improve trust, clarity, privacy disclosure, and content depth; do not let it shrink the useful search surface without evidence.
+
 ## Baseline Context
 
 - Production property: `https://datacost.co.za/`

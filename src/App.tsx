@@ -17,6 +17,7 @@ const GuidesIndex = lazy(() => import('./pages/GuidesIndex').then((mod) => ({ de
 const BundleTypePage = lazy(() => import('./pages/BundleTypePage').then((mod) => ({ default: mod.BundleTypePage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((mod) => ({ default: mod.NotFoundPage })));
 const AboutPage = lazy(() => import('./pages/AboutPage').then((mod) => ({ default: mod.AboutPage })));
+const TrustCenterPage = lazy(() => import('./pages/TrustCenterPage').then((mod) => ({ default: mod.TrustCenterPage })));
 const MethodologyPage = lazy(() => import('./pages/MethodologyPage').then((mod) => ({ default: mod.MethodologyPage })));
 const EditorialPolicyPage = lazy(() => import('./pages/EditorialPolicyPage').then((mod) => ({ default: mod.EditorialPolicyPage })));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then((mod) => ({ default: mod.PrivacyPolicyPage })));
@@ -56,6 +57,7 @@ function AppContent() {
     if (page === 'guides-index') path = '/guides/';
     if (page === 'travel-sims') path = '/travel-sims-south-africa/';
     if (page === 'fix-problem') path = '/fix/';
+    if (page === 'trust') path = '/trust/';
 
     if (window.location.pathname === path && path === '/') {
       // already on home, scroll to top
@@ -85,6 +87,10 @@ function AppContent() {
     }
     if (id === 'networks') {
       navigateTo('network');
+      return;
+    }
+    if (id === 'trust') {
+      navigateTo('trust');
       return;
     }
     if (id === 'compare-data') {
@@ -230,6 +236,10 @@ function AppContent() {
         <Route
           path="/about/"
           element={<AboutPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/trust/"
+          element={<TrustCenterPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route
           path="/methodology/"

@@ -9,6 +9,7 @@ import {
 
 interface TrustPanelProps {
   lastReviewed: string;
+  reviewDueDate?: string;
   sources?: string;
   reviewer?: string;
   correctionHref?: string;
@@ -17,6 +18,7 @@ interface TrustPanelProps {
 
 export const TrustPanel: React.FC<TrustPanelProps> = ({
   lastReviewed,
+  reviewDueDate,
   sources = 'Operator websites, public USSD menus, network apps, and official support pages where available.',
   reviewer = `Reviewed by ${SITE_EDITOR_NAME}, ${SITE_EDITOR_ROLE}`,
   correctionHref = '/contact/',
@@ -29,6 +31,7 @@ export const TrustPanel: React.FC<TrustPanelProps> = ({
         <div className="space-y-2">
           <p className="font-black text-slate-900">{reviewer}</p>
           <p><strong>Last reviewed:</strong> {lastReviewed}</p>
+          {reviewDueDate && <p><strong>Next scheduled review:</strong> {reviewDueDate}</p>}
           <p><strong>Sources we check:</strong> {sources}</p>
           <p><strong>Why trust this:</strong> {SITE_EDITOR_TRUST_SUMMARY}</p>
           <p>

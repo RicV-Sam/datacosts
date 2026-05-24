@@ -28,7 +28,7 @@ import {
 } from '../seo/siteConstants';
 
 interface HomePageProps {
-  onNavigate: (page: 'home' | 'ussd' | 'alerts' | 'guide' | 'network' | 'guides-index' | 'travel-sims' | 'fix-problem', slug?: string) => void;
+  onNavigate: (page: 'home' | 'ussd' | 'alerts' | 'guide' | 'network' | 'guides-index' | 'travel-sims' | 'fix-problem' | 'trust', slug?: string) => void;
   onScrollTo: (id: string) => void;
   activeSection: string;
   selectedNetwork: NetworkName | null;
@@ -218,6 +218,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <a href="/about/" className="text-sm font-bold text-[#1b6d24] hover:underline">About DataCost</a>
+            <a href="/trust/" className="text-sm font-bold text-[#1b6d24] hover:underline">Trust Center</a>
             <a href="/methodology/" className="text-sm font-bold text-[#1b6d24] hover:underline">Methodology</a>
             <a href="/editorial-policy/" className="text-sm font-bold text-[#1b6d24] hover:underline">Editorial Policy</a>
             <a href="/contact/#corrections" className="text-sm font-bold text-[#1b6d24] hover:underline">Report an error</a>

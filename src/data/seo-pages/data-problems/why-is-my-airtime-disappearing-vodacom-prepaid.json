@@ -9,7 +9,7 @@
     "vodacom"
   ],
   "intentScore": 5,
-  "quickAnswer": "Vodacom airtime usually disappears because premium billing, out-of-bundle data, app purchases, or normal call and SMS spend are still active on the line. Check the deduction pattern first, then stop the service that keeps charging.",
+  "quickAnswer": "On Vodacom prepaid, disappearing airtime is usually a pattern problem: a once-off data session, recurring content billing, app-store charge, or normal call/SMS usage can all look the same after the balance drops. Start by matching the time of the deduction to your balance history before changing settings.",
   "causes": [
     {
       "cause": "WASP or premium billing is active",
@@ -106,5 +106,20 @@
     "Article"
   ],
   "lastReviewed": "2026-04-19",
-  "reviewDueDate": "2026-10-19"
+  "reviewDueDate": "2026-10-19",
+  "sourceNotes": [
+    "Vodacom self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
+    "Operator-controlled context for airtime deductions and fallback billing: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Vodacom.",
+    "Device-side evidence for Vodacom: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
+  ],
+  "uniqueValueSummary": "This page is aimed at diagnosing why a Vodacom prepaid balance keeps dropping, not only at stopping one known service. It compares the evidence for out-of-bundle data, content services, app-store billing, airtime advance recovery, and ordinary usage so the user can decide which path to investigate first. The useful value is the decision path: check timing, isolate whether mobile data was active, look for service confirmations, then escalate with a clear deduction pattern instead of a vague complaint that airtime disappeared.",
+  "officialSupportContext": "DataCost can help a Vodacom prepaid user organise the deduction evidence, but it cannot inspect the account, provide transaction logs, reverse charges, or guarantee a refund. For this diagnostic route, official support should be given the starting balance, ending balance, date and time of the drop, whether data was switched on, any SMS confirmations, and whether the same amount repeats. Use Vodacom's official app, USSD, store, or support channel when the balance history points to billing or a service that the user cannot see or stop.",
+  "evidenceToCollect": [
+    "A screenshot or note of the Vodacom balance before and after the suspected loss, including date, approximate time, and the exact balance category shown.",
+    "The active bundle name, validity window, and whether the remaining balance is anytime, night, social, promo, app-specific, or airtime credit.",
+    "App or device usage for the same period, especially hotspot, video, app updates, cloud backups, streaming quality, and messaging media downloads.",
+    "Any SMS, in-app confirmation, USSD result, or support reference that proves a service was cancelled, bought, expired, blocked, or changed."
+  ],
+  "whenThisDoesNotApply": "This diagnostic page may not fit Vodacom contract invoices, business accounts, roaming, family-linked lines, stolen phones, or SIMs used only in routers where the device history is incomplete. It also does not replace a formal billing dispute when money has already been deducted. In those situations, account records, identity checks, and Vodacom's latest support response matter more than a prepaid troubleshooting flow.",
+  "indexingStatus": "index"
 }

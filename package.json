@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "generate:sitemap": "tsx scripts/generate-sitemap.ts",
+    "check:data-problems": "tsx scripts/check-data-problems-publishing.ts",
     "check:seo": "tsx scripts/check-seo-output.ts",
     "check:adsense": "tsx scripts/check-adsense-output.ts",
-    "build": "npm run generate:sitemap && vite build && npm run check:seo",
+    "build": "npm run check:data-problems && npm run generate:sitemap && vite build && npm run check:seo",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"

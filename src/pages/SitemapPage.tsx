@@ -28,7 +28,8 @@ const sitemapGroups: SitemapGroup[] = [
       { href: '/guides/', label: 'South Africa Mobile Data Guides' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa' },
       { href: '/alerts/', label: 'Data Deal Alerts' },
-      { href: '/fix/', label: 'DataCost Fixes' }
+      { href: '/fix/', label: 'DataCost Fixes' },
+      { href: '/trust/', label: 'DataCost Trust Center' }
     ]
   },
   {
@@ -100,6 +101,7 @@ const sitemapGroups: SitemapGroup[] = [
     title: 'Trust and Legal',
     links: [
       { href: '/about/', label: 'About DataCost' },
+      { href: '/trust/', label: 'Trust Center' },
       { href: '/methodology/', label: 'Methodology' },
       { href: '/editorial-policy/', label: 'Editorial Policy' },
       { href: '/contact/', label: 'Contact' },
