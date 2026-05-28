@@ -37,18 +37,18 @@ type NetworkConfig = {
 const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   mtn: {
     networkName: 'MTN',
-    titlePrefix: 'MTN USSD Codes: Balance, Data USSD & Airtime Advance',
+    titlePrefix: 'MTN USSD Codes South Africa: Data USSD, Recharge & Balance',
     route: '/mtn-ussd-codes/',
     networkHubHref: '/network/mtn/',
     buyDataGuideHref: '/guides/how-to-buy-data-mtn/',
     balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find MTN USSD codes for data balance, buying data, airtime checks, XtraTime, transfers and prepaid service options in South Africa.',
+      'Find MTN USSD codes for MTN data USSD, MTN airtime recharge code, balance checks and prepaid service shortcuts in South Africa.',
     intro:
-      'Use this MTN USSD codes page when you need MTN data USSD options, balance checks, bundle-buying routes, airtime management, recharge help, or common service codes without opening the app.',
+      'Use this page when the intent is MTN-specific. It is the best destination for MTN USSD codes, MTN data USSD paths, airtime recharge routes, balance checks, and prepaid self-service shortcuts without opening the app.',
     quickAnswer:
-      'For a quick MTN USSD check, start with *136# for balances, *136*2# to buy data, and *151# for MTN airtime advance help. Use the sections below for recharge, transfer, number-check and support routes.',
+      'For a quick MTN USSD check, start with *136# for balances, *136*2# to buy data, and *151# for MTN airtime advance help. Use this page for operator-specific MTN code intent, then return to the all-network hub only when you need cross-network comparison.',
     supportNote:
       'MTN menus can vary by prepaid profile and active campaigns. If a code path changes, use *136# as your fallback entry point.',
     faq: [
@@ -107,17 +107,17 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   telkom: {
     networkName: 'Telkom',
-    titlePrefix: 'Telkom USSD Codes: Telkom Codes for Balance, Data & Airtime',
+    titlePrefix: 'Telkom USSD Codes South Africa: Telkom Codes for Data and Balance',
     route: '/telkom-ussd-codes/',
     networkHubHref: '/network/telkom/',
     buyDataGuideHref: '/guides/how-to-buy-data-telkom/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find Telkom USSD codes and Telkom codes for balance checks, data bundles, airtime actions, self-service menus and prepaid help in South Africa.',
+      'Find Telkom USSD codes and Telkom codes for balance checks, data bundles, recharge paths, and prepaid help in South Africa.',
     intro:
-      'Use this Telkom USSD codes page when you need Telkom codes for balance checks, data bundle actions, number checks, airtime-related menus, or support paths without relying on app data.',
+      'Use this page when the intent is Telkom-specific. It is the best destination for Telkom USSD codes, Telkom recharge code lookups, bundle-buying paths, number checks, and prepaid support shortcuts without relying on app data.',
     quickAnswer:
-      'For a quick Telkom USSD check, use *188# for balances and *180# for bundle actions. Then use the Telkom-specific sections below for number checks, airtime-related menus, support and troubleshooting paths.',
+      'For a quick Telkom USSD check, use *188# for balances and *180# for bundle actions. Use this page for full Telkom-specific code intent, and use the all-network hub only when you want cross-network comparison or directory browsing.',
     supportNote:
       'Telkom promo and Mo’Nice menu paths can change over time. If one shortcode fails, use *180# or *188# to find the same action.',
     faq: [
@@ -141,17 +141,17 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   'cell-c': {
     networkName: 'Cell C',
-    titlePrefix: 'Cell C USSD Codes: Cell C Codes, Dial Codes & Data',
+    titlePrefix: 'Cell C USSD Codes South Africa: Cell C Codes, Dial Codes & Balance',
     route: '/cell-c-ussd-codes/',
     networkHubHref: '/network/cell-c/',
     buyDataGuideHref: '/guides/how-to-buy-data-cell-c/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find Cell C USSD codes, Cell C codes and dial codes for balance checks, data bundles, account services, airtime advance menus and prepaid help.',
+      'Find Cell C USSD codes, Cell C codes and dial codes for balance checks, data bundles, account services and Cell C balance-check intent.',
     intro:
-      'Use this Cell C USSD codes page when you need Cell C codes or dial codes for balance checks, data bundles, number checks, account services, airtime advance menus, or prepaid support.',
+      'Use this page when the intent is Cell C-specific. It is the best destination for Cell C USSD codes, Cell C dial codes, balance checks, bundle menus, and prepaid support shortcuts.',
     quickAnswer:
-      'For a quick Cell C USSD check, start with *101# for balance or *147# for data bundles, airtime advance menus and broader account actions. Use the sections below to match the Cell C dial code to the task.',
+      'For a quick Cell C USSD check, start with *101# for balance or *147# for data bundles, airtime advance menus and broader account actions. Use this page for full Cell C-specific code intent, then return to the hub only for cross-network comparison.',
     supportNote:
       'Cell C code paths can differ by account profile and campaign period. If a shortcode fails, use *147# as your fallback menu.',
     faq: [
@@ -200,6 +200,29 @@ const CATEGORY_ANCHOR: Record<(typeof CATEGORY_ORDER)[number], string> = {
   'SIM / Number / Self-Service': 'sim-number-selfservice',
   'Help & Customer Care': 'support-care',
   'Bonus / Promo / Extras': 'bonus-promo-extras'
+};
+
+const FIX_LINKS_BY_NETWORK_SLUG: Record<SupportedNetworkSlug, Array<{ href: string; label: string }>> = {
+  mtn: [
+    { href: '/fix/mtn-data-not-working/', label: 'MTN data not working' },
+    { href: '/fix/mtn-data-balance-check/', label: 'MTN data balance check fix' },
+    { href: '/fix/stop-wasp-services-mtn/', label: 'Stop WASP services on MTN' }
+  ],
+  vodacom: [
+    { href: '/fix/vodacom-data-not-working/', label: 'Vodacom data not working' },
+    { href: '/fix/vodacom-data-balance-check/', label: 'Vodacom data balance check fix' },
+    { href: '/fix/stop-wasp-services-vodacom/', label: 'Stop WASP services on Vodacom' }
+  ],
+  telkom: [
+    { href: '/fix/telkom-data-not-working/', label: 'Telkom data not working' },
+    { href: '/fix/telkom-data-balance-check/', label: 'Telkom data balance check fix' },
+    { href: '/fix/stop-wasp-services-telkom/', label: 'Stop WASP services on Telkom' }
+  ],
+  'cell-c': [
+    { href: '/fix/cell-c-apn-settings/', label: 'Cell C APN settings' },
+    { href: '/fix/cell-c-data-not-working/', label: 'Cell C data not working' },
+    { href: '/fix/stop-wasp-services-cell-c/', label: 'Stop WASP services on Cell C' }
+  ]
 };
 
 function findMostUsedCode(entries: USSDEntry[], patterns: string[]): USSDEntry | null {
@@ -304,6 +327,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
   const relatedLinks: Array<{ href: string; label: string }> = [
     { href: '/ussd-codes-south-africa/', label: 'USSD codes South Africa' },
     { href: config.networkHubHref, label: networkSlug === 'cell-c' ? 'Cell C data deals' : `${config.networkName} Network Page` },
+    ...FIX_LINKS_BY_NETWORK_SLUG[networkSlug],
     { href: config.balanceGuideHref, label: `Check ${config.networkName} balance and bundles` },
     { href: config.buyDataGuideHref, label: `How to Buy Data on ${config.networkName}` },
     { href: '/airtime-advance-codes/', label: 'airtime advance codes' },
@@ -365,6 +389,9 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
           <p className="text-slate-700 leading-relaxed">{config.quickAnswer}</p>
           <p className="mt-3 text-sm text-slate-600 leading-relaxed">
             Need to borrow airtime when you are out of credit? Use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">{config.networkName} airtime advance USSD code</Link> guide to compare eligibility, fees, and repayment notes.
+          </p>
+          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            Need the all-network directory instead of the operator page? Go back to <Link to="/ussd-codes-south-africa/" className="font-semibold text-[#1b6d24] hover:underline">USSD codes South Africa</Link> for comparison intent, or use <Link to="/guides/cheapest-data-south-africa/" className="font-semibold text-[#1b6d24] hover:underline">cheapest data in South Africa</Link> for pricing-first research.
           </p>
         </section>
 

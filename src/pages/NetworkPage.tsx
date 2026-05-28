@@ -113,9 +113,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
       heroHeading: 'MTN Data Bundles, Deals & USSD Codes'
     },
     vodacom: {
-      title: 'Vodacom Data Bundles, Deals & USSD Codes in South Africa',
-      description: 'Compare Vodacom data bundles, prepaid deals, USSD codes and ways to save on Vodacom data in South Africa.',
-      heroHeading: 'Vodacom Data Bundles, Deals & USSD Codes'
+      title: 'Vodacom Prepaid Data Deals South Africa: Prices, Bundles & USSD Codes',
+      description: 'Compare Vodacom prepaid data deals, Vodacom data prices, data bundles and USSD routes before you buy in South Africa.',
+      heroHeading: 'Vodacom Prepaid Data Deals & Prices'
     },
     'cell-c': {
       title: 'Cell C Data Deals, Bundles & USSD Codes in South Africa',
@@ -213,11 +213,35 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
       { href: '/guides/how-to-check-vodacom-airtime-balance/', label: 'How to check Vodacom airtime balance', description: 'Confirm airtime and troubleshoot deductions.' }
     ]
   };
+  const fixGuideLinksBySlug: Record<string, Array<{ href: string; label: string; description: string }>> = {
+    mtn: [
+      { href: '/fix/mtn-data-not-working/', label: 'MTN data not working', description: 'Check balance, APN, signal, and account status before topping up again.' },
+      { href: '/fix/lte-router-connected-no-internet/', label: 'LTE router connected but no internet', description: 'Troubleshoot router Wi-Fi, SIM, APN, and LTE status.' }
+    ],
+    vodacom: [
+      { href: '/fix/vodacom-data-not-working/', label: 'Vodacom data not working', description: 'Work through Vodacom balance, APN, signal, and account checks.' },
+      { href: '/fix/stop-wasp-services-vodacom/', label: 'Stop WASP services on Vodacom', description: 'Use this when Vodacom airtime keeps dropping unexpectedly.' }
+    ],
+    'cell-c': [
+      { href: '/fix/cell-c-apn-settings/', label: 'Cell C APN settings', description: 'Check the Cell C mobile-data profile on phones and LTE routers.' },
+      { href: '/fix/cell-c-data-not-working/', label: 'Cell C data not working', description: 'Troubleshoot Cell C balance, APN, signal, and account status.' }
+    ],
+    telkom: [
+      { href: '/fix/telkom-data-not-working/', label: 'Telkom data not working', description: 'Check Telkom APN, balance, coverage, and router status.' },
+      { href: '/fix/lte-router-apn-settings-south-africa/', label: 'LTE router APN settings', description: 'Use this after changing SIMs or router network profiles.' }
+    ],
+    rain: [
+      { href: '/fix/rain-5g-not-working/', label: 'Rain 5G not working', description: 'Check Rain account status, router placement, and signal strength.' },
+      { href: '/fix/lte-router-connected-no-internet/', label: 'LTE router connected but no internet', description: 'Separate local Wi-Fi from SIM, APN, and LTE connection issues.' },
+      { href: '/fix/lte-router-apn-settings-south-africa/', label: 'LTE router APN settings', description: 'Check the APN profile when a router sees the SIM but will not browse.' }
+    ]
+  };
   const operatorActionLinks = [
     ...(howToBuyGuideHref
       ? [{ href: howToBuyGuideHref, label: `How to buy ${network.name} data`, description: `Step-by-step buy flow for ${network.name}.` }]
       : []),
     ...(balanceGuideLinksBySlug[networkSlug] || []),
+    ...(fixGuideLinksBySlug[networkSlug] || []),
     { href: '/airtime-advance-codes/', label: `${network.name} airtime advance codes`, description: 'Check borrow-airtime routes, eligibility, fees and repayment notes.' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Keep track of active bundles and expiry.' },
     { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals South Africa', description: 'Compare best-value prepaid bundle options.' },
@@ -323,6 +347,15 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           sources={`${network.name} public bundle pages, app or USSD self-service routes, listed prepaid bundles, and DataCost comparison tables.`}
           className="mb-12"
         />
+
+        {networkSlug === 'vodacom' && (
+          <section className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
+            <h2 className="text-2xl font-black tracking-tighter mb-4">Quick Answer</h2>
+            <p className="text-slate-700 font-medium leading-relaxed">
+              Use this page when the intent is <strong>Vodacom prepaid data deals</strong>, <strong>Vodacom data prices</strong>, or <strong>Vodacom data bundles</strong>. For the broader market entry point, start on the <a href="/" className="text-[#1b6d24] font-semibold hover:underline">homepage</a>. For the deeper cheapest-data comparison, open <a href="/guides/cheapest-data-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">cheapest data in South Africa</a>. If you need codes rather than prices, use the <a href="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">USSD directory</a>.
+            </p>
+          </section>
+        )}
 
         {network.name === 'Rain' && (
           <section className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">

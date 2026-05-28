@@ -167,6 +167,26 @@ const networkMeta: Record<string, { apn: string; support: string; router: string
   }
 };
 
+const providerSlugByName: Record<string, string> = {
+  Vodacom: 'vodacom',
+  MTN: 'mtn',
+  Telkom: 'telkom',
+  'Cell C': 'cell-c',
+  Rain: 'rain'
+};
+
+function getProviderFixSlug(provider: string, suffix: 'apn-settings' | 'data-not-working' | 'lte-router-no-internet'): string {
+  if (provider === 'Rain' && suffix === 'data-not-working') {
+    return 'rain-5g-not-working';
+  }
+
+  if (provider === 'Rain' && suffix === 'lte-router-no-internet') {
+    return 'rain-router-no-internet';
+  }
+
+  return `${providerSlugByName[provider] || provider.toLowerCase().replace(/\s+/g, '-')}-${suffix}`;
+}
+
 function titleCaseFromSlug(slug: string): string {
   const upperWords = new Set(['apn', 'mtn', 'lte', 'sim', 'wi-fi', 'dstv', 'e01', 'e16', 'e17', 'e19', 'e30', 'e32', 'e50', 'e52', 'e72', 'e73', 'e74', 'krn1', 'krn2', 'tid', 'otp', 'wasp', '5g', '192', '168']);
   return slug
@@ -256,8 +276,8 @@ function apnPage(provider: string, slug: string): FixPage {
       }
     ],
     relatedFixSlugs: [
-      `${slug.split('-')[0]}-data-not-working`,
-      `${slug.split('-')[0]}-lte-router-no-internet`,
+      getProviderFixSlug(provider, 'data-not-working'),
+      getProviderFixSlug(provider, 'lte-router-no-internet'),
       'mobile-data-on-but-not-working',
       'lte-router-apn-settings-south-africa'
     ],
@@ -331,8 +351,8 @@ function mobileProblemPage(provider: string, slug: string, problem: string): Fix
       }
     ],
     relatedFixSlugs: [
-      `${slug.split('-')[0]}-apn-settings`,
-      `${slug.split('-')[0]}-lte-router-no-internet`,
+      getProviderFixSlug(provider, 'apn-settings'),
+      getProviderFixSlug(provider, 'lte-router-no-internet'),
       'mobile-data-on-but-not-working',
       'phone-says-no-internet-south-africa'
     ],
@@ -1300,6 +1320,166 @@ const priorityPageOverrides: Record<string, FixPageOverride> = {
   }
 };
 
+const relatedFixGraphAdditions: Record<string, string[]> = {
+  'mobile-data-on-but-not-working': [
+    'vodacom-data-not-working',
+    'mtn-data-not-working',
+    'cell-c-data-not-working',
+    'rain-5g-not-working',
+    'lte-router-connected-no-internet'
+  ],
+  'phone-says-no-internet-south-africa': [
+    'mobile-data-on-but-not-working',
+    'lte-router-connected-no-internet',
+    'router-wifi-working-but-no-internet',
+    'vodacom-data-not-working',
+    'mtn-data-not-working'
+  ],
+  'mobile-hotspot-not-working-south-africa': [
+    'mobile-data-on-but-not-working',
+    'phone-says-no-internet-south-africa',
+    'lte-router-connected-no-internet',
+    'vodacom-data-balance-check',
+    'mtn-data-balance-check'
+  ],
+  'whatsapp-not-working-on-mobile-data': [
+    'mobile-data-on-but-not-working',
+    'phone-says-no-internet-south-africa',
+    'vodacom-data-not-working',
+    'mtn-data-not-working',
+    'cell-c-data-not-working'
+  ],
+  'cannot-receive-otp-mobile-data': [
+    'mobile-data-on-but-not-working',
+    'phone-says-no-internet-south-africa',
+    'how-to-check-your-own-number-south-africa',
+    'vodacom-data-not-working',
+    'mtn-data-not-working'
+  ],
+  'vodacom-data-not-working': ['vodacom-apn-settings', 'vodacom-data-balance-check', 'lte-router-connected-no-internet'],
+  'mtn-data-not-working': ['mtn-apn-settings', 'mtn-data-balance-check', 'lte-router-connected-no-internet'],
+  'telkom-data-not-working': ['telkom-apn-settings', 'telkom-data-balance-check', 'lte-router-connected-no-internet'],
+  'cell-c-data-not-working': ['cell-c-apn-settings', 'cell-c-data-balance-check', 'cell-c-lte-router-no-internet', 'lte-router-connected-no-internet'],
+  'cell-c-apn-settings': ['cell-c-data-not-working', 'cell-c-lte-router-no-internet', 'cell-c-data-balance-check'],
+  'rain-apn-settings': ['rain-5g-not-working', 'rain-router-no-internet', 'lte-router-connected-no-internet'],
+  'rain-5g-not-working': ['rain-router-no-internet', 'rain-apn-settings', 'rain-balance-check', 'lte-router-connected-no-internet'],
+  'vodacom-airtime-balance-check': ['airtime-disappearing-south-africa', 'stop-wasp-services-vodacom', 'vodacom-data-balance-check'],
+  'mtn-airtime-balance-check': ['airtime-disappearing-south-africa', 'stop-wasp-services-mtn', 'mtn-data-balance-check'],
+  'telkom-airtime-balance-check': ['airtime-disappearing-south-africa', 'stop-wasp-services-telkom', 'telkom-data-balance-check'],
+  'cell-c-airtime-balance-check': ['airtime-disappearing-south-africa', 'stop-wasp-services-cell-c', 'cell-c-data-balance-check'],
+  'vodacom-data-balance-check': ['vodacom-data-not-working', 'vodacom-apn-settings', 'stop-wasp-services-vodacom'],
+  'mtn-data-balance-check': ['mtn-data-not-working', 'mtn-apn-settings', 'stop-wasp-services-mtn'],
+  'telkom-data-balance-check': ['telkom-data-not-working', 'telkom-apn-settings', 'stop-wasp-services-telkom'],
+  'cell-c-data-balance-check': ['cell-c-data-not-working', 'cell-c-apn-settings', 'stop-wasp-services-cell-c'],
+  'rain-balance-check': ['rain-5g-not-working', 'rain-router-no-internet', 'rain-apn-settings'],
+  'airtime-disappearing-south-africa': [
+    'stop-wasp-services-vodacom',
+    'stop-wasp-services-mtn',
+    'stop-wasp-services-telkom',
+    'stop-wasp-services-cell-c',
+    'vodacom-airtime-balance-check'
+  ],
+  'stop-wasp-services-vodacom': ['airtime-disappearing-south-africa', 'vodacom-airtime-balance-check', 'vodacom-data-balance-check'],
+  'stop-wasp-services-mtn': ['airtime-disappearing-south-africa', 'mtn-airtime-balance-check', 'mtn-data-balance-check'],
+  'stop-wasp-services-telkom': ['airtime-disappearing-south-africa', 'telkom-airtime-balance-check', 'telkom-data-balance-check'],
+  'stop-wasp-services-cell-c': ['airtime-disappearing-south-africa', 'cell-c-airtime-balance-check', 'cell-c-data-balance-check'],
+  'lte-router-connected-no-internet': [
+    'lte-router-apn-settings-south-africa',
+    'lte-router-sim-not-detected',
+    'lte-router-red-light-no-internet',
+    'router-wifi-working-but-no-internet',
+    'lte-router-slow-internet'
+  ],
+  'lte-router-apn-settings-south-africa': [
+    'how-to-change-router-apn',
+    'vodacom-apn-settings',
+    'mtn-apn-settings',
+    'cell-c-apn-settings',
+    'rain-apn-settings'
+  ],
+  'lte-router-sim-not-detected': ['lte-router-connected-no-internet', 'lte-router-apn-settings-south-africa', 'huawei-router-login-192-168-8-1'],
+  'lte-router-red-light-no-internet': ['lte-router-connected-no-internet', 'lte-router-sim-not-detected', 'lte-router-slow-internet'],
+  'lte-router-slow-internet': ['lte-router-connected-no-internet', 'lte-router-red-light-no-internet', 'rain-5g-not-working'],
+  'router-wifi-working-but-no-internet': ['lte-router-connected-no-internet', 'lte-router-apn-settings-south-africa', 'rain-router-no-internet'],
+  'how-to-change-router-apn': ['lte-router-apn-settings-south-africa', 'lte-router-connected-no-internet', 'vodacom-apn-settings', 'mtn-apn-settings'],
+  'huawei-router-login-192-168-8-1': ['lte-router-connected-no-internet', 'lte-router-apn-settings-south-africa', 'lte-router-sim-not-detected'],
+  'huawei-router-reset-south-africa': ['huawei-router-login-192-168-8-1', 'lte-router-connected-no-internet', 'lte-router-apn-settings-south-africa'],
+  'zte-router-login-south-africa': ['lte-router-connected-no-internet', 'lte-router-apn-settings-south-africa', 'lte-router-sim-not-detected'],
+  'prepaid-electricity-token-not-loading': [
+    'prepaid-meter-token-rejected',
+    'prepaid-meter-error-30',
+    'prepaid-electricity-bought-but-no-token',
+    'prepaid-token-wrong-meter-number',
+    'prepaid-meter-token-loaded-but-no-electricity'
+  ],
+  'prepaid-meter-token-rejected': [
+    'prepaid-electricity-token-not-loading',
+    'prepaid-meter-error-30',
+    'prepaid-token-wrong-meter-number',
+    'prepaid-meter-krn1-krn2-check',
+    'prepaid-meter-tid-rollover-explained'
+  ],
+  'prepaid-meter-error-30': [
+    'prepaid-meter-token-rejected',
+    'prepaid-electricity-token-not-loading',
+    'prepaid-meter-krn1-krn2-check',
+    'prepaid-meter-tid-rollover-explained',
+    'prepaid-meter-communication-error'
+  ],
+  'prepaid-electricity-bought-but-no-token': [
+    'prepaid-electricity-token-not-loading',
+    'prepaid-meter-token-rejected',
+    'prepaid-token-wrong-meter-number',
+    'prepaid-meter-says-used'
+  ],
+  'prepaid-token-wrong-meter-number': [
+    'prepaid-meter-token-rejected',
+    'prepaid-electricity-token-not-loading',
+    'prepaid-electricity-bought-but-no-token',
+    'prepaid-meter-says-used'
+  ],
+  'prepaid-meter-says-used': ['prepaid-electricity-token-not-loading', 'prepaid-token-wrong-meter-number', 'prepaid-electricity-bought-but-no-token'],
+  'prepaid-meter-token-loaded-but-no-electricity': [
+    'prepaid-electricity-token-not-loading',
+    'prepaid-meter-says-connect',
+    'prepaid-meter-over-power-error',
+    'prepaid-meter-communication-error'
+  ],
+  'prepaid-meter-says-connect': ['prepaid-meter-communication-error', 'prepaid-meter-ciu-not-paired', 'prepaid-meter-keypad-not-working'],
+  'prepaid-meter-communication-error': ['prepaid-meter-says-connect', 'prepaid-meter-ciu-not-paired', 'prepaid-meter-keypad-not-working', 'prepaid-meter-blank-screen'],
+  'prepaid-meter-ciu-not-paired': ['prepaid-meter-communication-error', 'prepaid-meter-says-connect', 'prepaid-meter-keypad-not-working'],
+  'prepaid-meter-keypad-not-working': ['prepaid-meter-low-battery', 'prepaid-meter-blank-screen', 'prepaid-meter-communication-error'],
+  'prepaid-meter-low-battery': ['prepaid-meter-keypad-not-working', 'prepaid-meter-blank-screen', 'prepaid-meter-says-connect'],
+  'prepaid-meter-blank-screen': ['prepaid-meter-low-battery', 'prepaid-meter-keypad-not-working', 'prepaid-meter-communication-error'],
+  'prepaid-meter-krn1-krn2-check': ['prepaid-meter-tid-rollover-explained', 'prepaid-meter-token-rejected', 'prepaid-meter-error-30'],
+  'prepaid-meter-tid-rollover-explained': ['prepaid-meter-krn1-krn2-check', 'prepaid-meter-token-rejected', 'prepaid-meter-error-30'],
+  'prepaid-meter-e01-error': ['prepaid-meter-token-rejected', 'prepaid-meter-error-30', 'prepaid-meter-communication-error'],
+  'prepaid-meter-error-77': ['prepaid-meter-error-30', 'prepaid-meter-token-rejected', 'prepaid-meter-communication-error'],
+  'prepaid-meter-not-act-error': ['prepaid-meter-token-rejected', 'prepaid-meter-error-30', 'prepaid-meter-krn1-krn2-check'],
+  'prepaid-meter-over-power-error': ['prepaid-meter-token-loaded-but-no-electricity', 'prepaid-meter-error-77', 'prepaid-electricity-token-not-loading'],
+  'prepaid-meter-tamper-error': ['prepaid-meter-token-rejected', 'prepaid-meter-error-30', 'prepaid-meter-not-act-error'],
+  'dstv-e48-32-error': ['dstv-no-signal-after-rain', 'dstv-e74-error', 'dstv-e50-error', 'openview-e52-searching-for-signal'],
+  'dstv-payment-made-still-not-working': ['dstv-e16-error', 'dstv-e30-error', 'dstv-channels-missing-after-payment', 'dstv-smartcard-error'],
+  'dstv-e16-error': ['dstv-payment-made-still-not-working', 'dstv-channels-missing-after-payment', 'dstv-smartcard-error'],
+  'dstv-e17-error': ['dstv-smartcard-error', 'dstv-e16-error', 'dstv-payment-made-still-not-working'],
+  'dstv-e19-error': ['dstv-payment-made-still-not-working', 'dstv-e30-error', 'dstv-channels-missing-after-payment'],
+  'dstv-e30-error': ['dstv-payment-made-still-not-working', 'dstv-channels-missing-after-payment', 'dstv-e16-error'],
+  'dstv-e32-error': ['dstv-payment-made-still-not-working', 'dstv-smartcard-error', 'dstv-e16-error'],
+  'dstv-e50-error': ['dstv-e48-32-error', 'dstv-no-signal-after-rain', 'dstv-e74-error'],
+  'dstv-e72-error': ['dstv-smartcard-error', 'dstv-payment-made-still-not-working', 'dstv-e16-error'],
+  'dstv-e73-error': ['dstv-e48-32-error', 'dstv-no-signal-after-rain', 'dstv-e74-error'],
+  'dstv-e74-error': ['dstv-e48-32-error', 'dstv-no-signal-after-rain', 'dstv-e50-error'],
+  'dstv-no-signal-after-rain': ['dstv-e48-32-error', 'dstv-e74-error', 'openview-e52-searching-for-signal'],
+  'dstv-smartcard-error': ['dstv-e16-error', 'dstv-payment-made-still-not-working', 'dstv-e72-error'],
+  'dstv-decoder-not-booting': ['dstv-smartcard-error', 'dstv-payment-made-still-not-working', 'dstv-e30-error'],
+  'dstv-channels-missing-after-payment': ['dstv-payment-made-still-not-working', 'dstv-e16-error', 'dstv-e30-error'],
+  'openview-e52-searching-for-signal': ['openview-no-channels', 'openview-only-channel-100', 'openview-activation-not-working', 'dstv-e48-32-error'],
+  'openview-error-200': ['openview-activation-not-working', 'openview-no-channels', 'openview-e52-searching-for-signal'],
+  'openview-no-channels': ['openview-e52-searching-for-signal', 'openview-only-channel-100', 'openview-activation-not-working'],
+  'openview-only-channel-100': ['openview-activation-not-working', 'openview-no-channels', 'openview-e52-searching-for-signal'],
+  'openview-activation-not-working': ['openview-only-channel-100', 'openview-error-200', 'openview-e52-searching-for-signal']
+};
+
 function applyPriorityOverride(page: FixPage): FixPage {
   const override = priorityPageOverrides[page.slug];
   if (!override) return page;
@@ -1318,11 +1498,16 @@ function applyPriorityOverride(page: FixPage): FixPage {
   };
 }
 
+function getMergedRelatedFixSlugs(page: FixPage): string[] {
+  const slugs = [...(relatedFixGraphAdditions[page.slug] ?? []), ...page.relatedFixSlugs];
+  return slugs.filter((slug, index) =>
+    slug !== page.slug && slugs.indexOf(slug) === index && pages.some((candidate) => candidate.slug === slug)
+  );
+}
+
 export const fixPages = pages.map(applyPriorityOverride).map((page) => ({
   ...page,
-  relatedFixSlugs: page.relatedFixSlugs.filter((slug, index, slugs) =>
-    slug !== page.slug && slugs.indexOf(slug) === index && pages.some((candidate) => candidate.slug === slug)
-  )
+  relatedFixSlugs: getMergedRelatedFixSlugs(page)
 }));
 
 export const fixPagesBySlug = fixPages.reduce<Record<string, FixPage>>((acc, page) => {

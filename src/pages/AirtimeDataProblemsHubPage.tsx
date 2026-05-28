@@ -36,8 +36,28 @@ const problemPages = [
     group: 'Data issues'
   },
   {
+    href: '/fix/mobile-data-on-but-not-working/',
+    label: 'Mobile data is on but not working',
+    group: 'Data issues'
+  },
+  {
+    href: '/fix/vodacom-data-not-working/',
+    label: 'Vodacom data not working',
+    group: 'Data issues'
+  },
+  {
+    href: '/fix/mtn-data-not-working/',
+    label: 'MTN data not working',
+    group: 'Data issues'
+  },
+  {
     href: '/guides/how-to-stop-airtime-being-used-automatically/',
     label: 'How to stop airtime being used automatically',
+    group: 'Airtime issues'
+  },
+  {
+    href: '/fix/airtime-disappearing-south-africa/',
+    label: 'Airtime disappearing quick fix',
     group: 'Airtime issues'
   },
   {
@@ -63,6 +83,11 @@ const problemPages = [
   {
     href: '/guides/how-to-stop-wasp-services-south-africa/',
     label: 'How to stop WASP services in South Africa',
+    group: 'Subscription issues'
+  },
+  {
+    href: '/fix/stop-wasp-services-vodacom/',
+    label: 'Stop WASP services on Vodacom',
     group: 'Subscription issues'
   }
 ];
@@ -294,4 +319,3 @@ export const AirtimeDataProblemsHubPage: React.FC<AirtimeDataProblemsHubPageProp
       <MobileNav onScrollTo={onScrollTo} activeSection="guides" />    </div>
   );
 };
-

@@ -485,6 +485,8 @@ export const guides: Guide[] = [
     ],
     nextStepsTitle: 'Useful Next Steps on DataCost',
     nextSteps: [
+      { href: '/fix/mobile-data-on-but-not-working/', label: 'Mobile Data On But Not Working', description: 'Use the quick fix if signal shows but browsing still fails.', action: 'route' },
+      { href: '/fix/lte-router-connected-no-internet/', label: 'LTE Router Connected but No Internet', description: 'Use this if the data drain issue is happening through a router.', action: 'route' },
       { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Diagnose airtime deductions and out-of-bundle risk.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
       { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Rule out recurring subscription deductions.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },
       { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions', description: 'Use the full cancellation steps if needed.', action: 'route' },
@@ -776,6 +778,8 @@ export const guides: Guide[] = [
     ],
     nextStepsTitle: 'Need the Exact Actions? Use These Pages',
     nextSteps: [
+      { href: '/fix/stop-wasp-services-vodacom/', label: 'Stop WASP Services on Vodacom', description: 'Vodacom-specific quick checks for premium-service deductions.', action: 'route' },
+      { href: '/fix/airtime-disappearing-south-africa/', label: 'Airtime Disappearing Quick Fix', description: 'Use this when the exact deduction source is still unclear.', action: 'route' },
       { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions (Full Step-by-Step)', description: 'Use this for the detailed cancellation workflow by network.', action: 'route' },
       { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Broader troubleshooting guide for recurring airtime loss.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
       { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes Hub', description: 'Find balance and self-service codes quickly.', action: 'route' },
@@ -1058,6 +1062,9 @@ export const guides: Guide[] = [
     ],
     nextStepsTitle: 'Balance checks and network-specific fixes',
     nextSteps: [
+      { href: '/fix/mobile-data-on-but-not-working/', label: 'Mobile Data On But Not Working', description: 'Start here when data shows connected but pages will not load.', action: 'route' },
+      { href: '/fix/vodacom-data-not-working/', label: 'Vodacom Data Not Working', description: 'Vodacom-specific checks for APN, balance, signal and account status.', action: 'route' },
+      { href: '/fix/mtn-data-not-working/', label: 'MTN Data Not Working', description: 'MTN-specific checks before buying another bundle.', action: 'route' },
       { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Start with a general balance-check workflow before buying again.', action: 'route' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Use the main balance and self-service shortcuts for all major networks.', action: 'route' },
       { href: '/guides/why-is-my-data-disappearing-vodacom/', label: 'Vodacom Data Disappearing Fix Guide', description: 'Vodacom-only causes, USSD checks, and MyVodacom workflow.', action: 'guide', slug: 'why-is-my-data-disappearing-vodacom' },
@@ -1205,6 +1212,8 @@ export const guides: Guide[] = [
     ],
     nextStepsTitle: 'Vodacom Internal Links',
     nextSteps: [
+      { href: '/fix/vodacom-data-not-working/', label: 'Vodacom Data Not Working', description: 'Use the direct fix when Vodacom signal is present but data will not browse.', action: 'route' },
+      { href: '/fix/stop-wasp-services-vodacom/', label: 'Stop WASP Services on Vodacom', description: 'Check recurring premium services if airtime or data value keeps dropping.', action: 'route' },
       { href: '/guides/why-is-my-data-disappearing-south-africa/', label: 'South Africa Parent Guide: Why Data Disappears', description: 'Use the national overview for cross-network causes and baseline checks.', action: 'route' },
       { href: '/guides/airtime-data-problems-south-africa/', label: 'Airtime & Data Problems Hub (South Africa)', description: 'Open the full problem-cluster hub for related diagnostics.', action: 'route' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa: Vodacom Checks', description: 'Open the USSD reference for balance and troubleshooting shortcuts.', action: 'route' },
@@ -1305,6 +1314,8 @@ export const guides: Guide[] = [
     ],
     nextStepsTitle: 'MTN Internal Links',
     nextSteps: [
+      { href: '/fix/mtn-data-not-working/', label: 'MTN Data Not Working', description: 'Use the direct MTN fix when signal is present but browsing fails.', action: 'route' },
+      { href: '/fix/stop-wasp-services-mtn/', label: 'Stop WASP Services on MTN', description: 'Check recurring premium services if airtime value keeps dropping.', action: 'route' },
       { href: '/guides/why-is-my-data-disappearing-south-africa/', label: 'South Africa Parent Guide: Why Data Disappears', description: 'See the broader national diagnosis flow and compare behaviours across networks.', action: 'route' },
       { href: '/guides/airtime-data-problems-south-africa/', label: 'Airtime & Data Problems Hub (South Africa)', description: 'Return to the full problem-cluster hub for adjacent fixes.', action: 'route' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa: MTN Checks', description: 'Use this page for MTN balance and service shortcuts.', action: 'route' },

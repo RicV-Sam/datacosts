@@ -68,6 +68,15 @@ const fixProblemLinks = [
   }
 ];
 
+const priorityFixLinks = [
+  { href: '/fix/mobile-data-on-but-not-working/', label: 'Mobile data is on but not working', description: 'Start here when signal shows but apps will not load.' },
+  { href: '/fix/vodacom-data-not-working/', label: 'Vodacom data not working', description: 'Check balance, APN, signal, and account status.' },
+  { href: '/fix/mtn-data-not-working/', label: 'MTN data not working', description: 'Troubleshoot MTN mobile data before topping up again.' },
+  { href: '/fix/cell-c-apn-settings/', label: 'Cell C APN settings', description: 'Fix profile issues on phones and LTE routers.' },
+  { href: '/fix/rain-5g-not-working/', label: 'Rain 5G not working', description: 'Check Rain router placement, account, and signal.' },
+  { href: '/fix/stop-wasp-services-vodacom/', label: 'Stop WASP services on Vodacom', description: 'Use this when Vodacom airtime keeps dropping.' }
+];
+
 export const HomePage: React.FC<HomePageProps> = ({
   onNavigate,
   onScrollTo,
@@ -75,8 +84,8 @@ export const HomePage: React.FC<HomePageProps> = ({
   selectedNetwork,
   setSelectedNetwork
 }) => {
-  const pageTitle = 'Compare Data Deals South Africa: Cell C, Telkom, MTN & Vodacom';
-  const metaDescription = 'Compare Cell C, Telkom, MTN, Vodacom and Rain data deals in South Africa. Check prices, USSD pages and guides before choosing a bundle.';
+  const pageTitle = 'Cheapest Data in South Africa: Compare Cell C, Telkom, MTN & Vodacom';
+  const metaDescription = 'Find the cheapest data in South Africa, compare Cell C data deals, and use MTN, Vodacom, Telkom and Cell C guides before choosing a bundle.';
   const canonicalUrl = SITE_URL;
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/');
@@ -176,9 +185,16 @@ export const HomePage: React.FC<HomePageProps> = ({
         <Hero onScrollTo={onScrollTo} />
 
         <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-4 md:p-6 shadow-sm">
+          <h2 className="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-3">Quick Answer</h2>
+          <p className="text-sm text-slate-700 leading-relaxed">
+            Use the homepage as the broad entry point for <strong>cheapest data in South Africa</strong> and network discovery. If you want the deeper comparison answer, open the <a href="/guides/cheapest-data-south-africa/" className="font-bold text-[#1b6d24] hover:underline">cheapest data in South Africa guide</a>. If you already know the operator intent, jump to <a href="/ussd-codes-south-africa/" className="font-bold text-[#1b6d24] hover:underline">USSD codes South Africa</a> or the <a href="/network/vodacom/" className="font-bold text-[#1b6d24] hover:underline">Vodacom data prices page</a>.
+          </p>
+        </section>
+
+        <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-4 md:p-6 shadow-sm">
           <h2 className="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-3">Quick Tools</h2>
           <p className="text-sm text-slate-700 leading-relaxed mb-4">
-            Start with network comparison, then use the calculator, USSD directory, and buying guides to match Cell C, Telkom, MTN, Vodacom or Rain data to your budget and usage.
+            Start with cheapest-data discovery, then use the calculator, USSD directory, and network pages to match Cell C, Telkom, MTN, Vodacom or Rain data to your budget and usage.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <button
@@ -207,7 +223,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </button>
           </div>
           <p className="text-sm text-slate-700 leading-relaxed mt-4">
-            Want the detailed answer to which network is cheapest? Read the <a href="/guides/cheapest-data-south-africa/" className="font-bold text-[#1b6d24] hover:underline">cheapest data in South Africa</a> guide before comparing bundles below.
+            Want the detailed answer to which network is cheapest? Read the <a href="/guides/cheapest-data-south-africa/" className="font-bold text-[#1b6d24] hover:underline">cheapest data in South Africa</a> guide for the deeper comparison, then come back here for operator discovery and quick next steps.
           </p>
         </section>
 
@@ -288,6 +304,16 @@ export const HomePage: React.FC<HomePageProps> = ({
             >
               How to stop WASP services and premium deductions
             </a>
+            {priorityFixLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-4 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
+              >
+                <span className="block">{link.label}</span>
+                <span className="mt-1 block text-xs font-medium leading-relaxed text-slate-500">{link.description}</span>
+              </a>
+            ))}
           </div>
         </section>
 

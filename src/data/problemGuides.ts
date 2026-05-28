@@ -129,6 +129,21 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
         description: 'Check balances and bundle status fast.'
       },
       {
+        href: '/fix/mobile-data-on-but-not-working/',
+        label: 'Mobile data is on but not working',
+        description: 'Use the quick fix when signal shows but browsing fails.'
+      },
+      {
+        href: '/fix/vodacom-data-not-working/',
+        label: 'Vodacom data not working',
+        description: 'Vodacom-specific checks for balance, APN and account status.'
+      },
+      {
+        href: '/fix/mtn-data-not-working/',
+        label: 'MTN data not working',
+        description: 'MTN-specific checks before buying another bundle.'
+      },
+      {
         href: '/guides/why-is-my-airtime-disappearing-south-africa/',
         label: 'Why airtime disappears in South Africa',
         description: 'Diagnose related airtime drain patterns.'
@@ -232,6 +247,16 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
         href: '/ussd-codes-south-africa/',
         label: 'South Africa USSD codes directory',
         description: 'Launch account and subscription checks quickly.'
+      },
+      {
+        href: '/fix/airtime-disappearing-south-africa/',
+        label: 'Airtime disappearing quick fix',
+        description: 'Check recurring charges, data fallback, and balance clues.'
+      },
+      {
+        href: '/fix/stop-wasp-services-vodacom/',
+        label: 'Stop WASP services on Vodacom',
+        description: 'Use this if Vodacom airtime keeps dropping after recharges.'
       },
       {
         href: '/guides/how-to-stop-wasp-vas-charges-south-africa/',
@@ -342,6 +367,16 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
         description: 'Open current service and support menus by network.'
       },
       {
+        href: '/fix/stop-wasp-services-vodacom/',
+        label: 'Stop WASP services on Vodacom',
+        description: 'Open the Vodacom-specific quick fix for premium services.'
+      },
+      {
+        href: '/fix/airtime-disappearing-south-africa/',
+        label: 'Airtime disappearing quick fix',
+        description: 'Use this when the deduction source is still unclear.'
+      },
+      {
         href: '/guides/how-to-check-subscriptions-on-mtn/',
         label: 'How to check subscriptions on MTN',
         description: 'Use MTN-specific recurring-service checks.'
@@ -448,6 +483,11 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
         href: '/ussd-codes-south-africa/',
         label: 'South Africa USSD codes directory',
         description: 'Quick account and service checks.'
+      },
+      {
+        href: '/fix/stop-wasp-services-mtn/',
+        label: 'Stop WASP services on MTN',
+        description: 'Use the MTN quick fix after checking active services.'
       },
       {
         href: '/guides/how-to-cancel-subscriptions-mtn-vodacom-telkom/',
@@ -558,6 +598,11 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
         description: 'Access updated service and support menus.'
       },
       {
+        href: '/fix/stop-wasp-services-vodacom/',
+        label: 'Stop WASP services on Vodacom',
+        description: 'Use the Vodacom quick fix after checking active services.'
+      },
+      {
         href: '/guides/how-to-cancel-subscriptions-mtn-vodacom-telkom/',
         label: 'Cancel subscriptions across SA networks',
         description: 'Apply full cancellation and proof workflow.'
@@ -664,6 +709,16 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
         href: '/ussd-codes-south-africa/',
         label: 'South Africa USSD codes directory',
         description: 'Use updated service management shortcuts.'
+      },
+      {
+        href: '/fix/stop-wasp-services-vodacom/',
+        label: 'Stop WASP services on Vodacom',
+        description: 'Vodacom-specific quick checks for recurring premium charges.'
+      },
+      {
+        href: '/fix/airtime-disappearing-south-africa/',
+        label: 'Airtime disappearing quick fix',
+        description: 'Use this when charges may be WASP, airtime, or data fallback.'
       },
       {
         href: '/guides/how-to-cancel-subscriptions-mtn-vodacom-telkom/',
@@ -774,6 +829,16 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
         description: 'Run fast balance and bundle checks.'
       },
       {
+        href: '/fix/mobile-data-on-but-not-working/',
+        label: 'Mobile data is on but not working',
+        description: 'Check APN, balance, signal, and account status in order.'
+      },
+      {
+        href: '/fix/lte-router-connected-no-internet/',
+        label: 'LTE router connected but no internet',
+        description: 'Use this if the problem is on a home LTE router.'
+      },
+      {
         href: '/guides/why-is-my-data-disappearing-south-africa/',
         label: 'Why data is disappearing in South Africa',
         description: 'Use a focused diagnosis for sudden drops.'
@@ -880,6 +945,16 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
         href: '/ussd-codes-south-africa/',
         label: 'South Africa USSD codes directory',
         description: 'Run quick account checks and controls.'
+      },
+      {
+        href: '/fix/airtime-disappearing-south-africa/',
+        label: 'Airtime disappearing quick fix',
+        description: 'Confirm the immediate deduction pattern before escalating.'
+      },
+      {
+        href: '/fix/stop-wasp-services-vodacom/',
+        label: 'Stop WASP services on Vodacom',
+        description: 'A focused Vodacom path for premium-service deductions.'
       },
       {
         href: '/guides/how-to-stop-airtime-being-used-automatically/',

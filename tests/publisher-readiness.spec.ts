@@ -64,6 +64,10 @@ async function expectIndexable(page, route: string) {
   }
 }
 
+async function expectLink(page, href: string) {
+  await expect(page.locator(`a[href="${href}"]`).first()).toBeVisible();
+}
+
 test('bundled generated problem variants stay indexable for organic protection', async ({ page }) => {
   await page.goto('/data-problems/how-to-stop-wasp-charges-mtn/');
 
@@ -81,6 +85,78 @@ test('organic-protected fix directory stays indexable and discoverable', async (
   await page.goto('/sitemap/');
   await expect(page.locator('a[href="/fix/"]').first()).toBeVisible();
   await expect(page.locator('a[href="/fix/vodacom-apn-settings/"]')).toHaveCount(1);
+});
+
+test('priority fix pages remain indexable and present in XML sitemap', async ({ page, request }) => {
+  const priorityFixRoutes = [
+    '/fix/mobile-data-on-but-not-working/',
+    '/fix/mtn-data-not-working/',
+    '/fix/vodacom-data-not-working/',
+    '/fix/cell-c-apn-settings/',
+    '/fix/rain-5g-not-working/',
+    '/fix/lte-router-connected-no-internet/',
+    '/fix/lte-router-apn-settings-south-africa/',
+    '/fix/stop-wasp-services-vodacom/',
+    '/fix/airtime-disappearing-south-africa/',
+    '/fix/prepaid-electricity-token-not-loading/',
+    '/fix/prepaid-meter-error-30/',
+    '/fix/prepaid-meter-token-rejected/',
+    '/fix/dstv-e48-32-error/',
+    '/fix/dstv-payment-made-still-not-working/',
+    '/fix/openview-e52-searching-for-signal/'
+  ];
+
+  for (const route of priorityFixRoutes) {
+    await expectIndexable(page, route);
+  }
+
+  const response = await request.get('/sitemap-core.xml');
+  expect(response.ok()).toBeTruthy();
+  const sitemapXml = await response.text();
+
+  for (const route of priorityFixRoutes) {
+    expect(sitemapXml).toContain(`https://datacost.co.za${route}`);
+  }
+});
+
+test('high-value pages expose contextual links into priority fix pages', async ({ page }) => {
+  await page.goto('/');
+  await expectLink(page, '/fix/mobile-data-on-but-not-working/');
+  await expectLink(page, '/fix/stop-wasp-services-vodacom/');
+
+  await page.goto('/guides/');
+  await expectLink(page, '/fix/lte-router-connected-no-internet/');
+  await expectLink(page, '/fix/prepaid-electricity-token-not-loading/');
+  await expectLink(page, '/fix/dstv-e48-32-error/');
+
+  await page.goto('/ussd-codes-south-africa/');
+  await expectLink(page, '/fix/vodacom-data-not-working/');
+  await expectLink(page, '/fix/airtime-disappearing-south-africa/');
+
+  await page.goto('/network/vodacom/');
+  await expectLink(page, '/fix/vodacom-data-not-working/');
+  await expectLink(page, '/fix/stop-wasp-services-vodacom/');
+
+  await page.goto('/mtn-ussd-codes/');
+  await expectLink(page, '/fix/mtn-data-not-working/');
+});
+
+test('related fix graph exposes cross-links across priority clusters', async ({ page }) => {
+  await page.goto('/fix/cell-c-data-not-working/');
+  await expectLink(page, '/fix/cell-c-apn-settings/');
+
+  await page.goto('/fix/lte-router-connected-no-internet/');
+  await expectLink(page, '/fix/lte-router-sim-not-detected/');
+
+  await page.goto('/fix/prepaid-meter-error-30/');
+  await expectLink(page, '/fix/prepaid-meter-token-rejected/');
+  await expectLink(page, '/fix/prepaid-electricity-token-not-loading/');
+
+  await page.goto('/fix/dstv-payment-made-still-not-working/');
+  await expectLink(page, '/fix/dstv-e16-error/');
+
+  await page.goto('/fix/openview-e52-searching-for-signal/');
+  await expectLink(page, '/fix/openview-no-channels/');
 });
 
 test('sitemap page links review and trust surfaces', async ({ page }) => {

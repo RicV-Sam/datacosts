@@ -87,6 +87,11 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       snippet: "Use these when airtime disappears, data runs out too quickly, or you need the quickest way to audit balances and subscriptions.",
       links: [
         { slug: 'airtime-data-problems-south-africa', title: 'Airtime & Data Problems in South Africa', description: 'Cluster hub for airtime, data, and subscription fixes.', path: '/guides/airtime-data-problems-south-africa/' },
+        { slug: 'datacost-fixes', title: 'DataCost Fixes', description: 'Browse quick fixes for mobile data, USSD, routers, prepaid electricity, and decoder errors.', path: '/fix/' },
+        { slug: 'mobile-data-on-but-not-working', title: 'Mobile Data On But Not Working', description: 'Use this when signal shows but apps, browsing, or WhatsApp will not load.', path: '/fix/mobile-data-on-but-not-working/' },
+        { slug: 'lte-router-connected-no-internet', title: 'LTE Router Connected but No Internet', description: 'Troubleshoot Wi-Fi, SIM, APN, and router dashboard clues.', path: '/fix/lte-router-connected-no-internet/' },
+        { slug: 'prepaid-electricity-token-not-loading', title: 'Prepaid Electricity Token Not Loading', description: 'Safe receipt and meter checks before buying another token.', path: '/fix/prepaid-electricity-token-not-loading/' },
+        { slug: 'dstv-e48-32-error', title: 'DStv E48-32 Error', description: 'Signal-first checks for rain, cable, LNB, and dish-related symptoms.', path: '/fix/dstv-e48-32-error/' },
         { slug: 'why-is-my-airtime-disappearing-south-africa' },
         { slug: 'why-is-my-data-disappearing-south-africa', title: 'Why Is My Data Disappearing South Africa', description: 'Quick diagnosis for sudden bundle loss.', path: '/guides/why-is-my-data-disappearing-south-africa/' },
         { slug: 'how-to-stop-airtime-being-used-automatically', title: 'How to Stop Airtime Being Used Automatically', description: 'Fix recurring deductions and fallback usage.', path: '/guides/how-to-stop-airtime-being-used-automatically/' },

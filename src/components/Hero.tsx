@@ -26,7 +26,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-7xl font-black tracking-tighter text-[#031636] leading-[0.95] md:leading-[0.85] mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#031636] to-[#1b6d24]"
           >
-            Compare Data Deals in South Africa
+            Compare Cheapest Data Deals in South Africa
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollTo }) => {
             transition={{ delay: 0.2 }}
             className="text-slate-600 text-lg md:text-xl max-w-lg leading-relaxed font-medium mx-auto md:mx-0"
           >
-            Compare Cell C, Telkom, MTN, Vodacom and Rain data options, then use guides and USSD pages to save money or solve mobile problems before you buy.
+            Start with broad cheapest-data discovery across Cell C, Telkom, MTN, Vodacom and Rain, then open the deeper comparison guide or the right operator USSD page before you buy.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

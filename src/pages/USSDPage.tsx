@@ -96,9 +96,9 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = 'USSD Codes South Africa: MTN, Cell C, Telkom & Airtime Advance';
+  const pageTitle = 'USSD Codes South Africa Directory: Telkom, MTN, Cell C & Vodacom';
   const metaDescription =
-    'Find USSD codes South Africa users search for: MTN, Cell C, Telkom, Vodacom, data balance, buying data and airtime advance routes.';
+    'Use this USSD codes South Africa directory for Telkom, MTN, Cell C and Vodacom shortcuts, then open the operator page for full network-specific codes.';
   const canonicalUrl = toCanonicalUrl('/ussd-codes-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');
@@ -278,10 +278,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
 
         <header className="mb-8">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 leading-[0.9]">
-            <span className="text-[#1b6d24]">USSD Codes</span> South Africa: MTN, Cell C, Telkom and Airtime Advance
+            <span className="text-[#1b6d24]">USSD Codes</span> South Africa Directory: MTN, Telkom, Cell C and Vodacom
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Start here if you need an all-network South African USSD directory. This hub summarises MTN USSD codes, Cell C USSD codes, Telkom USSD codes, Vodacom shortcuts, and airtime advance codes, then sends you to the dedicated page when you need full operator detail.
+            Start here if you need an all-network South African USSD directory. This hub is for comparison, quick code lookup, and cross-network navigation. When the intent is operator-specific, use the dedicated MTN, Telkom, or Cell C page as the best destination for full code detail.
           </p>
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
@@ -358,7 +358,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            Use this hub to choose the right operator page first: <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN USSD codes</Link>, <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Cell C USSD codes</Link>, or <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link>. For borrow-airtime routes, use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">airtime advance codes</Link> page because eligibility, fees, and repayment rules can differ by network.
+            Use this hub for all-network comparison and quick directory intent. If the query is <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link>, <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN USSD codes</Link>, or <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Cell C USSD codes</Link>, open the dedicated operator page for the full code set. For borrow-airtime routes, use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">airtime advance codes</Link> page because eligibility, fees, and repayment rules can differ by network.
+          </p>
+          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            For network-price or bundle intent instead of code lookup, go to the <Link to="/network/vodacom/" className="font-semibold text-[#1b6d24] hover:underline">Vodacom data prices page</Link> or the <Link to="/guides/cheapest-data-south-africa/" className="font-semibold text-[#1b6d24] hover:underline">cheapest data comparison guide</Link>.
           </p>
         </section>
 
@@ -383,6 +386,22 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
             <Link to="/guides/how-to-stop-wasp-services-south-africa/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
               <div className="font-black text-slate-900">How to stop WASP services</div>
               <p className="text-sm text-slate-600 mt-1">Cancel hidden subscription billing and protect future recharges.</p>
+            </Link>
+            <Link to="/fix/mobile-data-on-but-not-working/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Mobile data is on but not working</div>
+              <p className="text-sm text-slate-600 mt-1">Use this when balance checks pass but browsing still fails.</p>
+            </Link>
+            <Link to="/fix/vodacom-data-not-working/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Vodacom data not working</div>
+              <p className="text-sm text-slate-600 mt-1">Check Vodacom balance, APN, signal, and account status.</p>
+            </Link>
+            <Link to="/fix/mtn-data-not-working/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">MTN data not working</div>
+              <p className="text-sm text-slate-600 mt-1">Troubleshoot MTN data after checking USSD balances.</p>
+            </Link>
+            <Link to="/fix/stop-wasp-services-vodacom/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Stop WASP services on Vodacom</div>
+              <p className="text-sm text-slate-600 mt-1">A focused quick fix for recurring premium deductions.</p>
             </Link>
           </div>
         </section>
@@ -444,6 +463,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
             <Link to="/guides/stop-wasp-subscriptions-south-africa/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
               <div className="font-black text-slate-900">Stop WASP Subscriptions</div>
               <p className="text-sm text-slate-600 mt-1">Use this if airtime keeps disappearing in small recurring deductions.</p>
+            </Link>
+            <Link to="/fix/airtime-disappearing-south-africa/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+              <div className="font-black text-slate-900">Airtime disappearing quick fix</div>
+              <p className="text-sm text-slate-600 mt-1">Check whether deductions are WASP, data fallback, or renewals.</p>
             </Link>
           </div>
         </section>
