@@ -109,6 +109,7 @@ function externalDataProblemsPlugin(sourceDir: string): Plugin {
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
+  const puppeteerExecutablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
   const prerenderRoutes = getPrerenderRoutes();
   const redirectAliasRoutes = new Set(getRedirectAliasRoutes().map(normalizeRoute));
   validateIndexableRoutes(prerenderRoutes);
@@ -129,7 +130,10 @@ export default defineConfig(({mode}) => {
         renderer: new PuppeteerRenderer({
           renderAfterDocumentEvent: 'render-event',
           headless: true,
-          args: ['--no-sandbox', '--disable-setuid-sandbox']
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+          launchOptions: puppeteerExecutablePath
+            ? { executablePath: puppeteerExecutablePath }
+            : undefined
         }),
         postProcess(renderedRoute: any) {
           if (

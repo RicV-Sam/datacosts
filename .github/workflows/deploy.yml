@@ -69,7 +69,13 @@ jobs:
           rm -rf "$HOME/.cache/puppeteer/chrome"
           for attempt in 1 2; do
             echo "puppeteer browser install attempt $attempt"
-            if timeout 8m npx @puppeteer/browsers@2.13.0 install chrome@146.0.7680.153 --path "$HOME/.cache/puppeteer"; then
+            if browser_path=$(timeout 8m npx @puppeteer/browsers@2.13.0 install chrome@146.0.7680.153 --path "$HOME/.cache/puppeteer" --format "{{path}}"); then
+              echo "Installed Puppeteer Chrome at $browser_path"
+              if [ ! -x "$browser_path" ]; then
+                echo "Installed browser path is not executable: $browser_path"
+                exit 1
+              fi
+              echo "PUPPETEER_EXECUTABLE_PATH=$browser_path" >> "$GITHUB_ENV"
               npx @puppeteer/browsers@2.13.0 list --path "$HOME/.cache/puppeteer"
               exit 0
             fi
