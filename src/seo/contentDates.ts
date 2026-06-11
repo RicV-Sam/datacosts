@@ -97,7 +97,7 @@ const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'best-monthly-data-deals-south-africa': '2026-05-02T00:00:00.000Z',
   'best-prepaid-data-deals-south-africa': '2026-05-02T00:00:00.000Z',
   'cheap-night-data-south-africa': '2026-05-02T00:00:00.000Z',
-  'cheapest-1gb-data-south-africa': '2026-05-02T00:00:00.000Z',
+  'cheapest-1gb-data-south-africa': '2026-06-11T00:00:00.000Z',
   'cheapest-2gb-data-south-africa': '2026-05-02T00:00:00.000Z',
   'cheapest-5gb-data-south-africa': '2026-05-02T00:00:00.000Z',
   'cheapest-10gb-data-south-africa': '2026-05-02T00:00:00.000Z',
