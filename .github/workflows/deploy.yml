@@ -63,41 +63,16 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Install Puppeteer Chrome
+      - name: Configure Puppeteer Chrome
         shell: bash
         run: |
-          browser_cache="$HOME/.cache/puppeteer"
-          rm -rf "$browser_cache/chrome" "$browser_cache/chrome-headless-shell"
-          for attempt in 1 2; do
-            echo "puppeteer browser install attempt $attempt"
-            if timeout 8m npx @puppeteer/browsers@2.13.0 install chrome-headless-shell@146.0.7680.153 --path "$browser_cache"; then
-              browser_path="$(find "$browser_cache/chrome-headless-shell" -type f -name chrome-headless-shell -print -quit)"
-              if [ -z "$browser_path" ]; then
-                echo "Could not find installed chrome-headless-shell executable"
-                find "$browser_cache" -maxdepth 5 -type f -print
-                exit 1
-              fi
-              echo "Installed Puppeteer Chrome at $browser_path"
-              chmod +x "$browser_path"
-              if [ ! -x "$browser_path" ]; then
-                echo "Installed browser path is not executable: $browser_path"
-                exit 1
-              fi
-              echo "PUPPETEER_EXECUTABLE_PATH=$browser_path" >> "$GITHUB_ENV"
-              npx @puppeteer/browsers@2.13.0 list --path "$browser_cache"
-              exit 0
-            fi
-            status=$?
-            if [ "$status" -eq 124 ]; then
-              echo "puppeteer browser install attempt $attempt timed out after 8 minutes"
-            else
-              echo "puppeteer browser install attempt $attempt failed with exit code $status"
-            fi
-            if [ "$attempt" -eq 2 ]; then
-              exit 1
-            fi
-            sleep 15
-          done
+          browser_path="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$browser_path" ]; then
+            echo "No system Chrome or Chromium executable found on the runner"
+            exit 1
+          fi
+          "$browser_path" --version
+          echo "PUPPETEER_EXECUTABLE_PATH=$browser_path" >> "$GITHUB_ENV"
 
       - name: Build project
         run: npm run build
