@@ -72,6 +72,9 @@ jobs:
             echo "puppeteer browser install attempt $attempt"
             if timeout 8m npx @puppeteer/browsers@2.13.0 install chrome@146.0.7680.153 --path "$HOME/.cache/puppeteer"; then
               echo "Installed Puppeteer Chrome at $browser_path"
+              if [ -f "$browser_path" ]; then
+                chmod +x "$browser_path"
+              fi
               if [ ! -x "$browser_path" ]; then
                 echo "Installed browser path is not executable: $browser_path"
                 exit 1
