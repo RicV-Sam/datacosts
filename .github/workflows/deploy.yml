@@ -69,8 +69,8 @@ jobs:
           rm -rf "$HOME/.cache/puppeteer/chrome"
           for attempt in 1 2; do
             echo "puppeteer browser install attempt $attempt"
-            if timeout 8m npx @puppeteer/browsers@2.13.0 install chrome@146.0.7680.153; then
-              npx @puppeteer/browsers@2.13.0 list
+            if timeout 8m npx @puppeteer/browsers@2.13.0 install chrome@146.0.7680.153 --path "$HOME/.cache/puppeteer"; then
+              npx @puppeteer/browsers@2.13.0 list --path "$HOME/.cache/puppeteer"
               exit 0
             fi
             status=$?
