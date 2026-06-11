@@ -25,11 +25,12 @@ export const ussdCodesByNetwork: Record<UssdNetworkKey, UssdNetwork> = {
   vodacom: {
     name: 'Vodacom',
     codes: [
-      { label: 'Airtime Balance', code: '*100#' },
+      { label: 'Airtime Balance', code: '*135#' },
       { label: 'Data Balance', code: '*135#' },
-      { label: 'Recharge', code: '*100*01*PIN#' },
+      { label: 'Buy Data', code: '*135*2#' },
+      { label: 'Recharge', code: '*136*Voucher#' },
       { label: 'Please Call Me', code: '*140*number#' },
-      { label: 'Transfer Airtime', code: '*111*072#' }
+      { label: 'Transfer Airtime', code: '*135*1002#' }
     ]
   },
   cellc: {
@@ -55,7 +56,7 @@ export const ussdCodesByNetwork: Record<UssdNetworkKey, UssdNetwork> = {
 export const ussdNetworkOrder: UssdNetworkKey[] = ['mtn', 'vodacom', 'cellc', 'telkom'];
 
 export const ussdMostUsed = [
-  { label: 'Check Airtime Balance', code: '*136# / *100# / *101# / *188#' },
-  { label: 'Buy Data Quickly', code: '*136*2# / *135#' },
+  { label: 'Check Airtime Balance', code: '*136# / *135# / *101# / *188#' },
+  { label: 'Buy Data Quickly', code: '*136*2# / *135*2# / *147# / *180#' },
   { label: 'Send Please Call Me', code: '*121*number# / *140*number#' }
 ];

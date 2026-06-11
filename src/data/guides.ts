@@ -26,7 +26,7 @@ export const guides: Guide[] = [
     faq: [
       {
         question: 'Which network has the cheapest 1GB data?',
-        answer: 'Currently, Telkom and MTN (via Boosta deals) typically offer the cheapest 1GB bundles in South Africa, often priced between R79 and R99 for a standard 30-day bundle, or much less for shorter validity.'
+        answer: 'There is no safe fixed winner across every month, because public bundle tables and personalised offers move. Compare the current 1GB option on each network menu, then separate short-validity, weekly, and 30-day bundles before deciding.'
       },
       {
         question: 'Is 1GB of data enough for a month?',
@@ -38,7 +38,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Does MTN have a R99 1GB bundle?',
-        answer: 'Yes, MTN often has a standard 1GB bundle for around R99, but they frequently offer 1GB "Daily" or "Weekly" deals for much less (R20 - R50).'
+        answer: 'MTN 1GB pricing can change by validity period, tariff, and promotions. Check *136*2# for the standard menu and *142# for promotional offers before relying on an older R99 reference.'
       },
       {
         question: 'Can I get free 1GB data?',
@@ -114,13 +114,13 @@ export const guides: Guide[] = [
       },
       {
         title: 'Cell C: Convert Airtime',
-        description: 'Dial *147# or *101# and follow the prompts to buy data bundles from your airtime.'
+        description: 'Dial *147# and follow the menu to buy data bundles from your airtime. If you prefer, use the Cell C app or official online recharge flow instead of relying on an older shortcut.'
       }
     ],
     faq: [
       {
         question: 'Is it cheaper to buy data or use airtime directly?',
-        answer: 'It is always significantly cheaper to buy a data bundle. Out-of-bundle airtime rates can be as high as R2 per MB, while bundles can cost less than R0.10 per MB.'
+        answer: 'In most cases, yes. Buying a bundle is usually safer than letting normal airtime browsing continue after a bundle runs out, but out-of-bundle rules and rates can change, so confirm current operator terms before relying on an old rate.'
       },
       {
         question: 'Can I reverse a data purchase?',
@@ -236,9 +236,9 @@ export const guides: Guide[] = [
   {
     slug: 'best-data-deals-south-africa',
     title: 'Data Deals South Africa (2026)',
-    metaDescription: 'Find the best data deals in South Africa. We compare Vodacom Just4You, MTN Boosta, and Telkom Mo\'Nice to find you the most data for your money.',
+    metaDescription: 'Find the best data deals in South Africa. Use Vodacom Just 4 You, MTN promo offers, and Telkom Mo\'Nice-style checks to find stronger value for your usage.',
     h1: 'Best Data Deals in South Africa 2026: Top Value Bundles',
-    intro: 'Finding the best data deals in South Africa requires looking beyond the standard monthly bundles. From "Just4You" on Vodacom to "MTN Boosta" and Telkom\'s "Mo\'Nice," there are dozens of hidden promotions that offer significantly better value than what you see on a recharge voucher. We have compared the latest offers to find the best value for every type of user.',
+    intro: 'Finding the best data deals in South Africa requires looking beyond the standard monthly bundles. From Vodacom\'s Just 4 You menu to MTN promotional offers and Telkom\'s Mo\'Nice-style deals, personalised or campaign-led bundles can beat the standard public menu. Treat them as live channels to check on your own line, not as fixed national prices.',
     comparisonType: 'best-value',
     stepsTitle: 'How to Access "Hidden" Data Deals',
     steps: [
@@ -248,7 +248,7 @@ export const guides: Guide[] = [
       },
       {
         title: 'Download the Network Apps',
-        description: 'Apps like MyVodacom and MyMTN frequently offer "App-only" specials, such as double-data or heavily discounted 1GB bundles that aren\'t available via USSD.'
+        description: 'Apps like MyVodacom and MyMTN can surface app-only or tariff-specific specials that do not always appear on the main USSD path.'
       },
       {
         title: 'Look for New Player Deals',
@@ -258,11 +258,11 @@ export const guides: Guide[] = [
     faq: [
       {
         question: 'Which network currently has the best data deals?',
-        answer: 'It varies monthly, but Telkom and Rain are consistently price leaders. However, MTN and Vodacom often beat them on value through personalized "Boosta" or "Just4You" offers.'
+        answer: 'It varies by month, bundle type, and whether your SIM has personalised offers. Telkom and Rain are often strong on baseline value, while MTN and Vodacom can be competitive when your own promotional menu shows a better deal.'
       },
       {
         question: 'What are "Personalised Deals"?',
-        answer: 'These are promotional data offers created by networks using AI to analyze your usage. They offer more data for less money than standard "off-the-shelf" bundles.'
+        answer: 'These are promotional data offers tailored by the network to your usage profile, tariff, or campaign eligibility. They can offer better value than the standard menu, but they are not guaranteed to appear on every SIM.'
       },
       {
         question: 'Are weekly bundles better than monthly ones?',
@@ -1377,7 +1377,7 @@ export const guides: Guide[] = [
       {
         id: 'vodacom-just4you',
         title: 'Option 2: Just4You Personalised Deals',
-        description: 'Dial *123# to access "Just4You" deals. These are often significantly cheaper than standard bundles and are tailored to your usage patterns.'
+        description: 'Dial *123# to access Just 4 You deals. These personalised offers can be cheaper than the standard bundle menu, but the exact options and pricing depend on your own line and campaign eligibility.'
       },
       {
         id: 'vodacom-app-method',
@@ -1412,7 +1412,7 @@ export const guides: Guide[] = [
     faq: [
       {
         question: 'What is the USSD code to buy Vodacom data?',
-        answer: 'The primary USSD code is *135#. You can also use *123# for personalized Just4You deals.'
+        answer: 'The primary USSD code is *135#. You can also use *123# to check Just 4 You personalised deals.'
       },
       {
         question: 'Can I buy Vodacom data for someone else?',
@@ -1428,7 +1428,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Is there a cheap 1GB bundle on Vodacom?',
-        answer: 'Yes, Vodacom often offers 1GB "Daily" or "Weekly" bundles for under R50, while a standard 30-day 1GB bundle is usually around R85-R99.'
+        answer: 'Short-validity 1GB options can be cheaper upfront than 30-day bundles, but final pricing changes over time. Check the main *135# menu and *123# personalised offers before you buy.'
       }
     ]
   },
@@ -1448,7 +1448,7 @@ export const guides: Guide[] = [
     jumpLinksTitle: 'On This Page',
     jumpLinks: [
       { label: 'Standard USSD', anchor: 'mtn-standard-ussd' },
-      { label: 'MTN Pulse', anchor: 'mtn-pulse' },
+      { label: 'Tariff-specific offers', anchor: 'mtn-pulse' },
       { label: 'Boosta deals', anchor: 'mtn-boosta' },
       { label: 'Common mistakes', anchor: 'common-mistakes' },
       { label: 'FAQ', anchor: 'faq' }
@@ -1463,8 +1463,8 @@ export const guides: Guide[] = [
       },
       {
         id: 'mtn-pulse',
-        title: 'Method 2: MTN Pulse (For Youth)',
-        description: 'If you are under 25, dial *411# to join MTN Pulse. This gives you access to exclusive, ultra-cheap data deals like 500MB for R10.'
+        title: 'Method 2: Check tariff-specific and app offers',
+        description: 'If your line is on a youth, promo, or campaign tariff, check the MyMTN app and your current self-service menus for tariff-specific bundle access. Eligibility and entry paths can change, so do not rely on one fixed code unless MTN shows it on your own line.'
       },
       {
         id: 'mtn-boosta',
@@ -1620,7 +1620,7 @@ export const guides: Guide[] = [
       },
       {
         title: 'Method 2: Cell C App',
-        description: 'The Cell C mobile app allows for quick recharges and often features "Double Data" or "App-only" specials that provide extra value.'
+        description: 'The Cell C mobile app allows for quick recharges and can surface app-specific or promotional bundle options that do not always match the main USSD menu.'
       },
       {
         title: 'Method 3: Social Media Bundles',
@@ -1642,7 +1642,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Does Cell C have 1GB for R20?',
-        answer: 'Cell C frequently runs "Daily" or "Nite" data promotions where you can get 1GB for R10-R25. Check the *147# menu for current deals.'
+        answer: 'Cell C can run short-validity daily or night promotions, but price points can move. Check *147# and the official Cell C recharge pages for the current offer on your line before buying.'
       },
       {
         question: 'Does Cell C roaming use extra data?',

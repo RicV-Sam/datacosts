@@ -135,7 +135,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'What is the cheapest Vodacom 1GB data bundle?',
-        answer: 'On Vodacom’s public prepaid menu, the daily and weekly 1GB options are usually the cheaper entry points upfront, while the 30-day once-off 1GB bundle costs more per GB. Just 4 You can still beat listed menu pricing for some users.'
+        answer: 'On Vodacom\'s public prepaid menu, shorter-validity 1GB options can be cheaper upfront than a 30-day once-off bundle. Check the current *135# menu and *123# Just 4 You offers on your own line before relying on an older price table.'
       },
       {
         question: 'Does Vodacom have unlimited data?',
@@ -460,7 +460,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'Is Cell C cheaper for data?',
-        answer: 'Cell C is often very competitive, especially on monthly bundles and social media packs. They frequently run "Double Data" promotions that offer high value for money.'
+        answer: 'Cell C can be competitive on selected monthly, social, and promotional bundles, but the best-value option changes over time. Check the current *147# menu and Cell C app before assuming an older promotion is still live.'
       },
       {
         question: 'What is the cheapest Cell C 1GB option?',

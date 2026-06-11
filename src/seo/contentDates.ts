@@ -16,7 +16,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/mtn-ussd-codes/': '2026-05-28T00:00:00.000Z',
   '/network/': '2026-03-24T00:00:00.000Z',
   '/privacy-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
-  '/save-ussd-codes/': '2026-03-30T00:00:00.000Z',
+  '/save-ussd-codes/': '2026-06-11T00:00:00.000Z',
   '/sitemap/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/cell-c-ussd-codes/': '2026-05-28T00:00:00.000Z',
   '/telkom-ussd-codes/': '2026-05-28T00:00:00.000Z',
@@ -61,14 +61,14 @@ const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
 
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'airtime-data-saving-tips-south-africa': '2026-03-31T00:00:00.000Z',
-  'best-data-deals-south-africa': '2026-05-15T00:00:00.000Z',
+  'best-data-deals-south-africa': '2026-06-11T00:00:00.000Z',
   'cheap-night-data-south-africa': '2026-05-02T00:00:00.000Z',
-  'cheapest-1gb-data-south-africa': '2026-05-02T00:00:00.000Z',
-  'convert-airtime-to-data-south-africa': '2026-03-14T00:00:00.000Z',
-  'how-to-buy-data-cell-c': '2026-03-10T00:00:00.000Z',
-  'how-to-buy-data-mtn': '2026-05-10T00:00:00.000Z',
+  'cheapest-1gb-data-south-africa': '2026-06-11T00:00:00.000Z',
+  'convert-airtime-to-data-south-africa': '2026-06-11T00:00:00.000Z',
+  'how-to-buy-data-cell-c': '2026-06-11T00:00:00.000Z',
+  'how-to-buy-data-mtn': '2026-06-11T00:00:00.000Z',
   'how-to-buy-data-telkom': '2026-05-15T00:00:00.000Z',
-  'how-to-buy-data-vodacom': '2026-05-10T00:00:00.000Z',
+  'how-to-buy-data-vodacom': '2026-06-11T00:00:00.000Z',
   'how-to-check-data-balance': '2026-03-16T00:00:00.000Z',
   'how-to-check-mtn-data-balance': '2026-04-25T00:00:00.000Z',
   'how-to-check-mtn-airtime-balance': '2026-04-25T00:00:00.000Z',
@@ -116,9 +116,9 @@ const NETWORK_MODIFIED_BY_SLUG: Record<string, string> = {
 };
 
 const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
-  'cell-c': '2026-05-15T00:00:00.000Z',
+  'cell-c': '2026-06-11T00:00:00.000Z',
   mtn: '2026-05-15T00:00:00.000Z',
-  vodacom: '2026-05-28T00:00:00.000Z'
+  vodacom: '2026-06-11T00:00:00.000Z'
 };
 
 const BUNDLE_TYPE_MODIFIED_ISO = '2026-05-01T00:00:00.000Z';
