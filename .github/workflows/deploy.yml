@@ -66,21 +66,25 @@ jobs:
       - name: Install Puppeteer Chrome
         shell: bash
         run: |
-          rm -rf "$HOME/.cache/puppeteer/chrome"
-          browser_path="$HOME/.cache/puppeteer/chrome/linux-146.0.7680.153/chrome-linux64/chrome"
+          browser_cache="$HOME/.cache/puppeteer"
+          rm -rf "$browser_cache/chrome" "$browser_cache/chrome-headless-shell"
           for attempt in 1 2; do
             echo "puppeteer browser install attempt $attempt"
-            if timeout 8m npx @puppeteer/browsers@2.13.0 install chrome@146.0.7680.153 --path "$HOME/.cache/puppeteer"; then
-              echo "Installed Puppeteer Chrome at $browser_path"
-              if [ -f "$browser_path" ]; then
-                chmod +x "$browser_path"
+            if timeout 8m npx @puppeteer/browsers@2.13.0 install chrome-headless-shell@146.0.7680.153 --path "$browser_cache"; then
+              browser_path="$(find "$browser_cache/chrome-headless-shell" -type f -name chrome-headless-shell -print -quit)"
+              if [ -z "$browser_path" ]; then
+                echo "Could not find installed chrome-headless-shell executable"
+                find "$browser_cache" -maxdepth 5 -type f -print
+                exit 1
               fi
+              echo "Installed Puppeteer Chrome at $browser_path"
+              chmod +x "$browser_path"
               if [ ! -x "$browser_path" ]; then
                 echo "Installed browser path is not executable: $browser_path"
                 exit 1
               fi
               echo "PUPPETEER_EXECUTABLE_PATH=$browser_path" >> "$GITHUB_ENV"
-              npx @puppeteer/browsers@2.13.0 list --path "$HOME/.cache/puppeteer"
+              npx @puppeteer/browsers@2.13.0 list --path "$browser_cache"
               exit 0
             fi
             status=$?
