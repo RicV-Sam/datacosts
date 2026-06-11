@@ -67,9 +67,10 @@ jobs:
         shell: bash
         run: |
           rm -rf "$HOME/.cache/puppeteer/chrome"
+          browser_path="$HOME/.cache/puppeteer/chrome/linux-146.0.7680.153/chrome-linux64/chrome"
           for attempt in 1 2; do
             echo "puppeteer browser install attempt $attempt"
-            if browser_path=$(timeout 8m npx @puppeteer/browsers@2.13.0 install chrome@146.0.7680.153 --path "$HOME/.cache/puppeteer" --format "{{path}}"); then
+            if timeout 8m npx @puppeteer/browsers@2.13.0 install chrome@146.0.7680.153 --path "$HOME/.cache/puppeteer"; then
               echo "Installed Puppeteer Chrome at $browser_path"
               if [ ! -x "$browser_path" ]; then
                 echo "Installed browser path is not executable: $browser_path"
