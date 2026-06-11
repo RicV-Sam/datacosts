@@ -63,6 +63,26 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Install Puppeteer Chrome
+        shell: bash
+        run: |
+          for attempt in 1 2; do
+            echo "puppeteer browser install attempt $attempt"
+            if timeout 8m npx puppeteer browsers install chrome; then
+              exit 0
+            fi
+            status=$?
+            if [ "$status" -eq 124 ]; then
+              echo "puppeteer browser install attempt $attempt timed out after 8 minutes"
+            else
+              echo "puppeteer browser install attempt $attempt failed with exit code $status"
+            fi
+            if [ "$attempt" -eq 2 ]; then
+              exit 1
+            fi
+            sleep 15
+          done
+
       - name: Build project
         run: npm run build
 
