@@ -37,18 +37,18 @@ type NetworkConfig = {
 const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   mtn: {
     networkName: 'MTN',
-    titlePrefix: 'MTN USSD Codes South Africa: Data USSD, Recharge & Balance',
+    titlePrefix: 'MTN USSD Codes South Africa: Recharge, Balance Check & Data Codes',
     route: '/mtn-ussd-codes/',
     networkHubHref: '/network/mtn/',
     buyDataGuideHref: '/guides/how-to-buy-data-mtn/',
     balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find MTN USSD codes for MTN data USSD, MTN airtime recharge code, balance checks and prepaid service shortcuts in South Africa.',
+      'Find MTN USSD codes for the MTN balance check code, recharge code, data check code, airtime check and prepaid shortcuts in South Africa.',
     intro:
-      'Use this page when the intent is MTN-specific. It is the best destination for MTN USSD codes, MTN data USSD paths, airtime recharge routes, balance checks, and prepaid self-service shortcuts without opening the app.',
+      'Use this page when the intent is MTN-specific. It is the best destination for MTN USSD codes, the MTN recharge code, MTN balance check code, airtime check, data check code, and prepaid self-service shortcuts without opening the app.',
     quickAnswer:
-      'For a quick MTN USSD check, start with *136# for balances, *136*2# to buy data, and *151# for MTN airtime advance help. Use this page for operator-specific MTN code intent, then return to the all-network hub only when you need cross-network comparison.',
+      'For a quick MTN USSD check, dial *136# for airtime and balance checks, *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, and *151# for MTN XtraTime. Use this page for operator-specific MTN code intent, then return to the all-network hub only when you need cross-network comparison.',
     supportNote:
       'MTN menus can vary by prepaid profile and active campaigns. If a code path changes, use *136# as your fallback entry point.',
     faq: [
@@ -59,6 +59,10 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
       {
         question: 'How do I buy MTN data without the app?',
         answer: 'Dial *136*2# to open MTN data and bundle purchase options.'
+      },
+      {
+        question: 'What is the MTN recharge code?',
+        answer: 'Use *136*VoucherCode# when you have a recharge voucher PIN. If that format fails on your line, start from *136# and follow the recharge menu.'
       },
       {
         question: 'How do I check my MTN number?',

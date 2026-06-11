@@ -13,7 +13,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/fix/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/guides/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/methodology/': '2026-05-10T00:00:00.000Z',
-  '/mtn-ussd-codes/': '2026-05-28T00:00:00.000Z',
+  '/mtn-ussd-codes/': '2026-06-11T00:00:00.000Z',
   '/network/': '2026-03-24T00:00:00.000Z',
   '/privacy-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/save-ussd-codes/': '2026-06-11T00:00:00.000Z',
@@ -23,7 +23,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/terms/': '2026-05-10T00:00:00.000Z',
   '/trust/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
-  '/ussd-codes-south-africa/': '2026-05-28T00:00:00.000Z',
+  '/ussd-codes-south-africa/': '2026-06-11T00:00:00.000Z',
   '/vodacom-ussd-codes/': '2026-05-15T00:00:00.000Z'
 };
 
@@ -72,7 +72,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-check-data-balance': '2026-03-16T00:00:00.000Z',
   'how-to-check-mtn-data-balance': '2026-04-25T00:00:00.000Z',
   'how-to-check-mtn-airtime-balance': '2026-04-25T00:00:00.000Z',
-  'how-to-check-vodacom-airtime-balance': '2026-05-02T00:00:00.000Z',
+  'how-to-check-vodacom-airtime-balance': '2026-06-11T00:00:00.000Z',
   'how-to-stop-wasp-vas-charges-south-africa': '2026-05-10T00:00:00.000Z',
   'stop-wasp-subscriptions-south-africa': '2026-05-10T00:00:00.000Z',
   'out-of-bundle-data-costs-south-africa': '2026-05-01T00:00:00.000Z',
@@ -95,7 +95,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
 
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'best-monthly-data-deals-south-africa': '2026-05-02T00:00:00.000Z',
-  'best-prepaid-data-deals-south-africa': '2026-05-02T00:00:00.000Z',
+  'best-prepaid-data-deals-south-africa': '2026-06-11T00:00:00.000Z',
   'cheap-night-data-south-africa': '2026-05-02T00:00:00.000Z',
   'cheapest-1gb-data-south-africa': '2026-06-11T00:00:00.000Z',
   'cheapest-2gb-data-south-africa': '2026-05-02T00:00:00.000Z',

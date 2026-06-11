@@ -82,9 +82,10 @@ export const networkPages: Record<string, NetworkPageData> = {
     },
     narrowSearchLinks: [
       { href: '/guides/how-to-buy-data-vodacom/', label: 'How to buy Vodacom data' },
+      { href: '/guides/how-to-check-vodacom-airtime-balance/', label: 'Check Vodacom balance' },
       { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN' },
       { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop out-of-bundle charges' },
-      { href: '/ussd-codes-south-africa/', label: 'Vodacom USSD codes' }
+      { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD codes' }
     ],
     commonMistakes: [
       'Buying daily bundles repeatedly instead of moving to a monthly pack when usage is consistent.',

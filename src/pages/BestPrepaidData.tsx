@@ -15,9 +15,9 @@ interface BestPrepaidDataProps {
 }
 
 export const BestPrepaidData: React.FC<BestPrepaidDataProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Prepaid Data Deals South Africa (2026)';
+  const pageTitle = 'Best Prepaid Phone Plans & Data Deals South Africa (2026)';
   const metaDescription =
-    'Compare the best prepaid data deals in South Africa. See currently listed prepaid bundles, value per GB, and practical options by use case.';
+    'Compare the best prepaid phone plans and data deals in South Africa. See listed prepaid bundles, value per GB, and practical options by use case.';
   const canonicalUrl = toCanonicalUrl('/guides/best-prepaid-data-deals-south-africa/');
   const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -53,7 +53,7 @@ export const BestPrepaidData: React.FC<BestPrepaidDataProps> = ({ onNavigate, on
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'What is the best prepaid data deal in South Africa?',
+        name: 'What is the best prepaid phone plan or data deal in South Africa?',
         acceptedAnswer: {
           '@type': 'Answer',
           text: bestPrepaidValue
@@ -118,10 +118,10 @@ export const BestPrepaidData: React.FC<BestPrepaidDataProps> = ({ onNavigate, on
       <main className="max-w-4xl mx-auto px-4 py-12">
         <header className="mb-16 text-center">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
-            Best <span className="text-[#1b6d24]">Prepaid Data Deals</span> South Africa
+            Best <span className="text-[#1b6d24]">Prepaid Phone Plans</span> & Data Deals South Africa
           </h1>
           <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto mb-8">
-            Practical prepaid comparison for South African users who want better value without overpaying on out-of-bundle rates.
+            Practical prepaid comparison for South African users who want better phone-plan data value without overpaying on out-of-bundle rates.
           </p>
         </header>
 
@@ -131,7 +131,7 @@ export const BestPrepaidData: React.FC<BestPrepaidDataProps> = ({ onNavigate, on
             {bestPrepaidValue
               ? `In this comparison dataset, ${bestPrepaidValue.network} currently provides one of the strongest prepaid value options with ${bestPrepaidValue.name} at about R${bestPrepaidValue.costPerGb.toFixed(2)}/GB.`
               : 'In this comparison dataset, prepaid availability is limited, so the best option can depend heavily on current promos and your account offers.'}{' '}
-            Start with prepaid value per GB, then verify validity and coverage before buying.
+            For best prepaid phone plans intent, treat this as a data-first shortlist: start with prepaid value per GB, then verify validity, coverage, and whether the bundle suits normal phone use before buying.
           </p>
         </section>
 
@@ -149,6 +149,10 @@ export const BestPrepaidData: React.FC<BestPrepaidDataProps> = ({ onNavigate, on
               {everydayPick
                 ? `${everydayPick.name} is a practical starting option for regular daily usage in this dataset.`
                 : 'Choose a 30-day prepaid bundle with a clear anytime allocation and enough headroom for your monthly usage.'}
+            </p>
+            <p>
+              <span className="font-black text-slate-900">What should prepaid phone-plan shoppers check first?</span>{' '}
+              Confirm local coverage, validity period, and whether your usage is mostly WhatsApp, browsing, video, or hotspot data before choosing the lowest headline price.
             </p>
           </div>
         </section>
@@ -252,7 +256,7 @@ export const BestPrepaidData: React.FC<BestPrepaidDataProps> = ({ onNavigate, on
           <h2 className="text-2xl font-black tracking-tight mb-6">Frequently Asked Questions</h2>
           <div className="space-y-6">
             <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-              <h3 className="font-bold text-slate-900 mb-2">What is the best prepaid data deal in South Africa?</h3>
+              <h3 className="font-bold text-slate-900 mb-2">What is the best prepaid phone plan or data deal in South Africa?</h3>
               <p className="text-sm text-slate-600">{bestPrepaidValue ? `${bestPrepaidValue.network} currently shows one of the strongest prepaid value options in this dataset.` : 'It depends on current promos, usage pattern, and coverage in your area.'}</p>
             </div>
             <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
@@ -275,6 +279,8 @@ export const BestPrepaidData: React.FC<BestPrepaidDataProps> = ({ onNavigate, on
             <Link to="/guides/cheapest-data-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Cheapest Data South Africa</Link>
             <Link to="/guides/best-data-deals-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Best Data Deals South Africa</Link>
             <Link to="/guides/prepaid-vs-contract-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Prepaid vs Contract</Link>
+            <Link to="/fix/mobile-data-on-but-not-working/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Mobile Data On But Not Working</Link>
+            <Link to="/fix/airtime-disappearing-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Airtime Disappearing Quick Fix</Link>
             <Link to="/network/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Network Hub</Link>
             <Link to="/network/vodacom/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Vodacom Network Page</Link>
             <Link to="/network/mtn/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">MTN Network Page</Link>

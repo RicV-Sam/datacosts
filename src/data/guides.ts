@@ -1796,16 +1796,17 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-check-vodacom-airtime-balance',
-    title: 'Check Vodacom Airtime Balance in South Africa',
-    metaDescription: 'Check your Vodacom airtime balance with *135# or *136#, then use MyVodacom to confirm bundles, airtime, and recent account activity.',
-    h1: 'How to Check Vodacom Airtime Balance',
-    intro: 'Vodacom airtime balance checks are useful before buying data, after loading a voucher, and whenever airtime seems to be dropping unexpectedly. Start with *135# or *136#, then use MyVodacom if you need more account detail.',
+    title: 'How to Check Vodacom Balance and Airtime in South Africa',
+    metaDescription: 'Learn how to check Vodacom balance and airtime with *135# or *136#, then use MyVodacom for bundles, expiry and recent account activity.',
+    h1: 'How to Check Vodacom Balance and Airtime',
+    intro: 'If you searched for how to check Vodacom balance, start with the main *135# self-service menu from your Vodacom SIM. Use it to check airtime, data bundle balance, and account options before buying another bundle, then compare Vodacom data prices if you are checking balance before a top-up.',
     quickSummaryTitle: 'Quick Answer',
-      quickSummaryItems: [
-        'Dial *135# for the main Vodacom self-service and balance menu.',
-        'Use *136# if your line supports a quick balance summary, but fall back to the main *135# flow for the clearest live USSD check.',
-        'Use MyVodacom to review airtime, bundles, and recent account activity together.'
-      ],
+    quickSummaryItems: [
+      'Dial *135# for the main Vodacom self-service and balance menu.',
+      'Use *136# if your line supports a quick airtime balance summary, but fall back to *135# for the clearest live USSD check.',
+      'Use MyVodacom to review airtime, data bundles, expiry dates, and recent account activity together.',
+      'Before buying another bundle, compare current Vodacom prepaid data prices on the Vodacom network page.'
+    ],
     jumpLinksTitle: 'On This Page',
     jumpLinks: [
       { label: 'USSD method', anchor: 'ussd-method' },
@@ -1819,13 +1820,13 @@ export const guides: Guide[] = [
     steps: [
       {
         id: 'ussd-method',
-        title: 'USSD method: dial *135#',
-        description: 'Dial *135# from your Vodacom SIM and choose balances. If a submenu looks incomplete, retry from the main *135# self-service menu before assuming the balance is missing.'
+        title: 'USSD method: dial *135# for Vodacom balance',
+        description: 'Dial *135# from your Vodacom SIM and choose balances. This is the safest starting point for Vodacom balance checks because it can show airtime, data bundle, and account menu options from one self-service path.'
       },
       {
         id: 'app-method',
         title: 'App method: use the MyVodacom app',
-        description: 'Open the MyVodacom app and check your account or balances screen. This is useful when you want to compare airtime with remaining data bundles or recent activity.'
+        description: 'Open the MyVodacom app and check your account or balances screen. This is useful when you want to compare airtime with remaining data bundles, validity dates, and recent activity before topping up.'
       },
       {
         id: 'alternative-methods',
@@ -1841,16 +1842,22 @@ export const guides: Guide[] = [
     nextStepsTitle: 'Useful Vodacom Links',
     nextSteps: [
       { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes', description: 'Open the Vodacom-specific USSD reference.', action: 'route' },
-      { href: '/network/vodacom/', label: 'Vodacom Network Page', description: 'Compare Vodacom data prices and network guidance.', action: 'route' },
+      { href: '/network/vodacom/', label: 'Vodacom Data Prices and Bundles', description: 'Compare Vodacom prepaid data deals, prices, and bundle types before buying.', action: 'route' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'See Vodacom and other network balance shortcuts.', action: 'route' },
       { href: '/network/vodacom/monthly-data/', label: 'Vodacom Monthly Data', description: 'Compare bundle options before browsing from airtime.', action: 'route' },
+      { href: '/fix/vodacom-data-not-working/', label: 'Vodacom Data Not Working', description: 'Use this if balance checks pass but mobile data still will not browse.', action: 'route' },
+      { href: '/fix/stop-wasp-services-vodacom/', label: 'Stop WASP Services on Vodacom', description: 'Check this if airtime keeps dropping after balance checks.', action: 'route' },
       { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Diagnose content services, out-of-bundle use, and repeat deductions.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
       { href: '/data-problems/how-to-check-data-balance-vodacom-ussd/', label: 'How to Check Vodacom Data Balance', description: 'Check data balance before airtime starts paying for usage.', action: 'route' }
     ],
     faq: [
       {
-        question: 'What is the Vodacom airtime balance code?',
-        answer: 'Dial *135# and choose balances. That is the safest current Vodacom self-service route for an airtime check.'
+        question: 'How do I check my Vodacom balance?',
+        answer: 'Dial *135# from your Vodacom SIM and choose balances. Use MyVodacom as a second check when you need bundle expiry or recent usage detail.'
+      },
+      {
+        question: 'What is the Vodacom balance check number?',
+        answer: 'The main Vodacom balance check number is *135#. Some lines may show a quick summary on *136#, but *135# is the safer fallback menu.'
       },
       {
         question: 'Can I check Vodacom airtime without data?',

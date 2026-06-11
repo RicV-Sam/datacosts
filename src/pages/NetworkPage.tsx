@@ -114,7 +114,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     },
     vodacom: {
       title: 'Vodacom Prepaid Data Deals South Africa: Prices, Bundles & USSD Codes',
-      description: 'Compare Vodacom prepaid data deals, Vodacom data prices, data bundles and USSD routes before you buy in South Africa.',
+      description: 'Compare Vodacom prepaid data deals, data prices, bundles, balance checks and USSD routes before you buy in South Africa.',
       heroHeading: 'Vodacom Prepaid Data Deals & Prices'
     },
     'cell-c': {
@@ -353,6 +353,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             <h2 className="text-2xl font-black tracking-tighter mb-4">Quick Answer</h2>
             <p className="text-slate-700 font-medium leading-relaxed">
               Use this page when the intent is <strong>Vodacom prepaid data deals</strong>, <strong>Vodacom data prices</strong>, or <strong>Vodacom data bundles</strong>. For the broader market entry point, start on the <a href="/" className="text-[#1b6d24] font-semibold hover:underline">homepage</a>. For the deeper cheapest-data comparison, open <a href="/guides/cheapest-data-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">cheapest data in South Africa</a>. If you need codes rather than prices, use the <a href="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">USSD directory</a>.
+            </p>
+            <p className="mt-3 text-sm text-slate-600 font-medium leading-relaxed">
+              Checking prices before a top-up? Confirm your <a href="/guides/how-to-check-vodacom-airtime-balance/" className="text-[#1b6d24] font-semibold hover:underline">Vodacom balance and airtime</a> first so you do not buy another bundle while old airtime, data, or validity is still active.
             </p>
           </section>
         )}

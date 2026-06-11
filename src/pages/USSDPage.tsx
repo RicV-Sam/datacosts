@@ -96,9 +96,9 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = 'USSD Codes South Africa Directory: Telkom, MTN, Cell C & Vodacom';
+  const pageTitle = 'USSD Codes South Africa: Telkom, MTN, Cell C & Vodacom Directory';
   const metaDescription =
-    'Use this USSD codes South Africa directory for Telkom, MTN, Cell C and Vodacom shortcuts, then open the operator page for full network-specific codes.';
+    'Use this USSD codes South Africa directory for Telkom USSD codes, MTN Please Call Me, Cell C and Vodacom shortcuts, then open the operator page for full code detail.';
   const canonicalUrl = toCanonicalUrl('/ussd-codes-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');
@@ -215,6 +215,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
 
   const priorityCodes = [
     { network: 'MTN', task: 'Check balance', code: '*136#', href: '/mtn-ussd-codes/' },
+    { network: 'MTN', task: 'Please Call Me', code: '*121*number#', href: '/mtn-ussd-codes/' },
     { network: 'Vodacom', task: 'Self-service and balance', code: '*135#', href: '/vodacom-ussd-codes/' },
     { network: 'Telkom', task: 'Check balance', code: '*188#', href: '/telkom-ussd-codes/' },
     { network: 'Cell C', task: 'Check balance', code: '*101#', href: '/cell-c-ussd-codes/' },
@@ -281,7 +282,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
             <span className="text-[#1b6d24]">USSD Codes</span> South Africa Directory: MTN, Telkom, Cell C and Vodacom
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Start here if you need an all-network South African USSD directory. This hub is for comparison, quick code lookup, and cross-network navigation. When the intent is operator-specific, use the dedicated MTN, Telkom, or Cell C page as the best destination for full code detail.
+            Start here if you need an all-network South African USSD directory. This hub is for comparison, quick code lookup, and cross-network navigation. When the intent is operator-specific, use the dedicated MTN, Telkom, Cell C, or Vodacom page as the best destination for full code detail.
           </p>
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
@@ -289,7 +290,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-3">Quick USSD codes</h2>
           <p className="text-sm text-slate-600 leading-relaxed mb-5">
-            Start with these common South African USSD shortcuts for balance checks, data bundles, Cell C data deals, and airtime advance help.
+            Start with these common South African USSD shortcuts for balance checks, Telkom USSD codes, MTN Please Call Me formats, data bundles, and airtime advance help.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-slate-100">
             <table className="w-full min-w-[640px] text-left text-sm">
