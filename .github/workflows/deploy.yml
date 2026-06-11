@@ -14,9 +14,14 @@ env:
 permissions:
   contents: read
 
+concurrency:
+  group: datacost-pages-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
 
     steps:
       - name: Checkout
@@ -26,9 +31,26 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: 24
+          cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        shell: bash
+        run: |
+          for attempt in 1 2 3; do
+            echo "npm ci attempt $attempt"
+            if npm ci --no-audit --prefer-offline; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            echo "npm ci failed, clearing npm cache and retrying..."
+            npm cache clean --force
+            sleep 15
+          done
+
+      - name: Lint
+        run: npm run lint
 
       - name: Build project
         run: npm run build
@@ -41,6 +63,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:

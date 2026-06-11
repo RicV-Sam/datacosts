@@ -341,7 +341,7 @@ The CI/deployment workflow is:
 
 Current behavior:
 
-- pull requests to `main` run `npm ci` and `npm run build`
+- pull requests to `main` run `npm ci`, `npm run lint`, and `npm run build`
 - pushes to `main` run the same build and then deploy to GitHub Pages
 
 This is a good production pattern because:

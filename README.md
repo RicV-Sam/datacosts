@@ -123,7 +123,7 @@ Production is hosted on GitHub Pages with the custom domain `datacost.co.za`.
 
 Deployment workflow:
 
-- pull requests to `main` run `npm ci` and `npm run build`
+- pull requests to `main` run `npm ci`, `npm run lint`, and `npm run build`
 - pushes to `main` run the same build and then deploy to GitHub Pages
 
 Workflow file:
