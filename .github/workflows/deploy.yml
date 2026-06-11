@@ -10,6 +10,10 @@ on:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  NPM_CONFIG_FETCH_RETRIES: 5
+  NPM_CONFIG_FETCH_RETRY_FACTOR: 2
+  NPM_CONFIG_FETCH_RETRY_MINTIMEOUT: 10000
+  NPM_CONFIG_FETCH_RETRY_MAXTIMEOUT: 120000
 
 permissions:
   contents: read
@@ -36,12 +40,18 @@ jobs:
       - name: Install dependencies
         shell: bash
         run: |
-          for attempt in 1 2 3; do
+          for attempt in 1 2; do
             echo "npm ci attempt $attempt"
-            if npm ci --no-audit --prefer-offline; then
+            if timeout 8m npm ci --no-audit --prefer-offline; then
               exit 0
             fi
-            if [ "$attempt" -eq 3 ]; then
+            status=$?
+            if [ "$status" -eq 124 ]; then
+              echo "npm ci attempt $attempt timed out after 8 minutes"
+            else
+              echo "npm ci attempt $attempt failed with exit code $status"
+            fi
+            if [ "$attempt" -eq 2 ]; then
               exit 1
             fi
             echo "npm ci failed, clearing npm cache and retrying..."
