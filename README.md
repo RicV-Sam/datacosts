@@ -94,6 +94,7 @@ This build flow:
 npm run dev
 npm run build
 npm run generate:sitemap
+npm run submit:bing -- --dry-run
 npm run check:seo
 npm run lint
 ```

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "generate:sitemap": "tsx scripts/generate-sitemap.ts",
+    "submit:bing": "node scripts/submit-bing.mjs",
     "submit:indexnow": "node scripts/submit-indexnow.mjs",
     "check:data-problems": "tsx scripts/check-data-problems-publishing.ts",
     "check:seo": "tsx scripts/check-seo-output.ts",
