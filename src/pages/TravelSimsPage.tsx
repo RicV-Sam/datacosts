@@ -31,7 +31,7 @@ interface TravelSimsPageProps {
 
 export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onScrollTo }) => {
   const pageTitle = "Travel SIMs & eSIMs South Africa (2026)";
-  const metaDescription = "Looking for the best SIM or eSIM for South Africa? Compare travel eSIMs, Vodacom, MTN, airport SIMs, setup, coverage, and the cheapest options for tourists.";
+  const metaDescription = "Looking for the best SIM or eSIM for South Africa? Compare travel eSIMs, Vodacom, MTN, airport SIMs, setup, coverage and tourist data options.";
   const canonicalUrl = toCanonicalUrl('/travel-sims-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/travel-sims-south-africa/');

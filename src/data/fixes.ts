@@ -1498,6 +1498,24 @@ function applyPriorityOverride(page: FixPage): FixPage {
   };
 }
 
+function buildFixSeoTitle(page: FixPage): string {
+  const suffix = page.cluster === 'ussd' ? 'Guide' : page.cluster === 'tv-decoder' ? 'Help' : 'Fix';
+  const title = `${page.title} ${suffix} | DataCost`;
+  return title.length > 60 ? `${page.title} | DataCost` : title;
+}
+
+function buildFixMetaDescription(page: FixPage): string {
+  return `${page.title}: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.`;
+}
+
+function applySeoLengthDefaults(page: FixPage): FixPage {
+  return {
+    ...page,
+    seoTitle: buildFixSeoTitle(page),
+    metaDescription: buildFixMetaDescription(page)
+  };
+}
+
 function getMergedRelatedFixSlugs(page: FixPage): string[] {
   const slugs = [...(relatedFixGraphAdditions[page.slug] ?? []), ...page.relatedFixSlugs];
   return slugs.filter((slug, index) =>
@@ -1505,7 +1523,7 @@ function getMergedRelatedFixSlugs(page: FixPage): string[] {
   );
 }
 
-export const fixPages = pages.map(applyPriorityOverride).map((page) => ({
+export const fixPages = pages.map(applyPriorityOverride).map(applySeoLengthDefaults).map((page) => ({
   ...page,
   relatedFixSlugs: getMergedRelatedFixSlugs(page)
 }));

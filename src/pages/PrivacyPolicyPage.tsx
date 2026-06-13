@@ -20,7 +20,7 @@ interface PrivacyPolicyPageProps {
 export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate, onScrollTo }) => {
   const pageTitle = 'Privacy Policy | DataCost';
   const metaDescription =
-    'DataCost privacy policy covering analytics, contact submissions, cookies, and how we handle personal information in line with South African POPIA principles.';
+    'DataCost privacy policy covering analytics, contact submissions, cookies, and how we handle personal information under South African POPIA principles.';
   const canonicalUrl = toCanonicalUrl('/privacy-policy/');
   const breadcrumbItems = [
     { label: 'Home', href: '/' },

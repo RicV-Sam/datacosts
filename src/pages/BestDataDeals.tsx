@@ -34,7 +34,7 @@ const isMonthlyBundle = (validity: string, type: string) => {
 };
 
 export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Best Data Deals in South Africa: MTN, Vodacom, Telkom & Cell C';
+  const pageTitle = 'Best Data Deals South Africa: MTN, Vodacom, Telkom';
   const metaDescription =
     'Compare South Africa\'s prepaid data deals by network, price, validity and use case before buying your next bundle.';
   const canonicalUrl = toCanonicalUrl('/guides/best-data-deals-south-africa/');
@@ -375,5 +375,4 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     </div>
   );
 };
-
 

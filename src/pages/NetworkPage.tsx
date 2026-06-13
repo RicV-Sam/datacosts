@@ -113,7 +113,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
       heroHeading: 'MTN Data Bundles, Deals & USSD Codes'
     },
     vodacom: {
-      title: 'Vodacom Prepaid Data Deals South Africa: Prices, Bundles & USSD Codes',
+      title: 'Vodacom Data Deals: Prices, Bundles & USSD Codes',
       description: 'Compare Vodacom prepaid data deals, data prices, bundles, balance checks and USSD routes before you buy in South Africa.',
       heroHeading: 'Vodacom Prepaid Data Deals & Prices'
     },
@@ -124,7 +124,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     }
   };
   const routeMeta = priorityNetworkMeta[networkSlug];
-  const pageTitle = routeMeta?.title || `${network.name} Data Prices South Africa: Prepaid Bundles and USSD Codes`;
+  const pageTitle = routeMeta?.title || `${network.name} Data Prices: Bundles & USSD Codes`;
   const metaDescription =
     routeMeta?.description || `Compare ${network.name} data prices in South Africa, including prepaid bundles, monthly options, USSD balance codes, and value notes before you buy.`;
   const heroHeading = routeMeta?.heroHeading || `${network.name} Data Prices`;

@@ -861,7 +861,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
     slug: 'how-to-protect-airtime-from-being-used',
     titleTag: 'How to Protect Airtime (Vodacom, MTN Fix Guide 2026)',
     metaDescription:
-      'How to protect airtime in South Africa. Stop WASP, premium SMS, out-of-bundle, and recurring charges with practical fixes for Vodacom, MTN, Telkom, and Cell C.',
+      'Protect airtime in South Africa. Stop WASP, premium SMS, out-of-bundle and recurring charges on Vodacom, MTN, Telkom and Cell C.',
     h1: 'How to Protect Airtime from Being Used on MTN, Vodacom, Telkom & Cell C (2026)',
     intro:
       'Airtime protection is about prevention, not only recovery. The right controls stop recurring deductions and reduce expensive fallback usage.',

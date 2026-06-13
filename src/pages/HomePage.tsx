@@ -84,7 +84,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   selectedNetwork,
   setSelectedNetwork
 }) => {
-  const pageTitle = 'Cheapest Data in South Africa: Compare Cell C, Telkom, MTN & Vodacom';
+  const pageTitle = 'Cheapest Data South Africa: MTN, Vodacom, Telkom & Cell C';
   const metaDescription = 'Find the cheapest data in South Africa, compare Cell C data deals, and use MTN, Vodacom, Telkom and Cell C guides before choosing a bundle.';
   const canonicalUrl = SITE_URL;
   const datePublishedIso = getDefaultPublishedIso();

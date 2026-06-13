@@ -96,9 +96,9 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = 'USSD Codes South Africa: Telkom, MTN, Cell C & Vodacom Directory';
+  const pageTitle = 'USSD Codes South Africa: MTN, Vodacom, Telkom, Cell C';
   const metaDescription =
-    'Use this USSD codes South Africa directory for Telkom USSD codes, MTN Please Call Me, Cell C and Vodacom shortcuts, then open the operator page for full code detail.';
+    'Use this South Africa USSD directory for MTN, Vodacom, Telkom and Cell C balance, data, recharge and Please Call Me shortcuts.';
   const canonicalUrl = toCanonicalUrl('/ussd-codes-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');

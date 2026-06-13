@@ -379,7 +379,7 @@ export const guides: Guide[] = [
   {
     slug: 'why-does-my-data-finish-so-fast-south-africa',
     title: 'Why Does My Data Finish So Fast? (SA 2026)',
-    metaDescription: 'Find out why your mobile data finishes so fast in South Africa and how to make it last longer. Learn the main causes, quick fixes, and better bundle choices.',
+    metaDescription: 'Find out why mobile data finishes fast in South Africa and how to make it last longer. Learn the main causes, quick fixes, and better bundle choices.',
     h1: 'Why Does My Data Finish So Fast in South Africa? (2026 Guide)',
     intro: 'You are not imagining it: fast data drain is one of the most common mobile problems in South Africa. It affects users across all major networks and is often caused by hidden app behavior, phone settings, or bundle mismatch. The good news is that the cause is usually identifiable and fixable.',
     quickSummaryTitle: 'The Short Version',
@@ -832,7 +832,7 @@ export const guides: Guide[] = [
   {
     slug: 'airtime-data-saving-tips-south-africa',
     title: '15 Airtime & Data Saving Tips South Africa (2026)',
-    metaDescription: 'Learn how to make your airtime and mobile data last longer in South Africa with smart, practical tips on bundles, USSD, app settings, and avoiding costly mistakes.',
+    metaDescription: 'Learn how to make airtime and mobile data last longer in South Africa with practical tips on bundles, USSD, app settings, and costly mistakes.',
     h1: '15 Smart Airtime & Data Saving Tips for South Africans (2026)',
     intro: 'If your airtime disappears too fast or your bundle never lasts, this guide is for you. It explains how South African prepaid users can reduce waste, avoid out-of-bundle charges, and choose data bundles that actually match daily usage.',
     quickSummaryTitle: 'The Short Version',
