@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -200,7 +200,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
           <p className="text-slate-700 text-sm leading-relaxed mb-4">
             This page focuses on cancellation actions. If you want a full diagnostic and prevention guide covering what WASP/VAS charges are, why they happen, how to detect them, and when to escalate, start here:
           </p>
-          <Link to="/guides/how-to-stop-wasp-vas-charges-south-africa/" className="text-[#1b6d24] font-black hover:underline">
+          <Link to="/guides/stop-wasp-subscriptions-south-africa/" className="text-[#1b6d24] font-black hover:underline">
             How to Stop Unwanted WASP / VAS Charges in South Africa
           </Link>
         </section>
@@ -261,7 +261,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
             Airtime can also drop due to background data use. If you want a full check, use our <Link to="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">South Africa USSD codes guide</Link> and our <Link to="/guides/why-is-my-data-finishing-so-fast/" className="text-[#1b6d24] font-semibold hover:underline">data drain troubleshooting guide</Link>.
           </p>
           <p className="text-sm text-slate-700 leading-relaxed mt-4">
-            For a broader consumer-protection explanation of WASP/VAS billing patterns, use <Link to="/guides/how-to-stop-wasp-vas-charges-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">our main WASP / VAS guide</Link>.
+            For a broader consumer-protection explanation of WASP/VAS billing patterns, use <Link to="/guides/stop-wasp-subscriptions-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">our main WASP / VAS guide</Link>.
           </p>
         </section>
 

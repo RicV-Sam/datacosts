@@ -81,7 +81,7 @@ const problemPages = [
     group: 'Subscription issues'
   },
   {
-    href: '/guides/how-to-stop-wasp-services-south-africa/',
+    href: '/guides/stop-wasp-subscriptions-south-africa/',
     label: 'How to stop WASP services in South Africa',
     group: 'Subscription issues'
   },

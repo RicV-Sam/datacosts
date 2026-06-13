@@ -259,7 +259,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
         description: 'Use this if Vodacom airtime keeps dropping after recharges.'
       },
       {
-        href: '/guides/how-to-stop-wasp-vas-charges-south-africa/',
+        href: '/guides/stop-wasp-subscriptions-south-africa/',
         label: 'How to stop WASP and VAS charges',
         description: 'Understand recurring premium-service deductions.'
       },
@@ -608,7 +608,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
         description: 'Apply full cancellation and proof workflow.'
       },
       {
-        href: '/guides/how-to-stop-wasp-services-south-africa/',
+        href: '/guides/stop-wasp-subscriptions-south-africa/',
         label: 'Stop WASP services in South Africa',
         description: 'Go deeper on premium-service prevention.'
       },
@@ -962,7 +962,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
         description: 'Fix current recurring deduction patterns.'
       },
       {
-        href: '/guides/how-to-stop-wasp-services-south-africa/',
+        href: '/guides/stop-wasp-subscriptions-south-africa/',
         label: 'Stop WASP services in South Africa',
         description: 'Remove hidden premium-service deductions.'
       },

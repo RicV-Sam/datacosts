@@ -488,7 +488,7 @@ export const guides: Guide[] = [
       { href: '/fix/mobile-data-on-but-not-working/', label: 'Mobile Data On But Not Working', description: 'Use the quick fix if signal shows but browsing still fails.', action: 'route' },
       { href: '/fix/lte-router-connected-no-internet/', label: 'LTE Router Connected but No Internet', description: 'Use this if the data drain issue is happening through a router.', action: 'route' },
       { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Diagnose airtime deductions and out-of-bundle risk.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
-      { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Rule out recurring subscription deductions.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },
+      { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Rule out recurring subscription deductions.', action: 'guide', slug: 'stop-wasp-subscriptions-south-africa' },
       { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions', description: 'Use the full cancellation steps if needed.', action: 'route' },
       { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Track data before and after heavy usage periods.', action: 'guide', slug: 'how-to-check-data-balance' },
       { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes Hub', description: 'Find fast balance and self-service codes.', action: 'route' },
@@ -647,7 +647,7 @@ export const guides: Guide[] = [
       { href: '/cell-c-ussd-codes/', label: 'Cell C USSD Codes', description: 'Network-specific Cell C shortcuts for balances and bundles.', action: 'route' },
       { href: '/save-ussd-codes/', label: 'Save Important USSD Codes', description: 'Store your key short codes so checks are easy and repeatable.', action: 'route' },
       { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices', description: 'Compare two major networks before buying again.', action: 'route' },
-      { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Understand why subscription deductions happen and how to prevent them.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },
+      { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Understand why subscription deductions happen and how to prevent them.', action: 'guide', slug: 'stop-wasp-subscriptions-south-africa' },
       { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions in South Africa', description: 'Practical steps to identify and stop unwanted premium deductions.', action: 'route' }
     ],
     faq: [
@@ -1119,7 +1119,7 @@ export const guides: Guide[] = [
       { href: '/guides/why-is-my-data-disappearing-vodacom/', label: 'Vodacom Data Disappearing Fix Guide', description: 'Vodacom-specific causes and controls.', action: 'guide', slug: 'why-is-my-data-disappearing-vodacom' },
       { href: '/guides/why-is-my-data-disappearing-mtn/', label: 'MTN Data Disappearing Fix Guide', description: 'MTN-specific causes and controls.', action: 'guide', slug: 'why-is-my-data-disappearing-mtn' },
       { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?', description: 'Diagnose unexplained airtime deductions.', action: 'route' },
-      { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Cancel recurring premium services.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },
+      { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Cancel recurring premium services.', action: 'guide', slug: 'stop-wasp-subscriptions-south-africa' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Open full USSD troubleshooting references.', action: 'route' }
     ],
     faq: [
@@ -1218,7 +1218,7 @@ export const guides: Guide[] = [
       { href: '/guides/airtime-data-problems-south-africa/', label: 'Airtime & Data Problems Hub (South Africa)', description: 'Open the full problem-cluster hub for related diagnostics.', action: 'route' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa: Vodacom Checks', description: 'Open the USSD reference for balance and troubleshooting shortcuts.', action: 'route' },
       { href: '/guides/how-to-check-subscriptions-on-vodacom/', label: 'How to Check Subscriptions on Vodacom', description: 'Verify active services that may be reducing airtime or data value.', action: 'route' },
-      { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'Stop WASP / VAS Charges', description: 'Follow cancellation steps if recurring charges are detected.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' }
+      { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP / VAS Charges', description: 'Follow cancellation steps if recurring charges are detected.', action: 'guide', slug: 'stop-wasp-subscriptions-south-africa' }
     ],
     faq: [
       {
@@ -1320,7 +1320,7 @@ export const guides: Guide[] = [
       { href: '/guides/airtime-data-problems-south-africa/', label: 'Airtime & Data Problems Hub (South Africa)', description: 'Return to the full problem-cluster hub for adjacent fixes.', action: 'route' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa: MTN Checks', description: 'Use this page for MTN balance and service shortcuts.', action: 'route' },
       { href: '/guides/how-to-check-subscriptions-on-mtn/', label: 'How to Check Subscriptions on MTN', description: 'Identify recurring services affecting spend and deductions.', action: 'route' },
-      { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'Stop WASP / VAS Charges', description: 'Use the SA-wide cancellation workflow when recurring charges appear.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' }
+      { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP / VAS Charges', description: 'Use the SA-wide cancellation workflow when recurring charges appear.', action: 'guide', slug: 'stop-wasp-subscriptions-south-africa' }
     ],
     faq: [
       {
@@ -1348,7 +1348,7 @@ export const guides: Guide[] = [
   {
     slug: 'how-to-buy-data-vodacom',
     title: 'How to Buy Data on Vodacom - USSD Codes & App Guide 2026',
-    metaDescription: 'Learn how to buy data on Vodacom using USSD codes, the MyVodacom app, and airtime conversion. Find the fastest way to get connected on SA\'s biggest network.',
+    metaDescription: 'Learn how to buy Vodacom data with USSD, MyVodacom and airtime conversion, then choose the fastest route for your bundle.',
     h1: 'How to Buy Data on Vodacom: Step-by-Step Guide',
     intro: 'Vodacom offers several ways to purchase data bundles, whether you are looking for a quick daily fix or a large monthly allocation. The most common method is using USSD codes, which work even if you don\'t have an active data connection. This guide covers all the ways you can buy Vodacom data bundles in seconds.',
     quickSummaryTitle: 'Quick Answer',

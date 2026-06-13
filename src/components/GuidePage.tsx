@@ -66,7 +66,7 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
   ],
   'why-does-my-data-finish-so-fast-south-africa': [
     { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Airtime Disappears', description: 'Check related airtime and out-of-bundle issues.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
-    { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Rule out recurring subscription deductions.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },
+    { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Rule out recurring subscription deductions.', action: 'guide', slug: 'stop-wasp-subscriptions-south-africa' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Track where usage goes week by week.', action: 'guide', slug: 'how-to-check-data-balance' },
     { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare lower-cost bundle options.', action: 'route' },
     { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals', description: 'Find stronger promo and value options.', action: 'guide', slug: 'best-data-deals-south-africa' },
@@ -76,7 +76,7 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
     { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Diagnose the main mobile-data drain causes.', action: 'guide', slug: 'why-does-my-data-finish-so-fast-south-africa' },
     { href: '/guides/airtime-data-saving-tips-south-africa/', label: '15 Airtime & Data Saving Tips', description: 'Reduce repeat airtime loss with daily habits.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Verify balances before usage spikes.', action: 'guide', slug: 'how-to-check-data-balance' },
-    { href: '/guides/how-to-stop-wasp-vas-charges-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Understand and diagnose recurring subscription deductions.', action: 'guide', slug: 'how-to-stop-wasp-vas-charges-south-africa' },
+    { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Understand and diagnose recurring subscription deductions.', action: 'guide', slug: 'stop-wasp-subscriptions-south-africa' },
     { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions', description: 'Check and stop unwanted premium deductions.', action: 'route' },
     { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Find quick codes for balance and bundle actions.', action: 'route' },
     { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Switch to better-value bundle options.', action: 'route' }

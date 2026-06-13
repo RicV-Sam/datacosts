@@ -384,7 +384,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
               <div className="font-black text-slate-900">Why data finishes so fast</div>
               <p className="text-sm text-slate-600 mt-1">Apply practical mobile settings that make bundles last longer.</p>
             </Link>
-            <Link to="/guides/how-to-stop-wasp-services-south-africa/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
+            <Link to="/guides/stop-wasp-subscriptions-south-africa/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
               <div className="font-black text-slate-900">How to stop WASP services</div>
               <p className="text-sm text-slate-600 mt-1">Cancel hidden subscription billing and protect future recharges.</p>
             </Link>

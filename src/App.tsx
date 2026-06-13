@@ -203,7 +203,7 @@ function AppContent() {
         />
         <Route
           path="/guides/how-to-stop-wasp-services-south-africa/"
-          element={<ProblemSolvingGuidePage guideKey="how-to-stop-wasp-services-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+          element={<RedirectPage />}
         />
         <Route
           path="/guides/why-is-my-data-finishing-so-fast/"
@@ -216,6 +216,10 @@ function AppContent() {
         <Route
           path="/guides/airtime-data-problems-south-africa/"
           element={<AirtimeDataProblemsHubPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/guides/how-to-stop-wasp-vas-charges-south-africa/"
+          element={<RedirectPage />}
         />
         <Route
           path="/guides/:slug/"
@@ -464,9 +468,9 @@ function AppContent() {
         <Route path="/data-problems/how-to-check-wasp-subscriptions-mtn" element={<Navigate to="/data-problems/how-to-check-wasp-subscriptions-mtn/" replace />} />
         <Route path="/data-problems/how-to-stop-background-data-usage-android" element={<Navigate to="/data-problems/how-to-stop-background-data-usage-android/" replace />} />
         <Route path="/data-problems/how-to-stop-apps-using-data-in-background-samsung" element={<Navigate to="/data-problems/how-to-stop-apps-using-data-in-background-samsung/" replace />} />
-        <Route path="/fix-mobile-problems/" element={<Navigate to="/fix/" replace />} />
+        <Route path="/fix-mobile-problems/" element={<RedirectPage />} />
         <Route path="/fix-mobile-problems" element={<Navigate to="/fix/" replace />} />
-        <Route path="/fix-a-problem/" element={<Navigate to="/fix/" replace />} />
+        <Route path="/fix-a-problem/" element={<RedirectPage />} />
         <Route path="/fix-a-problem" element={<Navigate to="/fix/" replace />} />
         {REDIRECT_ALIASES.map((alias) => (
           <Fragment key={alias.from}>

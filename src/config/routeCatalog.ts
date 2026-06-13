@@ -261,9 +261,10 @@ export function getIndexableRoutes(): string[] {
   }
 
   const noindexRoutes = new Set(getNoindexRoutes());
+  const redirectAliasRoutes = new Set(getRedirectAliasRoutes().map(normalizeCanonicalPath));
   return [...routes]
     .map(normalizeCanonicalPath)
-    .filter((route) => !noindexRoutes.has(route));
+    .filter((route) => !noindexRoutes.has(route) && !redirectAliasRoutes.has(route));
 }
 
 export function getPrerenderRoutes(): string[] {

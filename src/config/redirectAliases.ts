@@ -10,6 +10,10 @@ export const REDIRECT_ALIASES: RedirectAlias[] = [
   { from: '/cheapest-1gb-data-south-africa/', to: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa' },
   { from: '/airtime-disappearing/', to: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?' },
   { from: '/how-to-cancel-wasp-subscriptions-south-africa/', to: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions South Africa' },
+  { from: '/guides/how-to-stop-wasp-vas-charges-south-africa/', to: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions South Africa' },
+  { from: '/guides/how-to-stop-wasp-services-south-africa/', to: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions South Africa' },
+  { from: '/fix-mobile-problems/', to: '/fix/', label: 'DataCost Fixes' },
+  { from: '/fix-a-problem/', to: '/fix/', label: 'DataCost Fixes' },
   { from: '/telkom-night-data-bundles/', to: '/network/telkom/night-data/', label: 'Telkom Night Data Bundles' },
   { from: '/night-data-bundles-south-africa/', to: '/guides/cheap-night-data-south-africa/', label: 'Cheap Night Data South Africa' }
 ];

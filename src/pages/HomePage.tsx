@@ -47,9 +47,9 @@ const fixProblemLinks = [
     action: () => ({ page: 'guide' as const, slug: 'why-does-my-data-finish-so-fast-south-africa' })
   },
   {
-    href: '/guides/how-to-stop-wasp-vas-charges-south-africa/',
+    href: '/guides/stop-wasp-subscriptions-south-africa/',
     label: 'How to stop WASP / VAS charges',
-    action: () => ({ page: 'guide' as const, slug: 'how-to-stop-wasp-vas-charges-south-africa' })
+    action: () => ({ page: 'guide' as const, slug: 'stop-wasp-subscriptions-south-africa' })
   },
   {
     href: '/guides/stop-wasp-subscriptions-south-africa/',
@@ -298,8 +298,8 @@ export const HomePage: React.FC<HomePageProps> = ({
               Stop airtime being used automatically in South Africa
             </a>
             <a
-              href="/guides/how-to-stop-wasp-services-south-africa/"
-              onClick={(e) => { e.preventDefault(); onNavigate('guide', 'how-to-stop-wasp-services-south-africa'); }}
+              href="/guides/stop-wasp-subscriptions-south-africa/"
+              onClick={(e) => { e.preventDefault(); onNavigate('guide', 'stop-wasp-subscriptions-south-africa'); }}
               className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-4 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24] transition-colors"
             >
               How to stop WASP services and premium deductions

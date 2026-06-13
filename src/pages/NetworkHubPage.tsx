@@ -51,7 +51,7 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
 
   const canonicalUrl = toCanonicalUrl('/network/');
   const pageTitle = 'Mobile Networks South Africa (2026)';
-  const metaDescription = "Compare South Africa's mobile networks including Vodacom, MTN, Cell C, Telkom and Rain. See network strengths, data value, coverage, speeds and related guides.";
+  const metaDescription = 'Compare Vodacom, MTN, Cell C, Telkom and Rain in South Africa by data value, coverage, speed notes and related guides.';
 
   const webPageSchema = {
     '@context': 'https://schema.org',
