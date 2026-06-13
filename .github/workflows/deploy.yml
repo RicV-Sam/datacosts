@@ -103,6 +103,9 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       contents: read
+    env:
+      BING_WEBMASTER_API_KEY: ${{ secrets.BING_WEBMASTER_API_KEY }}
+      BING_SITE_URL: https://datacost.co.za
 
     steps:
       - name: Checkout
@@ -112,6 +115,11 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: 24
+
+      - name: Submit sitemap URLs to Bing Webmaster
+        if: env.BING_WEBMASTER_API_KEY != ''
+        continue-on-error: true
+        run: npm run submit:bing -- --sitemap=https://datacost.co.za/sitemap.xml
 
       - name: Submit recently updated URLs to IndexNow
         continue-on-error: true
