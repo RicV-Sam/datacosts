@@ -25,6 +25,18 @@ function parsePositiveInteger(value, label) {
   return parsed;
 }
 
+function parseNonNegativeInteger(value, label) {
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isFinite(parsed) || parsed < 0) {
+    throw new Error(`${label} must be a non-negative integer`);
+  }
+  return parsed;
+}
+
+function toIsoDate(date) {
+  return date.toISOString().slice(0, 10);
+}
+
 async function readText(source) {
   if (/^https?:\/\//i.test(source)) {
     const response = await fetch(source);
@@ -51,7 +63,11 @@ function locsFromXml(xml) {
   return [...xml.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/gi)].map((match) => decodeXml(match[1].trim()));
 }
 
-async function readSitemapUrls(source, visited = new Set()) {
+function urlBlocksFromXml(xml) {
+  return [...xml.matchAll(/<url>\s*([\s\S]*?)\s*<\/url>/g)].map((match) => match[1]);
+}
+
+async function readSitemapUrlBlocks(source, visited = new Set()) {
   const absoluteSource = /^https?:\/\//i.test(source)
     ? new URL(source).toString()
     : path.resolve(process.cwd(), source);
@@ -60,14 +76,28 @@ async function readSitemapUrls(source, visited = new Set()) {
   visited.add(absoluteSource);
 
   const xml = await readText(source);
-  const locs = locsFromXml(xml);
-  if (!/<sitemapindex\b/i.test(xml)) return locs;
+  if (!/<sitemapindex\b/i.test(xml)) return urlBlocksFromXml(xml);
 
   const nested = [];
-  for (const loc of locs) {
-    nested.push(...await readSitemapUrls(loc, visited));
+  for (const loc of locsFromXml(xml)) {
+    nested.push(...await readSitemapUrlBlocks(loc, visited));
   }
   return nested;
+}
+
+async function readSitemapUrls({ source, includeAll, sinceDays }) {
+  const cutoffDate = toIsoDate(new Date(Date.now() - sinceDays * 24 * 60 * 60 * 1000));
+  const urls = [];
+
+  for (const block of await readSitemapUrlBlocks(source)) {
+    const loc = block.match(/<loc>(.*?)<\/loc>/)?.[1];
+    const lastmod = block.match(/<lastmod>(.*?)<\/lastmod>/)?.[1];
+    if (!loc) continue;
+    if (!includeAll && (!lastmod || lastmod < cutoffDate)) continue;
+    urls.push(decodeXml(loc));
+  }
+
+  return urls;
 }
 
 function prepareUrls(urls, siteUrl, limit) {
@@ -155,20 +185,22 @@ async function main() {
   const siteUrl = getArgValue('site', process.env.BING_SITE_URL || DEFAULT_SITE_URL);
   const sitemap = getArgValue('sitemap', process.env.BING_SITEMAP_URL || DEFAULT_SITEMAP);
   const limit = parsePositiveInteger(getArgValue('limit', process.env.BING_SUBMIT_LIMIT || '10000'), '--limit');
+  const sinceDays = parseNonNegativeInteger(getArgValue('since-days', process.env.BING_SINCE_DAYS || '14'), '--since-days');
+  const includeAll = hasFlag('all') || process.env.BING_SUBMIT_ALL === '1';
   const dryRun = hasFlag('dry-run') || process.env.BING_DRY_RUN === '1';
 
   if (!apiKey && !dryRun) {
     throw new Error('BING_WEBMASTER_API_KEY is required');
   }
 
-  const urls = prepareUrls(await readSitemapUrls(sitemap), siteUrl, limit);
+  const urls = prepareUrls(await readSitemapUrls({ source: sitemap, includeAll, sinceDays }), siteUrl, limit);
   if (urls.length === 0) {
-    console.log('Bing: no sitemap URLs to submit.');
+    console.log(`Bing: no sitemap URLs matched ${includeAll ? '--all' : `last ${sinceDays} day(s)`}.`);
     return;
   }
 
   if (dryRun) {
-    console.log(`Bing dry run: would submit ${urls.length} URL(s) for ${siteUrl}`);
+    console.log(`Bing dry run: would submit ${urls.length} URL(s) for ${siteUrl}${includeAll ? ' (--all)' : ` changed in the last ${sinceDays} day(s)`}`);
     for (const url of urls.slice(0, 20)) console.log(`- ${url}`);
     if (urls.length > 20) console.log(`...and ${urls.length - 20} more`);
     return;

@@ -99,6 +99,8 @@ npm run check:seo
 npm run lint
 ```
 
+`submit:bing` submits only sitemap URLs with recent `lastmod` values by default. Use `npm run submit:bing -- --all` only for a deliberate full-sitemap resubmission.
+
 ## SEO And Routing Model
 
 The project uses a static-first SEO architecture:
