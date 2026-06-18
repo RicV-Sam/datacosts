@@ -6,7 +6,7 @@ import {defineConfig, loadEnv, Plugin} from 'vite';
 import prerender from '@prerenderer/rollup-plugin';
 import PuppeteerRenderer from '@prerenderer/renderer-puppeteer';
 import { getPrerenderRoutes, validateIndexableRoutes } from './src/config/routeCatalog';
-import { getRedirectAliasRoutes } from './src/config/redirectAliases';
+import { getRedirectAliasRoutes, REDIRECT_ALIASES } from './src/config/redirectAliases';
 import { SITE_ORIGIN } from './src/seo/siteConstants';
 import { getBundledDataProblemSourceFiles } from './src/config/dataProblemPublishing';
 
@@ -35,6 +35,57 @@ function getPrerenderOutputPath(route: string, indexPath = 'index.html'): string
     outputPath = outputPath.slice(1);
   }
   return outputPath;
+}
+
+function escapeHtmlAttribute(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function insertBeforeHeadClose(html: string, tag: string): string {
+  if (/<\/head>/i.test(html)) {
+    return html.replace(/<\/head>/i, `${tag}</head>`);
+  }
+
+  return `${tag}${html}`;
+}
+
+function removeHeadTags(html: string, pattern: RegExp): string {
+  return html.replace(pattern, '');
+}
+
+function ensureTitle(html: string, title: string): string {
+  const safeTitle = escapeHtmlAttribute(title);
+  const titleTag = `<title data-rh="true">${safeTitle}</title>`;
+  if (/<title\b[^>]*>[\s\S]*?<\/title>/i.test(html)) {
+    return html.replace(/<title\b[^>]*>[\s\S]*?<\/title>/i, titleTag);
+  }
+
+  return insertBeforeHeadClose(html, titleTag);
+}
+
+function ensureRedirectAliasSeoHtml(html: string, alias: { from: string; to: string; label: string }): string {
+  const canonicalHref = `${SITE_ORIGIN}${normalizeRoute(alias.to)}`;
+  const description = `${alias.label} has moved. Continue to the canonical DataCost page at ${canonicalHref}.`;
+  let updatedHtml = html;
+
+  updatedHtml = removeHeadTags(updatedHtml, /<link\b[^>]*rel=["'][^"']*\bcanonical\b[^"']*["'][^>]*>\s*/gi);
+  updatedHtml = removeHeadTags(updatedHtml, /<meta\b[^>]*name=["']description["'][^>]*>\s*/gi);
+  updatedHtml = removeHeadTags(updatedHtml, /<meta\b[^>]*name=["']robots["'][^>]*>\s*/gi);
+  updatedHtml = ensureTitle(updatedHtml, `${alias.label} Moved | DataCost`);
+  updatedHtml = insertBeforeHeadClose(
+    updatedHtml,
+    [
+      `<meta data-rh="true" name="description" content="${escapeHtmlAttribute(description)}">`,
+      '<meta data-rh="true" name="robots" content="noindex,follow">',
+      `<link data-rh="true" rel="canonical" href="${escapeHtmlAttribute(canonicalHref)}">`
+    ].join('')
+  );
+
+  return updatedHtml;
 }
 
 function resolveDataProblemsSourceDir(options: { configuredPath?: string; isProductionBuild: boolean }): string {
@@ -112,6 +163,7 @@ export default defineConfig(({mode}) => {
   const puppeteerExecutablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
   const prerenderRoutes = getPrerenderRoutes();
   const redirectAliasRoutes = new Set(getRedirectAliasRoutes().map(normalizeRoute));
+  const redirectAliasByRoute = new Map(REDIRECT_ALIASES.map((alias) => [normalizeRoute(alias.from), alias]));
   validateIndexableRoutes(prerenderRoutes);
   const configuredSeoEnginePath = env.VITE_SEO_ENGINE_PATH || process.env.VITE_SEO_ENGINE_PATH;
   const dataProblemsSourceDir = resolveDataProblemsSourceDir({
@@ -136,15 +188,23 @@ export default defineConfig(({mode}) => {
             : undefined
         }),
         postProcess(renderedRoute: any) {
+          const normalizedOriginalRoute = typeof renderedRoute.originalRoute === 'string'
+            ? normalizeRoute(renderedRoute.originalRoute)
+            : '';
+          const redirectAlias = redirectAliasByRoute.get(normalizedOriginalRoute);
+
           if (
             typeof renderedRoute.originalRoute === 'string' &&
-            redirectAliasRoutes.has(normalizeRoute(renderedRoute.originalRoute))
+            redirectAliasRoutes.has(normalizedOriginalRoute)
           ) {
             renderedRoute.outputPath = getPrerenderOutputPath(renderedRoute.originalRoute);
           }
 
           renderedRoute.html = renderedRoute.html
             .replace(/http:\/\/localhost:[0-9]+/g, SITE_ORIGIN);
+          if (redirectAlias) {
+            renderedRoute.html = ensureRedirectAliasSeoHtml(renderedRoute.html, redirectAlias);
+          }
           renderedRoute.html = renderedRoute.html
             .replace(/<title(?![^>]*data-rh=)/g, '<title data-rh="true"')
             .replace(/<meta(?![^>]*data-rh=)([^>]*(?:name="description"|property="og:[^"]+"|name="twitter:[^"]+")[^>]*)>/g, '<meta data-rh="true"$1>')

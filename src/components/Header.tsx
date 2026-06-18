@@ -22,6 +22,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
     { id: 'ussd', label: 'USSD Codes' },
     { id: 'fix-problem', label: 'Fix a Problem' },
     { id: 'networks', label: 'Networks' },
+    { id: 'fibre', label: 'Fibre' },
     { id: 'guides', label: 'Guides' },
     { id: 'trust', label: 'Trust' }
   ];
@@ -32,6 +33,13 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
     { id: 'fix-problem', title: 'DataCost Fixes', subtitle: 'Troubleshoot mobile, USSD, electricity, decoder, and router issues', type: 'route' as const, value: '/fix/' },
     { id: 'calculator', title: 'Calculator', subtitle: 'Estimate your data usage', type: 'scroll' as const, value: 'calculator' },
     { id: 'networks', title: 'Networks', subtitle: 'Compare all mobile networks', type: 'scroll' as const, value: 'networks' },
+    { id: 'fibre', title: 'Fibre and Home Internet', subtitle: 'Compare fibre, prepaid fibre, LTE, 5G, and mobile data fallback', type: 'route' as const, value: '/fibre/' },
+    { id: 'cheap-fibre', title: 'Cheap Fibre Internet South Africa', subtitle: 'Check total cost, setup, router and cancellation terms', type: 'route' as const, value: '/fibre/cheap-fibre-south-africa/' },
+    { id: 'prepaid-fibre', title: 'Prepaid Fibre South Africa', subtitle: 'Understand vouchers, top-ups, expiry and coverage limits', type: 'route' as const, value: '/fibre/prepaid-fibre-south-africa/' },
+    { id: 'fibre-vs-lte', title: 'Fibre vs LTE/5G South Africa', subtitle: 'Choose between fixed fibre, LTE, 5G and mobile data for home use', type: 'route' as const, value: '/fibre/fibre-vs-lte-south-africa/' },
+    { id: 'buy-data-airtime', title: 'How to Buy Data and Airtime', subtitle: 'Compare safe USSD, app, bank-app, retailer and provider top-up routes', type: 'route' as const, value: '/buy-data-airtime-south-africa/' },
+    { id: 'bank-apps-data', title: 'Buy Data with Bank Apps', subtitle: 'Safer checks for South African bank-app data and airtime purchases', type: 'route' as const, value: '/guides/buy-data-with-bank-apps-south-africa/' },
+    { id: 'promos', title: 'Airtime, Data and Fibre Promos', subtitle: 'Verified promo listings only after source checks', type: 'route' as const, value: '/promos/' },
     { id: 'guides', title: 'Guides', subtitle: 'Browse all guides', type: 'scroll' as const, value: 'guides' },
     { id: 'trust', title: 'Trust Center', subtitle: 'Editorial standards, methodology, corrections, and privacy', type: 'route' as const, value: '/trust/' },
     { id: 'ussd', title: 'USSD Codes', subtitle: 'Find shortcode commands', type: 'scroll' as const, value: 'ussd' },
@@ -118,6 +126,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                   item.id === 'fix-problem' ? '/fix/' :
                   item.id === 'guides' ? '/guides/' :
                   item.id === 'networks' ? '/network/' :
+                  item.id === 'fibre' ? '/fibre/' :
                   item.id === 'trust' ? '/trust/' :
                   `#${item.id}`
                 }
@@ -165,6 +174,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
                       item.id === 'fix-problem' ? '/fix/' :
                       item.id === 'guides' ? '/guides/' :
                       item.id === 'networks' ? '/network/' :
+                      item.id === 'fibre' ? '/fibre/' :
                       item.id === 'trust' ? '/trust/' :
                       `#${item.id}`
                     }

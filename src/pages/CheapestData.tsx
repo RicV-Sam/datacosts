@@ -213,7 +213,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   };
 
   const relatedPages = [
+    '/',
     '/guides/best-data-deals-south-africa/',
+    '/guides/best-prepaid-data-deals-south-africa/',
     '/guides/cheapest-1gb-data-south-africa/',
     '/guides/cheapest-2gb-data-south-africa/',
     '/guides/cheapest-5gb-data-south-africa/',
@@ -225,6 +227,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     '/network/vodacom/',
     '/network/telkom/',
     '/network/cell-c/',
+    '/fibre/fibre-vs-lte-south-africa/',
     '/guides/how-to-check-data-balance/',
     '/ussd-codes-south-africa/',
     '/network/',
@@ -232,7 +235,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   ];
 
   const relatedLabels: Record<string, string> = {
+    '/': 'DataCost Home',
     '/guides/best-data-deals-south-africa/': 'Best Data Deals South Africa',
+    '/guides/best-prepaid-data-deals-south-africa/': 'Best Prepaid Phone Plans',
     '/guides/cheapest-1gb-data-south-africa/': 'Cheapest 1GB Data South Africa',
     '/guides/cheapest-2gb-data-south-africa/': 'Cheapest 2GB Data South Africa',
     '/guides/cheapest-5gb-data-south-africa/': 'Cheapest 5GB Data South Africa',
@@ -243,6 +248,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     '/network/vodacom/': 'Vodacom Network Page',
     '/network/telkom/': 'Telkom Network Page',
     '/network/cell-c/': 'Cell C prepaid data prices',
+    '/fibre/fibre-vs-lte-south-africa/': 'Fibre vs LTE/5G for home internet',
     '/guides/how-to-check-data-balance/': 'How to Check Data Balance',
     '/ussd-codes-south-africa/': 'USSD Codes South Africa',
     '/network/': 'Network Comparison Hub',
@@ -396,6 +402,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
           </p>
           <p className="text-slate-700 leading-relaxed mt-3">
             Before purchase, verify the final bundle on the operator side and use the <Link to="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">USSD codes hub</Link> or <Link to="/network/" className="text-[#1b6d24] font-semibold hover:underline">network comparison hub</Link> for the next step.
+          </p>
+          <p className="text-slate-700 leading-relaxed mt-3">
+            If the intent is <strong>best prepaid phone plans</strong>, move to the <Link to="/guides/best-prepaid-data-deals-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">best prepaid phone plans guide</Link>. If the query is already operator-specific, such as <strong>Cell C data deals</strong>, start on the <Link to="/" className="text-[#1b6d24] font-semibold hover:underline">homepage</Link> or jump straight to the <Link to="/network/cell-c/" className="text-[#1b6d24] font-semibold hover:underline">Cell C data deals page</Link>.
           </p>
         </section>
 

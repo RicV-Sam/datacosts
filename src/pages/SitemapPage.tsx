@@ -8,6 +8,7 @@ import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { NavigateFunction } from '../types';
 import { toCanonicalUrl } from '../seo/siteConstants';
 import { fixPages, fixClusterLabelById, getFixPath } from '../data/fixes';
+import { fibrePages } from '../data/fibre';
 
 interface SitemapPageProps {
   onNavigate: NavigateFunction;
@@ -28,9 +29,18 @@ const sitemapGroups: SitemapGroup[] = [
       { href: '/guides/', label: 'South Africa Mobile Data Guides' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa' },
       { href: '/alerts/', label: 'Data Deal Alerts' },
+      { href: '/buy-data-airtime-south-africa/', label: 'Buy Data and Airtime South Africa' },
+      { href: '/promos/', label: 'Airtime, Data and Fibre Promos' },
       { href: '/fix/', label: 'DataCost Fixes' },
       { href: '/trust/', label: 'DataCost Trust Center' }
     ]
+  },
+  {
+    title: 'Fibre and Home Internet',
+    links: fibrePages.map((page) => ({
+      href: page.path,
+      label: page.h1
+    }))
   },
   {
     title: 'Price Guides',
@@ -50,7 +60,8 @@ const sitemapGroups: SitemapGroup[] = [
       { href: '/guides/best-sim-only-deals-south-africa/', label: 'Best SIM-Only Deals' },
       { href: '/guides/cheap-night-data-south-africa/', label: 'Cheap Night Data South Africa' },
       { href: '/guides/cheapest-whatsapp-bundles-south-africa/', label: 'Cheapest WhatsApp Bundles' },
-      { href: '/guides/out-of-bundle-data-costs-south-africa/', label: 'Out-of-bundle Data Costs' }
+      { href: '/guides/out-of-bundle-data-costs-south-africa/', label: 'Out-of-bundle Data Costs' },
+      { href: '/guides/buy-data-with-bank-apps-south-africa/', label: 'Buy Data with Bank Apps South Africa' }
     ]
   },
   {

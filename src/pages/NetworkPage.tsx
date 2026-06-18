@@ -236,12 +236,22 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
       { href: '/fix/lte-router-apn-settings-south-africa/', label: 'LTE router APN settings', description: 'Check the APN profile when a router sees the SIM but will not browse.' }
     ]
   };
+  const operatorSpecificUssdLinksBySlug: Record<string, Array<{ href: string; label: string; description: string }>> = {
+    mtn: [
+      { href: '/mtn-ussd-codes/', label: 'MTN USSD codes', description: 'Open the MTN-specific balance, recharge, and Please Call Me shortcuts.' }
+    ],
+    vodacom: [
+      { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD codes', description: 'Open the Vodacom-specific balance, buy-data, and self-service shortcuts.' }
+    ]
+  };
   const operatorActionLinks = [
     ...(howToBuyGuideHref
       ? [{ href: howToBuyGuideHref, label: `How to buy ${network.name} data`, description: `Step-by-step buy flow for ${network.name}.` }]
       : []),
+    ...(operatorSpecificUssdLinksBySlug[networkSlug] || []),
     ...(balanceGuideLinksBySlug[networkSlug] || []),
     ...(fixGuideLinksBySlug[networkSlug] || []),
+    { href: '/fibre/fibre-vs-lte-south-africa/', label: 'Fibre vs LTE home internet', description: 'Compare fixed fibre, LTE, 5G and mobile-data fallback before using a SIM as home internet.' },
     { href: '/airtime-advance-codes/', label: `${network.name} airtime advance codes`, description: 'Check borrow-airtime routes, eligibility, fees and repayment notes.' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Keep track of active bundles and expiry.' },
     { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals South Africa', description: 'Compare best-value prepaid bundle options.' },

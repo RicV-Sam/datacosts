@@ -2,6 +2,7 @@ import { bundles } from '../data';
 import { networkPages } from '../data/networks';
 import { guides } from '../data/guides';
 import { fixPages, getFixPath } from '../data/fixes';
+import { fibreRoutes } from '../data/fibre';
 import { Bundle } from '../types';
 import { SITE_ORIGIN } from '../seo/siteConstants';
 import { getRedirectAliasRoutes } from './redirectAliases';
@@ -241,6 +242,13 @@ export function getIndexableRoutes(): string[] {
   routes.add('/guides/how-to-protect-airtime-from-being-used/');
   routes.add('/guides/airtime-data-problems-south-africa/');
   routes.add('/travel-sims-south-africa/');
+  routes.add('/buy-data-airtime-south-africa/');
+  routes.add('/guides/buy-data-with-bank-apps-south-africa/');
+  routes.add('/promos/');
+
+  for (const fibreRoute of fibreRoutes) {
+    routes.add(fibreRoute);
+  }
 
   for (const guide of guides) {
     routes.add(`/guides/${guide.slug}/`);

@@ -160,6 +160,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     { href: '/network/vodacom/', label: 'Vodacom Network Page', description: 'Review Vodacom prices, bundles, and coverage-led tradeoffs.' },
     { href: '/network/telkom/', label: 'Telkom Network Page', description: 'Review Telkom monthly-value and budget bundle context.' },
     { href: '/network/cell-c/', label: 'Cell C data deals', description: 'Review Cell C prepaid data prices, bundles, and promo-led offers.' },
+    { href: '/fibre/fibre-vs-lte-south-africa/', label: 'Fibre vs LTE/5G for home internet', description: 'Use this before relying on mobile data as a household internet replacement.' },
     { href: '/network/', label: 'Network Comparison Hub', description: 'Browse all operator hub pages.' },
     { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Buy and balance shortcuts without the app.' },
     { href: '/methodology/', label: 'Methodology', description: 'How DataCost scores value and comparisons.' },
@@ -375,4 +376,3 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     </div>
   );
 };
-

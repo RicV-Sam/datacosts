@@ -3,19 +3,28 @@ const DEFAULT_MODIFIED_ISO = '2026-02-15T00:00:00.000Z';
 const PUBLISHER_REVIEW_MODIFIED_ISO = '2026-05-24T00:00:00.000Z';
 
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
-  '/': '2026-05-28T00:00:00.000Z',
+  '/': '2026-06-18T00:00:00.000Z',
   '/alerts/': '2026-05-10T00:00:00.000Z',
   '/about/': '2026-05-10T00:00:00.000Z',
   '/airtime-advance-codes/': '2026-05-15T00:00:00.000Z',
   '/contact/': '2026-05-10T00:00:00.000Z',
   '/cookie-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/editorial-policy/': '2026-05-10T00:00:00.000Z',
+  '/buy-data-airtime-south-africa/': '2026-06-18T00:00:00.000Z',
+  '/fibre/': '2026-06-18T00:00:00.000Z',
+  '/fibre/cheap-fibre-south-africa/': '2026-06-18T00:00:00.000Z',
+  '/fibre/prepaid-fibre-south-africa/': '2026-06-18T00:00:00.000Z',
+  '/fibre/fibre-vs-lte-south-africa/': '2026-06-18T00:00:00.000Z',
+  '/fibre/how-to-check-fibre-coverage-south-africa/': '2026-06-18T00:00:00.000Z',
+  '/fibre/fibre-installation-costs-south-africa/': '2026-06-18T00:00:00.000Z',
+  '/fibre/coverage-by-area/': '2026-06-18T00:00:00.000Z',
   '/fix/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/guides/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/methodology/': '2026-05-10T00:00:00.000Z',
-  '/mtn-ussd-codes/': '2026-06-11T00:00:00.000Z',
+  '/mtn-ussd-codes/': '2026-06-18T00:00:00.000Z',
   '/network/': '2026-03-24T00:00:00.000Z',
   '/privacy-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
+  '/promos/': '2026-06-18T00:00:00.000Z',
   '/save-ussd-codes/': '2026-06-11T00:00:00.000Z',
   '/sitemap/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/cell-c-ussd-codes/': '2026-05-28T00:00:00.000Z',
@@ -23,8 +32,8 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/terms/': '2026-05-10T00:00:00.000Z',
   '/trust/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
-  '/ussd-codes-south-africa/': '2026-06-11T00:00:00.000Z',
-  '/vodacom-ussd-codes/': '2026-05-15T00:00:00.000Z'
+  '/ussd-codes-south-africa/': '2026-06-18T00:00:00.000Z',
+  '/vodacom-ussd-codes/': '2026-06-18T00:00:00.000Z'
 };
 
 const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
@@ -65,6 +74,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'cheap-night-data-south-africa': '2026-05-02T00:00:00.000Z',
   'cheapest-1gb-data-south-africa': '2026-06-11T00:00:00.000Z',
   'convert-airtime-to-data-south-africa': '2026-06-11T00:00:00.000Z',
+  'buy-data-with-bank-apps-south-africa': '2026-06-18T00:00:00.000Z',
   'how-to-buy-data-cell-c': '2026-06-11T00:00:00.000Z',
   'how-to-buy-data-mtn': '2026-06-11T00:00:00.000Z',
   'how-to-buy-data-telkom': '2026-05-15T00:00:00.000Z',
@@ -77,7 +87,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'stop-wasp-subscriptions-south-africa': '2026-05-10T00:00:00.000Z',
   'out-of-bundle-data-costs-south-africa': '2026-05-01T00:00:00.000Z',
   'prepaid-vs-contract-south-africa': '2026-03-10T00:00:00.000Z',
-  'cheapest-data-south-africa': '2026-05-28T00:00:00.000Z',
+  'cheapest-data-south-africa': '2026-06-18T00:00:00.000Z',
   'why-does-my-data-finish-so-fast-south-africa': '2026-05-10T00:00:00.000Z',
   'why-is-my-airtime-disappearing-south-africa': '2026-05-15T00:00:00.000Z',
   'why-is-my-data-finishing-so-fast': '2026-04-16T00:00:00.000Z',
@@ -95,7 +105,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
 
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'best-monthly-data-deals-south-africa': '2026-05-02T00:00:00.000Z',
-  'best-prepaid-data-deals-south-africa': '2026-06-11T00:00:00.000Z',
+  'best-prepaid-data-deals-south-africa': '2026-06-18T00:00:00.000Z',
   'cheap-night-data-south-africa': '2026-05-02T00:00:00.000Z',
   'cheapest-1gb-data-south-africa': '2026-06-11T00:00:00.000Z',
   'cheapest-2gb-data-south-africa': '2026-05-02T00:00:00.000Z',
@@ -117,8 +127,8 @@ const NETWORK_MODIFIED_BY_SLUG: Record<string, string> = {
 
 const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
   'cell-c': '2026-06-11T00:00:00.000Z',
-  mtn: '2026-05-15T00:00:00.000Z',
-  vodacom: '2026-06-11T00:00:00.000Z'
+  mtn: '2026-06-18T00:00:00.000Z',
+  vodacom: '2026-06-18T00:00:00.000Z'
 };
 
 const BUNDLE_TYPE_MODIFIED_ISO = '2026-05-01T00:00:00.000Z';

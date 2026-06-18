@@ -13,7 +13,7 @@ import { NetworkModal } from '../components/NetworkModal';
 import { guides } from '../data/guides';
 import { networkPages } from '../data/networks';
 import { bundles } from '../data';
-import { NetworkName } from '../types';
+import { NavigateFunction, NetworkName } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
 import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
@@ -28,7 +28,7 @@ import {
 } from '../seo/siteConstants';
 
 interface HomePageProps {
-  onNavigate: (page: 'home' | 'ussd' | 'alerts' | 'guide' | 'network' | 'guides-index' | 'travel-sims' | 'fix-problem' | 'trust', slug?: string) => void;
+  onNavigate: NavigateFunction;
   onScrollTo: (id: string) => void;
   activeSection: string;
   selectedNetwork: NetworkName | null;
@@ -85,7 +85,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   setSelectedNetwork
 }) => {
   const pageTitle = 'Cheapest Data South Africa: MTN, Vodacom, Telkom & Cell C';
-  const metaDescription = 'Find the cheapest data in South Africa, compare Cell C data deals, and use MTN, Vodacom, Telkom and Cell C guides before choosing a bundle.';
+  const metaDescription = 'Find the cheapest data in South Africa, compare Cell C data deals and best prepaid phone plans, and use MTN, Vodacom, Telkom and Cell C guides before choosing a bundle.';
   const canonicalUrl = SITE_URL;
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/');
@@ -187,7 +187,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-4 md:p-6 shadow-sm">
           <h2 className="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-3">Quick Answer</h2>
           <p className="text-sm text-slate-700 leading-relaxed">
-            Use the homepage as the broad entry point for <strong>cheapest data in South Africa</strong> and network discovery. If you want the deeper comparison answer, open the <a href="/guides/cheapest-data-south-africa/" className="font-bold text-[#1b6d24] hover:underline">cheapest data in South Africa guide</a>. If you already know the operator intent, jump to <a href="/ussd-codes-south-africa/" className="font-bold text-[#1b6d24] hover:underline">USSD codes South Africa</a> or the <a href="/network/vodacom/" className="font-bold text-[#1b6d24] hover:underline">Vodacom data prices page</a>.
+            Use the homepage as the broad entry point for <strong>cheapest data in South Africa</strong>, <strong>Cell C data deals</strong>, and network discovery. If you want the deeper comparison answer, open the <a href="/guides/cheapest-data-south-africa/" className="font-bold text-[#1b6d24] hover:underline">cheapest data in South Africa guide</a>. If you are comparing prepaid value, go to <a href="/guides/best-prepaid-data-deals-south-africa/" className="font-bold text-[#1b6d24] hover:underline">best prepaid phone plans</a>. If you already know the operator intent, jump to <a href="/network/cell-c/" className="font-bold text-[#1b6d24] hover:underline">Cell C data deals</a>, <a href="/ussd-codes-south-africa/" className="font-bold text-[#1b6d24] hover:underline">USSD codes South Africa</a>, or the <a href="/network/vodacom/" className="font-bold text-[#1b6d24] hover:underline">Vodacom data prices page</a>.
           </p>
         </section>
 
@@ -223,8 +223,47 @@ export const HomePage: React.FC<HomePageProps> = ({
             </button>
           </div>
           <p className="text-sm text-slate-700 leading-relaxed mt-4">
-            Want the detailed answer to which network is cheapest? Read the <a href="/guides/cheapest-data-south-africa/" className="font-bold text-[#1b6d24] hover:underline">cheapest data in South Africa</a> guide for the deeper comparison, then come back here for operator discovery and quick next steps.
+            Want the detailed answer to which network is cheapest? Read the <a href="/guides/cheapest-data-south-africa/" className="font-bold text-[#1b6d24] hover:underline">cheapest data in South Africa</a> guide for the deeper comparison. For prepaid-plan intent, open <a href="/guides/best-prepaid-data-deals-south-africa/" className="font-bold text-[#1b6d24] hover:underline">best prepaid phone plans</a>, and for operator-specific value shopping open <a href="/network/cell-c/" className="font-bold text-[#1b6d24] hover:underline">Cell C data deals</a>.
           </p>
+        </section>
+
+        <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-4 md:p-6 shadow-sm">
+          <h2 className="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-3">Popular Starting Points</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <a href="/guides/cheapest-data-south-africa/" className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-4 hover:border-[#1b6d24] transition-colors">
+              <span className="block text-sm font-black text-slate-900">Cheapest data in South Africa</span>
+              <span className="mt-1 block text-xs text-slate-600">Use this when the intent is which network is cheapest overall.</span>
+            </a>
+            <a href="/guides/best-prepaid-data-deals-south-africa/" className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-4 hover:border-[#1b6d24] transition-colors">
+              <span className="block text-sm font-black text-slate-900">Best prepaid phone plans</span>
+              <span className="mt-1 block text-xs text-slate-600">Use this when prepaid value and phone-plan intent overlap.</span>
+            </a>
+            <a href="/network/cell-c/" className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-4 hover:border-[#1b6d24] transition-colors">
+              <span className="block text-sm font-black text-slate-900">Cell C data deals</span>
+              <span className="mt-1 block text-xs text-slate-600">Use this when the search is already operator-specific.</span>
+            </a>
+          </div>
+        </section>
+
+        <section className="mb-8 bg-[#031636] text-white rounded-3xl p-4 md:p-6 shadow-sm">
+          <h2 className="text-sm font-black uppercase tracking-[0.15em] text-[#a0f399] mb-3">Fibre and Home Internet</h2>
+          <p className="text-sm text-slate-200 leading-relaxed mb-4">
+            Comparing mobile data as a home-internet fallback? Start with the Fibre hub before choosing between fixed fibre, prepaid fibre, LTE, 5G, or a mobile hotspot.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <a href="/fibre/" className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 hover:bg-white/15 transition-colors">
+              <span className="block text-sm font-black">Fibre and home internet hub</span>
+              <span className="mt-1 block text-xs text-slate-300">Compare coverage checks, setup costs, LTE fallback and prepaid fibre basics.</span>
+            </a>
+            <a href="/fibre/fibre-vs-lte-south-africa/" className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 hover:bg-white/15 transition-colors">
+              <span className="block text-sm font-black">Fibre vs LTE/5G</span>
+              <span className="mt-1 block text-xs text-slate-300">Decide when mobile data is a good home fallback.</span>
+            </a>
+            <a href="/buy-data-airtime-south-africa/" className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 hover:bg-white/15 transition-colors">
+              <span className="block text-sm font-black">Buy data and airtime safely</span>
+              <span className="mt-1 block text-xs text-slate-300">Compare app, USSD, bank-app, retailer and provider routes.</span>
+            </a>
+          </div>
         </section>
 
         <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-4 md:p-6 shadow-sm">

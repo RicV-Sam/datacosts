@@ -40,6 +40,10 @@ const ProblemSolvingGuidePage = lazy(() => import('./pages/ProblemSolvingGuidePa
 const AirtimeDataProblemsHubPage = lazy(() => import('./pages/AirtimeDataProblemsHubPage').then((mod) => ({ default: mod.AirtimeDataProblemsHubPage })));
 const RedirectPage = lazy(() => import('./pages/RedirectPage').then((mod) => ({ default: mod.RedirectPage })));
 const SitemapPage = lazy(() => import('./pages/SitemapPage').then((mod) => ({ default: mod.SitemapPage })));
+const FibrePage = lazy(() => import('./pages/FibrePage').then((mod) => ({ default: mod.FibrePage })));
+const BuyDataAirtimePage = lazy(() => import('./pages/BuyDataAirtimePage').then((mod) => ({ default: mod.BuyDataAirtimePage })));
+const BankAppsDataGuidePage = lazy(() => import('./pages/BankAppsDataGuidePage').then((mod) => ({ default: mod.BankAppsDataGuidePage })));
+const PromosPage = lazy(() => import('./pages/PromosPage').then((mod) => ({ default: mod.PromosPage })));
 
 function AppContent() {
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkName | null>(null);
@@ -58,6 +62,9 @@ function AppContent() {
     if (page === 'travel-sims') path = '/travel-sims-south-africa/';
     if (page === 'fix-problem') path = '/fix/';
     if (page === 'trust') path = '/trust/';
+    if (page === 'fibre') path = slug ? `/fibre/${slug}/` : '/fibre/';
+    if (page === 'promos') path = '/promos/';
+    if (page === 'buy-data') path = '/buy-data-airtime-south-africa/';
 
     if (window.location.pathname === path && path === '/') {
       // already on home, scroll to top
@@ -91,6 +98,18 @@ function AppContent() {
     }
     if (id === 'trust') {
       navigateTo('trust');
+      return;
+    }
+    if (id === 'fibre') {
+      navigateTo('fibre');
+      return;
+    }
+    if (id === 'promos') {
+      navigateTo('promos');
+      return;
+    }
+    if (id === 'buy-data') {
+      navigateTo('buy-data');
       return;
     }
     if (id === 'compare-data') {
@@ -218,6 +237,11 @@ function AppContent() {
           element={<AirtimeDataProblemsHubPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route
+          path="/guides/buy-data-with-bank-apps-south-africa/"
+          element={<BankAppsDataGuidePage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route path="/guides/buy-data-with-bank-apps-south-africa" element={<Navigate to="/guides/buy-data-with-bank-apps-south-africa/" replace />} />
+        <Route
           path="/guides/how-to-stop-wasp-vas-charges-south-africa/"
           element={<RedirectPage />}
         />
@@ -237,6 +261,26 @@ function AppContent() {
           path="/network/:networkSlug/:bundleType/"
           element={<BundleTypeRoute onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
+        <Route
+          path="/fibre/"
+          element={<FibrePage slug="hub" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route
+          path="/fibre/:slug/"
+          element={<FibreRoute onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route path="/fibre" element={<Navigate to="/fibre/" replace />} />
+        <Route path="/fibre/:slug" element={<FibreNoSlashRedirect />} />
+        <Route
+          path="/buy-data-airtime-south-africa/"
+          element={<BuyDataAirtimePage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route path="/buy-data-airtime-south-africa" element={<Navigate to="/buy-data-airtime-south-africa/" replace />} />
+        <Route
+          path="/promos/"
+          element={<PromosPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route path="/promos" element={<Navigate to="/promos/" replace />} />
         <Route
           path="/about/"
           element={<AboutPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
@@ -508,6 +552,16 @@ function NetworkRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction
 
 function BundleTypeRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction, onScrollTo: (id: string) => void }) {
   return <BundleTypePage onNavigate={onNavigate} onScrollTo={onScrollTo} />;
+}
+
+function FibreRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction, onScrollTo: (id: string) => void }) {
+  const { slug } = useParams();
+  return <FibrePage slug={slug || ''} onNavigate={onNavigate} onScrollTo={onScrollTo} />;
+}
+
+function FibreNoSlashRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/fibre/${slug || ''}/`} replace />;
 }
 
 function FixRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction, onScrollTo: (id: string) => void }) {
