@@ -248,20 +248,20 @@ export const HomePage: React.FC<HomePageProps> = ({
         <section className="mb-8 bg-[#031636] text-white rounded-3xl p-4 md:p-6 shadow-sm">
           <h2 className="text-sm font-black uppercase tracking-[0.15em] text-[#a0f399] mb-3">Fibre and Home Internet</h2>
           <p className="text-sm text-slate-200 leading-relaxed mb-4">
-            Comparing mobile data as a home-internet fallback? Start with the Fibre hub before choosing between fixed fibre, prepaid fibre, LTE, 5G, or a mobile hotspot.
+            Compare fibre like a real household decision: coverage, FNO, ISP, price, install terms, router rules, prepaid options and LTE or 5G fallback.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <a href="/fibre/" className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 hover:bg-white/15 transition-colors">
-              <span className="block text-sm font-black">Fibre and home internet hub</span>
-              <span className="mt-1 block text-xs text-slate-300">Compare coverage checks, setup costs, LTE fallback and prepaid fibre basics.</span>
+              <span className="block text-sm font-black">Fibre prices and coverage</span>
+              <span className="mt-1 block text-xs text-slate-300">Start with checked price examples, exact-address coverage and installation costs.</span>
+            </a>
+            <a href="/fibre/fno-vs-isp-south-africa/" className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 hover:bg-white/15 transition-colors">
+              <span className="block text-sm font-black">FNO vs ISP</span>
+              <span className="mt-1 block text-xs text-slate-300">Know who owns the line, who bills you and who fixes faults.</span>
             </a>
             <a href="/fibre/fibre-vs-lte-south-africa/" className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 hover:bg-white/15 transition-colors">
               <span className="block text-sm font-black">Fibre vs LTE/5G</span>
-              <span className="mt-1 block text-xs text-slate-300">Decide when mobile data is a good home fallback.</span>
-            </a>
-            <a href="/buy-data-airtime-south-africa/" className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 hover:bg-white/15 transition-colors">
-              <span className="block text-sm font-black">Buy data and airtime safely</span>
-              <span className="mt-1 block text-xs text-slate-300">Compare app, USSD, bank-app, retailer and provider routes.</span>
+              <span className="mt-1 block text-xs text-slate-300">Decide when mobile data or fixed wireless is a good home fallback.</span>
             </a>
           </div>
         </section>

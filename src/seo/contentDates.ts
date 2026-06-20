@@ -1,6 +1,7 @@
 const DEFAULT_PUBLISHED_ISO = '2025-01-15T00:00:00.000Z';
 const DEFAULT_MODIFIED_ISO = '2026-02-15T00:00:00.000Z';
 const PUBLISHER_REVIEW_MODIFIED_ISO = '2026-05-24T00:00:00.000Z';
+const FIBRE_REVIEW_MODIFIED_ISO = '2026-06-20T00:00:00.000Z';
 
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/': '2026-06-18T00:00:00.000Z',
@@ -11,13 +12,13 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/cookie-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/editorial-policy/': '2026-05-10T00:00:00.000Z',
   '/buy-data-airtime-south-africa/': '2026-06-18T00:00:00.000Z',
-  '/fibre/': '2026-06-18T00:00:00.000Z',
-  '/fibre/cheap-fibre-south-africa/': '2026-06-18T00:00:00.000Z',
-  '/fibre/prepaid-fibre-south-africa/': '2026-06-18T00:00:00.000Z',
-  '/fibre/fibre-vs-lte-south-africa/': '2026-06-18T00:00:00.000Z',
-  '/fibre/how-to-check-fibre-coverage-south-africa/': '2026-06-18T00:00:00.000Z',
-  '/fibre/fibre-installation-costs-south-africa/': '2026-06-18T00:00:00.000Z',
-  '/fibre/coverage-by-area/': '2026-06-18T00:00:00.000Z',
+  '/fibre/': FIBRE_REVIEW_MODIFIED_ISO,
+  '/fibre/cheap-fibre-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
+  '/fibre/prepaid-fibre-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
+  '/fibre/fibre-vs-lte-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
+  '/fibre/how-to-check-fibre-coverage-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
+  '/fibre/fibre-installation-costs-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
+  '/fibre/coverage-by-area/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fix/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/guides/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/methodology/': '2026-05-10T00:00:00.000Z',
@@ -217,6 +218,10 @@ export function getRouteModifiedIso(routeInput: string): string {
     return dataProblemModifiedIso > PUBLISHER_REVIEW_MODIFIED_ISO
       ? dataProblemModifiedIso
       : PUBLISHER_REVIEW_MODIFIED_ISO;
+  }
+
+  if (route.startsWith('/fibre/')) {
+    return FIBRE_REVIEW_MODIFIED_ISO;
   }
 
   if (route.startsWith('/fix/')) {

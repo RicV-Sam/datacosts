@@ -1,14 +1,38 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Info, Network, ShieldCheck } from 'lucide-react';
+import {
+  ArrowRight,
+  Calculator,
+  CheckCircle2,
+  ExternalLink,
+  Info,
+  Network,
+  ShieldCheck,
+  Wifi
+} from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { TrustPanel } from '../components/TrustPanel';
 import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
-import { fibrePageBySlug, fibrePages, FibrePageDefinition, FibreSection } from '../data/fibre';
+import {
+  fibrePageBySlug,
+  fibrePages,
+  FibreContentBlock,
+  FibrePageDefinition,
+  FibreTableRow,
+  formatRand,
+  formatSpeed,
+  getFibreCompaniesById,
+  getFibrePriceCompanyName,
+  getFibrePrices,
+  getFibrePriceSnapshotStatus,
+  getFibreSourcesById,
+  isFibrePriceFresh,
+  noindexFibreRoutes
+} from '../data/fibre';
 import { NavigateFunction } from '../types';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
@@ -27,6 +51,13 @@ interface FibrePageProps {
   onNavigate: NavigateFunction;
   onScrollTo: (id: string) => void;
 }
+
+const speedOptions = [
+  { label: 'Light', people: 1, base: 25, note: 'Browsing, messaging, one stream and light work.' },
+  { label: 'Everyday', people: 3, base: 50, note: 'Small household, HD streaming, school and work calls.' },
+  { label: 'Busy', people: 5, base: 100, note: 'Several people online, gaming, video calls and cloud use.' },
+  { label: 'Heavy', people: 7, base: 200, note: 'Creators, big uploads, many devices and frequent downloads.' }
+];
 
 function buildPageSchema(page: FibrePageDefinition, canonicalUrl: string, datePublishedIso: string, dateModifiedIso: string) {
   if (page.kind === 'hub') {
@@ -78,7 +109,7 @@ function buildItemListSchema(page: FibrePageDefinition) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: page.kind === 'hub' ? 'Fibre and home internet guides' : `Related guides for ${page.h1}`,
+    name: page.kind === 'hub' ? 'Fibre and home internet guides' : `Related fibre guides for ${page.h1}`,
     itemListElement: items.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
@@ -103,14 +134,272 @@ function buildFaqSchema(page: FibrePageDefinition) {
   };
 }
 
-const SectionContent: React.FC<{ section: FibreSection }> = ({ section }) => {
+const StandardTable: React.FC<{ rows: FibreTableRow[]; columns?: [string, string, string] }> = ({ rows, columns = ['Item', 'Use', 'Note'] }) => (
+  <div className="overflow-hidden rounded-2xl border border-slate-100">
+    <table className="w-full text-left text-sm">
+      <thead className="bg-slate-50 text-[10px] font-black uppercase tracking-widest text-slate-400">
+        <tr>
+          {columns.map((column) => (
+            <th key={column} className="px-4 py-3">{column}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-slate-100 bg-white">
+        {rows.map((row) => (
+          <tr key={`${row.label}-${row.value}`}>
+            <td className="px-4 py-4 align-top font-black text-slate-900">{row.label}</td>
+            <td className="px-4 py-4 align-top font-medium text-slate-700">{row.value}</td>
+            <td className="px-4 py-4 align-top font-medium leading-relaxed text-slate-600">{row.note}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+);
+
+const CompanyGrid: React.FC<{ companyIds: string[] }> = ({ companyIds }) => {
+  const companies = getFibreCompaniesById(companyIds);
+
   return (
-    <section id={section.id} className="mb-10 scroll-mt-24 rounded-3xl border border-slate-100 bg-white p-6 shadow-sm md:p-8">
-      <h2 className="mb-4 text-2xl font-black tracking-tight text-slate-900">{section.title}</h2>
-      {section.body && <p className="text-sm font-medium leading-relaxed text-slate-600">{section.body}</p>}
-      {section.bullets && (
+    <div className="grid gap-4 md:grid-cols-2">
+      {companies.map((company) => (
+        <article key={company.id} className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+          <div className="mb-3 flex items-start justify-between gap-3">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-widest text-[#1b6d24]">{company.role.toUpperCase()}</p>
+              <h3 className="mt-1 text-lg font-black tracking-tight text-slate-900">{company.name}</h3>
+            </div>
+            <a href={company.officialUrl} target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 bg-white p-2 text-slate-500 hover:text-[#1b6d24]" aria-label={`Open ${company.name}`}>
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+          <p className="text-sm font-medium leading-relaxed text-slate-700">{company.summary}</p>
+          <dl className="mt-4 space-y-3 text-xs leading-relaxed text-slate-600">
+            <div>
+              <dt className="font-black uppercase tracking-widest text-slate-400">Consumer role</dt>
+              <dd className="mt-1 font-medium">{company.consumerRole}</dd>
+            </div>
+            <div>
+              <dt className="font-black uppercase tracking-widest text-slate-400">Infrastructure</dt>
+              <dd className="mt-1 font-medium">{company.infrastructureRole}</dd>
+            </div>
+            <div>
+              <dt className="font-black uppercase tracking-widest text-slate-400">Coverage note</dt>
+              <dd className="mt-1 font-medium">{company.coverageNotes}</dd>
+            </div>
+          </dl>
+        </article>
+      ))}
+    </div>
+  );
+};
+
+const PriceTable: React.FC<{ block: Extract<FibreContentBlock, { type: 'price-table' }> }> = ({ block }) => {
+  const prices = getFibrePrices({ ...(block.filter ?? {}), limit: block.limit });
+  const status = getFibrePriceSnapshotStatus();
+  const checkedLabel = formatIsoForDisplay(`${status.checkedAt}T00:00:00.000Z`);
+
+  if (prices.length === 0) {
+    return (
+      <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm font-medium leading-relaxed text-amber-900">
+        No checked price examples are available for this exact filter yet. Use the educational guidance on this page and confirm live prices with the provider.
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className={`rounded-2xl border p-4 text-sm font-medium leading-relaxed ${status.fresh ? 'border-emerald-100 bg-emerald-50 text-emerald-900' : 'border-amber-200 bg-amber-50 text-amber-900'}`}>
+        Price examples checked on {checkedLabel}. They are not live quotes and must be confirmed by exact address.
+      </div>
+      <div className="overflow-hidden rounded-2xl border border-slate-100">
+        <table className="w-full text-left text-sm">
+          <thead className="bg-slate-50 text-[10px] font-black uppercase tracking-widest text-slate-400">
+            <tr>
+              <th className="px-4 py-3">Provider</th>
+              <th className="px-4 py-3">Network</th>
+              <th className="px-4 py-3">Speed</th>
+              <th className="px-4 py-3">Monthly</th>
+              <th className="px-4 py-3">Notes</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100 bg-white">
+            {prices.map((price) => {
+              const fresh = isFibrePriceFresh(price.checkedAt);
+              return (
+                <tr key={price.id}>
+                  <td className="px-4 py-4 align-top">
+                    <p className="font-black text-slate-900">{getFibrePriceCompanyName(price.ispId)}</p>
+                    <a href={price.sourceUrl} target="_blank" rel="noreferrer" className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-[#1b6d24] hover:underline">
+                      {price.sourceLabel}
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </td>
+                  <td className="px-4 py-4 align-top font-medium text-slate-700">{getFibrePriceCompanyName(price.fnoId)}</td>
+                  <td className="px-4 py-4 align-top font-black text-slate-900">{formatSpeed(price.downloadMbps, price.uploadMbps)}</td>
+                  <td className="px-4 py-4 align-top">
+                    <p className="font-black text-slate-900">{formatRand(price.monthlyPrice)}</p>
+                    {price.promoPrice !== null && <p className="mt-1 text-xs font-bold text-emerald-700">Promo example {formatRand(price.promoPrice)}</p>}
+                    <p className={`mt-2 inline-flex rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-widest ${fresh ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
+                      {fresh ? 'Checked' : 'Needs recheck'}
+                    </p>
+                  </td>
+                  <td className="px-4 py-4 align-top text-xs font-medium leading-relaxed text-slate-600">
+                    {price.setupNotes}
+                    {price.requiresAddressCheck && <p className="mt-2 font-bold text-slate-800">Address check required.</p>}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+const SpeedChooser: React.FC<{ intro: string }> = ({ intro }) => {
+  const [profile, setProfile] = useState(speedOptions[1].label);
+  const [gaming, setGaming] = useState(false);
+  const [uploads, setUploads] = useState(false);
+
+  const recommendation = useMemo(() => {
+    const selected = speedOptions.find((option) => option.label === profile) ?? speedOptions[1];
+    let recommended = selected.base;
+    if (gaming) recommended += 25;
+    if (uploads) recommended += 50;
+    if (recommended <= 25) return '25 Mbps';
+    if (recommended <= 50) return '50 Mbps';
+    if (recommended <= 100) return '100 Mbps';
+    if (recommended <= 200) return '200 Mbps';
+    return '500 Mbps or faster';
+  }, [gaming, profile, uploads]);
+
+  return (
+    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+      <p className="mb-4 text-sm font-medium leading-relaxed text-slate-600">{intro}</p>
+      <div className="grid gap-3 md:grid-cols-4">
+        {speedOptions.map((option) => (
+          <button
+            key={option.label}
+            type="button"
+            onClick={() => setProfile(option.label)}
+            className={`rounded-2xl border p-4 text-left transition-colors ${profile === option.label ? 'border-[#1b6d24] bg-white text-slate-900' : 'border-slate-100 bg-white/70 text-slate-600 hover:bg-white'}`}
+          >
+            <span className="block text-sm font-black">{option.label}</span>
+            <span className="mt-1 block text-xs font-medium leading-relaxed">{option.people}+ people: {option.note}</span>
+          </button>
+        ))}
+      </div>
+      <div className="mt-4 grid gap-3 md:grid-cols-2">
+        <label className="flex items-center gap-3 rounded-2xl bg-white p-4 text-sm font-bold text-slate-700">
+          <input type="checkbox" checked={gaming} onChange={(event) => setGaming(event.target.checked)} className="h-4 w-4 accent-[#1b6d24]" />
+          Gaming or frequent video calls
+        </label>
+        <label className="flex items-center gap-3 rounded-2xl bg-white p-4 text-sm font-bold text-slate-700">
+          <input type="checkbox" checked={uploads} onChange={(event) => setUploads(event.target.checked)} className="h-4 w-4 accent-[#1b6d24]" />
+          Large uploads, cloud backup or creator work
+        </label>
+      </div>
+      <div className="mt-4 flex items-center gap-3 rounded-2xl bg-[#031636] p-5 text-white">
+        <Wifi className="h-5 w-5 flex-shrink-0 text-[#a0f399]" />
+        <p className="text-sm font-medium">
+          Start comparisons around <strong>{recommendation}</strong>, then confirm upload speed and price at your exact address.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const CostCalculator: React.FC<{ intro: string }> = ({ intro }) => {
+  const [monthly, setMonthly] = useState(499);
+  const [setup, setSetup] = useState(0);
+  const [router, setRouter] = useState(0);
+  const [delivery, setDelivery] = useState(0);
+  const [exitExposure, setExitExposure] = useState(999);
+  const firstMonth = monthly + setup + router + delivery;
+
+  return (
+    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+      <p className="mb-4 text-sm font-medium leading-relaxed text-slate-600">{intro}</p>
+      <div className="grid gap-3 md:grid-cols-5">
+        {[
+          { label: 'Monthly', value: monthly, setValue: setMonthly },
+          { label: 'Setup', value: setup, setValue: setSetup },
+          { label: 'Router', value: router, setValue: setRouter },
+          { label: 'Delivery', value: delivery, setValue: setDelivery },
+          { label: 'Cancel risk', value: exitExposure, setValue: setExitExposure }
+        ].map((field) => (
+          <label key={field.label} className="block rounded-2xl bg-white p-4">
+            <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400">{field.label}</span>
+            <input
+              type="number"
+              min="0"
+              value={field.value}
+              onChange={(event) => field.setValue(Math.max(0, Number(event.target.value) || 0))}
+              className="mt-2 w-full rounded-xl border border-slate-100 px-3 py-2 text-sm font-black text-slate-900 outline-none focus:border-[#1b6d24]"
+            />
+          </label>
+        ))}
+      </div>
+      <div className="mt-4 grid gap-3 md:grid-cols-2">
+        <div className="rounded-2xl bg-white p-5">
+          <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Estimated first month</p>
+          <p className="mt-1 text-3xl font-black text-slate-900">{formatRand(firstMonth)}</p>
+        </div>
+        <div className="rounded-2xl bg-white p-5">
+          <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Possible early exit exposure</p>
+          <p className="mt-1 text-3xl font-black text-slate-900">{formatRand(exitExposure)}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const SourceList: React.FC<{ sourceIds: string[] }> = ({ sourceIds }) => {
+  const sources = getFibreSourcesById(sourceIds);
+
+  return (
+    <div className="grid gap-3 md:grid-cols-2">
+      {sources.map((source) => (
+        <a key={source.id} href={source.url} target="_blank" rel="noreferrer" className="rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-[#a0f399]">
+          <span className="flex items-start justify-between gap-3">
+            <span className="text-sm font-black text-slate-900">{source.label}</span>
+            <ExternalLink className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#1b6d24]" />
+          </span>
+          <span className="mt-2 block text-xs font-medium leading-relaxed text-slate-600">{source.note}</span>
+        </a>
+      ))}
+    </div>
+  );
+};
+
+const BlockRenderer: React.FC<{ block: FibreContentBlock }> = ({ block }) => {
+  const toneClass = block.type === 'callout' && block.tone === 'warning'
+    ? 'border-amber-200 bg-amber-50 text-amber-950'
+    : block.type === 'callout' && block.tone === 'success'
+      ? 'border-emerald-100 bg-emerald-50 text-emerald-950'
+      : 'border-slate-100 bg-white text-slate-700';
+
+  return (
+    <section id={block.id} className={`mb-10 scroll-mt-24 rounded-3xl border p-6 shadow-sm md:p-8 ${block.type === 'callout' ? toneClass : 'border-slate-100 bg-white'}`}>
+      <div className="mb-4 flex items-center gap-2">
+        {block.type === 'price-table' && <Calculator className="h-5 w-5 text-[#1b6d24]" />}
+        {block.type === 'speed-tool' && <Wifi className="h-5 w-5 text-[#1b6d24]" />}
+        <h2 className="text-2xl font-black tracking-tight text-slate-900">{block.title}</h2>
+      </div>
+
+      {'intro' in block && block.intro && <p className="mb-5 text-sm font-medium leading-relaxed text-slate-600">{block.intro}</p>}
+
+      {block.type === 'narrative' && (
+        <div className="space-y-4 text-sm font-medium leading-relaxed text-slate-600">
+          {block.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        </div>
+      )}
+
+      {block.type === 'bullets' && (
         <ul className="space-y-3 text-sm font-medium leading-relaxed text-slate-600">
-          {section.bullets.map((bullet) => (
+          {block.bullets.map((bullet) => (
             <li key={bullet} className="flex gap-3">
               <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#1b6d24]" />
               <span>{bullet}</span>
@@ -118,28 +407,14 @@ const SectionContent: React.FC<{ section: FibreSection }> = ({ section }) => {
           ))}
         </ul>
       )}
-      {section.table && (
-        <div className="overflow-hidden rounded-2xl border border-slate-100">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50 text-[10px] font-black uppercase tracking-widest text-slate-400">
-              <tr>
-                <th className="px-4 py-3">Option</th>
-                <th className="px-4 py-3">Use</th>
-                <th className="px-4 py-3">Note</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {section.table.map((row) => (
-                <tr key={`${row.label}-${row.value}`}>
-                  <td className="px-4 py-4 font-black text-slate-900">{row.label}</td>
-                  <td className="px-4 py-4 font-medium text-slate-700">{row.value}</td>
-                  <td className="px-4 py-4 font-medium text-slate-600">{row.note}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+
+      {block.type === 'table' && <StandardTable rows={block.rows} columns={block.columns} />}
+      {block.type === 'company-grid' && <CompanyGrid companyIds={block.companyIds} />}
+      {block.type === 'price-table' && <PriceTable block={block} />}
+      {block.type === 'speed-tool' && <SpeedChooser intro={block.intro} />}
+      {block.type === 'cost-tool' && <CostCalculator intro={block.intro} />}
+      {block.type === 'source-list' && <SourceList sourceIds={block.sourceIds} />}
+      {block.type === 'callout' && <p className="text-sm font-bold leading-relaxed">{block.body}</p>}
     </section>
   );
 };
@@ -152,9 +427,13 @@ export const FibrePage: React.FC<FibrePageProps> = ({ slug, onNavigate, onScroll
   }
 
   const canonicalUrl = toCanonicalUrl(page.path);
+  const shouldNoindex = noindexFibreRoutes.includes(page.path);
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso(page.path);
   const lastReviewed = formatIsoForDisplay(dateModifiedIso);
+  const sourceLabels = getFibreSourcesById(page.sourceIds).map((source) => source.label).join(', ');
+  const priceStatus = getFibrePriceSnapshotStatus();
+  const priceCheckedLabel = formatIsoForDisplay(`${priceStatus.checkedAt}T00:00:00.000Z`);
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Fibre', href: '/fibre/' },
@@ -177,6 +456,7 @@ export const FibrePage: React.FC<FibrePageProps> = ({ slug, onNavigate, onScroll
         <meta name="twitter:title" content={page.title} />
         <meta name="twitter:description" content={page.metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
+        {shouldNoindex && <meta name="robots" content="noindex,follow" />}
         <script type="application/ld+json">{JSON.stringify(buildPageSchema(page, canonicalUrl, datePublishedIso, dateModifiedIso))}</script>
         <script type="application/ld+json">{JSON.stringify(buildBreadcrumbSchema(breadcrumbItems))}</script>
         <script type="application/ld+json">{JSON.stringify(buildItemListSchema(page))}</script>
@@ -185,7 +465,7 @@ export const FibrePage: React.FC<FibrePageProps> = ({ slug, onNavigate, onScroll
 
       <Header onScrollTo={onScrollTo} activeSection="fibre" />
 
-      <main className="mx-auto max-w-5xl px-4 py-10 md:py-12">
+      <main className="mx-auto max-w-6xl px-4 py-10 md:py-12">
         <Breadcrumbs items={breadcrumbItems} />
 
         <header className="mb-10">
@@ -193,7 +473,7 @@ export const FibrePage: React.FC<FibrePageProps> = ({ slug, onNavigate, onScroll
             <Network className="h-3.5 w-3.5" />
             Fibre and Home Internet
           </div>
-          <h1 className="mb-5 text-4xl font-black leading-[0.95] tracking-tighter md:text-6xl">{page.h1}</h1>
+          <h1 className="mb-5 max-w-5xl text-4xl font-black leading-[0.95] tracking-tighter md:text-6xl">{page.h1}</h1>
           <p className="max-w-3xl text-lg font-medium leading-relaxed text-slate-600">{page.intro}</p>
         </header>
 
@@ -215,8 +495,8 @@ export const FibrePage: React.FC<FibrePageProps> = ({ slug, onNavigate, onScroll
 
         {page.kind === 'hub' && (
           <section className="mb-10">
-            <h2 className="mb-5 text-2xl font-black tracking-tight">Fibre and Home Internet Guides</h2>
-            <div className="grid gap-4 md:grid-cols-2">
+            <h2 className="mb-5 text-2xl font-black tracking-tight">Fibre Decision Guides</h2>
+            <div className="grid gap-4 md:grid-cols-3">
               {fibrePages.filter((candidate) => candidate.slug !== 'hub').map((candidate) => (
                 <Link key={candidate.path} to={candidate.path} className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm hover:border-[#a0f399]">
                   <h3 className="mb-2 font-black leading-tight text-[#031636]">{candidate.h1}</h3>
@@ -227,13 +507,13 @@ export const FibrePage: React.FC<FibrePageProps> = ({ slug, onNavigate, onScroll
           </section>
         )}
 
-        {page.sections.map((section) => (
-          <SectionContent key={section.id} section={section} />
+        {page.blocks.map((block) => (
+          <BlockRenderer key={block.id} block={block} />
         ))}
 
         <TrustPanel
           lastReviewed={lastReviewed}
-          sources="DataCost mobile-data guides, general fibre ordering checks, public provider information, and South African home-internet user needs. Use official provider pages for final pricing and address coverage."
+          sources={`${sourceLabels}. Price examples checked ${priceCheckedLabel}; final fibre availability and pricing must be confirmed by exact address.`}
           className="mb-10"
         />
 
@@ -267,13 +547,13 @@ export const FibrePage: React.FC<FibrePageProps> = ({ slug, onNavigate, onScroll
         <section className="mb-10 flex items-start gap-3 rounded-3xl border border-slate-100 bg-white p-6 text-sm font-medium leading-relaxed text-slate-600 shadow-sm">
           <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1b6d24]" />
           <p>
-            Use these fibre pages as a decision checklist before ordering. Confirm final price, address coverage, installation terms, router rules, and cancellation costs with the official provider.
+            DataCost does not sell fibre packages. Use these pages to understand the market, then confirm final price, address coverage, installation terms, router rules and cancellation costs with the official provider.
           </p>
         </section>
 
         <AuthorReviewBlock
           lastReviewed={lastReviewed}
-          trustSummary="This guide explains how to compare fibre and home-internet options while keeping final price, availability, deal and ranking decisions tied to official provider information."
+          trustSummary="This fibre guide is built around consumer decisions: coverage, infrastructure owner, ISP role, checked price examples, installation terms and fallback options. Prices are examples, not live quotes."
         />
       </main>
 

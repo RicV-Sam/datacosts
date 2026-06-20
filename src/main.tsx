@@ -63,8 +63,8 @@ function waitForStableAboveFoldAndDispatch(): void {
   window.setTimeout(tick, pollMs);
 }
 
-if (document.readyState === 'complete') {
-  waitForStableAboveFoldAndDispatch();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', waitForStableAboveFoldAndDispatch, { once: true });
 } else {
-  window.addEventListener('load', waitForStableAboveFoldAndDispatch, { once: true });
+  waitForStableAboveFoldAndDispatch();
 }

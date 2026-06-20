@@ -36,6 +36,7 @@ const hubRelatedLinks = [
   { label: 'USSD codes hub', href: '/ussd-codes-south-africa/' },
   { label: 'Network pages', href: '/network/' },
   { label: 'Fibre and home internet', href: '/fibre/' },
+  { label: 'Fibre prices and FNOs', href: '/fibre/fibre-prices-south-africa/' },
   { label: 'Fibre vs LTE/5G', href: '/fibre/fibre-vs-lte-south-africa/' },
   { label: 'Data guides', href: '/guides/' },
   { label: 'Stop WASP subscriptions', href: '/guides/stop-wasp-subscriptions-south-africa/' },

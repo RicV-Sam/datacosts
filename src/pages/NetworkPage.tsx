@@ -252,6 +252,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     ...(balanceGuideLinksBySlug[networkSlug] || []),
     ...(fixGuideLinksBySlug[networkSlug] || []),
     { href: '/fibre/fibre-vs-lte-south-africa/', label: 'Fibre vs LTE home internet', description: 'Compare fixed fibre, LTE, 5G and mobile-data fallback before using a SIM as home internet.' },
+    { href: '/fibre/fibre-prices-south-africa/', label: 'Fibre prices and FNOs', description: 'Check source-backed fibre price examples and learn who owns the line before choosing mobile fallback.' },
     { href: '/airtime-advance-codes/', label: `${network.name} airtime advance codes`, description: 'Check borrow-airtime routes, eligibility, fees and repayment notes.' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Keep track of active bundles and expiry.' },
     { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals South Africa', description: 'Compare best-value prepaid bundle options.' },

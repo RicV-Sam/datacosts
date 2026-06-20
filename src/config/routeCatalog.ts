@@ -2,7 +2,7 @@ import { bundles } from '../data';
 import { networkPages } from '../data/networks';
 import { guides } from '../data/guides';
 import { fixPages, getFixPath } from '../data/fixes';
-import { fibreRoutes } from '../data/fibre';
+import { fibreRoutes, noindexFibreRoutes } from '../data/fibre';
 import { Bundle } from '../types';
 import { SITE_ORIGIN } from '../seo/siteConstants';
 import { getRedirectAliasRoutes } from './redirectAliases';
@@ -180,7 +180,8 @@ export function getNoindexRoutes(): string[] {
     ...noindexFacetRoutes,
     ...getDataProblemRoutesByIndexingStatus(['noindex']),
     ...getNoindexFixRoutes(),
-    ...NOINDEX_DEAL_GUIDE_ROUTES
+    ...NOINDEX_DEAL_GUIDE_ROUTES,
+    ...noindexFibreRoutes
   ].map(normalizeCanonicalPath);
 }
 

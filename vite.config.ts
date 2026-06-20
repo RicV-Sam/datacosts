@@ -181,6 +181,10 @@ export default defineConfig(({mode}) => {
         routes: prerenderRoutes,
         renderer: new PuppeteerRenderer({
           renderAfterDocumentEvent: 'render-event',
+          maxConcurrentRoutes: 8,
+          navigationOptions: {
+            timeout: 45000
+          },
           headless: true,
           args: ['--no-sandbox', '--disable-setuid-sandbox'],
           launchOptions: puppeteerExecutablePath
