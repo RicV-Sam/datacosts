@@ -80,14 +80,14 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
     route: '/vodacom-ussd-codes/',
     networkHubHref: '/network/vodacom/',
     buyDataGuideHref: '/guides/how-to-buy-data-vodacom/',
-    balanceGuideHref: '/data-problems/how-to-check-data-balance-vodacom-ussd/',
+    balanceGuideHref: '/guides/how-to-check-vodacom-airtime-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
       'Find Vodacom USSD codes for checking airtime, buying data, managing services, checking balances and stopping unwanted mobile charges.',
     intro:
       'Use this Vodacom USSD page to check data balance, airtime balance, buy bundles, top up, and handle the everyday prepaid actions that are faster from the dialler than the app.',
     quickAnswer:
-      'For a quick Vodacom check, start with *135# for balances and self-service, then use the shortcuts below to confirm data, airtime, and bundle-buying options.',
+      'For a quick Vodacom check, start with *135# for balances and self-service, then use the shortcuts below to confirm data, airtime, and bundle-buying options. If your intent is how to check Vodacom balance, use the dedicated balance guide after this page for the clearest step-by-step answer.',
     supportNote:
       'Vodacom often updates self-service menu flows. If a direct code fails, start from *135# and navigate to the same task.',
     faq: [

@@ -37,6 +37,7 @@ const AD_FREE_EXACT_ROUTES = new Set([
   '/cookie-policy/',
   '/editorial-policy/',
   '/methodology/',
+  '/promos/',
   '/privacy-policy/',
   '/save-ussd-codes/',
   '/sitemap/',

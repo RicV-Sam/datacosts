@@ -96,9 +96,9 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = 'USSD Codes South Africa: MTN, Vodacom, Telkom, Cell C';
+  const pageTitle = 'USSD Codes South Africa: MTN, Vodacom, Telkom, Cell C + Please Call Me';
   const metaDescription =
-    'Use this South Africa USSD directory for MTN, Vodacom, Telkom and Cell C balance, data, recharge and Please Call Me shortcuts.';
+    'Use this South Africa USSD directory for the MTN Please Call Me code, Telkom USSD codes, Cell C USSD codes, and Vodacom balance, data, and recharge shortcuts.';
   const canonicalUrl = toCanonicalUrl('/ussd-codes-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');
@@ -282,7 +282,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
             <span className="text-[#1b6d24]">USSD Codes</span> South Africa Directory: MTN, Telkom, Cell C and Vodacom
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Start here if you need an all-network South African USSD directory. This hub is for comparison, quick code lookup, and cross-network navigation. When the intent is operator-specific, use the dedicated MTN, Telkom, Cell C, or Vodacom page as the best destination for full code detail.
+            Start here if you need an all-network South African USSD directory. This hub is for comparison, quick code lookup, and cross-network navigation, especially when the query is the MTN Please Call Me code or a cross-network shortcut check. When the intent is operator-specific, use the dedicated MTN, Telkom, Cell C, or Vodacom page as the best destination for full code detail.
           </p>
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
@@ -359,7 +359,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            Use this hub for all-network comparison and quick directory intent. If the query is <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link>, <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN USSD codes</Link>, or <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Cell C USSD codes</Link>, open the dedicated operator page for the full code set. For borrow-airtime routes, use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">airtime advance codes</Link> page because eligibility, fees, and repayment rules can differ by network.
+            Use this hub for all-network comparison and quick directory intent. If the query is <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link>, <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN USSD codes</Link>, <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Cell C USSD codes</Link>, or the <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN Please Call Me code</Link>, open the dedicated operator page for the full code set. For borrow-airtime routes, use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">airtime advance codes</Link> page because eligibility, fees, and repayment rules can differ by network.
           </p>
           <p className="mt-3 text-sm text-slate-600 leading-relaxed">
             For network-price or bundle intent instead of code lookup, go to the <Link to="/network/vodacom/" className="font-semibold text-[#1b6d24] hover:underline">Vodacom data prices page</Link> or the <Link to="/guides/cheapest-data-south-africa/" className="font-semibold text-[#1b6d24] hover:underline">cheapest data comparison guide</Link>.

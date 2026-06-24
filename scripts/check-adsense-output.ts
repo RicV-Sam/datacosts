@@ -10,13 +10,14 @@ import { getNoindexRoutes } from '../src/config/routeCatalog';
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
 const PUBLIC_ADS_TXT = path.resolve(process.cwd(), 'public/ads.txt');
 const TEXT_EXTENSIONS = new Set(['.css', '.html', '.js', '.json', '.svg', '.txt', '.xml']);
+const ADSENSE_CLIENT_ID = 'ca-pub-6084410613829318';
+const ADSENSE_SCRIPT_URL = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`;
 
 const FORBIDDEN_PATTERNS: Array<{ label: string; pattern: RegExp }> = [
   { label: 'Ad Slot:', pattern: /Ad Slot:/i },
   { label: 'AdvertisementAd', pattern: /AdvertisementAd/i },
   { label: 'aboveFold', pattern: /aboveFold/i },
   { label: 'inContent', pattern: /inContent/i },
-  { label: 'adsbygoogle', pattern: /adsbygoogle/i },
   { label: 'house ad', pattern: /house\s+ad/i },
   { label: 'house-ad', pattern: /house-ad/i },
   { label: 'Freehub tracks', pattern: /Freehub tracks/i },
@@ -110,6 +111,15 @@ function getMetaDescription(html: string): string | null {
   return descriptionTag ? getAttributeValue(descriptionTag, 'content')?.trim() ?? null : null;
 }
 
+function hasApprovedAdsenseAutoAdsScript(html: string): boolean {
+  const scriptTags = html.match(/<script\b[^>]*><\/script>/gi) ?? [];
+  return scriptTags.some((tag) => {
+    const src = getAttributeValue(tag, 'src');
+    const crossorigin = getAttributeValue(tag, 'crossorigin');
+    return src === ADSENSE_SCRIPT_URL && crossorigin?.toLowerCase() === 'anonymous';
+  });
+}
+
 function addDuplicateFinding(
   findings: Finding[],
   label: string,
@@ -168,6 +178,13 @@ async function main(): Promise<void> {
     const robotsContent = (text.match(/<meta\b[^>]*name=["']robots["'][^>]*content=["']([^"']*)["'][^>]*>/i)?.[1] ?? '').toLowerCase();
     const isRenderedNoindex = robotsContent.includes('noindex');
     const canCarryPublisherAds = !isRenderedNoindex && canRenderPublisherAdsOnRoute(route, noindexRoutes);
+
+    if (!hasApprovedAdsenseAutoAdsScript(text)) {
+      findings.push({
+        file: toDisplayPath(filePath),
+        label: `is missing approved AdSense Auto ads script for ${ADSENSE_CLIENT_ID}`
+      });
+    }
 
     if (route === '/') {
       for (const linkText of REQUIRED_REVIEWER_LINK_TEXT) {

@@ -8,6 +8,7 @@ import { MobileNav } from '../components/MobileNav';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { formatIsoForDisplay, getComparisonGuideModifiedIso } from '../seo/contentDates';
 
 interface BestPrepaidDataProps {
   onNavigate: NavigateFunction;
@@ -19,7 +20,7 @@ export const BestPrepaidData: React.FC<BestPrepaidDataProps> = ({ onNavigate, on
   const metaDescription =
     'Compare the best prepaid phone plans and data deals in South Africa. See listed prepaid bundles, value per GB, and practical options by use case.';
   const canonicalUrl = toCanonicalUrl('/guides/best-prepaid-data-deals-south-africa/');
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const lastUpdated = formatIsoForDisplay(getComparisonGuideModifiedIso('best-prepaid-data-deals-south-africa'));
 
   const prepaidBundles = bundles
     .filter((bundle) => bundle.type === 'Prepaid')
@@ -132,6 +133,9 @@ export const BestPrepaidData: React.FC<BestPrepaidDataProps> = ({ onNavigate, on
               ? `In this comparison dataset, ${bestPrepaidValue.network} currently provides one of the strongest prepaid value options with ${bestPrepaidValue.name} at about R${bestPrepaidValue.costPerGb.toFixed(2)}/GB.`
               : 'In this comparison dataset, prepaid availability is limited, so the best option can depend heavily on current promos and your account offers.'}{' '}
             For best prepaid phone plans intent, treat this as a data-first shortlist: start with prepaid value per GB, then verify validity, coverage, and whether the bundle suits normal phone use before buying.
+          </p>
+          <p className="text-slate-700 leading-relaxed mt-3">
+            If you still need the broader market answer, go back to <Link to="/guides/cheapest-data-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">cheapest data in South Africa</Link>. If the search is already network-specific, compare operator pages like <Link to="/network/cell-c/" className="text-[#1b6d24] font-semibold hover:underline">Cell C data deals</Link> before choosing the cheapest-looking prepaid bundle.
           </p>
         </section>
 
