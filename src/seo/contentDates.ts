@@ -7,7 +7,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/': '2026-06-18T00:00:00.000Z',
   '/alerts/': '2026-05-10T00:00:00.000Z',
   '/about/': '2026-05-10T00:00:00.000Z',
-  '/airtime-advance-codes/': '2026-05-15T00:00:00.000Z',
+  '/airtime-advance-codes/': '2026-06-25T00:00:00.000Z',
   '/contact/': '2026-05-10T00:00:00.000Z',
   '/cookie-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/editorial-policy/': '2026-05-10T00:00:00.000Z',
@@ -22,19 +22,19 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/fix/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/guides/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/methodology/': '2026-05-10T00:00:00.000Z',
-  '/mtn-ussd-codes/': '2026-06-18T00:00:00.000Z',
+  '/mtn-ussd-codes/': '2026-06-25T00:00:00.000Z',
   '/network/': '2026-03-24T00:00:00.000Z',
   '/privacy-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/promos/': '2026-06-18T00:00:00.000Z',
   '/save-ussd-codes/': '2026-06-11T00:00:00.000Z',
   '/sitemap/': PUBLISHER_REVIEW_MODIFIED_ISO,
-  '/cell-c-ussd-codes/': '2026-05-28T00:00:00.000Z',
-  '/telkom-ussd-codes/': '2026-05-28T00:00:00.000Z',
+  '/cell-c-ussd-codes/': '2026-06-25T00:00:00.000Z',
+  '/telkom-ussd-codes/': '2026-06-25T00:00:00.000Z',
   '/terms/': '2026-05-10T00:00:00.000Z',
   '/trust/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
-  '/ussd-codes-south-africa/': '2026-06-18T00:00:00.000Z',
-  '/vodacom-ussd-codes/': '2026-06-18T00:00:00.000Z'
+  '/ussd-codes-south-africa/': '2026-06-25T00:00:00.000Z',
+  '/vodacom-ussd-codes/': '2026-06-25T00:00:00.000Z'
 };
 
 const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
@@ -69,6 +69,11 @@ const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/data-problems/why-is-my-data-disappearing-vodacom/': '2026-04-18T00:00:00.000Z'
 };
 
+const FIX_ROUTE_MODIFIED_ISO: Record<string, string> = {
+  '/fix/mtn-data-balance-check/': '2026-06-25T00:00:00.000Z',
+  '/fix/telkom-data-balance-check/': '2026-06-25T00:00:00.000Z'
+};
+
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'airtime-data-saving-tips-south-africa': '2026-03-31T00:00:00.000Z',
   'best-data-deals-south-africa': '2026-06-11T00:00:00.000Z',
@@ -83,7 +88,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-check-data-balance': '2026-03-16T00:00:00.000Z',
   'how-to-check-mtn-data-balance': '2026-04-25T00:00:00.000Z',
   'how-to-check-mtn-airtime-balance': '2026-04-25T00:00:00.000Z',
-  'how-to-check-vodacom-airtime-balance': '2026-06-11T00:00:00.000Z',
+  'how-to-check-vodacom-airtime-balance': '2026-06-25T00:00:00.000Z',
   'how-to-stop-wasp-vas-charges-south-africa': '2026-05-10T00:00:00.000Z',
   'stop-wasp-subscriptions-south-africa': '2026-05-10T00:00:00.000Z',
   'out-of-bundle-data-costs-south-africa': '2026-05-01T00:00:00.000Z',
@@ -129,7 +134,7 @@ const NETWORK_MODIFIED_BY_SLUG: Record<string, string> = {
 const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
   'cell-c': '2026-06-11T00:00:00.000Z',
   mtn: '2026-06-18T00:00:00.000Z',
-  vodacom: '2026-06-18T00:00:00.000Z'
+  vodacom: '2026-06-25T00:00:00.000Z'
 };
 
 const BUNDLE_TYPE_MODIFIED_ISO = '2026-05-01T00:00:00.000Z';
@@ -225,6 +230,8 @@ export function getRouteModifiedIso(routeInput: string): string {
   }
 
   if (route.startsWith('/fix/')) {
+    const fixModifiedIso = FIX_ROUTE_MODIFIED_ISO[route];
+    if (fixModifiedIso) return fixModifiedIso;
     return PUBLISHER_REVIEW_MODIFIED_ISO;
   }
 

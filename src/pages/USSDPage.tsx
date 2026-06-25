@@ -96,9 +96,9 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const pageTitle = 'USSD Codes South Africa: MTN, Vodacom, Telkom, Cell C + Please Call Me';
+  const pageTitle = 'MTN USSD Codes + Please Call Me Code | USSD Codes South Africa';
   const metaDescription =
-    'Use this South Africa USSD directory for the MTN Please Call Me code, Telkom USSD codes, Cell C USSD codes, and Vodacom balance, data, and recharge shortcuts.';
+    'Use this South Africa USSD directory for MTN USSD codes, the MTN Please Call Me code, Telkom USSD codes, Cell C balance checks, and Vodacom balance, data, and recharge shortcuts.';
   const canonicalUrl = toCanonicalUrl('/ussd-codes-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/ussd-codes-south-africa/');
@@ -118,7 +118,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     {
       question: 'What is the Please Call Me code in South Africa?',
       answer:
-        'The format differs by network and can change. This page lists commonly used formats for Vodacom, MTN, Telkom, and Cell C, but if a code fails you should use the operator’s self-service menu or support channel.'
+        'The format differs by network and can change. MTN commonly uses *121*the-number#, while this page also lists commonly used Vodacom, Telkom, and Cell C formats. If a code fails, use the operator self-service menu or support channel.'
     },
     {
       question: 'Can I borrow airtime with USSD?',
@@ -152,7 +152,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'South Africa USSD Codes',
+    name: 'MTN USSD Codes and South Africa USSD Codes',
     description: metaDescription,
     url: canonicalUrl,
     datePublished: datePublishedIso,
@@ -279,10 +279,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
 
         <header className="mb-8">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 leading-[0.9]">
-            <span className="text-[#1b6d24]">USSD Codes</span> South Africa Directory: MTN, Telkom, Cell C and Vodacom
+            <span className="text-[#1b6d24]">MTN USSD Codes</span>, Please Call Me Code and South Africa Shortcuts
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Start here if you need an all-network South African USSD directory. This hub is for comparison, quick code lookup, and cross-network navigation, especially when the query is the MTN Please Call Me code or a cross-network shortcut check. When the intent is operator-specific, use the dedicated MTN, Telkom, Cell C, or Vodacom page as the best destination for full code detail.
+            Start here if you need MTN USSD codes, the MTN Please Call Me code, or a South Africa USSD directory for quick cross-network balance and bundle checks. This hub covers MTN, Vodacom, Telkom, and Cell C shortcuts for comparison intent, while the dedicated operator pages remain the best destination when the search is network-specific.
           </p>
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
@@ -359,7 +359,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            Use this hub for all-network comparison and quick directory intent. If the query is <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link>, <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN USSD codes</Link>, <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Cell C USSD codes</Link>, or the <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN Please Call Me code</Link>, open the dedicated operator page for the full code set. For borrow-airtime routes, use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">airtime advance codes</Link> page because eligibility, fees, and repayment rules can differ by network.
+            If you searched for <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN USSD codes</Link>, this page gives the cross-network overview while the dedicated MTN page covers the full shortcut set. If you searched for the <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN Please Call Me code</Link>, the commonly used format is <strong>*121*the-number#</strong>. Use this hub when you want comparison intent across MTN, Vodacom, Telkom, and Cell C.
           </p>
           <p className="mt-3 text-sm text-slate-600 leading-relaxed">
             For network-price or bundle intent instead of code lookup, go to the <Link to="/network/vodacom/" className="font-semibold text-[#1b6d24] hover:underline">Vodacom data prices page</Link> or the <Link to="/guides/cheapest-data-south-africa/" className="font-semibold text-[#1b6d24] hover:underline">cheapest data comparison guide</Link>.

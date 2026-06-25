@@ -362,36 +362,65 @@ function mobileProblemPage(provider: string, slug: string, problem: string): Fix
 
 function balancePage(provider: string, slug: string, balanceType: 'airtime' | 'data'): FixPage {
   const label = balanceType === 'airtime' ? 'airtime balance' : 'data balance';
+  const providerSlug = provider.toLowerCase().replace(' ', '-');
+  const isTroubleshootingDataBalance = balanceType === 'data' && (provider === 'MTN' || provider === 'Telkom');
   return basePage({
     slug,
     cluster: 'ussd',
     provider,
     serviceType: `${provider} ${label}`,
-    title: `${provider} ${label} check`,
-    seoTitle: `${provider} ${balanceType === 'airtime' ? 'Airtime Balance Check' : 'Data Balance Check'} in South Africa | DataCost`,
-    metaDescription: `Understand how to approach a ${provider} ${label} check in South Africa, what to verify first, and when to use official support.`,
-    h1: `How to check ${provider} ${label}`,
-    summary: `Use this page when you need to confirm your ${provider} ${label} before buying bundles, troubleshooting disappearing airtime or contacting support.`,
+    title: isTroubleshootingDataBalance ? `${provider} Data Balance Not Showing?` : `${provider} ${label} check`,
+    seoTitle: isTroubleshootingDataBalance
+      ? `${provider} Data Balance Not Showing? What to Check | DataCost`
+      : `${provider} ${balanceType === 'airtime' ? 'Airtime Balance Check' : 'Data Balance Check'} in South Africa | DataCost`,
+    metaDescription: isTroubleshootingDataBalance
+      ? `Troubleshoot a ${provider} data balance that is not showing, looks wrong, or does not update after buying a bundle. Use the ${provider} USSD page for the normal balance code.`
+      : `Understand how to approach a ${provider} ${label} check in South Africa, what to verify first, and when to use official support.`,
+    h1: isTroubleshootingDataBalance ? `${provider} Data Balance Not Showing?` : `How to check ${provider} ${label}`,
+    summary: isTroubleshootingDataBalance
+      ? `Use this troubleshooting page when your ${provider} data balance does not show, looks incomplete, or does not update after a bundle purchase. For the normal ${provider} balance code and full USSD list, start with the ${provider} USSD codes page.`
+      : `Use this page when you need to confirm your ${provider} ${label} before buying bundles, troubleshooting disappearing airtime or contacting support.`,
     tags: ['USSD', balanceType === 'airtime' ? 'Airtime balance' : 'Data balance', provider, 'South Africa'],
     quickAnswer: {
-      meaning: `A ${label} check confirms what is currently available on your ${provider} line.`,
-      likelyCause: 'You may need to confirm balance after a recharge, bundle purchase, expiry, subscription deduction or data session.',
-      firstThingToTry: `Use the official ${provider} app, account portal or DataCost's ${provider} USSD reference before relying on third-party code lists.`,
+      meaning: isTroubleshootingDataBalance
+        ? `This page is for troubleshooting when your ${provider} data balance is missing, delayed, split across bundle types, or inconsistent between app and USSD screens.`
+        : `A ${label} check confirms what is currently available on your ${provider} line.`,
+      likelyCause: isTroubleshootingDataBalance
+        ? 'The balance may be delayed after purchase, shown under a separate bundle type, affected by expiry, or different between app and USSD views.'
+        : 'You may need to confirm balance after a recharge, bundle purchase, expiry, subscription deduction or data session.',
+      firstThingToTry: isTroubleshootingDataBalance
+        ? `For the normal ${provider} balance code, open DataCost's ${provider} USSD reference first. Use this page only if the balance result still looks wrong.`
+        : `Use the official ${provider} app, account portal or DataCost's ${provider} USSD reference before relying on third-party code lists.`,
       contact: `Contact ${networkMeta[provider]?.support || 'official support'} if the displayed balance does not match a recent payment or account action.`
     },
     sections: {
-      meaning: [
-        `${provider} balance screens may separate airtime, anytime data, night data, promotional bundles and app-specific bundles.`,
-        'A single balance pop-up can be incomplete, so compare the app and USSD menu if the result looks wrong.'
-      ],
-      tryFirst: [
-        'Check the balance before starting downloads, streaming or hotspot use.',
-        'Wait a few minutes after buying data or loading airtime, then check again.',
-        'Compare the USSD result with the provider app when possible.',
-        'Take a screenshot if the balance changes unexpectedly.'
-      ],
+      meaning: isTroubleshootingDataBalance
+        ? [
+            `${provider} data balance screens can separate anytime data, night data, promotional data, app-specific bundles and expiring bundles.`,
+            `This is not the primary ${provider} balance-code page. It is for cases where the code, app, or account screen gives a confusing or missing result.`
+          ]
+        : [
+            `${provider} balance screens may separate airtime, anytime data, night data, promotional bundles and app-specific bundles.`,
+            'A single balance pop-up can be incomplete, so compare the app and USSD menu if the result looks wrong.'
+          ],
+      tryFirst: isTroubleshootingDataBalance
+        ? [
+            `Open the DataCost ${provider} USSD codes page for the normal balance-code route.`,
+            'Wait a few minutes after buying data, then check again.',
+            'Compare the USSD result with the official app or account portal when possible.',
+            'Look for separate balance buckets such as night data, bonus data, social data or promotional data.',
+            'Take a screenshot if the balance changes unexpectedly.'
+          ]
+        : [
+            'Check the balance before starting downloads, streaming or hotspot use.',
+            'Wait a few minutes after buying data or loading airtime, then check again.',
+            'Compare the USSD result with the provider app when possible.',
+            'Take a screenshot if the balance changes unexpectedly.'
+          ],
       steps: [
-        `Open the DataCost ${provider} USSD page or the official ${provider} app.`,
+        isTroubleshootingDataBalance
+          ? `Start with the DataCost ${provider} USSD page for the normal balance code and full USSD list.`
+          : `Open the DataCost ${provider} USSD page or the official ${provider} app.`,
         `Run the balance check from the ${provider} SIM, not from a different number.`,
         'Look for separate balances such as anytime, night, bonus, social or promotional data.',
         'Check expiry dates as well as the amount remaining.',
@@ -412,8 +441,12 @@ function balancePage(provider: string, slug: string, balanceType: 'airtime' | 'd
     },
     faqs: [
       {
-        question: `What is the safest way to check ${provider} ${label}?`,
-        answer: `Use the official ${provider} app or USSD menu. DataCost links to network-specific USSD references, but final account-specific balances should come from the provider.`
+        question: isTroubleshootingDataBalance
+          ? `Where is the normal ${provider} data balance code?`
+          : `What is the safest way to check ${provider} ${label}?`,
+        answer: isTroubleshootingDataBalance
+          ? `Use the DataCost ${provider} USSD codes page for the normal balance-code route and full ${provider} USSD list. This page is for troubleshooting when that result does not show or looks wrong.`
+          : `Use the official ${provider} app or USSD menu. DataCost links to network-specific USSD references, but final account-specific balances should come from the provider.`
       },
       {
         question: 'Why does my balance look different in two places?',
@@ -425,8 +458,8 @@ function balancePage(provider: string, slug: string, balanceType: 'airtime' | 'd
       }
     ],
     relatedFixSlugs: [
-      `${provider.toLowerCase().replace(' ', '-')}-${balanceType === 'airtime' ? 'data' : 'airtime'}-balance-check`,
-      `stop-wasp-services-${provider.toLowerCase().replace(' ', '-')}`,
+      `${providerSlug}-${balanceType === 'airtime' ? 'data' : 'airtime'}-balance-check`,
+      `stop-wasp-services-${providerSlug}`,
       'airtime-disappearing-south-africa',
       'mobile-data-on-but-not-working'
     ],

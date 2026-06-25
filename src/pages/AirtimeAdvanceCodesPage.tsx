@@ -18,7 +18,9 @@ interface AirtimeAdvanceCodesPageProps {
 
 const advanceRows = [
   {
+    anchor: 'mtn-airtime-advance',
     network: 'MTN',
+    intent: 'Borrow airtime / check advance',
     product: 'MTN XtraTime',
     code: '*151#',
     status: 'Verified advance-airtime route in DataCost USSD data.',
@@ -26,7 +28,9 @@ const advanceRows = [
     href: '/mtn-ussd-codes/'
   },
   {
+    anchor: 'vodacom-airtime-advance',
     network: 'Vodacom',
+    intent: 'Airtime advance / emergency airtime',
     product: 'Airtime advance via self-service menu',
     code: '*135# menu',
     status: 'Use the main Vodacom menu because direct menu paths can vary by SIM and offer eligibility.',
@@ -34,7 +38,9 @@ const advanceRows = [
     href: '/vodacom-ussd-codes/'
   },
   {
+    anchor: 'telkom-airtime-advance',
     network: 'Telkom',
+    intent: 'Telkom emergency airtime',
     product: 'Airtime advance via self-service menu',
     code: '*180# menu',
     status: 'Use the Telkom self-service menu; advance-airtime options can depend on prepaid profile and eligibility.',
@@ -42,7 +48,9 @@ const advanceRows = [
     href: '/telkom-ussd-codes/'
   },
   {
+    anchor: 'cell-c-airtime-advance',
     network: 'Cell C',
+    intent: 'Borrow airtime from Cell C',
     product: 'Airtime advance via self-service menu',
     code: '*147# menu',
     status: 'Use the Cell C bundle and self-service menu; available advance options can vary.',
@@ -81,9 +89,9 @@ const faqItems = [
 ];
 
 export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Airtime Advance Codes: MTN, Telkom & Cell C USSD Help';
+  const pageTitle = 'Airtime Advance Codes South Africa: Borrow Airtime on MTN, Vodacom, Cell C and Telkom';
   const metaDescription =
-    'Find airtime advance codes for MTN, Vodacom, Telkom and Cell C. Compare USSD starting points, eligibility, fees and repayment notes.';
+    'Borrow airtime in South Africa with MTN, Vodacom, Cell C and Telkom airtime advance starting points, eligibility checks, fee warnings and repayment notes.';
   const canonicalUrl = toCanonicalUrl('/airtime-advance-codes/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/airtime-advance-codes/');
@@ -170,18 +178,48 @@ export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = (
             Updated {lastUpdated}
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-5 leading-[0.95]">
-            Airtime Advance Codes <span className="text-[#1b6d24]">South Africa</span>
+            Airtime Advance Codes South Africa: <span className="text-[#1b6d24]">Borrow Airtime</span>
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Use these borrow-airtime starting points for Vodacom, MTN, Telkom and Cell C. The network menu should show eligibility, fees and repayment before you accept an advance.
+            Use these borrow-airtime and emergency-airtime starting points for MTN, Vodacom, Cell C and Telkom. The network menu should show eligibility, fees and repayment before you accept an advance.
           </p>
         </header>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick answer</h2>
-          <p className="text-slate-700 leading-relaxed">
+          <p className="mb-5 text-slate-700 leading-relaxed">
             MTN users can start with <strong>*151#</strong>. Vodacom users should start with <strong>*135#</strong>, Telkom with <strong>*180#</strong>, and Cell C with <strong>*147#</strong>. For non-MTN networks, treat those as menu routes rather than guaranteed one-step borrow-airtime codes.
           </p>
+          <div className="overflow-x-auto">
+            <table className="min-w-[680px] w-full text-left text-sm">
+              <thead>
+                <tr className="border-b border-slate-100 text-xs font-black uppercase tracking-widest text-slate-400">
+                  <th className="py-3 pr-4">Network</th>
+                  <th className="py-3 pr-4">What users want</th>
+                  <th className="py-3 pr-4">Starting point</th>
+                  <th className="py-3 pr-4">Jump link</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {advanceRows.map((row) => (
+                  <tr key={row.network}>
+                    <td className="py-4 pr-4 font-black text-slate-900">{row.network}</td>
+                    <td className="py-4 pr-4 text-slate-700">{row.intent}</td>
+                    <td className="py-4 pr-4">
+                      <span className="rounded-xl bg-slate-100 px-3 py-2 font-mono text-sm font-black text-slate-900">
+                        {row.code}
+                      </span>
+                    </td>
+                    <td className="py-4 pr-4">
+                      <a href={`#${row.anchor}`} className="font-bold text-[#1b6d24] hover:underline">
+                        Jump to {row.network}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <TrustPanel
@@ -207,7 +245,7 @@ export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = (
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {advanceRows.map((row) => (
-                  <tr key={row.network} className="align-top">
+                  <tr key={row.network} id={row.anchor} className="align-top scroll-mt-24">
                     <td className="py-4 pr-4 font-black text-slate-900">{row.network}</td>
                     <td className="py-4 pr-4">
                       <span className="rounded-xl bg-slate-100 px-3 py-2 font-mono text-sm font-black text-slate-900">

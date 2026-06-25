@@ -37,18 +37,18 @@ type NetworkConfig = {
 const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   mtn: {
     networkName: 'MTN',
-    titlePrefix: 'MTN USSD Codes: Balance, Recharge & Data',
+    titlePrefix: 'How to Check MTN Balance: MTN USSD Codes, Recharge & Please Call Me',
     route: '/mtn-ussd-codes/',
     networkHubHref: '/network/mtn/',
     buyDataGuideHref: '/guides/how-to-buy-data-mtn/',
     balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find MTN USSD codes for the MTN balance check code, recharge code, data check code, airtime check and prepaid shortcuts in South Africa.',
+      'Find MTN USSD codes for how to check MTN balance, the MTN balance check code, recharge code, Please Call Me code, data check code and prepaid shortcuts in South Africa.',
     intro:
-      'Use this page when the intent is MTN-specific. It is the best destination for MTN USSD codes, the MTN recharge code, MTN balance check code, airtime check, data check code, and prepaid self-service shortcuts without opening the app.',
+      'Use this page when the intent is MTN-specific. It is the best destination for how to check MTN balance, the MTN recharge code, MTN Please Call Me code, airtime check, data check code, and prepaid self-service shortcuts without opening the app.',
     quickAnswer:
-      'For a quick MTN USSD check, dial *136# for airtime and balance checks, *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, and *151# for MTN XtraTime. Use this page for operator-specific MTN code intent, then return to the all-network hub only when you need cross-network comparison.',
+      'To check MTN balance quickly, dial *136# for airtime and balance checks, *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, *121*the-number# for MTN Please Call Me, and *151# for MTN XtraTime. Use this page for operator-specific MTN code intent, then return to the all-network hub only when you need cross-network comparison.',
     supportNote:
       'MTN menus can vary by prepaid profile and active campaigns. If a code path changes, use *136# as your fallback entry point.',
     faq: [
@@ -76,18 +76,18 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   vodacom: {
     networkName: 'Vodacom',
-    titlePrefix: 'Vodacom USSD Codes: Data, Airtime, Balance & Services',
+    titlePrefix: 'How to Check Vodacom Balance: Vodacom USSD Codes, Airtime & Data',
     route: '/vodacom-ussd-codes/',
     networkHubHref: '/network/vodacom/',
     buyDataGuideHref: '/guides/how-to-buy-data-vodacom/',
     balanceGuideHref: '/guides/how-to-check-vodacom-airtime-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find Vodacom USSD codes for checking airtime, buying data, managing services, checking balances and stopping unwanted mobile charges.',
+      'Find Vodacom USSD codes for how to check Vodacom balance, checking airtime, buying data, managing services and stopping unwanted mobile charges.',
     intro:
-      'Use this Vodacom USSD page to check data balance, airtime balance, buy bundles, top up, and handle the everyday prepaid actions that are faster from the dialler than the app.',
+      'Use this Vodacom USSD page to check Vodacom balance, confirm airtime, buy bundles, top up, and handle the everyday prepaid actions that are faster from the dialler than the app.',
     quickAnswer:
-      'For a quick Vodacom check, start with *135# for balances and self-service, then use the shortcuts below to confirm data, airtime, and bundle-buying options. If your intent is how to check Vodacom balance, use the dedicated balance guide after this page for the clearest step-by-step answer.',
+      'To check Vodacom balance quickly, start with *135# for balances and self-service, then use the shortcuts below to confirm data, airtime, and bundle-buying options. If your intent is how to check Vodacom balance step by step, use the dedicated balance guide after this page for the clearest walkthrough.',
     supportNote:
       'Vodacom often updates self-service menu flows. If a direct code fails, start from *135# and navigate to the same task.',
     faq: [
@@ -111,17 +111,17 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   telkom: {
     networkName: 'Telkom',
-    titlePrefix: 'Telkom USSD Codes: Data, Balance & Recharge',
+    titlePrefix: 'Telkom USSD Codes: Balance, Data, Airtime Advance & Recharge',
     route: '/telkom-ussd-codes/',
     networkHubHref: '/network/telkom/',
     buyDataGuideHref: '/guides/how-to-buy-data-telkom/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find Telkom USSD codes and Telkom codes for balance checks, data bundles, recharge paths, and prepaid help in South Africa.',
+      'Find Telkom USSD codes for balance checks, data bundles, airtime advance menu routes, recharge paths and prepaid help in South Africa.',
     intro:
-      'Use this page when the intent is Telkom-specific. It is the best destination for Telkom USSD codes, Telkom recharge code lookups, bundle-buying paths, number checks, and prepaid support shortcuts without relying on app data.',
+      'Use this page when the intent is Telkom-specific. It is the best destination for Telkom USSD codes, balance checks, data bundle paths, airtime advance menu checks, number checks, and prepaid support shortcuts without relying on app data.',
     quickAnswer:
-      'For a quick Telkom USSD check, use *188# for balances and *180# for bundle actions. Use this page for full Telkom-specific code intent, and use the all-network hub only when you want cross-network comparison or directory browsing.',
+      'For a quick Telkom USSD check, use *188# for balances and *180# for bundle and self-service actions, including checking whether airtime advance options appear for your SIM. Use this page for Telkom-specific code intent, and use the all-network hub only when you want cross-network comparison or directory browsing.',
     supportNote:
       'Telkom promo and Mo’Nice menu paths can change over time. If one shortcode fails, use *180# or *188# to find the same action.',
     faq: [
@@ -145,17 +145,17 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   'cell-c': {
     networkName: 'Cell C',
-    titlePrefix: 'Cell C USSD Codes: Balance, Data & Dial Codes',
+    titlePrefix: 'How to Check Cell C Balance: Cell C USSD Codes & Data',
     route: '/cell-c-ussd-codes/',
     networkHubHref: '/network/cell-c/',
     buyDataGuideHref: '/guides/how-to-buy-data-cell-c/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find Cell C USSD codes, Cell C codes and dial codes for balance checks, data bundles, account services and Cell C balance-check intent.',
+      'Find Cell C USSD codes for how to check Cell C balance, data bundles, account services, airtime checks and Cell C dial-code intent.',
     intro:
-      'Use this page when the intent is Cell C-specific. It is the best destination for Cell C USSD codes, Cell C dial codes, balance checks, bundle menus, and prepaid support shortcuts.',
+      'Use this page when the intent is Cell C-specific. It is the best destination for how to check Cell C balance, Cell C dial codes, bundle menus, and prepaid support shortcuts.',
     quickAnswer:
-      'For a quick Cell C USSD check, start with *101# for balance or *147# for data bundles, airtime advance menus and broader account actions. Use this page for full Cell C-specific code intent, then return to the hub only for cross-network comparison.',
+      'To check Cell C balance quickly, start with *101# for balance or *147# for data bundles, airtime advance menus and broader account actions. Use this page for full Cell C-specific code intent, then return to the hub only for cross-network comparison.',
     supportNote:
       'Cell C code paths can differ by account profile and campaign period. If a shortcode fails, use *147# as your fallback menu.',
     faq: [

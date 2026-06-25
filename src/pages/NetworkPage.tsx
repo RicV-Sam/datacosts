@@ -261,6 +261,34 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa', description: 'National low-volume benchmark.' }
   ];
 
+  const vodacomTaskLinks = [
+    {
+      href: '/guides/how-to-check-vodacom-airtime-balance/',
+      label: 'Check Vodacom airtime balance',
+      description: 'Use the dedicated balance guide before topping up again.'
+    },
+    {
+      href: '/vodacom-ussd-codes/',
+      label: 'See Vodacom USSD codes',
+      description: 'Open balance, buy-data, recharge, and self-service shortcuts.'
+    },
+    {
+      href: '#vodacom-data-prices',
+      label: 'Compare Vodacom data prices',
+      description: 'Jump to the prepaid bundle price table on this page.'
+    },
+    {
+      href: '/guides/cheapest-data-south-africa/',
+      label: 'Find cheap Vodacom data',
+      description: 'Compare cheapest-data options before choosing a bundle.'
+    },
+    {
+      href: '/guides/why-is-my-airtime-disappearing-south-africa/',
+      label: 'Stop airtime disappearing',
+      description: 'Diagnose deductions, subscriptions, and out-of-bundle use.'
+    }
+  ];
+
   const getUssdCode = (matcher: (action: string, category: string) => boolean) =>
     ussdCodes.find((code) => matcher(code.action.toLowerCase(), code.category.toLowerCase()))?.code;
   const balanceCode = getUssdCode((action, category) => action.includes('balance') || category.includes('balance'));
@@ -371,6 +399,24 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           </section>
         )}
 
+        {networkSlug === 'vodacom' && (
+          <section className="mb-12 bg-[#031636] text-white rounded-[2.5rem] p-8 md:p-10 shadow-xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#a0f399]/10 text-[#a0f399] rounded-full text-[10px] font-black uppercase tracking-widest mb-5 border border-[#a0f399]/20">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              What do you want to do?
+            </div>
+            <h2 className="text-3xl font-black tracking-tighter mb-6">Choose the Vodacom task that matches your search</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {vodacomTaskLinks.map((link) => (
+                <a key={link.href} href={link.href} className="rounded-2xl border border-white/10 bg-white/5 p-5 hover:border-[#a0f399] transition-colors">
+                  <div className="font-black text-white">{link.label}</div>
+                  <p className="mt-2 text-sm font-medium leading-relaxed text-slate-300">{link.description}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
         {network.name === 'Rain' && (
           <section className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
             <h2 className="text-2xl font-black tracking-tighter mb-4">Why Rain has fewer listed bundles</h2>
@@ -437,7 +483,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           </section>
         )}
 
-        <section className="mb-16">
+        <section id={networkSlug === 'vodacom' ? 'vodacom-data-prices' : undefined} className="mb-16 scroll-mt-24">
           <h2 className="text-2xl font-black tracking-tighter mb-6 flex items-center gap-2">
             <Tag className="w-6 h-6 text-[#1b6d24]" />
             {network.name} prepaid bundle prices ({sourceCheckedLabel})
