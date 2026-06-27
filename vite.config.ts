@@ -19,6 +19,8 @@ const DEV_EXTERNAL_DATA_PROBLEMS_SOURCE_DIRS = [
 const DATA_PROBLEMS_SOURCE_FILES = getBundledDataProblemSourceFiles();
 const DATA_PROBLEMS_VIRTUAL_MODULE_ID = 'virtual:data-problems-content';
 const DATA_PROBLEMS_VIRTUAL_RESOLVED_ID = `\0${DATA_PROBLEMS_VIRTUAL_MODULE_ID}`;
+const ADSENSE_CLIENT_ID = 'ca-pub-6084410613829318';
+const ADSENSE_AUTO_ADS_SCRIPT = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}" crossorigin="anonymous"></script>`;
 
 type ExternalDataProblemJson = {
   slug: string;
@@ -55,6 +57,22 @@ function insertBeforeHeadClose(html: string, tag: string): string {
 
 function removeHeadTags(html: string, pattern: RegExp): string {
   return html.replace(pattern, '');
+}
+
+function removePrerenderedAdsenseRuntime(html: string): string {
+  return html
+    .replace(/<script\b[^>]*src=["']https:\/\/pagead2\.googlesyndication\.com\/pagead\/managed\/js\/adsense\/[^"']*["'][^>]*><\/script>\s*/gi, '')
+    .replace(/<script\b[^>]*src=["']https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-[0-9]+["'][^>]*><\/script>\s*/gi, '')
+    .replace(/<ins\b[^>]*\bclass=["'][^"']*\badsbygoogle\b[^"']*["'][\s\S]*?<\/ins>\s*/gi, '')
+    .replace(/<iframe\b[^>]*\bid=["']google_esf["'][\s\S]*?<\/iframe>\s*/gi, '');
+}
+
+function ensureAdsenseAutoAdsScript(html: string): string {
+  if (html.includes(`pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`)) {
+    return html;
+  }
+
+  return insertBeforeHeadClose(html, ADSENSE_AUTO_ADS_SCRIPT);
 }
 
 function ensureTitle(html: string, title: string): string {
@@ -204,7 +222,7 @@ export default defineConfig(({mode}) => {
             renderedRoute.outputPath = getPrerenderOutputPath(renderedRoute.originalRoute);
           }
 
-          renderedRoute.html = renderedRoute.html
+          renderedRoute.html = removePrerenderedAdsenseRuntime(renderedRoute.html)
             .replace(/http:\/\/localhost:[0-9]+/g, SITE_ORIGIN);
           if (redirectAlias) {
             renderedRoute.html = ensureRedirectAliasSeoHtml(renderedRoute.html, redirectAlias);
@@ -213,6 +231,7 @@ export default defineConfig(({mode}) => {
             .replace(/<title(?![^>]*data-rh=)/g, '<title data-rh="true"')
             .replace(/<meta(?![^>]*data-rh=)([^>]*(?:name="description"|property="og:[^"]+"|name="twitter:[^"]+")[^>]*)>/g, '<meta data-rh="true"$1>')
             .replace(/<link(?![^>]*data-rh=)([^>]*rel="canonical"[^>]*)>/g, '<link data-rh="true"$1>');
+          renderedRoute.html = ensureAdsenseAutoAdsScript(renderedRoute.html);
           return renderedRoute;
         },
       })

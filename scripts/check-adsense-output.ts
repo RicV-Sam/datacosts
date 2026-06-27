@@ -14,6 +14,13 @@ const ADSENSE_CLIENT_ID = 'ca-pub-6084410613829318';
 const ADSENSE_SCRIPT_URL = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`;
 
 const FORBIDDEN_PATTERNS: Array<{ label: string; pattern: RegExp }> = [
+  { label: 'prerendered AdSense runtime script', pattern: /pagead2\.googlesyndication\.com\/pagead\/managed\/js\/adsense/i },
+  { label: 'prerendered AdSense ad iframe request', pattern: /pagead2\.googlesyndication\.com\/pagead\/ads/i },
+  { label: 'prerendered Google ad iframe request', pattern: /googleads\.g\.doubleclick\.net\/pagead\/ads/i },
+  { label: 'prerendered AdSense container', pattern: /adsbygoogle-noablate/i },
+  { label: 'prerendered AdSense fill status', pattern: /data-ad-status=/i },
+  { label: 'prerendered Google ad support iframe', pattern: /id=["']google_esf["']/i },
+  { label: 'local URL in prerendered ad request', pattern: /url=(?:http|https|http%3A|https%3A)%2F%2F(?:127\.0\.0\.1|localhost)/i },
   { label: 'Ad Slot:', pattern: /Ad Slot:/i },
   { label: 'AdvertisementAd', pattern: /AdvertisementAd/i },
   { label: 'aboveFold', pattern: /aboveFold/i },
