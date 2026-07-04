@@ -106,7 +106,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       },
       {
         question: 'Can personalised deals beat these listed 1GB prices?',
-        answer: 'Yes. Personalised channels such as Just 4 You, Made4U, and similar offer structures can be cheaper than standard menu pricing for some users.'
+        answer: 'Yes. Personalised channels such as Just 4 You, MyTownOffers, and similar SIM-specific offer structures can be cheaper than standard menu pricing for some users.'
       },
       {
         question: 'What should I check before buying a 1GB bundle?',

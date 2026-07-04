@@ -172,13 +172,13 @@ export const networkPages: Record<string, NetworkPageData> = {
     verdictSummary: 'MTN is often a balanced choice for users who want strong coverage plus regular promo value, especially when personalised deals are active.',
     strengths: [
       'Strong national 4G coverage with reliable urban performance',
-      'Frequent promo mechanics through Boosta and Made4U-style offers',
+      'Frequent promo mechanics through MyTownOffers and other personalised offers',
       'Wide spread of daily, weekly and monthly prepaid options',
       'Good balance between performance and deal availability'
     ],
     tips: [
-      'Check Made4U offers first before buying standard MTN prepaid bundles.',
-      'Compare Boosta-style options against normal monthly bundles to confirm real Rand-per-GB value.',
+      'Check *142# and other personalised MTN offer menus before buying standard prepaid bundles.',
+      'Compare personalised MTN offers against normal monthly bundles to confirm real Rand-per-GB value.',
       'Avoid out-of-bundle usage by keeping a live bundle active and watching balance before expiry.'
     ],
     extraSavingsTips: [
@@ -196,7 +196,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     personalisedSection: {
       title: 'What are MTN personalised deals?',
       paragraphs: [
-        'MTN often runs personalised prepaid offers (commonly seen as Made4U-style deals) that vary by user profile and campaign period.',
+        'MTN often runs personalised prepaid offers, including MyTownOffers and other SIM-specific campaigns, that vary by user profile and campaign period.',
         'Treat promo offers as variable, not guaranteed public pricing.'
       ]
     },
@@ -250,8 +250,8 @@ export const networkPages: Record<string, NetworkPageData> = {
         answer: 'Dial *136# to see a quick summary of your airtime and data, or use the MTN app for a detailed breakdown of all active bundles.'
       },
       {
-        question: 'What are MTN Boosta bundles?',
-        answer: 'Boosta bundles are MTN promotional structures that can increase included data value compared to standard offers.'
+        question: 'What are MTN MyTownOffers or personalised deals?',
+        answer: 'MTN personalised deals are SIM-specific offers that can appear on *142#, *136*2#, or the MTN app. They can be better value than the standard public menu, but they are not universal.'
       },
       {
         question: 'Can I buy MTN data with airtime?',
@@ -354,7 +354,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'How do I check my Telkom balance?',
-        answer: 'Dial *188# to receive an SMS with your current airtime and data balance, including night-data balances where applicable.'
+        answer: 'Dial *188# to check your current airtime and data balance. Night-data balances can appear separately depending on the bundle type on your line.'
       },
       {
         question: 'What is the cheapest Telkom 1GB option?',

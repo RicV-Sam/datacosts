@@ -238,7 +238,7 @@ export const bundles: Bundle[] = [
     nightData: '250MB',
     costPerGb: 20,
     bestFor: 'Late-night downloads',
-    watchOut: 'Night-only usage window',
+    watchOut: 'Night-only usage window (00:01-04:59)',
     ...SOURCES.mtnNightExpress,
     sourceConfidence: 'verified',
     lastVerified: PRICE_REVIEW_DATE,

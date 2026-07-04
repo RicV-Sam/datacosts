@@ -12,7 +12,7 @@ export const guides: Guide[] = [
     steps: [
       {
         title: 'Check for Promotional Bundles',
-        description: 'Networks often have "Boosta" or "Mo\'Nice" deals that are significantly cheaper than standard 1GB bundles. Always dial the USSD menu to see your personalized offers.'
+        description: 'Networks often have personalised or campaign-led deals, such as MTN MyTownOffers or Telkom Mo\'Nice options, that can be cheaper than standard 1GB bundles. Always dial the current USSD menu to see your own offers.'
       },
       {
         title: 'Compare Anytime vs. Night Data',
@@ -37,8 +37,8 @@ export const guides: Guide[] = [
         answer: 'Dial *135#, select "Buy", then "Data", and look for the Monthly or Weekly 1GB options.'
       },
       {
-        question: 'Does MTN have a R99 1GB bundle?',
-        answer: 'MTN 1GB pricing can change by validity period, tariff, and promotions. Check *136*2# for the standard menu and *142# for promotional offers before relying on an older R99 reference.'
+        question: 'Does MTN still have older 1GB price points I may have seen before?',
+        answer: 'MTN 1GB pricing can change by validity period, tariff, and promotions. Check *136*2# for the standard menu and *142# for personalised offers before relying on any older reference price.'
       },
       {
         question: 'Can I get free 1GB data?',
@@ -51,13 +51,13 @@ export const guides: Guide[] = [
     title: 'Cheap Night Data South Africa 2026: Best Night Owl Bundles',
     metaDescription: 'Discover the cheapest night data bundles in South Africa. Compare MTN Night Express, Vodacom Night Owl, and Telkom night data deals to save big.',
     h1: 'Cheap Night Data South Africa: Best Night Owl Bundles',
-    intro: 'Night data, often called "Night Owl" or "Midnight" data, is one of the most cost-effective ways to download large files, update apps, or stream content in South Africa. Major networks like MTN, Vodacom, Telkom, and Cell C offer massive data allocations that can only be used during off-peak hours (usually 12 AM to 5 AM). If you are looking for the absolute lowest cost per GB, night data is your best bet.',
+    intro: 'Night data, often called "Night Owl", "Night Express", or "Night Surfer" data, is one of the most cost-effective ways to download large files, update apps, or stream content in South Africa. Major networks like MTN, Vodacom, Telkom, and Cell C can offer off-peak allocations, but the exact night window differs by operator and bundle type. If you are looking for the absolute lowest cost per GB, night data is still one of the strongest categories to check.',
     comparisonType: 'night',
     stepsTitle: 'How to Maximise Your Night Data',
     steps: [
       {
         title: 'Check Your Network\'s Specific Times',
-        description: 'While most "Night Owl" periods run from 00:00 to 05:00, some promotional bundles might have different hours. Always verify before starting a big download.'
+        description: 'Do not assume every network uses the same night window. Vodacom public Night Owl terms point to 00:00 to 05:00, MTN Night Express uses 00:01 to 04:59, and Telkom Night Surfer pages can extend later into the morning. Always verify before starting a big download.'
       },
       {
         title: 'Schedule Your Downloads',
@@ -71,7 +71,7 @@ export const guides: Guide[] = [
     faq: [
       {
         question: 'When does night data start and end?',
-        answer: 'For most South African networks like Vodacom and MTN, night data is valid between 00:00 (midnight) and 05:00 AM.'
+        answer: 'It depends on the network. Vodacom public Night Owl terms point to 00:00 to 05:00, MTN Night Express uses 00:01 to 04:59, and Telkom Night Surfer material can run to 07:00 on some offers.'
       },
       {
         question: 'Which network has the best night data?',
@@ -83,7 +83,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'What happens if I use data after 5 AM?',
-        answer: 'Any data usage after the night period ends (usually 05:00 AM) will be deducted from your Anytime data balance or your airtime at out-of-bundle rates.'
+        answer: 'Any data usage after the night period ends can start using your anytime data balance or airtime at out-of-bundle rates, depending on your line and active bundles. Check the exact end time for your operator before leaving a download running.'
       },
       {
         question: 'Can I use night data for YouTube or Netflix?',
@@ -238,13 +238,13 @@ export const guides: Guide[] = [
     title: 'Data Deals South Africa (2026)',
     metaDescription: 'Find the best data deals in South Africa. Use Vodacom Just 4 You, MTN promo offers, and Telkom Mo\'Nice-style checks to find stronger value for your usage.',
     h1: 'Best Data Deals in South Africa 2026: Top Value Bundles',
-    intro: 'Finding the best data deals in South Africa requires looking beyond the standard monthly bundles. From Vodacom\'s Just 4 You menu to MTN promotional offers and Telkom\'s Mo\'Nice-style deals, personalised or campaign-led bundles can beat the standard public menu. Treat them as live channels to check on your own line, not as fixed national prices.',
+    intro: 'Finding the best data deals in South Africa requires looking beyond the standard monthly bundles. From Vodacom\'s Just 4 You menu to MTN MyTownOffers and Telkom\'s Mo\'Nice-style deals, personalised or campaign-led bundles can beat the standard public menu. Treat them as live channels to check on your own line, not as fixed national prices.',
     comparisonType: 'best-value',
     stepsTitle: 'How to Access "Hidden" Data Deals',
     steps: [
       {
         title: 'Use Personalised USSD Menus',
-        description: 'Check *123# on Vodacom, *142# on MTN, and *123# on Telkom for deals tailored specifically to your usage patterns. These are often the best value in the country.'
+        description: 'Check *123# on Vodacom, *142# on MTN, and *123# on Telkom for deals tailored specifically to your usage patterns. These personalised menus can surface the best value on your specific SIM, but they are not universal.'
       },
       {
         title: 'Download the Network Apps',
@@ -303,7 +303,7 @@ export const guides: Guide[] = [
     faq: [
       {
         question: 'Is prepaid cheaper than a contract?',
-        answer: 'If you already own your phone, prepaid is almost always cheaper because you can take advantage of "Boosta" and other promotional data deals that aren\'t available to contract users.'
+        answer: 'If you already own your phone, prepaid is often cheaper because you can take advantage of SIM-specific promotions, personalised offers, and flexible bundle timing that may not match contract value.'
       },
       {
         question: 'Can I switch from contract to prepaid?',
@@ -1435,21 +1435,21 @@ export const guides: Guide[] = [
   {
     slug: 'how-to-buy-data-mtn',
     title: 'How to Buy Data on MTN - USSD Codes & MTN App Guide 2026',
-    metaDescription: 'Step-by-step guide on how to buy MTN data bundles using USSD codes like *136*2# and the MTN app. Get the best MTN Boosta and personalized deals.',
+    metaDescription: 'Step-by-step guide on how to buy MTN data bundles using USSD codes like *136*2# and the MTN app. Check MTN personalised offers and standard bundle routes before you buy.',
     h1: 'How to Buy Data on MTN: Easy USSD & App Methods',
     intro: 'MTN is known for its high-speed network and wide variety of data options. Whether you need a small WhatsApp bundle or a massive 100GB package, MTN makes it easy to recharge using your airtime. This guide will show you the exact USSD codes and steps needed to buy MTN data bundles quickly.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *136*2# from an MTN SIM for the direct data-bundle menu.',
       'Use *136# when you want the broader self-service path first.',
-      'Check *142# for Boosta or promotional offers that may be cheaper than standard bundles.',
+      'Check *142# for MyTownOffers or other personalised offers that may be cheaper than standard bundles.',
       'Confirm validity, data type, and final price before accepting the transaction.'
     ],
     jumpLinksTitle: 'On This Page',
     jumpLinks: [
       { label: 'Standard USSD', anchor: 'mtn-standard-ussd' },
       { label: 'Tariff-specific offers', anchor: 'mtn-pulse' },
-      { label: 'Boosta deals', anchor: 'mtn-boosta' },
+      { label: 'Personalised deals', anchor: 'mtn-boosta' },
       { label: 'Common mistakes', anchor: 'common-mistakes' },
       { label: 'FAQ', anchor: 'faq' }
     ],
@@ -1468,14 +1468,14 @@ export const guides: Guide[] = [
       },
       {
         id: 'mtn-boosta',
-        title: 'Method 3: MTN Boosta & Personalised Deals',
-        description: 'Dial *142# to see "Boosta" deals. These are promotional offers that provide much better value than the standard data menu.'
+        title: 'Method 3: MTN personalised deals',
+        description: 'Dial *142# to check MyTownOffers and other personalised MTN deals. These offers can provide better value than the standard data menu, but they vary by SIM and campaign.'
       }
     ],
     commonMistakesTitle: 'When This Advice May Not Apply',
     commonMistakes: [
       {
-        title: 'Boosta deals are not universal',
+        title: 'Personalised deals are not universal',
         description: 'MTN promotional and personalised offers can vary by SIM, usage history, tariff, age band, and campaign period.'
       },
       {
@@ -1503,7 +1503,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'How do I buy 1GB on MTN?',
-        answer: 'Dial *136*2#, select "Monthly", and choose the 1GB option. Alternatively, check *142# for a cheaper "Boosta" 1GB deal.'
+        answer: 'Dial *136*2#, select "Monthly", and choose the 1GB option. Alternatively, check *142# for a personalised deal that may price differently on your SIM.'
       },
       {
         question: 'Can I use my airtime to buy MTN data?',
@@ -1796,13 +1796,14 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-check-vodacom-airtime-balance',
-    title: 'How to Check Balance on Vodacom: Airtime, Data and USSD Codes',
-    metaDescription: 'Learn how to check balance on Vodacom with *135#, use MyVodacom for bundles and expiry dates, and compare the right Vodacom airtime and data routes before topping up.',
-    h1: 'How to Check Balance on Vodacom, Airtime and Data',
-    intro: 'If you searched for how to check balance on Vodacom, start with the main *135# self-service menu from your Vodacom SIM. Use it to check airtime, data bundle balance, and account options before buying another bundle, then compare Vodacom data prices if you are checking balance before a top-up or trying to avoid out-of-bundle airtime use.',
+    title: 'How to Check Balance on Vodacom: Vodacom Balance Check Number, Airtime and Data',
+    metaDescription: 'Learn how to check balance on Vodacom with the Vodacom balance check number *135#, use MyVodacom for bundles and expiry dates, and compare the right airtime and data routes before topping up.',
+    h1: 'How to Check Balance on Vodacom: Balance Check Number, Airtime and Data',
+    intro: 'If you searched for how to check balance on Vodacom, start with the main *135# self-service menu from your Vodacom SIM. This is the safest Vodacom balance check number to use first when you need airtime, data bundle balance, or account options before buying another bundle. Then compare Vodacom data prices if you are checking balance before a top-up or trying to avoid out-of-bundle airtime use.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *135# for the main Vodacom self-service and balance menu if your query is how to check balance on Vodacom.',
+      'The main Vodacom balance check number is *135#, with MyVodacom as the best second check for bundle detail and expiry.',
       'If you only need a fast airtime check, some lines also support *136#, but fall back to *135# for the clearest live Vodacom balance route.',
       'Use MyVodacom to review airtime, data bundles, expiry dates, and recent account activity together.',
       'Before buying another bundle, compare current Vodacom prepaid data prices on the Vodacom network page and use the Vodacom USSD page for the wider shortcut set.'
@@ -1821,7 +1822,7 @@ export const guides: Guide[] = [
       {
         id: 'ussd-method',
         title: 'USSD method: dial *135# to check balance on Vodacom',
-        description: 'Dial *135# from your Vodacom SIM and choose balances. This is the safest starting point for Vodacom balance checks because it can show airtime, data bundle, and account menu options from one self-service path.'
+        description: 'Dial *135# from your Vodacom SIM and choose balances. This is the safest starting point for Vodacom balance checks because it can show airtime, data bundle, and account menu options from one self-service path, making it the clearest answer to queries like "how to check balance on Vodacom" or "Vodacom balance check number".'
       },
       {
         id: 'app-method',
@@ -1858,6 +1859,10 @@ export const guides: Guide[] = [
       {
         question: 'What is the Vodacom balance check number?',
         answer: 'The main Vodacom balance check number is *135#. Some lines may show a quick summary on *136#, but *135# is the safer fallback menu.'
+      },
+      {
+        question: 'How do I check Vodacom data balance?',
+        answer: 'Start with *135# and choose balances, then use MyVodacom if you need bundle validity, expiry, or recent usage detail in one view.'
       },
       {
         question: 'Can I check Vodacom airtime without data?',

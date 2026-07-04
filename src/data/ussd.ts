@@ -151,7 +151,7 @@ export const ussdRepository: USSDEntry[] = [
   {
     network: 'MTN',
     category: 'Promotions',
-    action: 'MTN Made4U',
+    action: 'MTN MyTownOffers / personalised deals',
     code: '*142#',
     explanation: 'Discounted data bundles and personalized network offers.',
     status: 'verified',
