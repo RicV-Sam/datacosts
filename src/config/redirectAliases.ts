@@ -8,6 +8,7 @@ export const REDIRECT_ALIASES: RedirectAlias[] = [
   { from: '/privacy/', to: '/privacy-policy/', label: 'Privacy Policy' },
   { from: '/ussd-codes/', to: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa' },
   { from: '/cheapest-1gb-data-south-africa/', to: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa' },
+  { from: '/guides/convert-airtime-to-data/', to: '/guides/convert-airtime-to-data-south-africa/', label: 'Convert Airtime to Data South Africa' },
   { from: '/airtime-disappearing/', to: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?' },
   { from: '/how-to-cancel-wasp-subscriptions-south-africa/', to: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions South Africa' },
   { from: '/guides/how-to-stop-wasp-vas-charges-south-africa/', to: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions South Africa' },

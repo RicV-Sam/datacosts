@@ -59,6 +59,15 @@ const speedOptions = [
   { label: 'Heavy', people: 7, base: 200, note: 'Creators, big uploads, many devices and frequent downloads.' }
 ];
 
+const priorityFibrePaths = [
+  { label: 'Fibre prices South Africa', href: '/fibre/fibre-prices-south-africa/', note: 'Checked public price examples and the costs to confirm before ordering.' },
+  { label: 'Cheapest fibre packages', href: '/fibre/cheapest-fibre-packages-south-africa/', note: 'Low-price examples with setup, router and cancellation caveats.' },
+  { label: 'Fibre installation process', href: '/fibre/fibre-installation-process-south-africa/', note: 'What happens between coverage check, order, installation and activation.' },
+  { label: 'Prepaid fibre South Africa', href: '/fibre/prepaid-fibre-south-africa/', note: 'Voucher, top-up, expiry and area-limit checks before choosing prepaid fibre.' },
+  { label: 'Fibre vs LTE/5G', href: '/fibre/fibre-vs-lte-south-africa/', note: 'When fixed fibre beats mobile-data fallback for home internet.' },
+  { label: 'Openserve fibre', href: '/fibre/openserve-fibre-south-africa/', note: 'Recognise Openserve as the line owner behind many ISP packages.' }
+];
+
 function buildPageSchema(page: FibrePageDefinition, canonicalUrl: string, datePublishedIso: string, dateModifiedIso: string) {
   if (page.kind === 'hub') {
     return {
@@ -492,6 +501,26 @@ export const FibrePage: React.FC<FibrePageProps> = ({ slug, onNavigate, onScroll
             ))}
           </div>
         </section>
+
+        {page.kind === 'hub' && (
+          <section className="mb-10 rounded-[2rem] border border-[#a0f399]/40 bg-[#f3fff4] p-6 shadow-sm md:p-8">
+            <div className="mb-5 max-w-3xl">
+              <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-[#1b6d24]">Common fibre searches</p>
+              <h2 className="text-2xl font-black tracking-tight text-[#031636]">Start with these fibre decisions</h2>
+              <p className="mt-2 text-sm font-medium leading-relaxed text-slate-700">
+                These links surface the fibre pages Google has discovered but not consistently crawled yet: pricing, installation, prepaid fibre, LTE comparison and major network-operator explainers.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-3">
+              {priorityFibrePaths.map((link) => (
+                <Link key={link.href} to={link.href} className="group rounded-2xl border border-white bg-white p-5 shadow-sm transition-colors hover:border-[#1b6d24]">
+                  <h3 className="mb-2 font-black leading-tight text-[#031636] group-hover:text-[#1b6d24]">{link.label}</h3>
+                  <p className="text-sm font-medium leading-relaxed text-slate-600">{link.note}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {page.kind === 'hub' && (
           <section className="mb-10">

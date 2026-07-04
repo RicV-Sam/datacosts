@@ -11,6 +11,7 @@
     "submit:bing": "node scripts/submit-bing.mjs",
     "submit:indexnow": "node scripts/submit-indexnow.mjs",
     "check:data-problems": "tsx scripts/check-data-problems-publishing.ts",
+    "audit:gsc-coverage": "node scripts/audit-gsc-coverage.mjs",
     "check:seo": "tsx scripts/check-seo-output.ts",
     "check:adsense": "tsx scripts/check-adsense-output.ts",
     "build": "npm run check:data-problems && npm run check:fibre-prices && npm run generate:sitemap && vite build && npm run check:seo && npm run check:adsense",

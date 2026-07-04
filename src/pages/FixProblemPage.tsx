@@ -43,6 +43,15 @@ const hubRelatedLinks = [
   { label: 'Out-of-bundle data costs', href: '/guides/out-of-bundle-data-costs-south-africa/' }
 ];
 
+const priorityFixPaths = [
+  { label: 'Cell C data not working', href: '/fix/cell-c-data-not-working/', note: 'Balance, APN, signal and account checks for Cell C mobile data.' },
+  { label: 'Mobile data on but not working', href: '/fix/mobile-data-on-but-not-working/', note: 'Start here when the phone shows 4G/LTE/5G but pages will not load.' },
+  { label: 'LTE router connected but no internet', href: '/fix/lte-router-connected-no-internet/', note: 'Router-first checks for SIM, APN, signal and device status.' },
+  { label: 'Openview activation not working', href: '/fix/openview-activation-not-working/', note: 'Signal and decoder details to check before official activation support.' },
+  { label: 'Prepaid meter token rejected', href: '/fix/prepaid-meter-token-rejected/', note: 'Meter-number, token sequence and KRN/TID checks before escalation.' },
+  { label: 'Stop WASP services on Vodacom', href: '/fix/stop-wasp-services-vodacom/', note: 'Use when airtime deductions look subscription-related.' }
+];
+
 function uniqueLinks(links: Array<{ label: string; href: string }>) {
   const seen = new Set<string>();
   return links.filter((link) => {
@@ -270,6 +279,24 @@ export const FixProblemPage: React.FC<FixProblemPageProps> = ({ onNavigate, onSc
               >
                 {cluster.label}
               </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-12 rounded-3xl border border-[#a0f399]/40 bg-[#f3fff4] p-6 shadow-sm md:p-8">
+          <div className="mb-5 max-w-3xl">
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-[#1b6d24]">Common entry points</p>
+            <h2 className="text-2xl font-black tracking-tight text-[#031636]">High-priority troubleshooting paths</h2>
+            <p className="mt-2 text-sm font-medium leading-relaxed text-slate-700">
+              These pages cover the fix clusters Google is discovering most often: mobile-data failures, APN/router symptoms, subscription deductions, prepaid meter issues and Openview activation.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {priorityFixPaths.map((link) => (
+              <Link key={link.href} to={link.href} className="group rounded-2xl border border-white bg-white p-5 shadow-sm transition-colors hover:border-[#1b6d24]">
+                <h3 className="mb-2 font-black leading-tight text-[#031636] group-hover:text-[#1b6d24]">{link.label}</h3>
+                <p className="text-sm font-medium leading-relaxed text-slate-600">{link.note}</p>
+              </Link>
             ))}
           </div>
         </section>
