@@ -8,6 +8,7 @@ import { TrustPanel } from '../components/TrustPanel';
 import { ArrowLeft, ChevronRight, ShieldCheck, Zap, Info, Smartphone, HelpCircle, Clock, Tag, ExternalLink, CheckCircle2, Link as LinkIcon } from 'lucide-react';
 import { NetworkName, NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema } from '../utils/structuredData';
+import { getBundleSourceSummary, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
 import { formatIsoForDisplay, getDefaultPublishedIso, getNetworkModifiedIso, getNetworkPageModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
@@ -84,6 +85,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   }
 
   const sortedBundles = [...networkBundles].sort((a, b) => a.price - b.price);
+  const hasManualRequiredRows = sortedBundles.some((bundle) => bundle.sourceConfidence === 'manual_required');
   const standardBundles = sortedBundles.filter((bundle) => !isSocialBundle(bundle));
   const generalUseBundles = standardBundles.filter((bundle) => !isNightBundle(bundle) && !isHourlyBundle(bundle));
   const nightBundles = sortedBundles.filter((bundle) => isNightBundle(bundle));
@@ -508,6 +510,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                 <tbody className="divide-y divide-slate-50">
                   {sortedBundles.map(bundle => {
                     const isHighlight = bestCheapGeneralBundle?.id === bundle.id || bestMonthlyValue?.id === bundle.id || bestHeavyUser?.id === bundle.id;
+                    const sourceSummary = getBundleSourceSummary(bundle);
                     return (
                     <tr key={bundle.id} className="hover:bg-slate-50 transition-colors">
                       <td className="px-6 py-4 font-bold text-slate-900">
@@ -515,6 +518,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                           <span>{bundle.name}</span>
                           {isHighlight && <span className="inline-flex items-center px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-lg text-[10px] font-black uppercase tracking-widest">Best Value</span>}
                         </div>
+                        {sourceSummary && (
+                          <div className="mt-1 text-[10px] font-medium text-slate-500">{sourceSummary}</div>
+                        )}
                       </td>
                       <td className="px-6 py-4 text-xs font-bold text-slate-600 uppercase tracking-wide">{getNetworkBundleType(bundle)}</td>
                       <td className="px-6 py-4">
@@ -537,6 +543,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             <div className="p-4 bg-slate-50 border-t border-slate-100">
               <p className="text-[10px] text-slate-500 font-medium italic">
                 Prices and offer availability can change. Personalised deals such as Just 4 You vary by user and are not identical across all SIMs.
+                {hasManualRequiredRows && ` ${MANUAL_PRICE_CHECK_NOTE}`}
               </p>
             </div>
           </div>

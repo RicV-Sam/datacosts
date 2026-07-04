@@ -1,6 +1,7 @@
 import { Bundle, NetworkName } from '../types';
 import { networkPages } from '../data/networks';
 import { SITE_ORIGIN } from '../seo/siteConstants';
+import { isVerifiedBundleSource } from './bundleSource';
 
 const BASE_URL = SITE_ORIGIN;
 const DEFAULT_CATEGORY = 'Mobile Data Bundle';
@@ -28,14 +29,19 @@ export function getNetworkImageUrl(network: NetworkName): string {
   return networkImageByName[network];
 }
 
-function buildOffer(offerUrl: string, price: number, availability = DEFAULT_AVAILABILITY) {
-  return {
+function buildOffer(bundle: Bundle, offerUrl: string, availability = DEFAULT_AVAILABILITY) {
+  const offer: Record<string, string> = {
     '@type': 'Offer',
-    price: price.toFixed(2),
-    priceCurrency: 'ZAR',
-    availability,
     url: offerUrl
   };
+
+  if (isVerifiedBundleSource(bundle)) {
+    offer.price = bundle.price.toFixed(2);
+    offer.priceCurrency = 'ZAR';
+    offer.availability = availability;
+  }
+
+  return offer;
 }
 
 function buildBundleComparisonEntitySchema(bundle: Bundle, itemUrl: string, availability = DEFAULT_AVAILABILITY) {
@@ -52,7 +58,7 @@ function buildBundleComparisonEntitySchema(bundle: Bundle, itemUrl: string, avai
     serviceType: 'Prepaid Mobile Data Bundle',
     image: getNetworkImageUrl(bundle.network),
     url: itemUrl,
-    offers: buildOffer(itemUrl, bundle.price, availability)
+    offers: buildOffer(bundle, itemUrl, availability)
   };
 }
 
@@ -82,7 +88,7 @@ export function buildBundleProductSchema(
     },
     category: DEFAULT_CATEGORY,
     url: productUrl,
-    offers: buildOffer(offerUrl, bundle.price, availability)
+    offers: buildOffer(bundle, offerUrl, availability)
   };
 }
 

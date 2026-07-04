@@ -8,6 +8,7 @@ import { Header } from '../components/Header';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
+import { MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_URL,
@@ -69,6 +70,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const pageMetaDescription =
     'Find which network has the cheapest data in South Africa by comparing bundle size, validity, network and cost per GB before you buy.';
   const topSummaryRows = rankedBundles.slice(0, 8);
+  const hasManualRequiredTopRows = topSummaryRows.some((bundle) => bundle.sourceConfidence === 'manual_required');
   const cheapest1Gb = getCheapestByVolume('1GB');
   const cheapest2Gb = getCheapestByVolume('2GB');
   const cheapest5Gb = getCheapestByVolume('5GB');
@@ -332,6 +334,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
               </tbody>
             </table>
           </div>
+          {hasManualRequiredTopRows && (
+            <p className="text-[10px] text-slate-500 font-medium italic mt-3">{MANUAL_PRICE_CHECK_NOTE}</p>
+          )}
         </section>
 
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">

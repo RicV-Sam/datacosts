@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 
 interface VodacomVsMTNProps {
   onNavigate: NavigateFunction;
@@ -20,7 +21,7 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
   const metaDescription =
     'Is Vodacom better than MTN for data? We compare the latest data prices, speeds, and coverage to help you choose the right network in 2026.';
   const canonicalUrl = toCanonicalUrl('/guides/vodacom-vs-mtn-data-prices/');
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const lastUpdated = formatIsoForDisplay(getRouteModifiedIso('/guides/vodacom-vs-mtn-data-prices/'));
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Guides', href: '/guides/' },

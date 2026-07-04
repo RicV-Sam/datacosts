@@ -60,7 +60,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       title: 'What is Vodacom Just 4 You?',
       paragraphs: [
         'Just 4 You is Vodacom\'s personalised offer channel. It is driven by usage profile and campaigns, so two prepaid users can see different deals on the same day.',
-        'Check on *123#. Treat it as a variable savings channel, not a fixed public bundle table.'
+        'Check on *123#. Treat it as a variable savings channel, not a fixed public bundle table. Prepaid LTE data rows with Night Owl allocations are a separate router/LTE product family, not smartphone once-off bundle pricing.'
       ]
     },
     editorialComparisonSection: {
@@ -214,7 +214,7 @@ export const networkPages: Record<string, NetworkPageData> = {
         { question: 'Why does MTN data finish fast?', answer: 'Background updates and video-heavy apps are common causes, especially near bundle expiry.' },
         { question: 'How do I stop MTN out-of-bundle usage?', answer: 'Keep a valid bundle active and manage data settings before balance reaches zero.' },
         { question: 'Are MTN promos always available?', answer: 'No. Promo availability changes by campaign and customer profile.' },
-        { question: 'Does MTN have night bundles?', answer: 'Yes, selected night-focused options are available, but terms and windows can vary.' }
+        { question: 'Does MTN have night bundles?', answer: 'Yes. Current MTN Night Express wording lists a 00:01-04:59 use window for Night Express data bundles.' }
       ]
     },
     narrowSearchLinks: [
@@ -296,7 +296,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       title: 'How to buy Telkom data bundles',
       paragraphs: [
         'Use *180# to buy Telkom prepaid bundles, or buy through supported app and banking channels.',
-        'Check Mo\'Nice-style personalised options first, because they can be cheaper than standard menu pricing for some users.',
+        'Check Mo\'Nice personalised options first, because they can be cheaper than standard menu pricing for some users. Confirm the current Telkom menu path, including *123# where offered, before treating any Mo\'Nice price as public pricing.',
         'See /guides/how-to-buy-data-telkom/ for the full buy flow.'
       ]
     },
@@ -304,7 +304,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       title: 'What are Telkom Mo\'Nice deals?',
       paragraphs: [
         'Mo\'Nice refers to Telkom personalised prepaid offers that can change by campaign, profile and usage history.',
-        'Treat them as personalised deals, not fixed public rates.'
+        'Treat them as personalised deals, not fixed public rates. Use Telkom self-service menus such as *123# where available, and confirm the live offer before buying.'
       ]
     },
     editorialComparisonSection: {
@@ -320,7 +320,7 @@ export const networkPages: Record<string, NetworkPageData> = {
         { question: 'Is Telkom always the cheapest network?', answer: 'Often for larger prepaid bundles, but not always for every bundle size or validity window.' },
         { question: 'Why is my Telkom speed inconsistent?', answer: 'Performance can vary by area and congestion, so local experience matters more than headline pricing.' },
         { question: 'How do I buy Telkom data bundles?', answer: 'Use *180# or Telkom-supported channels, and check personalised options first.' },
-        { question: 'Does Telkom have night bundles?', answer: 'Yes, selected night-style options exist, but terms can change over time.' },
+        { question: 'Does Telkom have night bundles?', answer: 'Yes. Telkom describes Night Surfer as once-off data used between midnight and 07:00 on the Telkom network.' },
         { question: 'Can I use airtime to buy Telkom data?', answer: 'Yes, prepaid bundles can generally be bought with airtime balance.' }
       ]
     },
@@ -354,7 +354,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'How do I check my Telkom balance?',
-        answer: 'Dial *188# to receive an SMS with your current airtime and data balance, including Night Owl data.'
+        answer: 'Dial *188# to receive an SMS with your current airtime and data balance, including night-data balances where applicable.'
       },
       {
         question: 'What is the cheapest Telkom 1GB option?',
@@ -428,7 +428,8 @@ export const networkPages: Record<string, NetworkPageData> = {
         { question: 'Why does Cell C value change so often?', answer: 'Campaign-led pricing can change frequently, so deals are often time-bound.' },
         { question: 'Does Cell C have good coverage?', answer: 'Coverage experience can vary by area and roaming conditions, so local testing matters.' },
         { question: 'How do I buy Cell C data?', answer: 'Use *147# and official channels, then compare active promos before checkout.' },
-        { question: 'Are Cell C social bundles full internet?', answer: 'No. Social bundles are usually app-limited and should not be treated as full browsing data.' }
+        { question: 'Are Cell C social bundles full internet?', answer: 'No. Social bundles are usually app-limited and should not be treated as full browsing data.' },
+        { question: 'Do Cell C night-data windows always match?', answer: 'No. Day-By-Day Daily Nite wording uses midnight to 04:59, while LTE/Home Connecta product-family rules can differ.' }
       ]
     },
     narrowSearchLinks: [
@@ -488,20 +489,21 @@ export const networkPages: Record<string, NetworkPageData> = {
   'rain': {
     slug: 'rain',
     networkName: 'Rain',
-    intro: 'Rain is different from the prepaid mobile networks in this comparison because it focuses on app-managed unlimited-style monthly data plans instead of large prepaid USSD bundle menus. It can be useful for home, fixed-use, or heavy data needs where Rain coverage is strong.',
+    intro: 'Rain is different from the prepaid mobile networks in this comparison because it focuses on app-managed monthly products instead of large prepaid USSD bundle menus. Current public lines include rainOne Home, rainGO mobile, and loop device plans, so compare the product family before treating a Rain price as a normal mobile-data bundle.',
     bestFor: 'Home, fixed-use, and high-volume data where Rain coverage fits',
     strengths: [
-      'Unlimited-style 4G and 5G data plans',
+      'rainOne Home unlimited 5G home-wifi plans',
+      'rainGO mobile with bundled data, minutes and SMS',
+      'loop portable router plans with location-based unlimited-zone rules',
       'No contracts or long-term commitments',
-      'Performance can be strong in suitable 5G coverage areas',
       'Simple, app-based account management'
     ],
     tips: [
-      'Rain is often best evaluated as a fixed or home internet-style option rather than a normal prepaid mobile bundle.',
-      'Check your 5G coverage before committing to the premium unlimited plans.',
+      'Rain is often best evaluated as a home internet, mobile-combo, or portable-router product rather than a normal prepaid mobile bundle.',
+      'Check your 5G coverage before committing to rainOne Home or loop plans.',
       'Manage everything through the Rain dashboard or mobile app for instant control.'
     ],
-    verdictSummary: 'Rain has fewer listed deals here because its product structure is narrower than prepaid mobile bundle menus: the comparison should focus on coverage fit, monthly price, and plan terms rather than SKU count.',
+    verdictSummary: 'Rain has fewer listed deals here because its product structure is different from prepaid mobile bundle menus: compare coverage fit, monthly price, device terms, location rules and included mobile extras rather than SKU count.',
     faqs: [
       {
         question: 'Does Rain have USSD codes?',
@@ -509,11 +511,11 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'Is Rain data truly unlimited?',
-        answer: 'Rain markets unlimited-style plans, but product terms, streaming quality rules, and coverage conditions still matter. Check the plan terms in Rain\'s official account area before relying on it as a home connection.'
+        answer: 'rainOne Home and loop include unlimited-style elements, but product terms, speed tiers, device terms, location rules and coverage conditions still matter. Check the official Rain product page before relying on it as a home connection.'
       },
       {
         question: 'Is Rain better for home internet or mobile?',
-        answer: 'Rain is most popular as a home internet replacement (Fixed-LTE or 5G). While you can use it on a mobile phone, its unlimited nature makes it ideal for households with multiple devices.'
+        answer: 'rainOne Home is a home internet-style product. rainGO is the mobile-phone product, while loop is a portable router/device product with location-zone rules.'
       }
     ]
   }

@@ -1,5 +1,46 @@
 import { Bundle, NetworkStats, NetworkMetadata, NetworkName } from './types';
 
+const PRICE_REVIEW_DATE = '2026-07-04';
+
+const SOURCES = {
+  mtnInternetBundles: {
+    sourceUrl: 'https://www.mtn.co.za/home/terms-and-conditions/content/mtn-internet-bundles-terms-and-conditions',
+    sourceLabel: 'MTN Internet Bundles terms'
+  },
+  mtnNightExpress: {
+    sourceUrl: 'https://www.mtn.co.za/home/terms-and-conditions/content/mtn-night-express-data-bundles',
+    sourceLabel: 'MTN Night Express terms'
+  },
+  vodacomSmartphoneData: {
+    sourceUrl: 'https://www.vodacom.co.za/vodacom/shopping/data/data-for-your-smartphone',
+    sourceLabel: 'Vodacom smartphone data page'
+  },
+  vodacomPrepaidLte: {
+    sourceUrl: 'https://www.vodacom.co.za/vodacom/shopping/plans/prepaid-plans',
+    sourceLabel: 'Vodacom prepaid LTE data page'
+  },
+  vodacomNightOwl: {
+    sourceUrl: 'https://www.vodacom.co.za/vodacom/terms/night-owl-terms-and-conditions',
+    sourceLabel: 'Vodacom Night Owl terms'
+  },
+  telkomPrepaidBundles: {
+    sourceUrl: 'https://www.telkom.co.za/prepaid-services/time-based-bundle',
+    sourceLabel: 'Telkom prepaid bundle page'
+  },
+  cellcDataGuidelines: {
+    sourceUrl: 'https://www.cellc.co.za/cellc/data-guidelines',
+    sourceLabel: 'Cell C data guidelines'
+  },
+  cellcDayByDay: {
+    sourceUrl: 'https://www.cellc.co.za/cellc/static-content/PDF/Day-By-Day_Data_Bundles_FAQ_Web.pdf',
+    sourceLabel: 'Cell C Day-By-Day Data Bundles FAQ'
+  },
+  rainHome: {
+    sourceUrl: 'https://www.rain.co.za/home',
+    sourceLabel: 'rainOne Home page'
+  }
+} as const;
+
 export const networkMetadata: Record<NetworkName, NetworkMetadata> = {
   Vodacom: {
     name: 'Vodacom',
@@ -61,6 +102,9 @@ export const bundles: Bundle[] = [
     anytimeData: '25GB',
     nightData: '25GB',
     costPerGb: 5.98,
+    ...SOURCES.mtnInternetBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'promo_campaign_offer',
   },
   {
     id: 'mtn-monthly-10gb',
@@ -73,20 +117,27 @@ export const bundles: Bundle[] = [
     type: 'Monthly',
     anytimeData: '10GB',
     costPerGb: 14.90,
+    ...SOURCES.mtnInternetBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'mtn-monthly-1gb',
     slug: 'mtn-1gb-data-price',
     network: 'MTN',
     name: 'MTN Monthly 1GB',
-    price: 85,
+    price: 80,
     volume: '1GB',
     validity: '30 Days',
     type: 'Monthly',
     anytimeData: '1GB',
-    costPerGb: 85,
+    costPerGb: 80,
     bestFor: 'Entry-level monthly option',
-    watchOut: 'Higher cost per GB than larger bundles'
+    watchOut: 'Higher cost per GB than larger bundles',
+    ...SOURCES.mtnInternetBundles,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'mtn-hourly-75mb',
@@ -100,7 +151,10 @@ export const bundles: Bundle[] = [
     anytimeData: '75MB',
     costPerGb: 133.33,
     bestFor: 'Quick short-session usage',
-    watchOut: 'Very short validity (1 hour)'
+    watchOut: 'Very short validity (1 hour)',
+    ...SOURCES.mtnInternetBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'mtn-daily-250mb',
@@ -114,7 +168,10 @@ export const bundles: Bundle[] = [
     anytimeData: '250MB',
     costPerGb: 60,
     bestFor: 'Light daily usage',
-    watchOut: 'Short validity (1 day)'
+    watchOut: 'Short validity (1 day)',
+    ...SOURCES.mtnInternetBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'mtn-daily-1gb',
@@ -128,21 +185,28 @@ export const bundles: Bundle[] = [
     anytimeData: '1GB',
     costPerGb: 25,
     bestFor: 'Cheapest short-term 1GB',
-    watchOut: 'Short validity (1 day)'
+    watchOut: 'Short validity (1 day)',
+    ...SOURCES.mtnInternetBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'mtn-weekly-500mb',
     slug: 'mtn-weekly-500mb-data-price',
     network: 'MTN',
     name: 'MTN Weekly 500MB',
-    price: 35,
+    price: 37,
     volume: '500MB',
     validity: '7 Days',
     type: 'Weekly',
     anytimeData: '500MB',
-    costPerGb: 70,
+    costPerGb: 74,
     bestFor: 'Moderate weekly usage',
-    watchOut: 'Higher cost per GB than monthly bundles'
+    watchOut: 'Higher cost per GB than monthly bundles',
+    ...SOURCES.mtnInternetBundles,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'mtn-weekly-1gb',
@@ -156,22 +220,30 @@ export const bundles: Bundle[] = [
     anytimeData: '1GB',
     costPerGb: 55,
     bestFor: 'Weekly top-up without monthly commitment',
-    watchOut: 'Can be expensive if repeated every week'
+    watchOut: 'Can be expensive if repeated every week',
+    ...SOURCES.mtnInternetBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'mtn-night-250mb',
     slug: 'mtn-night-250mb-data-price',
     network: 'MTN',
-    name: 'MTN Night 250MB',
-    price: 8,
+    name: 'MTN Night Express 250MB',
+    price: 5,
     volume: '250MB',
     validity: '1 Night',
     type: 'Daily',
     anytimeData: '0MB',
     nightData: '250MB',
-    costPerGb: 32,
+    costPerGb: 20,
     bestFor: 'Late-night downloads',
-    watchOut: 'Night-only usage window'
+    watchOut: 'Night-only usage window',
+    ...SOURCES.mtnNightExpress,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'night_data',
+    nightWindow: '00:01-04:59',
   },
   {
     id: 'mtn-whatsapp-weekly-1gb',
@@ -186,7 +258,10 @@ export const bundles: Bundle[] = [
     costPerGb: 20,
     bestFor: 'Chat-first users',
     note: 'App-specific bundle',
-    watchOut: 'Social-only access, not full internet'
+    watchOut: 'Social-only access, not full internet',
+    sourceLabel: 'Manual official confirmation required',
+    sourceConfidence: 'manual_required',
+    productType: 'promo_campaign_offer',
   },
   {
     id: 'mtn-monthly-recurring-20gb',
@@ -200,7 +275,10 @@ export const bundles: Bundle[] = [
     anytimeData: '20GB',
     costPerGb: 13.95,
     bestFor: 'Regular heavy users',
-    watchOut: 'Auto-renews each cycle'
+    watchOut: 'Auto-renews each cycle',
+    ...SOURCES.mtnInternetBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_recurring_data',
   },
   {
     id: 'voda-hourly-50mb',
@@ -214,7 +292,10 @@ export const bundles: Bundle[] = [
     anytimeData: '50MB',
     costPerGb: 100,
     bestFor: 'Emergency top-up for quick low-data tasks',
-    watchOut: 'Very short validity (1 hour)'
+    watchOut: 'Very short validity (1 hour)',
+    sourceLabel: 'Manual official confirmation required',
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'voda-daily-250mb',
@@ -228,7 +309,11 @@ export const bundles: Bundle[] = [
     anytimeData: '250MB',
     costPerGb: 108,
     bestFor: 'Light users who need data for a single day',
-    watchOut: 'Short validity (1 day)'
+    watchOut: 'Short validity (1 day)',
+    ...SOURCES.vodacomSmartphoneData,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'voda-daily-1gb',
@@ -242,7 +327,10 @@ export const bundles: Bundle[] = [
     anytimeData: '1GB',
     costPerGb: 29,
     bestFor: 'Best standard short-term 1GB option',
-    watchOut: 'Short validity (1 day)'
+    watchOut: 'Short validity (1 day)',
+    sourceLabel: 'Manual official confirmation required',
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'voda-weekly-500mb',
@@ -256,7 +344,10 @@ export const bundles: Bundle[] = [
     anytimeData: '500MB',
     costPerGb: 98,
     bestFor: 'Moderate users who recharge weekly',
-    watchOut: 'Higher cost per GB than larger packs'
+    watchOut: 'Higher cost per GB than larger packs',
+    sourceLabel: 'Manual official confirmation required',
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'voda-weekly-1gb',
@@ -270,7 +361,10 @@ export const bundles: Bundle[] = [
     anytimeData: '1GB',
     costPerGb: 69,
     bestFor: 'Steady weekly usage without a monthly commitment',
-    watchOut: 'Higher cost per GB than monthly bundles'
+    watchOut: 'Higher cost per GB than monthly bundles',
+    sourceLabel: 'Manual official confirmation required',
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'voda-monthly-1gb',
@@ -284,13 +378,35 @@ export const bundles: Bundle[] = [
     anytimeData: '1GB',
     costPerGb: 85,
     bestFor: 'Entry-level 30-day bundle',
-    watchOut: 'Public once-off pricing can still be beaten by personalised offers'
+    watchOut: 'Public once-off pricing can still be beaten by personalised offers',
+    ...SOURCES.vodacomSmartphoneData,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'voda-monthly-2gb',
     slug: 'vodacom-monthly-2gb-data-price',
     network: 'Vodacom',
-    name: 'Vodacom 5GB Anytime + 5GB Night Owl',
+    name: 'Vodacom Once-Off 2GB',
+    price: 149,
+    volume: '2GB',
+    validity: '30 Days',
+    type: 'Monthly',
+    anytimeData: '2GB',
+    costPerGb: 74.5,
+    bestFor: 'Smartphone users who need a 30-day 2GB bundle',
+    watchOut: 'Public once-off pricing can still be beaten by personalised offers',
+    ...SOURCES.vodacomSmartphoneData,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'smartphone_once_off_data',
+  },
+  {
+    id: 'voda-prepaid-lte-5gb-night-5gb',
+    slug: 'vodacom-prepaid-lte-5gb-5gb-night-owl-price',
+    network: 'Vodacom',
+    name: 'Vodacom Prepaid LTE 5GB Anytime + 5GB Night Owl',
     price: 99,
     volume: '5GB',
     validity: '30 Days',
@@ -298,8 +414,13 @@ export const bundles: Bundle[] = [
     anytimeData: '5GB',
     nightData: '5GB',
     costPerGb: 19.8,
-    bestFor: 'Users who can use both daytime and Night Owl data',
-    watchOut: 'Half of the allocation is restricted to Night Owl hours'
+    bestFor: 'Prepaid LTE/router users who can use the Night Owl allocation',
+    watchOut: 'Half of the allocation is restricted to Night Owl hours',
+    ...SOURCES.vodacomPrepaidLte,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'prepaid_lte_router_data',
+    nightWindow: '00:00-05:00',
   },
   {
     id: 'voda-monthly-10gb',
@@ -314,7 +435,12 @@ export const bundles: Bundle[] = [
     nightData: '10GB',
     costPerGb: 14.9,
     bestFor: 'Regular users who can shift larger downloads overnight',
-    watchOut: 'Included data is split between anytime and Night Owl use'
+    watchOut: 'Included data is split between anytime and Night Owl use',
+    ...SOURCES.vodacomPrepaidLte,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'prepaid_lte_router_data',
+    nightWindow: '00:00-05:00',
   },
   {
     id: 'voda-monthly-20gb',
@@ -329,7 +455,12 @@ export const bundles: Bundle[] = [
     nightData: '20GB',
     costPerGb: 11.45,
     bestFor: 'Heavy users balancing daytime use with overnight downloads',
-    watchOut: 'Only half the total allocation is anytime data'
+    watchOut: 'Only half the total allocation is anytime data',
+    ...SOURCES.vodacomPrepaidLte,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'prepaid_lte_router_data',
+    nightWindow: '00:00-05:00',
   },
   {
     id: 'voda-monthly-50gb',
@@ -344,7 +475,12 @@ export const bundles: Bundle[] = [
     nightData: '50GB',
     costPerGb: 6.98,
     bestFor: 'High-usage users who can use substantial Night Owl capacity',
-    watchOut: 'Total value depends on actually using the night allocation'
+    watchOut: 'Total value depends on actually using the night allocation',
+    ...SOURCES.vodacomPrepaidLte,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'prepaid_lte_router_data',
+    nightWindow: '00:00-05:00',
   },
   {
     id: 'voda-night-owl-250mb',
@@ -359,7 +495,11 @@ export const bundles: Bundle[] = [
     nightData: '250MB',
     costPerGb: 56,
     bestFor: 'Late-night updates and overnight downloads',
-    watchOut: 'Night-only usage window'
+    watchOut: 'Night-only usage window',
+    ...SOURCES.vodacomNightOwl,
+    sourceConfidence: 'manual_required',
+    productType: 'night_data',
+    nightWindow: '00:00-05:00',
   },
   {
     id: 'voda-whatsapp-daily-250mb',
@@ -374,7 +514,10 @@ export const bundles: Bundle[] = [
     costPerGb: 20,
     bestFor: 'Chat-first users with low daily spend',
     note: 'App-specific bundle',
-    watchOut: 'Social-only access, not full internet'
+    watchOut: 'Social-only access, not full internet',
+    sourceLabel: 'Manual official confirmation required',
+    sourceConfidence: 'manual_required',
+    productType: 'promo_campaign_offer',
   },
   {
     id: 'telkom-daily-150mb',
@@ -388,7 +531,10 @@ export const bundles: Bundle[] = [
     anytimeData: '150MB',
     costPerGb: 53.33,
     bestFor: 'Quick low-spend top-up',
-    watchOut: 'Short validity (1 day)'
+    watchOut: 'Short validity (1 day)',
+    ...SOURCES.telkomPrepaidBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'telkom-daily-1gb',
@@ -402,7 +548,10 @@ export const bundles: Bundle[] = [
     anytimeData: '1GB',
     costPerGb: 23,
     bestFor: 'Short-term high usage day',
-    watchOut: 'Short validity (1 day)'
+    watchOut: 'Short validity (1 day)',
+    ...SOURCES.telkomPrepaidBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'telkom-weekly-1gb',
@@ -416,7 +565,10 @@ export const bundles: Bundle[] = [
     anytimeData: '1GB',
     costPerGb: 49,
     bestFor: 'Weekly prepaid usage',
-    watchOut: 'Higher cost per GB than monthly bundles'
+    watchOut: 'Higher cost per GB than monthly bundles',
+    ...SOURCES.telkomPrepaidBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'telkom-monthly-2gb',
@@ -430,7 +582,10 @@ export const bundles: Bundle[] = [
     anytimeData: '2GB',
     costPerGb: 29.5,
     bestFor: 'Entry monthly users',
-    watchOut: 'Smaller bundles can have weaker value'
+    watchOut: 'Smaller bundles can have weaker value',
+    ...SOURCES.telkomPrepaidBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'telkom-monthly-10gb',
@@ -444,7 +599,10 @@ export const bundles: Bundle[] = [
     anytimeData: '10GB',
     costPerGb: 8.9,
     bestFor: 'Best monthly value for many users',
-    watchOut: 'Check local coverage before buying'
+    watchOut: 'Check local coverage before buying',
+    ...SOURCES.telkomPrepaidBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'telkom-prepaid-20gb',
@@ -458,7 +616,10 @@ export const bundles: Bundle[] = [
     anytimeData: '20GB',
     costPerGb: 4.95,
     bestFor: 'Heavy users chasing low cost per GB',
-    watchOut: 'Coverage can vary by area'
+    watchOut: 'Coverage can vary by area',
+    ...SOURCES.telkomPrepaidBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'prepaid_lte_router_data',
   },
   {
     id: 'telkom-prepaid-40gb',
@@ -472,7 +633,10 @@ export const bundles: Bundle[] = [
     anytimeData: '40GB',
     costPerGb: 4.73,
     bestFor: 'Very heavy monthly users',
-    watchOut: 'Large upfront spend and location-dependent value'
+    watchOut: 'Large upfront spend and location-dependent value',
+    ...SOURCES.telkomPrepaidBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'prepaid_lte_router_data',
   },
   {
     id: 'telkom-prepaid-1gb',
@@ -486,7 +650,10 @@ export const bundles: Bundle[] = [
     anytimeData: '1GB',
     costPerGb: 79,
     bestFor: 'Entry-level monthly option',
-    watchOut: 'Poor value versus larger Telkom bundles'
+    watchOut: 'Poor value versus larger Telkom bundles',
+    ...SOURCES.telkomPrepaidBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'telkom-night-surfer-1gb',
@@ -501,7 +668,11 @@ export const bundles: Bundle[] = [
     nightData: '1GB',
     costPerGb: 10,
     bestFor: 'Overnight downloads',
-    watchOut: 'Night-only usage window'
+    watchOut: 'Night-only usage window; Telkom network only where applicable',
+    ...SOURCES.telkomPrepaidBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'night_data',
+    nightWindow: '00:00-07:00',
   },
   {
     id: 'telkom-whatsapp-daily-250mb',
@@ -516,7 +687,10 @@ export const bundles: Bundle[] = [
     costPerGb: 16,
     bestFor: 'Low-cost chat users',
     note: 'App-specific bundle',
-    watchOut: 'Social-only access, not full internet'
+    watchOut: 'Social-only access, not full internet',
+    ...SOURCES.telkomPrepaidBundles,
+    sourceConfidence: 'manual_required',
+    productType: 'promo_campaign_offer',
   },
   {
     id: 'cellc-daily-100mb',
@@ -530,7 +704,10 @@ export const bundles: Bundle[] = [
     anytimeData: '100MB',
     costPerGb: 70,
     bestFor: 'Very light daily browsing',
-    watchOut: 'Short validity (1 day)'
+    watchOut: 'Short validity (1 day)',
+    ...SOURCES.cellcDataGuidelines,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'cellc-daily-1gb',
@@ -544,7 +721,10 @@ export const bundles: Bundle[] = [
     anytimeData: '1GB',
     costPerGb: 25,
     bestFor: 'Cheapest short-term general-use option',
-    watchOut: 'Short validity (1 day)'
+    watchOut: 'Short validity (1 day)',
+    ...SOURCES.cellcDataGuidelines,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'cellc-weekly-1gb',
@@ -558,7 +738,10 @@ export const bundles: Bundle[] = [
     anytimeData: '1GB',
     costPerGb: 45,
     bestFor: 'Weekly moderate usage',
-    watchOut: 'Can be costly versus monthly bundles'
+    watchOut: 'Can be costly versus monthly bundles',
+    ...SOURCES.cellcDataGuidelines,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'cellc-monthly-1gb',
@@ -572,7 +755,10 @@ export const bundles: Bundle[] = [
     anytimeData: '1GB',
     costPerGb: 65,
     bestFor: 'Entry monthly users',
-    watchOut: 'Compare with promo deals first'
+    watchOut: 'Compare with promo deals first',
+    ...SOURCES.cellcDataGuidelines,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'cellc-monthly-5gb',
@@ -586,7 +772,10 @@ export const bundles: Bundle[] = [
     anytimeData: '5GB',
     costPerGb: 19.8,
     bestFor: 'Balanced monthly usage',
-    watchOut: 'Promo terms may change by period'
+    watchOut: 'Promo terms may change by period',
+    ...SOURCES.cellcDataGuidelines,
+    sourceConfidence: 'manual_required',
+    productType: 'promo_campaign_offer',
   },
   {
     id: 'cellc-monthly-10gb',
@@ -600,7 +789,10 @@ export const bundles: Bundle[] = [
     anytimeData: '10GB',
     costPerGb: 12.90,
     bestFor: 'Strong monthly value',
-    watchOut: 'Check coverage quality in your area'
+    watchOut: 'Check coverage quality in your area',
+    ...SOURCES.cellcDataGuidelines,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_once_off_data',
   },
   {
     id: 'cellc-monthly-30gb',
@@ -614,7 +806,10 @@ export const bundles: Bundle[] = [
     anytimeData: '30GB',
     costPerGb: 9.97,
     bestFor: 'Heavy prepaid users',
-    watchOut: 'Large upfront spend'
+    watchOut: 'Large upfront spend',
+    ...SOURCES.cellcDayByDay,
+    sourceConfidence: 'manual_required',
+    productType: 'promo_campaign_offer',
   },
   {
     id: 'cellc-night-250mb',
@@ -629,7 +824,11 @@ export const bundles: Bundle[] = [
     nightData: '250MB',
     costPerGb: 36,
     bestFor: 'Late-night updates',
-    watchOut: 'Night-only usage window'
+    watchOut: 'Night-only usage window; Day-By-Day Daily Nite windows differ from LTE/Home Connecta rules',
+    ...SOURCES.cellcDayByDay,
+    sourceConfidence: 'manual_required',
+    productType: 'night_data',
+    nightWindow: '00:00-04:59 for Day-By-Day Daily Nite; LTE/Home Connecta rules may differ',
   },
   {
     id: 'cellc-whatsapp-weekly-1gb',
@@ -644,7 +843,10 @@ export const bundles: Bundle[] = [
     costPerGb: 15,
     bestFor: 'Chat-heavy users',
     note: 'App-specific bundle',
-    watchOut: 'Social-only access, not full internet'
+    watchOut: 'Social-only access, not full internet',
+    ...SOURCES.cellcDataGuidelines,
+    sourceConfidence: 'manual_required',
+    productType: 'promo_campaign_offer',
   },
   {
     id: 'cellc-monthly-recurring-20gb',
@@ -658,31 +860,46 @@ export const bundles: Bundle[] = [
     anytimeData: '20GB',
     costPerGb: 12.45,
     bestFor: 'Regular heavy users',
-    watchOut: 'Auto-renews each cycle'
+    watchOut: 'Auto-renews each cycle',
+    ...SOURCES.cellcDataGuidelines,
+    sourceConfidence: 'manual_required',
+    productType: 'smartphone_recurring_data',
   },
   {
     id: 'rain-unlimited-4g',
     slug: 'rain-unlimited-4g-data-price',
     network: 'Rain',
-    name: 'Rain Unlimited 4G',
-    price: 479,
+    name: 'rainOne Home the101 30Mbps',
+    price: 679,
     volume: 'Unlimited',
     validity: '30 Days',
     type: 'Monthly',
     anytimeData: 'Unlimited',
     costPerGb: 0,
+    bestFor: 'Home internet users in rain 5G coverage areas',
+    watchOut: 'Home 5G plan; confirm coverage and router terms before buying',
+    ...SOURCES.rainHome,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'home_internet_fixed_lte',
   },
   {
     id: 'rain-unlimited-5g',
     slug: 'rain-unlimited-5g-data-price',
     network: 'Rain',
-    name: 'Rain Unlimited 5G',
-    price: 599,
+    name: 'rainOne Home the101 pro 60Mbps',
+    price: 899,
     volume: 'Unlimited',
     validity: '30 Days',
     type: 'Monthly',
     anytimeData: 'Unlimited',
     costPerGb: 0,
+    bestFor: 'Home users who need higher rain 5G speed tiers',
+    watchOut: 'Home 5G plan; rainGO and loop are separate product families',
+    ...SOURCES.rainHome,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
+    productType: 'home_internet_fixed_lte',
   },
 ];
 

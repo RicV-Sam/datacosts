@@ -1,5 +1,16 @@
 export type NetworkName = 'MTN' | 'Vodacom' | 'Telkom' | 'Cell C' | 'Rain';
 
+export type SourceConfidence = 'verified' | 'dynamic_checkout' | 'personalised' | 'manual_required';
+
+export type ProductType =
+  | 'smartphone_once_off_data'
+  | 'smartphone_recurring_data'
+  | 'prepaid_lte_router_data'
+  | 'night_data'
+  | 'personalised_app_only_offer'
+  | 'promo_campaign_offer'
+  | 'home_internet_fixed_lte';
+
 export interface Bundle {
   id: string;
   slug: string;
@@ -17,6 +28,12 @@ export interface Bundle {
   bestFor?: string;
   note?: string;
   watchOut?: string;
+  sourceUrl?: string;
+  sourceLabel?: string;
+  sourceConfidence?: SourceConfidence;
+  lastVerified?: string;
+  productType?: ProductType;
+  nightWindow?: string;
 }
 
 export interface NetworkStats {

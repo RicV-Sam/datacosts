@@ -8,6 +8,7 @@ import { MobileNav } from '../components/MobileNav';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { networkPages } from '../data/networks';
+import { MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_URL,
@@ -52,6 +53,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     .sort((a, b) => a.costPerGb - b.costPerGb);
 
   const topDeals = validValueBundles.slice(0, 8);
+  const hasManualRequiredTopDeals = topDeals.some((bundle) => bundle.sourceConfidence === 'manual_required');
   const cheapestOverall = [...bundles].sort((a, b) => a.price - b.price)[0];
   const bestPrepaidDeal = [...bundles]
     .filter((bundle) => bundle.type !== 'Contract' && bundle.costPerGb > 0)
@@ -248,6 +250,9 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
               </tbody>
             </table>
           </div>
+          {hasManualRequiredTopDeals && (
+            <p className="text-[10px] text-slate-500 font-medium italic mt-3">{MANUAL_PRICE_CHECK_NOTE}</p>
+          )}
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </section>        <section className="mb-16 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6">Network-by-Network Best Deals</h2>

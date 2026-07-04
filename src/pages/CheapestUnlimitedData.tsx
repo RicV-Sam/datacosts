@@ -9,6 +9,7 @@ import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 
 interface CheapestUnlimitedDataProps {
   onNavigate: NavigateFunction;
@@ -20,7 +21,7 @@ export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ on
   const metaDescription =
     'Compare currently listed unlimited-style data options in South Africa and see when unlimited plans beat capped monthly bundles.';
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-unlimited-data-south-africa/');
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const lastUpdated = formatIsoForDisplay(getRouteModifiedIso('/guides/cheapest-unlimited-data-south-africa/'));
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Guides', href: '/guides/' },

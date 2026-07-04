@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Clock, Tag, Info, ChevronRight } from 'lucide-react';
 import { Guide, Bundle, GuideResourceLink } from '../types';
 import { bundles } from '../data';
+import { getBundleSourceSummary, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
 import { useNavigate } from 'react-router-dom';
 import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
 import {
@@ -232,6 +233,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
     }
     return result;
   }, [guide.comparisonType]);
+  const hasManualRequiredRows = filteredBundles.some((bundle) => bundle.sourceConfidence === 'manual_required');
 
   const webPageSchema = {
     '@context': 'https://schema.org',
@@ -393,22 +395,30 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-50">
-                    {filteredBundles.map((bundle: Bundle) => (
-                      <tr key={bundle.id} className="hover:bg-slate-50 transition-colors">
-                        <td className="px-6 py-4"><span className="font-black text-sm">{bundle.network}</span></td>
-                        <td className="px-6 py-4">
-                          <div className="text-sm font-bold text-slate-900">{bundle.name}</div>
-                          <div className="text-[10px] text-slate-500 font-medium">{bundle.validity}</div>
-                        </td>
-                        <td className="px-6 py-4"><span className="text-lg font-black">R{bundle.price}</span></td>
-                        <td className="px-6 py-4"><span className="inline-flex items-center px-2 py-1 bg-blue-50 text-blue-700 rounded-lg text-[10px] font-black">R{bundle.costPerGb?.toFixed(2)}/GB</span></td>
-                      </tr>
-                    ))}
+                    {filteredBundles.map((bundle: Bundle) => {
+                      const sourceSummary = getBundleSourceSummary(bundle);
+
+                      return (
+                        <tr key={bundle.id} className="hover:bg-slate-50 transition-colors">
+                          <td className="px-6 py-4"><span className="font-black text-sm">{bundle.network}</span></td>
+                          <td className="px-6 py-4">
+                            <div className="text-sm font-bold text-slate-900">{bundle.name}</div>
+                            <div className="text-[10px] text-slate-500 font-medium">{bundle.validity}</div>
+                            {sourceSummary && <div className="text-[10px] text-slate-500 font-medium">{sourceSummary}</div>}
+                          </td>
+                          <td className="px-6 py-4"><span className="text-lg font-black">R{bundle.price}</span></td>
+                          <td className="px-6 py-4"><span className="inline-flex items-center px-2 py-1 bg-blue-50 text-blue-700 rounded-lg text-[10px] font-black">R{bundle.costPerGb?.toFixed(2)}/GB</span></td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
               <div className="p-4 bg-slate-50 border-t border-slate-100">
-                <p className="text-[10px] text-slate-400 font-medium italic">* Prices are subject to change. Check individual network channels for final offer terms.</p>
+                <p className="text-[10px] text-slate-400 font-medium italic">
+                  * Prices are subject to change. Check individual network channels for final offer terms.
+                  {hasManualRequiredRows && ` ${MANUAL_PRICE_CHECK_NOTE}`}
+                </p>
               </div>
             </div>
           </section>

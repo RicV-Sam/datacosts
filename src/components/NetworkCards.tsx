@@ -4,6 +4,7 @@ import { Router, TowerControl, Signal, Globe, Zap, ArrowRight } from 'lucide-rea
 import { NetworkName, Bundle, NetworkMetadata } from '../types';
 import { networkMetadata, bundles } from '../data';
 import { networkPages } from '../data/networks';
+import { formatIsoForDisplay, getNetworkPageModifiedIso } from '../seo/contentDates';
 
 interface NetworkCardProps {
   network: NetworkName;
@@ -25,7 +26,8 @@ export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }>
   const networkBundles = bundles.filter(b => b.network === network).slice(0, 2);
   const bundlesCount = bundles.filter(b => b.network === network).length;
   const minCostPerGb = Math.min(...bundles.filter(b => b.network === network).map(b => b.costPerGb));
-  const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const networkPage = Object.values(networkPages).find(p => p.networkName === network);
+  const lastUpdated = networkPage ? formatIsoForDisplay(getNetworkPageModifiedIso(networkPage.slug)) : '';
 
   return (
     <motion.div
@@ -81,11 +83,11 @@ export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }>
       </div>
 
       <div className="mb-6">
-        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Updated: {today}</span>
+        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Updated: {lastUpdated}</span>
       </div>
 
       <a
-        href={`/network/${Object.values(networkPages).find(p => p.networkName === network)?.slug || network.toLowerCase().replace(/[^a-z0-9]/g, '')}/`}
+        href={`/network/${networkPage?.slug || network.toLowerCase().replace(/[^a-z0-9]/g, '')}/`}
         onClick={(e) => { e.preventDefault(); onViewDeals(network); }}
         className="w-full py-4 rounded-2xl text-sm font-black flex items-center justify-center gap-2 group/btn transition-all active:scale-95 shadow-lg"
         style={{ backgroundColor: meta.color, color: meta.textColor }}

@@ -9,6 +9,7 @@ import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 
 interface BestSimOnlyDealsProps {
   onNavigate: NavigateFunction;
@@ -20,7 +21,7 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
   const metaDescription =
     'Compare currently listed SIM-only style data options in South Africa and see how they stack up against prepaid choices.';
   const canonicalUrl = toCanonicalUrl('/guides/best-sim-only-deals-south-africa/');
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const lastUpdated = formatIsoForDisplay(getRouteModifiedIso('/guides/best-sim-only-deals-south-africa/'));
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Guides', href: '/guides/' },

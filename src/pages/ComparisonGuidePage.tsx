@@ -10,6 +10,7 @@ import { NavigateFunction, Bundle, NetworkName } from '../types';
 import { getComparisonGuideBySlug } from '../data/comparisonGuides';
 import { isNoindexRoute } from '../config/routeCatalog';
 import { buildBundleItemListSchema } from '../utils/structuredData';
+import { getBundleSourceSummary, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
 import { networkPages } from '../data/networks';
 import { formatIsoForDisplay, getComparisonGuideModifiedIso, getDefaultPublishedIso } from '../seo/contentDates';
 import {
@@ -301,6 +302,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
 
   const winners = getWinners(definition.mode, rows, definition.coverageFirstNetwork);
   const listedRows = rows.filter((row) => row.bundle).map((row) => row.bundle as Bundle);
+  const hasManualRequiredRows = listedRows.some((bundle) => bundle.sourceConfidence === 'manual_required');
   const dateModifiedIso = getComparisonGuideModifiedIso(definition.slug);
   const datePublishedIso = getDefaultPublishedIso();
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
@@ -497,7 +499,18 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
                 {rows.map((row) => (
                   <tr key={row.network} className="hover:bg-slate-50 transition-colors">
                     <td className="px-6 py-4 font-black text-slate-900">{row.network}</td>
-                    <td className="px-6 py-4 text-slate-700">{row.bundle ? row.bundle.name : 'No clear listed match for this intent'}</td>
+                    <td className="px-6 py-4 text-slate-700">
+                      {row.bundle ? (
+                        <>
+                          <div>{row.bundle.name}</div>
+                          {getBundleSourceSummary(row.bundle) && (
+                            <div className="mt-1 text-[10px] font-medium text-slate-500">{getBundleSourceSummary(row.bundle)}</div>
+                          )}
+                        </>
+                      ) : (
+                        'No clear listed match for this intent'
+                      )}
+                    </td>
                     <td className="px-6 py-4 text-xs font-bold uppercase tracking-wide text-slate-600">{row.bundle ? getBundleType(row.bundle) : 'N/A'}</td>
                     <td className="px-6 py-4 text-slate-700">{row.bundle ? `R${row.bundle.price}` : 'N/A'}</td>
                     <td className="px-6 py-4 text-slate-700">{row.bundle ? row.bundle.validity : 'N/A'}</td>
@@ -509,6 +522,9 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
               </tbody>
             </table>
           </div>
+          {hasManualRequiredRows && (
+            <p className="mt-3 text-[10px] text-slate-500 font-medium italic">{MANUAL_PRICE_CHECK_NOTE}</p>
+          )}
         </section>
         {definition.whoShouldBuy && definition.whoShouldBuy.length > 0 && (
           <section id="who-should-buy" className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm scroll-mt-32">

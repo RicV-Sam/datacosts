@@ -15,7 +15,7 @@ import { networkPages } from '../data/networks';
 import { bundles } from '../data';
 import { NavigateFunction, NetworkName } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
-import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_URL,
   SITE_BRAND_NAME,
@@ -89,6 +89,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const canonicalUrl = SITE_URL;
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/');
+  const lastUpdated = formatIsoForDisplay(dateModifiedIso);
 
   const homeSchema = {
     '@context': 'https://schema.org',
@@ -186,6 +187,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
         <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-4 md:p-6 shadow-sm">
           <h2 className="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-3">Quick Answer</h2>
+          <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-3">Reviewed / updated: {lastUpdated}</p>
           <p className="text-sm text-slate-700 leading-relaxed">
             Use the homepage as the broad entry point for <strong>cheapest data in South Africa</strong>, <strong>Cell C data deals</strong>, and network discovery. If you want the deeper comparison answer, open the <a href="/guides/cheapest-data-south-africa/" className="font-bold text-[#1b6d24] hover:underline">cheapest data in South Africa guide</a>. If you are comparing prepaid value, go to <a href="/guides/best-prepaid-data-deals-south-africa/" className="font-bold text-[#1b6d24] hover:underline">best prepaid phone plans</a>. If you already know the operator intent, jump to <a href="/network/cell-c/" className="font-bold text-[#1b6d24] hover:underline">Cell C data deals</a>, <a href="/ussd-codes-south-africa/" className="font-bold text-[#1b6d24] hover:underline">USSD codes South Africa</a>, or the <a href="/network/vodacom/" className="font-bold text-[#1b6d24] hover:underline">Vodacom data prices page</a>.
           </p>

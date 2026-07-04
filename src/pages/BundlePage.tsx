@@ -7,6 +7,7 @@ import { Footer } from '../components/Footer';
 import { RelatedPages } from '../components/RelatedPages';
 import { ArrowLeft, ExternalLink, ShieldCheck, Zap, Info, Clock, Volume2 } from 'lucide-react';
 import { buildBundleProductSchema } from '../utils/structuredData';
+import { getBundleSourceNote, getBundleSourceSummary, isVerifiedBundleSource } from '../utils/bundleSource';
 import { toCanonicalUrl } from '../seo/siteConstants';
 
 export const BundlePage: React.FC = () => {
@@ -25,6 +26,9 @@ export const BundlePage: React.FC = () => {
   const pageTitle = `${bundle.name} Data Bundle Price (2026)`;
   const metaDescription = `How much is the ${bundle.name}? Full price breakdown: R${bundle.price} for ${bundle.volume}. Valid for ${bundle.validity}. Cost per GB: R${bundle.costPerGb.toFixed(2)}.`;
   const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/${bundleSlug}/`);
+  const sourceSummary = getBundleSourceSummary(bundle);
+  const sourceNote = getBundleSourceNote(bundle);
+  const confidenceLabel = isVerifiedBundleSource(bundle) ? 'Verified Price' : 'Price Check Advised';
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -135,15 +139,18 @@ export const BundlePage: React.FC = () => {
                     <Clock className="w-5 h-5 text-blue-500 mt-1" />
                     <div>
                       <h3 className="font-bold text-slate-900">Night Owl Data: {bundle.nightData}</h3>
-                      <p className="text-sm text-slate-500">Available for use between midnight and 5 AM.</p>
+                      <p className="text-sm text-slate-500">Available for use during the listed night window{bundle.nightWindow ? ` (${bundle.nightWindow})` : ''}.</p>
                     </div>
                   </div>
                 )}
                 <div className="flex items-start gap-3">
                   <ShieldCheck className="w-5 h-5 text-[#1b6d24] mt-1" />
                   <div>
-                    <h3 className="font-bold text-slate-900">Verified Price</h3>
-                    <p className="text-sm text-slate-500">Last confirmed in March 2026 via official operator data.</p>
+                    <h3 className="font-bold text-slate-900">{confidenceLabel}</h3>
+                    <p className="text-sm text-slate-500">
+                      {sourceSummary || 'Confirm final bundle details with the operator before buying.'}
+                      {sourceNote && ` ${sourceNote}`}
+                    </p>
                   </div>
                 </div>
               </div>
