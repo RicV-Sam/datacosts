@@ -89,9 +89,9 @@ const faqItems = [
 ];
 
 export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Airtime Advance Codes South Africa: Borrow Airtime on MTN, Vodacom, Cell C and Telkom';
+  const pageTitle = 'Airtime Advance Codes South Africa: MTN, Vodacom, Cell C and Telkom';
   const metaDescription =
-    'Borrow airtime in South Africa with MTN, Vodacom, Cell C and Telkom airtime advance starting points, eligibility checks, fee warnings and repayment notes.';
+    'Compare airtime advance starting codes in South Africa: MTN *151#, Vodacom *135#, Telkom *180# and Cell C *147#, with fee and repayment warnings.';
   const canonicalUrl = toCanonicalUrl('/airtime-advance-codes/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/airtime-advance-codes/');
@@ -178,7 +178,7 @@ export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = (
             Updated {lastUpdated}
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-5 leading-[0.95]">
-            Airtime Advance Codes South Africa: <span className="text-[#1b6d24]">Borrow Airtime</span>
+            Airtime Advance Codes South Africa: <span className="text-[#1b6d24]">MTN, Vodacom, Cell C and Telkom</span>
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
             Use these borrow-airtime and emergency-airtime starting points for MTN, Vodacom, Cell C and Telkom. The network menu should show eligibility, fees and repayment before you accept an advance.
@@ -188,7 +188,7 @@ export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = (
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick answer</h2>
           <p className="mb-5 text-slate-700 leading-relaxed">
-            MTN users can start with <strong>*151#</strong>. Vodacom users should start with <strong>*135#</strong>, Telkom with <strong>*180#</strong>, and Cell C with <strong>*147#</strong>. For non-MTN networks, treat those as menu routes rather than guaranteed one-step borrow-airtime codes.
+            MTN users can start with <strong>*151#</strong>. Vodacom users should start with <strong>*135#</strong>, Telkom with <strong>*180#</strong>, and Cell C with <strong>*147#</strong>. Check the fee, eligibility, and repayment amount on screen before accepting any airtime advance.
           </p>
           <div className="overflow-x-auto">
             <table className="min-w-[680px] w-full text-left text-sm">

@@ -127,9 +127,9 @@ Update on `2026-05-01`:
 - The filtered bundle-page titles and descriptions were tightened for monthly-data and 1GB intent pages.
 - The network-specific USSD page titles were updated to include `South Africa` for better query alignment.
 
-## Weekly Review Inputs
+## Biweekly Review Inputs
 
-For each Friday SEO and GSC review, use:
+For each SEO and GSC review every two weeks, use:
 
 - GSC Performance export for the latest 7 days.
 - GSC Performance export for the latest 28 days.
@@ -146,7 +146,7 @@ Keyword research adds value because it shows demand that may not yet appear in G
 
 ## Review Priorities
 
-Weekly reviews should produce a short prioritized action list, with emphasis on:
+Biweekly reviews should produce a short prioritized action list, with emphasis on:
 
 - low CTR queries and pages with meaningful impressions
 - pages ranking around positions 7 to 12
