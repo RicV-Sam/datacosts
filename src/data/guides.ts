@@ -1796,14 +1796,15 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-check-vodacom-airtime-balance',
-    title: 'How to Check Balance on Vodacom: Vodacom Balance Check Number, Airtime and Data',
-    metaDescription: 'Learn how to check balance on Vodacom with the Vodacom balance check number *135#, use MyVodacom for bundles and expiry dates, and compare the right airtime and data routes before topping up.',
-    h1: 'How to Check Balance on Vodacom: Balance Check Number, Airtime and Data',
-    intro: 'If you searched for how to check balance on Vodacom, start with the main *135# self-service menu from your Vodacom SIM. This is the safest Vodacom balance check number to use first when you need airtime, data bundle balance, or account options before buying another bundle. Then compare Vodacom data prices if you are checking balance before a top-up or trying to avoid out-of-bundle airtime use.',
+    title: 'How to Check Balance on Vodacom: Vodacom Balance Check Number for Airtime and Data',
+    metaDescription: 'Check balance on Vodacom with the Vodacom balance check number *135#, confirm airtime and data in MyVodacom, and compare the right Vodacom USSD and bundle routes before topping up.',
+    h1: 'How to Check Balance on Vodacom: Vodacom Balance Check Number for Airtime and Data',
+    intro: 'If you searched for how to check balance on Vodacom, how to check airtime on Vodacom, or how to check Vodacom balance, start with the main *135# self-service menu from your Vodacom SIM. This is the safest Vodacom balance check number to use first when you need airtime, data bundle balance, or account options before buying another bundle. Then compare Vodacom data prices if you are checking balance before a top-up or trying to avoid out-of-bundle airtime use.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *135# for the main Vodacom self-service and balance menu if your query is how to check balance on Vodacom.',
       'The main Vodacom balance check number is *135#, with MyVodacom as the best second check for bundle detail and expiry.',
+      'If your query is how to check airtime on Vodacom, use *135# first so you can confirm airtime, data, and account status from one menu path.',
       'If you only need a fast airtime check, some lines also support *136#, but fall back to *135# for the clearest live Vodacom balance route.',
       'Use MyVodacom to review airtime, data bundles, expiry dates, and recent account activity together.',
       'Before buying another bundle, compare current Vodacom prepaid data prices on the Vodacom network page and use the Vodacom USSD page for the wider shortcut set.'
@@ -1817,12 +1818,12 @@ export const guides: Guide[] = [
       { label: 'FAQ', anchor: 'faq' }
     ],
     comparisonType: 'all',
-    stepsTitle: 'Vodacom Airtime Balance Methods',
+    stepsTitle: 'Vodacom Balance Check Methods',
     steps: [
       {
         id: 'ussd-method',
         title: 'USSD method: dial *135# to check balance on Vodacom',
-        description: 'Dial *135# from your Vodacom SIM and choose balances. This is the safest starting point for Vodacom balance checks because it can show airtime, data bundle, and account menu options from one self-service path, making it the clearest answer to queries like "how to check balance on Vodacom" or "Vodacom balance check number".'
+        description: 'Dial *135# from your Vodacom SIM and choose balances. This is the safest starting point for Vodacom balance checks because it can show airtime, data bundle, and account menu options from one self-service path, making it the clearest answer to queries like "how to check balance on Vodacom", "how to check airtime on Vodacom", or "Vodacom balance check number".'
       },
       {
         id: 'app-method',
@@ -1863,6 +1864,10 @@ export const guides: Guide[] = [
       {
         question: 'How do I check Vodacom data balance?',
         answer: 'Start with *135# and choose balances, then use MyVodacom if you need bundle validity, expiry, or recent usage detail in one view.'
+      },
+      {
+        question: 'How do I check airtime on Vodacom?',
+        answer: 'Use *135# first because it is the safest live Vodacom balance path for airtime and related account checks. If your line supports it, *136# can sometimes return a quick airtime summary.'
       },
       {
         question: 'Can I check Vodacom airtime without data?',

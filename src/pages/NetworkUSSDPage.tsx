@@ -37,24 +37,24 @@ type NetworkConfig = {
 const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   mtn: {
     networkName: 'MTN',
-    titlePrefix: 'MTN Balance Check Code: MTN USSD Codes, Recharge & Please Call Me',
+    titlePrefix: 'MTN Balance Check: Code *136#, MTN USSD Codes, Recharge & Please Call Me',
     route: '/mtn-ussd-codes/',
     networkHubHref: '/network/mtn/',
     buyDataGuideHref: '/guides/how-to-buy-data-mtn/',
     balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find the MTN balance check code, MTN USSD codes, recharge code, Please Call Me code, and data-check shortcuts for prepaid users in South Africa.',
+      'Check MTN balance with *136#, find the MTN balance check code, MTN USSD codes, recharge code, Please Call Me code, and data-check shortcuts for prepaid users in South Africa.',
     intro:
-      'Use this page when the intent is MTN-specific. It is the best destination for the MTN balance check code, how to check MTN balance, MTN recharge code, MTN Please Call Me code, airtime check, data check code, and prepaid self-service shortcuts without opening the app.',
+      'Use this page when the intent is MTN-specific. If you searched for MTN balance check, how to check MTN balance, or MTN balance check code, start here for the exact MTN airtime, data, recharge, and Please Call Me shortcuts without opening the app.',
     quickAnswer:
-      'If your query is MTN balance check or MTN balance check code, start with *136# for airtime and bundle checks. Use *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, *121*the-number# for MTN Please Call Me, and *151# for MTN XtraTime. Use this page for operator-specific MTN intent, then return to the all-network hub only when you need cross-network comparison.',
+      'For MTN balance check, dial *136# first. That is the main MTN balance check code for airtime and bundle checks. Use *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, *121*the-number# for MTN Please Call Me, and *151# for MTN XtraTime. If your intent shifts from MTN-only to cross-network comparison, then move to the all-network hub.',
     supportNote:
       'MTN menus can vary by prepaid profile and active campaigns. If a code path changes, use *136# as your fallback entry point.',
     faq: [
       {
-        question: 'What is the MTN balance check code?',
-        answer: 'The main MTN balance code is *136# for airtime and bundle overview.'
+        question: 'How do I check my MTN balance?',
+        answer: 'Dial *136# from your MTN SIM. This is the main MTN balance check code for airtime and bundle overview.'
       },
       {
         question: 'How do I buy MTN data without the app?',
@@ -76,24 +76,24 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   vodacom: {
     networkName: 'Vodacom',
-    titlePrefix: 'How to Check Vodacom Balance: Vodacom Balance Check Number, Airtime & Data',
+    titlePrefix: 'How to Check Vodacom Balance: Vodacom Balance Check Number, USSD Codes, Airtime & Data',
     route: '/vodacom-ussd-codes/',
     networkHubHref: '/network/vodacom/',
     buyDataGuideHref: '/guides/how-to-buy-data-vodacom/',
     balanceGuideHref: '/guides/how-to-check-vodacom-airtime-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Find how to check Vodacom balance, the Vodacom balance check number, airtime and data USSD routes, bundle buying shortcuts, and everyday prepaid self-service codes.',
+      'Check how to check Vodacom balance with *135#, find the Vodacom balance check number, Vodacom USSD codes, airtime and data routes, and bundle-buying shortcuts.',
     intro:
-      'Use this Vodacom USSD page to check Vodacom balance, confirm airtime, buy bundles, top up, and handle the everyday prepaid actions that are faster from the dialler than the app. If you searched for the Vodacom balance check number, this page and the dedicated balance guide work together: this page owns the wider code set, while the guide handles the step-by-step balance intent.',
+      'Use this Vodacom USSD page to check Vodacom balance, confirm airtime, buy bundles, top up, and handle the everyday prepaid actions that are faster from the dialler than the app. If you searched for how to check Vodacom balance or the Vodacom balance check number, this page owns the wider Vodacom USSD code set, while the dedicated balance guide handles the step-by-step walkthrough intent.',
     quickAnswer:
-      'If your query is how to check Vodacom balance or Vodacom balance check number, start with *135# for balances and self-service, then use the shortcuts below to confirm data, airtime, and bundle-buying options. If your intent is the step-by-step balance walkthrough, use the dedicated balance guide after this page for the clearest path.',
+      'If your query is how to check Vodacom balance or Vodacom balance check number, start with *135# for balances and self-service, then use the shortcuts below to confirm data, airtime, and bundle-buying options. Use this page when you want the broader Vodacom USSD code set. If your intent is the step-by-step balance walkthrough, use the dedicated balance guide after this page for the clearest path.',
     supportNote:
       'Vodacom often updates self-service menu flows. If a direct code fails, start from *135# and navigate to the same task.',
     faq: [
       {
-        question: 'What is the Vodacom data balance code?',
-        answer: 'A common Vodacom balance entry is *135# and detailed checks are often available from submenu options.'
+        question: 'How do I check Vodacom balance?',
+        answer: 'Start with *135# from your Vodacom SIM. This is the main Vodacom balance check number and menu entry for airtime, data, and self-service checks.'
       },
       {
         question: 'How do I buy Vodacom data using USSD?',
@@ -145,23 +145,23 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   'cell-c': {
     networkName: 'Cell C',
-    titlePrefix: 'How to Check Cell C Balance: Cell C Balance Check Code & USSD',
+    titlePrefix: 'How to Check Balance on Cell C: Cell C Balance Check Code, Airtime & Data USSD',
     route: '/cell-c-ussd-codes/',
     networkHubHref: '/network/cell-c/',
     buyDataGuideHref: '/guides/how-to-buy-data-cell-c/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Find how to check Cell C balance, the Cell C balance check code, Cell C USSD codes, bundle shortcuts, and prepaid self-service actions in South Africa.',
+      'Check balance on Cell C with *101#, find the Cell C balance check code, Cell C USSD codes, bundle shortcuts, and prepaid self-service actions in South Africa.',
     intro:
-      'Use this page when the intent is Cell C-specific. It is the best destination for how to check Cell C balance, how to check balance on Cell C, the Cell C balance check code, bundle menus, and prepaid support shortcuts.',
+      'Use this page when the intent is Cell C-specific. If you searched for how to check balance on Cell C, how to check Cell C balance, or Cell C balance check, this is the best destination for the main balance code, data-bundle menus, and prepaid support shortcuts.',
     quickAnswer:
-      'If your query is how to check Cell C balance or how to check balance on Cell C, start with *101# for balance and use *147# for data bundles, airtime advance menus, and broader account actions. Use this page for full Cell C-specific code intent, then return to the hub only for cross-network comparison.',
+      'If your query is how to check balance on Cell C or how to check Cell C balance, start with *101# for balance. Use *147# for data bundles, airtime advance menus, and broader account actions. Stay on this page for Cell C-specific code intent, then return to the hub only when you need a cross-network comparison.',
     supportNote:
       'Cell C code paths can differ by account profile and campaign period. If a shortcode fails, use *147# as your fallback menu.',
     faq: [
       {
-        question: 'What is the Cell C balance check code?',
-        answer: 'The common Cell C balance code is *101#.'
+        question: 'How do I check balance on Cell C?',
+        answer: 'Dial *101# from your Cell C SIM. That is the common Cell C balance check code.'
       },
       {
         question: 'How do I buy data on Cell C without the app?',
@@ -350,7 +350,9 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
 
   if (networkSlug === 'vodacom') {
     relatedLinks.push(
-      { href: '/guides/how-to-check-vodacom-airtime-balance/', label: 'How to check balance on Vodacom' }
+      { href: '/guides/how-to-check-vodacom-airtime-balance/', label: 'How to check balance on Vodacom' },
+      { href: '/guides/how-to-check-vodacom-airtime-balance/', label: 'How to check Vodacom balance' },
+      { href: '/guides/how-to-check-vodacom-airtime-balance/', label: 'How to check airtime on Vodacom' }
     );
   }
 
@@ -404,6 +406,11 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">{config.quickAnswer}</p>
+          {networkSlug === 'vodacom' ? (
+            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+              If you need the clearest step-by-step answer for <Link to="/guides/how-to-check-vodacom-airtime-balance/" className="font-semibold text-[#1b6d24] hover:underline">how to check balance on Vodacom</Link>, use the guide after this page. If you also need the wider menu for recharge, bundles, or self-service, stay here on the Vodacom USSD page.
+            </p>
+          ) : null}
           <p className="mt-3 text-sm text-slate-600 leading-relaxed">
             Need to borrow airtime when you are out of credit? Use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">{config.networkName} airtime advance USSD code</Link> guide to compare eligibility, fees, and repayment notes.
           </p>

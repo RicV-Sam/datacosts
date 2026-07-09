@@ -22,19 +22,19 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/fix/': '2026-07-04T00:00:00.000Z',
   '/guides/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/methodology/': '2026-05-10T00:00:00.000Z',
-  '/mtn-ussd-codes/': '2026-07-04T00:00:00.000Z',
+  '/mtn-ussd-codes/': '2026-07-09T00:00:00.000Z',
   '/network/': '2026-07-04T00:00:00.000Z',
   '/privacy-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/promos/': '2026-06-18T00:00:00.000Z',
   '/save-ussd-codes/': '2026-06-11T00:00:00.000Z',
   '/sitemap/': PUBLISHER_REVIEW_MODIFIED_ISO,
-  '/cell-c-ussd-codes/': '2026-07-04T00:00:00.000Z',
+  '/cell-c-ussd-codes/': '2026-07-09T00:00:00.000Z',
   '/telkom-ussd-codes/': '2026-06-25T00:00:00.000Z',
   '/terms/': '2026-05-10T00:00:00.000Z',
   '/trust/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/travel-sims-south-africa/': '2026-02-18T00:00:00.000Z',
-  '/ussd-codes-south-africa/': '2026-07-04T00:00:00.000Z',
-  '/vodacom-ussd-codes/': '2026-07-04T00:00:00.000Z'
+  '/ussd-codes-south-africa/': '2026-07-09T00:00:00.000Z',
+  '/vodacom-ussd-codes/': '2026-07-09T00:00:00.000Z'
 };
 
 const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
@@ -88,7 +88,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-check-data-balance': '2026-03-16T00:00:00.000Z',
   'how-to-check-mtn-data-balance': '2026-04-25T00:00:00.000Z',
   'how-to-check-mtn-airtime-balance': '2026-04-25T00:00:00.000Z',
-  'how-to-check-vodacom-airtime-balance': '2026-07-04T00:00:00.000Z',
+  'how-to-check-vodacom-airtime-balance': '2026-07-09T00:00:00.000Z',
   'how-to-stop-wasp-vas-charges-south-africa': '2026-05-10T00:00:00.000Z',
   'stop-wasp-subscriptions-south-africa': '2026-05-10T00:00:00.000Z',
   'out-of-bundle-data-costs-south-africa': '2026-05-01T00:00:00.000Z',
