@@ -1,12 +1,13 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { AlertTriangle, ArrowRight, CheckCircle2, Router, ShieldCheck, Terminal } from 'lucide-react';
+import { AlertTriangle, ArrowRight, CheckCircle2, Router, Terminal } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { TrustPanel } from '../components/TrustPanel';
+import { DataCostAnswerCta, DataCostAnswerIntro } from '../components/DataCostAnswer';
 import { NavigateFunction } from '../types';
 import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
@@ -72,10 +73,11 @@ export const RouterSimBalanceGuidePage: React.FC<Props> = ({ onNavigate, onScrol
       <Breadcrumbs items={breadcrumbs} />
       <header className="mb-10"><div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#a0f399]/20 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#1b6d24]"><Router className="h-4 w-4" /> Remote-site guide</div><h1 className="mb-5 text-4xl font-black leading-[0.95] tracking-tighter md:text-6xl">{title}</h1><p className="max-w-4xl text-lg font-medium leading-relaxed text-slate-600">This guide is for a mobile SIM installed in a router, MiFi or LTE/5G modem at a customer site—not a SIM normally used in a handset.</p></header>
 
-      <section className="mb-10 rounded-[2rem] border border-slate-100 bg-white p-6 shadow-sm md:p-8">
-        <div className="mb-4 inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#1b6d24]"><ShieldCheck className="h-4 w-4" /> Best answer</div>
-        <p className="text-base font-bold leading-relaxed text-slate-800">For an unattended site, first link the router SIM’s cellphone number to the provider’s app or web account. Check the network-side balance there and recharge the number remotely. Use the router’s built-in USSD page only as a useful second route; it is hardware-dependent.</p>
-      </section>
+      <DataCostAnswerIntro
+        number={1}
+        question="How can I check the data balance on a SIM in a remote router and recharge it without visiting the customer site?"
+        answer="Link the router SIM’s cellphone number to the network provider’s app or web account before leaving the site. That gives you the most dependable way to check the network-side balance and buy data remotely. Treat the router’s USSD feature as a backup because support varies by model and firmware."
+      />
 
       <section className="mb-10"><h2 className="mb-5 text-3xl font-black tracking-tight">Provider-by-provider options</h2><div className="space-y-4">{networks.map((network) => <article key={network.name} className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm"><div className="grid gap-4 md:grid-cols-[120px_1fr_1fr]"><h3 className="text-xl font-black text-[#1b6d24]">{network.name}</h3><div><p className="mb-1 text-xs font-black uppercase tracking-wider text-slate-400">Check balance</p><p className="text-sm font-medium leading-relaxed text-slate-700">{network.balance}</p></div><div><p className="mb-1 text-xs font-black uppercase tracking-wider text-slate-400">Recharge / buy data</p><p className="text-sm font-medium leading-relaxed text-slate-700">{network.recharge}</p><a className="mt-2 inline-flex items-center gap-1 text-xs font-black text-[#1b6d24] hover:underline" href={network.source} target="_blank" rel="noreferrer">Official source: {network.sourceLabel}<ArrowRight className="h-3 w-3" /></a></div></div></article>)}</div></section>
 
@@ -104,6 +106,7 @@ export const RouterSimBalanceGuidePage: React.FC<Props> = ({ onNavigate, onScrol
 
       <TrustPanel lastReviewed={formatIsoForDisplay(modified)} sources="Official MTN, Vodacom, Telkom, Cell C and Rain self-service information, plus 3GPP TS 27.007 for modem USSD. Router menus and modem firmware vary, so test the exact model before deployment." className="mb-10" />
       <section id="faq" className="mb-10 rounded-3xl border border-slate-100 bg-white p-6 shadow-sm md:p-8"><h2 className="mb-5 text-2xl font-black">Frequently asked questions</h2><div className="space-y-5">{faqs.map((faq) => <article key={faq.question} className="border-b border-slate-100 pb-5 last:border-0 last:pb-0"><h3 className="mb-2 font-black">{faq.question}</h3><p className="text-sm font-medium leading-relaxed text-slate-600">{faq.answer}</p></article>)}</div></section>
+      <DataCostAnswerCta />
       <Link to="/ussd-codes-south-africa/" className="inline-flex items-center gap-2 text-sm font-black text-[#1b6d24] hover:underline">See all South African USSD codes <ArrowRight className="h-4 w-4" /></Link>
     </main>
     <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} /><MobileNav onScrollTo={onScrollTo} activeSection="guides" />

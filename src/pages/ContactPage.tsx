@@ -86,6 +86,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onScrollTo
           </p>
         </section>
 
+        <section id="questions" className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4 scroll-mt-24">
+          <h2 className="text-2xl font-black tracking-tight">Ask a Mobile, Data or Airtime Question</h2>
+          <p className="text-slate-600 leading-relaxed">
+            Email <a className="text-[#1b6d24] font-bold hover:underline" href="mailto:hello@datacost.co.za?subject=Question%20for%20DataCost%20Answers">hello@datacost.co.za</a> with the subject “Question for DataCost Answers”. Include your network, device or router, what you are trying to do, and any relevant error message or screenshot. Remove account numbers, PINs, passwords and other private information.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            We may research questions that could help other South Africans and publish a general answer. We will not publish your name or private account details.
+          </p>
+        </section>
+
         <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
           <h2 className="text-2xl font-black tracking-tight">Report Pricing or USSD Errors</h2>
           <p className="text-slate-600 leading-relaxed">
