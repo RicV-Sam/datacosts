@@ -1,4 +1,4 @@
-import fibrePriceSnapshot from '../generated/fibrePriceSnapshot.json';
+import fibrePriceSnapshot from '../generated/fibrePriceSnapshot.json' with { type: 'json' };
 import { fibreCompanyById } from './fibreCompanies';
 
 export type FibrePriceConfidence = 'high' | 'medium' | 'low';
