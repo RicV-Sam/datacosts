@@ -43,6 +43,7 @@ const SitemapPage = lazy(() => import('./pages/SitemapPage').then((mod) => ({ de
 const FibrePage = lazy(() => import('./pages/FibrePage').then((mod) => ({ default: mod.FibrePage })));
 const BuyDataAirtimePage = lazy(() => import('./pages/BuyDataAirtimePage').then((mod) => ({ default: mod.BuyDataAirtimePage })));
 const BankAppsDataGuidePage = lazy(() => import('./pages/BankAppsDataGuidePage').then((mod) => ({ default: mod.BankAppsDataGuidePage })));
+const RouterSimBalanceGuidePage = lazy(() => import('./pages/RouterSimBalanceGuidePage').then((mod) => ({ default: mod.RouterSimBalanceGuidePage })));
 const PromosPage = lazy(() => import('./pages/PromosPage').then((mod) => ({ default: mod.PromosPage })));
 
 function AppContent() {
@@ -241,6 +242,8 @@ function AppContent() {
           element={<BankAppsDataGuidePage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route path="/guides/buy-data-with-bank-apps-south-africa" element={<Navigate to="/guides/buy-data-with-bank-apps-south-africa/" replace />} />
+        <Route path="/guides/check-router-sim-data-balance-and-recharge/" element={<RouterSimBalanceGuidePage onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
+        <Route path="/guides/check-router-sim-data-balance-and-recharge" element={<Navigate to="/guides/check-router-sim-data-balance-and-recharge/" replace />} />
         <Route
           path="/guides/how-to-stop-wasp-vas-charges-south-africa/"
           element={<RedirectPage />}

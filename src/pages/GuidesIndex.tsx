@@ -33,6 +33,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
   const getGuide = (slug: string) => guideMap.get(slug);
 
   const popularGuides = [
+    { slug: 'check-router-sim-data-balance-and-recharge', title: 'Check and Recharge a Router SIM Remotely', description: 'Provider apps, router USSD and modem scripting options for unattended LTE and 5G sites.', path: '/guides/check-router-sim-data-balance-and-recharge/' },
     { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', description: 'Start here for a quick market-level view of where prepaid data is cheapest right now.', path: '/guides/cheapest-data-south-africa/' },
     { slug: 'best-data-deals-south-africa', title: 'Best Data Deals South Africa', description: 'Compare overall value across prepaid, monthly, and heavy-use options.', path: '/guides/best-data-deals-south-africa/' },
     { slug: 'best-monthly-data-deals-south-africa', title: 'Best Monthly Data Deals South Africa', description: 'Focused monthly comparison for users who buy data every month.', path: '/guides/best-monthly-data-deals-south-africa/' },
@@ -86,6 +87,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       title: "Consumer Help & Fixes",
       snippet: "Use these when airtime disappears, data runs out too quickly, or you need the quickest way to audit balances and subscriptions.",
       links: [
+        { slug: 'check-router-sim-data-balance-and-recharge', title: 'Check and Recharge a Router SIM Remotely', description: 'Manage a SIM that stays inside a router, MiFi or modem at a customer site.', path: '/guides/check-router-sim-data-balance-and-recharge/' },
         { slug: 'airtime-data-problems-south-africa', title: 'Airtime & Data Problems in South Africa', description: 'Cluster hub for airtime, data, and subscription fixes.', path: '/guides/airtime-data-problems-south-africa/' },
         { slug: 'datacost-fixes', title: 'DataCost Fixes', description: 'Browse quick fixes for mobile data, USSD, routers, prepaid electricity, and decoder errors.', path: '/fix/' },
         { slug: 'mobile-data-on-but-not-working', title: 'Mobile Data On But Not Working', description: 'Use this when signal shows but apps, browsing, or WhatsApp will not load.', path: '/fix/mobile-data-on-but-not-working/' },
