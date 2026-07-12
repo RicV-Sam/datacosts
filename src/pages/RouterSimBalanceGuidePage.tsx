@@ -8,7 +8,7 @@ import { MobileNav } from '../components/MobileNav';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { TrustPanel } from '../components/TrustPanel';
 import { NavigateFunction } from '../types';
-import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface Props { onNavigate: NavigateFunction; onScrollTo: (id: string) => void; }
@@ -23,13 +23,13 @@ const networks = [
   },
   {
     name: 'Vodacom', balance: 'Link the data-device or router number in VodaPay/My Vodacom and view its balances remotely. A compatible router can also send *135#.',
-    recharge: 'Buy for the linked router line in VodaPay/My Vodacom, or buy for another Vodacom number. *135# also provides bundle options where USSD is exposed.',
-    source: 'https://now.vodacom.co.za/be-datawyze/datawyze-how-to-check-your-data-bundle-balance/', sourceLabel: 'Vodacom router guidance'
+    recharge: 'Buy for the linked router line in VodaPay/My Vodacom, or buy for another Vodacom number. *135# also provides bundle options where USSD is exposed. Some Home Internet products are restricted to Vodacom-approved routers, so confirm the exact product first.',
+    source: 'https://vodapay.vodacom.co.za/vodapay/personal/faq', sourceLabel: 'VodaPay account guidance'
   },
   {
-    name: 'Telkom', balance: 'Use the MyTelkom App or Web Self Service for a registered product. When browsing through the Telkom router SIM, the portal may show current SIM usage without login. USSD balance: *188#.',
-    recharge: 'Top up through MyTelkom, Web Self Service, a bank app or Telkom WhatsApp. On compatible hardware, *180# buys bundles and *188*voucherPIN# loads a voucher.',
-    source: 'https://www.telkom.co.za/welcome/personal/mobile-prepaid/self-service', sourceLabel: 'Telkom self-service'
+    name: 'Telkom', balance: 'Use the MyTelkom App or Web Self Service for a registered product. Telkom also lists *188# from the SIM or WhatsApp 086 160 1700 from any network for balance checks.',
+    recharge: 'Buy bundles through MyTelkom, Web Self Service, a banking app, *180# on compatible hardware, or WhatsApp 081 160 1700 from any network.',
+    source: 'https://www.telkom.co.za/welcome/business/mobile-contract/how-to-buy-bundles', sourceLabel: 'Telkom balance and bundle guidance'
   },
   {
     name: 'Cell C', balance: 'Use the Cell C App or website Self Service for the router SIM. If the router exposes USSD, use *101# for a summary or *147# for the menu.',
@@ -54,7 +54,7 @@ export const RouterSimBalanceGuidePage: React.FC<Props> = ({ onNavigate, onScrol
   const title = 'How to Check a Router SIM Data Balance and Recharge Remotely';
   const description = 'Check and recharge an MTN, Vodacom, Telkom, Cell C or Rain router SIM remotely, with provider apps, router USSD and modem scripting guidance.';
   const canonicalUrl = toCanonicalUrl(routePath);
-  const published = getDefaultPublishedIso();
+  const published = '2026-07-12T00:00:00.000Z';
   const modified = getRouteModifiedIso(routePath);
   const breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Guides', href: '/guides/' }, { label: 'Router SIM balance', href: routePath }];
   const articleSchema = { '@context': 'https://schema.org', '@type': 'Article', headline: title, description, url: canonicalUrl, image: DEFAULT_OG_IMAGE_URL, datePublished: published, dateModified: modified, author: { '@type': 'Organization', name: SITE_BRAND_NAME, url: SITE_URL }, publisher: { '@type': 'Organization', name: SITE_PRODUCT_NAME, url: SITE_URL } };
@@ -82,8 +82,21 @@ export const RouterSimBalanceGuidePage: React.FC<Props> = ({ onNavigate, onScrol
       <section className="mb-10 grid gap-4 md:grid-cols-3">{[
         ['1. Record the SIM identity', 'Keep the router SIM number, ICCID, network, tariff and router model in your customer record. Provider setup may send an OTP by SMS, so complete linking while you can read the router SMS inbox.'],
         ['2. Link provider self-service', 'Register the line in the official app or web portal and confirm that its balance is visible from a different internet connection before leaving the site.'],
-        ['3. Test remote recovery', 'From off-site, check the balance and make a small top-up or bundle purchase. Keep a bank-app “buy for another number” route as a backup when the provider login fails.']
+        ['3. Test remote recovery', 'From off-site, check the balance and make a small top-up or bundle purchase. Keep a “buy for another number” route in a banking app or operator portal as a backup. The purchase may still require a login, OTP or payment confirmation.']
       ].map(([heading, text]) => <article key={heading} className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm"><CheckCircle2 className="mb-4 h-5 w-5 text-[#1b6d24]" /><h2 className="mb-3 text-lg font-black">{heading}</h2><p className="text-sm font-medium leading-relaxed text-slate-600">{text}</p></article>)}</section>
+
+      <section className="mb-10 rounded-3xl border border-slate-100 bg-white p-6 shadow-sm md:p-8">
+        <h2 className="mb-3 text-2xl font-black tracking-tight">Managing several remote customer sites</h2>
+        <p className="mb-5 text-sm font-medium leading-relaxed text-slate-600">Managing ordinary prepaid SIMs one by one can become fragile at scale. Business IoT/M2M or managed-connectivity services may provide a central dashboard and stronger operational controls. Compare the product terms carefully: a fixed-LTE or Home Internet SIM may be tied to a location, tariff or approved router and may not behave like an ordinary prepaid SIM.</p>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{[
+          'Central SIM and connectivity dashboard',
+          'Low-balance, usage or expiry alerts',
+          'Pooled or shared data where offered',
+          'Remote router health monitoring',
+          'Automated or authorised top-ups',
+          'Role-based access and an audit trail'
+        ].map((item) => <div key={item} className="flex gap-2 rounded-2xl bg-slate-50 p-4 text-sm font-bold text-slate-700"><CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#1b6d24]" /><span>{item}</span></div>)}</div>
+      </section>
 
       <section className="mb-10 rounded-3xl bg-slate-950 p-6 text-white shadow-sm md:p-8"><div className="mb-4 flex items-center gap-2"><Terminal className="h-5 w-5 text-[#a0f399]" /><h2 className="text-2xl font-black">Can this be scripted?</h2></div><p className="mb-4 text-sm font-medium leading-relaxed text-slate-300">Yes, on compatible hardware. 3GPP TS 27.007 defines <code className="rounded bg-white/10 px-1.5 py-0.5 text-[#a0f399]">AT+CUSD</code> for USSD. A typical balance request is conceptually:</p><pre className="mb-5 overflow-x-auto rounded-2xl bg-black/40 p-4 text-sm text-[#a0f399]"><code>{'AT+CUSD=1,"*136#",15\r\n'}</code></pre><p className="mb-4 text-sm font-medium leading-relaxed text-slate-300">Do not treat that line as universal production code. First detect the modem and AT port, confirm registration, test <code>AT+CUSD=?</code>, handle multi-step sessions and character encoding, set timeouts, redact account data from logs, and allow only approved USSD strings.</p><a className="inline-flex items-center gap-1 text-xs font-black text-[#a0f399] hover:underline" href="https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=1515" target="_blank" rel="noreferrer">3GPP TS 27.007 specification<ArrowRight className="h-3 w-3" /></a></section>
 
