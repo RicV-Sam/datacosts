@@ -91,12 +91,18 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
     { href: '/methodology/', label: 'Methodology', description: 'See how DataCost structures telecom guidance.', action: 'route' }
   ],
   'convert-airtime-to-data-south-africa': [
+    { href: '/guides/airtime-or-data-south-africa/', label: 'Should I Buy Airtime or Data?', description: 'Choose the right starting balance or bundle for your usage.', action: 'route' },
     { href: '/guides/airtime-data-saving-tips-south-africa/', label: 'Airtime & Data Saving Tips', description: 'Reduce airtime waste with practical habits.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },
     { href: '/guides/how-to-buy-data-vodacom/', label: 'How to Buy Vodacom Data', description: 'Operator-specific buy path.', action: 'guide', slug: 'how-to-buy-data-vodacom' },
     { href: '/guides/how-to-buy-data-mtn/', label: 'How to Buy MTN Data', description: 'Operator-specific buy path.', action: 'guide', slug: 'how-to-buy-data-mtn' },
     { href: '/guides/how-to-buy-data-telkom/', label: 'How to Buy Telkom Data', description: 'Operator-specific buy path.', action: 'guide', slug: 'how-to-buy-data-telkom' },
     { href: '/guides/how-to-buy-data-cell-c/', label: 'How to Buy Cell C Data', description: 'Operator-specific buy path.', action: 'guide', slug: 'how-to-buy-data-cell-c' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Confirm active balance before buying.', action: 'guide', slug: 'how-to-check-data-balance' }
+  ],
+  'out-of-bundle-data-costs-south-africa': [
+    { href: '/guides/airtime-or-data-south-africa/', label: 'Should I Buy Airtime or Data?', description: 'Choose a safer default before topping up.', action: 'route' },
+    { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Airtime Disappears', description: 'Diagnose unexpected deductions and usage.', action: 'guide', slug: 'why-is-my-airtime-disappearing-south-africa' },
+    { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions', description: 'Check recurring services separately from data usage.', action: 'route' }
   ],
   'how-to-check-data-balance': [
     { href: '/guides/airtime-data-saving-tips-south-africa/', label: 'Airtime & Data Saving Tips', description: 'Full consumer playbook to reduce telecom spend.', action: 'guide', slug: 'airtime-data-saving-tips-south-africa' },

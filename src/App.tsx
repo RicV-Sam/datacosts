@@ -45,6 +45,7 @@ const BuyDataAirtimePage = lazy(() => import('./pages/BuyDataAirtimePage').then(
 const BankAppsDataGuidePage = lazy(() => import('./pages/BankAppsDataGuidePage').then((mod) => ({ default: mod.BankAppsDataGuidePage })));
 const RouterSimBalanceGuidePage = lazy(() => import('./pages/RouterSimBalanceGuidePage').then((mod) => ({ default: mod.RouterSimBalanceGuidePage })));
 const StolenPhoneGuidePage = lazy(() => import('./pages/StolenPhoneGuidePage').then((mod) => ({ default: mod.StolenPhoneGuidePage })));
+const AirtimeOrDataGuidePage = lazy(() => import('./pages/AirtimeOrDataGuidePage').then((mod) => ({ default: mod.AirtimeOrDataGuidePage })));
 const PromosPage = lazy(() => import('./pages/PromosPage').then((mod) => ({ default: mod.PromosPage })));
 
 function AppContent() {
@@ -247,6 +248,8 @@ function AppContent() {
         <Route path="/guides/check-router-sim-data-balance-and-recharge" element={<Navigate to="/guides/check-router-sim-data-balance-and-recharge/" replace />} />
         <Route path="/guides/stolen-phone-south-africa/" element={<StolenPhoneGuidePage onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
         <Route path="/guides/stolen-phone-south-africa" element={<Navigate to="/guides/stolen-phone-south-africa/" replace />} />
+        <Route path="/guides/airtime-or-data-south-africa/" element={<AirtimeOrDataGuidePage onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
+        <Route path="/guides/airtime-or-data-south-africa" element={<Navigate to="/guides/airtime-or-data-south-africa/" replace />} />
         <Route
           path="/guides/how-to-stop-wasp-vas-charges-south-africa/"
           element={<RedirectPage />}

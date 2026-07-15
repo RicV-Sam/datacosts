@@ -247,6 +247,7 @@ export function getIndexableRoutes(): string[] {
   routes.add('/guides/buy-data-with-bank-apps-south-africa/');
   routes.add('/guides/check-router-sim-data-balance-and-recharge/');
   routes.add('/guides/stolen-phone-south-africa/');
+  routes.add('/guides/airtime-or-data-south-africa/');
   routes.add('/promos/');
 
   for (const fibreRoute of fibreRoutes) {

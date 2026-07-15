@@ -83,6 +83,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'buy-data-with-bank-apps-south-africa': '2026-06-18T00:00:00.000Z',
   'check-router-sim-data-balance-and-recharge': '2026-07-12T00:00:00.000Z',
   'stolen-phone-south-africa': '2026-07-12T00:00:00.000Z',
+  'airtime-or-data-south-africa': '2026-07-15T00:00:00.000Z',
   'how-to-buy-data-cell-c': '2026-06-11T00:00:00.000Z',
   'how-to-buy-data-mtn': '2026-07-02T00:00:00.000Z',
   'how-to-buy-data-telkom': '2026-05-15T00:00:00.000Z',

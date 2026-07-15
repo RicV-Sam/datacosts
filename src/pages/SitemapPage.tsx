@@ -61,6 +61,7 @@ const sitemapGroups: SitemapGroup[] = [
       { href: '/guides/cheap-night-data-south-africa/', label: 'Cheap Night Data South Africa' },
       { href: '/guides/cheapest-whatsapp-bundles-south-africa/', label: 'Cheapest WhatsApp Bundles' },
       { href: '/guides/out-of-bundle-data-costs-south-africa/', label: 'Out-of-bundle Data Costs' },
+      { href: '/guides/airtime-or-data-south-africa/', label: 'Should I Buy Airtime or Data?' },
       { href: '/guides/buy-data-with-bank-apps-south-africa/', label: 'Buy Data with Bank Apps South Africa' }
     ]
   },
