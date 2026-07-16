@@ -989,10 +989,17 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-check-data-balance',
-    title: 'Check Data Balance South Africa (2026)',
-    metaDescription: 'Never run out of data! Learn the USSD codes to check your data balance on Vodacom, MTN, Telkom, and Cell C instantly from your phone.',
-    h1: 'How to Check Your Data Balance (All SA Networks)',
-    intro: 'Running out of data in the middle of a task is frustrating. In South Africa, every network provides a free USSD code that allows you to check your remaining data balance in seconds. This guide lists the official codes for Vodacom, MTN, Telkom, and Cell C so you can always stay on top of your usage.',
+    title: 'How to Check Data Balance: MTN, Vodacom, Telkom and Cell C',
+    metaDescription: 'Check data balance on MTN, Vodacom, Telkom or Cell C. Compare the main USSD routes, then open the network-specific guide for detailed steps.',
+    h1: 'How to Check Data Balance on South African Networks',
+    intro: 'Use this all-network guide to compare how to check data balance on MTN, Vodacom, Telkom, and Cell C. Start with the operator summary below, then use the network-specific link when you need a detailed balance workflow rather than a cross-network comparison.',
+    quickSummaryTitle: 'Choose Your Network',
+    quickSummaryItems: [
+      'For an MTN data balance check, use the dedicated MTN guide or MTN USSD reference linked below.',
+      'For Vodacom data or airtime balance, use the dedicated Vodacom balance workflow linked below.',
+      'For Telkom or Cell C, use the matching network USSD page for operator-specific balance shortcuts.',
+      'Stay on this page when you want to compare the main balance routes across South African networks.'
+    ],
     comparisonType: 'all',
     stepsTitle: 'USSD Balance Codes by Operator',
     steps: [
@@ -1012,6 +1019,15 @@ export const guides: Guide[] = [
         title: 'Check Cell C Balance',
         description: 'Dial *101# or *147# to view your remaining data and airtime.'
       }
+    ],
+    nextStepsTitle: 'Network-Specific Balance Guides',
+    nextSteps: [
+      { href: '/guides/how-to-check-mtn-data-balance/', label: 'How to Check MTN Data Balance', description: 'Use the MTN-specific data balance workflow.', action: 'guide', slug: 'how-to-check-mtn-data-balance' },
+      { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Open the broader MTN balance and self-service reference.', action: 'route' },
+      { href: '/guides/how-to-check-vodacom-airtime-balance/', label: 'How to Check Balance on Vodacom', description: 'Use the dedicated Vodacom balance walkthrough.', action: 'guide', slug: 'how-to-check-vodacom-airtime-balance' },
+      { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes', description: 'Open the wider Vodacom shortcut reference.', action: 'route' },
+      { href: '/telkom-ussd-codes/', label: 'Telkom USSD Codes', description: 'Open Telkom balance and self-service shortcuts.', action: 'route' },
+      { href: '/cell-c-ussd-codes/', label: 'Cell C Balance and USSD Codes', description: 'Use the Cell C-specific balance reference.', action: 'route' }
     ],
     faq: [
       {

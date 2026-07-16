@@ -88,7 +88,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-buy-data-mtn': '2026-07-02T00:00:00.000Z',
   'how-to-buy-data-telkom': '2026-05-15T00:00:00.000Z',
   'how-to-buy-data-vodacom': '2026-06-11T00:00:00.000Z',
-  'how-to-check-data-balance': '2026-03-16T00:00:00.000Z',
+  'how-to-check-data-balance': '2026-07-16T00:00:00.000Z',
   'how-to-check-mtn-data-balance': '2026-04-25T00:00:00.000Z',
   'how-to-check-mtn-airtime-balance': '2026-04-25T00:00:00.000Z',
   'how-to-check-vodacom-airtime-balance': '2026-07-09T00:00:00.000Z',
