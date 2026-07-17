@@ -10,7 +10,10 @@ import { ussdRepository } from '../data/ussd';
 import { NavigateFunction, USSDEntry } from '../types';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
+  DEFAULT_OG_IMAGE_ALT,
+  DEFAULT_OG_IMAGE_HEIGHT,
   DEFAULT_OG_IMAGE_URL,
+  DEFAULT_OG_IMAGE_WIDTH,
   SITE_EDITOR_BIO,
   SITE_EDITOR_NAME,
   SITE_EDITOR_ROLE,
@@ -255,10 +258,14 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
+        <meta property="og:image:width" content={String(DEFAULT_OG_IMAGE_WIDTH)} />
+        <meta property="og:image:height" content={String(DEFAULT_OG_IMAGE_HEIGHT)} />
+        <meta property="og:image:alt" content={DEFAULT_OG_IMAGE_ALT} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
+        <meta name="twitter:image:alt" content={DEFAULT_OG_IMAGE_ALT} />
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>

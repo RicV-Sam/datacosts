@@ -1,13 +1,16 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Clock, Tag, Info, ChevronRight } from 'lucide-react';
-import { Guide, Bundle, GuideResourceLink } from '../types';
+import { Guide, Bundle, GuideResourceLink, NavigateFunction } from '../types';
 import { bundles } from '../data';
 import { getBundleSourceSummary, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
 import { useNavigate } from 'react-router-dom';
 import { formatIsoForDisplay, getDefaultPublishedIso, getGuideModifiedIso } from '../seo/contentDates';
 import {
+  DEFAULT_OG_IMAGE_ALT,
+  DEFAULT_OG_IMAGE_HEIGHT,
   DEFAULT_OG_IMAGE_URL,
+  DEFAULT_OG_IMAGE_WIDTH,
   SITE_BRAND_NAME,
   SITE_EDITOR_BIO,
   SITE_EDITOR_NAME,
@@ -19,11 +22,14 @@ import {
 } from '../seo/siteConstants';
 import { TrustPanel } from './TrustPanel';
 import { AuthorReviewBlock } from './AuthorReviewBlock';
+import { Footer } from './Footer';
 import { isNoindexRoute } from '../config/routeCatalog';
 
 interface GuidePageProps {
   guide: Guide;
   onBack: () => void;
+  onNavigate: NavigateFunction;
+  onScrollTo: (id: string) => void;
   onNavigateToGuide: (slug: string) => void;
   allGuides: Guide[];
 }
@@ -188,7 +194,14 @@ const CANONICAL_GUIDE_PATH_OVERRIDES: Record<string, string> = {
   'how-to-stop-wasp-vas-charges-south-africa': '/guides/stop-wasp-subscriptions-south-africa/'
 };
 
-export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateToGuide, allGuides }) => {
+export const GuidePage: React.FC<GuidePageProps> = ({
+  guide,
+  onBack,
+  onNavigate,
+  onScrollTo,
+  onNavigateToGuide,
+  allGuides
+}) => {
   const navigate = useNavigate();
   const dateModifiedIso = getGuideModifiedIso(guide.slug);
   const datePublishedIso = getDefaultPublishedIso();
@@ -324,10 +337,14 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
         <meta property="og:description" content={guide.metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
+        <meta property="og:image:width" content={String(DEFAULT_OG_IMAGE_WIDTH)} />
+        <meta property="og:image:height" content={String(DEFAULT_OG_IMAGE_HEIGHT)} />
+        <meta property="og:image:alt" content={DEFAULT_OG_IMAGE_ALT} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={guide.metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
+        <meta name="twitter:image:alt" content={DEFAULT_OG_IMAGE_ALT} />
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -552,6 +569,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ guide, onBack, onNavigateT
           <p className="mt-6 text-[10px] text-slate-500 font-bold uppercase tracking-widest relative z-10">You will be redirected to our official comparison tool</p>
         </section>
       </main>
+      <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
     </div>
   );
 };

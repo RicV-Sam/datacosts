@@ -1,7 +1,10 @@
 export const SITE_ORIGIN = 'https://datacost.co.za';
 export const SITE_URL = `${SITE_ORIGIN}/`;
-export const DEFAULT_OG_IMAGE_URL = `${SITE_ORIGIN}/og-image.jpg`;
-export const SITE_LOGO_URL = `${SITE_ORIGIN}/logo.png`;
+export const DEFAULT_OG_IMAGE_URL = `${SITE_ORIGIN}/og-image-v2.jpg`;
+export const DEFAULT_OG_IMAGE_WIDTH = 1200;
+export const DEFAULT_OG_IMAGE_HEIGHT = 630;
+export const DEFAULT_OG_IMAGE_ALT = 'DataCost South Africa — Understand what your data really costs.';
+export const SITE_LOGO_URL = `${SITE_ORIGIN}/logo-v2.png`;
 export const SITE_BRAND_NAME = 'DataCost.co.za';
 export const SITE_PRODUCT_NAME = 'DataCost';
 export const SITE_EDITOR_NAME = 'Riccardo Vallaro';

@@ -549,6 +549,8 @@ function GuideRoute({ onNavigate, onScrollTo }: { onNavigate: NavigateFunction, 
       guide={guide}
       allGuides={guides}
       onBack={() => onNavigate('home')}
+      onNavigate={onNavigate}
+      onScrollTo={onScrollTo}
       onNavigateToGuide={(slug) => onNavigate('guide', slug)}
     />
   );

@@ -1,5 +1,7 @@
 import React from 'react';
 import { NavigateFunction } from '../types';
+import { SOCIAL_PROFILES } from '../config/socialProfiles';
+import { trackEvent } from '../utils/tracking';
 
 interface FooterProps {
   onScrollTo: (id: string) => void;
@@ -31,6 +33,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo }) => {
           <p className="text-xs text-slate-500 max-w-xs leading-relaxed">
             Copyright 2026 DataCost.co.za. Independent South African mobile-data comparison, USSD guidance, and prepaid troubleshooting.
           </p>
+          <a
+            href={SOCIAL_PROFILES.facebook.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Follow DataCost on Facebook (opens in a new tab)"
+            onClick={() => trackEvent('social_profile_click', { platform: 'facebook', location: 'footer' })}
+            className="inline-flex mt-4 text-xs font-bold text-[#1b6d24] hover:underline"
+          >
+            Follow DataCost on Facebook
+          </a>
         </div>
 
         <div className="flex flex-col gap-4">

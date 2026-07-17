@@ -14,6 +14,7 @@ import {
   toCanonicalUrl
 } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
+import { ORGANIZATION_SAME_AS } from '../config/socialProfiles';
 
 interface AboutPageProps {
   onNavigate: NavigateFunction;
@@ -44,7 +45,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
     about: {
       '@type': 'Organization',
       name: SITE_BRAND_NAME,
-      url: SITE_URL
+      url: SITE_URL,
+      sameAs: ORGANIZATION_SAME_AS
     },
     editor: {
       '@type': 'Person',

@@ -17,7 +17,10 @@ import { NavigateFunction, NetworkName } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
+  DEFAULT_OG_IMAGE_ALT,
+  DEFAULT_OG_IMAGE_HEIGHT,
   DEFAULT_OG_IMAGE_URL,
+  DEFAULT_OG_IMAGE_WIDTH,
   SITE_BRAND_NAME,
   SITE_EDITOR_BIO,
   SITE_EDITOR_NAME,
@@ -26,6 +29,7 @@ import {
   SITE_PRODUCT_NAME,
   SITE_URL
 } from '../seo/siteConstants';
+import { ORGANIZATION_SAME_AS } from '../config/socialProfiles';
 
 interface HomePageProps {
   onNavigate: NavigateFunction;
@@ -100,6 +104,7 @@ export const HomePage: React.FC<HomePageProps> = ({
     publisher: {
       '@type': 'Organization',
       name: SITE_BRAND_NAME,
+      sameAs: ORGANIZATION_SAME_AS,
       logo: {
         '@type': 'ImageObject',
         url: SITE_LOGO_URL
@@ -162,10 +167,14 @@ export const HomePage: React.FC<HomePageProps> = ({
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
+        <meta property="og:image:width" content={String(DEFAULT_OG_IMAGE_WIDTH)} />
+        <meta property="og:image:height" content={String(DEFAULT_OG_IMAGE_HEIGHT)} />
+        <meta property="og:image:alt" content={DEFAULT_OG_IMAGE_ALT} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
+        <meta name="twitter:image:alt" content={DEFAULT_OG_IMAGE_ALT} />
         <script type="application/ld+json">
           {JSON.stringify(webPageSchema)}
         </script>

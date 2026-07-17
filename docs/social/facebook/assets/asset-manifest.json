@@ -1,0 +1,79 @@
+{
+  "package": "datacost-facebook-identity-v2",
+  "prepared": "2026-07-17",
+  "status": "approved-and-live",
+  "productionWiring": true,
+  "identitySource": "Existing LinkedIn brand assets supplied by the user",
+  "selectedAssets": [
+    {
+      "id": "facebook-profile-linkedin-aligned-v2",
+      "file": "datacost-facebook-profile-linkedin-aligned-1080-v2.png",
+      "width": 1080,
+      "height": 1080,
+      "bytes": 601350,
+      "sha256": "281a8b0e56c8bbb4d454d462c4b63873d8e144b9784bec9d47e9c48136b9decb",
+      "source": "source/linkedin-logo-master-1254x1254-source.png",
+      "transformation": "The original square master was resized to 1080 x 1080. The wordmark below the established symbol was covered with background sampled from the same source so the symbol remains legible in a circular Facebook crop.",
+      "safeArea": "The complete DC/data-bars symbol remains inside the circular profile crop."
+    },
+    {
+      "id": "facebook-cover-linkedin-aligned-v2",
+      "file": "datacost-facebook-cover-linkedin-aligned-1640x624-v2.png",
+      "width": 1640,
+      "height": 624,
+      "bytes": 1232805,
+      "sha256": "a173ac5f5ab9bbfeb4262201cd6bc96684a5dc7e94e08a7319d1b210e62f76fe",
+      "source": "source/linkedin-cover-master-2038x771-source.png",
+      "transformation": "Six pixels were cropped from the left and right sides of the 2038 x 771 LinkedIn master before high-quality resizing to 1640 x 624. No text, logo, colour or illustration content was regenerated.",
+      "safeArea": "The existing master already leaves the left side quiet for profile overlap. Verify the live Facebook desktop and mobile crop before publication."
+    }
+  ],
+  "sourceAssets": [
+    {
+      "file": "source/linkedin-banner-1128x191-source.png",
+      "width": 1128,
+      "height": 191,
+      "sha256": "e95026b1ddc102a3c6f37331de244be7fd371bf1203ad572f67641ba6d8f6541"
+    },
+    {
+      "file": "source/linkedin-cover-master-2038x771-source.png",
+      "width": 2038,
+      "height": 771,
+      "sha256": "36e754ed129b617539eb90d04a4ba64df3bce4ede1ce39495066a8204efb2df5"
+    },
+    {
+      "file": "source/linkedin-logo-master-1254x1254-source.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d1cb4795e5e06b9f77daa452237e2adf6b2ef7775efc9a197de3607867f46677"
+    }
+  ],
+  "productionAssets": [
+    {
+      "file": "../../../../public/logo-v2.png",
+      "source": "datacost-facebook-profile-linkedin-aligned-1080-v2.png",
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "file": "../../../../public/og-image-v2.jpg",
+      "width": 1200,
+      "height": 630,
+      "purpose": "Default Open Graph and Facebook link-preview image"
+    }
+  ],
+  "supersededReviewAssets": [
+    "datacost-facebook-profile-1080.svg",
+    "datacost-facebook-profile-1080.png",
+    "datacost-facebook-cover-1640x624.svg",
+    "datacost-facebook-cover-1640x624.png"
+  ],
+  "provenance": "The live Facebook profile and cover exports use deterministic crops, compositing and resizing from the exact user-supplied LinkedIn identity. The separate production Open Graph card was created with a constrained generative reformat of the approved cover and then resized to exactly 1200 x 630.",
+  "constraints": [
+    "Preserve the LinkedIn logo, cyan/green palette, headline and supporting copy",
+    "No operator logos",
+    "No prices or promotional claims",
+    "No implication of network affiliation",
+    "Wire only approved selected assets into production"
+  ]
+}

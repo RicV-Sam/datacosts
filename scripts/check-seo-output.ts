@@ -1,11 +1,24 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
-import { SITE_URL } from '../src/seo/siteConstants';
+import {
+  DEFAULT_OG_IMAGE_ALT,
+  DEFAULT_OG_IMAGE_HEIGHT,
+  DEFAULT_OG_IMAGE_URL,
+  DEFAULT_OG_IMAGE_WIDTH,
+  SITE_LOGO_URL,
+  SITE_URL
+} from '../src/seo/siteConstants';
 import { getIndexableRoutes, getNoindexRoutes } from '../src/config/routeCatalog';
 
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
 const CANONICAL_PREFIX = SITE_URL;
 const CANONICAL_HOSTNAME = new URL(SITE_URL).hostname;
+const SOCIAL_PREVIEW_ROUTES = new Set([
+  '/',
+  '/ussd-codes-south-africa/',
+  '/guides/how-to-check-data-balance/',
+  '/guides/airtime-data-saving-tips-south-africa/'
+]);
 
 const FORBIDDEN_LITERALS = [
   'http://datacost.co.za',
@@ -163,6 +176,108 @@ function validateMetaSeoUrls(filePath: string, html: string, errors: ValidationE
   }
 }
 
+function validateSocialPreviewMeta(
+  filePath: string,
+  html: string,
+  route: string,
+  errors: ValidationError[]
+): void {
+  if (!SOCIAL_PREVIEW_ROUTES.has(route)) return;
+
+  const metaTags = html.match(/<meta\b[^>]*>/gi) ?? [];
+  const getContent = (attribute: 'property' | 'name', value: string): string | null => {
+    const tag = metaTags.find(
+      (candidate) => getAttributeValue(candidate, attribute)?.toLowerCase() === value.toLowerCase()
+    );
+    return tag ? getAttributeValue(tag, 'content') : null;
+  };
+
+  const expectedTags: Array<[string, string | null, string]> = [
+    ['og:image', getContent('property', 'og:image'), DEFAULT_OG_IMAGE_URL],
+    ['og:image:width', getContent('property', 'og:image:width'), String(DEFAULT_OG_IMAGE_WIDTH)],
+    ['og:image:height', getContent('property', 'og:image:height'), String(DEFAULT_OG_IMAGE_HEIGHT)],
+    ['og:image:alt', getContent('property', 'og:image:alt'), DEFAULT_OG_IMAGE_ALT],
+    ['twitter:image', getContent('name', 'twitter:image'), DEFAULT_OG_IMAGE_URL],
+    ['twitter:image:alt', getContent('name', 'twitter:image:alt'), DEFAULT_OG_IMAGE_ALT]
+  ];
+
+  for (const [tagName, actual, expected] of expectedTags) {
+    if (actual !== expected) {
+      pushError(errors, filePath, `${route} ${tagName} must be "${expected}" but found "${actual ?? 'missing'}"`);
+    }
+  }
+
+  if (!html.includes('href="https://www.facebook.com/datacostza"')) {
+    pushError(errors, filePath, `${route} is missing the DataCost Facebook footer link`);
+  }
+}
+
+type ImageDimensions = { width: number; height: number };
+
+function readImageDimensions(buffer: Buffer, filePath: string): ImageDimensions {
+  const isPng = buffer.length >= 24 && buffer.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+  if (isPng) {
+    return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+  }
+
+  const isJpeg = buffer.length >= 4 && buffer[0] === 0xff && buffer[1] === 0xd8;
+  if (isJpeg) {
+    const startOfFrameMarkers = new Set([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf]);
+    let offset = 2;
+
+    while (offset + 8 < buffer.length) {
+      while (offset < buffer.length && buffer[offset] === 0xff) offset += 1;
+      const marker = buffer[offset];
+      offset += 1;
+
+      if (marker === 0xd8 || marker === 0xd9) continue;
+      if (offset + 2 > buffer.length) break;
+
+      const segmentLength = buffer.readUInt16BE(offset);
+      if (segmentLength < 2 || offset + segmentLength > buffer.length) break;
+
+      if (startOfFrameMarkers.has(marker)) {
+        return {
+          height: buffer.readUInt16BE(offset + 3),
+          width: buffer.readUInt16BE(offset + 5)
+        };
+      }
+
+      offset += segmentLength;
+    }
+  }
+
+  throw new Error(`Unsupported image format or unreadable dimensions: ${toDisplayPath(filePath)}`);
+}
+
+async function validateSocialAssets(errors: ValidationError[]): Promise<void> {
+  const assetChecks = [
+    {
+      url: DEFAULT_OG_IMAGE_URL,
+      validate: ({ width, height }: ImageDimensions) => width === DEFAULT_OG_IMAGE_WIDTH && height === DEFAULT_OG_IMAGE_HEIGHT,
+      expected: `${DEFAULT_OG_IMAGE_WIDTH}x${DEFAULT_OG_IMAGE_HEIGHT}`
+    },
+    {
+      url: SITE_LOGO_URL,
+      validate: ({ width, height }: ImageDimensions) => width === height && width >= 512,
+      expected: 'a square image of at least 512x512'
+    }
+  ];
+
+  for (const check of assetChecks) {
+    const assetPath = path.join(DIST_DIR, new URL(check.url).pathname.replace(/^\/+/, ''));
+    try {
+      const dimensions = readImageDimensions(await readFile(assetPath), assetPath);
+      if (!check.validate(dimensions)) {
+        pushError(errors, assetPath, `must be ${check.expected} but is ${dimensions.width}x${dimensions.height}`);
+      }
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      pushError(errors, assetPath, `could not validate social asset: ${message}`);
+    }
+  }
+}
+
 function validateRobotsMeta(filePath: string, html: string, route: string, errors: ValidationError[]): void {
   const noindexRoutes = new Set(getNoindexRoutes().map(normalizeRoute));
   const indexableRoutes = new Set(getIndexableRoutes().map(normalizeRoute));
@@ -280,6 +395,7 @@ async function main(): Promise<void> {
       const route = getRouteFromHtmlPath(filePath);
       validateCanonicalTags(filePath, text, errors);
       validateMetaSeoUrls(filePath, text, errors);
+      validateSocialPreviewMeta(filePath, text, route, errors);
       validateRobotsMeta(filePath, text, route, errors);
       validateJsonLd(filePath, text, errors);
       continue;
@@ -294,6 +410,8 @@ async function main(): Promise<void> {
       validateRobotsFile(filePath, text, errors);
     }
   }
+
+  await validateSocialAssets(errors);
 
   if (errors.length > 0) {
     console.error(`SEO output check failed with ${errors.length} issue(s):`);

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" role="img" aria-labelledby="title desc">
+  <title id="title">DataCost Facebook profile mark</title>
+  <desc id="desc">A dark navy square with a lime circular frame, a white DC monogram and three rising data bars.</desc>
+  <defs>
+    <linearGradient id="navy" x1="110" y1="80" x2="970" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06244F"/>
+      <stop offset="1" stop-color="#031636"/>
+    </linearGradient>
+    <linearGradient id="lime" x1="250" y1="210" x2="850" y2="870" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C7FFB6"/>
+      <stop offset="1" stop-color="#79D875"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="26" flood-color="#000B1F" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#navy)"/>
+  <circle cx="540" cy="540" r="374" fill="#071D3D" stroke="url(#lime)" stroke-width="28" filter="url(#shadow)"/>
+  <circle cx="540" cy="540" r="321" fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="4"/>
+  <text x="500" y="645" fill="#FFFFFF" font-family="Arial Black, Segoe UI, Arial, sans-serif" font-size="330" font-weight="900" letter-spacing="-34" text-anchor="middle">DC</text>
+  <g fill="url(#lime)">
+    <rect x="688" y="612" width="42" height="78" rx="21"/>
+    <rect x="746" y="566" width="42" height="124" rx="21"/>
+    <rect x="804" y="506" width="42" height="184" rx="21"/>
+  </g>
+  <circle cx="796" cy="308" r="18" fill="#A0F399"/>
+</svg>

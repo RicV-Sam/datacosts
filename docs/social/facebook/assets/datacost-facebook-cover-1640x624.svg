@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="624" viewBox="0 0 1640 624" role="img" aria-labelledby="title desc">
+  <title id="title">DataCost Facebook cover</title>
+  <desc id="desc">A bright DataCost cover with an independent South African resource label and the message Mobile data, USSD, fibre and connectivity help.</desc>
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="1640" y2="624" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="0.58" stop-color="#F6FFF4"/>
+      <stop offset="1" stop-color="#ECFEFF"/>
+    </linearGradient>
+    <radialGradient id="peach" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(235 140) rotate(31) scale(480 360)">
+      <stop stop-color="#FFB77E" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#FFB77E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyan" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1510 78) rotate(142) scale(500 340)">
+      <stop stop-color="#28D7F2" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#28D7F2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pink" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1370 590) rotate(-132) scale(510 300)">
+      <stop stop-color="#FF85B7" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#FF85B7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#031636" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1640" height="624" fill="url(#base)"/>
+  <rect width="1640" height="624" fill="url(#peach)"/>
+  <rect width="1640" height="624" fill="url(#cyan)"/>
+  <rect width="1640" height="624" fill="url(#pink)"/>
+
+  <g opacity="0.42">
+    <circle cx="155" cy="150" r="108" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <circle cx="155" cy="150" r="69" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <path d="M65 500C155 426 240 426 330 500" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+    <path d="M97 535C164 480 231 480 298 535" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(392 82)">
+    <rect width="1116" height="460" rx="44" fill="#FFFFFF" fill-opacity="0.9" stroke="#FFFFFF" stroke-width="2" filter="url(#cardShadow)"/>
+    <rect x="52" y="50" width="505" height="45" rx="22.5" fill="#A0F399" fill-opacity="0.35" stroke="#79D875" stroke-opacity="0.75"/>
+    <circle cx="82" cy="72.5" r="8" fill="#1B6D24"/>
+    <text x="103" y="80" fill="#1B6D24" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="800" letter-spacing="1.35">INDEPENDENT SOUTH AFRICAN RESOURCE</text>
+
+    <text x="52" y="184" fill="#031636" font-family="Arial Black, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900" letter-spacing="-2.8">
+      <tspan x="52" dy="0">Mobile data, USSD, fibre</tspan>
+      <tspan x="52" dy="70">and connectivity help</tspan>
+    </text>
+
+    <text x="54" y="360" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="650">Compare costs</text>
+    <circle cx="261" cy="351" r="5" fill="#1B6D24"/>
+    <text x="284" y="360" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="650">Solve problems</text>
+    <circle cx="510" cy="351" r="5" fill="#1B6D24"/>
+    <text x="533" y="360" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="650">Use your data better</text>
+
+    <g transform="translate(814 322)">
+      <rect width="250" height="80" rx="24" fill="#031636"/>
+      <text x="99" y="50" fill="#FFFFFF" font-family="Arial Black, Segoe UI, Arial, sans-serif" font-size="22" font-weight="900" text-anchor="middle">DataCost.co.za</text>
+      <rect x="202" y="23" width="9" height="37" rx="4.5" fill="#A0F399"/>
+      <rect x="217" y="12" width="9" height="48" rx="4.5" fill="#A0F399"/>
+      <rect x="232" y="0" width="9" height="60" rx="4.5" fill="#A0F399"/>
+    </g>
+  </g>
+</svg>
