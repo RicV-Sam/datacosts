@@ -154,6 +154,7 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
+        <meta name="robots" content="noindex,follow" />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={SITE_PRODUCT_NAME} />

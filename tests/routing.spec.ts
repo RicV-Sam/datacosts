@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { getPrerenderRoutes } from '../src/config/routeCatalog';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+import { getPrerenderRoutes, isNoindexRoute } from '../src/config/routeCatalog';
 import { getRedirectAliasRoutes } from '../src/config/redirectAliases';
 
 test('visiting /index.html redirects to /', async ({ page }) => {
@@ -20,6 +22,16 @@ test('visiting /ussd-codes-south-africa/index.html redirects to /ussd-codes-sout
 test('preserves query parameters and hash during redirect', async ({ page }) => {
   await page.goto('/guides/cheapest-1gb-data-south-africa/index.html?test=1#section');
   await expect(page).toHaveURL(/\/guides\/cheapest-1gb-data-south-africa\/\?test=1#section$/);
+});
+
+test('static redirect aliases use an instant permanent meta refresh', async () => {
+  const html = await readFile(
+    path.resolve(process.cwd(), 'dist/guides/convert-airtime-to-data/index.html'),
+    'utf8'
+  );
+  expect(html).toContain('<meta http-equiv="refresh" content="0;url=/guides/convert-airtime-to-data-south-africa/">');
+  expect(html).toContain('<meta data-rh="true" name="robots" content="noindex,follow">');
+  expect(html).toContain('<link data-rh="true" rel="canonical" href="https://datacost.co.za/guides/convert-airtime-to-data-south-africa/">');
 });
 
 const newSeoRoutes = [
@@ -44,7 +56,9 @@ function normalizePath(path: string): string {
 }
 
 for (const route of newSeoRoutes) {
-  test(`${route} has complete indexable route SEO metadata`, async ({ page, request }) => {
+  const routeIsNoindex = isNoindexRoute(route);
+
+  test(`${route} has complete route SEO metadata`, async ({ page, request }) => {
     await page.goto(route);
 
     await expect(page.locator('head > title')).toHaveCount(1);
@@ -62,12 +76,21 @@ for (const route of newSeoRoutes) {
     expect(titleText?.trim().length).toBeGreaterThan(0);
     expect(metaDescription?.trim().length).toBeGreaterThan(0);
     expect(canonicalHref).toBe(`https://datacost.co.za${route}`);
-    expect(robotsContent.toLowerCase()).not.toContain('noindex');
+    if (routeIsNoindex) {
+      expect(robotsContent.toLowerCase()).toContain('noindex');
+    } else {
+      expect(robotsContent.toLowerCase()).not.toContain('noindex');
+    }
 
     const sitemapName = route.startsWith('/guides/') ? 'sitemap-guides.xml' : 'sitemap-core.xml';
     const sitemapResponse = await request.get(`/${sitemapName}`);
     expect(sitemapResponse.ok()).toBeTruthy();
-    await expect(await sitemapResponse.text()).toContain(`https://datacost.co.za${route}`);
+    const sitemapXml = await sitemapResponse.text();
+    if (routeIsNoindex) {
+      expect(sitemapXml).not.toContain(`https://datacost.co.za${route}`);
+    } else {
+      expect(sitemapXml).toContain(`https://datacost.co.za${route}`);
+    }
   });
 }
 

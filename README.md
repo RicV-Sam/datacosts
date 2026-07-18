@@ -150,6 +150,8 @@ Expected redirect behavior:
 - `http://www.datacost.co.za/` -> `https://datacost.co.za/`
 - `https://www.datacost.co.za/` -> `https://datacost.co.za/`
 
+GitHub Pages handles the protocol and host redirects above. It does not apply the generated `public/_redirects` path rules, so legacy path aliases are prerendered with an instant `0`-second meta refresh, a canonical link, and `noindex,follow`. Google treats an instant meta refresh as a permanent redirect signal.
+
 The site should not emit canonical SEO signals pointing to:
 
 - `http://datacost.co.za`

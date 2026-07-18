@@ -127,6 +127,34 @@ Update on `2026-05-01`:
 - The filtered bundle-page titles and descriptions were tightened for monthly-data and 1GB intent pages.
 - The network-specific USSD page titles were updated to include `South Africa` for better query alignment.
 
+## Search Console Review: 2026-07-18
+
+The live Page indexing report was reviewed after GSC reported a failed validation for `Crawled - currently not indexed`.
+
+Current report summary:
+
+| Reason | Pages | Interpretation |
+| --- | ---: | --- |
+| Crawled - currently not indexed | 30 | Mixed set: 20 current indexable DataCost content pages, one planned-feature page, one intentional redirect alias, three apex utility files, and five legacy FreeHub URLs. Do not expect the entire group to become indexed. |
+| Not found (404) | 27 | 26 legacy FreeHub URLs. The only apex DataCost URL is `/guides/convert-airtime-to-data/`, which now uses an instant permanent meta refresh to `/guides/convert-airtime-to-data-south-africa/` because GitHub Pages does not support path-level HTTP 301 rules. |
+| Page with redirect | 2 | Expected canonical-host redirects from `https://www.datacost.co.za/` and `http://datacost.co.za/` to `https://datacost.co.za/`. |
+
+Repository actions taken:
+
+- Marked `/alerts/` as intentional `noindex,follow` while it remains a planned-feature preview and removed it from the XML sitemap.
+- Added direct hub links into the affected Android background-data, Telkom data-drain, and Telkom airtime-loss pages.
+- Replaced generic generated wording on those three pages with route-specific diagnostic steps and evidence checks.
+- Corrected the MTN subscriptions page title so it no longer mentions Vodacom.
+- Upgraded static alias pages from delayed to instant meta refresh redirects so Google interprets them as permanent moves on GitHub Pages.
+- Added automated coverage for the new indexability, sitemap, and internal-link rules.
+
+Operational guidance:
+
+- Deploy and verify the changed pages before requesting any new validation or URL inspection recrawl.
+- Do not run validation for the redirect rows; the reported redirects are correct.
+- Do not treat XML sitemaps, `ads.txt`, or legacy FreeHub URLs as pages that must enter Google's web index.
+- Review the 20 current content URLs individually in URL Inspection after deployment, prioritising the pages updated in this pass.
+
 ## Biweekly Review Inputs
 
 For each SEO and GSC review every two weeks, use:

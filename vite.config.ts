@@ -93,12 +93,14 @@ function ensureRedirectAliasSeoHtml(html: string, alias: { from: string; to: str
   updatedHtml = removeHeadTags(updatedHtml, /<link\b[^>]*rel=["'][^"']*\bcanonical\b[^"']*["'][^>]*>\s*/gi);
   updatedHtml = removeHeadTags(updatedHtml, /<meta\b[^>]*name=["']description["'][^>]*>\s*/gi);
   updatedHtml = removeHeadTags(updatedHtml, /<meta\b[^>]*name=["']robots["'][^>]*>\s*/gi);
+  updatedHtml = removeHeadTags(updatedHtml, /<meta\b[^>]*http-equiv=["']refresh["'][^>]*>\s*/gi);
   updatedHtml = ensureTitle(updatedHtml, `${alias.label} Moved | DataCost`);
   updatedHtml = insertBeforeHeadClose(
     updatedHtml,
     [
       `<meta data-rh="true" name="description" content="${escapeHtmlAttribute(description)}">`,
       '<meta data-rh="true" name="robots" content="noindex,follow">',
+      `<meta http-equiv="refresh" content="0;url=${escapeHtmlAttribute(normalizeRoute(alias.to))}">`,
       `<link data-rh="true" rel="canonical" href="${escapeHtmlAttribute(canonicalHref)}">`
     ].join('')
   );

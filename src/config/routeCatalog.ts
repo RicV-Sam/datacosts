@@ -118,6 +118,9 @@ const ORGANIC_PROTECTED_FACET_ROUTES = new Set([
 ]);
 
 const NOINDEX_DEAL_GUIDE_ROUTES = new Set<string>();
+const NOINDEX_UTILITY_ROUTES = new Set([
+  '/alerts/'
+]);
 const ORGANIC_PROTECTED_FIX_SECTION = true;
 
 export function getIndexableFixRoutes(): string[] {
@@ -181,6 +184,7 @@ export function getNoindexRoutes(): string[] {
     ...getDataProblemRoutesByIndexingStatus(['noindex']),
     ...getNoindexFixRoutes(),
     ...NOINDEX_DEAL_GUIDE_ROUTES,
+    ...NOINDEX_UTILITY_ROUTES,
     ...noindexFibreRoutes
   ].map(normalizeCanonicalPath);
 }
@@ -200,7 +204,6 @@ export function getIndexableRoutes(): string[] {
   routes.add('/cell-c-ussd-codes/');
   routes.add('/save-ussd-codes/');
   routes.add('/airtime-advance-codes/');
-  routes.add('/alerts/');
   routes.add('/sitemap/');
   routes.add('/fix/');
   for (const dataProblemRoute of getDataProblemRoutesByIndexingStatus(['index'])) {

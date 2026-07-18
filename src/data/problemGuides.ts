@@ -397,7 +397,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
   },
   'how-to-check-subscriptions-on-mtn': {
     slug: 'how-to-check-subscriptions-on-mtn',
-    titleTag: 'How to Check MTN Subs (MTN, Vodacom Fix 2026)',
+    titleTag: 'How to Check MTN Subscriptions South Africa (2026)',
     metaDescription:
       'How to check MTN subscriptions in South Africa and stop airtime loss. Find active WASP, premium SMS, and recurring services, then fix deductions fast.',
     h1: 'How to Check Subscriptions on MTN South Africa (2026)',

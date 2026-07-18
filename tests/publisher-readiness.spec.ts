@@ -75,6 +75,34 @@ test('bundled generated problem variants stay indexable for organic protection',
   await expect(page.getByRole('heading', { name: 'What This Page Adds' })).toBeVisible();
 });
 
+test('GSC rescue pages stay indexable and receive contextual hub links', async ({ page }) => {
+  const rescueRoutes = [
+    '/data-problems/how-to-stop-background-data-usage-android/',
+    '/data-problems/why-does-my-data-run-out-so-fast-telkom/',
+    '/data-problems/how-to-stop-airtime-disappearing-telkom/'
+  ];
+
+  for (const route of rescueRoutes) {
+    await expectIndexable(page, route);
+  }
+
+  for (const hubRoute of ['/guides/', '/guides/airtime-data-problems-south-africa/']) {
+    await page.goto(hubRoute);
+    for (const rescueRoute of rescueRoutes) {
+      await expectLink(page, rescueRoute);
+    }
+  }
+});
+
+test('planned alerts preview is intentionally noindex and absent from the sitemap', async ({ page, request }) => {
+  await page.goto('/alerts/');
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
+
+  const sitemapResponse = await request.get('/sitemap-core.xml');
+  expect(sitemapResponse.ok()).toBeTruthy();
+  expect(await sitemapResponse.text()).not.toContain('https://datacost.co.za/alerts/');
+});
+
 test('organic-protected fix directory stays indexable and discoverable', async ({ page }) => {
   await expectIndexable(page, '/fix/');
   await expect(page.getByRole('heading', { name: 'DataCost Fixes' })).toBeVisible();

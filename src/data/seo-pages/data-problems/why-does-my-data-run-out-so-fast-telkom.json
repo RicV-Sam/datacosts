@@ -4,24 +4,24 @@
   "slug": "data-problems/why-does-my-data-run-out-so-fast-telkom",
   "pageTitle": "Why Telkom data runs out so fast",
   "metaDescription": "Find why your Telkom data runs out so fast, check the biggest usage drains, and stop background apps or fallback settings wasting your bundle each day.",
-  "h1": "Why does my data run out so fast Telkom",
+  "h1": "Why Does My Telkom Data Run Out So Fast?",
   "networks": [
     "telkom"
   ],
   "intentScore": 5,
-  "quickAnswer": "Why does my data run out so fast Telkom usually needs a quick account check followed by one clear phone-side action. Start with the network account view, then change the setting that matches what the line is doing.",
+  "quickAnswer": "Check the Telkom balance and bundle validity first, then compare MyTelkom usage with the phone's app-level data report for the same dates. The usual causes are video quality, hotspot sharing, background backup or updates, a short-validity bundle expiring, or out-of-bundle use after the allowance is depleted.",
   "causes": [
     {
-      "cause": "A recent setting changed",
-      "explanation": "A phone or account setting may now be using airtime or data in a different way."
+      "cause": "Video, social media, or cloud backup is using more data than expected",
+      "explanation": "High-resolution streaming, autoplay, photo backup, and large messaging downloads can consume several gigabytes without a long browsing session."
     },
     {
-      "cause": "Background activity is still running",
-      "explanation": "Apps can keep syncing or updating without a clear warning."
+      "cause": "A hotspot or second device is sharing the bundle",
+      "explanation": "Laptops, TVs, tablets, and automatic system updates can use the Telkom SIM through tethering while the phone appears idle."
     },
     {
-      "cause": "An account rule is affecting usage",
-      "explanation": "A billing or bundle setting may be carrying the line in a way you did not expect."
+      "cause": "The usable balance or validity is different from the headline bundle size",
+      "explanation": "Night, social, promotional, or short-validity data may have separate rules; once the applicable allowance ends, another balance or out-of-bundle charging may take over."
     }
   ],
   "fixSteps": {
@@ -31,30 +31,33 @@
       "mtn": [],
       "cellc": [],
       "telkom": [
-        "Check recent account activity in the network app first.",
-        "Review the phone setting most closely linked to the problem you are seeing.",
-        "Pause background activity while you test the line again.",
-        "Restart the phone after making the change so you can test the result cleanly."
+        "Dial *188# or open MyTelkom to record each remaining balance and its validity before changing anything.",
+        "Open MyTelkom usage for the same period and identify whether the largest movement happened during streaming, hotspot use, or an idle period.",
+        "On the phone, open mobile-data usage by app and set the date range to match the Telkom bundle period.",
+        "Switch off hotspot, pause cloud backup, set app updates to Wi-Fi only, and lower video autoplay or streaming quality for the largest users.",
+        "Run a short controlled test: record the balance, use one app for a measured period, then compare the new Telkom and device totals.",
+        "If the figures still do not align, save screenshots and timestamps and ask Telkom support to explain the specific usage sessions or balance category."
       ]
     }
   },
   "preventionTips": [
-    "Check account activity before buying more airtime or data.",
-    "Change one setting at a time so you can see what fixed the issue.",
-    "Keep background updates off mobile data where possible."
+    "Check each Telkom balance category and expiry before assuming the full headline allowance is available at that time.",
+    "Keep phone and laptop updates, cloud backup, and large downloads on Wi-Fi where possible.",
+    "Switch hotspot off when it is not in use and remove devices you do not recognise.",
+    "Set a phone data warning below the size of your usual Telkom bundle."
   ],
   "faqs": [
     {
-      "question": "Why does Why does my data run out so fast Telkom happen without warning?",
-      "answer": "Mobile account issues often start in the background, so the best first check is the network activity view and not guesswork."
+      "question": "How do I check my Telkom data balance?",
+      "answer": "Telkom lists *188#, the MyTelkom app, and its WhatsApp self-service channel as balance-check options. Record the separate balance categories and their expiry dates, not only the total shown."
     },
     {
-      "question": "Should you check the account or the phone first?",
-      "answer": "Start with the account view so you know what the line did, then compare that with the phone settings."
+      "question": "Why do the Telkom and phone usage totals differ?",
+      "answer": "They may use different date ranges or update at different times, and the phone cannot explain bundle-category rules. Align the dates and allow for reporting delay before comparing them."
     },
     {
-      "question": "Can one app cause the whole issue on its own?",
-      "answer": "Yes. A single heavy app can create the full problem if it keeps syncing, downloading, or billing in the background."
+      "question": "Can hotspot use empty a Telkom bundle quickly?",
+      "answer": "Yes. A connected laptop, TV, or tablet can download updates or stream at higher quality through the hotspot. Check connected devices and test again with hotspot switched off."
     }
   ],
   "internalLinks": [
@@ -99,14 +102,14 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-04-19",
-  "reviewDueDate": "2026-10-19",
+  "lastReviewed": "2026-07-18",
+  "reviewDueDate": "2027-01-18",
   "sourceNotes": [
     "Telkom self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
     "Operator-controlled context for fast bundle depletion: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Telkom.",
     "Device-side evidence for Telkom: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
   ],
-  "uniqueValueSummary": "This guide is intentionally scoped to fast bundle depletion for Telkom. It does not simply repeat a generic data-saving checklist: it separates account-side signals, device-side usage, and bundle-validity clues so a user can decide whether to change a phone setting, cancel a service, buy a different bundle, or escalate to Telkom support. The main check is Telkom usage history, hotspot sessions, streaming quality, app updates, and short-validity promotional bundles. The page remains conservative until more route-specific checks are available. That distinction matters because many South African prepaid problems look similar after the balance has already dropped, while the useful evidence is usually visible only in the first few minutes after the user notices the loss.",
+  "uniqueValueSummary": "This guide uses a matched-period test: capture Telkom's separate balances and validity, align MyTelkom usage with the phone's app-level report, then isolate hotspot, streaming, updates, and backup one at a time. That prevents a night-data or promotional balance rule from being confused with ordinary app consumption and gives support a specific disputed period to investigate.",
   "officialSupportContext": "DataCost can help users narrow fast bundle depletion, but it cannot see a private Telkom account, reverse a charge, cancel a service on behalf of the user, or guarantee a personalised menu. For this route, the support question should be framed around Telkom usage history, hotspot sessions, streaming quality, app updates, and short-validity promotional bundles. If the evidence points to a billing fault, failed cancellation, SIM-specific offer, disputed deduction, or account-level block, the user should use the official Telkom app, USSD flow, store, or support channel and keep the reference number or confirmation SMS.",
   "evidenceToCollect": [
     "A screenshot or note of the Telkom balance before and after the suspected loss, including date, approximate time, and the exact balance category shown.",

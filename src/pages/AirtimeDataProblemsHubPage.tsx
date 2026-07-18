@@ -36,6 +36,16 @@ const problemPages = [
     group: 'Data issues'
   },
   {
+    href: '/data-problems/how-to-stop-background-data-usage-android/',
+    label: 'How to stop Android background data usage',
+    group: 'Data issues'
+  },
+  {
+    href: '/data-problems/why-does-my-data-run-out-so-fast-telkom/',
+    label: 'Why Telkom data runs out so fast',
+    group: 'Data issues'
+  },
+  {
     href: '/fix/mobile-data-on-but-not-working/',
     label: 'Mobile data is on but not working',
     group: 'Data issues'
@@ -63,6 +73,11 @@ const problemPages = [
   {
     href: '/guides/how-to-protect-airtime-from-being-used/',
     label: 'How to protect airtime from being used',
+    group: 'Airtime issues'
+  },
+  {
+    href: '/data-problems/how-to-stop-airtime-disappearing-telkom/',
+    label: 'How to stop Telkom airtime disappearing',
     group: 'Airtime issues'
   },
   {

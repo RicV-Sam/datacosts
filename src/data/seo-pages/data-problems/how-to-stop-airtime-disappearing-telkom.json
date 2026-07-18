@@ -2,9 +2,9 @@
   "pageType": "problem-solver",
   "keyword": "how to stop airtime disappearing telkom",
   "slug": "data-problems/how-to-stop-airtime-disappearing-telkom",
-  "pageTitle": "How to stop Telkom airtime disappearing fast",
+  "pageTitle": "How to Stop Telkom Airtime Disappearing",
   "metaDescription": "Stop Telkom airtime disappearing by checking subscriptions, fallback data, and recent deductions so you can block repeat charges before topping up again.",
-  "h1": "How to stop airtime disappearing Telkom",
+  "h1": "How to Stop Telkom Airtime Disappearing",
   "networks": [
     "telkom"
   ],
@@ -35,7 +35,7 @@
       "mtn": [],
       "cellc": [],
       "telkom": [
-        "Open your network app and review the last airtime deductions on the line.",
+        "Open MyTelkom and review the balance, usage, and active services for the correct mobile number.",
         "Look for a repeating amount that suggests a subscription or premium content charge.",
         "Switch off out-of-bundle data so airtime does not carry mobile data after the bundle ends.",
         "Check whether app purchases or carrier billing are turned on for your number.",
@@ -51,16 +51,16 @@
   ],
   "faqs": [
     {
-      "question": "Why does How to stop airtime disappearing Telkom keep happening every day?",
-      "answer": "A daily pattern usually points to a recurring content charge or scheduled out-of-bundle usage."
+      "question": "Why does my Telkom airtime disappear at the same time every day?",
+      "answer": "A repeating amount or time can point to a content subscription, recurring add-on, scheduled app activity, or out-of-bundle data. Compare the MyTelkom usage and active-services screens with the deduction time."
     },
     {
       "question": "Can a data bundle stop airtime from disappearing?",
       "answer": "It helps when the real issue is out-of-bundle data, but it will not fix a premium subscription charge on its own."
     },
     {
-      "question": "Should you check subscriptions when How to stop airtime disappearing Telkom starts?",
-      "answer": "Yes. Subscription checks are one of the fastest ways to explain repeated airtime loss on a prepaid line."
+      "question": "Should I check Telkom subscriptions before recharging?",
+      "answer": "Yes. Review active services or content subscriptions and save any cancellation confirmation before adding more airtime. Also check whether mobile data can fall back to airtime."
     }
   ],
   "internalLinks": [
@@ -105,14 +105,14 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-04-19",
-  "reviewDueDate": "2026-10-19",
+  "lastReviewed": "2026-07-18",
+  "reviewDueDate": "2027-01-18",
   "sourceNotes": [
     "Telkom self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
     "Operator-controlled context for airtime deductions and fallback billing: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Telkom.",
     "Device-side evidence for Telkom: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
   ],
-  "uniqueValueSummary": "This guide is intentionally scoped to airtime deductions and fallback billing for Telkom. It does not simply repeat a generic data-saving checklist: it separates account-side signals, device-side usage, and bundle-validity clues so a user can decide whether to change a phone setting, cancel a service, buy a different bundle, or escalate to Telkom support. The main check is Telkom airtime balance, out-of-bundle data use, carrier billing, and any recurring value-added-service charges. The page remains conservative until more route-specific checks are available. That distinction matters because many South African prepaid problems look similar after the balance has already dropped, while the useful evidence is usually visible only in the first few minutes after the user notices the loss.",
+  "uniqueValueSummary": "This Telkom-specific workflow separates four records that are often mixed together: remaining airtime, bundle balances, usage sessions, and active services. Matching a repeating deduction to one of those records is more reliable than cancelling services at random, and it creates a timestamped before-and-after record if Telkom support needs to investigate.",
   "officialSupportContext": "DataCost can help users narrow airtime deductions and fallback billing, but it cannot see a private Telkom account, reverse a charge, cancel a service on behalf of the user, or guarantee a personalised menu. For this route, the support question should be framed around Telkom airtime balance, out-of-bundle data use, carrier billing, and any recurring value-added-service charges. If the evidence points to a billing fault, failed cancellation, SIM-specific offer, disputed deduction, or account-level block, the user should use the official Telkom app, USSD flow, store, or support channel and keep the reference number or confirmation SMS.",
   "evidenceToCollect": [
     "A screenshot or note of the Telkom balance before and after the suspected loss, including date, approximate time, and the exact balance category shown.",
