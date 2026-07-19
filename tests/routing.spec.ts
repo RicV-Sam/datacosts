@@ -44,6 +44,9 @@ const newSeoRoutes = [
   '/fibre/coverage-by-area/',
   '/buy-data-airtime-south-africa/',
   '/guides/buy-data-with-bank-apps-south-africa/',
+  '/guides/how-to-cancel-cellphone-contract-south-africa/',
+  '/guides/what-to-do-when-cellphone-contract-ends-south-africa/',
+  '/guides/cellphone-retention-offer-vs-switching-south-africa/',
   '/promos/'
 ];
 

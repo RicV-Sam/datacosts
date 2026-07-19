@@ -33,6 +33,9 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
   const getGuide = (slug: string) => guideMap.get(slug);
 
   const popularGuides = [
+    { slug: 'cellphone-retention-offer-vs-switching-south-africa', title: 'Retention Offer vs Switching Networks', description: 'Use a full-term calculator and written-offer checklist before accepting a deal to stay.', path: '/guides/cellphone-retention-offer-vs-switching-south-africa/' },
+    { slug: 'what-to-do-when-cellphone-contract-ends-south-africa', title: 'Your Contract Ended: What Next?', description: 'Compare an upgrade, SIM-only, prepaid, month-to-month or changing networks without losing your number.', path: '/guides/what-to-do-when-cellphone-contract-ends-south-africa/' },
+    { slug: 'how-to-cancel-cellphone-contract-south-africa', title: 'How to Cancel a Cellphone Contract', description: 'Notice periods, early-cancellation fees, device returns, expiry and complaint escalation for South African mobile contracts.', path: '/guides/how-to-cancel-cellphone-contract-south-africa/' },
     { slug: 'airtime-or-data-south-africa', title: 'Should I Buy Airtime or Data in South Africa?', description: 'Choose the safer starting point for smartphones, calls, routers and strict prepaid budgets.', path: '/guides/airtime-or-data-south-africa/' },
     { slug: 'stolen-phone-south-africa', title: 'Stolen Phone in South Africa: What to Do Immediately', description: 'Emergency steps to protect your bank, lock the phone, block the SIM, request IMEI blacklisting and report it to SAPS.', path: '/guides/stolen-phone-south-africa/' },
     { slug: 'check-router-sim-data-balance-and-recharge', title: 'Check and Recharge a Router SIM Remotely', description: 'Provider apps, router USSD and modem scripting options for unattended LTE and 5G sites.', path: '/guides/check-router-sim-data-balance-and-recharge/' },
@@ -89,6 +92,9 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       title: "Consumer Help & Fixes",
       snippet: "Use these when airtime disappears, data runs out too quickly, or you need the quickest way to audit balances and subscriptions.",
       links: [
+        { slug: 'cellphone-retention-offer-vs-switching-south-africa', title: 'Is Your Retention Offer a Good Deal?', description: 'Compare the complete cost and value of staying against a tested alternative.', path: '/guides/cellphone-retention-offer-vs-switching-south-africa/' },
+        { slug: 'what-to-do-when-cellphone-contract-ends-south-africa', title: 'Your Contract Ended: Upgrade, SIM-Only, Prepaid or Switch?', description: 'Separate the phone, network and billing decisions before accepting another fixed term.', path: '/guides/what-to-do-when-cellphone-contract-ends-south-africa/' },
+        { slug: 'how-to-cancel-cellphone-contract-south-africa', title: 'How to Cancel a Cellphone Contract', description: 'Cancel early or at expiry, understand device settlement, keep your number and escalate a stalled request.', path: '/guides/how-to-cancel-cellphone-contract-south-africa/' },
         { slug: 'airtime-or-data-south-africa', title: 'Should I Buy Airtime or Data?', description: 'Choose between a flexible airtime wallet, a defined data allowance or an all-in-one bundle.', path: '/guides/airtime-or-data-south-africa/' },
         { slug: 'stolen-phone-south-africa', title: 'Stolen Phone in South Africa: What to Do Immediately', description: 'Safety-first help for banking, remote locking, SIM blocking, IMEI blacklisting and SAPS reporting.', path: '/guides/stolen-phone-south-africa/' },
         { slug: 'check-router-sim-data-balance-and-recharge', title: 'Check and Recharge a Router SIM Remotely', description: 'Manage a SIM that stays inside a router, MiFi or modem at a customer site.', path: '/guides/check-router-sim-data-balance-and-recharge/' },

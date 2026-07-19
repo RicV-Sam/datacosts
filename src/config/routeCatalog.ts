@@ -251,6 +251,9 @@ export function getIndexableRoutes(): string[] {
   routes.add('/guides/check-router-sim-data-balance-and-recharge/');
   routes.add('/guides/stolen-phone-south-africa/');
   routes.add('/guides/airtime-or-data-south-africa/');
+  routes.add('/guides/how-to-cancel-cellphone-contract-south-africa/');
+  routes.add('/guides/what-to-do-when-cellphone-contract-ends-south-africa/');
+  routes.add('/guides/cellphone-retention-offer-vs-switching-south-africa/');
   routes.add('/promos/');
 
   for (const fibreRoute of fibreRoutes) {

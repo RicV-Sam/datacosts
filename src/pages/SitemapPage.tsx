@@ -93,6 +93,9 @@ const sitemapGroups: SitemapGroup[] = [
   {
     title: 'Problem Solvers',
     links: [
+      { href: '/guides/cellphone-retention-offer-vs-switching-south-africa/', label: 'Compare a Retention Offer with Switching Networks' },
+      { href: '/guides/what-to-do-when-cellphone-contract-ends-south-africa/', label: 'What to Do When Your Cellphone Contract Ends' },
+      { href: '/guides/how-to-cancel-cellphone-contract-south-africa/', label: 'Cancel a Cellphone Contract' },
       { href: '/guides/why-is-my-airtime-disappearing-south-africa/', label: 'Why Is My Airtime Disappearing?' },
       { href: '/guides/why-is-my-data-disappearing-south-africa/', label: 'Why Is My Data Disappearing?' },
       { href: '/guides/how-to-stop-airtime-being-used-automatically/', label: 'Stop Airtime Being Used Automatically' },

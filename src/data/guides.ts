@@ -300,6 +300,27 @@ export const guides: Guide[] = [
         description: 'Many networks now offer month-to-month SIM-only contracts. These give you the better data rates of a contract without the long-term commitment or phone cost.'
       }
     ],
+    nextStepsTitle: 'Changing or Ending Your Current Contract',
+    nextSteps: [
+      {
+        href: '/guides/what-to-do-when-cellphone-contract-ends-south-africa/',
+        label: 'What to Do When Your Contract Ends',
+        description: 'Compare staying month-to-month, upgrading, SIM-only, prepaid and switching networks.',
+        action: 'route'
+      },
+      {
+        href: '/guides/how-to-cancel-cellphone-contract-south-africa/',
+        label: 'How to Cancel a Cellphone Contract',
+        description: 'Understand notice, settlement charges, device returns, number choices, and complaint escalation before you switch.',
+        action: 'route'
+      },
+      {
+        href: '/guides/best-sim-only-deals-south-africa/',
+        label: 'Compare SIM-Only Deals',
+        description: 'Compare current SIM-only options if you already own a suitable phone.',
+        action: 'route'
+      }
+    ],
     faq: [
       {
         question: 'Is prepaid cheaper than a contract?',
@@ -307,7 +328,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Can I switch from contract to prepaid?',
-        answer: 'Yes, but usually only after your contract term (24 or 36 months) has ended. You may need to give one month\'s notice to your provider.'
+        answer: 'Yes. You can usually switch after the fixed term, or cancel earlier by giving the required notice and paying any lawful service and device settlement charges. Ask the provider to confirm in writing whether your number will move to prepaid, be ported, or be disconnected.'
       },
       {
         question: 'What are the benefits of a SIM-only contract?',
