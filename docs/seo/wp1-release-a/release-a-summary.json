@@ -1,44 +1,46 @@
 {
-  "artifact": "DataCost SEO WP1 Release A.4 remediation",
-  "sourceOfTruth": "Independent WP1 Release A.3 review",
-  "status": "release_a4_independent_review_pending",
+  "artifact": "DataCost SEO WP1 Release A.5 remediation",
+  "sourceOfTruth": "Independent WP1 Release A.4 review",
+  "status": "release_a5_independent_review_pending",
   "deploymentReady": false,
-  "branch": "codex/seo-wp1-release-a4-remediation",
-  "worktree": "C:\\Users\\ricca\\Desktop\\DataCost\\datacosts-wp1-release-a4-remediation",
+  "branch": "codex/seo-wp1-release-a5-remediation",
+  "worktree": "C:\\Users\\ricca\\Desktop\\DataCost\\datacosts-wp1-release-a5-remediation",
   "originalBaselineCommit": "d35bb614fca0c280bd86bbc2418a2c0dbe042a5a",
-  "validatedReleaseA3ImplementationHead": "395547f1426aba8e9d3416fa3a0174a1e0d60994",
-  "reviewedReleaseA3Head": "5d86e459c0bd60480706ea7110dd69df109f8267",
-  "cleanValidatedImplementationHead": "f81970a881851a9b4a1eeceae12547e8fff8969c",
-  "documentationParent": "f81970a881851a9b4a1eeceae12547e8fff8969c",
+  "reviewedReleaseA4Head": "4826486989acf015faa7d261a0b63e18cd424a21",
+  "releaseA4ImplementationCommit": "f81970a881851a9b4a1eeceae12547e8fff8969c",
+  "cleanValidatedImplementationHead": "48bbe00052e3e0bc3900a859ee9669c16c29ac24",
+  "documentationParent": "48bbe00052e3e0bc3900a859ee9669c16c29ac24",
   "handoffHeadResolution": {
-    "ref": "codex/seo-wp1-release-a4-remediation",
-    "command": "git rev-parse codex/seo-wp1-release-a4-remediation",
-    "reason": "The documentation-only commit cannot truthfully embed its own hash."
+    "ref": "codex/seo-wp1-release-a5-remediation",
+    "command": "git rev-parse codex/seo-wp1-release-a5-remediation",
+    "reason": "A documentation-only commit cannot truthfully embed its own hash."
   },
-  "releaseA4ImplementationCommits": [
-    "f81970a881851a9b4a1eeceae12547e8fff8969c"
+  "releaseA5ImplementationCommits": [
+    "48bbe00052e3e0bc3900a859ee9669c16c29ac24"
   ],
-  "implementationDiffFromReviewedReleaseA3": {
-    "filesChanged": 5,
-    "insertions": 397,
-    "deletions": 169,
+  "implementationDiffFromReviewedReleaseA4": {
+    "filesChanged": 6,
+    "insertions": 264,
+    "deletions": 186,
     "changedFiles": [
       "scripts/check-wp1-release-a.ts",
+      "src/data/wp1EvidenceSubjects.ts",
       "src/data/wp1ReleaseARecords.ts",
       "src/seo/wp1SourceFreshness.ts",
       "tests/wp1-release-a-remediation-source-negative.test.ts",
       "tests/wp1-release-a-source.test.ts"
     ]
   },
-  "finalHandoffDiffFromReviewedReleaseA3": {
+  "finalHandoffDiffFromReviewedReleaseA4": {
     "head": "resolve handoffHeadResolution.ref",
-    "filesChanged": 7,
-    "insertions": 548,
-    "deletions": 300,
+    "filesChanged": 8,
+    "insertions": 398,
+    "deletions": 372,
     "changedFiles": [
       "docs/seo/wp1-release-a/implementation-report.md",
       "docs/seo/wp1-release-a/release-a-summary.json",
       "scripts/check-wp1-release-a.ts",
+      "src/data/wp1EvidenceSubjects.ts",
       "src/data/wp1ReleaseARecords.ts",
       "src/seo/wp1SourceFreshness.ts",
       "tests/wp1-release-a-remediation-source-negative.test.ts",
@@ -46,12 +48,12 @@
     ]
   },
   "completeReleaseADiffFromOriginalBaseline": {
-    "filesChanged": 42,
-    "insertions": 30598,
+    "filesChanged": 43,
+    "insertions": 30624,
     "deletions": 103
   },
   "closureClaims": {
-    "implementationComplete": true,
+    "localImplementationComplete": true,
     "localValidationComplete": true,
     "independentReviewComplete": false,
     "independentFindingsClosed": false,
@@ -77,15 +79,14 @@
     "sitemapSubmitted": false
   },
   "remediatedPendingIndependentReview": [
-    "collection_owned_semantic_subject_authority",
-    "canonical_evidence_policy_ownership",
-    "selection_policy_flags_removed",
-    "deep_policy_immutability_and_versioning",
-    "negative_tests_for_independent_a3_bypasses",
-    "accurate_handoff_metadata_and_closure_claims"
+    "caller_controlled_trusted_subject_binding_construction",
+    "shared_validation_and_selection_context",
+    "selector_exact_runtime_input_validation",
+    "negative_tests_for_independent_a4_bypasses",
+    "conservative_handoff_metadata_and_closure_claims"
   ],
   "evidencePolicy": {
-    "version": "wp1-release-a.4",
+    "version": "wp1-release-a.5",
     "subjectKinds": [
       "ussd_code",
       "price",
@@ -93,16 +94,18 @@
       "device_step",
       "evergreen_fact"
     ],
-    "semanticAuthority": "collection_owned_subject_registry",
+    "semanticAuthority": "collection_owned_frozen_registry_without_exported_constructor",
+    "callerRegistryAccepted": false,
     "callerRecordPolicyFieldsAccepted": false,
     "selectionPolicyOptionsAccepted": false,
+    "selectorRequiresTrustedValidationResult": true,
+    "selectorRejectsUnexpectedKeysAndArguments": true,
+    "selectorUsesImmutableSourceSnapshot": true,
     "policyTablePrivate": true,
     "policyTableDeepFrozen": true,
-    "registryRuntimeTrusted": true,
-    "unknownCollectionsFailClosed": true,
-    "missingRegistrationsFailClosed": true,
+    "unknownSubjectsFailClosed": true,
     "transitiveDependencyEligibility": true,
-    "validationAndSelectionShareRecursiveEvaluator": true,
+    "validationAndSelectionShareResolvedContext": true,
     "completeFailurePathsReported": true
   },
   "lifecycle": {
@@ -116,15 +119,6 @@
     "compatibilityWarnings": 28,
     "editorialBackfillRecords": 28,
     "strictnessIndependentOfCallerLifecycleAndPolicyFields": true
-  },
-  "consentModel": {
-    "preservedFromReleaseA3": true,
-    "compatibilityInputs": "initialization-only",
-    "exportedLiveMutationAuthority": "adapter",
-    "compatibilityLabelledUpdaterCallsIgnored": true,
-    "consentModeUpdates": "processed in array order",
-    "unknown": "does not erase an explicit decision",
-    "dispatch": "recheck immediately before send"
   },
   "stableIds": {
     "fullOccurrenceCount": 74,
@@ -149,27 +143,25 @@
     "publicOutputInvariant": true
   },
   "validationAtImplementationHead": {
-    "head": "f81970a881851a9b4a1eeceae12547e8fff8969c",
+    "head": "48bbe00052e3e0bc3900a859ee9669c16c29ac24",
     "node": "v24.11.0",
     "npm": "11.1.0",
-    "npmCiExit": 0,
-    "packagesInstalled": 314,
-    "independentNodeModules": true,
-    "focusedA4BypassTests": {
+    "dependencyArrangement": "A.5 node_modules directory junction to the unchanged ordinary A.4 install",
+    "focusedA5BypassTests": {
       "passed": 4,
       "total": 4
     },
-    "focusedAnalyticsTests": {
-      "passed": 16,
-      "total": 16
+    "sourceRemediationTests": {
+      "passed": 24,
+      "total": 24
     },
     "remediationNegativeTests": {
-      "passed": 40,
-      "total": 40
+      "passed": 41,
+      "total": 41
     },
     "contracts": {
-      "passed": 103,
-      "total": 103,
+      "passed": 104,
+      "total": 104,
       "warnings": 28
     },
     "browserTests": {
@@ -183,7 +175,7 @@
     "adsenseOutputExit": 0,
     "searchRegressionExit": 0,
     "privacyExit": 0,
-    "privacyTrackedTextFiles": 214,
+    "privacyTrackedTextFiles": 215,
     "privacyDocumentedExceptions": 2,
     "productionAuditVulnerabilities": 0,
     "fullAuditExistingModerateFindings": 4,
@@ -192,16 +184,15 @@
   },
   "repositoryState": {
     "baselineAncestor": true,
-    "reviewedReleaseA3Ancestor": true,
-    "mergeCommitsInA4Range": 0,
+    "reviewedReleaseA4Ancestor": true,
+    "mergeCommitsInA5Range": 0,
     "upstreamConfigured": false,
-    "matchingLocalRemoteTrackingRefForA3OrA4Tip": false,
     "originalMainStatusUnchanged": true
   },
   "knownLimitations": [
-    "Independent Release A.4 review is still required before any integration or deployment decision.",
+    "Independent Release A.5 review is required before any integration or deployment decision.",
     "28 untouched legacy USSD records remain in the editorial evidence-backfill queue.",
-    "Four existing moderate development/build-time audit findings are deferred; production audit is clean.",
+    "Four existing moderate development/build-time audit findings are deferred; the production audit is clean.",
     "Quick answers remain dormant contracts only; no Release B UI exists."
   ],
   "reviewReport": "docs/seo/wp1-release-a/implementation-report.md",
