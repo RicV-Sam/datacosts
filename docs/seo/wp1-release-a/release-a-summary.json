@@ -6,7 +6,7 @@
   "branch": "codex/seo-wp1-release-a2-remediation",
   "originalBaselineCommit": "d35bb614fca0c280bd86bbc2418a2c0dbe042a5a",
   "reviewedReleaseA1Head": "e69c2a5ffca3ddc8dc9f540dac66807a97c3eb46",
-  "cleanValidatedImplementationHead": "a7b5ac704cb6869a01ebfbfc60f453b6e1b17803",
+  "cleanValidatedImplementationHead": "5ee4094e879ac9ded2d897573b60f8f87a97e158",
   "handoffHeadResolution": {
     "ref": "codex/seo-wp1-release-a2-remediation",
     "command": "git rev-parse codex/seo-wp1-release-a2-remediation",
@@ -15,7 +15,8 @@
   "releaseA2ImplementationCommits": [
     "0098c55",
     "d9ef252",
-    "a7b5ac7"
+    "a7b5ac7",
+    "5ee4094"
   ],
   "scope": {
     "releaseBImplemented": false,
@@ -56,7 +57,10 @@
     "strictNewRecords": 5,
     "strictQuickAnswerRecordsPublished": 0,
     "compatibilityWarnings": 28,
-    "strictnessIndependentOfRiskClass": true
+    "strictnessIndependentOfRiskClass": true,
+    "alwaysStrictRecordTypes": [
+      "quick_answer"
+    ]
   },
   "evidencePolicy": {
     "transitiveDependencyEligibility": true,
@@ -135,16 +139,16 @@
     "typecheckExit": 0,
     "buildExit": 0,
     "focusedTests": {
-      "passed": 39,
-      "total": 39
+      "passed": 40,
+      "total": 40
     },
     "allTests": {
-      "passed": 89,
-      "total": 89
+      "passed": 90,
+      "total": 90
     },
     "contracts": {
-      "passed": 89,
-      "total": 89,
+      "passed": 90,
+      "total": 90,
       "warnings": 28
     },
     "searchRegressionExit": 0,

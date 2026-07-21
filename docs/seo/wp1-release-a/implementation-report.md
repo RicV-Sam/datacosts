@@ -24,14 +24,15 @@ No branch or tag was pushed. No pull request, deployment, GA4/GSC change, sitema
 
 ## 3. Release A.2 implementation identity
 
-The immutable, clean-validated code head is `a7b5ac704cb6869a01ebfbfc60f453b6e1b17803`.
+The immutable, clean-validated code head is `5ee4094e879ac9ded2d897573b60f8f87a97e158`.
 
 Release A.2 commits:
 
 1. `0098c55` — `fix(seo): enforce strict lifecycle and recursive evidence`
 2. `d9ef252` — `fix(analytics): enforce consent and event relationships`
 3. `a7b5ac7` — `fix(build): preserve clean generated output`
-4. Documentation-only handoff commit — resolve with `git rev-parse codex/seo-wp1-release-a2-remediation`
+4. `5ee4094` — `fix(seo): apply always-strict record policy`
+5. Documentation-only handoff commit — resolve with `git rev-parse codex/seo-wp1-release-a2-remediation`
 
 A commit cannot truthfully embed its own hash without changing that hash. Therefore this report records the immutable implementation head exactly and gives the explicit local branch-resolution command for the documentation-only handoff commit. It does not use a placeholder or mislabel the implementation head as the handoff head.
 
@@ -48,7 +49,7 @@ A commit cannot truthfully embed its own hash without changing that hash. Theref
 | Review-date extension on every record | Every `reviewDueAt` is compared with the shortest approved interval before usage filtering | An unused source carrying an unapproved extension fails |
 | Cross-platform clean generation | Generated text is compared after LF normalization; meaningful changes preserve the checked-out newline convention | LF/CRLF-only changes do not rewrite; real changes preserve CRLF |
 | Accurate handoff/identity reporting | Exact reviewed A.1 head and immutable A.2 code head are recorded; final documentation identity is branch-resolved | Machine-readable summary contains no self-hash placeholder |
-| Negative tests for reproduced failures | Each reproduced review failure has a named regression test | Focused suite: 39/39 passing after a red phase with nine reproduced failures |
+| Negative tests for reproduced failures | Each reproduced review failure has a named regression test | Focused suite: 40/40 passing after a red phase with nine reproduced failures; the explicit always-strict policy case is also covered |
 
 ## 5. Red/green remediation evidence
 
@@ -64,7 +65,7 @@ Before implementation, the focused negative suite failed in nine reproduced case
 - unused-source review-date extension
 - expired transitive derived dependency
 
-After implementation, the focused remediation suite passes 39/39 and the full WP1 contract suite passes 89/89.
+After implementation, the focused remediation suite passes 40/40 and the full WP1 contract suite passes 90/90.
 
 ## 6. Lifecycle and evidence policy
 
@@ -94,16 +95,16 @@ Sitemap and redirect generation no longer rewrites a tracked file solely because
 
 ## 10. Validation at the immutable code head
 
-Validated implementation head: `a7b5ac704cb6869a01ebfbfc60f453b6e1b17803`.
+Validated implementation head: `5ee4094e879ac9ded2d897573b60f8f87a97e158`.
 
 | Check | Result |
 |---|---|
 | `npm run lint` | exit 0 |
 | `npm run typecheck` | exit 0 |
-| focused remediation tests | 39/39 |
-| all `tests/*.test.ts` | 89/89 |
+| focused remediation tests | 40/40 |
+| all `tests/*.test.ts` | 90/90 |
 | `npm run build` | exit 0; 244 HTML files, 5 sitemap files, 207 URLs |
-| `npm run check:wp1-contracts` | 89/89; 28 documented compatibility warnings |
+| `npm run check:wp1-contracts` | 90/90; 28 documented compatibility warnings |
 | `npm run check:wp1-search-regression` | 244 routes/titles, 207 URLs, 826 JSON-LD blocks unchanged |
 | `npm run check:wp1-privacy` | passed across 214 tracked text files; 2 documented exact public-content entries |
 | `npm audit --omit=dev` | 0 vulnerabilities |
