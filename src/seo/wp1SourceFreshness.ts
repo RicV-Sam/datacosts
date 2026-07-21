@@ -12,6 +12,7 @@ export const VERIFICATION_METHODS = ['operator_page', 'app_check', 'ussd_test', 
 export const SOURCE_STATUSES = ['verified', 'needs_review', 'expired'] as const;
 export const SOURCE_CONFIDENCE = ['high', 'medium', 'low'] as const;
 export const RISK_CLASSES = ['promotion', 'price', 'ussd_code', 'device_steps', 'evergreen'] as const;
+export const EVIDENCE_RECORD_KINDS = ['ussd_code', 'price', 'promotion', 'device_step', 'evergreen_fact'] as const;
 export const REVIEW_OVERRIDE_APPROVERS = ['seo_lead', 'editorial_lead'] as const;
 const CONSERVATIVE_OVERRIDE_RISK_CLASS: RiskClass = 'promotion';
 
@@ -20,6 +21,7 @@ export type VerificationMethod = (typeof VERIFICATION_METHODS)[number];
 export type SourceStatus = (typeof SOURCE_STATUSES)[number];
 export type SourceConfidence = (typeof SOURCE_CONFIDENCE)[number];
 export type RiskClass = (typeof RISK_CLASSES)[number];
+export type EvidenceRecordKind = (typeof EVIDENCE_RECORD_KINDS)[number];
 export type RecordLifecycle = 'new' | 'legacy_edited' | 'legacy_untouched';
 export type ContentEvidenceRecordType = 'ussd_code' | 'quick_answer' | 'operator' | 'content';
 
@@ -56,6 +58,8 @@ export interface SourceRecord {
 export interface ContentEvidenceRecord {
   recordId: string;
   recordType: ContentEvidenceRecordType;
+  recordKind: EvidenceRecordKind;
+  /** Compatibility input validated against recordKind; never selects the policy. */
   riskClass: RiskClass;
   /** Caller input retained for migration compatibility, but ignored for enforcement. */
   lifecycle?: 'new' | 'edited' | 'legacy_edited' | 'legacy_untouched';
@@ -65,11 +69,24 @@ export interface ContentEvidenceRecord {
   powersQuickAnswer?: boolean;
 }
 
-export const CONTENT_RECORD_POLICIES: Readonly<Record<ContentEvidenceRecordType, { alwaysStrict: boolean }>> = {
-  ussd_code: { alwaysStrict: false },
-  quick_answer: { alwaysStrict: true },
-  operator: { alwaysStrict: false },
-  content: { alwaysStrict: false }
+export interface EvidenceRecordPolicy {
+  riskClass: RiskClass;
+  alwaysStrict: boolean;
+}
+
+export const EVIDENCE_RECORD_POLICIES: Readonly<Record<EvidenceRecordKind, EvidenceRecordPolicy>> = {
+  ussd_code: { riskClass: 'ussd_code', alwaysStrict: false },
+  price: { riskClass: 'price', alwaysStrict: true },
+  promotion: { riskClass: 'promotion', alwaysStrict: true },
+  device_step: { riskClass: 'device_steps', alwaysStrict: false },
+  evergreen_fact: { riskClass: 'evergreen', alwaysStrict: false }
+};
+
+const RECORD_TYPE_ALWAYS_STRICT: Readonly<Record<ContentEvidenceRecordType, boolean>> = {
+  ussd_code: false,
+  quick_answer: true,
+  operator: false,
+  content: false
 };
 
 export interface ValidationIssue {
@@ -83,6 +100,13 @@ export interface SourceEligibility {
   eligible: boolean;
   reasonCodes: string[];
   reviewDueAt: string | null;
+  dependencyFailures: SourceDependencyFailure[];
+}
+
+export interface SourceDependencyFailure {
+  sourceId: string;
+  path: string[];
+  reasonCodes: string[];
 }
 
 export interface ValidationResult {
@@ -260,7 +284,7 @@ function validateSourceRecord(source: SourceRecord, asOf: string, issues: Valida
   }
 }
 
-export function evaluateSourceEligibility(
+function evaluateDirectSourceEligibility(
   source: SourceRecord,
   riskClass: RiskClass,
   asOf: string,
@@ -310,17 +334,109 @@ export function evaluateSourceEligibility(
     ? uniqueReasons
     : uniqueReasons.filter((code) => ['invalid_date', 'future_checked_at', 'source_not_yet_effective', 'source_expired', 'promotion_effective_from_required', 'promotion_expiry_required'].includes(code));
 
-  return { eligible: blocking.length === 0, reasonCodes: uniqueReasons, reviewDueAt };
+  return { eligible: blocking.length === 0, reasonCodes: uniqueReasons, reviewDueAt, dependencyFailures: [] };
 }
 
-/** Safe selection primitive: callers receive no expired or future-effective candidate. */
+function evaluateSourceDependencyTree(
+  source: SourceRecord,
+  byId: ReadonlyMap<string, SourceRecord>,
+  policy: EvidenceRecordPolicy,
+  asOf: string,
+  options: { strict: boolean; promotion?: boolean },
+  parentPath: readonly string[] = []
+): SourceEligibility {
+  const direct = evaluateDirectSourceEligibility(source, policy.riskClass, asOf, options);
+  const currentPath = [...parentPath, source.recordId];
+  const dependencyFailures: SourceDependencyFailure[] = [];
+
+  if (source.verificationMethod === 'derived') {
+    const dependencyIds = source.derivedFromSourceIds ?? [];
+    if (dependencyIds.length === 0) {
+      dependencyFailures.push({
+        sourceId: source.recordId,
+        path: currentPath,
+        reasonCodes: ['derived_dependency_required']
+      });
+    }
+
+    for (const dependencyId of dependencyIds) {
+      if (currentPath.includes(dependencyId)) {
+        dependencyFailures.push({
+          sourceId: dependencyId,
+          path: [...currentPath, dependencyId],
+          reasonCodes: ['reference_cycle']
+        });
+        continue;
+      }
+
+      const dependency = byId.get(dependencyId);
+      if (!dependency) {
+        dependencyFailures.push({
+          sourceId: dependencyId,
+          path: [...currentPath, dependencyId],
+          reasonCodes: ['missing_derived_dependency']
+        });
+        continue;
+      }
+
+      const dependencyResult = evaluateSourceDependencyTree(
+        dependency,
+        byId,
+        policy,
+        asOf,
+        { strict: true },
+        currentPath
+      );
+      if (dependencyResult.reasonCodes.length > 0) {
+        dependencyFailures.push({
+          sourceId: dependency.recordId,
+          path: [...currentPath, dependency.recordId],
+          reasonCodes: dependencyResult.reasonCodes
+        });
+      }
+      dependencyFailures.push(...dependencyResult.dependencyFailures);
+    }
+  }
+
+  const uniqueFailures = [...new Map(dependencyFailures.map((failure) => [
+    `${failure.path.join('>')}|${failure.reasonCodes.join(',')}`,
+    failure
+  ])).values()];
+  return {
+    ...direct,
+    eligible: direct.eligible && uniqueFailures.length === 0,
+    dependencyFailures: uniqueFailures
+  };
+}
+
+export function evaluateSourceEligibility(
+  source: SourceRecord,
+  recordKind: EvidenceRecordKind,
+  asOf: string,
+  options: { strict: boolean; promotion?: boolean } = { strict: false },
+  allSources: readonly SourceRecord[] = [source]
+): SourceEligibility {
+  const policy = EVIDENCE_RECORD_POLICIES[recordKind];
+  if (!policy) {
+    return {
+      eligible: false,
+      reasonCodes: ['invalid_record_kind'],
+      reviewDueAt: null,
+      dependencyFailures: []
+    };
+  }
+  const byId = new Map(allSources.map((candidate) => [candidate.recordId, candidate]));
+  return evaluateSourceDependencyTree(source, byId, policy, asOf, options);
+}
+
+/** Safe selection primitive: direct and transitive evidence must all be eligible. */
 export function selectEligibleSources(
   sources: readonly SourceRecord[],
-  riskClass: RiskClass,
+  recordKind: EvidenceRecordKind,
   asOf: string,
   options: { strict: boolean; promotion?: boolean } = { strict: false }
 ): SourceRecord[] {
-  return sources.filter((source) => evaluateSourceEligibility(source, riskClass, asOf, options).eligible);
+  return sources.filter((source) => evaluateSourceEligibility(source, recordKind, asOf, options, sources).eligible);
 }
 
 function validateReferenceGraph(
@@ -379,26 +495,53 @@ function dependencyChains(sourceId: string, byId: ReadonlyMap<string, SourceReco
   return dependencies.flatMap((dependency) => dependencyChains(dependency, byId, [...trail, sourceId]));
 }
 
-function ineligibleDerivedDependencies(
-  source: SourceRecord,
-  byId: ReadonlyMap<string, SourceRecord>,
-  riskClass: RiskClass,
-  asOf: string,
-  visited: Set<string> = new Set()
-): Array<{ dependency: SourceRecord; reasonCodes: string[] }> {
-  if (source.verificationMethod !== 'derived' || visited.has(source.recordId)) return [];
-  const nextVisited = new Set(visited).add(source.recordId);
-  const failures: Array<{ dependency: SourceRecord; reasonCodes: string[] }> = [];
+function resolveContentRecordPolicy(
+  record: ContentEvidenceRecord,
+  issues: ValidationIssue[]
+): { policy: EvidenceRecordPolicy; valid: boolean } {
+  const policy = EVIDENCE_RECORD_POLICIES[record.recordKind as EvidenceRecordKind];
+  let valid = true;
 
-  for (const dependencyId of source.derivedFromSourceIds ?? []) {
-    const dependency = byId.get(dependencyId);
-    if (!dependency) continue;
-    const eligibility = evaluateSourceEligibility(dependency, riskClass, asOf, { strict: true });
-    if (!eligibility.eligible) failures.push({ dependency, reasonCodes: eligibility.reasonCodes });
-    failures.push(...ineligibleDerivedDependencies(dependency, byId, riskClass, asOf, nextVisited));
+  if (!policy) {
+    issues.push({
+      severity: 'error',
+      code: 'invalid_record_kind',
+      recordId: record.recordId,
+      message: `Unknown evidence record kind: ${String(record.recordKind)}`
+    });
+    return { policy: EVIDENCE_RECORD_POLICIES.promotion, valid: false };
   }
 
-  return [...new Map(failures.map((failure) => [failure.dependency.recordId, failure])).values()];
+  if (!isAllowed(RISK_CLASSES, record.riskClass) || record.riskClass !== policy.riskClass) {
+    issues.push({
+      severity: 'error',
+      code: 'incompatible_evidence_policy',
+      recordId: record.recordId,
+      message: `Record kind ${record.recordKind} requires risk class ${policy.riskClass}; received ${String(record.riskClass)}.`
+    });
+    valid = false;
+  }
+
+  const compatibleRecordType =
+    (record.recordType !== 'ussd_code' || record.recordKind === 'ussd_code') &&
+    (record.recordType !== 'operator' || record.recordKind === 'evergreen_fact');
+  if (!compatibleRecordType) {
+    issues.push({
+      severity: 'error',
+      code: 'incompatible_record_kind',
+      recordId: record.recordId,
+      message: `Record type ${record.recordType} cannot use evidence kind ${record.recordKind}.`
+    });
+    valid = false;
+  }
+
+  return {
+    policy: {
+      ...policy,
+      alwaysStrict: policy.alwaysStrict || RECORD_TYPE_ALWAYS_STRICT[record.recordType]
+    },
+    valid
+  };
 }
 
 export function validateReleaseAData(
@@ -442,7 +585,7 @@ export function validateReleaseAData(
         candidate.exclusiveClaimScope &&
         candidate.status === 'verified' &&
         candidate.claimScope === source.claimScope &&
-        evaluateSourceEligibility(candidate, 'evergreen', options.asOf, { strict: true }).eligible
+        evaluateSourceEligibility(candidate, 'evergreen_fact', options.asOf, { strict: true }, sourceRecords).eligible
       );
       if (conflicts.length > 0) {
         issues.push({ severity: 'error', code: 'exclusive_claim_scope_conflict', recordId: source.recordId, message: `Active exclusive claim scope also owned by: ${conflicts.map((item) => item.recordId).join(', ')}` });
@@ -455,7 +598,9 @@ export function validateReleaseAData(
     lifecycleByRecordId[record.recordId] = lifecycle;
     lifecycleCounts[lifecycle] += 1;
 
-    const recordPolicy = CONTENT_RECORD_POLICIES[record.recordType];
+    const resolvedPolicy = resolveContentRecordPolicy(record, issues);
+    const recordPolicy = resolvedPolicy.policy;
+    if (!resolvedPolicy.valid) excluded.add(record.recordId);
     const strict =
       lifecycle === 'new' ||
       lifecycle === 'legacy_edited' ||
@@ -485,10 +630,10 @@ export function validateReleaseAData(
     }
 
     for (const source of referencedSources) {
-      const eligibility = evaluateSourceEligibility(source, record.riskClass, options.asOf, {
+      const eligibility = evaluateSourceEligibility(source, record.recordKind, options.asOf, {
         strict,
-        promotion: record.riskClass === 'promotion'
-      });
+        promotion: record.recordKind === 'promotion'
+      }, sourceRecords);
 
       for (const code of eligibility.reasonCodes) {
         const strictOnly = ['strict_source_not_publishable', 'source_review_overdue', 'review_due_extension_not_permitted'].includes(code);
@@ -502,19 +647,19 @@ export function validateReleaseAData(
         if (severity === 'error') excluded.add(record.recordId);
       }
 
-      if (record.active && record.riskClass === 'promotion' && eligibility.reasonCodes.includes('source_expired')) {
+      if (record.active && record.recordKind === 'promotion' && eligibility.reasonCodes.includes('source_expired')) {
         issues.push({ severity: 'error', code: 'expired_active_promotion', recordId: record.recordId, message: 'Expired promotion cannot remain eligible for active display.' });
         excluded.add(record.recordId);
       }
 
       if (source.verificationMethod === 'derived') {
         auditChains[source.recordId] = dependencyChains(source.recordId, sourcesById);
-        for (const failure of ineligibleDerivedDependencies(source, sourcesById, record.riskClass, options.asOf)) {
+        for (const failure of eligibility.dependencyFailures) {
           issues.push({
             severity: 'error',
             code: 'ineligible_derived_dependency',
             recordId: record.recordId,
-            message: `Derived dependency ${failure.dependency.recordId} is not eligible: ${failure.reasonCodes.join(', ')}`
+            message: `Derived dependency path ${failure.path.join(' -> ')} is not eligible: ${failure.reasonCodes.join(', ')}`
           });
           excluded.add(record.recordId);
         }

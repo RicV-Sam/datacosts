@@ -91,6 +91,18 @@ test('compatibility values cannot grant after a Consent Mode denial has already 
   assert.equal(canSendAnalytics(), false);
 });
 
+test('compatibility-labelled updater calls cannot override a consumed denial', () => {
+  installBrowser({ dataLayer: [deniedUpdate] });
+  assert.equal(canSendAnalytics(), false);
+
+  const compatibilityUpdate = updateAnalyticsConsent as unknown as (state: 'granted', source: string) => void;
+  compatibilityUpdate('granted', 'window');
+  assert.equal(canSendAnalytics(), false);
+
+  compatibilityUpdate('granted', 'dataset');
+  assert.equal(canSendAnalytics(), false);
+});
+
 test('a post-load denial immediately stops dispatch', () => {
   const { browserWindow, events } = installBrowser({ windowConsent: 'granted' });
   trackQuickAnswerAction(quickAnswer);

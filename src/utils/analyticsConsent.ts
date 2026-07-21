@@ -81,9 +81,9 @@ export function refreshAnalyticsConsent(): AnalyticsConsentState {
   return store.state;
 }
 
-export function updateAnalyticsConsent(state: AnalyticsConsentState, source: AnalyticsConsentSource = 'adapter'): void {
+export function updateAnalyticsConsent(state: AnalyticsConsentState, source: 'adapter' = 'adapter'): void {
   const store = currentStore();
-  if (!store) return;
+  if (!store || source !== 'adapter') return;
   apply(store, source, state);
 }
 
@@ -96,7 +96,8 @@ export function getAnalyticsConsentAudit(): ReadonlyArray<{ sequence: number; so
  * - Window and dataset values are initial compatibility inputs; conflicting initial
  *   inputs resolve conservatively to denied.
  * - Consent Mode entries are replayed in array order and later explicit entries win.
- * - The adapter API records live changes in call order.
+ * - The adapter API is the only live mutation authority exposed by this module.
+ *   Compatibility-source labels are observation metadata, never update authority.
  * - Unknown never clears a prior grant or denial.
  * - No known state preserves the approved Release A default (analytics allowed).
  * - Dispatch refreshes this store immediately before sending.

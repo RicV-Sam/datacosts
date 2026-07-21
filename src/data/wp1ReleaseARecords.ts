@@ -65,6 +65,7 @@ export const wp1ContentRecords: ContentEvidenceRecord[] = [
   ...ussdRepository.map((record) => ({
     recordId: record.id,
     recordType: 'ussd_code' as const,
+    recordKind: 'ussd_code' as const,
     riskClass: 'ussd_code' as const,
     materialClaim: {
       operator: record.network,
@@ -85,6 +86,7 @@ export const wp1ContentRecords: ContentEvidenceRecord[] = [
   ...(['MTN', 'Vodacom', 'Cell C', 'Telkom', 'Rain'] as const).map((operator) => ({
     recordId: `operator.${operator.toLowerCase().replace(/\s+/g, '')}`,
     recordType: 'operator' as const,
+    recordKind: 'evergreen_fact' as const,
     riskClass: 'evergreen' as const,
     materialClaim: { operator, claimScope: 'Operator identity and official-domain ownership.' },
     sourceRecordIds: [operatorSourceId(operator)],
