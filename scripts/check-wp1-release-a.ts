@@ -1,11 +1,10 @@
-import { wp1ContentRecords, wp1EvidenceSubjects, wp1SourceRecords } from '../src/data/wp1ReleaseARecords';
+import { wp1ContentRecords, wp1SourceRecords } from '../src/data/wp1ReleaseARecords';
 import { CNI_URL_COHORT, GSC_QUERY_OWNER_COHORT, WP1_BASELINE, validateQueryClusterDefinitions } from '../src/seo/wp1Measurement';
 import { isStableAnalyticsId, validateReleaseAData } from '../src/seo/wp1SourceFreshness';
 import { collectWp1RegistryOccurrences, validateWp1AnalyticsRegistry } from '../src/seo/wp1AnalyticsRegistry';
 
 const result = validateReleaseAData(wp1SourceRecords, wp1ContentRecords, {
   asOf: WP1_BASELINE.baselineAsOf,
-  evidenceSubjects: wp1EvidenceSubjects,
   requireCompleteLegacyManifest: true
 });
 const registry = validateWp1AnalyticsRegistry();

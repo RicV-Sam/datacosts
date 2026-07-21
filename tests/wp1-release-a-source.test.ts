@@ -2,16 +2,15 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   classifyContentLifecycle,
-  createEvidenceSubjectRegistry,
   deriveReviewDueAt,
   selectEligibleSources,
   type ContentEvidenceRecord,
-  type EvidenceSubjectCollections,
   type EvidenceSubjectKind,
   type SourceRecord,
   validateLegacyManifest,
   validateReleaseAData as validateReleaseADataCore
 } from '../src/seo/wp1SourceFreshness';
+import { WP1_EVIDENCE_SUBJECTS } from '../src/data/wp1EvidenceSubjects';
 import { fingerprintMaterialClaim, type LegacyManifestEntry } from '../src/seo/wp1LegacyManifest';
 
 const source = (overrides: Partial<SourceRecord> = {}): SourceRecord => ({
@@ -28,38 +27,41 @@ const source = (overrides: Partial<SourceRecord> = {}): SourceRecord => ({
 });
 
 type TestContentOverrides = Partial<ContentEvidenceRecord> & { subjectKind?: EvidenceSubjectKind };
-const testSubjectKinds = new WeakMap<ContentEvidenceRecord, EvidenceSubjectKind>();
+
+const canonicalSubjectId = (kind: EvidenceSubjectKind): string => {
+  const entry = Object.entries(WP1_EVIDENCE_SUBJECTS).find(([, registration]) => registration.subjectKind === kind);
+  if (!entry) throw new Error(`No canonical ${kind} subject is available to this contract test.`);
+  return entry[0];
+};
+const CANONICAL_EVERGREEN_ID = canonicalSubjectId('evergreen_fact');
+const CANONICAL_PRICE_ID = canonicalSubjectId('price');
+const CANONICAL_USSD_ID = canonicalSubjectId('ussd_code');
 
 const content = (overrides: TestContentOverrides = {}): ContentEvidenceRecord => {
   const { subjectKind = 'evergreen_fact', ...recordOverrides } = overrides;
-  const record: ContentEvidenceRecord = {
-    recordId: 'content.example',
+  const defaultRecordId = subjectKind === 'price'
+    ? CANONICAL_PRICE_ID
+    : subjectKind === 'ussd_code'
+      ? CANONICAL_USSD_ID
+      : subjectKind === 'evergreen_fact'
+        ? CANONICAL_EVERGREEN_ID
+        : `${subjectKind}.unregistered_contract_subject`;
+  return {
+    recordId: defaultRecordId,
     recordType: 'content',
     lifecycle: 'new',
     sourceRecordIds: ['source.operator.example'],
     active: true,
     ...recordOverrides
   };
-  testSubjectKinds.set(record, subjectKind);
-  return record;
 };
 
-type TestValidationOptions = Omit<Parameters<typeof validateReleaseADataCore>[2], 'evidenceSubjects'>;
+type TestValidationOptions = Parameters<typeof validateReleaseADataCore>[2];
 const validateReleaseAData = (
   sources: SourceRecord[],
   records: ContentEvidenceRecord[],
   options: TestValidationOptions
-) => {
-  const collections: EvidenceSubjectCollections = {};
-  for (const subjectKind of ['ussd_code', 'price', 'promotion', 'device_step', 'evergreen_fact'] as const) {
-    const recordIds = records.filter((record) => testSubjectKinds.get(record) === subjectKind).map((record) => record.recordId);
-    if (recordIds.length > 0) Object.assign(collections, { [subjectKind]: recordIds });
-  }
-  return validateReleaseADataCore(sources, records, {
-    ...options,
-    evidenceSubjects: createEvidenceSubjectRegistry(collections)
-  });
-};
+) => validateReleaseADataCore(sources, records, options);
 
 test('duplicate IDs and missing references fail', () => {
   const result = validateReleaseAData(
@@ -108,7 +110,7 @@ test('expired active promotions and unverified strict quick-answer evidence are 
   );
   assert.ok(result.errors.some((issue) => issue.code === 'expired_active_promotion'));
   assert.ok(result.errors.some((issue) => issue.code === 'strict_source_not_publishable'));
-  assert.deepEqual(result.excludedRecordIds, ['content.example']);
+  assert.deepEqual(result.excludedRecordIds, ['promotion.unregistered_contract_subject']);
 });
 
 test('new or edited high-risk records require evidence', () => {
@@ -119,17 +121,17 @@ test('new or edited high-risk records require evidence', () => {
 test('untouched legacy gaps warn and join the backfill queue without blocking', () => {
   const materialClaim = { code: '*000#', operator: 'Example', claimScope: 'Balance lookup.' };
   const legacyManifest: LegacyManifestEntry[] = [{
-    recordId: 'content.example',
+    recordId: CANONICAL_EVERGREEN_ID,
     recordType: 'content',
     materialFingerprint: fingerprintMaterialClaim(materialClaim),
     baselineCommit: 'test-baseline',
     migrationVersion: 'test-v1'
   }];
-  const result = validateReleaseAData([], [content({ materialClaim, subjectKind: 'ussd_code', sourceRecordIds: [] })], { asOf: '2026-07-21', legacyManifest });
+  const result = validateReleaseAData([], [content({ materialClaim, subjectKind: 'evergreen_fact', sourceRecordIds: [] })], { asOf: '2026-07-21', legacyManifest });
   assert.equal(result.errors.length, 0);
   assert.ok(result.warnings.some((issue) => issue.code === 'legacy_evidence_backfill'));
-  assert.deepEqual(result.editorialBackfillIds, ['content.example']);
-  assert.deepEqual(result.eligibleRecordIds, ['content.example']);
+  assert.deepEqual(result.editorialBackfillIds, [CANONICAL_EVERGREEN_ID]);
+  assert.deepEqual(result.eligibleRecordIds, [CANONICAL_EVERGREEN_ID]);
 });
 
 test('overdue evidence fails for new evergreen and quick-answer records', () => {
@@ -159,7 +161,7 @@ const legacyClaim = {
 };
 
 const legacyEntry = (overrides: Partial<LegacyManifestEntry> = {}): LegacyManifestEntry => ({
-  recordId: 'ussd.example.legacy',
+  recordId: CANONICAL_USSD_ID,
   recordType: 'ussd_code',
   materialFingerprint: fingerprintMaterialClaim(legacyClaim),
   baselineCommit: 'test-baseline',
@@ -169,7 +171,7 @@ const legacyEntry = (overrides: Partial<LegacyManifestEntry> = {}): LegacyManife
 
 const legacyContent = (claim: Record<string, unknown> = legacyClaim, overrides: Partial<ContentEvidenceRecord> = {}): ContentEvidenceRecord => {
   const record: ContentEvidenceRecord = {
-    recordId: 'ussd.example.legacy',
+    recordId: CANONICAL_USSD_ID,
     recordType: 'ussd_code',
     materialClaim: claim,
     lifecycle: 'legacy_untouched',
@@ -177,7 +179,6 @@ const legacyContent = (claim: Record<string, unknown> = legacyClaim, overrides: 
     active: true,
     ...overrides
   };
-  testSubjectKinds.set(record, 'ussd_code');
   return record;
 };
 
@@ -217,13 +218,13 @@ test('manifest validation rejects duplicate IDs and malformed fingerprints', () 
 
 test('eligibility includes date boundaries and excludes future or elapsed windows', () => {
   const activeToday = source({ effectiveFrom: '2026-07-21', expiresAt: '2026-07-21' });
-  const eligible = validateReleaseAData([activeToday], [content({ recordId: 'content.today', subjectKind: 'promotion', sourceRecordIds: [activeToday.recordId] })], { asOf: '2026-07-21', legacyManifest: [] });
-  assert.deepEqual(eligible.eligibleRecordIds, ['content.today']);
+  const eligible = validateReleaseAData([activeToday], [content({ recordId: CANONICAL_PRICE_ID, subjectKind: 'price', sourceRecordIds: [activeToday.recordId] })], { asOf: '2026-07-21', legacyManifest: [] });
+  assert.deepEqual(eligible.eligibleRecordIds, [CANONICAL_PRICE_ID]);
 
-  const tomorrow = validateReleaseAData([source({ effectiveFrom: '2026-07-22' })], [content({ recordId: 'content.tomorrow', subjectKind: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
+  const tomorrow = validateReleaseAData([source({ effectiveFrom: '2026-07-22' })], [content({ recordId: CANONICAL_PRICE_ID, subjectKind: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
   assert.ok(tomorrow.errors.some((issue) => issue.code === 'source_not_yet_effective'));
 
-  const yesterday = validateReleaseAData([source({ expiresAt: '2026-07-20' })], [content({ recordId: 'content.yesterday', subjectKind: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
+  const yesterday = validateReleaseAData([source({ expiresAt: '2026-07-20' })], [content({ recordId: CANONICAL_PRICE_ID, subjectKind: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
   assert.ok(yesterday.errors.some((issue) => issue.code === 'source_expired'));
 });
 
@@ -284,8 +285,15 @@ test('exclusive active claim conflicts fail and comparison selection returns an 
   ], [], { asOf: '2026-07-21', legacyManifest: [] });
   assert.ok(conflict.errors.some((issue) => issue.code === 'exclusive_claim_scope_conflict'));
 
-  assert.deepEqual(selectEligibleSources([
+  const expiredSources = [
     source({ recordId: 'source.expired.one', expiresAt: '2026-07-20' }),
     source({ recordId: 'source.expired.two', expiresAt: '2026-07-19' })
-  ], 'price', '2026-07-21'), []);
+  ];
+  const priceRecord = content({ recordId: CANONICAL_PRICE_ID, subjectKind: 'price', sourceRecordIds: expiredSources.map((item) => item.recordId) });
+  const validationResult = validateReleaseAData(expiredSources, [priceRecord], { asOf: '2026-07-21', legacyManifest: [] });
+  assert.deepEqual(selectEligibleSources({
+    validationResult,
+    contentId: priceRecord.recordId,
+    candidateSourceIds: expiredSources.map((item) => item.recordId)
+  }), []);
 });

@@ -3,6 +3,7 @@ import {
   fingerprintMaterialClaim,
   type LegacyManifestEntry
 } from './wp1LegacyManifest';
+import { resolveWp1EvidenceSubjectKind } from '../data/wp1EvidenceSubjects';
 
 export const STABLE_ID_PATTERN = /^[a-z][a-z0-9]*(?:[._:-][a-z0-9]+)*$/;
 export const DATE_ONLY_TIMEZONE = 'Africa/Johannesburg';
@@ -14,7 +15,7 @@ export const SOURCE_CONFIDENCE = ['high', 'medium', 'low'] as const;
 export const RISK_CLASSES = Object.freeze(['promotion', 'price', 'ussd_code', 'device_steps', 'evergreen'] as const);
 export const EVIDENCE_RECORD_KINDS = Object.freeze(['ussd_code', 'price', 'promotion', 'device_step', 'evergreen_fact'] as const);
 export const REVIEW_OVERRIDE_APPROVERS = ['seo_lead', 'editorial_lead'] as const;
-export const EVIDENCE_POLICY_VERSION = 'wp1-release-a.4' as const;
+export const EVIDENCE_POLICY_VERSION = 'wp1-release-a.5' as const;
 const CONSERVATIVE_OVERRIDE_RISK_CLASS: RiskClass = 'promotion';
 
 export type SourceType = (typeof SOURCE_TYPES)[number];
@@ -98,60 +99,11 @@ export function getEvidenceRecordPolicy(kind: unknown): Readonly<EvidenceRecordP
   return isAllowed(EVIDENCE_RECORD_KINDS, kind) ? EVIDENCE_RECORD_POLICIES[kind] : null;
 }
 
-export interface EvidenceSubjectCollections {
-  readonly ussd_code?: readonly string[];
-  readonly price?: readonly string[];
-  readonly promotion?: readonly string[];
-  readonly device_step?: readonly string[];
-  readonly evergreen_fact?: readonly string[];
-}
-
 export interface EvidenceSubjectRegistration {
   readonly subjectKind: EvidenceSubjectKind;
 }
 
 export type EvidenceSubjectRegistry = Readonly<Record<string, EvidenceSubjectRegistration>>;
-
-const trustedEvidenceSubjectRegistries = new WeakSet<object>();
-
-/**
- * Creates the evidence-subject authority outside evidence records. Collection adapters
- * provide record IDs under a fixed collection key; records cannot choose their own kind.
- */
-export function createEvidenceSubjectRegistry(collections: EvidenceSubjectCollections): EvidenceSubjectRegistry {
-  if (!collections || typeof collections !== 'object' || Array.isArray(collections)) {
-    throw new TypeError('Evidence subject collections must be an object.');
-  }
-
-  const suppliedKinds = Object.keys(collections);
-  for (const suppliedKind of suppliedKinds) {
-    if (!isAllowed(EVIDENCE_RECORD_KINDS, suppliedKind)) {
-      throw new TypeError(`Unknown evidence subject collection: ${suppliedKind}`);
-    }
-  }
-
-  const registry: Record<string, EvidenceSubjectRegistration> = Object.create(null) as Record<string, EvidenceSubjectRegistration>;
-  for (const subjectKind of EVIDENCE_RECORD_KINDS) {
-    const recordIds = collections[subjectKind];
-    if (recordIds === undefined) continue;
-    if (!Array.isArray(recordIds)) {
-      throw new TypeError(`Evidence subject collection ${subjectKind} must be an array.`);
-    }
-    for (const recordId of recordIds) {
-      if (!isStableAnalyticsId(recordId)) {
-        throw new TypeError(`Invalid evidence subject ID: ${String(recordId)}`);
-      }
-      if (Object.hasOwn(registry, recordId)) {
-        throw new TypeError(`Evidence subject ID is registered more than once: ${recordId}`);
-      }
-      registry[recordId] = Object.freeze({ subjectKind });
-    }
-  }
-
-  const frozen = Object.freeze(registry);
-  trustedEvidenceSubjectRegistries.add(frozen);
-  return frozen;
-}
 
 const RECORD_TYPE_ALWAYS_STRICT: Readonly<Record<ContentEvidenceRecordType, boolean>> = {
   ussd_code: false,
@@ -190,6 +142,26 @@ export interface ValidationResult {
   lifecycleCounts: Record<RecordLifecycle, number>;
   dependencyChains: Record<string, string[][]>;
 }
+
+interface ResolvedEvidenceContext {
+  readonly policy: Readonly<EvidenceRecordPolicy>;
+  readonly strict: boolean;
+  readonly valid: boolean;
+}
+
+interface TrustedValidationContext {
+  readonly asOf: string;
+  readonly sourcesById: ReadonlyMap<string, SourceRecord>;
+  readonly evidenceByContentId: ReadonlyMap<string, ResolvedEvidenceContext>;
+}
+
+export interface EligibleSourceSelectionRequest {
+  readonly validationResult: ValidationResult;
+  readonly contentId: string;
+  readonly candidateSourceIds: readonly string[];
+}
+
+const trustedValidationContexts = new WeakMap<object, TrustedValidationContext>();
 
 const DAY_MS = 86_400_000;
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -482,32 +454,51 @@ function evaluateSourceDependencyTree(
   };
 }
 
-export function evaluateSourceEligibility(
+function evaluateSourceEligibility(
   source: SourceRecord,
-  recordKind: EvidenceRecordKind,
+  context: ResolvedEvidenceContext,
   asOf: string,
   allSources: readonly SourceRecord[] = [source]
 ): SourceEligibility {
-  const policy = getEvidenceRecordPolicy(recordKind);
-  if (!policy) {
+  if (!context.valid) {
     return {
       eligible: false,
-      reasonCodes: ['invalid_record_kind'],
+      reasonCodes: ['invalid_evidence_context'],
       reviewDueAt: null,
       dependencyFailures: []
     };
   }
   const byId = new Map(allSources.map((candidate) => [candidate.recordId, candidate]));
-  return evaluateSourceDependencyTree(source, byId, policy, asOf, policy.alwaysStrict);
+  return evaluateSourceDependencyTree(source, byId, context.policy, asOf, context.strict);
 }
 
-/** Safe selection primitive: direct and transitive evidence must all be eligible. */
-export function selectEligibleSources(
-  sources: readonly SourceRecord[],
-  recordKind: EvidenceRecordKind,
-  asOf: string
-): SourceRecord[] {
-  return sources.filter((source) => evaluateSourceEligibility(source, recordKind, asOf, sources).eligible);
+/**
+ * Selects from the exact policy/lifecycle context produced by validation. Malformed,
+ * untrusted or policy-bearing caller input fails closed to an empty safe state.
+ */
+export function selectEligibleSources(request: EligibleSourceSelectionRequest): SourceRecord[] {
+  try {
+    if (arguments.length !== 1 || !request || typeof request !== 'object' || Array.isArray(request)) return [];
+    const suppliedKeys = Object.keys(request as object);
+    const allowedKeys = ['validationResult', 'contentId', 'candidateSourceIds'] as const;
+    if (suppliedKeys.length !== allowedKeys.length || suppliedKeys.some((key) => !allowedKeys.includes(key as (typeof allowedKeys)[number]))) {
+      return [];
+    }
+    if (!isStableAnalyticsId(request.contentId) || !Array.isArray(request.candidateSourceIds)) return [];
+    if (request.candidateSourceIds.some((sourceId) => !isStableAnalyticsId(sourceId))) return [];
+
+    const trusted = trustedValidationContexts.get(request.validationResult as object);
+    const evidence = trusted?.evidenceByContentId.get(request.contentId);
+    if (!trusted || !evidence?.valid) return [];
+
+    const candidates = request.candidateSourceIds
+      .map((sourceId) => trusted.sourcesById.get(sourceId))
+      .filter((source): source is SourceRecord => Boolean(source));
+    const allSources = [...trusted.sourcesById.values()];
+    return candidates.filter((source) => evaluateSourceEligibility(source, evidence, trusted.asOf, allSources).eligible);
+  } catch {
+    return [];
+  }
 }
 
 function validateReferenceGraph(
@@ -568,8 +559,6 @@ function dependencyChains(sourceId: string, byId: ReadonlyMap<string, SourceReco
 
 function resolveContentRecordPolicy(
   record: ContentEvidenceRecord,
-  evidenceSubjects: EvidenceSubjectRegistry,
-  registryTrusted: boolean,
   issues: ValidationIssue[]
 ): { subjectKind: EvidenceSubjectKind; policy: Readonly<EvidenceRecordPolicy>; valid: boolean } {
   let valid = true;
@@ -586,33 +575,33 @@ function resolveContentRecordPolicy(
     }
   }
 
-  const registration = registryTrusted ? evidenceSubjects[record.recordId] : undefined;
-  const policy = getEvidenceRecordPolicy(registration?.subjectKind);
-  if (!registration || !policy) {
+  const subjectKind = resolveWp1EvidenceSubjectKind(record.recordId);
+  const policy = getEvidenceRecordPolicy(subjectKind);
+  if (!subjectKind || !policy) {
     issues.push({
       severity: 'error',
       code: 'missing_evidence_subject',
       recordId: record.recordId,
-      message: 'Record is not registered by a trusted collection-owned evidence-subject registry.'
+      message: 'Record is not registered by the canonical collection-owned evidence-subject authority.'
     });
     return { subjectKind: 'promotion', policy: EVIDENCE_RECORD_POLICIES.promotion, valid: false };
   }
 
   const compatibleRecordType =
-    (record.recordType !== 'ussd_code' || registration.subjectKind === 'ussd_code') &&
-    (record.recordType !== 'operator' || registration.subjectKind === 'evergreen_fact');
+    (record.recordType !== 'ussd_code' || subjectKind === 'ussd_code') &&
+    (record.recordType !== 'operator' || subjectKind === 'evergreen_fact');
   if (!compatibleRecordType) {
     issues.push({
       severity: 'error',
       code: 'incompatible_record_kind',
       recordId: record.recordId,
-      message: `Record type ${record.recordType} cannot use evidence kind ${registration.subjectKind}.`
+      message: `Record type ${record.recordType} cannot use evidence kind ${subjectKind}.`
     });
     valid = false;
   }
 
   return {
-    subjectKind: registration.subjectKind,
+    subjectKind,
     policy: {
       ...policy,
       alwaysStrict: policy.alwaysStrict || RECORD_TYPE_ALWAYS_STRICT[record.recordType]
@@ -624,7 +613,7 @@ function resolveContentRecordPolicy(
 export function validateReleaseAData(
   sourceRecords: SourceRecord[],
   contentRecords: ContentEvidenceRecord[],
-  options: { asOf: string; evidenceSubjects: EvidenceSubjectRegistry; legacyManifest?: readonly LegacyManifestEntry[]; requireCompleteLegacyManifest?: boolean }
+  options: { asOf: string; legacyManifest?: readonly LegacyManifestEntry[]; requireCompleteLegacyManifest?: boolean }
 ): ValidationResult {
   const issues: ValidationIssue[] = [];
   const manifest = options.legacyManifest ?? WP1_LEGACY_MANIFEST;
@@ -642,15 +631,7 @@ export function validateReleaseAData(
   const lifecycleByRecordId: Record<string, RecordLifecycle> = {};
   const lifecycleCounts: Record<RecordLifecycle, number> = { new: 0, legacy_edited: 0, legacy_untouched: 0 };
   const auditChains: Record<string, string[][]> = {};
-  const registryTrusted = Boolean(options.evidenceSubjects && trustedEvidenceSubjectRegistries.has(options.evidenceSubjects as object));
-  if (!registryTrusted) {
-    issues.push({
-      severity: 'error',
-      code: 'invalid_evidence_subject_registry',
-      recordId: 'evidence.subjects',
-      message: 'Evidence subjects must come from the canonical registry factory.'
-    });
-  }
+  const evidenceByContentId = new Map<string, ResolvedEvidenceContext>();
 
   if (options.requireCompleteLegacyManifest) {
     const contentIds = new Set(contentRecords.map((record) => record.recordId));
@@ -684,7 +665,7 @@ export function validateReleaseAData(
     lifecycleByRecordId[record.recordId] = lifecycle;
     lifecycleCounts[lifecycle] += 1;
 
-    const resolvedPolicy = resolveContentRecordPolicy(record, options.evidenceSubjects, registryTrusted, issues);
+    const resolvedPolicy = resolveContentRecordPolicy(record, issues);
     const recordPolicy = resolvedPolicy.policy;
     if (!resolvedPolicy.valid) excluded.add(record.recordId);
     const strict =
@@ -692,6 +673,7 @@ export function validateReleaseAData(
       lifecycle === 'legacy_edited' ||
       record.powersQuickAnswer === true ||
       recordPolicy.alwaysStrict;
+    evidenceByContentId.set(record.recordId, { policy: recordPolicy, strict, valid: resolvedPolicy.valid });
     const referencedSources = record.sourceRecordIds
       .map((sourceId) => sourcesById.get(sourceId))
       .filter((source): source is SourceRecord => Boolean(source));
@@ -754,7 +736,7 @@ export function validateReleaseAData(
   const warnings = issues.filter((issue) => issue.severity === 'warning');
   const eligibleRecordIds = contentRecords.map((record) => record.recordId).filter((id) => !excluded.has(id));
 
-  return {
+  const result: ValidationResult = {
     errors,
     warnings,
     editorialBackfillIds: [...backfill].sort(),
@@ -764,4 +746,25 @@ export function validateReleaseAData(
     lifecycleCounts,
     dependencyChains: auditChains
   };
+  const finalEvidenceByContentId = new Map(
+    [...evidenceByContentId].map(([recordId, context]) => [
+      recordId,
+      { ...context, valid: context.valid && !excluded.has(recordId) }
+    ] as const)
+  );
+  const immutableSourcesById = new Map(sourceRecords.map((source) => [
+    source.recordId,
+    Object.freeze({
+      ...source,
+      derivedFromSourceIds: source.derivedFromSourceIds ? Object.freeze([...source.derivedFromSourceIds]) : undefined,
+      conflictsWith: source.conflictsWith ? Object.freeze([...source.conflictsWith]) : undefined,
+      supersedes: source.supersedes ? Object.freeze([...source.supersedes]) : undefined
+    }) as SourceRecord
+  ] as const));
+  trustedValidationContexts.set(result, {
+    asOf: options.asOf,
+    sourcesById: immutableSourcesById,
+    evidenceByContentId: finalEvidenceByContentId
+  });
+  return result;
 }

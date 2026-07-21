@@ -1,9 +1,6 @@
 import { ussdRepository } from './ussd';
-import {
-  createEvidenceSubjectRegistry,
-  type ContentEvidenceRecord,
-  type SourceRecord
-} from '../seo/wp1SourceFreshness';
+import { WP1_EVIDENCE_SUBJECTS } from './wp1EvidenceSubjects';
+import { type ContentEvidenceRecord, type SourceRecord } from '../seo/wp1SourceFreshness';
 
 export const wp1SourceRecords: SourceRecord[] = [
   {
@@ -95,11 +92,8 @@ const operatorEvidenceRecords: ContentEvidenceRecord[] = operators.map((operator
   active: true
 }));
 
-/** Collection-owned authority: semantic kinds are derived here, never from evidence records. */
-export const wp1EvidenceSubjects = createEvidenceSubjectRegistry({
-  ussd_code: ussdEvidenceRecords.map((record) => record.recordId),
-  evergreen_fact: operatorEvidenceRecords.map((record) => record.recordId)
-});
+/** Read-only compatibility export; trusted bindings are constructed privately by their owning collections. */
+export const wp1EvidenceSubjects = WP1_EVIDENCE_SUBJECTS;
 
 export const wp1ContentRecords: ContentEvidenceRecord[] = [
   ...ussdEvidenceRecords,

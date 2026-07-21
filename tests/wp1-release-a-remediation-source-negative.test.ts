@@ -1,16 +1,16 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import * as sourceFreshness from '../src/seo/wp1SourceFreshness';
 import {
-  createEvidenceSubjectRegistry,
   EVIDENCE_POLICY_VERSION,
   getEvidenceRecordPolicy,
   type ContentEvidenceRecord,
-  type EvidenceSubjectCollections,
   type EvidenceSubjectKind,
   type SourceRecord,
   selectEligibleSources,
   validateReleaseAData as validateReleaseADataCore
 } from '../src/seo/wp1SourceFreshness';
+import { WP1_EVIDENCE_SUBJECTS } from '../src/data/wp1EvidenceSubjects';
 import { fingerprintMaterialClaim } from '../src/seo/wp1LegacyManifest';
 
 const source = (overrides: Partial<SourceRecord> = {}): SourceRecord => ({
@@ -26,37 +26,56 @@ const source = (overrides: Partial<SourceRecord> = {}): SourceRecord => ({
 });
 
 type TestContentOverrides = Partial<ContentEvidenceRecord> & { subjectKind?: EvidenceSubjectKind };
-const testSubjectKinds = new WeakMap<ContentEvidenceRecord, EvidenceSubjectKind>();
+
+const canonicalSubjectId = (kind: EvidenceSubjectKind): string => {
+  const entry = Object.entries(WP1_EVIDENCE_SUBJECTS).find(([, registration]) => registration.subjectKind === kind);
+  if (!entry) throw new Error(`No canonical ${kind} subject is available to this contract test.`);
+  return entry[0];
+};
+const CANONICAL_PRICE_ID = canonicalSubjectId('price');
+const CANONICAL_USSD_ID = canonicalSubjectId('ussd_code');
+const CANONICAL_EVERGREEN_ID = canonicalSubjectId('evergreen_fact');
 
 const content = (overrides: TestContentOverrides = {}): ContentEvidenceRecord => {
   const { subjectKind = 'ussd_code', ...recordOverrides } = overrides;
-  const record: ContentEvidenceRecord = {
-    recordId: 'ussd.example.new_record',
+  const defaultRecordId = subjectKind === 'price'
+    ? CANONICAL_PRICE_ID
+    : subjectKind === 'evergreen_fact'
+      ? CANONICAL_EVERGREEN_ID
+      : subjectKind === 'ussd_code'
+        ? 'ussd.example.new_record'
+        : `${subjectKind}.unregistered_contract_subject`;
+  return {
+    recordId: defaultRecordId,
     recordType: 'ussd_code',
     lifecycle: 'legacy_untouched',
     sourceRecordIds: [],
     active: true,
     ...recordOverrides
   };
-  testSubjectKinds.set(record, subjectKind);
-  return record;
 };
 
-type TestValidationOptions = Omit<Parameters<typeof validateReleaseADataCore>[2], 'evidenceSubjects'>;
-const subjectsFor = (records: readonly ContentEvidenceRecord[]) => {
-  const collections: EvidenceSubjectCollections = {};
-  for (const subjectKind of ['ussd_code', 'price', 'promotion', 'device_step', 'evergreen_fact'] as const) {
-    const recordIds = records.filter((record) => testSubjectKinds.get(record) === subjectKind).map((record) => record.recordId);
-    if (recordIds.length > 0) Object.assign(collections, { [subjectKind]: recordIds });
-  }
-  return createEvidenceSubjectRegistry(collections);
-};
+type TestValidationOptions = Parameters<typeof validateReleaseADataCore>[2];
 
 const validateReleaseAData = (
   sources: SourceRecord[],
   records: ContentEvidenceRecord[],
   options: TestValidationOptions
-) => validateReleaseADataCore(sources, records, { ...options, evidenceSubjects: subjectsFor(records) });
+) => validateReleaseADataCore(sources, records, options);
+
+const selectForCanonicalPrice = (sources: SourceRecord[]): SourceRecord[] => {
+  const record = content({
+    recordId: CANONICAL_PRICE_ID,
+    recordType: 'content',
+    sourceRecordIds: sources.map((candidate) => candidate.recordId)
+  });
+  const validationResult = validateReleaseAData(sources, [record], { asOf: '2026-07-21', legacyManifest: [] });
+  return selectEligibleSources({
+    validationResult,
+    contentId: record.recordId,
+    candidateSourceIds: sources.map((candidate) => candidate.recordId)
+  });
+};
 
 const compileTimeCallerKindBypass: ContentEvidenceRecord = {
   recordId: 'content.compile_time_bypass',
@@ -87,7 +106,7 @@ test('a new USSD record cannot bypass strict evidence by declaring evergreen ris
   assert.deepEqual(result.excludedRecordIds, ['ussd.example.new_record']);
 });
 
-test('collection-owned subject kinds override caller policy fields for price, promotion and USSD records', () => {
+test('caller policy fields and unregistered semantic aliases fail closed', () => {
   const records = [
     content({ recordId: 'content.price', recordType: 'content', subjectKind: 'price' }),
     content({ recordId: 'content.promotion', recordType: 'content', subjectKind: 'promotion' }),
@@ -98,22 +117,18 @@ test('collection-owned subject kinds override caller policy fields for price, pr
   const result = validateReleaseAData([], records, { asOf: '2026-07-21', legacyManifest: [] });
 
   assert.equal(result.errors.filter((issue) => issue.code === 'caller_evidence_policy_forbidden').length, 4);
-  assert.ok(result.errors.some((issue) => issue.code === 'incompatible_record_kind' && issue.recordId === 'content.ussd_wrong_kind'));
+  assert.equal(result.errors.filter((issue) => issue.code === 'missing_evidence_subject').length, 3);
   assert.deepEqual(result.excludedRecordIds, records.map((record) => record.recordId).sort());
 });
 
-test('unknown subject collections and untrusted registries fail closed at runtime', () => {
-  assert.throws(
-    () => createEvidenceSubjectRegistry({ unknown_fact: ['ussd.example.new_record'] } as never),
-    /Unknown evidence subject collection/
-  );
+test('there is no exported trusted-registry constructor and caller registries fail closed at runtime', () => {
+  assert.equal('createEvidenceSubjectRegistry' in sourceFreshness, false);
   const record = content({ recordType: 'content' });
-  const result = validateReleaseADataCore([], [record], {
+  const result = Reflect.apply(validateReleaseADataCore, undefined, [[], [record], {
     asOf: '2026-07-21',
     legacyManifest: [],
     evidenceSubjects: { [record.recordId]: { subjectKind: 'evergreen_fact' } } as never
-  });
-  assert.ok(result.errors.some((issue) => issue.code === 'invalid_evidence_subject_registry'));
+  }]) as ReturnType<typeof validateReleaseADataCore>;
   assert.ok(result.errors.some((issue) => issue.code === 'missing_evidence_subject'));
   assert.deepEqual(result.excludedRecordIds, ['ussd.example.new_record']);
 });
@@ -141,7 +156,7 @@ test('an edited legacy USSD record cannot relabel itself as evergreen', () => {
 
 test('a valid new evergreen fact remains strict', () => {
   const record = content({
-    recordId: 'content.general_fact',
+    recordId: CANONICAL_EVERGREEN_ID,
     recordType: 'content',
     subjectKind: 'evergreen_fact'
   });
@@ -167,9 +182,9 @@ test('a USSD record cannot borrow the evergreen review interval', () => {
 });
 
 test('an always-strict record policy applies even to an untouched legacy record', () => {
-  const materialClaim = { priceId: 'price.example.legacy' };
+  const materialClaim = { priceId: CANONICAL_PRICE_ID };
   const record = content({
-    recordId: 'price.example.legacy',
+    recordId: CANONICAL_PRICE_ID,
     recordType: 'content',
     subjectKind: 'price',
     powersQuickAnswer: false,
@@ -192,7 +207,7 @@ test('an always-strict record policy applies even to an untouched legacy record'
 });
 
 test('the versioned evidence policy is deeply frozen', () => {
-  assert.equal(EVIDENCE_POLICY_VERSION, 'wp1-release-a.4');
+  assert.equal(EVIDENCE_POLICY_VERSION, 'wp1-release-a.5');
   const policy = getEvidenceRecordPolicy('ussd_code');
   assert.ok(policy);
   assert.ok(Object.isFrozen(policy));
@@ -200,9 +215,8 @@ test('the versioned evidence policy is deeply frozen', () => {
     (policy as { riskClass: string }).riskClass = 'evergreen';
   }, TypeError);
   assert.equal(getEvidenceRecordPolicy('ussd_code')?.riskClass, 'ussd_code');
-  const registry = createEvidenceSubjectRegistry({ ussd_code: ['ussd.example.immutable'] });
-  assert.ok(Object.isFrozen(registry));
-  assert.ok(Object.isFrozen(registry['ussd.example.immutable']));
+  assert.ok(Object.isFrozen(WP1_EVIDENCE_SUBJECTS));
+  assert.ok(Object.isFrozen(WP1_EVIDENCE_SUBJECTS[CANONICAL_USSD_ID]));
 });
 
 test('price, promotion and device subjects cannot masquerade as generic evergreen content', () => {
@@ -222,27 +236,52 @@ test('price, promotion and device subjects cannot masquerade as generic evergree
   });
 
   assert.equal(result.errors.filter((issue) => issue.code === 'caller_evidence_policy_forbidden').length, 9);
-  assert.ok(result.errors.some((issue) => issue.recordId === 'content.price' && issue.code === 'source_review_overdue'));
-  assert.ok(result.errors.some((issue) => issue.recordId === 'content.promotion' && issue.code === 'promotion_effective_from_required'));
-  assert.ok(result.errors.some((issue) => issue.recordId === 'content.promotion' && issue.code === 'promotion_expiry_required'));
-  assert.ok(result.errors.some((issue) => issue.recordId === 'content.device' && issue.code === 'source_review_overdue'));
+  for (const record of records) {
+    assert.ok(result.errors.some((issue) => issue.recordId === record.recordId && issue.code === 'missing_evidence_subject'));
+    assert.deepEqual(selectEligibleSources({
+      validationResult: result,
+      contentId: record.recordId,
+      candidateSourceIds: record.sourceRecordIds
+    }), []);
+  }
   assert.deepEqual(result.excludedRecordIds, records.map((record) => record.recordId).sort());
 });
 
-test('source selection always enforces canonical promotion windows', () => {
-  const noWindow = source({ recordId: 'source.promotion.no_window' });
-  assert.deepEqual(selectEligibleSources([noWindow], 'promotion', '2026-07-21'), []);
+test('the canonical promotion policy always requires effective and expiry windows', () => {
+  const policy = getEvidenceRecordPolicy('promotion');
+  assert.equal(policy?.requiresEffectiveFrom, true);
+  assert.equal(policy?.requiresExpiry, true);
 });
 
-test('legacy caller flags cannot disable canonical price strictness during selection', () => {
+test('malformed selector policy fields and extra positional arguments fail closed', () => {
   const lowConfidence = source({ recordId: 'source.price.low_confidence', confidence: 'low' });
-  const selectedWithLegacyCallerFlag = Reflect.apply(selectEligibleSources, undefined, [
-    [lowConfidence],
-    'price',
-    '2026-07-21',
-    { strict: false, promotion: false }
-  ]) as SourceRecord[];
-  assert.deepEqual(selectedWithLegacyCallerFlag, []);
+  const priceRecord = content({ recordId: CANONICAL_PRICE_ID, recordType: 'content', sourceRecordIds: [lowConfidence.recordId] });
+  const validationResult = validateReleaseAData([lowConfidence], [priceRecord], { asOf: '2026-07-21', legacyManifest: [] });
+  const validRequest = { validationResult, contentId: priceRecord.recordId, candidateSourceIds: [lowConfidence.recordId] };
+  assert.deepEqual(Reflect.apply(selectEligibleSources, undefined, [{ ...validRequest, strict: false, promotion: false }]) as SourceRecord[], []);
+  assert.deepEqual(Reflect.apply(selectEligibleSources, undefined, [validRequest, { strict: false }]) as SourceRecord[], []);
+  lowConfidence.confidence = 'high';
+  assert.deepEqual(selectEligibleSources(validRequest), []);
+  const throwingRequest = new Proxy({}, { ownKeys: () => { throw new Error('malformed selector input'); } });
+  assert.deepEqual(Reflect.apply(selectEligibleSources, undefined, [throwingRequest]) as SourceRecord[], []);
+});
+
+test('selection reuses validation lifecycle strictness for a new USSD record', () => {
+  const overdue = source({ recordId: 'source.ussd.overdue', checkedAt: '2026-03-01' });
+  const record = content({
+    recordId: CANONICAL_USSD_ID,
+    recordType: 'ussd_code',
+    sourceRecordIds: [overdue.recordId]
+  });
+  const validationResult = validateReleaseAData([overdue], [record], { asOf: '2026-07-21', legacyManifest: [] });
+
+  assert.equal(validationResult.lifecycleByRecordId[record.recordId], 'new');
+  assert.ok(validationResult.errors.some((issue) => issue.recordId === record.recordId && issue.code === 'source_review_overdue'));
+  assert.deepEqual(selectEligibleSources({
+    validationResult,
+    contentId: record.recordId,
+    candidateSourceIds: [overdue.recordId]
+  }), []);
 });
 
 test('future-effective quick-answer evidence is ineligible', () => {
@@ -366,7 +405,7 @@ test('recursive selection applies strict future, confidence and review rules to 
       verificationMethod: 'derived',
       derivedFromSourceIds: [middle.recordId]
     });
-    const selectedIds = selectEligibleSources([base, middle, top], 'price', '2026-07-21')
+    const selectedIds = selectForCanonicalPrice([base, middle, top])
       .map((candidate) => candidate.recordId);
     assert.ok(!selectedIds.includes(middle.recordId));
     assert.ok(!selectedIds.includes(top.recordId));
@@ -387,7 +426,7 @@ test('recursive selection retains a fully eligible three-level chain', () => {
   });
 
   assert.deepEqual(
-    selectEligibleSources([base, middle, top], 'price', '2026-07-21').map((candidate) => candidate.recordId),
+    selectForCanonicalPrice([base, middle, top]).map((candidate) => candidate.recordId),
     [base.recordId, middle.recordId, top.recordId]
   );
 });
@@ -408,11 +447,7 @@ test('source selection excludes every derived source above an expired transitive
     derivedFromSourceIds: [middle.recordId]
   });
 
-  const selected = selectEligibleSources(
-    [expiredBase, middle, top],
-    'price',
-    '2026-07-21'
-  );
+  const selected = selectForCanonicalPrice([expiredBase, middle, top]);
 
   assert.deepEqual(selected, []);
 });
