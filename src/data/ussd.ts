@@ -1,6 +1,6 @@
 import { USSDEntry } from '../types';
 
-export const ussdRepository: USSDEntry[] = [
+export const ussdRepository = [
   // VODACOM
   {
     id: 'ussd.vodacom.balance_main',
@@ -291,4 +291,4 @@ export const ussdRepository: USSDEntry[] = [
     note: 'Rain does not use traditional USSD codes for management.',
     dialable: false
   }
-];
+] as const satisfies readonly USSDEntry[];

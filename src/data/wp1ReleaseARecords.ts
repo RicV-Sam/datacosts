@@ -77,7 +77,7 @@ export const wp1ContentRecords: ContentEvidenceRecord[] = [
       productType: null,
       status: record.status,
       dialable: record.dialable ?? null,
-      note: record.note ?? null
+      note: 'note' in record ? record.note : null
     },
     sourceRecordIds: [] as string[],
     active: true

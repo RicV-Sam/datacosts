@@ -9,10 +9,10 @@ export interface UssdCodeItem {
 
 export interface UssdNetwork {
   name: string;
-  codes: UssdCodeItem[];
+  codes: readonly UssdCodeItem[];
 }
 
-export const ussdCodesByNetwork: Record<UssdNetworkKey, UssdNetwork> = {
+export const ussdCodesByNetwork = {
   mtn: {
     name: 'MTN',
     codes: [
@@ -53,7 +53,7 @@ export const ussdCodesByNetwork: Record<UssdNetworkKey, UssdNetwork> = {
       { id: 'ussd.telkom.check_number', codeType: 'account', label: 'Check Number', code: '*1#' }
     ]
   }
-};
+} as const satisfies Record<UssdNetworkKey, UssdNetwork>;
 
 export const ussdNetworkOrder: UssdNetworkKey[] = ['mtn', 'vodacom', 'cellc', 'telkom'];
 

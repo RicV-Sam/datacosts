@@ -9,6 +9,7 @@ import { TrustPanel } from '../components/TrustPanel';
 import { ussdRepository } from '../data/ussd';
 import { NavigateFunction, USSDEntry } from '../types';
 import { copyUssdCodeToClipboard, toAnalyticsOperator, toUssdCodeType } from '../utils/tracking';
+import { registeredUssdCodeId } from '../seo/wp1AnalyticsRegistry';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_ALT,
@@ -245,7 +246,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     const success = await copyUssdCodeToClipboard(entry.code, {
       operator: toAnalyticsOperator(entry.network),
       codeType: toUssdCodeType(`${entry.category} ${entry.action}`),
-      codeId: entry.id,
+      codeId: registeredUssdCodeId(entry.id),
       placement: 'ussd_hub'
     });
     if (!success) return;

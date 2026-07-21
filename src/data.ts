@@ -911,7 +911,7 @@ export interface USSDCode {
   category: 'Balance' | 'Data' | 'Settings' | 'Other';
 }
 
-export const ussdCodes: USSDCode[] = [
+export const ussdCodes = [
   { id: 'ussd.vodacom.balance_main', network: 'Vodacom', purpose: 'Check Balance', code: '*135#', category: 'Balance' },
   { id: 'ussd.vodacom.buy_data', network: 'Vodacom', purpose: 'Buy Data', code: '*135*2#', category: 'Data' },
   { id: 'ussd.vodacom.transfer_airtime_data', network: 'Vodacom', purpose: 'Transfer Data', code: '*135*1002#', category: 'Data' },
@@ -925,7 +925,7 @@ export const ussdCodes: USSDCode[] = [
   { id: 'ussd.cellc.balance_main', network: 'Cell C', purpose: 'Check Balance', code: '*101#', category: 'Balance' },
   { id: 'ussd.cellc.buy_data', network: 'Cell C', purpose: 'Buy Data', code: '*147#', category: 'Data' },
   { id: 'ussd.rain.app_only', network: 'Rain', purpose: 'Check Balance', code: 'N/A (App only)', category: 'Balance' },
-];
+] as const satisfies readonly USSDCode[];
 
 export const networkStats: NetworkStats[] = [
   {

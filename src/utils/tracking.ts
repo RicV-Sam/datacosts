@@ -1,7 +1,14 @@
 import { NetworkName } from '../types';
 import { networkMetadata } from '../data';
 import { normaliseCanonicalPath } from '../seo/wp1Measurement';
-import { isStableAnalyticsId } from '../seo/wp1SourceFreshness';
+import { SITE_ORIGIN } from '../seo/siteConstants';
+import {
+  assertRegisteredQuickAnswerId,
+  assertRegisteredUssdCodeId,
+  type RegisteredQuickAnswerId,
+  type RegisteredUssdCodeId
+} from '../seo/wp1AnalyticsRegistry';
+import { refreshAnalyticsConsent } from './analyticsConsent';
 
 const UTM_PARAMS = '?utm_source=datacost&utm_medium=referral&utm_campaign=datacost_tool';
 
@@ -24,18 +31,18 @@ export type DestinationType = (typeof DESTINATION_TYPES)[number];
 export interface CopyUssdCodeEvent {
   operator: AnalyticsOperator;
   codeType: UssdCodeType;
-  codeId: string;
+  codeId: RegisteredUssdCodeId;
   placement: UssdCopyPlacement;
-  canonicalPath?: string;
+  canonicalPath?: never;
 }
 
 export interface QuickAnswerActionEvent {
-  answerId: string;
+  answerId: RegisteredQuickAnswerId;
   operator: AnalyticsOperator;
   actionType: QuickAnswerActionType;
   placement: QuickAnswerPlacement;
   destinationType?: DestinationType;
-  canonicalPath?: string;
+  canonicalPath?: never;
 }
 
 declare global {
@@ -57,25 +64,8 @@ function isPrerenderSnapshot(): boolean {
   );
 }
 
-function dataLayerAnalyticsConsent(): 'granted' | 'denied' | 'unknown' {
-  if (typeof window === 'undefined') return 'unknown';
-  if (window.__DATACOST_ANALYTICS_CONSENT) return window.__DATACOST_ANALYTICS_CONSENT;
-  if (document.documentElement.dataset.analyticsConsent === 'denied') return 'denied';
-  if (document.documentElement.dataset.analyticsConsent === 'granted') return 'granted';
-
-  let latest: 'granted' | 'denied' | 'unknown' = 'unknown';
-  for (const item of window.dataLayer ?? []) {
-    const values = Array.from((item ?? []) as ArrayLike<unknown>);
-    if (values[0] !== 'consent' || (values[1] !== 'default' && values[1] !== 'update')) continue;
-    const consent = values[2] as { analytics_storage?: unknown } | undefined;
-    if (consent?.analytics_storage === 'denied') latest = 'denied';
-    if (consent?.analytics_storage === 'granted') latest = 'granted';
-  }
-  return latest;
-}
-
 export function canSendAnalytics(): boolean {
-  return !isPrerenderSnapshot() && dataLayerAnalyticsConsent() !== 'denied';
+  return !isPrerenderSnapshot() && refreshAnalyticsConsent() !== 'denied';
 }
 
 export function trackEvent(eventName: string, params: TrackingParams = {}): void {
@@ -88,9 +78,26 @@ function approvedValue<T extends readonly string[]>(values: T, value: unknown, f
   return value;
 }
 
-function canonicalPath(value?: string): string {
-  const input = value ?? (typeof window === 'undefined' ? '/' : window.location.pathname);
-  return normaliseCanonicalPath(input);
+function approvedCanonicalPath(value: string | undefined): string | null {
+  if (!value) return null;
+  try {
+    const parsed = new URL(value, SITE_ORIGIN);
+    if (parsed.origin !== SITE_ORIGIN) return null;
+    return normaliseCanonicalPath(parsed.pathname);
+  } catch {
+    return null;
+  }
+}
+
+function canonicalPath(): string {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return '/';
+  const canonicalElement = typeof document.querySelector === 'function'
+    ? document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    : null;
+  const renderedCanonical = approvedCanonicalPath(canonicalElement?.href ?? canonicalElement?.getAttribute('href') ?? undefined);
+  if (renderedCanonical) return renderedCanonical;
+  const locationValue = window.location.href ?? `${SITE_ORIGIN}${window.location.pathname ?? '/'}`;
+  return approvedCanonicalPath(locationValue) ?? '/';
 }
 
 export function toAnalyticsOperator(network: NetworkName): AnalyticsOperator {
@@ -111,9 +118,9 @@ export function toUssdCodeType(value: string): UssdCodeType {
 }
 
 export function trackCopyUssdCode(event: CopyUssdCodeEvent): void {
-  if (!isStableAnalyticsId(event.codeId)) throw new Error('Invalid code_id');
+  assertRegisteredUssdCodeId(event.codeId);
   trackEvent('copy_ussd_code', {
-    canonical_path: canonicalPath(event.canonicalPath),
+    canonical_path: canonicalPath(),
     operator: approvedValue(ANALYTICS_OPERATORS, event.operator, 'operator'),
     code_type: approvedValue(USSD_CODE_TYPES, event.codeType, 'code_type'),
     code_id: event.codeId,
@@ -122,9 +129,9 @@ export function trackCopyUssdCode(event: CopyUssdCodeEvent): void {
 }
 
 export function trackQuickAnswerAction(event: QuickAnswerActionEvent): void {
-  if (!isStableAnalyticsId(event.answerId)) throw new Error('Invalid answer_id');
+  assertRegisteredQuickAnswerId(event.answerId);
   trackEvent('quick_answer_action', {
-    canonical_path: canonicalPath(event.canonicalPath),
+    canonical_path: canonicalPath(),
     answer_id: event.answerId,
     operator: approvedValue(ANALYTICS_OPERATORS, event.operator, 'operator'),
     action_type: approvedValue(QUICK_ANSWER_ACTION_TYPES, event.actionType, 'action_type'),

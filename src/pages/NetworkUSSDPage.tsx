@@ -8,6 +8,7 @@ import { NavigateFunction, USSDEntry } from '../types';
 import { ussdRepository } from '../data/ussd';
 import { Copy, CheckCircle2, Phone, ArrowLeft, Search, HelpCircle } from 'lucide-react';
 import { copyUssdCodeToClipboard, toAnalyticsOperator, toUssdCodeType } from '../utils/tracking';
+import { registeredUssdCodeId } from '../seo/wp1AnalyticsRegistry';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
@@ -352,7 +353,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
     const success = await copyUssdCodeToClipboard(entry.code, {
       operator: toAnalyticsOperator(entry.network),
       codeType: toUssdCodeType(`${entry.category} ${entry.action}`),
-      codeId: entry.id,
+      codeId: registeredUssdCodeId(entry.id),
       placement: 'network_ussd_page'
     });
     if (!success) return;

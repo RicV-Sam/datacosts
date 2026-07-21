@@ -16,14 +16,14 @@ function installBrowser(options: { clipboardFails?: boolean; consent?: 'granted'
   const events: CapturedEvent[] = [];
   const writes: string[] = [];
   const browserWindow = {
-    location: { pathname: '/ussd-codes-south-africa/index.html' },
+    location: { href: 'https://datacost.co.za/ussd-codes-south-africa/index.html', pathname: '/ussd-codes-south-africa/index.html' },
     dataLayer: [],
     __DATACOST_ANALYTICS_CONSENT: options.consent,
     __PRERENDER_INJECTED: options.prerender,
     gtag: (...args: CapturedEvent) => events.push(args)
   };
   Object.defineProperty(globalThis, 'window', { configurable: true, value: browserWindow });
-  Object.defineProperty(globalThis, 'document', { configurable: true, value: { documentElement: { dataset: {} } } });
+  Object.defineProperty(globalThis, 'document', { configurable: true, value: { documentElement: { dataset: {} }, querySelector: () => null } });
   Object.defineProperty(globalThis, 'navigator', {
     configurable: true,
     value: {
@@ -93,12 +93,11 @@ test('quick-answer contract uses only controlled IDs/enums and does not need Rel
     operator: 'vodacom',
     actionType: 'open_guide',
     placement: 'quick_answer_primary',
-    destinationType: 'internal_guide',
-    canonicalPath: 'https://datacost.co.za/guides/how-to-check-data-balance/?private=discarded#section'
+    destinationType: 'internal_guide'
   };
   trackQuickAnswerAction(event);
   assert.deepEqual(events[0][2], {
-    canonical_path: '/guides/how-to-check-data-balance/',
+    canonical_path: '/ussd-codes-south-africa/',
     answer_id: 'qa.vodacom.data_balance',
     operator: 'vodacom',
     action_type: 'open_guide',
@@ -110,11 +109,11 @@ test('quick-answer contract uses only controlled IDs/enums and does not need Rel
 test('unknown enum values and unsafe IDs are rejected before dispatch', () => {
   const { events } = installBrowser({ consent: 'granted' });
   assert.throws(() => trackQuickAnswerAction({ ...({
-    answerId: 'unsafe phone 0821234567',
+    answerId: 'user_input_must_not_be_sent',
     operator: 'vodacom',
     actionType: 'open_guide',
     placement: 'quick_answer_primary'
-  } as QuickAnswerActionEvent) }), /Invalid answer_id/);
+  } as unknown as QuickAnswerActionEvent) }), /Invalid answer_id/);
   assert.throws(() => trackQuickAnswerAction({
     answerId: 'qa.vodacom.data_balance',
     operator: 'vodacom',
