@@ -72,7 +72,7 @@ Release B was not implemented. This includes QA-01/02/03 presentation, QA-04, th
 
 ## 8. Diff statistics
 
-Final statistics are recorded from `git diff --stat d35bb614fca0c280bd86bbc2418a2c0dbe042a5a` at the code-review gate. Generated `dist/` output is ignored and no generated production output is committed.
+Against `d35bb614fca0c280bd86bbc2418a2c0dbe042a5a`, Release A changes 24 files with 1,357 insertions and 79 deletions. Generated `dist/` output is ignored and no generated production output is committed.
 
 ## 9. Stable-ID design
 
@@ -155,7 +155,8 @@ Because nothing was pushed or deployed, the safest rollback is to delete the iso
 - Baseline: `d35bb614fca0c280bd86bbc2418a2c0dbe042a5a`
 - Source/freshness commit: `67174c7`
 - Analytics/measurement commit: `e133940`
-- Review documentation and regression tooling: current local branch HEAD at handoff
+- Review documentation and regression tooling: `4371dd6`
+- Final report metadata: current local branch HEAD at handoff
 
 No commit was pushed and no pull request was opened.
 
