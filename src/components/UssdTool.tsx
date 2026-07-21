@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Check, Copy, Download, MessageCircle, Signal } from 'lucide-react';
 import { UssdNetworkKey, ussdCodesByNetwork, ussdMostUsed, ussdNetworkOrder } from '../data/ussdCodes';
 import { SITE_ORIGIN } from '../seo/siteConstants';
+import { copyUssdCodeToClipboard } from '../utils/tracking';
 
 const PREFERRED_NETWORK_KEY = 'preferredNetwork';
 
@@ -16,12 +17,6 @@ function buildWhatsappMessage(networkKey: UssdNetworkKey): string {
   const network = ussdCodesByNetwork[networkKey];
   const lines = network.codes.map((item) => `${item.label}: ${item.code}`).join('\n');
   return `My saved ${network.name} USSD Codes from DataCost:\n\n${lines}\n\n${SITE_ORIGIN}/ussd-codes-south-africa/`;
-}
-
-async function copyText(value: string): Promise<boolean> {
-  if (!navigator.clipboard) return false;
-  await navigator.clipboard.writeText(value);
-  return true;
 }
 
 async function downloadNetworkImage(networkKey: UssdNetworkKey): Promise<void> {
@@ -110,14 +105,19 @@ export const UssdTool: React.FC = () => {
     window.setTimeout(() => setToast(null), 1800);
   };
 
-  const handleCopy = async (code: string) => {
-    const success = await copyText(code).catch(() => false);
+  const handleCopy = async (item: (typeof active.codes)[number]) => {
+    const success = await copyUssdCodeToClipboard(item.code, {
+      operator: activeNetwork === 'cellc' ? 'cell_c' : activeNetwork,
+      codeType: item.codeType,
+      codeId: item.id,
+      placement: 'save_ussd_tool'
+    });
     if (!success) {
       showToast('Copy failed. Please try again.');
       return;
     }
 
-    setCopiedCode(code);
+    setCopiedCode(item.id);
     showToast('Copied to clipboard');
     window.setTimeout(() => setCopiedCode(null), 1500);
   };
@@ -211,11 +211,11 @@ export const UssdTool: React.FC = () => {
               <div className="mt-4 grid grid-cols-3 gap-2">
                 <button
                   type="button"
-                  onClick={() => handleCopy(item.code)}
+                  onClick={() => handleCopy(item)}
                   className="min-h-[42px] rounded-xl border border-slate-200 text-xs font-black uppercase tracking-wide text-slate-700"
                 >
                   <span className="inline-flex items-center justify-center gap-1">
-                    {copiedCode === item.code ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                    {copiedCode === item.id ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                     Copy
                   </span>
                 </button>

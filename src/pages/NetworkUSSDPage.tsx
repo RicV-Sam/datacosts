@@ -7,6 +7,7 @@ import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction, USSDEntry } from '../types';
 import { ussdRepository } from '../data/ussd';
 import { Copy, CheckCircle2, Phone, ArrowLeft, Search, HelpCircle } from 'lucide-react';
+import { copyUssdCodeToClipboard, toAnalyticsOperator, toUssdCodeType } from '../utils/tracking';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
@@ -347,9 +348,15 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
     window.location.href = `tel:${dialableCode}`;
   };
 
-  const copyToClipboard = async (code: string) => {
-    await navigator.clipboard.writeText(code);
-    setCopiedCode(code);
+  const copyToClipboard = async (entry: USSDEntry) => {
+    const success = await copyUssdCodeToClipboard(entry.code, {
+      operator: toAnalyticsOperator(entry.network),
+      codeType: toUssdCodeType(`${entry.category} ${entry.action}`),
+      codeId: entry.id,
+      placement: 'network_ussd_page'
+    });
+    if (!success) return;
+    setCopiedCode(entry.id);
     setTimeout(() => setCopiedCode(null), 1200);
   };
 
@@ -491,10 +498,10 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
                   <code className="text-base font-black text-slate-900">{entry.code}</code>
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() => copyToClipboard(entry.code)}
+                      onClick={() => copyToClipboard(entry)}
                       className="rounded-lg border border-slate-200 px-3 py-2 text-xs font-black uppercase tracking-wider hover:border-[#1b6d24] hover:text-[#1b6d24]"
                     >
-                      {copiedCode === entry.code ? (
+                      {copiedCode === entry.id ? (
                         <span className="inline-flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Copied</span>
                       ) : (
                         <span className="inline-flex items-center gap-1"><Copy className="w-3 h-3" /> Copy</span>
@@ -555,10 +562,10 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
                     <code className="text-base font-black text-slate-900">{entry.code}</code>
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => copyToClipboard(entry.code)}
+                        onClick={() => copyToClipboard(entry)}
                         className="rounded-lg border border-slate-200 px-3 py-2 text-xs font-black uppercase tracking-wider hover:border-[#1b6d24] hover:text-[#1b6d24]"
                       >
-                        {copiedCode === entry.code ? (
+                        {copiedCode === entry.id ? (
                           <span className="inline-flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Copied</span>
                         ) : (
                           <span className="inline-flex items-center gap-1"><Copy className="w-3 h-3" /> Copy</span>

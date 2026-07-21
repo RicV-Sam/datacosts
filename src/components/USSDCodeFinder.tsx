@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Search, Phone, Copy, Check, Filter, ArrowRight } from 'lucide-react';
 import { ussdCodes } from '../data';
 import { motion, AnimatePresence } from 'motion/react';
+import { copyUssdCodeToClipboard, toAnalyticsOperator, toUssdCodeType } from '../utils/tracking';
 
 interface USSDCodeFinderProps {
   onViewAll?: () => void;
@@ -25,10 +26,16 @@ export const USSDCodeFinder: React.FC<USSDCodeFinderProps> = ({ onViewAll }) => 
     });
   }, [search, activeNetwork]);
 
-  const handleCopy = (code: string) => {
-    if (code === 'N/A (App only)') return;
-    navigator.clipboard.writeText(code);
-    setCopiedId(code);
+  const handleCopy = async (record: (typeof ussdCodes)[number]) => {
+    if (record.code === 'N/A (App only)') return;
+    const success = await copyUssdCodeToClipboard(record.code, {
+      operator: toAnalyticsOperator(record.network),
+      codeType: toUssdCodeType(`${record.category} ${record.purpose}`),
+      codeId: record.id,
+      placement: 'homepage_finder'
+    });
+    if (!success) return;
+    setCopiedId(record.id);
     setTimeout(() => setCopiedId(null), 2000);
   };
 
@@ -106,7 +113,7 @@ export const USSDCodeFinder: React.FC<USSDCodeFinderProps> = ({ onViewAll }) => 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              key={`${code.network}-${idx}`}
+              key={code.id}
               className="group p-6 bg-slate-50/50 rounded-3xl border border-slate-100/50 hover:border-[#a0f399] hover:bg-white hover:shadow-xl transition-all"
             >
               <div className="flex justify-between items-start mb-6">
@@ -125,12 +132,12 @@ export const USSDCodeFinder: React.FC<USSDCodeFinderProps> = ({ onViewAll }) => 
               <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-100 shadow-sm group-hover:border-[#a0f399]/50 transition-colors">
                 <code className="text-xl font-black text-[#031636] tracking-widest">{code.code}</code>
                 <button
-                  onClick={() => handleCopy(code.code)}
+                  onClick={() => handleCopy(code)}
                   disabled={code.code === 'N/A (App only)'}
                   className="p-3 text-slate-400 hover:text-[#217128] hover:bg-[#a0f399]/10 rounded-xl transition-all disabled:opacity-30 disabled:hover:bg-transparent"
                   title="Copy code"
                 >
-                  {copiedId === code.code ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                  {copiedId === code.id ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
                 </button>
               </div>
             </motion.div>
