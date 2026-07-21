@@ -5,6 +5,7 @@ import {
   type SourceRecord,
   validateReleaseAData
 } from '../src/seo/wp1SourceFreshness';
+import { fingerprintMaterialClaim } from '../src/seo/wp1LegacyManifest';
 
 const source = (overrides: Partial<SourceRecord> = {}): SourceRecord => ({
   recordId: 'source.operator.example',
@@ -42,6 +43,31 @@ test('a new USSD record cannot bypass strict evidence by declaring evergreen ris
   assert.equal(result.lifecycleByRecordId['ussd.example.new_record'], 'new');
   assert.ok(result.errors.some((issue) => issue.code === 'strict_evidence_required'));
   assert.deepEqual(result.excludedRecordIds, ['ussd.example.new_record']);
+});
+
+test('an always-strict record policy applies even to an untouched legacy record', () => {
+  const materialClaim = { answerId: 'qa.example.legacy' };
+  const record = content({
+    recordId: 'qa.example.legacy',
+    recordType: 'quick_answer',
+    riskClass: 'evergreen',
+    powersQuickAnswer: false,
+    materialClaim
+  });
+  const result = validateReleaseAData([], [record], {
+    asOf: '2026-07-21',
+    legacyManifest: [{
+      recordId: record.recordId,
+      recordType: record.recordType,
+      materialFingerprint: fingerprintMaterialClaim(materialClaim),
+      baselineCommit: 'test-baseline',
+      migrationVersion: 'test-policy'
+    }]
+  });
+
+  assert.equal(result.lifecycleByRecordId[record.recordId], 'legacy_untouched');
+  assert.ok(result.errors.some((issue) => issue.code === 'strict_evidence_required'));
+  assert.deepEqual(result.excludedRecordIds, [record.recordId]);
 });
 
 test('future-effective quick-answer evidence is ineligible', () => {

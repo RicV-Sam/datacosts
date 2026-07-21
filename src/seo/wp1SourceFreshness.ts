@@ -21,6 +21,7 @@ export type SourceStatus = (typeof SOURCE_STATUSES)[number];
 export type SourceConfidence = (typeof SOURCE_CONFIDENCE)[number];
 export type RiskClass = (typeof RISK_CLASSES)[number];
 export type RecordLifecycle = 'new' | 'legacy_edited' | 'legacy_untouched';
+export type ContentEvidenceRecordType = 'ussd_code' | 'quick_answer' | 'operator' | 'content';
 
 export const REVIEW_INTERVAL_DAYS: Readonly<Record<RiskClass, number>> = {
   promotion: 30,
@@ -54,7 +55,7 @@ export interface SourceRecord {
 
 export interface ContentEvidenceRecord {
   recordId: string;
-  recordType: 'ussd_code' | 'quick_answer' | 'operator' | 'content';
+  recordType: ContentEvidenceRecordType;
   riskClass: RiskClass;
   /** Caller input retained for migration compatibility, but ignored for enforcement. */
   lifecycle?: 'new' | 'edited' | 'legacy_edited' | 'legacy_untouched';
@@ -63,6 +64,13 @@ export interface ContentEvidenceRecord {
   active: boolean;
   powersQuickAnswer?: boolean;
 }
+
+export const CONTENT_RECORD_POLICIES: Readonly<Record<ContentEvidenceRecordType, { alwaysStrict: boolean }>> = {
+  ussd_code: { alwaysStrict: false },
+  quick_answer: { alwaysStrict: true },
+  operator: { alwaysStrict: false },
+  content: { alwaysStrict: false }
+};
 
 export interface ValidationIssue {
   severity: 'error' | 'warning';
@@ -447,7 +455,12 @@ export function validateReleaseAData(
     lifecycleByRecordId[record.recordId] = lifecycle;
     lifecycleCounts[lifecycle] += 1;
 
-    const strict = record.powersQuickAnswer === true || lifecycle !== 'legacy_untouched';
+    const recordPolicy = CONTENT_RECORD_POLICIES[record.recordType];
+    const strict =
+      lifecycle === 'new' ||
+      lifecycle === 'legacy_edited' ||
+      record.powersQuickAnswer === true ||
+      recordPolicy.alwaysStrict;
     const referencedSources = record.sourceRecordIds
       .map((sourceId) => sourcesById.get(sourceId))
       .filter((source): source is SourceRecord => Boolean(source));
@@ -459,7 +472,7 @@ export function validateReleaseAData(
       }
     }
 
-    if (lifecycle === 'legacy_untouched' && referencedSources.length === 0 && !record.powersQuickAnswer) {
+    if (lifecycle === 'legacy_untouched' && referencedSources.length === 0 && !strict) {
       issues.push({ severity: 'warning', code: 'legacy_evidence_backfill', recordId: record.recordId, message: 'Untouched frozen-baseline record needs editorial source backfill.' });
       backfill.add(record.recordId);
       continue;
