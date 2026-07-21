@@ -1,5 +1,5 @@
 import { wp1ContentRecords, wp1SourceRecords } from '../src/data/wp1ReleaseARecords';
-import { CNI_URL_COHORT, GSC_QUERY_OWNER_COHORT, WP1_BASELINE } from '../src/seo/wp1Measurement';
+import { CNI_URL_COHORT, GSC_QUERY_OWNER_COHORT, WP1_BASELINE, validateQueryClusterDefinitions } from '../src/seo/wp1Measurement';
 import { isStableAnalyticsId, validateReleaseAData } from '../src/seo/wp1SourceFreshness';
 import { collectWp1RegistryOccurrences, validateWp1AnalyticsRegistry } from '../src/seo/wp1AnalyticsRegistry';
 
@@ -24,6 +24,7 @@ if (GSC_QUERY_OWNER_COHORT.filter((row) => row.treatment === 'untreated').length
   throw new Error('AN-05 must retain the three approved untreated comparison rows.');
 }
 if (WP1_BASELINE.gsc.queryCoveragePercent !== 50.84) throw new Error('GSC query coverage baseline changed.');
+const queryDefinitionErrors = validateQueryClusterDefinitions();
+if (queryDefinitionErrors.length > 0) throw new Error(`AN-05 query definitions failed: ${queryDefinitionErrors.join('; ')}`);
 
 console.log(`WP1 Release A validation passed: ${allIds.length} stable-ID occurrences, ${new Set(allIds).size} unique stable IDs, ${registry.codeOccurrenceCount} code occurrences across ${registry.registries.length} registries, ${result.warnings.length} compatibility warnings, ${result.editorialBackfillIds.length} legacy backfill records.`);
-

@@ -117,4 +117,3 @@ export function getAnalyticsConsentAudit(): ReadonlyArray<{ sequence: number; so
  * - No known state preserves the approved Release A default (analytics allowed).
  * - Dispatch refreshes this store immediately before sending.
  */
-

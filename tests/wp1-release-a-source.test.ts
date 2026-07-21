@@ -260,4 +260,3 @@ test('exclusive active claim conflicts fail and comparison selection returns an 
     source({ recordId: 'source.expired.two', expiresAt: '2026-07-19' })
   ], 'price', '2026-07-21', { strict: true }), []);
 });
-

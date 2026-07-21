@@ -122,4 +122,3 @@ test('unknown enum values and unsafe IDs are rejected before dispatch', () => {
   }), /Invalid action_type/);
   assert.equal(events.length, 0);
 });
-

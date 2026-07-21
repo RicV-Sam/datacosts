@@ -129,4 +129,3 @@ test('malformed JSON-LD fails with a route-level diagnostic', async () => {
     await rm(root, { recursive: true, force: true });
   }
 });
-

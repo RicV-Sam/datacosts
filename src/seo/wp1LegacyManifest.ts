@@ -66,4 +66,3 @@ export const WP1_LEGACY_MANIFEST: readonly LegacyManifestEntry[] = [
   migrationVersion: LEGACY_MIGRATION_VERSION,
   sourceLocation: 'src/data/ussd.ts'
 }));
-

@@ -8,4 +8,3 @@ export type Wp1QuickAnswerId = (typeof WP1_FUTURE_QUICK_ANSWERS)[number]['answer
 
 // Identifiers and analytics references only. Release A intentionally contains no
 // answer copy, operator instructions, actions, rendering component or publish flag.
-

@@ -69,4 +69,3 @@ test('equivalent records under different IDs are diagnosed', () => {
   const result = validateWp1AnalyticsRegistry(occurrences);
   assert.ok(result.warnings.some((issue) => issue.code === 'equivalent_records_different_ids'));
 });
-

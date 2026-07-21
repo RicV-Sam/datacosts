@@ -39,15 +39,146 @@ export const WP1_BASELINE = {
   expectedCrossSourceDifference: 'GA4 sessions and GSC clicks are not expected to reconcile exactly because attribution, consent, timezones, bot filtering and reporting thresholds differ.'
 } as const;
 
-export const GSC_QUERY_OWNER_COHORT = [
-  { id: 'qo-02', treatment: 'treated_release_b', ownerPath: '/data-problems/how-to-check-data-balance-vodacom-ussd/', cluster: 'Vodacom data balance' },
-  { id: 'qo-03', treatment: 'treated_release_b', ownerPath: '/cell-c-ussd-codes/', cluster: 'Cell C balance' },
-  { id: 'qo-05', treatment: 'treated_release_b', ownerPath: '/mtn-ussd-codes/', cluster: 'MTN generic balance' },
-  { id: 'qo-06', treatment: 'treated_release_b', ownerPath: '/guides/how-to-check-mtn-data-balance/', cluster: 'MTN data balance' },
-  { id: 'qo-10', treatment: 'untreated', ownerPath: '/network/mtn/', cluster: 'MTN network hub' },
-  { id: 'qo-12', treatment: 'untreated', ownerPath: '/network/cell-c/', cluster: 'Cell C network hub' },
-  { id: 'qo-15', treatment: 'untreated', ownerPath: '/guides/best-sim-only-deals-south-africa/', cluster: 'SIM-only deals' }
+export interface QueryClusterDefinition {
+  id: string;
+  version: string;
+  effectiveFrom: string;
+  treatment: 'treated_release_b' | 'untreated';
+  ownerPath: string;
+  supportingPages: readonly string[];
+  cluster: string;
+  includeExact: readonly string[];
+  includePatterns: readonly string[];
+  excludePatterns: readonly string[];
+  priority: number;
+  locale: 'en-ZA';
+  sourceEvidenceReference: string;
+}
+
+const QUERY_SOURCE = 'WP1 v1.1 source-of-truth; AN-05 query-owner cohort; exported-query coverage 50.84%.';
+
+export const GSC_QUERY_OWNER_COHORT: readonly QueryClusterDefinition[] = [
+  {
+    id: 'qo-02', version: 'wp1-v1.1', effectiveFrom: '2026-07-21', treatment: 'treated_release_b',
+    ownerPath: '/data-problems/how-to-check-data-balance-vodacom-ussd/',
+    supportingPages: ['/vodacom-ussd-codes/', '/network/vodacom/'], cluster: 'Vodacom data balance',
+    includeExact: ['vodacom data balance', 'how to check vodacom data balance', 'vodacom data balance ussd'],
+    includePatterns: ['^(?:how to )?check (?:my )?vodacom data balance(?: ussd)?$', '^vodacom data (?:balance|remaining)$'],
+    excludePatterns: ['airtime', 'network coverage', 'bundle price'], priority: 10, locale: 'en-ZA', sourceEvidenceReference: QUERY_SOURCE
+  },
+  {
+    id: 'qo-03', version: 'wp1-v1.1', effectiveFrom: '2026-07-21', treatment: 'treated_release_b',
+    ownerPath: '/cell-c-ussd-codes/', supportingPages: ['/network/cell-c/'], cluster: 'Cell C balance',
+    includeExact: ['cell c balance', 'cell c balance check', 'cell c balance ussd'],
+    includePatterns: ['^(?:how to )?check (?:my )?cell c (?:airtime |data )?balance(?: ussd)?$'],
+    excludePatterns: ['network coverage', 'bundle price'], priority: 20, locale: 'en-ZA', sourceEvidenceReference: QUERY_SOURCE
+  },
+  {
+    id: 'qo-06', version: 'wp1-v1.1', effectiveFrom: '2026-07-21', treatment: 'treated_release_b',
+    ownerPath: '/guides/how-to-check-mtn-data-balance/', supportingPages: ['/mtn-ussd-codes/', '/network/mtn/'], cluster: 'MTN data balance',
+    includeExact: ['mtn data balance', 'how to check mtn data balance', 'mtn data balance ussd'],
+    includePatterns: ['^(?:how to )?check (?:my )?mtn data balance(?: ussd)?$', '^mtn data (?:balance|remaining)$'],
+    excludePatterns: ['airtime', 'network coverage', 'bundle price'], priority: 30, locale: 'en-ZA', sourceEvidenceReference: QUERY_SOURCE
+  },
+  {
+    id: 'qo-05', version: 'wp1-v1.1', effectiveFrom: '2026-07-21', treatment: 'treated_release_b',
+    ownerPath: '/mtn-ussd-codes/', supportingPages: ['/guides/how-to-check-mtn-airtime-balance/', '/network/mtn/'], cluster: 'MTN generic balance',
+    includeExact: ['mtn balance', 'mtn balance check', 'mtn balance ussd'],
+    includePatterns: ['^(?:how to )?check (?:my )?mtn (?:airtime )?balance(?: ussd)?$'],
+    excludePatterns: ['data balance', 'network coverage', 'bundle price'], priority: 40, locale: 'en-ZA', sourceEvidenceReference: QUERY_SOURCE
+  },
+  {
+    id: 'qo-10', version: 'wp1-v1.1', effectiveFrom: '2026-07-21', treatment: 'untreated',
+    ownerPath: '/network/mtn/', supportingPages: ['/mtn-ussd-codes/'], cluster: 'MTN network hub',
+    includeExact: ['mtn south africa', 'mtn network', 'mtn data deals'],
+    includePatterns: ['^mtn (?:network|coverage|deals|bundles)(?: south africa)?$'],
+    excludePatterns: ['balance', 'ussd', 'support number'], priority: 50, locale: 'en-ZA', sourceEvidenceReference: QUERY_SOURCE
+  },
+  {
+    id: 'qo-12', version: 'wp1-v1.1', effectiveFrom: '2026-07-21', treatment: 'untreated',
+    ownerPath: '/network/cell-c/', supportingPages: ['/cell-c-ussd-codes/'], cluster: 'Cell C network hub',
+    includeExact: ['cell c south africa', 'cell c network', 'cell c data deals'],
+    includePatterns: ['^cell c (?:network|coverage|deals|bundles)(?: south africa)?$'],
+    excludePatterns: ['balance', 'ussd', 'support number'], priority: 60, locale: 'en-ZA', sourceEvidenceReference: QUERY_SOURCE
+  },
+  {
+    id: 'qo-15', version: 'wp1-v1.1', effectiveFrom: '2026-07-21', treatment: 'untreated',
+    ownerPath: '/guides/best-sim-only-deals-south-africa/', supportingPages: ['/guides/'], cluster: 'SIM-only deals',
+    includeExact: ['best sim only deals south africa', 'sim only deals', 'cheap sim only deals'],
+    includePatterns: ['^(?:best|cheap) sim only (?:data )?deals(?: south africa)?$'],
+    excludePatterns: ['contract phone', 'handset', 'international travel'], priority: 70, locale: 'en-ZA', sourceEvidenceReference: QUERY_SOURCE
+  }
 ] as const;
+
+export const QUERY_NORMALIZATION_RULES = {
+  unicode: 'NFKC',
+  case: 'lowercase',
+  punctuation: 'replace punctuation with spaces',
+  whitespace: 'collapse and trim',
+  locale: 'en-ZA'
+} as const;
+
+export function normalizeGscQuery(rawQuery: string): string {
+  return rawQuery
+    .normalize('NFKC')
+    .toLocaleLowerCase('en-ZA')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export interface QueryClusterAssignment {
+  normalizedQuery: string;
+  clusterId: string | null;
+  version: string | null;
+  status: 'matched' | 'unmatched' | 'suppressed';
+  overlappingClusterIds: string[];
+}
+
+export function assignGscQueryCluster(
+  rawQuery: string,
+  definitions: readonly QueryClusterDefinition[] = GSC_QUERY_OWNER_COHORT
+): QueryClusterAssignment {
+  const normalizedQuery = normalizeGscQuery(rawQuery);
+  if (!normalizedQuery || ['not set', 'anonymized', 'suppressed', 'other'].includes(normalizedQuery)) {
+    return { normalizedQuery, clusterId: null, version: null, status: 'suppressed', overlappingClusterIds: [] };
+  }
+
+  const matches = definitions.filter((definition) => {
+    const excluded = definition.excludePatterns.some((pattern) => new RegExp(pattern).test(normalizedQuery));
+    if (excluded) return false;
+    return definition.includeExact.map(normalizeGscQuery).includes(normalizedQuery) ||
+      definition.includePatterns.some((pattern) => new RegExp(pattern).test(normalizedQuery));
+  }).sort((left, right) => left.priority - right.priority || left.id.localeCompare(right.id));
+
+  const winner = matches[0];
+  if (!winner) return { normalizedQuery, clusterId: null, version: null, status: 'unmatched', overlappingClusterIds: [] };
+  return {
+    normalizedQuery,
+    clusterId: winner.id,
+    version: winner.version,
+    status: 'matched',
+    overlappingClusterIds: matches.slice(1).map((definition) => definition.id)
+  };
+}
+
+export function validateQueryClusterDefinitions(definitions: readonly QueryClusterDefinition[] = GSC_QUERY_OWNER_COHORT): string[] {
+  const errors: string[] = [];
+  const ids = new Set<string>();
+  const priorities = new Set<number>();
+  for (const definition of definitions) {
+    if (ids.has(definition.id)) errors.push(`Duplicate cluster ID: ${definition.id}`);
+    if (priorities.has(definition.priority)) errors.push(`Duplicate cluster priority: ${definition.priority}`);
+    if (definition.includeExact.length === 0 && definition.includePatterns.length === 0) errors.push(`Undefined membership: ${definition.id}`);
+    if (!definition.version || !definition.effectiveFrom || !definition.sourceEvidenceReference) errors.push(`Incomplete version provenance: ${definition.id}`);
+    for (const pattern of [...definition.includePatterns, ...definition.excludePatterns]) {
+      try { new RegExp(pattern); } catch { errors.push(`Invalid query pattern in ${definition.id}: ${pattern}`); }
+    }
+    ids.add(definition.id);
+    priorities.add(definition.priority);
+  }
+  return errors;
+}
 
 export const CNI_URL_COHORT = [
   ['ci-01', '/guides/how-to-check-subscriptions-on-mtn/', 'genuine_cni'],
@@ -92,4 +223,3 @@ export function normaliseCanonicalPath(input: string): string {
   if (path !== '/' && !looksLikeFile) path = `${path.replace(/\/$/, '')}/`;
   return path || '/';
 }
-
