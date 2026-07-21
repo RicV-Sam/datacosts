@@ -1,5 +1,4 @@
 import { ussdRepository } from './ussd';
-import { WP1_EVIDENCE_SUBJECTS } from './wp1EvidenceSubjects';
 import { type ContentEvidenceRecord, type SourceRecord } from '../seo/wp1SourceFreshness';
 
 export const wp1SourceRecords: SourceRecord[] = [
@@ -91,9 +90,6 @@ const operatorEvidenceRecords: ContentEvidenceRecord[] = operators.map((operator
   sourceRecordIds: [operatorSourceId(operator)],
   active: true
 }));
-
-/** Read-only compatibility export; trusted bindings are constructed privately by their owning collections. */
-export const wp1EvidenceSubjects = WP1_EVIDENCE_SUBJECTS;
 
 export const wp1ContentRecords: ContentEvidenceRecord[] = [
   ...ussdEvidenceRecords,

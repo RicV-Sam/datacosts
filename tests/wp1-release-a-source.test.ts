@@ -10,7 +10,6 @@ import {
   validateLegacyManifest,
   validateReleaseAData as validateReleaseADataCore
 } from '../src/seo/wp1SourceFreshness';
-import { WP1_EVIDENCE_SUBJECTS } from '../src/data/wp1EvidenceSubjects';
 import { fingerprintMaterialClaim, type LegacyManifestEntry } from '../src/seo/wp1LegacyManifest';
 
 const source = (overrides: Partial<SourceRecord> = {}): SourceRecord => ({
@@ -28,14 +27,9 @@ const source = (overrides: Partial<SourceRecord> = {}): SourceRecord => ({
 
 type TestContentOverrides = Partial<ContentEvidenceRecord> & { subjectKind?: EvidenceSubjectKind };
 
-const canonicalSubjectId = (kind: EvidenceSubjectKind): string => {
-  const entry = Object.entries(WP1_EVIDENCE_SUBJECTS).find(([, registration]) => registration.subjectKind === kind);
-  if (!entry) throw new Error(`No canonical ${kind} subject is available to this contract test.`);
-  return entry[0];
-};
-const CANONICAL_EVERGREEN_ID = canonicalSubjectId('evergreen_fact');
-const CANONICAL_PRICE_ID = canonicalSubjectId('price');
-const CANONICAL_USSD_ID = canonicalSubjectId('ussd_code');
+const CANONICAL_EVERGREEN_ID = 'operator.mtn';
+const CANONICAL_PRICE_ID = 'price.mtn-50gb-data-price';
+const CANONICAL_USSD_ID = 'ussd.vodacom.balance_main';
 
 const content = (overrides: TestContentOverrides = {}): ContentEvidenceRecord => {
   const { subjectKind = 'evergreen_fact', ...recordOverrides } = overrides;

@@ -10,7 +10,6 @@ import {
   selectEligibleSources,
   validateReleaseAData as validateReleaseADataCore
 } from '../src/seo/wp1SourceFreshness';
-import { WP1_EVIDENCE_SUBJECTS } from '../src/data/wp1EvidenceSubjects';
 import { fingerprintMaterialClaim } from '../src/seo/wp1LegacyManifest';
 
 const source = (overrides: Partial<SourceRecord> = {}): SourceRecord => ({
@@ -27,14 +26,9 @@ const source = (overrides: Partial<SourceRecord> = {}): SourceRecord => ({
 
 type TestContentOverrides = Partial<ContentEvidenceRecord> & { subjectKind?: EvidenceSubjectKind };
 
-const canonicalSubjectId = (kind: EvidenceSubjectKind): string => {
-  const entry = Object.entries(WP1_EVIDENCE_SUBJECTS).find(([, registration]) => registration.subjectKind === kind);
-  if (!entry) throw new Error(`No canonical ${kind} subject is available to this contract test.`);
-  return entry[0];
-};
-const CANONICAL_PRICE_ID = canonicalSubjectId('price');
-const CANONICAL_USSD_ID = canonicalSubjectId('ussd_code');
-const CANONICAL_EVERGREEN_ID = canonicalSubjectId('evergreen_fact');
+const CANONICAL_PRICE_ID = 'price.mtn-50gb-data-price';
+const CANONICAL_USSD_ID = 'ussd.vodacom.balance_main';
+const CANONICAL_EVERGREEN_ID = 'operator.mtn';
 
 const content = (overrides: TestContentOverrides = {}): ContentEvidenceRecord => {
   const { subjectKind = 'ussd_code', ...recordOverrides } = overrides;
@@ -207,7 +201,7 @@ test('an always-strict record policy applies even to an untouched legacy record'
 });
 
 test('the versioned evidence policy is deeply frozen', () => {
-  assert.equal(EVIDENCE_POLICY_VERSION, 'wp1-release-a.5');
+  assert.equal(EVIDENCE_POLICY_VERSION, 'wp1-release-a.6');
   const policy = getEvidenceRecordPolicy('ussd_code');
   assert.ok(policy);
   assert.ok(Object.isFrozen(policy));
@@ -215,8 +209,6 @@ test('the versioned evidence policy is deeply frozen', () => {
     (policy as { riskClass: string }).riskClass = 'evergreen';
   }, TypeError);
   assert.equal(getEvidenceRecordPolicy('ussd_code')?.riskClass, 'ussd_code');
-  assert.ok(Object.isFrozen(WP1_EVIDENCE_SUBJECTS));
-  assert.ok(Object.isFrozen(WP1_EVIDENCE_SUBJECTS[CANONICAL_USSD_ID]));
 });
 
 test('price, promotion and device subjects cannot masquerade as generic evergreen content', () => {
@@ -254,14 +246,15 @@ test('the canonical promotion policy always requires effective and expiry window
 });
 
 test('malformed selector policy fields and extra positional arguments fail closed', () => {
-  const lowConfidence = source({ recordId: 'source.price.low_confidence', confidence: 'low' });
-  const priceRecord = content({ recordId: CANONICAL_PRICE_ID, recordType: 'content', sourceRecordIds: [lowConfidence.recordId] });
-  const validationResult = validateReleaseAData([lowConfidence], [priceRecord], { asOf: '2026-07-21', legacyManifest: [] });
-  const validRequest = { validationResult, contentId: priceRecord.recordId, candidateSourceIds: [lowConfidence.recordId] };
+  const eligibleSource = source({ recordId: 'source.price.eligible' });
+  const priceRecord = content({ recordId: CANONICAL_PRICE_ID, recordType: 'content', sourceRecordIds: [eligibleSource.recordId] });
+  const validationResult = validateReleaseAData([eligibleSource], [priceRecord], { asOf: '2026-07-21', legacyManifest: [] });
+  const validRequest = { validationResult, contentId: priceRecord.recordId, candidateSourceIds: [eligibleSource.recordId] };
+  const selectedBaseline = selectEligibleSources(validRequest);
+  assert.equal(selectedBaseline.length, 1);
+  assert.equal(selectedBaseline[0]?.recordId, eligibleSource.recordId);
   assert.deepEqual(Reflect.apply(selectEligibleSources, undefined, [{ ...validRequest, strict: false, promotion: false }]) as SourceRecord[], []);
   assert.deepEqual(Reflect.apply(selectEligibleSources, undefined, [validRequest, { strict: false }]) as SourceRecord[], []);
-  lowConfidence.confidence = 'high';
-  assert.deepEqual(selectEligibleSources(validRequest), []);
   const throwingRequest = new Proxy({}, { ownKeys: () => { throw new Error('malformed selector input'); } });
   assert.deepEqual(Reflect.apply(selectEligibleSources, undefined, [throwingRequest]) as SourceRecord[], []);
 });

@@ -15,7 +15,7 @@ export const SOURCE_CONFIDENCE = ['high', 'medium', 'low'] as const;
 export const RISK_CLASSES = Object.freeze(['promotion', 'price', 'ussd_code', 'device_steps', 'evergreen'] as const);
 export const EVIDENCE_RECORD_KINDS = Object.freeze(['ussd_code', 'price', 'promotion', 'device_step', 'evergreen_fact'] as const);
 export const REVIEW_OVERRIDE_APPROVERS = ['seo_lead', 'editorial_lead'] as const;
-export const EVIDENCE_POLICY_VERSION = 'wp1-release-a.5' as const;
+export const EVIDENCE_POLICY_VERSION = 'wp1-release-a.6' as const;
 const CONSERVATIVE_OVERRIDE_RISK_CLASS: RiskClass = 'promotion';
 
 export type SourceType = (typeof SOURCE_TYPES)[number];
@@ -98,12 +98,6 @@ export const REVIEW_INTERVAL_DAYS: Readonly<Record<RiskClass, number>> = Object.
 export function getEvidenceRecordPolicy(kind: unknown): Readonly<EvidenceRecordPolicy> | null {
   return isAllowed(EVIDENCE_RECORD_KINDS, kind) ? EVIDENCE_RECORD_POLICIES[kind] : null;
 }
-
-export interface EvidenceSubjectRegistration {
-  readonly subjectKind: EvidenceSubjectKind;
-}
-
-export type EvidenceSubjectRegistry = Readonly<Record<string, EvidenceSubjectRegistration>>;
 
 const RECORD_TYPE_ALWAYS_STRICT: Readonly<Record<ContentEvidenceRecordType, boolean>> = {
   ussd_code: false,
