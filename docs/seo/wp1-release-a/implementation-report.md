@@ -1,164 +1,180 @@
-# DataCost SEO WP1 Release A.2 remediation report
+# DataCost SEO WP1 Release A.3 remediation report
 
 ## 1. Status and authority boundary
 
-Release A.2 is a local remediation of the ten remaining findings in the independent Release A.1 review. It starts from reviewed Release A.1 HEAD `e69c2a5ffca3ddc8dc9f540dac66807a97c3eb46` and stops at the independent-review gate.
+Release A.3 is a local remediation of the three deployment-blocking bypasses reproduced by the independent Release A.2 review. The implementation is complete and locally validated, but it remains **pending independent review** and is **not deployment-ready**.
 
-No branch or tag was pushed. No pull request, deployment, GA4/GSC change, sitemap submission, indexing request, dependency change, lockfile change, public-content treatment, or Release B work was performed.
+No branch or tag was pushed. No pull request, merge, deployment, GA4/GSC change, sitemap submission, indexing request, dependency or lockfile change, public SEO/content change, or Release B work was performed.
 
 ## 2. Starting point recorded before editing
 
-- Release A.2 worktree: `C:\Users\ricca\Desktop\DataCost\datacosts-wp1-release-a2-remediation`
-- Branch: `codex/seo-wp1-release-a2-remediation`
-- Starting HEAD: `e69c2a5ffca3ddc8dc9f540dac66807a97c3eb46`
-- Starting status: clean
-- Original baseline: `d35bb614fca0c280bd86bbc2418a2c0dbe042a5a`
-- Release A.1 ancestry from the baseline: verified
-- Release A.2 ancestry from reviewed Release A.1 HEAD: verified
+- Reviewed worktree: `C:\Users\ricca\Desktop\DataCost\datacosts-wp1-release-a2-remediation`
+- Reviewed branch: `codex/seo-wp1-release-a2-remediation`
+- Reviewed A.2 HEAD: `1dc082906db19d798f25cf778735ca09c32303b0`
+- Validated A.2 implementation HEAD: `5ee4094e879ac9ded2d897573b60f8f87a97e158`
+- Original project baseline: `d35bb614fca0c280bd86bbc2418a2c0dbe042a5a`
+- Reviewed A.2 status before isolation: clean
+- A.3 worktree: `C:\Users\ricca\Desktop\DataCost\datacosts-wp1-release-a3-remediation`
+- A.3 branch: `codex/seo-wp1-release-a3-remediation`
+- A.3 starting HEAD: `1dc082906db19d798f25cf778735ca09c32303b0`
+- A.3 starting status: clean
+- Baseline ancestry: verified, exit 0
+- Reviewed A.2 ancestry: verified, exit 0
 - Node: `v24.11.0`
 - npm: `11.1.0`
-- Release A.1 dependency arrangement: `node_modules` junction to the original main worktree
-- Release A.2 dependency arrangement: independent ordinary `node_modules` created by `npm ci`; 314 packages
-- Original main worktree branch/HEAD: `main` at `d35bb614fca0c280bd86bbc2418a2c0dbe042a5a`
-- Original main status, observed and left untouched: modified `package.json`; untracked `docs/social/facebook/launch-pack/`; untracked `scripts/generate-facebook-launch-assets.mjs`
+- A.2 dependency arrangement: ordinary local `node_modules` directory
+- A.3 dependency arrangement: ordinary local `node_modules` created by clean `npm ci`; 314 packages
+- Configured remote: `origin` at `https://github.com/RicV-Sam/datacosts.git`
+- A.3 upstream: none
+- Matching remote A.2/A.3 branch tips: none
+- No configured remote ref contained reviewed A.2 HEAD when checked
+- Original main worktree: `main` at `d35bb614fca0c280bd86bbc2418a2c0dbe042a5a`
+- Original main status, observed before work and verified unchanged afterward: modified `package.json`; untracked `docs/social/facebook/launch-pack/`; untracked `scripts/generate-facebook-launch-assets.mjs`
 
-## 3. Release A.2 implementation identity
+The complete worktree inventory was recorded before editing. Existing Release A, A.1, A.2, validation, and Codex worktrees were left untouched.
 
-The immutable, clean-validated code head is `5ee4094e879ac9ded2d897573b60f8f87a97e158`.
+## 3. Immutable implementation identity
 
-Complete Release A.2 commit history through the prior documentation record:
+- Clean-validated A.3 implementation HEAD: `395547f1426aba8e9d3416fa3a0174a1e0d60994`
+- Implementation commit: `395547f1426aba8e9d3416fa3a0174a1e0d60994` — `fix(seo): close Release A.3 evidence and consent bypasses`
+- Documentation parent: `395547f1426aba8e9d3416fa3a0174a1e0d60994`
+- Final local handoff HEAD: resolve `git rev-parse codex/seo-wp1-release-a3-remediation`
 
-1. `0098c55` — `fix(seo): enforce strict lifecycle and recursive evidence`
-2. `d9ef252` — `fix(analytics): enforce consent and event relationships`
-3. `a7b5ac7` — `fix(build): preserve clean generated output`
-4. `898b4dc` — `docs(seo): finalize Release A.2 remediation handoff`
-5. `5ee4094` — `fix(seo): apply always-strict record policy`
-6. `55c1123` — `docs(seo): record final Release A.2 policy validation`
-7. Current documentation-only accuracy commit — resolve with `git rev-parse codex/seo-wp1-release-a2-remediation`
+A commit cannot contain its own hash without changing that hash. The immutable implementation and documentation-parent identities are therefore exact; the final documentation-only commit is truthfully identified by the local branch-resolution command rather than a false embedded self-hash.
 
-A commit cannot truthfully embed its own hash without changing that hash. Therefore this report records the immutable implementation head exactly and gives the explicit local branch-resolution command for the documentation-only handoff commit. It does not use a placeholder or mislabel the implementation head as the handoff head.
+The A.3 implementation-only diff from reviewed A.2 is exactly 6 files, 363 insertions, and 55 deletions:
 
-Against reviewed Release A.1 HEAD `e69c2a5ffca3ddc8dc9f540dac66807a97c3eb46`, the final Release A.2 range contains 16 changed files, 606 insertions and 332 deletions. The authoritative changed-file list is:
-
-- `docs/seo/wp1-release-a/implementation-report.md`
-- `docs/seo/wp1-release-a/release-a-summary.json`
-- `package.json`
-- `scripts/check-wp1-privacy.ts`
-- `scripts/generate-sitemap.ts`
-- `scripts/write-generated-file.ts`
-- `src/seo/wp1AnalyticsRegistry.ts`
+- `src/data/wp1ReleaseARecords.ts`
 - `src/seo/wp1SourceFreshness.ts`
 - `src/utils/analyticsConsent.ts`
-- `src/utils/tracking.ts`
-- `tests/wp1-generation-cleanliness.test.ts`
-- `tests/wp1-privacy-scan.test.ts`
-- `tests/wp1-release-a-registry.test.ts`
 - `tests/wp1-release-a-remediation-analytics-negative.test.ts`
 - `tests/wp1-release-a-remediation-source-negative.test.ts`
 - `tests/wp1-release-a-source.test.ts`
 
-## 4. Findings remediated
+The final A.3 handoff range through the branch-resolved documentation commit contains 8 files, 598 insertions, and 270 deletions. The complete Release A range from the original baseline contains 42 files, 30,350 insertions, and 103 deletions. The A.3 range's only additional files beyond the implementation are:
 
-| Finding | Release A.2 correction | Negative proof |
-|---|---|---|
-| Evergreen risk-class strictness bypass | Strictness is derived from frozen lifecycle and quick-answer policy; `riskClass` cannot downgrade new or edited records | A new USSD record declaring `evergreen` fails without eligible evidence |
-| Consent compatibility-state override | Window and dataset compatibility values are initialization-only; consumed Consent Mode/adapter decisions cannot be overwritten by stale compatibility state | A consumed denial remains denied despite stale compatibility grants |
-| Transitive derived-evidence eligibility | Every descendant in a derived-source chain is traversed and evaluated under strict eligibility | An eligible direct parent with an expired grandparent is rejected |
-| Analytics ID/operator/code-type relationships | Registry validation enforces code-type enums, same-registry ID uniqueness, cross-registry ID/type consistency, and runtime ID/operator/type relationships | Unknown types, duplicate IDs, and wrong runtime relationships all fail |
-| Exact privacy exceptions | Allowlist entries require file/range, description, reason, approver, and exact SHA-256 match fingerprints | Replacing an approved public value on the same line with an arbitrary phone-shaped value fails |
-| Protocol-relative canonical rejection | Raw canonical `href` is inspected before browser URL resolution; `//host/path` is rejected | Protocol-relative rendered canonical falls back to current same-origin location |
-| Review-date extension on every record | Every `reviewDueAt` is compared with the shortest approved interval before usage filtering | An unused source carrying an unapproved extension fails |
-| Cross-platform clean generation | Generated text is compared after LF normalization; meaningful changes preserve the checked-out newline convention | LF/CRLF-only changes do not rewrite; real changes preserve CRLF |
-| Accurate handoff/identity reporting | Exact reviewed A.1 head and immutable A.2 code head are recorded; final documentation identity is branch-resolved | Machine-readable summary contains no self-hash placeholder |
-| Negative tests for reproduced failures | Each reproduced review failure has a named regression test | Focused suite: 40/40 passing after a red phase with nine reproduced failures; the explicit always-strict policy case is also covered |
+- `docs/seo/wp1-release-a/implementation-report.md`
+- `docs/seo/wp1-release-a/release-a-summary.json`
 
-## 5. Red/green remediation evidence
+There are no merge commits in the A.3 range and no unrelated implementation changes.
 
-Before implementation, the focused negative suite failed in nine reproduced cases:
+## 4. A.3 remediation matrix
 
-- arbitrary phone-shaped value on an allowlisted line
-- unknown analytics code type
-- duplicate ID within one registry
-- stale compatibility grant after a consumed denial
-- protocol-relative canonical
-- wrong analytics ID/operator/code-type relationship
-- evergreen strictness bypass
-- unused-source review-date extension
-- expired transitive derived dependency
+| Reproduced blocker | Correction | Negative proof | Status |
+|---|---|---|---|
+| Caller-selected evergreen interval for USSD | Closed `EvidenceRecordKind` values map to canonical policies; caller `riskClass` is compatibility-only and mismatches fail closed | A USSD record labelled evergreen is rejected and its March evidence is overdue under the canonical 90-day interval | Remediated; pending independent review |
+| Non-recursive comparison/source selection | Validation and `selectEligibleSources` call the same recursive dependency evaluator, with full path diagnostics | Top and middle derived records above an expired base are excluded from selection | Remediated; pending independent review |
+| Compatibility-labelled consent updater override | The exported updater accepts only adapter authority and rejects runtime calls labelled `window` or `dataset` | A consumed Consent Mode denial remains denied after both compatibility-labelled calls | Remediated; pending independent review |
 
-After implementation, the focused remediation suite passes 40/40 and the full WP1 contract suite passes 90/90.
+No claim is marked independently closed. Deployment remains blocked until the separate review gate is passed.
 
-## 6. Lifecycle and evidence policy
+## 5. Canonical evidence policy
 
-Frozen lifecycle remains authoritative. The effective strict policy is lifecycle-driven: all `new` and `legacy_edited` records, every quick-answer-powered record, and any record subject to an always-strict policy require strict evidence. `legacy_untouched` compatibility warnings remain available only to records that match the frozen manifest.
+The closed kinds are `ussd_code`, `price`, `promotion`, `device_step`, and `evergreen_fact`. They map respectively to the canonical risk/review policies `ussd_code`, `price`, `promotion`, `device_steps`, and `evergreen`. Price and promotion kinds are always strict; quick-answer record type remains always strict independently of kind.
 
-The current manifest still has 28 untouched legacy entries, zero edited entries, and five new operator records. The five new records are strict regardless of their risk-class labels. The 28 untouched records remain in the documented evidence-backfill queue.
+Effective strictness is:
 
-Derived evidence now fails if any dependency at any depth is ineligible for the claim date. Existing missing-reference, duplicate, self-reference, cycle, direct-date-window, supersession, conflict, and audit-chain behavior is preserved.
+```text
+new lifecycle
+OR materially edited legacy lifecycle
+OR powers quick answer
+OR canonical record policy is always strict
+```
 
-Review-date overrides remain shortening-only under the currently approved policy. Every source record is checked against the conservative 30-day ceiling before usage/claim filtering, preventing unused records from carrying latent unauthorized extensions.
+Caller lifecycle remains ignored. Caller risk class cannot select a review interval. Unknown kinds, kind/risk mismatches, USSD/non-USSD kind mismatches, and operator/non-evergreen kind mismatches fail closed. Frozen, manifest-backed untouched legacy records retain their approved warning-compatible path only when no strict condition applies.
 
-## 7. Consent and analytics registry policy
+Production registry totals remain 28 untouched legacy USSD records, zero edited records, five new operator records, five strict new records, and 28 documented backfill warnings.
 
-Compatibility values on `window` and `documentElement.dataset` are read once when the store initializes. They cannot later override an explicit Consent Mode or adapter decision. Consent Mode entries retain array order, adapter calls retain call order, unknown does not erase an explicit state, and a later explicit grant or denial remains live. Dispatch rechecks consent immediately before sending.
+## 6. Shared recursive evidence eligibility
 
-The event registry still covers all four approved producers and retains the reviewed totals: 61 USSD occurrences across four registries, 74 full stable-ID occurrences, and 50 unique full stable IDs. Release A.2 additionally validates the semantic relationship of each registered ID to its operator and code type, not only membership. Quick-answer IDs are likewise tied to their registered operator. Unknown code types and same-registry duplicate IDs fail.
+`evaluateSourceEligibility` is the single recursive primitive used by validation and `selectEligibleSources`. It checks direct and transitive dependencies for missing references, cycles, dates, status, confidence, review due dates, and strict publishability. Dependency evaluation remains strict at every depth. Path-specific failures are retained without memoization loss and diagnostics show the complete route from the selected source to the failing descendant.
 
-## 8. Canonical and privacy policy
+Tests cover eligible multi-level chains and transitive expired, future-effective, low-confidence, and overdue bases. The reproduced `top -> middle -> expired base` selection bypass is now ineligible at both derived levels.
 
-Analytics canonicals remain internally derived. Same-origin absolute rendered canonicals are accepted; external and protocol-relative raw canonicals are rejected in favour of normalized current location. Public canonical output was not changed.
+## 7. Consent update authority
 
-The privacy allowlist is exact-value scoped without storing the clear value in the allowlist. Each permitted public-content occurrence is authorized by a SHA-256 match fingerprint plus file/range and approval metadata. The two approved public-content areas and three approved exact fingerprints remain unchanged. An arbitrary replacement on the same line is not exempt.
+Window and dataset compatibility values remain initialization-only inputs. Consent Mode entries are consumed in array order. The explicit adapter updater is the sole exported live mutation authority; compatibility-labelled runtime calls are ignored even when invoked from untyped JavaScript. Unknown never erases a prior explicit decision, later authoritative Consent Mode grant/deny transitions remain ordered, and dispatch rechecks live consent immediately before sending.
 
-## 9. Cross-platform generated-output behavior
+## 8. Red/green evidence
 
-Sitemap and redirect generation no longer rewrites a tracked file solely because the checkout uses CRLF rather than LF. Normalized equality skips the write; a meaningful write preserves the existing newline convention. Repeated generation and the production build leave the tracked worktree clean.
+Before implementation, three focused tests reproduced exactly the remaining A.2 failures:
 
-## 10. Validation at the immutable code head
+1. USSD evergreen policy borrowed a 365-day interval.
+2. Source selection returned derived records above an expired transitive base.
+3. Compatibility-labelled updater calls changed a consumed denial to granted.
 
-Validated implementation head: `5ee4094e879ac9ded2d897573b60f8f87a97e158`.
+The red phase was 26 passed and 3 failed. After remediation, all three reproduced failures pass. The complete remediation-negative suite is 36/36, and the complete WP1 contract suite is 99/99.
+
+## 9. Validation at the implementation HEAD
+
+All results below were obtained at `395547f1426aba8e9d3416fa3a0174a1e0d60994` with a clean tracked worktree after generation/build:
 
 | Check | Result |
 |---|---|
-| `npm run lint` | exit 0 |
-| `npm run typecheck` | exit 0 |
-| focused remediation tests | 40/40 |
-| all `tests/*.test.ts` | 90/90 |
-| `npm run build` | exit 0; 244 HTML files, 5 sitemap files, 207 URLs |
-| `npm run check:wp1-contracts` | 90/90; 28 documented compatibility warnings |
-| `npm run check:wp1-search-regression` | 244 routes/titles, 207 URLs, 826 JSON-LD blocks unchanged |
-| `npm run check:wp1-privacy` | passed across 214 tracked text files; 2 documented exact public-content entries |
+| `npm ci` | exit 0; 314 packages; ordinary local `node_modules` |
+| `npm run lint` / `npm run typecheck` | exit 0 |
+| three reproduced A.3 negative cases | 3/3 |
+| remediation-negative suite | 36/36 |
+| `npm run check:wp1-contracts` | 99/99; 28 expected compatibility warnings |
+| `npm run build` | exit 0; SEO and AdSense output checks passed |
+| `npm run check:wp1-search-regression` | 244 HTML routes, 244 titles, 207 sitemap URLs, 826 JSON-LD blocks unchanged |
+| `npm run check:wp1-privacy` | passed across 214 tracked text files; 2 documented exact exceptions |
+| `npx playwright test` | 39/39 browser tests |
 | `npm audit --omit=dev` | 0 vulnerabilities |
 | full `npm audit` | 4 existing moderate development/build-time findings |
-| generation/build working-tree check | clean |
+| generated output / Windows newline check | clean |
 | `git diff --check` | clean |
 
-The final documentation-only handoff commit is independently revalidated from a fresh detached worktree after it is created; its exact hash and clean status are reported in the reviewer handoff response.
+The full audit command correctly exits non-zero because of the four documented moderate development-only nodes. No forced or breaking dependency change was attempted.
 
-## 11. Public-output invariance
+## 10. Preserved A.2 behavior and public-output invariance
 
-The fresh v2 search comparison passes across 244 routes, 244 titles, 207 sitemap URLs, links, visible text, metadata, robots, redirects, and 826 JSON-LD blocks. No title, meta description, H1, introductory copy, visible source/freshness date, displayed USSD code, link destination/anchor, public canonical, robots directive, sitemap membership, redirect, URL structure, structured-data output, or public `dateModified` changed.
+The frozen legacy manifest, lifecycle classifier, direct date-window validation, exact privacy exceptions, semantic analytics relationships, protocol-relative canonical rejection, every-record review-date validation, query clusters, fresh-build regression, JSON-LD comparison, route diagnostics, Windows clean generation, and public-output invariance all remain passing.
 
-## 12. Explicitly deferred or excluded
+No public title, meta description, H1, introduction, page copy, displayed USSD code, link destination/anchor, canonical, robots directive, sitemap membership, redirect, URL, breadcrumb, structured data, `datePublished`, `dateModified`, source/freshness presentation, or quick-answer presentation changed.
 
-- The four moderate audit nodes are development/build-time only. Production audit is clean. No breaking downgrade or forced audit fix was applied.
-- The 28 frozen untouched legacy source records still require editorial evidence backfill.
-- Quick answers remain dormant contracts only; Release B UI/copy was not added.
-- IL-01 through IL-17, QA-01 through QA-04 presentation, CI-10, CI-13, CI-19 and CI-20 treatment remain outside this remediation.
-- No external analytics, Search Console, deployment, submission, indexing, push, or pull-request action was taken.
+Stable-ID totals remain 74 occurrences and 50 unique IDs. Code IDs remain 61 occurrences and 37 unique IDs; answer IDs remain 3 occurrences and 3 unique IDs; the canonical registry has four producer registries. Query-cluster version remains `wp1-v1.1`.
 
-## 13. Rollback
+## 11. Explicitly deferred or excluded
 
-Nothing was pushed or deployed. Review can be abandoned by removing only the isolated Release A.2 and validation worktrees. If the commits are later integrated, use ordinary `git revert` in reverse order. Do not reset, clean, or overwrite the original dirty main worktree.
+- Four moderate development/build-time dependency findings remain deferred; production audit is clean.
+- The 28 untouched legacy USSD records remain in the editorial evidence-backfill queue.
+- IL-01 through IL-17; QA-01 through QA-04 presentation; CI-10, CI-13, CI-19, and CI-20 treatment; query-owner content changes; and Release B remain excluded.
+- No dependency, lockfile, public-output, external service, push, PR, merge, or deployment action occurred.
 
-## 14. Review gate
+## 12. Complete local Release A commit list through implementation
 
-- [x] All ten Release A.1 review findings remediated
-- [x] Negative regression coverage for every reproduced failure
-- [x] Already corrected Release A.1 areas preserved
+1. `67174c71be7558c04ff94130439a70d844d71d6b` — `feat(seo): add WP1 source freshness contracts`
+2. `e1339409b2c4297cd963887d44ce7da06b3efafc` — `feat(analytics): instrument WP1 user action events`
+3. `4371dd6c1e3af67f154ea384279ef547d793fb74` — `test(seo): freeze WP1 baselines and regressions`
+4. `8dff7e06d3e934b2af77cfd988d679b3dfdfadb9` — `docs(seo): finalize WP1 Release A handoff`
+5. `b9aaec0e06257034b5403cf3974607e674f0d6c3` — `docs(seo): record final Release A evidence`
+6. `cf12c25d29d5be4b9c846e324f126b662197cab6` — `fix(seo): enforce lifecycle and evidence eligibility`
+7. `9229864cf7720f9d2bdb8d029d815b4d3f585974` — `fix(analytics): enforce live consent and registered event IDs`
+8. `1a35f8f140922d46ca34be7a5b8412e5ad9e48e1` — `fix(seo): rebuild and compare structured search output`
+9. `dac656e4496d182fe11d2f57b9338d080818b416` — `fix(seo): version query cohorts and enforce repository privacy`
+10. `e9c87ac1d69f6206d9ef003adc6fed7e65391151` — `test(seo): complete remediation validation gate`
+11. `e69c2a5ffca3ddc8dc9f540dac66807a97c3eb46` — `docs(seo): finalize Release A.1 remediation handoff`
+12. `0098c5517c6fbde1ff0c54940608d4dbcdde65e7` — `fix(seo): enforce strict lifecycle and recursive evidence`
+13. `d9ef2520dc3ea1cb0a1cfdbfd2907591863fccdb` — `fix(analytics): enforce consent and event relationships`
+14. `a7b5ac704cb6869a01ebfbfc60f453b6e1b17803` — `fix(build): preserve clean generated output`
+15. `898b4dcecf2ef4f92f3d2cf8dd5d6b6e5887d1fa` — `docs(seo): finalize Release A.2 remediation handoff`
+16. `5ee4094e879ac9ded2d897573b60f8f87a97e158` — `fix(seo): apply always-strict record policy`
+17. `55c112337369d3db1def098820a7ffcd4255fde0` — `docs(seo): record final Release A.2 policy validation`
+18. `1dc082906db19d798f25cf778735ca09c32303b0` — `docs(seo): reconcile Release A.2 handoff scope`
+19. `395547f1426aba8e9d3416fa3a0174a1e0d60994` — `fix(seo): close Release A.3 evidence and consent bypasses`
+20. Current documentation-only handoff commit — resolve `git rev-parse codex/seo-wp1-release-a3-remediation`
+
+## 13. Review gate and rollback
+
+- [x] Three reproduced A.2 bypasses remediated locally
+- [x] Negative tests added for each reproduced bypass
+- [x] Passing A.2 controls preserved
 - [x] Public search output invariant
-- [x] Dependency and lockfile scope respected
-- [x] Original main worktree untouched
-- [x] No push, PR, deployment, external analytics/search action, or Release B work
-- [ ] Independent reviewer approval
-- [ ] Separate implementation/deployment authorization
+- [x] Dependency and lockfile exclusions respected
+- [x] Original main worktree unchanged
+- [x] No push, PR, merge, deployment, external action, or Release B work
+- [ ] Independent Release A.3 approval
+- [ ] Separate integration/deployment authorization
+
+Nothing was pushed or deployed. The isolated A.3 worktree/branch can be abandoned without touching the original dirty main worktree. If later integrated, rollback should use ordinary `git revert`, not reset or clean operations against the original worktree.
