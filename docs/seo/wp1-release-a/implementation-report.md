@@ -26,15 +26,36 @@ No branch or tag was pushed. No pull request, deployment, GA4/GSC change, sitema
 
 The immutable, clean-validated code head is `5ee4094e879ac9ded2d897573b60f8f87a97e158`.
 
-Release A.2 commits:
+Complete Release A.2 commit history through the prior documentation record:
 
 1. `0098c55` — `fix(seo): enforce strict lifecycle and recursive evidence`
 2. `d9ef252` — `fix(analytics): enforce consent and event relationships`
 3. `a7b5ac7` — `fix(build): preserve clean generated output`
-4. `5ee4094` — `fix(seo): apply always-strict record policy`
-5. Documentation-only handoff commit — resolve with `git rev-parse codex/seo-wp1-release-a2-remediation`
+4. `898b4dc` — `docs(seo): finalize Release A.2 remediation handoff`
+5. `5ee4094` — `fix(seo): apply always-strict record policy`
+6. `55c1123` — `docs(seo): record final Release A.2 policy validation`
+7. Current documentation-only accuracy commit — resolve with `git rev-parse codex/seo-wp1-release-a2-remediation`
 
 A commit cannot truthfully embed its own hash without changing that hash. Therefore this report records the immutable implementation head exactly and gives the explicit local branch-resolution command for the documentation-only handoff commit. It does not use a placeholder or mislabel the implementation head as the handoff head.
+
+Against reviewed Release A.1 HEAD `e69c2a5ffca3ddc8dc9f540dac66807a97c3eb46`, the final Release A.2 range contains 16 changed files, 606 insertions and 332 deletions. The authoritative changed-file list is:
+
+- `docs/seo/wp1-release-a/implementation-report.md`
+- `docs/seo/wp1-release-a/release-a-summary.json`
+- `package.json`
+- `scripts/check-wp1-privacy.ts`
+- `scripts/generate-sitemap.ts`
+- `scripts/write-generated-file.ts`
+- `src/seo/wp1AnalyticsRegistry.ts`
+- `src/seo/wp1SourceFreshness.ts`
+- `src/utils/analyticsConsent.ts`
+- `src/utils/tracking.ts`
+- `tests/wp1-generation-cleanliness.test.ts`
+- `tests/wp1-privacy-scan.test.ts`
+- `tests/wp1-release-a-registry.test.ts`
+- `tests/wp1-release-a-remediation-analytics-negative.test.ts`
+- `tests/wp1-release-a-remediation-source-negative.test.ts`
+- `tests/wp1-release-a-source.test.ts`
 
 ## 4. Findings remediated
 

@@ -18,6 +18,29 @@
     "a7b5ac7",
     "5ee4094"
   ],
+  "diffFromReviewedReleaseA1": {
+    "filesChanged": 16,
+    "insertions": 606,
+    "deletions": 332,
+    "changedFiles": [
+      "docs/seo/wp1-release-a/implementation-report.md",
+      "docs/seo/wp1-release-a/release-a-summary.json",
+      "package.json",
+      "scripts/check-wp1-privacy.ts",
+      "scripts/generate-sitemap.ts",
+      "scripts/write-generated-file.ts",
+      "src/seo/wp1AnalyticsRegistry.ts",
+      "src/seo/wp1SourceFreshness.ts",
+      "src/utils/analyticsConsent.ts",
+      "src/utils/tracking.ts",
+      "tests/wp1-generation-cleanliness.test.ts",
+      "tests/wp1-privacy-scan.test.ts",
+      "tests/wp1-release-a-registry.test.ts",
+      "tests/wp1-release-a-remediation-analytics-negative.test.ts",
+      "tests/wp1-release-a-remediation-source-negative.test.ts",
+      "tests/wp1-release-a-source.test.ts"
+    ]
+  },
   "scope": {
     "releaseBImplemented": false,
     "dependenciesChanged": false,
