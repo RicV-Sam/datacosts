@@ -1,43 +1,180 @@
 {
-  "artifact": "DataCost SEO WP1 Release A",
-  "sourceOfTruth": "DataCost SEO Implementation Work Package 1 — Version 1.1",
-  "status": "code_review_ready",
-  "branch": "codex/seo-wp1-release-a",
-  "baselineCommit": "d35bb614fca0c280bd86bbc2418a2c0dbe042a5a",
-  "implementationCommits": ["67174c7", "e133940", "4371dd6", "8dff7e0"],
-  "releaseARows": ["A-01", "A-02", "A-03", "A-04", "A-05", "A-06", "A-07", "A-08", "A-09", "A-10", "A-11", "A-12"],
-  "analyticsRows": ["AN-01", "AN-02", "AN-05", "AN-06", "AN-07", "AN-08"],
+  "artifact": "DataCost SEO WP1 Release A.1 remediation",
+  "sourceOfTruth": "Independent WP1 Release A code review plus approved Release A.1 remediation brief",
+  "status": "release_a1_independent_review_ready",
+  "deploymentReady": false,
+  "branch": "codex/seo-wp1-release-a-remediation",
+  "originalBaselineCommit": "d35bb614fca0c280bd86bbc2418a2c0dbe042a5a",
+  "reviewedReleaseAHead": "b9aaec0e06257034b5403cf3974607e674f0d6c3",
+  "cleanValidatedImplementationHead": "e9c87ac1d69f6206d9ef003adc6fed7e65391151",
+  "currentHandoffHeadResolution": "git rev-parse HEAD (documentation-only commit follows the clean-validated implementation)",
+  "implementationCommits": [
+    "67174c7",
+    "e133940",
+    "4371dd6",
+    "8dff7e0",
+    "b9aaec0",
+    "cf12c25",
+    "9229864",
+    "1a35f8f",
+    "dac656e",
+    "e9c87ac",
+    "SELF_DOCUMENTATION_COMMIT"
+  ],
   "releaseBImplemented": false,
-  "quickAnswerUiImplemented": false,
   "externalChanges": {
     "pushed": false,
+    "pullRequestOpened": false,
     "deployed": false,
     "ga4Modified": false,
     "gscModified": false,
     "indexingRequested": false,
     "sitemapSubmitted": false
   },
-  "baseline": {
-    "asOf": "2026-07-21",
-    "timezone": "Africa/Johannesburg",
-    "gscPeriod": ["2026-06-21", "2026-07-18"],
-    "ga4Period": ["2026-06-23", "2026-07-20"],
-    "gscQueryCoveragePercent": 50.84,
-    "cniUrlCount": 20,
-    "sitemapUrlCount": 207,
-    "htmlCount": 244
+  "lifecycle": {
+    "manifestVersion": "wp1-release-a.1",
+    "manifestEntries": 28,
+    "legacyUntouched": 28,
+    "legacyEdited": 0,
+    "newRecords": 5,
+    "strictQuickAnswerRecordsPublished": 0,
+    "compatibilityWarnings": 28
   },
-  "validation": {
-    "stableIdCount": 41,
-    "legacyBackfillWarnings": 28,
-    "contractTests": { "total": 16, "passed": 16 },
-    "browserTests": { "total": 39, "passed": 39 },
-    "buildPassed": true,
-    "typeCheckPassed": true,
-    "searchRegressionPassed": true
+  "stableIds": {
+    "fullOccurrenceCount": 74,
+    "fullUniqueCount": 50,
+    "eventOccurrenceCount": 64,
+    "eventUniqueCount": 40,
+    "ussdOccurrenceCount": 61,
+    "ussdUniqueCount": 37,
+    "answerOccurrenceCount": 3,
+    "answerUniqueCount": 3,
+    "registries": [
+      "ussdRepository",
+      "ussdCodes",
+      "ussdCodesByNetwork",
+      "quickAnswers"
+    ]
+  },
+  "consentModel": {
+    "initialization": "conflicting explicit inputs resolve to denied",
+    "updates": "Consent Mode array order or adapter call order; later explicit update wins",
+    "unknown": "does not erase an explicit decision",
+    "defaultWithNoState": "preserve Release A behavior; analytics allowed",
+    "dispatch": "refresh immediately before send"
+  },
+  "queryCohorts": {
+    "version": "wp1-v1.1",
+    "clusterCount": 7,
+    "matchRules": "versioned exact, regex, exclusion and unique priority",
+    "unmatchedExplicit": true,
+    "suppressedExplicit": true,
+    "exportedQueryCoveragePercent": 50.84
+  },
+  "searchRegression": {
+    "baselineVersion": 2,
+    "freshBuildBeforeCompare": true,
+    "routeCount": 244,
+    "titleCount": 244,
+    "sitemapUrlCount": 207,
+    "sitemapFileCount": 5,
+    "structuredDataBlockCount": 826,
+    "structuredDataFields": [
+      "all normalized JSON-LD",
+      "@type",
+      "@id",
+      "url",
+      "datePublished",
+      "dateModified"
+    ],
+    "mutationTests": 19,
+    "crossPlatformNewlineNormalization": true,
+    "originalReleaseABaselineAlsoPassed": true
+  },
+  "privacy": {
+    "scanPassed": true,
+    "trackedTextFiles": 212,
+    "realisticPhoneFixturesRemaining": 0,
+    "documentedPublicContentAllowlistEntries": 2,
+    "limitation": "Pre-existing rendered USSD examples and published operator business contacts remain unchanged under the search-output freeze."
+  },
+  "cleanValidation": {
+    "path": "C:\\Users\\ricca\\Desktop\\DataCost\\datacosts-wp1-release-a-remediation-validation",
+    "node": "v24.11.0",
+    "npm": "11.1.0",
+    "npmCiExit": 0,
+    "npmCiSeconds": 13.67,
+    "packagesInstalled": 314,
+    "independentNodeModules": true,
+    "lockfileChanged": false,
+    "repositoryContentDiff": false,
+    "npmAuditExistingModerateFindings": 4,
+    "lint": {
+      "exit": 0,
+      "seconds": 3.73
+    },
+    "typecheck": {
+      "exit": 0,
+      "seconds": 2.96
+    },
+    "build": {
+      "exit": 0,
+      "seconds": 36.93,
+      "htmlFiles": 244,
+      "sitemapFiles": 5,
+      "sitemapUrls": 207
+    },
+    "contracts": {
+      "exit": 0,
+      "passed": 78,
+      "total": 78,
+      "seconds": 1.44,
+      "warnings": 28
+    },
+    "searchRegression": {
+      "exit": 0,
+      "seconds": 35.69,
+      "routes": 244,
+      "structuredDataBlocks": 826
+    },
+    "seo": {
+      "exit": 0,
+      "seconds": 0.93
+    },
+    "adsense": {
+      "exit": 0,
+      "seconds": 0.92
+    },
+    "privacy": {
+      "exit": 0,
+      "seconds": 0.76
+    },
+    "focusedCopy": {
+      "exit": 0,
+      "passed": 3,
+      "total": 3,
+      "seconds": 10.28
+    },
+    "browser": {
+      "exit": 0,
+      "passed": 39,
+      "total": 39,
+      "seconds": 17.31
+    },
+    "workingDiffCheck": 0,
+    "baselineRangeDiffCheck": 0
   },
   "dependenciesAdded": [],
+  "lockfileChanged": false,
   "generatedProductionOutputCommitted": false,
   "rawAnalyticsDataCommitted": false,
-  "reviewReport": "docs/seo/wp1-release-a/implementation-report.md"
+  "knownLimitations": [
+    "28 untouched legacy USSD records remain in the editorial evidence-backfill queue.",
+    "Two line-scoped pre-existing public-content privacy exceptions remain because search-facing edits were prohibited.",
+    "npm ci reports four existing moderate audit findings; dependency remediation was not authorized.",
+    "Quick answers remain dormant contracts only; no Release B UI exists.",
+    "GSC suppressed rows and consent-blocked GA4 activity remain outside deterministic measurement."
+  ],
+  "reviewReport": "docs/seo/wp1-release-a/implementation-report.md",
+  "searchBaseline": "docs/seo/wp1-release-a/search-output-baseline-v2.json"
 }

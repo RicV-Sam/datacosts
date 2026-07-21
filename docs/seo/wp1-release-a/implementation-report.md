@@ -1,179 +1,209 @@
-# DataCost SEO WP1 Release A implementation report
+# DataCost SEO WP1 Release A.1 remediation report
 
-## 1. Executive implementation summary
+## 1. Executive remediation summary
 
-Release A is implemented on an isolated local branch and stops at the code-review gate. It adds stable IDs, the compatible source/freshness validator, AN-01/02/05/06/07/08 contracts, success-only USSD copy instrumentation, frozen measurement cohorts and search-output regression protection. It does not add a quick-answer UI or any Release B search-facing treatment.
+Release A.1 resolves every Blocker, High and Medium issue in the independent WP1 Release A code review and stops at the independent-review gate. The work is local only on `codex/seo-wp1-release-a-remediation`; it has not been pushed, deployed, submitted for indexing, or used to change GA4/GSC. Release B presentation, copy, internal-link and query-owner treatments remain absent.
 
-## 2. Source of truth
+## 2. Independent-review findings addressed
 
-The approved source is **DataCost SEO Implementation Work Package 1 — Version 1.1**. The explicit implementation authorization dated 21 July 2026 constrained work to Release A.
+All reviewed findings were addressed: deterministic lifecycle classification; strict evidence/date eligibility; live consent precedence; complete event-ID registration; runtime ID membership; internally derived canonicals; fresh-build search regression; JSON-LD comparison; route/field diagnostics; cross-platform normalization; derived/supersession graphs; review-date constraints; reproducible query cohorts; fixture privacy; screenshot hygiene; whitespace; and artifact accuracy.
 
-## 3. Pre-change repository state
+| Severity / original finding | Component changed | Correction | Proving test/result | Remaining risk |
+|---|---|---|---|---|
+| Blocker — caller-controlled legacy classification | `wp1LegacyManifest.ts`, `wp1SourceFreshness.ts`, records | Frozen fingerprint classification; caller lifecycle ignored | new/spoofed/edited/renamed/quick-answer lifecycle tests pass | 28 truly unchanged records still need evidence backfill |
+| Blocker — future/expired strict evidence remained eligible | source eligibility | One inclusive authoritative date/status/confidence/review function; promotion dates required | boundary, future, expiry, inverted/status/overdue tests pass | editorial dates must remain maintained |
+| Blocker — stale consent could override denial | `analyticsConsent.ts`, tracking | Ordered live store, conservative initialization, event-time refresh | 12 transition/dispatch tests pass | external CMP must publish supported updates |
+| High — UI ID datasets omitted | `wp1AnalyticsRegistry.ts`, validator | All four producer registries included; occurrence/unique counts separated | actual registry plus per-dataset collision/mismatch tests pass | future producers must join registry |
+| High — syntax-valid unregistered IDs dispatched | tracking event types/runtime assertions | Registered unions plus runtime membership | unregistered answer/code tests pass | none identified |
+| High — search check trusted stale `dist/` | search script/package commands | dedicated fresh temporary production build | injected stale-dist test and clean fresh build pass | build runtime increases intentionally |
+| High — JSON-LD ignored | search parser/baseline | parse/normalize/fingerprint all JSON-LD and public dates | `@type`/`@id`/date/URL mutations fail as expected | schema semantics beyond JSON structure still need reviewer judgment |
+| High — derived evidence needed no dependency | source graph | required dependencies, eligibility and auditable chains | missing/valid/expired/cycle tests pass | none identified |
+| High — realistic phone fixture | analytics fixture/privacy scan | sentinel replacement and tracked-file scanner | privacy tests and 212-file scan pass | two documented public-content exceptions remain |
+| Medium — AN-05 labels lacked membership | measurement definitions | versioned exact/regex/exclusion/priority rules | normalization/variant/exclusion/overlap/version tests pass | suppressed GSC rows remain unassignable by design |
+| Medium — review override could predate check | source validation | date ordering, approver/reason and no-extension rules | override negative/boundary tests pass | extension policy remains intentionally unapproved |
+| Medium — self/cyclic source graphs passed | graph validator | self, duplicate, missing and 2/3-node cycles rejected | graph suite passes | none identified |
+| Medium — aggregate/fragile search diagnostics | v2 per-route snapshot | attribute-aware title/meta/link parsing, field diagnostics, newline normalization | 244/244 titles; 19 mutation/normalization tests pass | baseline size is larger |
+| Medium — range whitespace failures and screenshot debris | affected files/tests | EOF cleanup and per-test output paths | both diff checks and full browser suite pass cleanly | generated output directories remain ignored |
 
-- Original worktree: `C:\Users\ricca\Desktop\DataCost\datacosts`
-- Branch: `main`
-- HEAD: `d35bb614fca0c280bd86bbc2418a2c0dbe042a5a`
-- Existing tracked modification: `package.json` (unrelated Facebook launch command)
-- Existing untracked work: `docs/social/facebook/launch-pack/` and `scripts/generate-facebook-launch-assets.mjs`
-- Relevant ignored paths: `dist/`, `node_modules/`, `playwright-report/`, `test-results/`, logs and environment files
-- Pre-change lint/type check: passed
-- Pre-change build: passed; 244 HTML files, five sitemap files and 207 sitemap URLs
-- Pre-change Playwright: 35/36 passed; `verify_ussd_v4.spec.ts` contained stale 2026-H1 and March-date assertions against the existing July baseline
+## 3. Findings not addressed and why
 
-The authorized worktree is `C:\Users\ricca\Desktop\DataCost\datacosts-wp1-release-a`. Original unrelated changes were not copied, reset, staged or committed.
+No Blocker, High or Medium finding remains unaddressed. Two pre-existing public-content phone-shaped areas are line-scoped in the privacy allowlist because changing rendered copy was explicitly prohibited: four USSD dial examples and two published operator business-support contacts. They are not fixtures or user data and require a separately authorized content/privacy review.
 
-## 4. Version 1.1 Release A rows implemented
+## 4. Branch, baseline and local HEAD
 
-- A-01: stable IDs for USSD, future quick-answer, source, operator and content records
-- A-02: scoped SF-01–SF-10 source/freshness model
-- A-03: strict-new/edited plus warning-only legacy compatibility validator
-- A-04 / AN-01: `copy_ussd_code` contract, instrumentation and pre-treatment mechanism
-- A-05 / AN-02: dormant typed `quick_answer_action` contract and test harness
-- A-06 / AN-05: frozen GSC query-owner cohort and untreated comparison rows
-- A-07 / AN-06: frozen 20-URL CNI cohort and reconciliation definitions
-- A-08 / AN-07: organic landing-page report definition
-- A-09 / AN-08: source quality/freshness report definition
-- A-10: consent and prerender/static-generation suppression
-- A-11: ID, evidence, analytics, interaction and search-output regression tests
-- A-12: baseline definitions, versioning and transition-window annotation
+- Branch: `codex/seo-wp1-release-a-remediation`
+- Reviewed Release A HEAD: `b9aaec0e06257034b5403cf3974607e674f0d6c3`
+- Original baseline: `d35bb614fca0c280bd86bbc2418a2c0dbe042a5a`
+- Clean-validated implementation HEAD: `e9c87ac1d69f6206d9ef003adc6fed7e65391151`
+- Handoff artifact commit: resolve the current local HEAD with `git rev-parse HEAD`; this report is committed after the clean-validated implementation and changes documentation only.
 
-## 5. Rows deliberately not implemented
+## 5. Complete commit list
 
-Release B was not implemented. This includes QA-01/02/03 presentation, QA-04, the 17 link mappings, CI-10/13/19/20 treatments, title/meta/H1/intro changes, visible source/freshness presentation, redirects, noindex, canonical reassignment, URL consolidation/removal and sitemap membership changes.
+Original Release A:
 
-## 6. Files added
+1. `67174c7` — source/freshness contracts
+2. `e133940` — analytics instrumentation
+3. `4371dd6` — baselines/regressions
+4. `8dff7e0` — original handoff
+5. `b9aaec0` — independent-review evidence target
 
-- `src/seo/wp1SourceFreshness.ts`
-- `src/seo/wp1Measurement.ts`
-- `src/seo/wp1QuickAnswerDefinitions.ts`
-- `src/data/wp1ReleaseARecords.ts`
-- `scripts/check-wp1-release-a.ts`
-- `scripts/check-wp1-search-regression.ts`
-- `tests/wp1-release-a-source.test.ts`
-- `tests/wp1-release-a-analytics.test.ts`
-- `tests/wp1-release-a-measurement.test.ts`
-- `tests/wp1-release-a-copy.spec.ts`
-- `docs/seo/wp1-release-a/search-output-baseline.json`
-- This report and `release-a-summary.json`
+Release A.1:
 
-## 7. Files modified
+1. `cf12c25` — lifecycle manifest and evidence eligibility
+2. `9229864` — live consent and registered event IDs
+3. `1a35f8f` — fresh search build, JSON-LD coverage and mutation tests
+4. `dac656e` — versioned query cohorts, privacy scan and hygiene
+5. `e9c87ac` — complete validation commands and screenshot output isolation
+6. Current documentation-only handoff commit — resolve with `git rev-parse HEAD`
 
-- `package.json`
-- `src/types.ts`
-- `src/data.ts`
-- `src/data/ussd.ts`
-- `src/data/ussdCodes.ts`
-- `src/utils/tracking.ts`
-- `src/components/USSDCodeFinder.tsx`
-- `src/components/UssdTool.tsx`
-- `src/pages/USSDPage.tsx`
-- `src/pages/NetworkUSSDPage.tsx`
-- `tests/verify_ussd_v4.spec.ts` (aligned stale assertions to the recorded pre-change output and made screenshots portable)
+## 6. Files changed
 
-## 8. Diff statistics
+The remediation adds the frozen manifest, consent store, analytics registry, privacy scan, v2 search baseline and focused negative/mutation tests. It modifies source eligibility, analytics dispatch, query measurement definitions, search comparison, event-producing dataset typings, screenshot output paths, package commands and handoff artifacts. Use `git diff --name-status d35bb614fca0c280bd86bbc2418a2c0dbe042a5a..HEAD` for the authoritative list.
 
-Against `d35bb614fca0c280bd86bbc2418a2c0dbe042a5a`, Release A changes 24 files with 1,359 insertions and 79 deletions. Generated `dist/` output is ignored and no generated production output is committed.
+## 7. Diff statistics
 
-## 9. Stable-ID design
+Including this handoff artifact content: 39 files changed, 29,744 insertions and 99 deletions versus the original baseline. Most insertions are the 1.10 MB per-route v2 search-output baseline. No dependency, lockfile, raw analytics export or production build output was added.
 
-IDs are explicit semantic strings such as `ussd.mtn.balance_main`, `qa.vodacom.data_balance`, `source.operator.mtn` and `operator.vodacom`. They do not depend on array position or display labels, must match a restrictive analytics-safe pattern, are capped at 100 characters, and are checked for duplicates and missing references. Future quick-answer definitions contain IDs and Release B row references only—no copy, operator instruction, action, component or publish flag.
+## 8. Lifecycle-classification design
 
-## 10. Source/freshness contract
+`classifyContentLifecycle` ignores caller lifecycle claims. It fingerprints material claim fields and compares them with the frozen baseline manifest:
 
-The contract supports `sourceUrl`, `sourceType`, `checkedAt`, `effectiveFrom`, `expiresAt`, `verificationMethod`, `claimScope`, `status`, `confidence`, `lastContentChangeAt`, derived or justified review due dates, conflicts, supersession and stable record IDs. Approved intervals are 30 days for prices/promotions, 90 for USSD codes, 180 for device steps and 365 for evergreen claims.
+- matching ID and fingerprint → `legacy_untouched`
+- matching ID with changed material fields → `legacy_edited`
+- unknown ID → `new`
+- any quick-answer-powered record → strict regardless of lifecycle
 
-## 11. Strict versus warning behavior
+Renames are treated as a missing frozen record plus a strict new record when completeness enforcement is enabled.
 
-New or edited high-risk and future quick-answer-powered records require verified, in-date, non-low-confidence evidence and fail validation otherwise. Expired active promotions are excluded and fail. Untouched legacy gaps warn and enter the editorial backfill queue; the current queue has 28 USSD records. Overdue evergreen evidence warns unless strict. Overrides require a date, reason and approver and cannot silently extend beyond promotion expiry.
+## 9. Frozen legacy-manifest design
 
-## 12. Analytics event schemas
+`src/seo/wp1LegacyManifest.ts` contains 28 static entries with stable ID, record type, SHA-256 material fingerprint, baseline commit, migration version and source location. Ordinary checks only read it; no normal build/test command regenerates it. Duplicate IDs, invalid fingerprints and missing provenance fail.
 
-`copy_ussd_code` sends only `canonical_path`, `operator`, `code_type`, `code_id` and `placement`, and only after the clipboard promise succeeds. `quick_answer_action` is a typed dormant contract using `canonical_path`, `answer_id`, `operator`, `action_type`, `placement` and optional controlled `destination_type`. Neither schema accepts clipboard content, phone/account values, free-form input or full destination URLs.
+## 10. Evidence-window and eligibility rules
 
-## 13. Privacy and consent controls
+`evaluateSourceEligibility` is the authoritative source-selection function used by validation and safe source selection. Date-only comparisons use `Africa/Johannesburg` policy with inclusive effective/expiry boundaries. Strict records require valid non-future checks, verified non-low-confidence evidence, current review, and in-window dates. Promotions require `effectiveFrom` and `expiresAt`; status cannot override dates. All-expired candidate sets return an empty array.
 
-Events are blocked for explicit denied analytics consent, prerender injection, headless/prerender user agents and WebDriver/static validation. An explicit in-page consent state or Consent Mode `analytics_storage` update is honored; where no analytics consent value exists, the existing site behavior is preserved. Event handlers remain click-bound and emit once per successful action. “Please Call Me” values are never sent, logged or placed in fixtures/baselines.
+## 11. Review-date override rules
 
-## 14. Baseline and cohort definitions
+Overrides require a non-empty reason and an allowlisted approver. `reviewDueAt` cannot precede `checkedAt`, exceed `expiresAt`, or extend the normally derived review date. Release A.1 allows shortening only because no approved extension maximum exists.
 
-- Baseline as of: 21 July 2026; timezone `Africa/Johannesburg`
-- GSC: 21 June–18 July 2026, three-day reporting delay
-- GA4: 23 June–20 July 2026, one-day reporting delay
-- GSC exported query impressions: 187,914 of 369,636; coverage is **50.84%**, not 100%
-- Query-cluster version: `wp1-v1.1`; membership is frozen
-- Canonical paths: HTTPS, `datacost.co.za`, query/fragment removed, approved aliases only, one trailing slash for non-file paths
-- GA4 segment: Organic Search, South Africa, desktop/mobile/tablet
-- Untreated rows: QO-10, QO-12 and QO-15
-- Transition: exclude D–D+7; read 28 days at D+8–D+35 and 56 days at D+8–D+63
-- Missing/suppressed data stays distinct from zero; GA4 sessions need not equal GSC clicks
+## 12. Derived-source graph rules
 
-The complete repeatable constants live in `src/seo/wp1Measurement.ts`.
+Derived records require `derivedFromSourceIds`. Missing, duplicate, self-referential and cyclic dependencies fail. Dependencies must be eligible for the relevant claim date. Supersession and conflict graphs receive the same missing/self/duplicate/cycle checks. Exclusive active claim-scope collisions fail. Validation returns dependency chains for audit.
 
-## 15. Test commands executed
+## 13. Consent authority and transition model
 
-- `npm run lint`
-- `npm run build`
-- `npm run check:wp1-contracts`
-- `npm run check:wp1-search-regression`
-- `npx playwright test wp1-release-a-copy.spec.ts`
-- `npx playwright test`
+`src/utils/analyticsConsent.ts` provides one live per-window store. Window and dataset values are compatibility initialization inputs; conflicting initial values resolve to denied. Consent Mode entries are applied in array order, and the adapter records live changes in call order. Unknown never erases an explicit decision. A later grant can re-enable only after it is observed after a denial; a later denial suppresses immediately. Dispatch refreshes consent immediately before sending. No known state preserves the approved Release A default.
 
-## 16. Test results
+## 14. Complete stable-ID registry design
 
-Contract/unit coverage includes duplicates, references, enums, dates, future checks, ranges, expiry, strict evidence, compatibility warnings, all review intervals, semantic date separation, canonical normalization, cohort freezing, success/failure/consent/prerender analytics and payload allowlisting. All 16 contract tests and all 39 browser tests pass.
+`src/seo/wp1AnalyticsRegistry.ts` covers `ussdRepository`, `src/data.ts::ussdCodes`, `ussdCodesByNetwork` and dormant quick-answer definitions. Current totals are:
 
-## 17. Build, lint and type-check results
+- 64 event-ID occurrences
+- 40 unique event IDs
+- 61 USSD occurrences / 37 unique USSD IDs
+- 3 quick-answer occurrences / 3 unique answer IDs
+- 74 full WP1 stable-ID occurrences / 50 unique IDs after source and operator records are included
 
-Build, TypeScript checking and repository SEO/AdSense validators pass. The build remains at 244 generated HTML files and five sitemap files.
+Cross-registry operator/code conflicts, unknown operators, missing codes, unregistered IDs and equivalent records under different IDs are validated.
 
-## 18. Route, canonical and sitemap regression
+## 15. Runtime membership enforcement
 
-The committed baseline fingerprints 244 route outputs and 207 sitemap URLs. Comparison covers canonical/title/description/robots/H1 fields, normalized visible text, internal link destinations/anchors, sitemap membership, `robots.txt` and `_redirects`. All hashes match the pre-change build. Sitemap membership, URL count, canonical outputs, public text, links, robots and redirects are unchanged.
+Event types use inferred registered unions for operator, code type, action, placement, destination, `codeId` and `answerId`. Runtime assertions reject unregistered values even when syntax-safe. `qa.unregistered.safe_id` cannot dispatch.
 
-## 19. Dependencies
+## 16. Canonical-path derivation
 
-No dependency was added or updated and `package-lock.json` was not regenerated. The implementation uses TypeScript, Node's built-in test runner and the repository's existing Playwright/Vite tools.
+Production event callers cannot provide a canonical path. Dispatch uses a valid same-origin rendered canonical first, otherwise normalized current location. Queries and fragments are removed, external origins are rejected, file paths retain file form, and non-file paths receive one trailing slash.
 
-## 20. Known limitations
+## 17. Privacy fixture and scan changes
 
-- Release A freezes approved aggregate evidence; it does not fetch live GSC/GA4 data or change external configuration.
-- The 28 untouched legacy USSD claims still need editorial evidence backfill before a later strict migration.
-- Quick-answer actions have no pre-change baseline because the UI does not exist; their first Release B measurement period must be labeled a post-launch benchmark.
-- Consent and browser controls cause GA4 undercounting; GSC and GA4 are intentionally not forced to reconcile.
+The realistic phone-shaped analytics fixture was replaced with `user_input_must_not_be_sent`. `npm run check:wp1-privacy` scans tracked text files, distinguishes USSD/date patterns, masks diagnostics, and fails likely South African phone shapes outside the two documented line-scoped public-content exceptions. Its own tests assemble synthetic shapes at runtime and commit no phone literal.
 
-## 21. Discoveries outside scope
+## 18. Search-regression build and comparison design
 
-The existing USSD browser test had stale H1/date/section assumptions and Linux-only screenshot paths. Its assertions were aligned to the recorded pre-change output without changing public content. No CI/CNI page treatment was attempted.
+The normal command creates a dedicated OS temporary directory, runs a deterministic production build into it, compares the fresh output and removes the temporary directory. It never reads repository `dist/`. Separate explicit commands generate and review a candidate; ordinary checks never rewrite the committed baseline.
 
-## 22. Rollback procedure
+## 19. Structured-data comparison coverage
 
-Because nothing was pushed or deployed, the safest rollback is to delete the isolated worktree after review or use ordinary `git revert` commits on this local branch. Do not reset or clean the original dirty worktree.
+Every `application/ld+json` block is parsed. Malformed JSON fails with a route diagnostic. Object keys are normalized, array order is preserved, multiple blocks are sorted deterministically, and each route records its JSON-LD fingerprint plus summaries for `@type`, `@id`, URL, `datePublished` and `dateModified`. The clean build contains 826 JSON-LD blocks.
 
-## 23. Local branch and commits
+## 20. Mutation-test results
 
-- Branch: `codex/seo-wp1-release-a`
-- Baseline: `d35bb614fca0c280bd86bbc2418a2c0dbe042a5a`
-- Source/freshness commit: `67174c7`
-- Analytics/measurement commit: `e133940`
-- Review documentation and regression tooling: `4371dd6`
-- Handoff finalization: `8dff7e0`
-- Final report metadata: current local branch HEAD at handoff
+All 19 search-regression tests pass. Required failure mutations cover title, description, H1, canonical, robots meta, visible text, link anchor, link destination, sitemap membership, JSON-LD `@type`, `@id`, `dateModified`, canonical URL, redirects and robots. No-op tests cover CRLF/LF, final newlines, attribute order and JSON object-key order. A stale repository `dist/` fixture is ignored.
 
-No commit was pushed and no pull request was opened.
+## 21. Query-cohort match definitions
 
-## 24. Release A deployment checklist
+All seven AN-05 records include version, effective date, owner, supporting pages, exact queries, regexes, exclusions, unique priority, locale, treatment and source reference. NFKC/case/punctuation/whitespace normalization is deterministic. Overlaps are priority-resolved and surfaced, unmatched and suppressed queries remain explicit, and historical assignments retain their cluster version. The 50.84% exported-query coverage limitation remains visible. Approved owners were not changed.
 
-- [x] Code-review candidate only
-- [x] Local build/type/test evidence collected
-- [x] Search-output regression matched baseline
-- [x] No Release B UI/content/link treatment
-- [x] No credentials, raw personal data or large exports committed
-- [x] No dependency change
-- [ ] Independent code review
-- [ ] Deployment authorization
-- [ ] Production smoke test after a separately authorized deployment
-- [ ] Release annotation with actual deployment timestamp
+## 22. Clean-install validation
 
-## 25. Conditions remaining before Release B
+- Path: `C:\Users\ricca\Desktop\DataCost\datacosts-wp1-release-a-remediation-validation`
+- Detached HEAD: `e9c87ac1d69f6206d9ef003adc6fed7e65391151`
+- Node: `v24.11.0`
+- npm: `11.1.0`
+- `npm ci`: exit 0, 13.67 s, 314 packages installed
+- Dependency directory: ordinary independent directory, not a junction
+- Lockfile/repository content diff: none
+- npm audit notice: four existing moderate findings; no audit fix or dependency change was authorized
 
-Release A must be independently reviewed and later deployed under separate authorization. After deployment, confirm AN-01 event quality and consent behavior, record the actual deployment boundary, complete evidence for any quick answer intended to publish, keep QA-04 blocked, and obtain separate Release B authorization. GSC/GA4 setting changes, indexing requests, sitemap submission and production release remain outside this handoff.
+## 23. Full test and build results
+
+| Command | Exit | Result | Runtime |
+|---|---:|---|---:|
+| `npm ci` | 0 | 314 packages | 13.67 s |
+| `npm run lint` | 0 | TypeScript clean | 3.73 s |
+| `npm run typecheck` | 0 | TypeScript clean | 2.96 s |
+| `npm run build` | 0 | 244 HTML, 5 sitemap files, 207 URLs | 36.93 s |
+| `npm run check:wp1-contracts` | 0 | 78/78; 28 compatibility warnings | 1.44 s |
+| `npm run check:wp1-search-regression` | 0 | 244 routes/titles, 207 URLs, 826 JSON-LD blocks | 35.69 s |
+| `npm run check:seo` | 0 | 244 HTML / 5 sitemaps | 0.93 s |
+| `npm run check:adsense` | 0 | 362 text files / 244 HTML | 0.92 s |
+| `npm run check:wp1-privacy` | 0 | 212 tracked text files | 0.76 s |
+| `npx playwright test wp1-release-a-copy.spec.ts` | 0 | 3/3 | 10.28 s |
+| `npx playwright test` | 0 | 39/39 browser tests | 17.31 s |
+| `git diff --check` | 0 | clean | <1 s |
+| `git diff --check d35bb...HEAD` | 0 | clean | <1 s |
+
+## 24. Search-output invariance result
+
+The fresh v2 comparison passes for all 244 routes, all 244 titles, 207 sitemap URLs, links, visible text, metadata, robots, redirects and 826 JSON-LD blocks. The reviewed Release A checker was also streamed directly from `b9aaec0` against the remediation build and passed its original baseline: 244 HTML files and 207 sitemap URLs unchanged. No title, description, H1, visible copy, canonical, robots, redirect, sitemap membership or Release B presentation changed.
+
+## 25. Known limitations
+
+- The 28 frozen untouched USSD records remain warning-compatible pending editorial evidence backfill.
+- The privacy allowlist preserves two pre-existing rendered public-content areas because search-facing edits were prohibited.
+- npm reports four existing moderate dependency audit findings; dependencies were unchanged.
+- Quick answers remain dormant IDs/contracts only; there is no Release B UI or pre-launch quick-answer baseline.
+- GA4 remains consent/browser-dependent, and GSC suppressed rows cannot be deterministically assigned.
+- The v2 baseline is intentionally large because it stores per-route diagnostic evidence.
+
+## 26. Rollback procedure
+
+Nothing was pushed or deployed. Preferred rollback is to remove the isolated remediation and validation worktrees after review. If commits are later integrated, use ordinary `git revert` in reverse order. Do not reset or clean the original dirty `main` worktree.
+
+## 27. Updated machine-readable summary
+
+`docs/seo/wp1-release-a/release-a-summary.json` contains the authoritative counts, branch, validated implementation HEAD, consent/query/search/privacy models, validation totals, known limitations and external-change flags.
+
+## 28. Independent-review checklist
+
+- [x] Deterministic frozen-manifest lifecycle; caller labels ignored
+- [x] New/edited/quick-answer records strict
+- [x] In-date authoritative evidence and promotion windows
+- [x] Review overrides constrained
+- [x] Derived/supersession graphs validated
+- [x] Live consent transitions and denial suppression
+- [x] Complete event-ID registry and runtime membership
+- [x] Internal canonical derivation
+- [x] Versioned reproducible query matching
+- [x] Fresh-build search comparison
+- [x] JSON-LD/public-date comparison and route diagnostics
+- [x] Mutation and newline normalization tests
+- [x] Fixture privacy and tracked-file scan
+- [x] Portable screenshot outputs
+- [x] Clean independent `npm ci`
+- [x] Both whitespace checks
+- [x] Search output and 207-URL sitemap invariant
+- [x] No Release B, external changes, push, PR or deployment
+- [ ] Independent reviewer approval
+- [ ] Separate deployment authorization
