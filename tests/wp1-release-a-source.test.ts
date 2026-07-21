@@ -2,12 +2,15 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   classifyContentLifecycle,
+  createEvidenceSubjectRegistry,
   deriveReviewDueAt,
   selectEligibleSources,
   type ContentEvidenceRecord,
+  type EvidenceSubjectCollections,
+  type EvidenceSubjectKind,
   type SourceRecord,
   validateLegacyManifest,
-  validateReleaseAData
+  validateReleaseAData as validateReleaseADataCore
 } from '../src/seo/wp1SourceFreshness';
 import { fingerprintMaterialClaim, type LegacyManifestEntry } from '../src/seo/wp1LegacyManifest';
 
@@ -24,16 +27,39 @@ const source = (overrides: Partial<SourceRecord> = {}): SourceRecord => ({
   ...overrides
 });
 
-const content = (overrides: Partial<ContentEvidenceRecord> = {}): ContentEvidenceRecord => ({
-  recordId: 'content.example',
-  recordType: 'content',
-  recordKind: 'evergreen_fact',
-  riskClass: 'evergreen',
-  lifecycle: 'new',
-  sourceRecordIds: ['source.operator.example'],
-  active: true,
-  ...overrides
-});
+type TestContentOverrides = Partial<ContentEvidenceRecord> & { subjectKind?: EvidenceSubjectKind };
+const testSubjectKinds = new WeakMap<ContentEvidenceRecord, EvidenceSubjectKind>();
+
+const content = (overrides: TestContentOverrides = {}): ContentEvidenceRecord => {
+  const { subjectKind = 'evergreen_fact', ...recordOverrides } = overrides;
+  const record: ContentEvidenceRecord = {
+    recordId: 'content.example',
+    recordType: 'content',
+    lifecycle: 'new',
+    sourceRecordIds: ['source.operator.example'],
+    active: true,
+    ...recordOverrides
+  };
+  testSubjectKinds.set(record, subjectKind);
+  return record;
+};
+
+type TestValidationOptions = Omit<Parameters<typeof validateReleaseADataCore>[2], 'evidenceSubjects'>;
+const validateReleaseAData = (
+  sources: SourceRecord[],
+  records: ContentEvidenceRecord[],
+  options: TestValidationOptions
+) => {
+  const collections: EvidenceSubjectCollections = {};
+  for (const subjectKind of ['ussd_code', 'price', 'promotion', 'device_step', 'evergreen_fact'] as const) {
+    const recordIds = records.filter((record) => testSubjectKinds.get(record) === subjectKind).map((record) => record.recordId);
+    if (recordIds.length > 0) Object.assign(collections, { [subjectKind]: recordIds });
+  }
+  return validateReleaseADataCore(sources, records, {
+    ...options,
+    evidenceSubjects: createEvidenceSubjectRegistry(collections)
+  });
+};
 
 test('duplicate IDs and missing references fail', () => {
   const result = validateReleaseAData(
@@ -77,7 +103,7 @@ test('review overrides require justification and cannot extend a promotion past 
 test('expired active promotions and unverified strict quick-answer evidence are excluded', () => {
   const result = validateReleaseAData(
     [source({ expiresAt: '2026-07-01', status: 'needs_review' })],
-    [content({ recordType: 'quick_answer', recordKind: 'promotion', riskClass: 'promotion', powersQuickAnswer: true })],
+    [content({ recordType: 'quick_answer', subjectKind: 'promotion', powersQuickAnswer: true })],
     { asOf: '2026-07-21' }
   );
   assert.ok(result.errors.some((issue) => issue.code === 'expired_active_promotion'));
@@ -86,7 +112,7 @@ test('expired active promotions and unverified strict quick-answer evidence are 
 });
 
 test('new or edited high-risk records require evidence', () => {
-  const result = validateReleaseAData([], [content({ recordKind: 'price', riskClass: 'price', lifecycle: 'edited', sourceRecordIds: [] })], { asOf: '2026-07-21' });
+  const result = validateReleaseAData([], [content({ subjectKind: 'price', lifecycle: 'edited', sourceRecordIds: [] })], { asOf: '2026-07-21' });
   assert.ok(result.errors.some((issue) => issue.code === 'strict_evidence_required'));
 });
 
@@ -99,7 +125,7 @@ test('untouched legacy gaps warn and join the backfill queue without blocking', 
     baselineCommit: 'test-baseline',
     migrationVersion: 'test-v1'
   }];
-  const result = validateReleaseAData([], [content({ materialClaim, recordKind: 'ussd_code', riskClass: 'ussd_code', sourceRecordIds: [] })], { asOf: '2026-07-21', legacyManifest });
+  const result = validateReleaseAData([], [content({ materialClaim, subjectKind: 'ussd_code', sourceRecordIds: [] })], { asOf: '2026-07-21', legacyManifest });
   assert.equal(result.errors.length, 0);
   assert.ok(result.warnings.some((issue) => issue.code === 'legacy_evidence_backfill'));
   assert.deepEqual(result.editorialBackfillIds, ['content.example']);
@@ -141,17 +167,19 @@ const legacyEntry = (overrides: Partial<LegacyManifestEntry> = {}): LegacyManife
   ...overrides
 });
 
-const legacyContent = (claim: Record<string, unknown> = legacyClaim, overrides: Partial<ContentEvidenceRecord> = {}): ContentEvidenceRecord => ({
-  recordId: 'ussd.example.legacy',
-  recordType: 'ussd_code',
-  recordKind: 'ussd_code',
-  riskClass: 'ussd_code',
-  materialClaim: claim,
-  lifecycle: 'legacy_untouched',
-  sourceRecordIds: [],
-  active: true,
-  ...overrides
-});
+const legacyContent = (claim: Record<string, unknown> = legacyClaim, overrides: Partial<ContentEvidenceRecord> = {}): ContentEvidenceRecord => {
+  const record: ContentEvidenceRecord = {
+    recordId: 'ussd.example.legacy',
+    recordType: 'ussd_code',
+    materialClaim: claim,
+    lifecycle: 'legacy_untouched',
+    sourceRecordIds: [],
+    active: true,
+    ...overrides
+  };
+  testSubjectKinds.set(record, 'ussd_code');
+  return record;
+};
 
 test('frozen manifest deterministically classifies unchanged, edited and new records', () => {
   const manifest = [legacyEntry()];
@@ -189,18 +217,18 @@ test('manifest validation rejects duplicate IDs and malformed fingerprints', () 
 
 test('eligibility includes date boundaries and excludes future or elapsed windows', () => {
   const activeToday = source({ effectiveFrom: '2026-07-21', expiresAt: '2026-07-21' });
-  const eligible = validateReleaseAData([activeToday], [content({ recordId: 'content.today', recordKind: 'promotion', riskClass: 'promotion', sourceRecordIds: [activeToday.recordId] })], { asOf: '2026-07-21', legacyManifest: [] });
+  const eligible = validateReleaseAData([activeToday], [content({ recordId: 'content.today', subjectKind: 'promotion', sourceRecordIds: [activeToday.recordId] })], { asOf: '2026-07-21', legacyManifest: [] });
   assert.deepEqual(eligible.eligibleRecordIds, ['content.today']);
 
-  const tomorrow = validateReleaseAData([source({ effectiveFrom: '2026-07-22' })], [content({ recordId: 'content.tomorrow', recordKind: 'price', riskClass: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
+  const tomorrow = validateReleaseAData([source({ effectiveFrom: '2026-07-22' })], [content({ recordId: 'content.tomorrow', subjectKind: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
   assert.ok(tomorrow.errors.some((issue) => issue.code === 'source_not_yet_effective'));
 
-  const yesterday = validateReleaseAData([source({ expiresAt: '2026-07-20' })], [content({ recordId: 'content.yesterday', recordKind: 'price', riskClass: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
+  const yesterday = validateReleaseAData([source({ expiresAt: '2026-07-20' })], [content({ recordId: 'content.yesterday', subjectKind: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
   assert.ok(yesterday.errors.some((issue) => issue.code === 'source_expired'));
 });
 
 test('verified status cannot override expiry and expired status cannot contradict its window', () => {
-  const expiredVerified = validateReleaseAData([source({ expiresAt: '2026-07-20', status: 'verified' })], [content({ recordKind: 'price', riskClass: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
+  const expiredVerified = validateReleaseAData([source({ expiresAt: '2026-07-20', status: 'verified' })], [content({ subjectKind: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
   assert.ok(expiredVerified.errors.some((issue) => issue.code === 'source_expired'));
 
   const contradictory = validateReleaseAData([source({ status: 'expired', effectiveFrom: '2026-07-22', expiresAt: '2026-07-30' })], [], { asOf: '2026-07-21', legacyManifest: [] });
@@ -210,7 +238,7 @@ test('verified status cannot override expiry and expired status cannot contradic
 test('review overrides may shorten but never extend the derived review window', () => {
   const result = validateReleaseAData([
     source({ reviewDueAt: '2027-01-01', reviewDueOverrideReason: 'Attempted extension.', reviewDueOverrideApprovedBy: 'seo_lead' })
-  ], [content({ recordKind: 'ussd_code', riskClass: 'ussd_code' })], { asOf: '2026-07-21', legacyManifest: [] });
+  ], [content({ subjectKind: 'ussd_code' })], { asOf: '2026-07-21', legacyManifest: [] });
   assert.ok(result.errors.some((issue) => issue.code === 'review_due_extension_not_permitted'));
 });
 
@@ -237,7 +265,7 @@ test('valid multi-source derivation records chains and rejects an expired depend
     source({ recordId: 'source.base.two' }),
     source({ recordId: 'source.derived', verificationMethod: 'derived', derivedFromSourceIds: ['source.base.one', 'source.base.two'] })
   ];
-  const valid = validateReleaseAData(sources, [content({ sourceRecordIds: ['source.derived'], recordKind: 'price', riskClass: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
+  const valid = validateReleaseAData(sources, [content({ sourceRecordIds: ['source.derived'], subjectKind: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
   assert.equal(valid.errors.length, 0);
   assert.deepEqual(valid.dependencyChains['source.derived'], [
     ['source.derived', 'source.base.one'],
@@ -245,7 +273,7 @@ test('valid multi-source derivation records chains and rejects an expired depend
   ]);
 
   sources[0] = source({ recordId: 'source.base.one', expiresAt: '2026-07-20' });
-  const invalid = validateReleaseAData(sources, [content({ sourceRecordIds: ['source.derived'], recordKind: 'price', riskClass: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
+  const invalid = validateReleaseAData(sources, [content({ sourceRecordIds: ['source.derived'], subjectKind: 'price' })], { asOf: '2026-07-21', legacyManifest: [] });
   assert.ok(invalid.errors.some((issue) => issue.code === 'ineligible_derived_dependency'));
 });
 
@@ -259,5 +287,5 @@ test('exclusive active claim conflicts fail and comparison selection returns an 
   assert.deepEqual(selectEligibleSources([
     source({ recordId: 'source.expired.one', expiresAt: '2026-07-20' }),
     source({ recordId: 'source.expired.two', expiresAt: '2026-07-19' })
-  ], 'price', '2026-07-21', { strict: true }), []);
+  ], 'price', '2026-07-21'), []);
 });

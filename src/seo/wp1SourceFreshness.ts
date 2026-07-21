@@ -11,9 +11,10 @@ export const SOURCE_TYPES = ['operator', 'regulator', 'device_vendor', 'editoria
 export const VERIFICATION_METHODS = ['operator_page', 'app_check', 'ussd_test', 'support_confirmation', 'derived'] as const;
 export const SOURCE_STATUSES = ['verified', 'needs_review', 'expired'] as const;
 export const SOURCE_CONFIDENCE = ['high', 'medium', 'low'] as const;
-export const RISK_CLASSES = ['promotion', 'price', 'ussd_code', 'device_steps', 'evergreen'] as const;
-export const EVIDENCE_RECORD_KINDS = ['ussd_code', 'price', 'promotion', 'device_step', 'evergreen_fact'] as const;
+export const RISK_CLASSES = Object.freeze(['promotion', 'price', 'ussd_code', 'device_steps', 'evergreen'] as const);
+export const EVIDENCE_RECORD_KINDS = Object.freeze(['ussd_code', 'price', 'promotion', 'device_step', 'evergreen_fact'] as const);
 export const REVIEW_OVERRIDE_APPROVERS = ['seo_lead', 'editorial_lead'] as const;
+export const EVIDENCE_POLICY_VERSION = 'wp1-release-a.4' as const;
 const CONSERVATIVE_OVERRIDE_RISK_CLASS: RiskClass = 'promotion';
 
 export type SourceType = (typeof SOURCE_TYPES)[number];
@@ -22,16 +23,9 @@ export type SourceStatus = (typeof SOURCE_STATUSES)[number];
 export type SourceConfidence = (typeof SOURCE_CONFIDENCE)[number];
 export type RiskClass = (typeof RISK_CLASSES)[number];
 export type EvidenceRecordKind = (typeof EVIDENCE_RECORD_KINDS)[number];
+export type EvidenceSubjectKind = EvidenceRecordKind;
 export type RecordLifecycle = 'new' | 'legacy_edited' | 'legacy_untouched';
 export type ContentEvidenceRecordType = 'ussd_code' | 'quick_answer' | 'operator' | 'content';
-
-export const REVIEW_INTERVAL_DAYS: Readonly<Record<RiskClass, number>> = {
-  promotion: 30,
-  price: 30,
-  ussd_code: 90,
-  device_steps: 180,
-  evergreen: 365
-};
 
 export interface SourceRecord {
   recordId: string;
@@ -58,9 +52,6 @@ export interface SourceRecord {
 export interface ContentEvidenceRecord {
   recordId: string;
   recordType: ContentEvidenceRecordType;
-  recordKind: EvidenceRecordKind;
-  /** Compatibility input validated against recordKind; never selects the policy. */
-  riskClass: RiskClass;
   /** Caller input retained for migration compatibility, but ignored for enforcement. */
   lifecycle?: 'new' | 'edited' | 'legacy_edited' | 'legacy_untouched';
   materialClaim?: Record<string, unknown>;
@@ -70,17 +61,97 @@ export interface ContentEvidenceRecord {
 }
 
 export interface EvidenceRecordPolicy {
-  riskClass: RiskClass;
-  alwaysStrict: boolean;
+  readonly riskClass: RiskClass;
+  readonly reviewIntervalDays: number;
+  readonly alwaysStrict: boolean;
+  readonly requiresEffectiveFrom: boolean;
+  readonly requiresExpiry: boolean;
+  readonly minimumConfidence: Exclude<SourceConfidence, 'low'>;
 }
 
-export const EVIDENCE_RECORD_POLICIES: Readonly<Record<EvidenceRecordKind, EvidenceRecordPolicy>> = {
-  ussd_code: { riskClass: 'ussd_code', alwaysStrict: false },
-  price: { riskClass: 'price', alwaysStrict: true },
-  promotion: { riskClass: 'promotion', alwaysStrict: true },
-  device_step: { riskClass: 'device_steps', alwaysStrict: false },
-  evergreen_fact: { riskClass: 'evergreen', alwaysStrict: false }
-};
+const EVIDENCE_RECORD_POLICIES = Object.freeze({
+  ussd_code: Object.freeze({ riskClass: 'ussd_code', reviewIntervalDays: 90, alwaysStrict: false, requiresEffectiveFrom: false, requiresExpiry: false, minimumConfidence: 'medium' }),
+  price: Object.freeze({ riskClass: 'price', reviewIntervalDays: 30, alwaysStrict: true, requiresEffectiveFrom: false, requiresExpiry: false, minimumConfidence: 'medium' }),
+  promotion: Object.freeze({ riskClass: 'promotion', reviewIntervalDays: 30, alwaysStrict: true, requiresEffectiveFrom: true, requiresExpiry: true, minimumConfidence: 'medium' }),
+  device_step: Object.freeze({ riskClass: 'device_steps', reviewIntervalDays: 180, alwaysStrict: false, requiresEffectiveFrom: false, requiresExpiry: false, minimumConfidence: 'medium' }),
+  evergreen_fact: Object.freeze({ riskClass: 'evergreen', reviewIntervalDays: 365, alwaysStrict: false, requiresEffectiveFrom: false, requiresExpiry: false, minimumConfidence: 'medium' })
+} satisfies Record<EvidenceRecordKind, EvidenceRecordPolicy>);
+
+const EVIDENCE_KIND_BY_RISK_CLASS = Object.freeze({
+  promotion: 'promotion',
+  price: 'price',
+  ussd_code: 'ussd_code',
+  device_steps: 'device_step',
+  evergreen: 'evergreen_fact'
+} satisfies Record<RiskClass, EvidenceRecordKind>);
+
+/** Compatibility view only; enforcement reads the private canonical policy table. */
+export const REVIEW_INTERVAL_DAYS: Readonly<Record<RiskClass, number>> = Object.freeze({
+  promotion: EVIDENCE_RECORD_POLICIES.promotion.reviewIntervalDays,
+  price: EVIDENCE_RECORD_POLICIES.price.reviewIntervalDays,
+  ussd_code: EVIDENCE_RECORD_POLICIES.ussd_code.reviewIntervalDays,
+  device_steps: EVIDENCE_RECORD_POLICIES.device_step.reviewIntervalDays,
+  evergreen: EVIDENCE_RECORD_POLICIES.evergreen_fact.reviewIntervalDays
+});
+
+export function getEvidenceRecordPolicy(kind: unknown): Readonly<EvidenceRecordPolicy> | null {
+  return isAllowed(EVIDENCE_RECORD_KINDS, kind) ? EVIDENCE_RECORD_POLICIES[kind] : null;
+}
+
+export interface EvidenceSubjectCollections {
+  readonly ussd_code?: readonly string[];
+  readonly price?: readonly string[];
+  readonly promotion?: readonly string[];
+  readonly device_step?: readonly string[];
+  readonly evergreen_fact?: readonly string[];
+}
+
+export interface EvidenceSubjectRegistration {
+  readonly subjectKind: EvidenceSubjectKind;
+}
+
+export type EvidenceSubjectRegistry = Readonly<Record<string, EvidenceSubjectRegistration>>;
+
+const trustedEvidenceSubjectRegistries = new WeakSet<object>();
+
+/**
+ * Creates the evidence-subject authority outside evidence records. Collection adapters
+ * provide record IDs under a fixed collection key; records cannot choose their own kind.
+ */
+export function createEvidenceSubjectRegistry(collections: EvidenceSubjectCollections): EvidenceSubjectRegistry {
+  if (!collections || typeof collections !== 'object' || Array.isArray(collections)) {
+    throw new TypeError('Evidence subject collections must be an object.');
+  }
+
+  const suppliedKinds = Object.keys(collections);
+  for (const suppliedKind of suppliedKinds) {
+    if (!isAllowed(EVIDENCE_RECORD_KINDS, suppliedKind)) {
+      throw new TypeError(`Unknown evidence subject collection: ${suppliedKind}`);
+    }
+  }
+
+  const registry: Record<string, EvidenceSubjectRegistration> = Object.create(null) as Record<string, EvidenceSubjectRegistration>;
+  for (const subjectKind of EVIDENCE_RECORD_KINDS) {
+    const recordIds = collections[subjectKind];
+    if (recordIds === undefined) continue;
+    if (!Array.isArray(recordIds)) {
+      throw new TypeError(`Evidence subject collection ${subjectKind} must be an array.`);
+    }
+    for (const recordId of recordIds) {
+      if (!isStableAnalyticsId(recordId)) {
+        throw new TypeError(`Invalid evidence subject ID: ${String(recordId)}`);
+      }
+      if (Object.hasOwn(registry, recordId)) {
+        throw new TypeError(`Evidence subject ID is registered more than once: ${recordId}`);
+      }
+      registry[recordId] = Object.freeze({ subjectKind });
+    }
+  }
+
+  const frozen = Object.freeze(registry);
+  trustedEvidenceSubjectRegistries.add(frozen);
+  return frozen;
+}
 
 const RECORD_TYPE_ALWAYS_STRICT: Readonly<Record<ContentEvidenceRecordType, boolean>> = {
   ussd_code: false,
@@ -142,7 +213,10 @@ export function isStableAnalyticsId(value: string): boolean {
 }
 
 export function deriveReviewDueAt(checkedAt: string, riskClass: RiskClass): string {
-  return addDays(checkedAt, REVIEW_INTERVAL_DAYS[riskClass]);
+  const subjectKind = EVIDENCE_KIND_BY_RISK_CLASS[riskClass];
+  const policy = subjectKind ? EVIDENCE_RECORD_POLICIES[subjectKind] : null;
+  if (!policy) throw new Error(`Invalid risk class: ${String(riskClass)}`);
+  return addDays(checkedAt, policy.reviewIntervalDays);
 }
 
 export function getReviewDueAt(source: SourceRecord, riskClass: RiskClass): string {
@@ -286,9 +360,9 @@ function validateSourceRecord(source: SourceRecord, asOf: string, issues: Valida
 
 function evaluateDirectSourceEligibility(
   source: SourceRecord,
-  riskClass: RiskClass,
+  policy: Readonly<EvidenceRecordPolicy>,
   asOf: string,
-  options: { strict: boolean; promotion?: boolean } = { strict: false }
+  strict: boolean
 ): SourceEligibility {
   const reasonCodes: string[] = [];
   const asOfDate = parseDateOnly(asOf);
@@ -298,7 +372,7 @@ function evaluateDirectSourceEligibility(
   let reviewDueAt: string | null = null;
 
   try {
-    reviewDueAt = getReviewDueAt(source, riskClass);
+    reviewDueAt = source.reviewDueAt ?? addDays(source.checkedAt, policy.reviewIntervalDays);
   } catch {
     reasonCodes.push('invalid_date');
   }
@@ -311,26 +385,25 @@ function evaluateDirectSourceEligibility(
   if (effectiveFrom !== null && asOfDate !== null && effectiveFrom > asOfDate) reasonCodes.push('source_not_yet_effective');
   if (expiresAt !== null && asOfDate !== null && expiresAt < asOfDate) reasonCodes.push('source_expired');
 
-  if (options.promotion) {
-    if (!source.effectiveFrom) reasonCodes.push('promotion_effective_from_required');
-    if (!source.expiresAt) reasonCodes.push('promotion_expiry_required');
-  }
+  if (policy.requiresEffectiveFrom && !source.effectiveFrom) reasonCodes.push('promotion_effective_from_required');
+  if (policy.requiresExpiry && !source.expiresAt) reasonCodes.push('promotion_expiry_required');
 
   if (source.status !== 'verified') reasonCodes.push('strict_source_not_publishable');
-  if (source.confidence === 'low') reasonCodes.push('strict_source_not_publishable');
+  const confidenceRank: Readonly<Record<SourceConfidence, number>> = { low: 0, medium: 1, high: 2 };
+  if (confidenceRank[source.confidence] < confidenceRank[policy.minimumConfidence]) reasonCodes.push('strict_source_not_publishable');
 
   if (reviewDueAt && parseDateOnly(reviewDueAt) !== null && asOfDate !== null && parseDateOnly(reviewDueAt)! < asOfDate) {
     reasonCodes.push('source_review_overdue');
   }
 
   if (source.reviewDueAt && checkedAt !== null) {
-    const derived = parseDateOnly(deriveReviewDueAt(source.checkedAt, riskClass));
+    const derived = parseDateOnly(addDays(source.checkedAt, policy.reviewIntervalDays));
     const override = parseDateOnly(source.reviewDueAt);
     if (override !== null && derived !== null && override > derived) reasonCodes.push('review_due_extension_not_permitted');
   }
 
   const uniqueReasons = [...new Set(reasonCodes)];
-  const blocking = options.strict
+  const blocking = strict
     ? uniqueReasons
     : uniqueReasons.filter((code) => ['invalid_date', 'future_checked_at', 'source_not_yet_effective', 'source_expired', 'promotion_effective_from_required', 'promotion_expiry_required'].includes(code));
 
@@ -342,10 +415,10 @@ function evaluateSourceDependencyTree(
   byId: ReadonlyMap<string, SourceRecord>,
   policy: EvidenceRecordPolicy,
   asOf: string,
-  options: { strict: boolean; promotion?: boolean },
+  strict: boolean,
   parentPath: readonly string[] = []
 ): SourceEligibility {
-  const direct = evaluateDirectSourceEligibility(source, policy.riskClass, asOf, options);
+  const direct = evaluateDirectSourceEligibility(source, policy, asOf, strict);
   const currentPath = [...parentPath, source.recordId];
   const dependencyFailures: SourceDependencyFailure[] = [];
 
@@ -384,7 +457,7 @@ function evaluateSourceDependencyTree(
         byId,
         policy,
         asOf,
-        { strict: true },
+        true,
         currentPath
       );
       if (dependencyResult.reasonCodes.length > 0) {
@@ -413,10 +486,9 @@ export function evaluateSourceEligibility(
   source: SourceRecord,
   recordKind: EvidenceRecordKind,
   asOf: string,
-  options: { strict: boolean; promotion?: boolean } = { strict: false },
   allSources: readonly SourceRecord[] = [source]
 ): SourceEligibility {
-  const policy = EVIDENCE_RECORD_POLICIES[recordKind];
+  const policy = getEvidenceRecordPolicy(recordKind);
   if (!policy) {
     return {
       eligible: false,
@@ -426,17 +498,16 @@ export function evaluateSourceEligibility(
     };
   }
   const byId = new Map(allSources.map((candidate) => [candidate.recordId, candidate]));
-  return evaluateSourceDependencyTree(source, byId, policy, asOf, options);
+  return evaluateSourceDependencyTree(source, byId, policy, asOf, policy.alwaysStrict);
 }
 
 /** Safe selection primitive: direct and transitive evidence must all be eligible. */
 export function selectEligibleSources(
   sources: readonly SourceRecord[],
   recordKind: EvidenceRecordKind,
-  asOf: string,
-  options: { strict: boolean; promotion?: boolean } = { strict: false }
+  asOf: string
 ): SourceRecord[] {
-  return sources.filter((source) => evaluateSourceEligibility(source, recordKind, asOf, options, sources).eligible);
+  return sources.filter((source) => evaluateSourceEligibility(source, recordKind, asOf, sources).eligible);
 }
 
 function validateReferenceGraph(
@@ -497,45 +568,51 @@ function dependencyChains(sourceId: string, byId: ReadonlyMap<string, SourceReco
 
 function resolveContentRecordPolicy(
   record: ContentEvidenceRecord,
+  evidenceSubjects: EvidenceSubjectRegistry,
+  registryTrusted: boolean,
   issues: ValidationIssue[]
-): { policy: EvidenceRecordPolicy; valid: boolean } {
-  const policy = EVIDENCE_RECORD_POLICIES[record.recordKind as EvidenceRecordKind];
+): { subjectKind: EvidenceSubjectKind; policy: Readonly<EvidenceRecordPolicy>; valid: boolean } {
   let valid = true;
 
-  if (!policy) {
-    issues.push({
-      severity: 'error',
-      code: 'invalid_record_kind',
-      recordId: record.recordId,
-      message: `Unknown evidence record kind: ${String(record.recordKind)}`
-    });
-    return { policy: EVIDENCE_RECORD_POLICIES.promotion, valid: false };
+  for (const forbiddenKey of ['subjectKind', 'recordKind', 'riskClass'] as const) {
+    if (Object.hasOwn(record as object, forbiddenKey)) {
+      issues.push({
+        severity: 'error',
+        code: 'caller_evidence_policy_forbidden',
+        recordId: record.recordId,
+        message: `${forbiddenKey} is not accepted on evidence records; the collection-owned subject registry is authoritative.`
+      });
+      valid = false;
+    }
   }
 
-  if (!isAllowed(RISK_CLASSES, record.riskClass) || record.riskClass !== policy.riskClass) {
+  const registration = registryTrusted ? evidenceSubjects[record.recordId] : undefined;
+  const policy = getEvidenceRecordPolicy(registration?.subjectKind);
+  if (!registration || !policy) {
     issues.push({
       severity: 'error',
-      code: 'incompatible_evidence_policy',
+      code: 'missing_evidence_subject',
       recordId: record.recordId,
-      message: `Record kind ${record.recordKind} requires risk class ${policy.riskClass}; received ${String(record.riskClass)}.`
+      message: 'Record is not registered by a trusted collection-owned evidence-subject registry.'
     });
-    valid = false;
+    return { subjectKind: 'promotion', policy: EVIDENCE_RECORD_POLICIES.promotion, valid: false };
   }
 
   const compatibleRecordType =
-    (record.recordType !== 'ussd_code' || record.recordKind === 'ussd_code') &&
-    (record.recordType !== 'operator' || record.recordKind === 'evergreen_fact');
+    (record.recordType !== 'ussd_code' || registration.subjectKind === 'ussd_code') &&
+    (record.recordType !== 'operator' || registration.subjectKind === 'evergreen_fact');
   if (!compatibleRecordType) {
     issues.push({
       severity: 'error',
       code: 'incompatible_record_kind',
       recordId: record.recordId,
-      message: `Record type ${record.recordType} cannot use evidence kind ${record.recordKind}.`
+      message: `Record type ${record.recordType} cannot use evidence kind ${registration.subjectKind}.`
     });
     valid = false;
   }
 
   return {
+    subjectKind: registration.subjectKind,
     policy: {
       ...policy,
       alwaysStrict: policy.alwaysStrict || RECORD_TYPE_ALWAYS_STRICT[record.recordType]
@@ -547,7 +624,7 @@ function resolveContentRecordPolicy(
 export function validateReleaseAData(
   sourceRecords: SourceRecord[],
   contentRecords: ContentEvidenceRecord[],
-  options: { asOf: string; legacyManifest?: readonly LegacyManifestEntry[]; requireCompleteLegacyManifest?: boolean }
+  options: { asOf: string; evidenceSubjects: EvidenceSubjectRegistry; legacyManifest?: readonly LegacyManifestEntry[]; requireCompleteLegacyManifest?: boolean }
 ): ValidationResult {
   const issues: ValidationIssue[] = [];
   const manifest = options.legacyManifest ?? WP1_LEGACY_MANIFEST;
@@ -565,6 +642,15 @@ export function validateReleaseAData(
   const lifecycleByRecordId: Record<string, RecordLifecycle> = {};
   const lifecycleCounts: Record<RecordLifecycle, number> = { new: 0, legacy_edited: 0, legacy_untouched: 0 };
   const auditChains: Record<string, string[][]> = {};
+  const registryTrusted = Boolean(options.evidenceSubjects && trustedEvidenceSubjectRegistries.has(options.evidenceSubjects as object));
+  if (!registryTrusted) {
+    issues.push({
+      severity: 'error',
+      code: 'invalid_evidence_subject_registry',
+      recordId: 'evidence.subjects',
+      message: 'Evidence subjects must come from the canonical registry factory.'
+    });
+  }
 
   if (options.requireCompleteLegacyManifest) {
     const contentIds = new Set(contentRecords.map((record) => record.recordId));
@@ -585,7 +671,7 @@ export function validateReleaseAData(
         candidate.exclusiveClaimScope &&
         candidate.status === 'verified' &&
         candidate.claimScope === source.claimScope &&
-        evaluateSourceEligibility(candidate, 'evergreen_fact', options.asOf, { strict: true }, sourceRecords).eligible
+        evaluateSourceDependencyTree(candidate, sourcesById, EVIDENCE_RECORD_POLICIES.evergreen_fact, options.asOf, true).eligible
       );
       if (conflicts.length > 0) {
         issues.push({ severity: 'error', code: 'exclusive_claim_scope_conflict', recordId: source.recordId, message: `Active exclusive claim scope also owned by: ${conflicts.map((item) => item.recordId).join(', ')}` });
@@ -598,7 +684,7 @@ export function validateReleaseAData(
     lifecycleByRecordId[record.recordId] = lifecycle;
     lifecycleCounts[lifecycle] += 1;
 
-    const resolvedPolicy = resolveContentRecordPolicy(record, issues);
+    const resolvedPolicy = resolveContentRecordPolicy(record, options.evidenceSubjects, registryTrusted, issues);
     const recordPolicy = resolvedPolicy.policy;
     if (!resolvedPolicy.valid) excluded.add(record.recordId);
     const strict =
@@ -630,10 +716,7 @@ export function validateReleaseAData(
     }
 
     for (const source of referencedSources) {
-      const eligibility = evaluateSourceEligibility(source, record.recordKind, options.asOf, {
-        strict,
-        promotion: record.recordKind === 'promotion'
-      }, sourceRecords);
+      const eligibility = evaluateSourceDependencyTree(source, sourcesById, recordPolicy, options.asOf, strict);
 
       for (const code of eligibility.reasonCodes) {
         const strictOnly = ['strict_source_not_publishable', 'source_review_overdue', 'review_due_extension_not_permitted'].includes(code);
@@ -647,7 +730,7 @@ export function validateReleaseAData(
         if (severity === 'error') excluded.add(record.recordId);
       }
 
-      if (record.active && record.recordKind === 'promotion' && eligibility.reasonCodes.includes('source_expired')) {
+      if (record.active && resolvedPolicy.subjectKind === 'promotion' && eligibility.reasonCodes.includes('source_expired')) {
         issues.push({ severity: 'error', code: 'expired_active_promotion', recordId: record.recordId, message: 'Expired promotion cannot remain eligible for active display.' });
         excluded.add(record.recordId);
       }
