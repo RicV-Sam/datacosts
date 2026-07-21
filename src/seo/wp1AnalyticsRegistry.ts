@@ -48,6 +48,7 @@ export type RegisteredQuickAnswerId = Wp1QuickAnswerId;
 export type RegisteredAnalyticsId = RegisteredUssdCodeId | RegisteredQuickAnswerId;
 
 export type RegistryOperator = 'mtn' | 'vodacom' | 'telkom' | 'cell_c' | 'rain';
+export const REGISTERED_USSD_CODE_TYPES = ['balance', 'airtime', 'data', 'recharge', 'transfer', 'account', 'support', 'promotion', 'other'] as const;
 
 export interface RegistryOccurrence {
   registry: 'ussdRepository' | 'ussdCodes' | 'ussdCodesByNetwork' | 'quickAnswers';
@@ -129,7 +130,7 @@ export function collectWp1RegistryOccurrences(): RegistryOccurrence[] {
       id: record.id,
       operator: operatorId(record.network) ?? record.network,
       code: record.code,
-      codeType: categoryType(`${record.category} ${record.purpose}`),
+      codeType: record.code.toLowerCase().startsWith('n/a') ? 'other' : categoryType(`${record.category} ${record.purpose}`),
       label: record.purpose
     })),
     ...Object.entries(ussdCodesByNetwork).flatMap(([network, value]) => value.codes.map((record) => ({
@@ -153,6 +154,7 @@ export function validateWp1AnalyticsRegistry(
 ): RegistryValidation {
   const issues: RegistryIssue[] = [];
   const byId = new Map<string, RegistryOccurrence[]>();
+  const registryIds = new Set<string>();
 
   for (const occurrence of occurrences) {
     const isAnswer = occurrence.registry === 'quickAnswers';
@@ -174,6 +176,15 @@ export function validateWp1AnalyticsRegistry(
     if (!isAnswer && !occurrence.code?.trim()) {
       issues.push({ severity: 'error', code: 'missing_code', id: occurrence.id, registry: occurrence.registry, message: 'Event-producing USSD records require a code value.' });
     }
+    if (!isAnswer && (typeof occurrence.codeType !== 'string' || !REGISTERED_USSD_CODE_TYPES.includes(occurrence.codeType as (typeof REGISTERED_USSD_CODE_TYPES)[number]))) {
+      issues.push({ severity: 'error', code: 'unknown_code_type', id: occurrence.id, registry: occurrence.registry, message: `Unknown code type: ${occurrence.codeType ?? '(missing)'}` });
+    }
+
+    const registryId = `${occurrence.registry}|${occurrence.id}`;
+    if (registryIds.has(registryId)) {
+      issues.push({ severity: 'error', code: 'duplicate_id_in_registry', id: occurrence.id, registry: occurrence.registry, message: 'A registry cannot contain the same canonical ID more than once.' });
+    }
+    registryIds.add(registryId);
 
     const group = byId.get(occurrence.id) ?? [];
     group.push(occurrence);
@@ -184,11 +195,15 @@ export function validateWp1AnalyticsRegistry(
     if (group[0].registry === 'quickAnswers') continue;
     const normalizedCodes = new Set(group.map((item) => normalizeCode(item.code ?? '')));
     const normalizedOperators = new Set(group.map((item) => operatorId(item.operator)));
+    const normalizedCodeTypes = new Set(group.map((item) => item.codeType));
     if (normalizedCodes.size > 1) {
       issues.push({ severity: 'error', code: 'conflicting_code_for_id', id, registry: group.map((item) => item.registry).join(','), message: 'The same canonical ID has conflicting code values across UI registries.' });
     }
     if (normalizedOperators.size > 1) {
       issues.push({ severity: 'error', code: 'conflicting_operator_for_id', id, registry: group.map((item) => item.registry).join(','), message: 'The same canonical ID has conflicting operators across UI registries.' });
+    }
+    if (normalizedCodeTypes.size > 1) {
+      issues.push({ severity: 'error', code: 'conflicting_code_type_for_id', id, registry: group.map((item) => item.registry).join(','), message: 'The same canonical ID has conflicting code types across UI registries.' });
     }
   }
 
@@ -232,4 +247,22 @@ export function registeredUssdCodeId(value: string): RegisteredUssdCodeId {
 
 export function assertRegisteredQuickAnswerId(value: unknown): asserts value is RegisteredQuickAnswerId {
   if (typeof value !== 'string' || !answerIdSet.has(value)) throw new Error('Invalid answer_id');
+}
+
+const eventRelationships = collectWp1RegistryOccurrences();
+
+export function assertRegisteredUssdEventRelationship(id: RegisteredUssdCodeId, operator: string, codeType: string): void {
+  const occurrences = eventRelationships.filter((occurrence) => occurrence.registry !== 'quickAnswers' && occurrence.id === id);
+  const normalizedOperator = operatorId(operator);
+  if (!normalizedOperator || !occurrences.some((occurrence) => operatorId(occurrence.operator) === normalizedOperator)) {
+    throw new Error('Invalid operator for code_id');
+  }
+  if (!occurrences.some((occurrence) => occurrence.codeType === codeType)) {
+    throw new Error('Invalid code_type for code_id');
+  }
+}
+
+export function assertRegisteredQuickAnswerRelationship(id: RegisteredQuickAnswerId, operator: string): void {
+  const answer = WP1_FUTURE_QUICK_ANSWERS.find((candidate) => candidate.answerId === id);
+  if (!answer || answer.operator !== operatorId(operator)) throw new Error('Invalid operator for answer_id');
 }

@@ -69,3 +69,28 @@ test('equivalent records under different IDs are diagnosed', () => {
   const result = validateWp1AnalyticsRegistry(occurrences);
   assert.ok(result.warnings.some((issue) => issue.code === 'equivalent_records_different_ids'));
 });
+
+test('unknown code types fail registry validation', () => {
+  const result = validateWp1AnalyticsRegistry([{
+    registry: 'ussdRepository',
+    id: 'ussd.mtn.balance_main',
+    operator: 'mtn',
+    code: '*136#',
+    codeType: 'invented_sensitive_segment',
+    label: 'Balance'
+  }]);
+  assert.ok(result.errors.some((issue) => issue.code === 'unknown_code_type'));
+});
+
+test('duplicate IDs within one registry fail', () => {
+  const occurrence: RegistryOccurrence = {
+    registry: 'ussdRepository',
+    id: 'ussd.mtn.balance_main',
+    operator: 'mtn',
+    code: '*136#',
+    codeType: 'balance',
+    label: 'Balance'
+  };
+  const result = validateWp1AnalyticsRegistry([occurrence, { ...occurrence }]);
+  assert.ok(result.errors.some((issue) => issue.code === 'duplicate_id_in_registry'));
+});

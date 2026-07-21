@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { scanPrivacyText } from '../scripts/check-wp1-privacy';
+import { PRIVACY_ALLOWLIST, privacyMatchFingerprint, scanPrivacyText } from '../scripts/check-wp1-privacy';
 
 test('phone-shaped fixture data fails without committing a literal personal value', () => {
   const syntheticPhoneShape = ['0', '82', '123', '4567'].join('');
@@ -20,7 +20,18 @@ test('allowlisting is line-scoped and requires a documented entry', () => {
     file: 'docs/public-contact.md',
     startLine: 2,
     endLine: 2,
-    reason: 'Synthetic public-contact test.'
+    exactMatchSha256: [privacyMatchFingerprint(syntheticPhoneShape)],
+    matchDescription: 'Synthetic exact-match test value.',
+    reason: 'Synthetic public-contact test.',
+    approvedBy: 'test_reviewer'
   }]);
   assert.deepEqual(findings, []);
+});
+
+test('a documented line does not allow an arbitrary replacement phone value', () => {
+  const syntheticPhoneShape = ['0', '82', '999', '0000'].join('');
+  const text = '\n'.repeat(201) + `replacement ${syntheticPhoneShape}`;
+  const findings = scanPrivacyText('src/pages/USSDPage.tsx', text, PRIVACY_ALLOWLIST);
+  assert.equal(findings.length, 1);
+  assert.equal(findings[0].line, 202);
 });

@@ -3,6 +3,7 @@ import test, { afterEach } from 'node:test';
 import {
   canSendAnalytics,
   copyUssdCodeToClipboard,
+  trackCopyUssdCode,
   trackQuickAnswerAction,
   type QuickAnswerActionEvent
 } from '../src/utils/tracking';
@@ -18,6 +19,7 @@ function installBrowser(options: {
   datasetConsent?: 'granted' | 'denied' | 'unknown';
   dataLayer?: unknown[];
   canonicalHref?: string;
+  canonicalRawHref?: string;
   clipboardWrite?: (value: string) => Promise<void>;
 } = {}) {
   const events: CapturedEvent[] = [];
@@ -28,11 +30,15 @@ function installBrowser(options: {
     gtag: (...args: CapturedEvent) => events.push(args)
   };
   Object.defineProperty(globalThis, 'window', { configurable: true, value: browserWindow });
+  const documentElement = { dataset: { analyticsConsent: options.datasetConsent } };
   Object.defineProperty(globalThis, 'document', {
     configurable: true,
     value: {
-      documentElement: { dataset: { analyticsConsent: options.datasetConsent } },
-      querySelector: () => options.canonicalHref ? { href: options.canonicalHref, getAttribute: () => options.canonicalHref } : null
+      documentElement,
+      querySelector: () => options.canonicalHref ? {
+        href: options.canonicalHref,
+        getAttribute: () => options.canonicalRawHref ?? options.canonicalHref
+      } : null
     }
   });
   Object.defineProperty(globalThis, 'navigator', {
@@ -43,7 +49,7 @@ function installBrowser(options: {
       clipboard: { writeText: options.clipboardWrite ?? (async () => undefined) }
     }
   });
-  return { browserWindow, events };
+  return { browserWindow, documentElement, events };
 }
 
 afterEach(() => {
@@ -70,6 +76,18 @@ test('a stale window unknown or grant cannot override a later denial', () => {
   installBrowser({ windowConsent: 'unknown', dataLayer: [deniedUpdate] });
   assert.equal(canSendAnalytics(), false);
   installBrowser({ windowConsent: 'granted', dataLayer: [deniedUpdate] });
+  assert.equal(canSendAnalytics(), false);
+});
+
+test('compatibility values cannot grant after a Consent Mode denial has already been consumed', () => {
+  const windowCase = installBrowser({ dataLayer: [deniedUpdate] });
+  assert.equal(canSendAnalytics(), false);
+  windowCase.browserWindow.__DATACOST_ANALYTICS_CONSENT = 'granted';
+  assert.equal(canSendAnalytics(), false);
+
+  const datasetCase = installBrowser({ dataLayer: [deniedUpdate] });
+  assert.equal(canSendAnalytics(), false);
+  datasetCase.documentElement.dataset.analyticsConsent = 'granted';
   assert.equal(canSendAnalytics(), false);
 });
 
@@ -145,6 +163,28 @@ test('an off-origin rendered canonical is rejected in favour of location', () =>
   });
   trackQuickAnswerAction(quickAnswer);
   assert.equal(events[0][2].canonical_path, '/ussd-codes-south-africa/');
+});
+
+test('a raw protocol-relative rendered canonical is rejected in favour of location', () => {
+  const { events } = installBrowser({
+    windowConsent: 'granted',
+    canonicalRawHref: '//datacost.co.za/guides/example/',
+    canonicalHref: 'https://datacost.co.za/guides/example/'
+  });
+  trackQuickAnswerAction(quickAnswer);
+  assert.equal(events[0][2].canonical_path, '/ussd-codes-south-africa/');
+});
+
+test('registered analytics IDs reject the wrong operator or code type before dispatch', () => {
+  const { events } = installBrowser({ windowConsent: 'granted' });
+  assert.throws(() => trackQuickAnswerAction({ ...quickAnswer, operator: 'mtn' } as QuickAnswerActionEvent), /operator/i);
+  assert.throws(() => trackCopyUssdCode({
+    codeId: 'ussd.mtn.balance_main',
+    operator: 'vodacom',
+    codeType: 'promotion',
+    placement: 'ussd_hub'
+  } as never), /(operator|code_type)/i);
+  assert.equal(events.length, 0);
 });
 
 test('consent is re-checked between the click and asynchronous dispatch', async () => {

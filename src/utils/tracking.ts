@@ -4,7 +4,9 @@ import { normaliseCanonicalPath } from '../seo/wp1Measurement';
 import { SITE_ORIGIN } from '../seo/siteConstants';
 import {
   assertRegisteredQuickAnswerId,
+  assertRegisteredQuickAnswerRelationship,
   assertRegisteredUssdCodeId,
+  assertRegisteredUssdEventRelationship,
   type RegisteredQuickAnswerId,
   type RegisteredUssdCodeId
 } from '../seo/wp1AnalyticsRegistry';
@@ -80,6 +82,7 @@ function approvedValue<T extends readonly string[]>(values: T, value: unknown, f
 
 function approvedCanonicalPath(value: string | undefined): string | null {
   if (!value) return null;
+  if (value.trim().startsWith('//')) return null;
   try {
     const parsed = new URL(value, SITE_ORIGIN);
     if (parsed.origin !== SITE_ORIGIN) return null;
@@ -94,7 +97,7 @@ function canonicalPath(): string {
   const canonicalElement = typeof document.querySelector === 'function'
     ? document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
     : null;
-  const renderedCanonical = approvedCanonicalPath(canonicalElement?.href ?? canonicalElement?.getAttribute('href') ?? undefined);
+  const renderedCanonical = approvedCanonicalPath(canonicalElement?.getAttribute('href') ?? canonicalElement?.href ?? undefined);
   if (renderedCanonical) return renderedCanonical;
   const locationValue = window.location.href ?? `${SITE_ORIGIN}${window.location.pathname ?? '/'}`;
   return approvedCanonicalPath(locationValue) ?? '/';
@@ -119,10 +122,13 @@ export function toUssdCodeType(value: string): UssdCodeType {
 
 export function trackCopyUssdCode(event: CopyUssdCodeEvent): void {
   assertRegisteredUssdCodeId(event.codeId);
+  const operator = approvedValue(ANALYTICS_OPERATORS, event.operator, 'operator');
+  const codeType = approvedValue(USSD_CODE_TYPES, event.codeType, 'code_type');
+  assertRegisteredUssdEventRelationship(event.codeId, operator, codeType);
   trackEvent('copy_ussd_code', {
     canonical_path: canonicalPath(),
-    operator: approvedValue(ANALYTICS_OPERATORS, event.operator, 'operator'),
-    code_type: approvedValue(USSD_CODE_TYPES, event.codeType, 'code_type'),
+    operator,
+    code_type: codeType,
     code_id: event.codeId,
     placement: approvedValue(USSD_COPY_PLACEMENTS, event.placement, 'placement')
   });
@@ -130,10 +136,12 @@ export function trackCopyUssdCode(event: CopyUssdCodeEvent): void {
 
 export function trackQuickAnswerAction(event: QuickAnswerActionEvent): void {
   assertRegisteredQuickAnswerId(event.answerId);
+  const operator = approvedValue(ANALYTICS_OPERATORS, event.operator, 'operator');
+  assertRegisteredQuickAnswerRelationship(event.answerId, operator);
   trackEvent('quick_answer_action', {
     canonical_path: canonicalPath(),
     answer_id: event.answerId,
-    operator: approvedValue(ANALYTICS_OPERATORS, event.operator, 'operator'),
+    operator,
     action_type: approvedValue(QUICK_ANSWER_ACTION_TYPES, event.actionType, 'action_type'),
     placement: approvedValue(QUICK_ANSWER_PLACEMENTS, event.placement, 'placement'),
     destination_type: event.destinationType

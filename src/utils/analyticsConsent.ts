@@ -6,8 +6,6 @@ interface ConsentStore {
   sequence: number;
   dataLayerRef: unknown[] | undefined;
   dataLayerIndex: number;
-  lastWindowValue: AnalyticsConsentState | undefined;
-  lastDatasetValue: AnalyticsConsentState | undefined;
   history: Array<{ sequence: number; source: AnalyticsConsentSource; state: AnalyticsConsentState }>;
 }
 
@@ -48,8 +46,6 @@ function initializeStore(): ConsentStore {
     sequence: 0,
     dataLayerRef: window.dataLayer,
     dataLayerIndex: 0,
-    lastWindowValue: windowState,
-    lastDatasetValue: datasetState,
     history: []
   };
 
@@ -71,18 +67,6 @@ function currentStore(): ConsentStore | null {
 export function refreshAnalyticsConsent(): AnalyticsConsentState {
   const store = currentStore();
   if (!store) return 'unknown';
-
-  const windowState = supportedState(window.__DATACOST_ANALYTICS_CONSENT);
-  const datasetState = supportedState(document.documentElement.dataset.analyticsConsent);
-
-  if (windowState !== store.lastWindowValue) {
-    store.lastWindowValue = windowState;
-    if (windowState) apply(store, 'window', windowState);
-  }
-  if (datasetState !== store.lastDatasetValue) {
-    store.lastDatasetValue = datasetState;
-    if (datasetState) apply(store, 'dataset', datasetState);
-  }
 
   if (store.dataLayerRef !== window.dataLayer) {
     store.dataLayerRef = window.dataLayer;
