@@ -2,7 +2,6 @@ import { ussdCodes } from '../data';
 import { ussdRepository } from '../data/ussd';
 import { ussdCodesByNetwork } from '../data/ussdCodes';
 import { WP1_FUTURE_QUICK_ANSWERS, type Wp1QuickAnswerId } from './wp1QuickAnswerDefinitions';
-import { isStableAnalyticsId } from './wp1SourceFreshness';
 
 export const REGISTERED_USSD_CODE_IDS = [
   'ussd.cellc.balance_main',
@@ -81,6 +80,7 @@ export interface RegistryValidation {
 
 const ussdIdSet = new Set<string>(REGISTERED_USSD_CODE_IDS);
 const answerIdSet = new Set<string>(WP1_FUTURE_QUICK_ANSWERS.map((answer) => answer.answerId));
+const stableIdPattern = /^[a-z][a-z0-9]*(?:[._:-][a-z0-9]+)*$/;
 
 function operatorId(value: string): RegistryOperator | null {
   const normalized = value.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -157,7 +157,7 @@ export function validateWp1AnalyticsRegistry(
   for (const occurrence of occurrences) {
     const isAnswer = occurrence.registry === 'quickAnswers';
     const approved = isAnswer ? answerIdSet.has(occurrence.id) : ussdIdSet.has(occurrence.id);
-    if (!isStableAnalyticsId(occurrence.id)) {
+    if (!stableIdPattern.test(occurrence.id) || occurrence.id.length > 100) {
       issues.push({ severity: 'error', code: 'invalid_stable_id', id: occurrence.id, registry: occurrence.registry, message: 'Analytics ID is not syntax-safe.' });
     }
     if (!approved) {
