@@ -8,6 +8,7 @@ import {
   type EvidenceSubjectKind,
   type SourceRecord,
   selectEligibleSources,
+  selectEligibleSourcesDetailed,
   validateReleaseAData as validateReleaseADataCore
 } from '../src/seo/wp1SourceFreshness';
 import { fingerprintMaterialClaim } from '../src/seo/wp1LegacyManifest';
@@ -245,7 +246,7 @@ test('the canonical promotion policy always requires effective and expiry window
   assert.equal(policy?.requiresExpiry, true);
 });
 
-test('malformed selector policy fields and extra positional arguments fail closed', () => {
+test('selector diagnostics reject every caller policy field without mutating an eligible baseline', () => {
   const eligibleSource = source({ recordId: 'source.price.eligible' });
   const priceRecord = content({ recordId: CANONICAL_PRICE_ID, recordType: 'content', sourceRecordIds: [eligibleSource.recordId] });
   const validationResult = validateReleaseAData([eligibleSource], [priceRecord], { asOf: '2026-07-21', legacyManifest: [] });
@@ -253,10 +254,63 @@ test('malformed selector policy fields and extra positional arguments fail close
   const selectedBaseline = selectEligibleSources(validRequest);
   assert.equal(selectedBaseline.length, 1);
   assert.equal(selectedBaseline[0]?.recordId, eligibleSource.recordId);
-  assert.deepEqual(Reflect.apply(selectEligibleSources, undefined, [{ ...validRequest, strict: false, promotion: false }]) as SourceRecord[], []);
+  const pristineValidation = structuredClone(validationResult);
+  const forbiddenKeys = [
+    'strict', 'promotion', 'riskClass', 'recordKind', 'reviewIntervalDays', 'minimumConfidence',
+    'requiresExpiresAt', 'requiresEffectiveFrom', 'alwaysStrict', 'policy', 'registry', 'subjectRegistry'
+  ] as const;
+
+  for (const key of forbiddenKeys) {
+    const malformed = { ...validRequest, [key]: false };
+    const detailed = selectEligibleSourcesDetailed(malformed);
+    assert.equal(detailed.ok, false, key);
+    assert.deepEqual(detailed.sources, [], key);
+    assert.ok(detailed.errors.some((error) => error.code === 'unexpected_key' && error.key === key), key);
+    assert.deepEqual(selectEligibleSources(malformed as never), [], key);
+    assert.deepEqual(validationResult, pristineValidation, key);
+    assert.deepEqual(selectEligibleSources(validRequest).map((item) => item.recordId), [eligibleSource.recordId], key);
+  }
+
+  const combined = selectEligibleSourcesDetailed({ ...validRequest, strict: false, promotion: false });
+  assert.equal(combined.ok, false);
+  assert.deepEqual(combined.errors.filter((error) => error.code === 'unexpected_key').map((error) => error.key), ['strict', 'promotion']);
+
+  const extraArgument = Reflect.apply(selectEligibleSourcesDetailed, undefined, [validRequest, { strict: false }]);
+  assert.equal(extraArgument.ok, false);
+  assert.ok(extraArgument.errors.some((error) => error.code === 'extra_positional_argument'));
   assert.deepEqual(Reflect.apply(selectEligibleSources, undefined, [validRequest, { strict: false }]) as SourceRecord[], []);
+});
+
+test('selector diagnostics cover malformed types, missing values and untrusted contexts', () => {
+  const eligibleSource = source({ recordId: 'source.price.diagnostic-eligible' });
+  const priceRecord = content({ recordId: CANONICAL_PRICE_ID, recordType: 'content', sourceRecordIds: [eligibleSource.recordId] });
+  const validationResult = validateReleaseAData([eligibleSource], [priceRecord], { asOf: '2026-07-21', legacyManifest: [] });
+  const validRequest = { validationResult, contentId: priceRecord.recordId, candidateSourceIds: [eligibleSource.recordId] };
+  const assertFailure = (request: unknown, code: string, key: string | null = null): void => {
+    const result = selectEligibleSourcesDetailed(request);
+    assert.equal(result.ok, false);
+    assert.deepEqual(result.sources, []);
+    assert.ok(result.errors.some((error) => error.code === code && (key === null || error.key === key)), `${code}:${key}`);
+  };
+
+  const valid = selectEligibleSourcesDetailed(validRequest);
+  assert.equal(valid.ok, true);
+  assert.deepEqual(valid.sources.map((item) => item.recordId), [eligibleSource.recordId]);
+  for (const malformed of [null, [], 'request', 42, true]) assertFailure(malformed, 'invalid_request_type');
+  assertFailure({ validationResult, candidateSourceIds: [eligibleSource.recordId] }, 'missing_required_key', 'contentId');
+  assertFailure({ validationResult, contentId: 'unknown.valid-id', candidateSourceIds: [eligibleSource.recordId] }, 'unknown_content_id', 'contentId');
+  assertFailure({ validationResult, contentId: priceRecord.recordId }, 'missing_required_key', 'candidateSourceIds');
+  assertFailure({ ...validRequest, candidateSourceIds: 'not-an-array' }, 'invalid_source_id_list', 'candidateSourceIds');
+  assertFailure({ ...validRequest, candidateSourceIds: ['INVALID ID'] }, 'invalid_source_id_list', 'candidateSourceIds');
+  assertFailure({ ...validRequest, candidateSourceIds: ['source.unknown'] }, 'invalid_source_id_list', 'candidateSourceIds');
+
+  const invalidDateValidation = validateReleaseAData([eligibleSource], [priceRecord], { asOf: '2026-99-99', legacyManifest: [] });
+  assertFailure({ ...validRequest, validationResult: invalidDateValidation }, 'invalid_evaluation_date', 'validationResult');
+  assertFailure({ ...validRequest, validationResult: structuredClone(validationResult) }, 'untrusted_validation_context', 'validationResult');
+
   const throwingRequest = new Proxy({}, { ownKeys: () => { throw new Error('malformed selector input'); } });
-  assert.deepEqual(Reflect.apply(selectEligibleSources, undefined, [throwingRequest]) as SourceRecord[], []);
+  assertFailure(throwingRequest, 'invalid_request_type');
+  assert.deepEqual(selectEligibleSources(validRequest).map((item) => item.recordId), [eligibleSource.recordId]);
 });
 
 test('selection reuses validation lifecycle strictness for a new USSD record', () => {

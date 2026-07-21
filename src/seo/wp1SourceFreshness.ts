@@ -155,6 +155,27 @@ export interface EligibleSourceSelectionRequest {
   readonly candidateSourceIds: readonly string[];
 }
 
+export type SelectionRequestErrorCode =
+  | 'unexpected_key'
+  | 'missing_required_key'
+  | 'invalid_value'
+  | 'invalid_request_type'
+  | 'extra_positional_argument'
+  | 'unknown_content_id'
+  | 'invalid_source_id_list'
+  | 'invalid_evaluation_date'
+  | 'untrusted_validation_context';
+
+export interface SelectionRequestError {
+  readonly code: SelectionRequestErrorCode;
+  readonly key: string | null;
+  readonly message: string;
+}
+
+export type SourceSelectionResult =
+  | { readonly ok: true; readonly sources: readonly SourceRecord[]; readonly errors: readonly [] }
+  | { readonly ok: false; readonly sources: readonly []; readonly errors: readonly SelectionRequestError[] };
+
 const trustedValidationContexts = new WeakMap<object, TrustedValidationContext>();
 
 const DAY_MS = 86_400_000;
@@ -466,33 +487,92 @@ function evaluateSourceEligibility(
   return evaluateSourceDependencyTree(source, byId, context.policy, asOf, context.strict);
 }
 
-/**
- * Selects from the exact policy/lifecycle context produced by validation. Malformed,
- * untrusted or policy-bearing caller input fails closed to an empty safe state.
- */
-export function selectEligibleSources(request: EligibleSourceSelectionRequest): SourceRecord[] {
+const SELECTION_REQUEST_KEYS = Object.freeze(['validationResult', 'contentId', 'candidateSourceIds'] as const);
+
+function selectionFailure(errors: readonly SelectionRequestError[]): SourceSelectionResult {
+  return Object.freeze({
+    ok: false,
+    sources: Object.freeze([]),
+    errors: Object.freeze(errors.map((error) => Object.freeze({ ...error })))
+  }) as SourceSelectionResult;
+}
+
+function selectionSuccess(sources: readonly SourceRecord[]): SourceSelectionResult {
+  return Object.freeze({
+    ok: true,
+    sources: Object.freeze([...sources]),
+    errors: Object.freeze([])
+  }) as SourceSelectionResult;
+}
+
+/** Detailed fail-closed selector used by validation, diagnostics and focused tests. */
+export function selectEligibleSourcesDetailed(request: unknown): SourceSelectionResult {
   try {
-    if (arguments.length !== 1 || !request || typeof request !== 'object' || Array.isArray(request)) return [];
-    const suppliedKeys = Object.keys(request as object);
-    const allowedKeys = ['validationResult', 'contentId', 'candidateSourceIds'] as const;
-    if (suppliedKeys.length !== allowedKeys.length || suppliedKeys.some((key) => !allowedKeys.includes(key as (typeof allowedKeys)[number]))) {
-      return [];
+    if (arguments.length !== 1) {
+      return selectionFailure([{ code: 'extra_positional_argument', key: null, message: 'Source selection accepts exactly one request argument.' }]);
     }
-    if (!isStableAnalyticsId(request.contentId) || !Array.isArray(request.candidateSourceIds)) return [];
-    if (request.candidateSourceIds.some((sourceId) => !isStableAnalyticsId(sourceId))) return [];
+    if (!request || typeof request !== 'object' || Array.isArray(request)) {
+      return selectionFailure([{ code: 'invalid_request_type', key: null, message: 'Source selection request must be a non-null plain object.' }]);
+    }
 
-    const trusted = trustedValidationContexts.get(request.validationResult as object);
-    const evidence = trusted?.evidenceByContentId.get(request.contentId);
-    if (!trusted || !evidence?.valid) return [];
+    const suppliedKeys = Object.keys(request);
+    const errors: SelectionRequestError[] = [];
+    for (const key of SELECTION_REQUEST_KEYS) {
+      if (!Object.hasOwn(request, key)) errors.push({ code: 'missing_required_key', key, message: `Missing required selection key: ${key}.` });
+    }
+    for (const key of suppliedKeys) {
+      if (!SELECTION_REQUEST_KEYS.includes(key as (typeof SELECTION_REQUEST_KEYS)[number])) {
+        errors.push({ code: 'unexpected_key', key, message: `Unexpected source-selection key: ${key}.` });
+      }
+    }
+    if (errors.length > 0) return selectionFailure(errors);
 
-    const candidates = request.candidateSourceIds
+    const candidate = request as Record<string, unknown>;
+    if (typeof candidate.contentId !== 'string' || !isStableAnalyticsId(candidate.contentId)) {
+      return selectionFailure([{ code: 'invalid_value', key: 'contentId', message: 'contentId must be a stable analytics ID.' }]);
+    }
+    if (!Array.isArray(candidate.candidateSourceIds) || candidate.candidateSourceIds.some((sourceId) => typeof sourceId !== 'string' || !isStableAnalyticsId(sourceId))) {
+      return selectionFailure([{ code: 'invalid_source_id_list', key: 'candidateSourceIds', message: 'candidateSourceIds must be an array of stable source IDs.' }]);
+    }
+
+    const trusted = trustedValidationContexts.get(candidate.validationResult as object);
+    if (!trusted) {
+      return selectionFailure([{ code: 'untrusted_validation_context', key: 'validationResult', message: 'validationResult was not produced by this validation runtime.' }]);
+    }
+    if (parseDateOnly(trusted.asOf) === null) {
+      return selectionFailure([{ code: 'invalid_evaluation_date', key: 'validationResult', message: 'Trusted validation context contains an invalid evaluation date.' }]);
+    }
+    const evidence = trusted.evidenceByContentId.get(candidate.contentId);
+    if (!evidence) {
+      return selectionFailure([{ code: 'unknown_content_id', key: 'contentId', message: `Unknown validated content ID: ${candidate.contentId}.` }]);
+    }
+    if (!evidence.valid) return selectionSuccess([]);
+
+    const sourceIds = candidate.candidateSourceIds as string[];
+    const unknownSourceIds = sourceIds.filter((sourceId) => !trusted.sourcesById.has(sourceId));
+    if (unknownSourceIds.length > 0) {
+      return selectionFailure([{
+        code: 'invalid_source_id_list',
+        key: 'candidateSourceIds',
+        message: `candidateSourceIds contains unknown validated source IDs: ${unknownSourceIds.join(', ')}.`
+      }]);
+    }
+
+    const candidates = sourceIds
       .map((sourceId) => trusted.sourcesById.get(sourceId))
       .filter((source): source is SourceRecord => Boolean(source));
     const allSources = [...trusted.sourcesById.values()];
-    return candidates.filter((source) => evaluateSourceEligibility(source, evidence, trusted.asOf, allSources).eligible);
+    return selectionSuccess(candidates.filter((source) => evaluateSourceEligibility(source, evidence, trusted.asOf, allSources).eligible));
   } catch {
-    return [];
+    return selectionFailure([{ code: 'invalid_request_type', key: null, message: 'Source selection request could not be inspected safely.' }]);
   }
+}
+
+/** Compatibility wrapper: malformed requests retain the established empty-array safe state. */
+export function selectEligibleSources(request: EligibleSourceSelectionRequest): SourceRecord[] {
+  if (arguments.length !== 1) return [];
+  const result = selectEligibleSourcesDetailed(request);
+  return result.ok ? [...result.sources] : [];
 }
 
 function validateReferenceGraph(
