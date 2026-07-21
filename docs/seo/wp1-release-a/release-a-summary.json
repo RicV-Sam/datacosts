@@ -1,0 +1,43 @@
+{
+  "artifact": "DataCost SEO WP1 Release A",
+  "sourceOfTruth": "DataCost SEO Implementation Work Package 1 — Version 1.1",
+  "status": "code_review_ready",
+  "branch": "codex/seo-wp1-release-a",
+  "baselineCommit": "d35bb614fca0c280bd86bbc2418a2c0dbe042a5a",
+  "implementationCommits": ["67174c7", "e133940"],
+  "releaseARows": ["A-01", "A-02", "A-03", "A-04", "A-05", "A-06", "A-07", "A-08", "A-09", "A-10", "A-11", "A-12"],
+  "analyticsRows": ["AN-01", "AN-02", "AN-05", "AN-06", "AN-07", "AN-08"],
+  "releaseBImplemented": false,
+  "quickAnswerUiImplemented": false,
+  "externalChanges": {
+    "pushed": false,
+    "deployed": false,
+    "ga4Modified": false,
+    "gscModified": false,
+    "indexingRequested": false,
+    "sitemapSubmitted": false
+  },
+  "baseline": {
+    "asOf": "2026-07-21",
+    "timezone": "Africa/Johannesburg",
+    "gscPeriod": ["2026-06-21", "2026-07-18"],
+    "ga4Period": ["2026-06-23", "2026-07-20"],
+    "gscQueryCoveragePercent": 50.84,
+    "cniUrlCount": 20,
+    "sitemapUrlCount": 207,
+    "htmlCount": 244
+  },
+  "validation": {
+    "stableIdCount": 41,
+    "legacyBackfillWarnings": 28,
+    "contractTests": { "total": 16, "passed": 16 },
+    "browserTests": { "total": 39, "passed": 39 },
+    "buildPassed": true,
+    "typeCheckPassed": true,
+    "searchRegressionPassed": true
+  },
+  "dependenciesAdded": [],
+  "generatedProductionOutputCommitted": false,
+  "rawAnalyticsDataCommitted": false,
+  "reviewReport": "docs/seo/wp1-release-a/implementation-report.md"
+}

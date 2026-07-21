@@ -14,6 +14,8 @@
     "audit:gsc-coverage": "node scripts/audit-gsc-coverage.mjs",
     "check:seo": "tsx scripts/check-seo-output.ts",
     "check:adsense": "tsx scripts/check-adsense-output.ts",
+    "check:wp1-contracts": "tsx scripts/check-wp1-release-a.ts && tsx --test tests/wp1-release-a-source.test.ts tests/wp1-release-a-analytics.test.ts tests/wp1-release-a-measurement.test.ts",
+    "check:wp1-search-regression": "tsx scripts/check-wp1-search-regression.ts --compare docs/seo/wp1-release-a/search-output-baseline.json",
     "build": "npm run check:data-problems && npm run check:fibre-prices && npm run generate:sitemap && vite build && npm run check:seo && npm run check:adsense",
     "preview": "vite preview",
     "clean": "rm -rf dist",
