@@ -8,6 +8,8 @@ import { MobileNav } from '../components/MobileNav';
 import { TrustPanel } from '../components/TrustPanel';
 import { ussdRepository } from '../data/ussd';
 import { NavigateFunction, USSDEntry } from '../types';
+import { copyUssdCodeToClipboard, toAnalyticsOperator, toUssdCodeType } from '../utils/tracking';
+import { registeredUssdCodeId } from '../seo/wp1AnalyticsRegistry';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_ALT,
@@ -240,9 +242,15 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     window.location.href = `tel:${dialableCode}`;
   };
 
-  const copyToClipboard = async (code: string) => {
-    await navigator.clipboard.writeText(code);
-    setCopiedCode(code);
+  const copyToClipboard = async (entry: USSDEntry) => {
+    const success = await copyUssdCodeToClipboard(entry.code, {
+      operator: toAnalyticsOperator(entry.network),
+      codeType: toUssdCodeType(`${entry.category} ${entry.action}`),
+      codeId: registeredUssdCodeId(entry.id),
+      placement: 'ussd_hub'
+    });
+    if (!success) return;
+    setCopiedCode(entry.id);
     setTimeout(() => setCopiedCode(null), 1500);
   };
 
@@ -494,10 +502,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
                       <div className="text-sm text-slate-600 mb-3">{entry.explanation}</div>
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => copyToClipboard(entry.code)}
+                          onClick={() => copyToClipboard(entry)}
                           className="px-3 py-2 rounded-lg border border-slate-200 text-xs font-black uppercase tracking-wider hover:border-[#1b6d24] hover:text-[#1b6d24]"
                         >
-                          {copiedCode === entry.code ? (
+                          {copiedCode === entry.id ? (
                             <span className="inline-flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Copied</span>
                           ) : (
                             <span className="inline-flex items-center gap-1"><Copy className="w-3 h-3" /> Copy</span>

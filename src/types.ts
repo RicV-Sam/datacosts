@@ -67,6 +67,7 @@ export type USSDCategory =
   | 'Other';
 
 export interface USSDEntry {
+  id: string;
   network: NetworkName;
   category: USSDCategory;
   action: string;

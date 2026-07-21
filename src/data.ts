@@ -904,27 +904,28 @@ export const bundles: Bundle[] = [
 ];
 
 export interface USSDCode {
+  id: string;
   network: NetworkName;
   purpose: string;
   code: string;
   category: 'Balance' | 'Data' | 'Settings' | 'Other';
 }
 
-export const ussdCodes: USSDCode[] = [
-  { network: 'Vodacom', purpose: 'Check Balance', code: '*135#', category: 'Balance' },
-  { network: 'Vodacom', purpose: 'Buy Data', code: '*135*2#', category: 'Data' },
-  { network: 'Vodacom', purpose: 'Transfer Data', code: '*135*1002#', category: 'Data' },
-  { network: 'Vodacom', purpose: 'Check My Number', code: '*135*501#', category: 'Other' },
-  { network: 'MTN', purpose: 'Check Balance', code: '*136#', category: 'Balance' },
-  { network: 'MTN', purpose: 'Buy Data', code: '*136*2#', category: 'Data' },
-  { network: 'MTN', purpose: 'Transfer Data', code: '*136*3#', category: 'Data' },
-  { network: 'MTN', purpose: 'Check My Number', code: '*123*888#', category: 'Other' },
-  { network: 'Telkom', purpose: 'Check Balance', code: '*188#', category: 'Balance' },
-  { network: 'Telkom', purpose: 'Buy Data', code: '*180#', category: 'Data' },
-  { network: 'Cell C', purpose: 'Check Balance', code: '*101#', category: 'Balance' },
-  { network: 'Cell C', purpose: 'Buy Data', code: '*147#', category: 'Data' },
-  { network: 'Rain', purpose: 'Check Balance', code: 'N/A (App only)', category: 'Balance' },
-];
+export const ussdCodes = [
+  { id: 'ussd.vodacom.balance_main', network: 'Vodacom', purpose: 'Check Balance', code: '*135#', category: 'Balance' },
+  { id: 'ussd.vodacom.buy_data', network: 'Vodacom', purpose: 'Buy Data', code: '*135*2#', category: 'Data' },
+  { id: 'ussd.vodacom.transfer_airtime_data', network: 'Vodacom', purpose: 'Transfer Data', code: '*135*1002#', category: 'Data' },
+  { id: 'ussd.vodacom.check_number', network: 'Vodacom', purpose: 'Check My Number', code: '*135*501#', category: 'Other' },
+  { id: 'ussd.mtn.balance_main', network: 'MTN', purpose: 'Check Balance', code: '*136#', category: 'Balance' },
+  { id: 'ussd.mtn.buy_data', network: 'MTN', purpose: 'Buy Data', code: '*136*2#', category: 'Data' },
+  { id: 'ussd.mtn.transfer_airtime_data', network: 'MTN', purpose: 'Transfer Data', code: '*136*3#', category: 'Data' },
+  { id: 'ussd.mtn.check_number', network: 'MTN', purpose: 'Check My Number', code: '*123*888#', category: 'Other' },
+  { id: 'ussd.telkom.balance_main', network: 'Telkom', purpose: 'Check Balance', code: '*188#', category: 'Balance' },
+  { id: 'ussd.telkom.buy_data', network: 'Telkom', purpose: 'Buy Data', code: '*180#', category: 'Data' },
+  { id: 'ussd.cellc.balance_main', network: 'Cell C', purpose: 'Check Balance', code: '*101#', category: 'Balance' },
+  { id: 'ussd.cellc.buy_data', network: 'Cell C', purpose: 'Buy Data', code: '*147#', category: 'Data' },
+  { id: 'ussd.rain.app_only', network: 'Rain', purpose: 'Check Balance', code: 'N/A (App only)', category: 'Balance' },
+] as const satisfies readonly USSDCode[];
 
 export const networkStats: NetworkStats[] = [
   {

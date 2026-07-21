@@ -14,10 +14,17 @@
     "audit:gsc-coverage": "node scripts/audit-gsc-coverage.mjs",
     "check:seo": "tsx scripts/check-seo-output.ts",
     "check:adsense": "tsx scripts/check-adsense-output.ts",
+    "check:wp1-contracts": "tsx scripts/check-wp1-release-a.ts && tsx --test tests/wp1-release-a-source.test.ts tests/wp1-release-a-analytics.test.ts tests/wp1-release-a-measurement.test.ts tests/wp1-release-a-remediation-source-negative.test.ts tests/wp1-release-a-remediation-analytics-negative.test.ts tests/wp1-release-a-remediation-measurement-negative.test.ts tests/wp1-release-a-registry.test.ts tests/wp1-release-a6-subject-authority-negative.test.ts tests/wp1-privacy-scan.test.ts tests/wp1-generation-cleanliness.test.ts tests/wp1-search-regression.test.ts",
+    "check:wp1-privacy": "tsx scripts/check-wp1-privacy.ts",
+    "build:wp1-search": "npm run check:data-problems && npm run check:fibre-prices && npm run generate:sitemap && vite build",
+    "check:wp1-search-regression": "tsx scripts/check-wp1-search-regression.ts --compare docs/seo/wp1-release-a/search-output-baseline-v2.json",
+    "generate:wp1-search-candidate": "tsx scripts/check-wp1-search-regression.ts --generate-candidate docs/seo/wp1-release-a/search-output-candidate.json",
+    "review:wp1-search-candidate": "tsx scripts/check-wp1-search-regression.ts --review-candidate docs/seo/wp1-release-a/search-output-candidate.json --compare docs/seo/wp1-release-a/search-output-baseline-v2.json",
     "build": "npm run check:data-problems && npm run check:fibre-prices && npm run generate:sitemap && vite build && npm run check:seo && npm run check:adsense",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",

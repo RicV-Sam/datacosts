@@ -1,8 +1,9 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { BASE_URL, getSitemapRoutes, validateIndexableRoutes } from '../src/config/routeCatalog';
 import { REDIRECT_ALIASES } from '../src/config/redirectAliases';
 import { getRouteLastMod } from '../src/seo/contentDates';
+import { writeGeneratedTextIfChanged } from './write-generated-file';
 
 type SitemapSection = {
   filename: string;
@@ -107,12 +108,12 @@ async function main(): Promise<void> {
   for (const section of sitemapSections) {
     const sitemapPath = path.resolve(publicDir, section.filename);
     const sitemapXml = buildUrlSetXml(section.routes);
-    await writeFile(sitemapPath, sitemapXml, 'utf8');
+    await writeGeneratedTextIfChanged(sitemapPath, sitemapXml);
   }
 
   const sitemapIndexXml = buildSitemapIndexXml(sitemapSections);
-  await writeFile(sitemapIndexPath, sitemapIndexXml, 'utf8');
-  await writeFile(redirectsPath, buildRedirectsFile(), 'utf8');
+  await writeGeneratedTextIfChanged(sitemapIndexPath, sitemapIndexXml);
+  await writeGeneratedTextIfChanged(redirectsPath, buildRedirectsFile());
 
   const sectionSummary = sitemapSections
     .map((section) => `${section.filename}: ${section.routes.length}`)

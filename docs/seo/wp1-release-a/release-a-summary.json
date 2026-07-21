@@ -1,0 +1,184 @@
+{
+  "artifact": "DataCost SEO WP1 Release A.6 finalisation",
+  "sourceOfTruth": "Independent WP1 Release A.6 review",
+  "status": "independent_review_ready",
+  "independentReviewApproved": false,
+  "deploymentReady": false,
+  "branch": "codex/seo-wp1-release-a6-finalisation",
+  "worktree": "C:\\Users\\ricca\\Desktop\\DataCost\\datacosts-wp1-release-a6-remediation",
+  "originalBaselineHead": "d35bb614fca0c280bd86bbc2418a2c0dbe042a5a",
+  "releaseA5ReviewHead": "a34903111211c34306aae14d8f5f7aa06df9b668",
+  "releaseA6ReviewedHead": "ebc3f89e1c047a75a97d3379f111dfaf90d5601f",
+  "validatedImplementationHead": "7af8114ef656369e8f483eb41e34be4e162f3459",
+  "documentationParent": "7af8114ef656369e8f483eb41e34be4e162f3459",
+  "finalHandoffHeadResolution": {
+    "ref": "codex/seo-wp1-release-a6-finalisation",
+    "command": "git rev-parse codex/seo-wp1-release-a6-finalisation",
+    "reason": "The final handoff HEAD is reported externally because a commit cannot contain its own hash."
+  },
+  "releaseA6CommitsThroughDocumentationParent": [
+    "7e16a6e9058cdd859bf419eee48f75c6e1d050ae",
+    "ebc3f89e1c047a75a97d3379f111dfaf90d5601f",
+    "7af8114ef656369e8f483eb41e34be4e162f3459"
+  ],
+  "correctionDiffFromReviewedReleaseA6": {
+    "filesChanged": 5,
+    "insertions": 930,
+    "deletions": 326,
+    "changedFiles": [
+      "src/data/wp1EvidenceSubjects.ts",
+      "src/seo/wp1EvidenceSubjectProjections.ts",
+      "src/seo/wp1SourceFreshness.ts",
+      "tests/wp1-release-a-remediation-source-negative.test.ts",
+      "tests/wp1-release-a6-subject-authority-negative.test.ts"
+    ]
+  },
+  "finalReleaseA6DiffFromReleaseA5": {
+    "filesChanged": 10,
+    "insertions": 1328,
+    "deletions": 339
+  },
+  "completeReleaseADiff": {
+    "filesChanged": 45,
+    "insertions": 31613,
+    "deletions": 103
+  },
+  "closureClaims": {
+    "securityCriticalA5BypassesIndependentlyClosed": true,
+    "independentReviewMediumCorrectionsImplemented": true,
+    "localValidationComplete": true,
+    "focusedIndependentRevalidationPending": true,
+    "independentReviewApproved": false,
+    "deploymentAuthorized": false
+  },
+  "scope": {
+    "releaseBImplemented": false,
+    "dependenciesChanged": false,
+    "lockfileChanged": false,
+    "publicOutputChanged": false,
+    "rawAnalyticsDataCommitted": false,
+    "generatedProductionOutputCommitted": false
+  },
+  "externalChanges": {
+    "pushed": false,
+    "tagPushed": false,
+    "pullRequestOpened": false,
+    "merged": false,
+    "deployed": false,
+    "ga4Modified": false,
+    "gscModified": false,
+    "indexingRequested": false,
+    "sitemapSubmitted": false
+  },
+  "evidenceAuthority": {
+    "manifestVersion": "wp1-release-a.6",
+    "fingerprintProjectionVersion": "wp1-release-a.6-projection-v1",
+    "manifestCount": 172,
+    "ownerValidatorCount": 5,
+    "subjectCounts": {
+      "ussdCode": 28,
+      "price": 46,
+      "promotion": 0,
+      "deviceStep": 85,
+      "problemGuideFact": 8,
+      "fixedOperatorFact": 5
+    },
+    "liveCollectionsConstructAuthority": false,
+    "fullRegistryPubliclyExported": false,
+    "ordinaryBuildsRegenerateAuthority": false,
+    "narrowResolverOnly": true,
+    "ownerSpecificSemanticProjections": true,
+    "actionableIntegrityDiagnostics": true,
+    "selectorDetailedDiagnostics": true,
+    "selectorCompatibilityWrapperFailsClosed": true,
+    "validationAndSelectionShareResolvedContext": true,
+    "recursiveDependencyEligibility": true
+  },
+  "validation": {
+    "worktree": "C:\\Users\\ricca\\Desktop\\DataCost\\datacosts-wp1-release-a6-finalisation-validation-2",
+    "head": "7af8114ef656369e8f483eb41e34be4e162f3459",
+    "operatingSystem": "Microsoft Windows 11 Home 10.0.26200 build 26200",
+    "node": "v24.11.0",
+    "npm": "11.1.0",
+    "dependencyArrangement": "Fresh npm ci into an ordinary non-junction node_modules directory",
+    "commands": [
+      "npm ci",
+      "npm audit",
+      "npm audit --omit=dev",
+      "npm run lint",
+      "npm run typecheck",
+      "npm run build",
+      "npm run check:wp1-contracts",
+      "npx tsx --test tests/wp1-release-a6-subject-authority-negative.test.ts",
+      "npx tsx --test tests/wp1-release-a-remediation-source-negative.test.ts",
+      "npx tsx --test tests/wp1-release-a-remediation-source-negative.test.ts tests/wp1-release-a-remediation-analytics-negative.test.ts tests/wp1-release-a-remediation-measurement-negative.test.ts",
+      "npm run check:wp1-search-regression",
+      "npx tsx --test tests/wp1-search-regression.test.ts",
+      "npm run check:seo",
+      "npm run check:adsense",
+      "npm run check:wp1-privacy",
+      "npx playwright test tests/wp1-release-a-copy.spec.ts",
+      "npx playwright test",
+      "git diff --check",
+      "git diff --check d35bb614fca0c280bd86bbc2418a2c0dbe042a5a..HEAD",
+      "git diff --check a34903111211c34306aae14d8f5f7aa06df9b668..HEAD",
+      "git diff --check ebc3f89e1c047a75a97d3379f111dfaf90d5601f..HEAD"
+    ],
+    "npmCiExit": 0,
+    "lintExit": 0,
+    "typecheckExit": 0,
+    "buildExit": 0,
+    "contracts": { "passed": 115, "total": 115, "legacyWarnings": 28 },
+    "focusedA6AuthorityTests": { "passed": 10, "total": 10 },
+    "selectorMalformationTests": { "passed": 25, "total": 25 },
+    "remediationNegativeTests": { "passed": 42, "total": 42 },
+    "searchMutationTests": { "passed": 19, "total": 19 },
+    "focusedAnalyticsBrowserTests": { "passed": 3, "total": 3 },
+    "browserTests": { "passed": 39, "total": 39 },
+    "seoOutputExit": 0,
+    "adsenseOutputExit": 0,
+    "searchRegressionExit": 0,
+    "privacyExit": 0,
+    "privacyTrackedTextFiles": 217,
+    "privacyDocumentedExceptions": 2,
+    "productionAuditVulnerabilities": 0,
+    "fullAuditExistingModerateFindings": 4,
+    "fullAuditExit": 1,
+    "diffChecks": {
+      "workingTree": 0,
+      "originalBaseline": 0,
+      "releaseA5ReviewHead": 0,
+      "releaseA6ReviewedHead": 0
+    },
+    "initialWorktreeClean": true,
+    "finalWorktreeClean": true,
+    "screenshotResidue": false,
+    "mutationResidue": false
+  },
+  "searchRegression": {
+    "baselineVersion": 2,
+    "queryClusterVersion": "wp1-v1.1",
+    "freshBuildBeforeCompare": true,
+    "routeCount": 244,
+    "titleCount": 244,
+    "sitemapUrlCount": 207,
+    "sitemapFileCount": 5,
+    "structuredDataBlockCount": 826,
+    "publicOutputDifferences": 0,
+    "acceptedBaselineRegenerated": false
+  },
+  "knownLimitations": [
+    "Final approval remains pending a focused independent revalidation.",
+    "The committed manifest currently contains no production promotion subject; promotion projection behavior is covered by constructed focused tests and untrusted-injection tests.",
+    "28 untouched legacy USSD records remain in the editorial evidence-backfill queue.",
+    "Four unchanged moderate development/build-time audit findings remain deferred; the production audit is clean.",
+    "Quick answers remain dormant contracts only; no Release B UI exists."
+  ],
+  "closureLanguage": [
+    "Security-critical A.5 bypasses were independently found closed.",
+    "This correction addresses the independent reviewer's Medium findings.",
+    "Final approval remains pending a focused independent revalidation."
+  ],
+  "reviewReport": "docs/seo/wp1-release-a/implementation-report.md",
+  "searchBaseline": "docs/seo/wp1-release-a/search-output-baseline-v2.json"
+}

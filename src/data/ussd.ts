@@ -1,8 +1,9 @@
 import { USSDEntry } from '../types';
 
-export const ussdRepository: USSDEntry[] = [
+export const ussdRepository = [
   // VODACOM
   {
+    id: 'ussd.vodacom.balance_main',
     network: 'Vodacom',
     category: 'Balance',
     action: 'Check Balance (Main)',
@@ -12,6 +13,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.vodacom.balance_detailed',
     network: 'Vodacom',
     category: 'Balance',
     action: 'Detailed Balance',
@@ -21,6 +23,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.vodacom.recharge_voucher',
     network: 'Vodacom',
     category: 'Airtime / Recharge',
     action: 'Recharge with Voucher',
@@ -30,6 +33,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: false
   },
   {
+    id: 'ussd.vodacom.buy_data',
     network: 'Vodacom',
     category: 'Data / Bundles',
     action: 'Buy Data / Bundles',
@@ -39,6 +43,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.vodacom.transfer_airtime_data',
     network: 'Vodacom',
     category: 'Transfers',
     action: 'Transfer Airtime / Data',
@@ -48,6 +53,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.vodacom.check_number',
     network: 'Vodacom',
     category: 'Number / SIM info',
     action: 'Check My Number',
@@ -57,6 +63,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.vodacom.account_menu',
     network: 'Vodacom',
     category: 'Self-service / Account',
     action: 'Manage My Account',
@@ -66,6 +73,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.vodacom.customer_care',
     network: 'Vodacom',
     category: 'Support / Customer care',
     action: 'Customer Care Call',
@@ -75,6 +83,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.vodacom.just4you',
     network: 'Vodacom',
     category: 'Promotions',
     action: 'Just 4 You Deals',
@@ -86,6 +95,7 @@ export const ussdRepository: USSDEntry[] = [
 
   // MTN
   {
+    id: 'ussd.mtn.balance_main',
     network: 'MTN',
     category: 'Balance',
     action: 'Check Balance',
@@ -95,6 +105,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.mtn.recharge_voucher',
     network: 'MTN',
     category: 'Airtime / Recharge',
     action: 'Recharge Account',
@@ -104,6 +115,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: false
   },
   {
+    id: 'ussd.mtn.buy_data',
     network: 'MTN',
     category: 'Data / Bundles',
     action: 'Buy Data / Bundles',
@@ -113,6 +125,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.mtn.transfer_airtime_data',
     network: 'MTN',
     category: 'Transfers',
     action: 'MTN Me2U (Transfer)',
@@ -122,6 +135,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.mtn.check_number',
     network: 'MTN',
     category: 'Number / SIM info',
     action: 'Check My Number',
@@ -131,6 +145,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.mtn.customer_care',
     network: 'MTN',
     category: 'Support / Customer care',
     action: 'MTN Helpdesk',
@@ -140,6 +155,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.mtn.xtratime',
     network: 'MTN',
     category: 'Promotions / Advance airtime / Extras',
     action: 'XtraTime',
@@ -149,6 +165,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.mtn.mytownoffers',
     network: 'MTN',
     category: 'Promotions',
     action: 'MTN MyTownOffers / personalised deals',
@@ -160,6 +177,7 @@ export const ussdRepository: USSDEntry[] = [
 
   // TELKOM
   {
+    id: 'ussd.telkom.balance_main',
     network: 'Telkom',
     category: 'Balance',
     action: 'Check Balance',
@@ -169,6 +187,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.telkom.buy_data',
     network: 'Telkom',
     category: 'Data / Bundles',
     action: 'Buy Data',
@@ -178,6 +197,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.telkom.check_number',
     network: 'Telkom',
     category: 'Number / SIM info',
     action: 'Check My Number',
@@ -187,6 +207,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.telkom.customer_care',
     network: 'Telkom',
     category: 'Support / Customer care',
     action: 'Customer Care',
@@ -196,6 +217,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.telkom.monice',
     network: 'Telkom',
     category: 'Promotions',
     action: 'Mo\'Nice Deals',
@@ -207,6 +229,7 @@ export const ussdRepository: USSDEntry[] = [
 
   // CELL C
   {
+    id: 'ussd.cellc.balance_main',
     network: 'Cell C',
     category: 'Balance',
     action: 'Check Balance',
@@ -216,6 +239,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.cellc.buy_data',
     network: 'Cell C',
     category: 'Data / Bundles',
     action: 'Buy Bundles',
@@ -225,6 +249,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.cellc.check_number',
     network: 'Cell C',
     category: 'Number / SIM info',
     action: 'Check My Number',
@@ -234,6 +259,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.cellc.customer_care',
     network: 'Cell C',
     category: 'Support / Customer care',
     action: 'Customer Service',
@@ -243,6 +269,7 @@ export const ussdRepository: USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.cellc.for_you',
     network: 'Cell C',
     category: 'Promotions',
     action: 'Cell C For You',
@@ -254,6 +281,7 @@ export const ussdRepository: USSDEntry[] = [
 
   // RAIN
   {
+    id: 'ussd.rain.app_only',
     network: 'Rain',
     category: 'Other',
     action: 'Rain Management',
@@ -263,4 +291,4 @@ export const ussdRepository: USSDEntry[] = [
     note: 'Rain does not use traditional USSD codes for management.',
     dialable: false
   }
-];
+] as const satisfies readonly USSDEntry[];
