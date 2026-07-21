@@ -4,7 +4,7 @@ import { CNI_URL_COHORT, GSC_QUERY_OWNER_COHORT, WP1_BASELINE } from '../src/seo
 import { WP1_FUTURE_QUICK_ANSWERS } from '../src/seo/wp1QuickAnswerDefinitions';
 import { isStableAnalyticsId, validateReleaseAData } from '../src/seo/wp1SourceFreshness';
 
-const result = validateReleaseAData(wp1SourceRecords, wp1ContentRecords, { asOf: WP1_BASELINE.baselineAsOf });
+const result = validateReleaseAData(wp1SourceRecords, wp1ContentRecords, { asOf: WP1_BASELINE.baselineAsOf, requireCompleteLegacyManifest: true });
 const allIds = [
   ...ussdRepository.map((record) => record.id),
   ...wp1SourceRecords.map((record) => record.recordId),

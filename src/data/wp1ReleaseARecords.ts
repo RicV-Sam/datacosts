@@ -66,7 +66,19 @@ export const wp1ContentRecords: ContentEvidenceRecord[] = [
     recordId: record.id,
     recordType: 'ussd_code' as const,
     riskClass: 'ussd_code' as const,
-    lifecycle: 'legacy_untouched' as const,
+    materialClaim: {
+      operator: record.network,
+      code: record.code,
+      codeType: record.category,
+      label: record.action,
+      instructions: record.explanation,
+      claimScope: record.explanation,
+      customerType: null,
+      productType: null,
+      status: record.status,
+      dialable: record.dialable ?? null,
+      note: record.note ?? null
+    },
     sourceRecordIds: [] as string[],
     active: true
   })),
@@ -74,7 +86,7 @@ export const wp1ContentRecords: ContentEvidenceRecord[] = [
     recordId: `operator.${operator.toLowerCase().replace(/\s+/g, '')}`,
     recordType: 'operator' as const,
     riskClass: 'evergreen' as const,
-    lifecycle: 'new' as const,
+    materialClaim: { operator, claimScope: 'Operator identity and official-domain ownership.' },
     sourceRecordIds: [operatorSourceId(operator)],
     active: true
   }))
