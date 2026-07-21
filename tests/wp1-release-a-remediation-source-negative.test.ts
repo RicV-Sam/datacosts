@@ -33,6 +33,17 @@ test('unknown records cannot self-declare legacy warning treatment', () => {
   assert.ok(result.errors.some((issue) => issue.code === 'strict_evidence_required'));
 });
 
+test('a new USSD record cannot bypass strict evidence by declaring evergreen risk', () => {
+  const result = validateReleaseAData(
+    [],
+    [content({ riskClass: 'evergreen', lifecycle: 'legacy_untouched' })],
+    { asOf: '2026-07-21' }
+  );
+  assert.equal(result.lifecycleByRecordId['ussd.example.new_record'], 'new');
+  assert.ok(result.errors.some((issue) => issue.code === 'strict_evidence_required'));
+  assert.deepEqual(result.excludedRecordIds, ['ussd.example.new_record']);
+});
+
 test('future-effective quick-answer evidence is ineligible', () => {
   const result = validateReleaseAData(
     [source({ effectiveFrom: '2026-07-22' })],
@@ -93,4 +104,42 @@ test('reviewDueAt cannot precede checkedAt', () => {
     { asOf: '2026-07-21' }
   );
   assert.ok(result.errors.some((issue) => issue.code === 'review_due_before_checked'));
+});
+
+test('an unused source cannot carry an unauthorised extension beyond the conservative review window', () => {
+  const result = validateReleaseAData(
+    [source({
+      checkedAt: '2026-07-01',
+      reviewDueAt: '2026-09-01',
+      reviewDueOverrideReason: 'Unapproved extension.',
+      reviewDueOverrideApprovedBy: 'seo_lead'
+    })],
+    [],
+    { asOf: '2026-07-21' }
+  );
+  assert.ok(result.errors.some((issue) => issue.code === 'review_due_extension_not_permitted'));
+});
+
+test('an expired transitive dependency excludes the derived claim', () => {
+  const expiredBase = source({
+    recordId: 'source.operator.expired-base',
+    expiresAt: '2026-07-20'
+  });
+  const middle = source({
+    recordId: 'source.operator.middle',
+    verificationMethod: 'derived',
+    derivedFromSourceIds: [expiredBase.recordId]
+  });
+  const top = source({
+    recordId: 'source.operator.top',
+    verificationMethod: 'derived',
+    derivedFromSourceIds: [middle.recordId]
+  });
+  const result = validateReleaseAData(
+    [expiredBase, middle, top],
+    [content({ sourceRecordIds: [top.recordId] })],
+    { asOf: '2026-07-21' }
+  );
+  assert.ok(result.errors.some((issue) => issue.code === 'ineligible_derived_dependency' && issue.message.includes(expiredBase.recordId)));
+  assert.deepEqual(result.excludedRecordIds, ['ussd.example.new_record']);
 });

@@ -13,6 +13,7 @@ export const SOURCE_STATUSES = ['verified', 'needs_review', 'expired'] as const;
 export const SOURCE_CONFIDENCE = ['high', 'medium', 'low'] as const;
 export const RISK_CLASSES = ['promotion', 'price', 'ussd_code', 'device_steps', 'evergreen'] as const;
 export const REVIEW_OVERRIDE_APPROVERS = ['seo_lead', 'editorial_lead'] as const;
+const CONSERVATIVE_OVERRIDE_RISK_CLASS: RiskClass = 'promotion';
 
 export type SourceType = (typeof SOURCE_TYPES)[number];
 export type VerificationMethod = (typeof VERIFICATION_METHODS)[number];
@@ -235,6 +236,17 @@ function validateSourceRecord(source: SourceRecord, asOf: string, issues: Valida
     if (override !== null && expiresAt !== null && override > expiresAt) {
       issues.push({ severity: 'error', code: 'review_due_after_expiry', recordId: source.recordId, message: 'Review-due override cannot extend past expiry.' });
     }
+    if (override !== null && checkedAt !== null) {
+      const conservativeDerived = parseDateOnly(deriveReviewDueAt(source.checkedAt, CONSERVATIVE_OVERRIDE_RISK_CLASS));
+      if (conservativeDerived !== null && override > conservativeDerived) {
+        issues.push({
+          severity: 'error',
+          code: 'review_due_extension_not_permitted',
+          recordId: source.recordId,
+          message: 'Unscoped review-due overrides cannot exceed the shortest approved review interval.'
+        });
+      }
+    }
   } else if (source.reviewDueOverrideReason || source.reviewDueOverrideApprovedBy) {
     issues.push({ severity: 'error', code: 'orphan_review_due_justification', recordId: source.recordId, message: 'Override justification requires reviewDueAt.' });
   }
@@ -359,6 +371,28 @@ function dependencyChains(sourceId: string, byId: ReadonlyMap<string, SourceReco
   return dependencies.flatMap((dependency) => dependencyChains(dependency, byId, [...trail, sourceId]));
 }
 
+function ineligibleDerivedDependencies(
+  source: SourceRecord,
+  byId: ReadonlyMap<string, SourceRecord>,
+  riskClass: RiskClass,
+  asOf: string,
+  visited: Set<string> = new Set()
+): Array<{ dependency: SourceRecord; reasonCodes: string[] }> {
+  if (source.verificationMethod !== 'derived' || visited.has(source.recordId)) return [];
+  const nextVisited = new Set(visited).add(source.recordId);
+  const failures: Array<{ dependency: SourceRecord; reasonCodes: string[] }> = [];
+
+  for (const dependencyId of source.derivedFromSourceIds ?? []) {
+    const dependency = byId.get(dependencyId);
+    if (!dependency) continue;
+    const eligibility = evaluateSourceEligibility(dependency, riskClass, asOf, { strict: true });
+    if (!eligibility.eligible) failures.push({ dependency, reasonCodes: eligibility.reasonCodes });
+    failures.push(...ineligibleDerivedDependencies(dependency, byId, riskClass, asOf, nextVisited));
+  }
+
+  return [...new Map(failures.map((failure) => [failure.dependency.recordId, failure])).values()];
+}
+
 export function validateReleaseAData(
   sourceRecords: SourceRecord[],
   contentRecords: ContentEvidenceRecord[],
@@ -413,8 +447,7 @@ export function validateReleaseAData(
     lifecycleByRecordId[record.recordId] = lifecycle;
     lifecycleCounts[lifecycle] += 1;
 
-    const highRisk = record.riskClass !== 'evergreen';
-    const strict = record.powersQuickAnswer === true || (lifecycle !== 'legacy_untouched' && highRisk);
+    const strict = record.powersQuickAnswer === true || lifecycle !== 'legacy_untouched';
     const referencedSources = record.sourceRecordIds
       .map((sourceId) => sourcesById.get(sourceId))
       .filter((source): source is SourceRecord => Boolean(source));
@@ -463,14 +496,14 @@ export function validateReleaseAData(
 
       if (source.verificationMethod === 'derived') {
         auditChains[source.recordId] = dependencyChains(source.recordId, sourcesById);
-        for (const dependencyId of source.derivedFromSourceIds ?? []) {
-          const dependency = sourcesById.get(dependencyId);
-          if (!dependency) continue;
-          const dependencyEligibility = evaluateSourceEligibility(dependency, record.riskClass, options.asOf, { strict: true });
-          if (!dependencyEligibility.eligible) {
-            issues.push({ severity: 'error', code: 'ineligible_derived_dependency', recordId: record.recordId, message: `Derived dependency ${dependencyId} is not eligible: ${dependencyEligibility.reasonCodes.join(', ')}` });
-            excluded.add(record.recordId);
-          }
+        for (const failure of ineligibleDerivedDependencies(source, sourcesById, record.riskClass, options.asOf)) {
+          issues.push({
+            severity: 'error',
+            code: 'ineligible_derived_dependency',
+            recordId: record.recordId,
+            message: `Derived dependency ${failure.dependency.recordId} is not eligible: ${failure.reasonCodes.join(', ')}`
+          });
+          excluded.add(record.recordId);
         }
       }
     }

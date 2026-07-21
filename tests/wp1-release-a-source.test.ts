@@ -105,11 +105,10 @@ test('untouched legacy gaps warn and join the backfill queue without blocking', 
   assert.deepEqual(result.eligibleRecordIds, ['content.example']);
 });
 
-test('overdue evergreen evidence warns, while overdue quick-answer evidence fails', () => {
+test('overdue evidence fails for new evergreen and quick-answer records', () => {
   const stale = source({ checkedAt: '2024-01-01' });
   const evergreen = validateReleaseAData([stale], [content()], { asOf: '2026-07-21' });
-  assert.equal(evergreen.errors.length, 0);
-  assert.ok(evergreen.warnings.some((issue) => issue.code === 'source_review_overdue'));
+  assert.ok(evergreen.errors.some((issue) => issue.code === 'source_review_overdue'));
 
   const strict = validateReleaseAData([stale], [content({ recordType: 'quick_answer', powersQuickAnswer: true })], { asOf: '2026-07-21' });
   assert.ok(strict.errors.some((issue) => issue.code === 'source_review_overdue'));
