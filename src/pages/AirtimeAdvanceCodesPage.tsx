@@ -69,6 +69,11 @@ const failureReasons = [
 
 const faqItems = [
   {
+    question: 'How do I borrow airtime from Vodacom?',
+    answer:
+      'Start with the *135# Vodacom self-service menu and look for an airtime advance option. Availability depends on the SIM and account profile, so review the fee and repayment amount shown before accepting.'
+  },
+  {
     question: 'What is the MTN airtime advance code?',
     answer: 'Dial *151# for MTN XtraTime. Check the fee and repayment amount before accepting any advance airtime.'
   },
@@ -89,9 +94,9 @@ const faqItems = [
 ];
 
 export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = ({ onNavigate, onScrollTo }) => {
-  const pageTitle = 'Airtime Advance Codes South Africa: MTN, Vodacom, Cell C and Telkom';
+  const pageTitle = 'How to Borrow Airtime from Vodacom, MTN, Cell C and Telkom';
   const metaDescription =
-    'Compare airtime advance starting codes in South Africa: MTN *151#, Vodacom *135#, Telkom *180# and Cell C *147#, with fee and repayment warnings.';
+    'Learn how to borrow airtime from Vodacom, MTN, Cell C and Telkom. Compare starting USSD menus, eligibility checks, fees and repayment warnings.';
   const canonicalUrl = toCanonicalUrl('/airtime-advance-codes/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/airtime-advance-codes/');
@@ -178,17 +183,17 @@ export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = (
             Updated {lastUpdated}
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-5 leading-[0.95]">
-            Airtime Advance Codes South Africa: <span className="text-[#1b6d24]">MTN, Vodacom, Cell C and Telkom</span>
+            How to Borrow Airtime: <span className="text-[#1b6d24]">Vodacom, MTN, Cell C and Telkom</span>
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Use these borrow-airtime and emergency-airtime starting points for MTN, Vodacom, Cell C and Telkom. The network menu should show eligibility, fees and repayment before you accept an advance.
+            If you need to borrow airtime from Vodacom, MTN, Cell C or Telkom, use the network-specific starting point below. The self-service menu should show whether your SIM is eligible, plus any fee and repayment amount, before you accept an advance.
           </p>
         </header>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick answer</h2>
           <p className="mb-5 text-slate-700 leading-relaxed">
-            MTN users can start with <strong>*151#</strong>. Vodacom users should start with <strong>*135#</strong>, Telkom with <strong>*180#</strong>, and Cell C with <strong>*147#</strong>. Check the fee, eligibility, and repayment amount on screen before accepting any airtime advance.
+            To borrow airtime from Vodacom, start with the <strong>*135#</strong> self-service menu and check whether an advance is offered for your SIM. MTN users can start with <strong>*151#</strong>, Telkom with <strong>*180#</strong>, and Cell C with <strong>*147#</strong>. Check the fee, eligibility, and repayment amount on screen before accepting any airtime advance.
           </p>
           <div className="overflow-x-auto">
             <table className="min-w-[680px] w-full text-left text-sm">
