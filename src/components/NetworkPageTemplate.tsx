@@ -4,6 +4,7 @@ import { NetworkName } from '../types';
 import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, toCanonicalUrl } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from './Breadcrumbs';
 import { isNoindexRoute } from '../config/routeCatalog';
+import { getNetworkImageUrl, getNetworkPageUrl } from '../utils/structuredData';
 
 export type NetworkTemplateBundleType = 'weekly-data' | 'social-data' | 'night-data' | 'monthly-data' | string;
 
@@ -366,12 +367,24 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
       '@type': 'ListItem',
       position: index + 1,
       item: {
-        '@type': 'Product',
+        '@type': 'Service',
         name: bundle.name,
+        description: `Prepaid ${bundle.data} mobile data bundle from ${network} in South Africa.`,
+        provider: {
+          '@type': 'Organization',
+          name: network,
+          url: getNetworkPageUrl(network)
+        },
+        areaServed: 'ZA',
+        serviceType: 'Prepaid Mobile Data Bundle',
+        image: getNetworkImageUrl(network),
+        url: canonicalUrl,
         offers: {
           '@type': 'Offer',
+          url: canonicalUrl,
           priceCurrency: 'ZAR',
-          price: bundle.price.toFixed(2)
+          price: bundle.price.toFixed(2),
+          availability: 'https://schema.org/InStock'
         },
         additionalProperty: [
           { '@type': 'PropertyValue', name: 'Data volume', value: bundle.data },

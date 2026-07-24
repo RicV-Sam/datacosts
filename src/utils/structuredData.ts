@@ -76,17 +76,19 @@ export function buildBundleProductSchema(
   const availability = options?.availability || DEFAULT_AVAILABILITY;
 
   return {
-    '@type': 'Product',
+    '@type': 'Service',
     name: bundle.name,
     description:
       options?.description ||
       `Compare the ${bundle.name} prepaid data bundle in South Africa, including price and cost per GB.`,
     image: getNetworkImageUrl(bundle.network),
-    brand: {
-      '@type': 'Brand',
-      name: bundle.network
+    provider: {
+      '@type': 'Organization',
+      name: bundle.network,
+      url: getNetworkPageUrl(bundle.network)
     },
-    category: DEFAULT_CATEGORY,
+    areaServed: 'ZA',
+    serviceType: DEFAULT_CATEGORY,
     url: productUrl,
     offers: buildOffer(bundle, offerUrl, availability)
   };
