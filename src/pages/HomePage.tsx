@@ -89,7 +89,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   setSelectedNetwork
 }) => {
   const pageTitle = 'Cheapest Data South Africa: MTN, Vodacom, Telkom & Cell C';
-  const metaDescription = 'Find the cheapest data in South Africa, compare Cell C data deals and best prepaid phone plans, and use MTN, Vodacom, Telkom and Cell C guides before choosing a bundle.';
+  const metaDescription = 'Compare the cheapest data in South Africa across MTN, Vodacom, Telkom and Cell C. Find prepaid deals, phone plans, USSD codes and practical guides.';
   const canonicalUrl = SITE_URL;
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/');
