@@ -111,6 +111,8 @@ const DEEMPHASIZED_SITEMAP_ROUTES = new Set([
   '/guides/how-to-stop-wasp-services-south-africa/'
 ]);
 
+const SITEMAP_FIX_CLUSTERS = new Set(['mobile-data', 'ussd', 'lte-router']);
+
 const ORGANIC_PROTECTED_FACET_ROUTES = new Set([
   '/network/vodacom/cheapest-1gb/',
   '/network/vodacom/monthly-data/',
@@ -119,7 +121,8 @@ const ORGANIC_PROTECTED_FACET_ROUTES = new Set([
 
 const NOINDEX_DEAL_GUIDE_ROUTES = new Set<string>();
 const NOINDEX_UTILITY_ROUTES = new Set([
-  '/alerts/'
+  '/alerts/',
+  '/promos/'
 ]);
 const ORGANIC_PROTECTED_FIX_SECTION = true;
 
@@ -290,7 +293,17 @@ export function getPrerenderRoutes(): string[] {
 }
 
 export function getSitemapRoutes(): string[] {
-  return getIndexableRoutes().filter((route) => !DEEMPHASIZED_SITEMAP_ROUTES.has(route));
+  const priorityFixRoutes = new Set(
+    fixPages
+      .filter((page) => SITEMAP_FIX_CLUSTERS.has(page.cluster))
+      .map((page) => normalizeCanonicalPath(getFixPath(page.slug)))
+  );
+
+  return getIndexableRoutes().filter((route) => {
+    if (DEEMPHASIZED_SITEMAP_ROUTES.has(route)) return false;
+    if (route.startsWith('/fix/') && route !== '/fix/') return priorityFixRoutes.has(route);
+    return true;
+  });
 }
 
 export function validateIndexableRoutes(routes: string[]): void {

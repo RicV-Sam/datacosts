@@ -8,6 +8,7 @@ import { MobileNav } from '../components/MobileNav';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { promoWatchTypes, verifiedPromos } from '../data/promos';
 import { NavigateFunction } from '../types';
+import { isNoindexRoute } from '../config/routeCatalog';
 import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_URL,
@@ -57,6 +58,7 @@ export const PromosPage: React.FC<PromosPageProps> = ({ onNavigate, onScrollTo }
   const pageTitle = 'Latest Airtime, Data and Fibre Promos in South Africa';
   const metaDescription = 'Check DataCost promo listings for South African airtime, data, bank-app and fibre promos once official source details are available.';
   const canonicalUrl = toCanonicalUrl(routePath);
+  const shouldNoindex = isNoindexRoute(routePath);
   const dateModifiedIso = getRouteModifiedIso(routePath);
   const lastReviewed = formatIsoForDisplay(dateModifiedIso);
   const breadcrumbItems = [
@@ -69,6 +71,7 @@ export const PromosPage: React.FC<PromosPageProps> = ({ onNavigate, onScrollTo }
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
+        {shouldNoindex && <meta name="robots" content="noindex,follow" />}
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={SITE_PRODUCT_NAME} />
