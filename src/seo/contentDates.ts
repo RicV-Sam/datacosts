@@ -19,7 +19,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/fibre/how-to-check-fibre-coverage-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/fibre-installation-costs-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/coverage-by-area/': FIBRE_REVIEW_MODIFIED_ISO,
-  '/fix/': '2026-07-04T00:00:00.000Z',
+  '/fix/': '2026-07-24T00:00:00.000Z',
   '/guides/': '2026-07-19T00:00:00.000Z',
   '/methodology/': '2026-05-10T00:00:00.000Z',
   '/mtn-ussd-codes/': '2026-07-09T00:00:00.000Z',
@@ -70,6 +70,7 @@ const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
 };
 
 const FIX_ROUTE_MODIFIED_ISO: Record<string, string> = {
+  '/fix/huawei-router-login-192-168-8-1/': '2026-07-24T00:00:00.000Z',
   '/fix/mtn-data-balance-check/': '2026-06-25T00:00:00.000Z',
   '/fix/telkom-data-balance-check/': '2026-06-25T00:00:00.000Z'
 };

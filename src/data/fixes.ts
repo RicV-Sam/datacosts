@@ -9,6 +9,7 @@ export type FixPage = {
   id: string;
   slug: string;
   cluster: FixCluster;
+  scope?: 'global' | 'south-africa';
   title: string;
   seoTitle: string;
   metaDescription: string;
@@ -34,6 +35,9 @@ export type FixPage = {
     question: string;
     answer: string;
   }>;
+  adminUrl?: string;
+  sourceSummary?: string;
+  officialSources?: FixLink[];
   relatedFixSlugs: string[];
   relatedDataCostLinks: FixLink[];
 };
@@ -1289,23 +1293,118 @@ const priorityPageOverrides: Record<string, FixPageOverride> = {
     relatedFixSlugs: ['lte-router-apn-settings-south-africa', 'huawei-router-login-192-168-8-1', 'zte-router-login-south-africa', 'telkom-lte-router-no-internet', 'rain-router-no-internet']
   },
   'huawei-router-login-192-168-8-1': {
-    summary: 'Many Huawei LTE routers use 192.168.8.1 for the admin dashboard, but some network-branded models use a different address. Use the label and connection status before resetting anything.',
+    scope: 'global',
+    provider: 'Huawei',
+    serviceType: 'Router administration',
+    title: '192.168.8.1 Huawei router login',
+    h1: '192.168.8.1 Login: Huawei Router Admin Guide',
+    summary: '192.168.8.1 is a private local address used by many Huawei Mobile WiFi, 4G and 5G routers. Connect to the router, open the address in your browser, then use the management password from the device label or the password you previously created.',
+    tags: ['192.168.8.1', 'Huawei router', 'Router login', '4G and 5G'],
+    adminUrl: 'http://192.168.8.1/',
+    sourceSummary: 'Huawei Support Global guidance for Mobile WiFi login, password recovery, Wi-Fi settings, APN configuration and factory reset, checked alongside operator-specific router documentation.',
+    officialSources: [
+      {
+        label: 'Huawei: view or change the Mobile WiFi name and password',
+        href: 'https://consumer.huawei.com/en/support/content/en-us00773242/'
+      },
+      {
+        label: 'Huawei: find the initial management-page password',
+        href: 'https://consumer.huawei.com/en/support/content/en-us15807944/'
+      },
+      {
+        label: 'Huawei: reset the management-page login password',
+        href: 'https://consumer.huawei.com/en/support/content/en-us15673981/'
+      },
+      {
+        label: 'Huawei: configure a Mobile WiFi APN',
+        href: 'https://consumer.huawei.com/en/support/content/en-us00773431/'
+      }
+    ],
     quickAnswer: {
-      meaning: 'You are trying to open the Huawei router admin page to check Wi-Fi, SIM, signal or APN settings.',
-      likelyCause: 'Your device is not connected to the Huawei Wi-Fi, the router uses a different gateway, or the admin password has been changed.',
-      firstThingToTry: 'Connect to the Huawei router Wi-Fi, then try the address printed on the router label or shown as the gateway in your device network settings.'
+      meaning: 'This address opens a router management page on your own local network. It is not a public website and DataCost cannot see your router, settings or password.',
+      likelyCause: 'If the page does not open, you are usually on the wrong Wi-Fi, mobile data or a VPN is taking priority, or your router uses a carrier-customised gateway address.',
+      firstThingToTry: 'Connect directly to the Huawei router Wi-Fi, turn off mobile data and VPN temporarily, then type http://192.168.8.1 into the browser address bar.',
+      contact: 'Use the exact address and management password printed on the router nameplate. For a carrier-branded model, contact the mobile operator or router supplier if those details do not work.'
     },
     sections: {
+      meaning: [
+        '192.168.8.1 is a private IPv4 address. It normally works only while your phone or computer is connected to the router that uses it.',
+        'Many Huawei Mobile WiFi and LTE/5G CPE devices use this address for Wi-Fi, connected-device, SIM, signal, APN and security settings.',
+        'The router management password is different from the Wi-Fi password unless the device setup deliberately made them the same.',
+        'Carrier-customised Huawei routers can use a different login address or password, so the device nameplate takes priority over generic advice.'
+      ],
+      tryFirst: [
+        'Connect to the Huawei router Wi-Fi or a LAN port. Do not stay connected to a different router, guest network or phone hotspot.',
+        'Turn off mobile data, VPN, Private Relay and proxy services temporarily so the browser uses the local Wi-Fi route.',
+        'Type http://192.168.8.1 directly into the address bar. Do not type it into a search box.',
+        'If the page redirects to HTTPS, continue only when the address is still your router IP and you are on your own trusted network.',
+        'Check the bottom, back or battery compartment of the router for its management address and initial login password.'
+      ],
       steps: [
-        'Connect your phone or laptop to the Huawei router Wi-Fi, not another home Wi-Fi network.',
-        'Try 192.168.8.1 in the browser address bar, without adding search words.',
-        'If it does not open, check the router label or your device network details for the default gateway.',
-        'Use the admin password printed on the label only if it has not been changed.',
-        'After login, check SIM status, signal and APN before changing Wi-Fi names or resetting.',
-        'Only factory-reset if you understand that Wi-Fi names, admin password and APN profiles may be wiped.'
+        'Connect your phone, tablet or computer to the Huawei router Wi-Fi. A wired LAN connection also works on models with Ethernet ports.',
+        'Open Chrome, Edge, Firefox or Safari and select the address bar at the top of the browser.',
+        'Enter http://192.168.8.1 and load the page. You do not need a working internet connection because the page is served by the router.',
+        'Enter the management-page password shown on the device nameplate, setup card or screen. Use your changed password if the router was configured before.',
+        'After login, confirm the router model, SIM status, signal and connected devices before changing anything.',
+        'To change Wi-Fi details on supported Huawei Mobile WiFi models, open Wi-Fi Settings or Advanced > Wi-Fi and choose the basic or security settings page.',
+        'To check mobile data settings, open Network Settings or Mobile Network and review the active APN. Obtain APN details from the SIM provider.',
+        'Log out when finished. Record any new admin or Wi-Fi password securely so a factory reset is not needed later.'
+      ],
+      whenToContact: [
+        'The management address or password printed on the router does not work after a normal restart.',
+        'The model is carrier-branded and its login screen, address or menus differ from Huawei’s standard guidance.',
+        'The router asks for a SIM PIN, network unlock code, activation or account-specific credentials.',
+        'The reset button is damaged, the device will not start, or the router appears to have a hardware fault.'
+      ],
+      whatNotToDo: [
+        'Do not enter router passwords into websites on the public internet. The real login page is served locally by your own router.',
+        'Do not assume admin/admin is correct. Huawei says the address and initial management password can vary by model and carrier.',
+        'Do not confuse the Wi-Fi password with the router management password.',
+        'Do not factory-reset before recording the Wi-Fi name, APN, SIM PIN requirements and other settings you may need to restore.',
+        'Do not expose the management page through remote access or port forwarding unless you understand the security risk.'
       ]
     },
-    relatedFixSlugs: ['lte-router-connected-no-internet', 'lte-router-apn-settings-south-africa', 'huawei-router-reset-south-africa', 'zte-router-login-south-africa']
+    faqs: [
+      {
+        question: 'What is 192.168.8.1?',
+        answer: '192.168.8.1 is a private local IP address used as the management gateway by many routers and mobile hotspots, particularly Huawei Mobile WiFi and some Huawei 4G or 5G routers. It is not a public internet address.'
+      },
+      {
+        question: 'How do I open the 192.168.8.1 login page?',
+        answer: 'Connect to the router Wi-Fi or LAN, open a browser, and enter http://192.168.8.1 in the address bar. If it does not load, disable mobile data and VPN temporarily and check the gateway address printed on the router.'
+      },
+      {
+        question: 'What is the default password for 192.168.8.1?',
+        answer: 'There is no universal password. Huawei advises checking the device nameplate, screen or setup material because the initial management password can vary by model and carrier. If you changed the password, use the changed one.'
+      },
+      {
+        question: 'Why is 192.168.8.1 not opening?',
+        answer: 'The most common reasons are being connected to the wrong Wi-Fi, using mobile data or a VPN, typing the address into a search box, or owning a router that uses a different gateway. Check the router label or your device’s default-gateway value.'
+      },
+      {
+        question: 'Do I need internet access to open 192.168.8.1?',
+        answer: 'No. The page is hosted by the router on your local network. Your device must be connected to that router, but the router does not need an active internet connection for its management page to open.'
+      },
+      {
+        question: 'Is the router login password the same as the Wi-Fi password?',
+        answer: 'Not necessarily. The Wi-Fi password connects devices to the network; the management password protects the router settings. Huawei’s support guidance treats them as separate passwords.'
+      },
+      {
+        question: 'How do I change the Huawei Wi-Fi password?',
+        answer: 'Log in at the management address, then open Wi-Fi Settings or Advanced > Wi-Fi. On supported Huawei Mobile WiFi models, use Wi-Fi Basic Settings or Wi-Fi Security Settings to change the network name or password.'
+      },
+      {
+        question: 'Will a factory reset restore the login password?',
+        answer: 'Usually it restores the device’s initial configuration, but it also removes saved Wi-Fi, APN and other settings. Use the reset only after checking the model-specific Huawei or carrier instructions and recording anything you must restore.'
+      }
+    ],
+    relatedFixSlugs: ['lte-router-connected-no-internet', 'lte-router-apn-settings-south-africa', 'huawei-router-reset-south-africa', 'lte-router-sim-not-detected', 'zte-router-login-south-africa'],
+    relatedDataCostLinks: [
+      { label: 'LTE router APN settings', href: '/fix/lte-router-apn-settings-south-africa/' },
+      { label: 'LTE router connected but no internet', href: '/fix/lte-router-connected-no-internet/' },
+      { label: 'Router Wi-Fi works but internet does not', href: '/fix/router-wifi-working-but-no-internet/' },
+      { label: 'Compare South African mobile networks', href: '/network/' }
+    ]
   },
   'lte-router-apn-settings-south-africa': {
     summary: 'Use this when an LTE router has a SIM inserted but will not connect after changing networks, replacing a SIM or buying a second-hand router. The APN must match the network on the SIM.',
@@ -1532,12 +1631,20 @@ function applyPriorityOverride(page: FixPage): FixPage {
 }
 
 function buildFixSeoTitle(page: FixPage): string {
+  if (page.slug === 'huawei-router-login-192-168-8-1') {
+    return '192.168.8.1 Login: Huawei Router Admin Guide | DataCost';
+  }
+
   const suffix = page.cluster === 'ussd' ? 'Guide' : page.cluster === 'tv-decoder' ? 'Help' : 'Fix';
   const title = `${page.title} ${suffix} | DataCost`;
   return title.length > 60 ? `${page.title} | DataCost` : title;
 }
 
 function buildFixMetaDescription(page: FixPage): string {
+  if (page.slug === 'huawei-router-login-192-168-8-1') {
+    return 'Open the 192.168.8.1 Huawei router login page, find the correct admin password, change Wi-Fi settings, and fix connection or login problems safely.';
+  }
+
   return `${page.title}: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.`;
 }
 

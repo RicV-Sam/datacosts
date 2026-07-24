@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Info, LifeBuoy, ShieldCheck, TriangleAlert } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ExternalLink, Info, LifeBuoy, ShieldCheck, TriangleAlert } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
@@ -44,6 +44,7 @@ const hubRelatedLinks = [
 ];
 
 const priorityFixPaths = [
+  { label: '192.168.8.1 Huawei router login', href: '/fix/huawei-router-login-192-168-8-1/', note: 'Open the router admin page, find the correct password and fix login problems.' },
   { label: 'Cell C data not working', href: '/fix/cell-c-data-not-working/', note: 'Balance, APN, signal and account checks for Cell C mobile data.' },
   { label: 'Mobile data on but not working', href: '/fix/mobile-data-on-but-not-working/', note: 'Start here when the phone shows 4G/LTE/5G but pages will not load.' },
   { label: 'LTE router connected but no internet', href: '/fix/lte-router-connected-no-internet/', note: 'Router-first checks for SIM, APN, signal and device status.' },
@@ -71,6 +72,16 @@ function buildArticleSchema(page: FixPage, canonicalUrl: string, datePublishedIs
     image: DEFAULT_OG_IMAGE_URL,
     datePublished: datePublishedIso,
     dateModified: dateModifiedIso,
+    inLanguage: 'en',
+    isAccessibleForFree: true,
+    citation: page.officialSources?.map((source) => source.href),
+    about: page.adminUrl
+      ? [
+          { '@type': 'Thing', name: '192.168.8.1 router login' },
+          { '@type': 'Thing', name: 'Huawei Mobile WiFi' },
+          { '@type': 'Thing', name: 'Router administration' }
+        ]
+      : undefined,
     author: {
       '@type': 'Person',
       name: SITE_EDITOR_NAME,
@@ -288,7 +299,7 @@ export const FixProblemPage: React.FC<FixProblemPageProps> = ({ onNavigate, onSc
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-[#1b6d24]">Common entry points</p>
             <h2 className="text-2xl font-black tracking-tight text-[#031636]">High-priority troubleshooting paths</h2>
             <p className="mt-2 text-sm font-medium leading-relaxed text-slate-700">
-              These pages cover the fix clusters Google is discovering most often: mobile-data failures, APN/router symptoms, subscription deductions, prepaid meter issues and Openview activation.
+              Start with these high-demand router, mobile-data, subscription, prepaid meter and decoder troubleshooting guides.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
@@ -366,6 +377,7 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
   ];
   const relatedFixPages = page.relatedFixSlugs.map((relatedSlug) => getFixPage(relatedSlug)).filter(Boolean) as FixPage[];
   const relatedDataCostLinks = uniqueLinks([{ label: 'DataCost Fixes hub', href: '/fix/' }, ...page.relatedDataCostLinks]).slice(0, 7);
+  const isGlobalGuide = page.scope === 'global';
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -410,6 +422,28 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
           <p className="text-lg font-medium leading-relaxed text-slate-600">{page.summary}</p>
         </header>
 
+        {page.adminUrl && (
+          <section className="mb-10 border-y border-slate-200 bg-white py-6">
+            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+              <div>
+                <h2 className="mb-2 text-xl font-black tracking-tight text-[#031636]">Open the 192.168.8.1 router login page</h2>
+                <p className="max-w-2xl text-sm font-medium leading-relaxed text-slate-600">
+                  This opens a private address on your local network. It works only while you are connected to a router that uses 192.168.8.1.
+                </p>
+              </div>
+              <a
+                href={page.adminUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[48px] flex-shrink-0 items-center justify-center gap-2 rounded-lg bg-[#031636] px-5 text-sm font-black text-white hover:bg-[#1b6d24]"
+              >
+                Open 192.168.8.1
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          </section>
+        )}
+
         <PageSection title="Quick Answer">
           <div className="grid gap-4 md:grid-cols-2">
             {[
@@ -428,7 +462,7 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
 
         <TrustPanel
           lastReviewed={lastReviewed}
-          sources="General consumer troubleshooting patterns, DataCost internal guide links, public provider self-service concepts, and South African prepaid user needs."
+          sources={page.sourceSummary || 'General consumer troubleshooting patterns, DataCost internal guide links, public provider self-service concepts, and South African prepaid user needs.'}
           className="mb-10"
         />
 
@@ -459,6 +493,25 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
           </div>
           <BulletList items={page.sections.whatNotToDo} />
         </PageSection>
+
+        {page.officialSources && page.officialSources.length > 0 && (
+          <PageSection title="Official Sources">
+            <div className="grid gap-3">
+              {page.officialSources.map((source) => (
+                <a
+                  key={source.href}
+                  href={source.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold text-slate-700 hover:border-[#a0f399] hover:text-[#1b6d24]"
+                >
+                  {source.label}
+                  <ExternalLink className="h-4 w-4 flex-shrink-0" />
+                </a>
+              ))}
+            </div>
+          </PageSection>
+        )}
 
         <PageSection title="Related DataCost Guides">
           <div className="grid gap-3 md:grid-cols-2">
@@ -502,13 +555,17 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
             Official Support Reminder
           </h2>
           <p className="text-sm font-medium leading-relaxed text-slate-600">
-            This is a general troubleshooting guide for South African consumers. Always confirm billing, payment, activation, meter, token, subscription and account-specific issues with the official provider.
+            {isGlobalGuide
+              ? 'This is an independent global troubleshooting guide. Router addresses, passwords and menus vary by model and carrier, so confirm device-specific details on the nameplate and through official Huawei or operator support.'
+              : 'This is a general troubleshooting guide for South African consumers. Always confirm billing, payment, activation, meter, token, subscription and account-specific issues with the official provider.'}
           </p>
         </section>
 
         <AuthorReviewBlock
           lastReviewed={lastReviewed}
-          trustSummary="Written as independent consumer help for South African mobile, electricity, decoder and router problems. Provider-specific account actions should be confirmed through official support."
+          trustSummary={isGlobalGuide
+            ? 'Written as independent router help using official Huawei global support guidance. Model-specific passwords, carrier customisation and account actions should be confirmed through the device label or official support.'
+            : 'Written as independent consumer help for South African mobile, electricity, decoder and router problems. Provider-specific account actions should be confirmed through official support.'}
           className="mb-12"
         />
 
