@@ -4,8 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import { bundles, networkMetadata } from '../data';
 import { networkPages } from '../data/networks';
 import { Footer } from '../components/Footer';
-import { BUNDLE_TYPE_MAP } from '../config/routeCatalog';
-import { NavigateFunction, NetworkName } from '../types';
+import { BUNDLE_TYPE_MAP, getNetworkFacetRoutes } from '../config/routeCatalog';
+import { Bundle, NavigateFunction, NetworkName } from '../types';
 import {
   NetworkPageTemplate,
   NetworkTemplateBundleType,
@@ -41,15 +41,19 @@ function toBundleTypeLabel(bundleType: NetworkTemplateBundleType): string {
 function getIntro(network: NetworkName, bundleType: NetworkTemplateBundleType): string {
   const label = toBundleTypeLabel(bundleType).toLowerCase();
 
+  if (network === 'Vodacom' && bundleType === 'night-data') {
+    return 'Compare Vodacom Night Owl and prepaid LTE bundles by price, anytime allocation, night allocation, validity and the hours in which night data can actually be used.';
+  }
+
   if (bundleType === 'monthly-data') {
-    return `Compare ${network} monthly data bundles in South Africa with 30-day pricing, validity notes, and cost-per-GB context so regular prepaid users can choose a stable monthly option instead of repeating short top-ups.`;
+    return `Compare the ${network} monthly data options recorded by DataCost, including 30-day validity, once-off or recurring status, source evidence and the restrictions to confirm before paying.`;
   }
 
   if (bundleType === 'cheapest-1gb') {
-    return `Compare ${network} 1GB data options in South Africa with listed prices, validity checks, and cost-per-GB context for prepaid users who want a small top-up without overpaying.`;
+    return `Compare ${network} 1GB general-use data options by listed price, validity and source status. Night-only and social bundles are excluded because they are not substitutes for ordinary mobile data.`;
   }
 
-  return `Compare ${network} ${label} data deals in South Africa with a pricing table, bundle validity checks, and cost-per-GB context built for prepaid decision-making in 2026.`;
+  return `Compare ${network} ${label} data options in South Africa with listed prices, bundle validity, source status and practical restrictions to confirm before buying.`;
 }
 
 function getNetworkInsight(network: NetworkName, bundleType: NetworkTemplateBundleType): string {
@@ -127,33 +131,103 @@ function getBestFor(network: NetworkName, bundleType: NetworkTemplateBundleType)
   ];
 }
 
-function buildFaqs(network: NetworkName, bundleType: NetworkTemplateBundleType, cheapestName: string): NetworkTemplateFAQ[] {
+function buildFaqs(
+  network: NetworkName,
+  bundleType: NetworkTemplateBundleType,
+  bundlesForPage: Bundle[]
+): NetworkTemplateFAQ[] {
   const label = toBundleTypeLabel(bundleType).toLowerCase();
-  const hasSocial = bundleType === 'social-data';
-  const hasNight = bundleType === 'night-data';
+  const verifiedBundles = bundlesForPage.filter(
+    (bundle) => bundle.sourceConfidence === 'verified' && Boolean(bundle.lastVerified)
+  );
+  const lowestVerified = [...verifiedBundles].sort((a, b) => a.price - b.price)[0];
+
+  if (bundleType === 'night-data') {
+    return [
+      {
+        question: `When can I use ${network} night data?`,
+        answer:
+          network === 'Vodacom'
+            ? 'Vodacom Night Owl data is restricted to midnight until 05:00. Confirm the window and the qualifying product on the official terms before buying.'
+            : `${network} night data is restricted to an off-peak window. Check the source beside the bundle because the hours and qualifying products can change.`
+      },
+      {
+        question: `How should I compare ${network} night bundles?`,
+        answer: 'Compare the anytime allocation and night allocation separately. A large total is poor value if you cannot use the night portion during its restricted hours.'
+      },
+      {
+        question: `Can I use ${network} night data during the day?`,
+        answer: 'No. The night allocation is only consumed inside the stated off-peak window. Daytime use normally comes from an anytime bundle or another available balance.'
+      },
+      {
+        question: `Are all prices on this page verified?`,
+        answer: `No. Rows with a checked date were matched to an official source; rows marked “Recheck before buying” need confirmation on the ${network} app, website or self-service menu.`
+      }
+    ];
+  }
+
+  if (bundleType === 'monthly-data') {
+    return [
+      {
+        question: `What is the lowest checked ${network} monthly option on this page?`,
+        answer: lowestVerified
+          ? `${lowestVerified.name} at R${lowestVerified.price} is the lowest row on this page with a recorded verification date. Confirm the final menu on your own line before buying.`
+          : `None of the listed ${network} monthly prices has a current recorded verification date. Use the table as a comparison checklist and confirm every price with ${network}.`
+      },
+      {
+        question: `What is the difference between once-off and recurring ${network} data?`,
+        answer: 'A once-off bundle expires without renewing. A recurring bundle can renew automatically when the next cycle starts, so check the purchase type before confirming.'
+      },
+      {
+        question: `How should I compare ${network} monthly bundles?`,
+        answer: 'Compare usable anytime data, validity, renewal behavior and listed Rand per GB together. Do not count restricted night data as ordinary daytime data.'
+      },
+      {
+        question: `Why might my ${network} price differ from this page?`,
+        answer: 'Operator menus can vary by SIM, tariff plan, app profile, campaign and checkout channel. The source status beside each row shows whether DataCost recorded a checked date.'
+      }
+    ];
+  }
+
+  if (bundleType === 'cheapest-1gb') {
+    return [
+      {
+        question: `What is the lowest checked ${network} 1GB option on this page?`,
+        answer: lowestVerified
+          ? `${lowestVerified.name} at R${lowestVerified.price} is the lowest general-use 1GB row here with a recorded verification date.`
+          : `None of the listed ${network} 1GB prices has a current recorded verification date, so confirm the daily, weekly and monthly menus before choosing.`
+      },
+      {
+        question: `Why does validity matter for a ${network} 1GB bundle?`,
+        answer: 'A lower price can come with one-day or seven-day expiry. Choose the cheapest option you can realistically use before it expires, not merely the lowest number.'
+      },
+      {
+        question: `Does this comparison include ${network} night-only 1GB bundles?`,
+        answer: 'No. Night-only and social bundles are excluded from the general-use 1GB ranking because their restricted usage is not directly comparable with anytime data.'
+      },
+      {
+        question: `Where should I confirm the final ${network} price?`,
+        answer: `Use the official source linked beside the row, then confirm the final option in the ${network} app, website or self-service menu for your own line.`
+      }
+    ];
+  }
 
   return [
     {
-      question: `What is the cheapest ${network} ${label} data bundle?`,
-      answer: cheapestName
-        ? `Based on the latest listed dataset on this page, ${cheapestName} is currently the lowest priced ${network} ${label} option.`
-        : `No clearly matched ${network} ${label} bundle is currently available in this dataset.`
-    },
-    {
       question: `How should I compare ${network} ${label} bundles?`,
-      answer: 'Compare total price, validity, and cost per GB together so you do not overpay on short-validity offers with attractive headline pricing.'
+      answer: 'Compare listed price, usable allocation, validity and source status together, then confirm the final option on your own line.'
     },
     {
-      question: `Does ${network} social data include WhatsApp?`,
-      answer: hasSocial
-        ? `Many ${network} social bundles include WhatsApp, but inclusions can change by campaign, so verify app coverage before purchase.`
-        : `For social-specific access, check the dedicated ${network} social data page where app inclusion terms are tracked separately.`
+      question: `Are all ${network} ${label} prices the same for every customer?`,
+      answer: 'Not always. App, SIM, tariff-plan and campaign-specific offers can differ, so rows without a checked date need a manual confirmation.'
     },
     {
-      question: `When can I use ${network} night data?`,
-      answer: hasNight
-        ? `${network} night data is generally restricted to defined off-peak windows, so confirm the current usage hours on official channels before buying.`
-        : `Night data usually works only during off-peak windows; use the ${network} night-data page when planning overnight usage.`
+      question: `Where can I confirm a ${network} ${label} bundle?`,
+      answer: `Open the official source linked beside the row and confirm the purchase in the ${network} app, website or self-service menu.`
+    },
+    {
+      question: 'What does “Recheck before buying” mean?',
+      answer: 'The row has a primary source, but DataCost does not have a sufficiently recent recorded price check for that exact offer.'
     }
   ];
 }
@@ -183,7 +257,7 @@ function buildSeoDescription(network: NetworkName, bundleType: NetworkTemplateBu
     return `Compare ${network} 1GB data deals in South Africa by price, validity, and cost per GB. Check small prepaid top-up value for 2026.`;
   }
 
-  return `Compare ${network} ${label} data deals in South Africa with live pricing, validity, and cost per GB insights. Find the cheapest options for 2026 prepaid buyers.`;
+  return `Compare listed ${network} ${label} data options in South Africa by price, validity, usable allocation and source status before you buy.`;
 }
 
 export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onScrollTo }) => {
@@ -192,8 +266,12 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
   const network = networkData ? networkMetadata[networkData.networkName] : null;
   const bundleTypeKey = (bundleType ?? '') as NetworkTemplateBundleType;
   const typeConfig = BUNDLE_TYPE_MAP[bundleTypeKey];
+  const canonicalPath = networkSlug && bundleType
+    ? `/network/${networkSlug}/${bundleType}/`
+    : '';
+  const isPublishedFacet = canonicalPath !== '' && getNetworkFacetRoutes().includes(canonicalPath);
 
-  if (!network || !networkSlug || !typeConfig || !SUPPORTED_BUNDLE_TYPES.has(bundleTypeKey)) {
+  if (!network || !networkSlug || !typeConfig || !SUPPORTED_BUNDLE_TYPES.has(bundleTypeKey) || !isPublishedFacet) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
         <Helmet>
@@ -219,15 +297,6 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
     .filter((bundle) => typeConfig.filter(bundle))
     .sort((a, b) => a.price - b.price);
 
-  const bundleData = matchingBundles.map((bundle) => ({
-    name: bundle.name,
-    price: bundle.price,
-    data: bundle.volume,
-    validity: bundle.validity
-  }));
-
-  const cheapestName = bundleData[0]?.name ?? '';
-
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
       <NetworkPageTemplate
@@ -241,13 +310,13 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
             `${network.name.toLowerCase()} data deals`,
             'south africa prepaid data'
           ],
-          canonicalPath: `/network/${networkSlug}/${bundleTypeKey}/`
+          canonicalPath
         }}
-        bundleData={bundleData}
+        bundleData={matchingBundles}
         introText={getIntro(network.name, bundleTypeKey)}
         networkInsight={getNetworkInsight(network.name, bundleTypeKey)}
         bestForItems={getBestFor(network.name, bundleTypeKey)}
-        faqs={buildFaqs(network.name, bundleTypeKey, cheapestName)}
+        faqs={buildFaqs(network.name, bundleTypeKey, matchingBundles)}
       />
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
     </div>

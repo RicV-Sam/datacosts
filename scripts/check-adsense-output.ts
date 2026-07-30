@@ -186,10 +186,17 @@ async function main(): Promise<void> {
     const isRenderedNoindex = robotsContent.includes('noindex');
     const canCarryPublisherAds = !isRenderedNoindex && canRenderPublisherAdsOnRoute(route, noindexRoutes);
 
-    if (!hasApprovedAdsenseAutoAdsScript(text)) {
+    const hasAdsenseScript = hasApprovedAdsenseAutoAdsScript(text);
+    if (canCarryPublisherAds && !hasAdsenseScript) {
       findings.push({
         file: toDisplayPath(filePath),
         label: `is missing approved AdSense Auto ads script for ${ADSENSE_CLIENT_ID}`
+      });
+    }
+    if (!canCarryPublisherAds && hasAdsenseScript) {
+      findings.push({
+        file: toDisplayPath(filePath),
+        label: 'must not include the AdSense Auto ads script on an ad-blocked route'
       });
     }
 

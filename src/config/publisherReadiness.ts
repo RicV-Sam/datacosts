@@ -1,3 +1,5 @@
+import { getRedirectAliasRoutes } from './redirectAliases';
+
 export const GOOGLE_PARTNER_DATA_POLICY_URL = 'https://policies.google.com/technologies/partner-sites';
 
 export const GOOGLE_ADVERTISING_DISCLOSURE =
@@ -68,6 +70,7 @@ export function isPublisherAdBlockedRoute(routeInput: string, noindexRoutes: str
   const route = normalizePublisherRoute(routeInput);
   if (AD_FREE_EXACT_ROUTES.has(route)) return true;
   if (AD_FREE_PREFIXES.some((prefix) => route.startsWith(prefix))) return true;
+  if (getRedirectAliasRoutes().some((aliasRoute) => normalizePublisherRoute(aliasRoute) === route)) return true;
 
   const noindexRouteSet = new Set(noindexRoutes.map(normalizePublisherRoute));
   return noindexRouteSet.has(route);

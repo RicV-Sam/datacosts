@@ -31,7 +31,6 @@ export const RedirectPage: React.FC = () => {
       <Helmet>
         <title>{targetLabel} | DataCost</title>
         <meta name="description" content={`This DataCost page has moved to ${targetLabel}.`} />
-        <meta name="robots" content="noindex,follow" />
         <meta httpEquiv="refresh" content={`5;url=${targetPath}`} />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>

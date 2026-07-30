@@ -71,6 +71,7 @@ const sitemapGroups: SitemapGroup[] = [
       { href: '/network/vodacom/', label: 'Vodacom Data Prices' },
       { href: '/network/vodacom/cheapest-1gb/', label: 'Vodacom Cheapest 1GB Data' },
       { href: '/network/vodacom/monthly-data/', label: 'Vodacom Monthly Data' },
+      { href: '/network/vodacom/night-data/', label: 'Vodacom Night Data and Night Owl Hours' },
       { href: '/network/mtn/', label: 'MTN Data Prices' },
       { href: '/network/telkom/', label: 'Telkom Data Prices' },
       { href: '/network/telkom/monthly-data/', label: 'Telkom Monthly Data' },

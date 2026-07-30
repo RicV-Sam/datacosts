@@ -5,10 +5,11 @@ import path from 'path';
 import {defineConfig, loadEnv, Plugin} from 'vite';
 import prerender from '@prerenderer/rollup-plugin';
 import PuppeteerRenderer from '@prerenderer/renderer-puppeteer';
-import { getPrerenderRoutes, validateIndexableRoutes } from './src/config/routeCatalog';
+import { getNoindexRoutes, getPrerenderRoutes, validateIndexableRoutes } from './src/config/routeCatalog';
 import { getRedirectAliasRoutes, REDIRECT_ALIASES } from './src/config/redirectAliases';
 import { SITE_ORIGIN } from './src/seo/siteConstants';
 import { getBundledDataProblemSourceFiles } from './src/config/dataProblemPublishing';
+import { canRenderPublisherAdsOnRoute } from './src/config/publisherReadiness';
 
 const DEFAULT_DEV_DATA_PROBLEMS_SOURCE_DIR = 'C:/Users/ricca/Desktop/DataCost-SEO-Engine/seo-engine/output/data-problems';
 const LOCAL_DATA_PROBLEMS_SOURCE_DIR = path.resolve(__dirname, 'src/data/seo-pages/data-problems');
@@ -99,7 +100,6 @@ function ensureRedirectAliasSeoHtml(html: string, alias: { from: string; to: str
     updatedHtml,
     [
       `<meta data-rh="true" name="description" content="${escapeHtmlAttribute(description)}">`,
-      '<meta data-rh="true" name="robots" content="noindex,follow">',
       `<meta http-equiv="refresh" content="0;url=${escapeHtmlAttribute(normalizeRoute(alias.to))}">`,
       `<link data-rh="true" rel="canonical" href="${escapeHtmlAttribute(canonicalHref)}">`
     ].join('')
@@ -182,6 +182,7 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   const puppeteerExecutablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
   const prerenderRoutes = getPrerenderRoutes();
+  const noindexRoutes = getNoindexRoutes();
   const redirectAliasRoutes = new Set(getRedirectAliasRoutes().map(normalizeRoute));
   const redirectAliasByRoute = new Map(REDIRECT_ALIASES.map((alias) => [normalizeRoute(alias.from), alias]));
   validateIndexableRoutes(prerenderRoutes);
@@ -233,7 +234,11 @@ export default defineConfig(({mode}) => {
             .replace(/<title(?![^>]*data-rh=)/g, '<title data-rh="true"')
             .replace(/<meta(?![^>]*data-rh=)([^>]*(?:name="description"|property="og:[^"]+"|name="twitter:[^"]+")[^>]*)>/g, '<meta data-rh="true"$1>')
             .replace(/<link(?![^>]*data-rh=)([^>]*rel="canonical"[^>]*)>/g, '<link data-rh="true"$1>');
-          renderedRoute.html = ensureAdsenseAutoAdsScript(renderedRoute.html);
+          if (canRenderPublisherAdsOnRoute(normalizedOriginalRoute, noindexRoutes)) {
+            renderedRoute.html = ensureAdsenseAutoAdsScript(renderedRoute.html);
+          } else {
+            renderedRoute.html = removePrerenderedAdsenseRuntime(renderedRoute.html);
+          }
           return renderedRoute;
         },
       })

@@ -515,6 +515,14 @@ export const fibrePages: FibrePageDefinition[] = [
     sourceIds: ['rsaweb-ftth', 'axxess-fibre', 'webafrica-fibre', 'vox-fibre', 'afrihost-prepaid'],
     blocks: [
       { type: 'price-table', id: 'cheap-prices', title: 'Lowest checked public examples', filter: { maxMonthlyPrice: 550 }, limit: 12 },
+      { type: 'table', id: 'real-cost', title: 'Real cost checklist', rows: costRows },
+      {
+        type: 'callout',
+        id: 'clawback',
+        title: 'Free installation can still cost later',
+        body: 'Ask whether free installation, setup or router offers have minimum-stay or clawback conditions.',
+        tone: 'warning'
+      },
       {
         type: 'bullets',
         id: 'cheap-red-flags',
@@ -531,29 +539,6 @@ export const fibrePages: FibrePageDefinition[] = [
       standardSourceBlock(['rsaweb-ftth', 'axxess-fibre', 'webafrica-fibre', 'vox-fibre'])
     ],
     relatedLinks: [hubLink, coreFibreLinks[2], coreFibreLinks[4], { href: '/fibre/vuma-reach-prepaid-fibre-south-africa/', label: 'Vuma Reach prepaid', description: 'Understand low-cost prepaid fibre availability.' }]
-  }),
-  page({
-    slug: 'cheap-fibre-south-africa',
-    path: '/fibre/cheap-fibre-south-africa/',
-    kind: 'guide',
-    title: 'Cheap Fibre Internet South Africa: Real Cost Checklist',
-    metaDescription:
-      'Learn how to compare cheap fibre internet in South Africa by monthly price, speed, setup, router, coverage, promotion and cancellation terms.',
-    h1: 'Cheap Fibre Internet in South Africa: What to Check Before You Sign Up',
-    intro: 'Cheap fibre is not just the lowest monthly price. The real cost is monthly fee plus speed, setup, router, installation and exit terms.',
-    quickAnswer: 'A cheap fibre package is good only if it is available at your address, fast enough for your household and does not hide setup or cancellation costs.',
-    summaryCards: [
-      { label: 'Compare total cost', text: 'Add setup, activation, router, delivery and cancellation exposure.' },
-      { label: 'Check speed fit', text: 'Entry fibre is not always enough for several users.' },
-      { label: 'Confirm address', text: 'Provider examples are not proof of availability.' }
-    ],
-    sourceIds: ['webafrica-fibre', 'axxess-fibre', 'rsaweb-ftth', 'vox-fibre'],
-    blocks: [
-      { type: 'price-table', id: 'cheap-table', title: 'Low monthly examples to verify', filter: { maxMonthlyPrice: 550 }, limit: 10 },
-      { type: 'table', id: 'real-cost', title: 'Real cost checklist', rows: costRows },
-      { type: 'callout', id: 'clawback', title: 'Free installation can still cost later', body: 'Ask whether free installation, setup or router offers have minimum-stay or clawback conditions.', tone: 'warning' },
-      standardSourceBlock(['webafrica-fibre', 'axxess-fibre', 'rsaweb-ftth', 'vox-fibre'])
-    ]
   }),
   page({
     slug: 'how-to-check-fibre-coverage-south-africa',
@@ -1024,9 +1009,6 @@ export const fibrePageBySlug = fibrePages.reduce<Record<string, FibrePageDefinit
   return acc;
 }, {});
 
-export const noindexFibreRoutes = [
-  '/fibre/cheap-fibre-south-africa/',
-  '/fibre/coverage-by-area/'
-];
+export const noindexFibreRoutes = ['/fibre/coverage-by-area/'];
 
 export const fibreRoutes = fibrePages.map((pageDefinition) => pageDefinition.path);

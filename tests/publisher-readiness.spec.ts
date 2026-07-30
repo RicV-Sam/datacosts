@@ -265,9 +265,9 @@ test('GSC validation batch keeps eligible pages indexable and exposes review evi
   }
 });
 
-test('legacy WASP alias is intentionally excluded from indexing', async ({ page }) => {
+test('legacy WASP alias exposes a crawlable canonical redirect signal', async ({ page }) => {
   await page.goto('/guides/how-to-stop-wasp-vas-charges-south-africa/');
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/i);
+  await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
     'https://datacost.co.za/guides/stop-wasp-subscriptions-south-africa/'

@@ -1,8 +1,14 @@
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { getPrerenderRoutes, isNoindexRoute } from '../src/config/routeCatalog';
+import {
+  BUNDLE_TYPE_MAP,
+  getPrerenderRoutes,
+  isNoindexRoute,
+  meetsNetworkFacetEvidenceGate
+} from '../src/config/routeCatalog';
 import { getRedirectAliasRoutes } from '../src/config/redirectAliases';
+import { bundles } from '../src/data';
 
 test('visiting /index.html redirects to /', async ({ page }) => {
   await page.goto('/index.html');
@@ -24,19 +30,32 @@ test('preserves query parameters and hash during redirect', async ({ page }) => 
   await expect(page).toHaveURL(/\/guides\/cheapest-1gb-data-south-africa\/\?test=1#section$/);
 });
 
-test('static redirect aliases use an instant permanent meta refresh', async () => {
-  const html = await readFile(
-    path.resolve(process.cwd(), 'dist/guides/convert-airtime-to-data/index.html'),
-    'utf8'
-  );
-  expect(html).toContain('<meta http-equiv="refresh" content="0;url=/guides/convert-airtime-to-data-south-africa/">');
-  expect(html).toContain('<meta data-rh="true" name="robots" content="noindex,follow">');
-  expect(html).toContain('<link data-rh="true" rel="canonical" href="https://datacost.co.za/guides/convert-airtime-to-data-south-africa/">');
-});
+for (const alias of [
+  {
+    output: 'dist/ussd-codes/index.html',
+    target: '/ussd-codes-south-africa/'
+  },
+  {
+    output: 'dist/fix-mobile-problems/index.html',
+    target: '/fix/'
+  },
+  {
+    output: 'dist/fibre/cheap-fibre-south-africa/index.html',
+    target: '/fibre/cheapest-fibre-packages-south-africa/'
+  }
+]) {
+  test(`${alias.output} uses a crawlable permanent meta-refresh signal`, async () => {
+    const html = await readFile(path.resolve(process.cwd(), alias.output), 'utf8');
+    expect(html).toContain(`<meta http-equiv="refresh" content="0;url=${alias.target}">`);
+    expect(html).toContain(`<link data-rh="true" rel="canonical" href="https://datacost.co.za${alias.target}">`);
+    expect(html).not.toMatch(/<meta\b[^>]*name=["']robots["'][^>]*noindex/i);
+    expect(html).not.toContain('pagead/js/adsbygoogle.js');
+  });
+}
 
 const newSeoRoutes = [
   '/fibre/',
-  '/fibre/cheap-fibre-south-africa/',
+  '/fibre/cheapest-fibre-packages-south-africa/',
   '/fibre/prepaid-fibre-south-africa/',
   '/fibre/fibre-vs-lte-south-africa/',
   '/fibre/how-to-check-fibre-coverage-south-africa/',
@@ -57,6 +76,126 @@ function normalizePath(path: string): string {
   if (/\.[a-z0-9]+$/i.test(withLeadingSlash)) return withLeadingSlash;
   return `${withLeadingSlash.replace(/\/+$/, '')}/`;
 }
+
+const reviewedNetworkFacets = ['/network/vodacom/night-data/'];
+const evidenceBlockedNetworkFacets = [
+  '/network/mtn/monthly-data/',
+  '/network/cell-c/monthly-data/',
+  '/network/cell-c/cheapest-1gb/',
+  '/network/telkom/cheapest-1gb/',
+  '/network/vodacom/daily-data/',
+  '/network/cell-c/daily-data/',
+  '/network/cell-c/weekly-data/',
+  '/network/telkom/daily-data/'
+];
+
+test('general-use 1GB filtering excludes night-only and social bundles', () => {
+  const matchingTelkomBundles = bundles
+    .filter((bundle) => bundle.network === 'Telkom')
+    .filter((bundle) => BUNDLE_TYPE_MAP['cheapest-1gb'].filter(bundle));
+
+  expect(matchingTelkomBundles.length).toBeGreaterThan(0);
+  expect(matchingTelkomBundles.every((bundle) => bundle.anytimeData !== '0MB')).toBeTruthy();
+  expect(matchingTelkomBundles.every((bundle) => !bundle.name.toLowerCase().includes('night'))).toBeTruthy();
+});
+
+test('Vodacom night indexing is protected by a verified-and-dated evidence gate', () => {
+  expect(meetsNetworkFacetEvidenceGate('/network/vodacom/night-data/')).toBeTruthy();
+
+  const inventoryWithoutDatedVodacomEvidence = bundles.map((bundle) =>
+    bundle.network === 'Vodacom' && BUNDLE_TYPE_MAP['night-data'].filter(bundle)
+      ? { ...bundle, lastVerified: undefined }
+      : bundle
+  );
+
+  expect(
+    meetsNetworkFacetEvidenceGate(
+      '/network/vodacom/night-data/',
+      inventoryWithoutDatedVodacomEvidence
+    )
+  ).toBeFalsy();
+});
+
+test('reviewed and evidence-blocked network facets have the intended indexing policy', async ({ page, request }) => {
+  const sitemapResponse = await request.get('/sitemap-network.xml');
+  expect(sitemapResponse.ok()).toBeTruthy();
+  const sitemapXml = await sitemapResponse.text();
+
+  for (const route of reviewedNetworkFacets) {
+    await page.goto(route);
+    await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://datacost.co.za${route}`);
+    await expect(page.locator('h1')).toHaveCount(1);
+    await expect(page.getByRole('heading', { name: 'Official sources and review status' })).toBeVisible();
+    expect(sitemapXml).toContain(`<loc>https://datacost.co.za${route}</loc>`);
+    expect(sitemapXml).toContain('<lastmod>2026-07-30</lastmod>');
+  }
+
+  for (const route of evidenceBlockedNetworkFacets) {
+    await page.goto(route);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
+    expect(sitemapXml).not.toContain(`https://datacost.co.za${route}`);
+  }
+});
+
+test('Vodacom night comparison exposes allocation, restrictions and truthful source evidence', async ({ page }) => {
+  await page.goto('/network/vodacom/night-data/');
+
+  await expect(page.getByText('5GB anytime').first()).toBeVisible();
+  await expect(page.getByText('5GB night').first()).toBeVisible();
+  await expect(page.getByText('00:00-05:00').first()).toBeVisible();
+  await expect(page.getByText('Prepaid LTE / router').first()).toBeVisible();
+  await expect(page.getByText('Checked 4 July 2026').first()).toBeVisible();
+  await expect(page.getByText('Recheck before buying').first()).toBeVisible();
+  await expect(page.getByRole('link', { name: /Vodacom prepaid LTE data page/i }).first()).toHaveAttribute('href', /vodacom\.co\.za/);
+
+  const rows = page.locator('tbody tr');
+  await expect(rows.first()).toContainText('Vodacom Prepaid LTE 5GB Anytime + 5GB Night Owl');
+  await expect(rows.first()).toContainText('R19.80 / anytime GB');
+  await expect(rows.first()).toContainText('Restricted night data is excluded from this figure.');
+
+  const uncheckedRow = rows.filter({ hasText: 'Vodacom Night Owl 250MB' });
+  await expect(uncheckedRow).toContainText('Confirm');
+  await expect(uncheckedRow).toContainText('Dataset reference: R14');
+  await expect(uncheckedRow).toContainText('No R/GB comparison is shown for an unchecked price.');
+
+  const itemListText = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+    scripts.map((script) => script.textContent || '').find((text) => text.includes('"@type":"ItemList"')) || ''
+  );
+  const itemList = JSON.parse(itemListText);
+  const manualItem = itemList.itemListElement.find(
+    (entry: { item: { name: string } }) => entry.item.name === 'Vodacom Night Owl 250MB'
+  );
+  const verifiedItem = itemList.itemListElement.find(
+    (entry: { item: { name: string } }) => entry.item.name === 'Vodacom Prepaid LTE 5GB Anytime + 5GB Night Owl'
+  );
+  expect(itemList.itemListElement[0].item.name).toBe('Vodacom Prepaid LTE 5GB Anytime + 5GB Night Owl');
+  expect(itemList.itemListElement.at(-1).item.name).toBe('Vodacom Night Owl 250MB');
+  expect(manualItem.item.offers.price).toBeUndefined();
+  expect(manualItem.item.offers.availability).toBeUndefined();
+  expect(verifiedItem.item.offers.price).toBe('99.00');
+});
+
+test('Vodacom night comparison contains horizontal table overflow without page overflow at 320px', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 900 });
+  await page.goto('/network/vodacom/night-data/');
+  const tableRegion = page.getByRole('region', { name: 'Scrollable bundle comparison' });
+  await expect(tableRegion).toBeVisible();
+  expect(await tableRegion.evaluate((element) => element.scrollWidth > element.clientWidth)).toBeTruthy();
+  await tableRegion.focus();
+  await expect(tableRegion).toBeFocused();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBeTruthy();
+});
+
+test('human sitemap links only the reviewed facet and canonical fibre page from this batch', async ({ page }) => {
+  await page.goto('/sitemap/');
+  await expect(page.locator('a[href="/network/vodacom/night-data/"]')).toHaveCount(1);
+  await expect(page.locator('a[href="/fibre/cheapest-fibre-packages-south-africa/"]')).toHaveCount(1);
+  await expect(page.locator('a[href="/fibre/cheap-fibre-south-africa/"]')).toHaveCount(0);
+  for (const route of evidenceBlockedNetworkFacets) {
+    await expect(page.locator(`a[href="${route}"]`)).toHaveCount(0);
+  }
+});
 
 for (const route of newSeoRoutes) {
   const routeIsNoindex = isNoindexRoute(route);

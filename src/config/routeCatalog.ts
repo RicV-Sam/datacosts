@@ -35,12 +35,12 @@ const isSocialBundle = (bundle: Bundle) =>
 export const BUNDLE_TYPE_MAP: Record<string, BundleTypeConfig> = {
   'cheapest-1gb': {
     label: 'Cheapest 1GB',
-    filter: (bundle) => bundle.volume === '1GB' && !isSocialBundle(bundle),
+    filter: (bundle) => bundle.volume === '1GB' && !isNightBundle(bundle) && !isSocialBundle(bundle),
     guideSlug: 'cheapest-1gb-data-south-africa'
   },
   '1gb': {
     label: 'Cheapest 1GB',
-    filter: (bundle) => bundle.volume === '1GB' && !isSocialBundle(bundle),
+    filter: (bundle) => bundle.volume === '1GB' && !isNightBundle(bundle) && !isSocialBundle(bundle),
     guideSlug: 'cheapest-1gb-data-south-africa'
   },
   '2gb': {
@@ -116,7 +116,25 @@ const SITEMAP_FIX_CLUSTERS = new Set(['mobile-data', 'ussd', 'lte-router']);
 const ORGANIC_PROTECTED_FACET_ROUTES = new Set([
   '/network/vodacom/cheapest-1gb/',
   '/network/vodacom/monthly-data/',
+  '/network/vodacom/night-data/',
   '/network/telkom/monthly-data/'
+]);
+
+type NetworkFacetEvidenceGate = {
+  network: Bundle['network'];
+  bundleType: string;
+  minimumVerifiedDatedRows: number;
+};
+
+const NETWORK_FACET_EVIDENCE_GATES = new Map<string, NetworkFacetEvidenceGate>([
+  [
+    '/network/vodacom/night-data/',
+    {
+      network: 'Vodacom' as const,
+      bundleType: 'night-data',
+      minimumVerifiedDatedRows: 4
+    }
+  ]
 ]);
 
 const NOINDEX_DEAL_GUIDE_ROUTES = new Set<string>();
@@ -155,6 +173,32 @@ function normalizeCanonicalPath(path: string): string {
   return `${trimmed}/`;
 }
 
+export function meetsNetworkFacetEvidenceGate(
+  routeInput: string,
+  bundleInventory: Bundle[] = bundles
+): boolean {
+  const route = normalizeCanonicalPath(routeInput);
+  const gate = NETWORK_FACET_EVIDENCE_GATES.get(route);
+  if (!gate) return true;
+
+  const bundleTypeConfig = BUNDLE_TYPE_MAP[gate.bundleType];
+  if (!bundleTypeConfig) return false;
+
+  const verifiedDatedRows = bundleInventory.filter(
+    (bundle) =>
+      bundle.network === gate.network &&
+      bundleTypeConfig.filter(bundle) &&
+      bundle.sourceConfidence === 'verified' &&
+      Boolean(bundle.lastVerified)
+  );
+
+  return verifiedDatedRows.length >= gate.minimumVerifiedDatedRows;
+}
+
+function isOrganicProtectedFacetRoute(route: string): boolean {
+  return ORGANIC_PROTECTED_FACET_ROUTES.has(route) && meetsNetworkFacetEvidenceGate(route);
+}
+
 export function getNetworkFacetRoutes(): string[] {
   const routes = new Set<string>();
 
@@ -179,7 +223,7 @@ export function getNetworkFacetRoutes(): string[] {
 
 export function getNoindexRoutes(): string[] {
   const noindexFacetRoutes = getNetworkFacetRoutes().filter(
-    (route) => !ORGANIC_PROTECTED_FACET_ROUTES.has(route)
+    (route) => !isOrganicProtectedFacetRoute(route)
   );
 
   return [
@@ -276,7 +320,7 @@ export function getIndexableRoutes(): string[] {
   }
 
   for (const route of getNetworkFacetRoutes()) {
-    if (ORGANIC_PROTECTED_FACET_ROUTES.has(route)) {
+    if (isOrganicProtectedFacetRoute(route)) {
       routes.add(route);
     }
   }

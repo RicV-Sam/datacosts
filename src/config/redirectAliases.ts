@@ -15,7 +15,16 @@ export const REDIRECT_ALIASES: RedirectAlias[] = [
   { from: '/guides/how-to-stop-wasp-services-south-africa/', to: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions South Africa' },
   { from: '/fix-mobile-problems/', to: '/fix/', label: 'DataCost Fixes' },
   { from: '/fix-a-problem/', to: '/fix/', label: 'DataCost Fixes' },
-  { from: '/telkom-night-data-bundles/', to: '/network/telkom/night-data/', label: 'Telkom Night Data Bundles' },
+  {
+    from: '/fibre/cheap-fibre-south-africa/',
+    to: '/fibre/cheapest-fibre-packages-south-africa/',
+    label: 'Cheapest Fibre Packages South Africa'
+  },
+  {
+    from: '/telkom-night-data-bundles/',
+    to: '/guides/cheap-night-data-south-africa/',
+    label: 'Cheap Night Data South Africa'
+  },
   { from: '/night-data-bundles-south-africa/', to: '/guides/cheap-night-data-south-africa/', label: 'Cheap Night Data South Africa' }
 ];
 

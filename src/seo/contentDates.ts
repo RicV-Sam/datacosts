@@ -13,7 +13,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/editorial-policy/': '2026-05-10T00:00:00.000Z',
   '/buy-data-airtime-south-africa/': '2026-06-18T00:00:00.000Z',
   '/fibre/': '2026-07-04T00:00:00.000Z',
-  '/fibre/cheap-fibre-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
+  '/fibre/cheapest-fibre-packages-south-africa/': '2026-07-30T00:00:00.000Z',
   '/fibre/prepaid-fibre-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/fibre-vs-lte-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/how-to-check-fibre-coverage-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
@@ -151,7 +151,7 @@ const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
   vodacom: '2026-07-04T00:00:00.000Z'
 };
 
-const BUNDLE_TYPE_MODIFIED_ISO = '2026-05-01T00:00:00.000Z';
+const BUNDLE_TYPE_MODIFIED_ISO = '2026-07-30T00:00:00.000Z';
 
 function normalizeRoute(route: string): string {
   if (route === '/') return route;

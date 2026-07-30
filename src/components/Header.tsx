@@ -37,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
     { id: 'fibre-how-it-works', title: 'How Fibre Works South Africa', subtitle: 'Line, ONT, router, FNO and ISP roles explained', type: 'route' as const, value: '/fibre/how-fibre-internet-works-south-africa/' },
     { id: 'fno-vs-isp', title: 'FNO vs ISP South Africa', subtitle: 'Who owns the line, who bills you and who fixes faults', type: 'route' as const, value: '/fibre/fno-vs-isp-south-africa/' },
     { id: 'fibre-prices', title: 'Fibre Prices South Africa', subtitle: 'Checked public price examples with source dates', type: 'route' as const, value: '/fibre/fibre-prices-south-africa/' },
-    { id: 'cheap-fibre', title: 'Cheap Fibre Internet South Africa', subtitle: 'Check total cost, setup, router and cancellation terms', type: 'route' as const, value: '/fibre/cheap-fibre-south-africa/' },
+    { id: 'cheap-fibre', title: 'Cheapest Fibre Packages South Africa', subtitle: 'Compare checked prices, speed, setup, router and cancellation terms', type: 'route' as const, value: '/fibre/cheapest-fibre-packages-south-africa/' },
     { id: 'prepaid-fibre', title: 'Prepaid Fibre South Africa', subtitle: 'Understand vouchers, top-ups, expiry and coverage limits', type: 'route' as const, value: '/fibre/prepaid-fibre-south-africa/' },
     { id: 'fibre-vs-lte', title: 'Fibre vs LTE/5G South Africa', subtitle: 'Choose between fixed fibre, LTE, 5G and mobile data for home use', type: 'route' as const, value: '/fibre/fibre-vs-lte-south-africa/' },
     { id: 'buy-data-airtime', title: 'How to Buy Data and Airtime', subtitle: 'Compare safe USSD, app, bank-app, retailer and provider top-up routes', type: 'route' as const, value: '/buy-data-airtime-south-africa/' },

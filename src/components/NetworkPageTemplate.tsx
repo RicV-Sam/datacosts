@@ -1,19 +1,30 @@
 import React, { useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { NetworkName } from '../types';
-import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, toCanonicalUrl } from '../seo/siteConstants';
+import { ExternalLink, ShieldCheck } from 'lucide-react';
+import { Bundle, NetworkName, ProductType } from '../types';
+import {
+  DEFAULT_OG_IMAGE_URL,
+  SITE_BRAND_NAME,
+  SITE_EDITOR_BIO,
+  SITE_EDITOR_NAME,
+  SITE_EDITOR_ROLE,
+  SITE_LOGO_URL,
+  SITE_PRODUCT_NAME,
+  SITE_URL,
+  toCanonicalUrl
+} from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from './Breadcrumbs';
 import { isNoindexRoute } from '../config/routeCatalog';
-import { getNetworkImageUrl, getNetworkPageUrl } from '../utils/structuredData';
+import { buildBundleItemListSchema } from '../utils/structuredData';
+import { getBundleSourceNote } from '../utils/bundleSource';
+import {
+  formatIsoForDisplay,
+  getBundleTypeModifiedIso,
+  getDefaultPublishedIso
+} from '../seo/contentDates';
+import { AuthorReviewBlock } from './AuthorReviewBlock';
 
 export type NetworkTemplateBundleType = 'weekly-data' | 'social-data' | 'night-data' | 'monthly-data' | string;
-
-export interface NetworkTemplateBundle {
-  name: string;
-  price: number;
-  data: string;
-  validity: string;
-}
 
 export interface NetworkTemplateFAQ {
   question: string;
@@ -37,16 +48,14 @@ interface NetworkPageTemplateProps {
   network: NetworkName;
   bundleType: NetworkTemplateBundleType;
   seoData: NetworkTemplateSeoData;
-  bundleData: NetworkTemplateBundle[];
+  bundleData: Bundle[];
   introText: string;
   networkInsight: string;
   bestForItems: string[];
   faqs: NetworkTemplateFAQ[];
 }
 
-type PreparedBundle = NetworkTemplateBundle & {
-  costPerGb: number | null;
-};
+type PreparedBundle = Bundle;
 
 function toBundleTypeLabel(bundleType: NetworkTemplateBundleType): string {
   const fromMap: Record<string, string> = {
@@ -63,19 +72,64 @@ function toBundleTypeLabel(bundleType: NetworkTemplateBundleType): string {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
-function parseDataToGb(volume: string): number | null {
-  const cleaned = volume.trim().toUpperCase().replace(/\s+/g, '');
-  const match = cleaned.match(/^(\d+(?:\.\d+)?)(MB|GB|TB)$/);
-  if (!match) return null;
+function getAllocationLines(bundle: Bundle): string[] {
+  const lines: string[] = [];
+  if (bundle.anytimeData && bundle.anytimeData !== '0MB') {
+    lines.push(`${bundle.anytimeData} anytime`);
+  }
+  if (bundle.nightData && bundle.nightData !== '0MB') {
+    lines.push(`${bundle.nightData} night`);
+  }
+  if (lines.length === 0) {
+    lines.push(bundle.volume);
+  }
+  return lines;
+}
 
-  const amount = Number(match[1]);
-  const unit = match[2];
-  if (Number.isNaN(amount) || amount <= 0) return null;
+function getProductTypeLabel(productType?: ProductType): string | null {
+  if (!productType) return null;
+  const labels: Record<ProductType, string> = {
+    smartphone_once_off_data: 'Once-off mobile data',
+    smartphone_recurring_data: 'Recurring mobile data',
+    prepaid_lte_router_data: 'Prepaid LTE / router',
+    night_data: 'Night-only data',
+    personalised_app_only_offer: 'Personalised app offer',
+    promo_campaign_offer: 'Promotional offer',
+    home_internet_fixed_lte: 'Fixed LTE / home internet'
+  };
+  return labels[productType];
+}
 
-  if (unit === 'MB') return amount / 1024;
-  if (unit === 'GB') return amount;
-  if (unit === 'TB') return amount * 1024;
-  return null;
+function isVerifiedWithDate(bundle: Bundle): bundle is Bundle & { lastVerified: string } {
+  return bundle.sourceConfidence === 'verified' && Boolean(bundle.lastVerified);
+}
+
+function getEvidenceSortRank(bundle: Bundle): number {
+  if (isVerifiedWithDate(bundle)) return 0;
+  if (bundle.sourceConfidence === 'verified') return 1;
+  return 2;
+}
+
+function getSourceStatusLabel(bundle: Bundle): string {
+  if (isVerifiedWithDate(bundle)) {
+    return `Checked ${formatIsoForDisplay(bundle.lastVerified)}`;
+  }
+  if (bundle.sourceConfidence === 'verified') {
+    return 'Matched to official source';
+  }
+  if (bundle.sourceConfidence === 'dynamic_checkout') {
+    return 'Confirm in checkout';
+  }
+  if (bundle.sourceConfidence === 'personalised') {
+    return 'Personalised price';
+  }
+  return 'Recheck before buying';
+}
+
+function getSourceStatusClasses(bundle: Bundle): string {
+  return isVerifiedWithDate(bundle)
+    ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
+    : 'border-amber-200 bg-amber-50 text-amber-900';
 }
 
 function formatRand(value: number): string {
@@ -85,6 +139,39 @@ function formatRand(value: number): string {
 function formatCostPerGb(value: number | null): string {
   if (value === null || Number.isNaN(value) || value <= 0) return 'N/A';
   return `R${value.toFixed(2)}`;
+}
+
+function getCostBasis(bundle: Bundle): { value: string; note: string } {
+  if (!isVerifiedWithDate(bundle)) {
+    return {
+      value: 'Confirm price first',
+      note: 'No R/GB comparison is shown for an unchecked price.'
+    };
+  }
+
+  const hasAnytimeData = Boolean(bundle.anytimeData && bundle.anytimeData !== '0MB');
+  const hasNightData = Boolean(bundle.nightData && bundle.nightData !== '0MB');
+
+  if (hasAnytimeData) {
+    return {
+      value: `${formatCostPerGb(bundle.costPerGb)} / anytime GB`,
+      note: hasNightData
+        ? 'Restricted night data is excluded from this figure.'
+        : 'Based on the listed anytime allocation.'
+    };
+  }
+
+  if (hasNightData) {
+    return {
+      value: `${formatCostPerGb(bundle.costPerGb)} / night GB`,
+      note: 'This is restricted night-only data.'
+    };
+  }
+
+  return {
+    value: `${formatCostPerGb(bundle.costPerGb)} / GB`,
+    note: 'Based on the listed usable allocation.'
+  };
 }
 
 function getNetworkSlug(network: NetworkName): string {
@@ -202,20 +289,32 @@ function buildRelatedLinks(network: NetworkName, bundleType: NetworkTemplateBund
 export function QuickAnswerCard({
   network,
   bundleTypeLabel,
-  keyword,
+  bundleType,
   bundles
 }: {
   network: NetworkName;
   bundleTypeLabel: string;
-  keyword: string;
+  bundleType: NetworkTemplateBundleType;
   bundles: PreparedBundle[];
 }) {
-  const cheapest = bundles[0];
-  const prices = bundles.map((bundle) => bundle.price).sort((a, b) => a - b);
-  const lowestPrice = prices[0];
-  const highestPrice = prices[prices.length - 1];
-  const priceRange = prices.length > 1 ? `${formatRand(lowestPrice)} to ${formatRand(highestPrice)}` : formatRand(lowestPrice);
-  const cheapestLine = cheapest ? `${cheapest.name} at ${formatRand(cheapest.price)}.` : 'No matching bundles are currently listed.';
+  const verifiedBundles = bundles.filter(isVerifiedWithDate);
+  const unverifiedCount = bundles.length - verifiedBundles.length;
+  const lowestVerified = [...verifiedBundles].sort((a, b) => a.price - b.price)[0];
+
+  let answer =
+    'Compare the listed price, usable allocation, validity and source status together. Confirm any row without a checked date on the operator channel for your own line.';
+
+  if (network === 'Vodacom' && bundleType === 'night-data') {
+    answer = `Vodacom Night Owl data is restricted to midnight–05:00. ${verifiedBundles.length} listed bundle${verifiedBundles.length === 1 ? ' was' : 's were'} matched to official Vodacom sources with a recorded check date. Compare anytime and night allocations separately; do not value restricted night data as if it were daytime data.`;
+  } else if (bundleType === 'monthly-data') {
+    answer = lowestVerified
+      ? `${lowestVerified.name} at ${formatRand(lowestVerified.price)} is the lowest monthly row here with a recorded check date. Compare once-off versus recurring status and confirm ${unverifiedCount} row${unverifiedCount === 1 ? '' : 's'} marked for recheck.`
+      : `The listed ${network} monthly rows do not yet have current recorded price checks. Use the page to compare validity and renewal terms, then confirm every price with ${network}.`;
+  } else if (bundleType === 'cheapest-1gb') {
+    answer = lowestVerified
+      ? `${lowestVerified.name} at ${formatRand(lowestVerified.price)} is the lowest general-use 1GB row here with a recorded check date. Night-only and social bundles are excluded from this comparison.`
+      : `The listed ${network} 1GB rows do not yet have current recorded price checks. Compare daily, weekly and monthly expiry first, then confirm the final price with ${network}.`;
+  }
 
   return (
     <section className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 md:p-8" aria-label="Quick answer">
@@ -223,7 +322,7 @@ export function QuickAnswerCard({
         Quick Answer: {network} {bundleTypeLabel} Data
       </h2>
       <p className="mt-3 text-slate-700 leading-relaxed">
-        {network} {keyword} bundles are popular for users who need focused prepaid value without long commitments. {cheapestLine} Typical listed pricing ranges from {priceRange}, depending on active promotions and validity terms.
+        {answer}
       </p>
     </section>
   );
@@ -232,28 +331,91 @@ export function QuickAnswerCard({
 export function BundleTable({ bundles }: { bundles: PreparedBundle[] }) {
   return (
     <section aria-label="Bundle comparison table">
-      <h2 className="text-2xl font-black tracking-tight text-slate-900">Compare Bundle Prices and Value</h2>
-      <div className="mt-4 overflow-x-auto rounded-2xl border border-slate-200 bg-white">
-        <table className="min-w-full text-left">
+      <h2 className="text-2xl font-black tracking-tight text-slate-900">Compare listed bundles and restrictions</h2>
+      <p className="mt-2 text-sm font-medium leading-relaxed text-slate-600">
+        “Checked” means the exact row has a recorded match to an official source. Other rows remain visible for context but must be confirmed before purchase.
+      </p>
+      <p className="mt-3 text-xs font-bold text-slate-500 md:hidden">Swipe the table horizontally to compare every column.</p>
+      <div
+        className="mt-4 overflow-x-auto rounded-2xl border border-slate-200 bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1b6d24]"
+        tabIndex={0}
+        role="region"
+        aria-label="Scrollable bundle comparison"
+      >
+        <table className="min-w-[920px] text-left">
+          <caption className="sr-only">Listed bundle prices, usable allocations, validity, restrictions and source status.</caption>
           <thead className="bg-slate-50">
             <tr>
-              <th scope="col" className="px-4 py-3 text-xs font-black uppercase tracking-wider text-slate-500">Bundle Name</th>
+              <th scope="col" className="sticky left-0 z-10 bg-slate-50 px-4 py-3 text-xs font-black uppercase tracking-wider text-slate-500">Bundle</th>
               <th scope="col" className="px-4 py-3 text-xs font-black uppercase tracking-wider text-slate-500">Price</th>
-              <th scope="col" className="px-4 py-3 text-xs font-black uppercase tracking-wider text-slate-500">Data Volume</th>
-              <th scope="col" className="px-4 py-3 text-xs font-black uppercase tracking-wider text-slate-500">Validity</th>
-              <th scope="col" className="px-4 py-3 text-xs font-black uppercase tracking-wider text-slate-500">Cost per GB</th>
+              <th scope="col" className="px-4 py-3 text-xs font-black uppercase tracking-wider text-slate-500">Usable allocation</th>
+              <th scope="col" className="px-4 py-3 text-xs font-black uppercase tracking-wider text-slate-500">Validity and window</th>
+              <th scope="col" className="px-4 py-3 text-xs font-black uppercase tracking-wider text-slate-500">Cost basis</th>
+              <th scope="col" className="px-4 py-3 text-xs font-black uppercase tracking-wider text-slate-500">Source status</th>
             </tr>
           </thead>
           <tbody>
-            {bundles.map((bundle) => (
-              <tr key={`${bundle.name}-${bundle.validity}`} className="border-t border-slate-100">
-                <td className="px-4 py-3 font-semibold text-slate-900">{bundle.name}</td>
-                <td className="px-4 py-3 text-slate-700">{formatRand(bundle.price)}</td>
-                <td className="px-4 py-3 text-slate-700">{bundle.data}</td>
-                <td className="px-4 py-3 text-slate-700">{bundle.validity}</td>
-                <td className="px-4 py-3 text-slate-700">{formatCostPerGb(bundle.costPerGb)}</td>
-              </tr>
-            ))}
+            {bundles.map((bundle) => {
+              const costBasis = getCostBasis(bundle);
+              const isChecked = isVerifiedWithDate(bundle);
+
+              return (
+                <tr key={`${bundle.name}-${bundle.validity}`} className="border-t border-slate-100">
+                  <th scope="row" className="sticky left-0 z-10 max-w-[240px] bg-white px-4 py-4 text-left align-top">
+                    <span className="block font-black text-slate-900">{bundle.name}</span>
+                    {getProductTypeLabel(bundle.productType) && (
+                      <span className="mt-1 block text-xs font-medium text-slate-500">{getProductTypeLabel(bundle.productType)}</span>
+                    )}
+                  </th>
+                  <td className="px-4 py-4 align-top">
+                    <span className="block font-black text-slate-900">
+                      {isChecked ? formatRand(bundle.price) : 'Confirm'}
+                    </span>
+                    {!isChecked && (
+                      <>
+                        <span className="mt-1 block text-xs font-medium text-slate-500">
+                          Dataset reference: {formatRand(bundle.price)}
+                        </span>
+                        <span className="mt-2 inline-flex rounded-full border border-amber-200 bg-amber-50 px-2 py-1 text-[11px] font-black text-amber-900">
+                          Needs recheck
+                        </span>
+                      </>
+                    )}
+                  </td>
+                  <td className="px-4 py-4 align-top text-sm text-slate-700">
+                    {getAllocationLines(bundle).map((line) => <span key={line} className="block">{line}</span>)}
+                    {bundle.watchOut && <span className="mt-2 block max-w-[220px] text-xs font-medium text-amber-800">{bundle.watchOut}</span>}
+                  </td>
+                  <td className="px-4 py-4 align-top text-sm text-slate-700">
+                    <span className="block">{bundle.validity}</span>
+                    {bundle.nightWindow && <span className="mt-1 block font-bold text-slate-900">{bundle.nightWindow}</span>}
+                  </td>
+                  <td className="px-4 py-4 align-top text-sm text-slate-700">
+                    <span className="block font-semibold text-slate-900">{costBasis.value}</span>
+                    <span className="mt-1 block max-w-[170px] text-xs text-slate-500">{costBasis.note}</span>
+                  </td>
+                  <td className="px-4 py-4 align-top">
+                    <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${getSourceStatusClasses(bundle)}`}>
+                      {getSourceStatusLabel(bundle)}
+                    </span>
+                    {bundle.sourceUrl && bundle.sourceLabel && (
+                      <a
+                        href={bundle.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 flex max-w-[220px] items-start gap-1 text-xs font-bold leading-relaxed text-[#1b6d24] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1b6d24]"
+                      >
+                        <span>{bundle.sourceLabel}</span>
+                        <ExternalLink className="mt-0.5 h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
+                      </a>
+                    )}
+                    {getBundleSourceNote(bundle) && (
+                      <span className="mt-2 block max-w-[230px] text-xs leading-relaxed text-slate-600">{getBundleSourceNote(bundle)}</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -303,6 +465,57 @@ export function InternalLinks({ network, bundleType }: { network: NetworkName; b
   );
 }
 
+export function ReviewSources({ bundles }: { bundles: PreparedBundle[] }) {
+  const sources = [...new Map(
+    bundles
+      .filter((bundle) => bundle.sourceUrl && bundle.sourceLabel)
+      .map((bundle) => [
+        bundle.sourceUrl as string,
+        {
+          href: bundle.sourceUrl as string,
+          label: bundle.sourceLabel as string,
+          checkedRows: bundles.filter(
+            (candidate) => candidate.sourceUrl === bundle.sourceUrl && isVerifiedWithDate(candidate)
+          ).length,
+          totalRows: bundles.filter((candidate) => candidate.sourceUrl === bundle.sourceUrl).length
+        }
+      ])
+  ).values()];
+
+  if (sources.length === 0) return null;
+
+  return (
+    <section id="review-sources" className="border-y border-slate-200 bg-white py-8 md:py-10">
+      <div className="mb-6 flex items-start gap-3">
+        <ShieldCheck className="mt-1 h-6 w-6 flex-shrink-0 text-[#1b6d24]" aria-hidden="true" />
+        <div>
+          <h2 className="text-2xl font-black tracking-tight text-slate-900">Official sources and review status</h2>
+          <p className="mt-2 max-w-3xl font-medium leading-relaxed text-slate-600">
+            DataCost records operator sources row by row. A reachable source does not automatically verify every price, so rows without a checked date remain marked for confirmation.
+          </p>
+        </div>
+      </div>
+      <div className="divide-y divide-slate-200 border-y border-slate-200">
+        {sources.map((source) => (
+          <a
+            key={source.href}
+            href={source.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group grid min-h-[72px] gap-2 py-5 transition-colors hover:text-[#1b6d24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1b6d24] md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)_auto] md:items-start md:gap-6"
+          >
+            <span className="font-black text-slate-900 group-hover:text-[#1b6d24]">{source.label}</span>
+            <span className="text-sm font-medium leading-relaxed text-slate-600">
+              {source.checkedRows} of {source.totalRows} listed row{source.totalRows === 1 ? '' : 's'} from this source {source.checkedRows === 1 ? 'has' : 'have'} a recorded verification date.
+            </span>
+            <ExternalLink className="h-4 w-4 text-slate-400 group-hover:text-[#1b6d24]" aria-hidden="true" />
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function FAQSection({ faqs }: { faqs: NetworkTemplateFAQ[] }) {
   return (
     <section>
@@ -330,21 +543,23 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
   faqs
 }) => {
   const bundleTypeLabel = toBundleTypeLabel(bundleType);
-  const keyword = `${bundleTypeLabel.toLowerCase()} data`;
   const canonicalUrl = toCanonicalUrl(seoData.canonicalPath);
   const title = seoData.title;
   const description = seoData.description;
   const shouldNoindex = isNoindexRoute(seoData.canonicalPath);
+  const networkSlug = getNetworkSlug(network);
+  const datePublishedIso = getDefaultPublishedIso();
+  const dateModifiedIso = getBundleTypeModifiedIso(networkSlug);
+  const lastReviewed = formatIsoForDisplay(dateModifiedIso);
 
   const preparedBundles = useMemo<PreparedBundle[]>(() => {
     return [...bundleData]
-      .map((bundle) => {
-        const volumeInGb = parseDataToGb(bundle.data);
-        const costPerGb = volumeInGb && volumeInGb > 0 ? bundle.price / volumeInGb : null;
-        return { ...bundle, costPerGb };
-      })
-      .sort((a, b) => a.price - b.price);
+      .sort((a, b) => getEvidenceSortRank(a) - getEvidenceSortRank(b) || a.price - b.price);
   }, [bundleData]);
+
+  const citationUrls = [...new Set(bundleData
+    .map((bundle) => bundle.sourceUrl)
+    .filter((url): url is string => Boolean(url)))];
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -359,41 +574,60 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
     }))
   };
 
-  const itemListSchema = {
+  const webPageSchema = {
     '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: `${network} ${bundleTypeLabel} data bundles`,
-    itemListElement: preparedBundles.map((bundle, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      item: {
-        '@type': 'Service',
-        name: bundle.name,
-        description: `Prepaid ${bundle.data} mobile data bundle from ${network} in South Africa.`,
-        provider: {
-          '@type': 'Organization',
-          name: network,
-          url: getNetworkPageUrl(network)
-        },
-        areaServed: 'ZA',
-        serviceType: 'Prepaid Mobile Data Bundle',
-        image: getNetworkImageUrl(network),
-        url: canonicalUrl,
-        offers: {
-          '@type': 'Offer',
-          url: canonicalUrl,
-          priceCurrency: 'ZAR',
-          price: bundle.price.toFixed(2),
-          availability: 'https://schema.org/InStock'
-        },
-        additionalProperty: [
-          { '@type': 'PropertyValue', name: 'Data volume', value: bundle.data },
-          { '@type': 'PropertyValue', name: 'Validity', value: bundle.validity },
-          { '@type': 'PropertyValue', name: 'Cost per GB', value: formatCostPerGb(bundle.costPerGb) }
-        ]
-      }
-    }))
+    '@type': 'WebPage',
+    name: title,
+    description,
+    url: canonicalUrl,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    citation: citationUrls,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
+    }
   };
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    url: canonicalUrl,
+    datePublished: datePublishedIso,
+    dateModified: dateModifiedIso,
+    citation: citationUrls,
+    author: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE,
+      description: SITE_EDITOR_BIO
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: SITE_EDITOR_NAME,
+      jobTitle: SITE_EDITOR_ROLE
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_BRAND_NAME,
+      url: SITE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: SITE_LOGO_URL
+      }
+    },
+    image: DEFAULT_OG_IMAGE_URL
+  };
+
+  const itemListSchema = buildBundleItemListSchema(
+    `${network} ${bundleTypeLabel} data bundles`,
+    canonicalUrl,
+    preparedBundles,
+    () => canonicalUrl
+  );
 
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
@@ -423,6 +657,8 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={DEFAULT_OG_IMAGE_URL} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
       </Helmet>
@@ -441,7 +677,7 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
         <QuickAnswerCard
           network={network}
           bundleTypeLabel={bundleTypeLabel}
-          keyword={keyword}
+          bundleType={bundleType}
           bundles={preparedBundles}
         />
         <BundleTable bundles={preparedBundles} />
@@ -453,7 +689,12 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
           <p className="mt-3 text-slate-700 leading-relaxed">{networkInsight}</p>
         </section>
         <InternalLinks network={network} bundleType={bundleType} />
+        <ReviewSources bundles={preparedBundles} />
         <FAQSection faqs={faqs} />
+        <AuthorReviewBlock
+          lastReviewed={lastReviewed}
+          trustSummary="This comparison keeps operator sources, verification status, validity and restricted-use allocations visible so an unchecked price is never presented as confirmed."
+        />
       </div>
     </main>
   );

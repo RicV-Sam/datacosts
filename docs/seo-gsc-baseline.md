@@ -179,7 +179,7 @@ The remaining examples from the failed validation were reviewed by intended sear
 | Group | URLs | Release treatment |
 | --- | ---: | --- |
 | Current indexable DataCost pages | 12 | Kept indexable with a self-canonical and one H1. Older guide, data-problem, and fix templates now expose primary sources, review dates, and schema citations where claims can change. |
-| Intentional redirect alias | 1 | `/guides/how-to-stop-wasp-vas-charges-south-africa/` remains `noindex` with the canonical target `/guides/stop-wasp-subscriptions-south-africa/`. It should move to a redirect/canonical classification, not become indexed. |
+| Intentional redirect alias | 1 | `/guides/how-to-stop-wasp-vas-charges-south-africa/` uses an instant meta refresh and canonical target `/guides/stop-wasp-subscriptions-south-africa/`. Redirect aliases remain crawlable, without `noindex`, so Google can process the permanent redirect signal and move the URL out of the `noindex` classification. |
 | Utility resources | 3 | `/sitemap.xml`, `/sitemap-trust.xml`, and `/ads.txt` are crawlable machine files, not search-result pages. No content-indexing action is appropriate. |
 | Legacy FreeHub host | 6 | Requires separate FreeHub host/GSC cleanup. These URLs cannot be repaired by changing the DataCost page templates. |
 
