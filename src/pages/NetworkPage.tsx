@@ -120,9 +120,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
       heroHeading: 'Vodacom Prepaid Data Deals & Prices'
     },
     'cell-c': {
-      title: 'Cell C Data Deals, Bundles & USSD Codes in South Africa',
-      description: 'Compare Cell C data deals, prepaid bundles, promo-led offers, USSD codes and ways to save on Cell C data in South Africa.',
-      heroHeading: 'Cell C Data Deals, Bundles & USSD Codes'
+      title: 'Cell C Data Deals & Prepaid Bundles (2026)',
+      description: 'Compare Cell C data deals and prepaid bundles by price, validity and cost per GB, with current-menu checks before you buy.',
+      heroHeading: 'Cell C Data Deals & Prepaid Bundles'
     }
   };
   const routeMeta = priorityNetworkMeta[networkSlug];
@@ -397,6 +397,23 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             </p>
             <p className="mt-3 text-sm text-slate-600 font-medium leading-relaxed">
               Checking prices before a top-up? Confirm your <a href="/guides/how-to-check-vodacom-airtime-balance/" className="text-[#1b6d24] font-semibold hover:underline">Vodacom balance and airtime</a> first so you do not buy another bundle while old airtime, data, or validity is still active.
+            </p>
+          </section>
+        )}
+
+        {networkSlug === 'cell-c' && (
+          <section className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
+            <h2 className="text-2xl font-black tracking-tighter mb-4">Cell C data deals: quick answer</h2>
+            <p className="text-slate-700 font-medium leading-relaxed">
+              Use this page to compare <strong>Cell C data deals</strong> and prepaid bundles by total price,
+              validity and cost per GB. Start with the comparison cards and bundle table below, then verify the
+              active offer in the current Cell C menu before buying because promotional options can change.
+            </p>
+            <p className="mt-3 text-sm text-slate-600 font-medium leading-relaxed">
+              Need an account shortcut instead of a deal comparison? Open the{' '}
+              <a href="/cell-c-ussd-codes/" className="text-[#1b6d24] font-semibold hover:underline">Cell C USSD codes</a>
+              {' '}page. For a market-wide benchmark, compare the{' '}
+              <a href="/guides/best-data-deals-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">best data deals in South Africa</a>.
             </p>
           </section>
         )}

@@ -142,7 +142,7 @@ const NETWORK_MODIFIED_BY_SLUG: Record<string, string> = {
 };
 
 const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
-  'cell-c': '2026-07-04T00:00:00.000Z',
+  'cell-c': '2026-07-30T00:00:00.000Z',
   mtn: '2026-07-04T00:00:00.000Z',
   rain: '2026-07-04T00:00:00.000Z',
   telkom: '2026-07-04T00:00:00.000Z',
