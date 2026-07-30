@@ -857,6 +857,46 @@ const pages: FixPage[] = [
 ];
 
 const priorityPageOverrides: Record<string, FixPageOverride> = {
+  'cell-c-data-not-working': {
+    sourceSummary:
+      'Checked against Cell C device-setup guidance for data activation, the official Internet APN value and Cell C support routes. Account and SIM provisioning remain provider-controlled.',
+    officialSources: [
+      {
+        label: 'Cell C: device setup for most phones',
+        href: 'https://www.cellc.co.za/cellc/device-setup-most-phones'
+      },
+      {
+        label: 'Cell C: data user guide',
+        href: 'https://www.cellc.co.za/cellc/static-content/PDF/data_user_guide.pdf'
+      }
+    ]
+  },
+  'lte-router-red-light-no-internet': {
+    summary:
+      'A red router light is a symptom, not a universal diagnosis. Its exact meaning varies by brand and model. Start with the router label or manual, then check connection type, SIM registration, balance, signal and APN without factory-resetting the device.',
+    sourceSummary:
+      'Checked against Huawei router support for models where a steady red indicator means there is no internet connection. Other brands and LTE models can use red differently, so the device manual remains authoritative.',
+    officialSources: [
+      {
+        label: 'Huawei: no connected device can access the internet',
+        href: 'https://consumer.huawei.com/uk/support/content/en-gb15854840/'
+      }
+    ],
+    sections: {
+      meaning: [
+        'A steady red indicator means “not connected to the internet” on the Huawei models covered by Huawei support, but colour meanings vary across brands and models.',
+        'On an LTE router, the underlying cause may be weak signal, a SIM registration or PIN issue, depleted data, account restriction or an incorrect APN.',
+        'On a fixed-line Wi-Fi router, a red internet light can instead point to the WAN cable, modem or upstream service.'
+      ],
+      tryFirst: [
+        'Read the label and model number, then check that model’s official light guide.',
+        'Restart once and wait for the full boot sequence to finish.',
+        'For an LTE router, check SIM balance, PIN status, network registration and signal in the admin page.',
+        'For a fixed-line router, check the WAN cable and upstream modem before changing APN settings.',
+        'Avoid a factory reset until you have saved the current connection settings.'
+      ]
+    }
+  },
   'vodacom-apn-settings': {
     summary: 'Use this when a Vodacom SIM has signal but browsing, WhatsApp or hotspot use will not work. For most consumer phones and LTE routers, the APN field is the key setting to check before changing anything more serious.',
     sections: {

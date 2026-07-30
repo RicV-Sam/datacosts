@@ -36,6 +36,13 @@ export type ProblemGuideContent = {
   faq: Array<{ question: string; answer: string }>;
   internalLinks: InternalLink[];
   whenToEscalate: string;
+  reviewDueDate?: string;
+  sourceSummary?: string;
+  officialSources?: Array<{
+    href: string;
+    label: string;
+    note: string;
+  }>;
 };
 
 export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
@@ -506,7 +513,22 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
       }
     ],
     whenToEscalate:
-      'Escalate when MTN deductions continue after service list cleanup and inactive confirmations.'
+      'Escalate when MTN deductions continue after service list cleanup and inactive confirmations.',
+    reviewDueDate: '2026-10-30',
+    sourceSummary:
+      'Checked against MTN-controlled subscription-management and billing guidance. Menu wording can vary by service, price plan and customer profile.',
+    officialSources: [
+      {
+        label: 'MTN: manage a content subscription',
+        href: 'https://www.mtn.co.za/home/terms-and-conditions/content/disney-plus',
+        note: 'MTN documents subscription checks and cancellation through the MTN App, the *123# content-service menu and customer support.'
+      },
+      {
+        label: 'MTN Play: subscription account',
+        href: 'https://play.mtn.co.za/myaccount',
+        note: 'MTN-controlled account route for viewing or managing supported MTN Play subscriptions.'
+      }
+    ]
   },
   'how-to-check-subscriptions-on-vodacom': {
     slug: 'how-to-check-subscriptions-on-vodacom',
@@ -855,7 +877,27 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
       }
     ],
     whenToEscalate:
-      'Escalate if abnormal usage continues after settings controls and bundle optimization are applied.'
+      'Escalate if abnormal usage continues after settings controls and bundle optimization are applied.',
+    reviewDueDate: '2026-10-30',
+    sourceSummary:
+      'Checked against Android and iPhone data-saving guidance and Vodacom account guidance for balance, usage and out-of-bundle behaviour.',
+    officialSources: [
+      {
+        label: 'Google: use less mobile data with Data Saver',
+        href: 'https://support.google.com/pixelphone/answer/7055392?hl=en',
+        note: 'Primary Android guidance for restricting background data while allowing essential exceptions.'
+      },
+      {
+        label: 'Apple: use Low Data Mode',
+        href: 'https://support.apple.com/en-za/102433',
+        note: 'Primary iPhone guidance for reducing background use, downloads, backups and streaming quality.'
+      },
+      {
+        label: 'Vodacom: balances, usage and billing help',
+        href: 'https://www.vodacom.co.za/vodacom/help/balances-usage-and-billing',
+        note: 'Operator guidance for checking balances, identifying common high-usage causes and understanding out-of-bundle charges.'
+      }
+    ]
   },
   'how-to-protect-airtime-from-being-used': {
     slug: 'how-to-protect-airtime-from-being-used',
@@ -973,6 +1015,26 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
       }
     ],
     whenToEscalate:
-      'Escalate if deductions continue after service cleanup and premium blocking are both confirmed.'
+      'Escalate if deductions continue after service cleanup and premium blocking are both confirmed.',
+    reviewDueDate: '2026-10-30',
+    sourceSummary:
+      'Checked against official operator guidance for subscriptions, balance checks and out-of-bundle controls, plus device-platform data-saving guidance.',
+    officialSources: [
+      {
+        label: 'Vodacom: manage data and out-of-bundle use',
+        href: 'https://www.vodacom.co.za/vodacom/help/managing-your-data',
+        note: 'Official explanation of data notifications, Data Limit Lock and account controls.'
+      },
+      {
+        label: 'MTN: manage supported subscriptions',
+        href: 'https://www.mtn.co.za/home/terms-and-conditions/content/disney-plus',
+        note: 'MTN documents subscription checks and cancellation through its app, content-service menu and support.'
+      },
+      {
+        label: 'Google: use less mobile data with Data Saver',
+        href: 'https://support.google.com/pixelphone/answer/7055392?hl=en',
+        note: 'Primary Android guidance for limiting background mobile-data use.'
+      }
+    ]
   }
 };

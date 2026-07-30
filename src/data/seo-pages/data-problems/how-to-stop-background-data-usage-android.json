@@ -107,6 +107,18 @@
     "Device-side evidence: match Android's app-usage period to the bundle period, then check hotspot records, cloud backup, streaming quality, and update activity before blaming the network.",
     "Network-side evidence: compare the operator balance before and after a controlled idle test because Android usage totals and operator accounting periods may not update at the same time."
   ],
+  "officialSources": [
+    {
+      "label": "Google: use less mobile data with Data Saver",
+      "href": "https://support.google.com/pixelphone/answer/7055392?hl=en",
+      "note": "Primary Android guidance for Data Saver and unrestricted-data exceptions."
+    },
+    {
+      "label": "Google Play: background data controls",
+      "href": "https://support.google.com/googleplay/answer/1663315?hl=en-GB",
+      "note": "Official explanation of background data and how Data Saver can affect app behaviour."
+    }
+  ],
   "uniqueValueSummary": "This guide uses a controlled diagnosis instead of a generic data-saving checklist. It shows how to align Android's per-app usage period with the prepaid bundle period, restrict only the largest non-essential background users, preserve timely notifications for essential apps, and retest the balance before making more changes. It also separates true background activity from hotspot traffic, Play Store updates, cloud backup, and foreground streaming, which need different controls.",
   "officialSupportContext": "Android menu names differ by phone brand and software version, so use Settings search when the path shown here is not exact. DataCost cannot see an operator account or reverse a deduction. If Android's usage screen does not explain the balance change, compare the operator's usage history and bundle validity, then contact the mobile network with the before-and-after balance, timestamps, and screenshots from the controlled test.",
   "evidenceToCollect": [

@@ -3,13 +3,13 @@
   "keyword": "how to check data balance vodacom ussd",
   "slug": "data-problems/how-to-check-data-balance-vodacom-ussd",
   "pageTitle": "How to Check Vodacom Data Balance by USSD",
-  "metaDescription": "Check your Vodacom data balance with *135# or *136#, confirm active bundles, and spot fallback charges before you buy more data.",
+  "metaDescription": "Check your Vodacom data balance with *135#, VodaPay or TOBi, confirm the active bundle, and spot fallback charges before you buy more data.",
   "h1": "How to Check Vodacom Data Balance",
   "networks": [
     "vodacom"
   ],
   "intentScore": 3,
-  "quickAnswer": "To check Vodacom data balance, start with *135# from your Vodacom SIM and choose balances. If your line supports a quick summary, *136# may also help. Use MyVodacom when you need a fuller bundle breakdown or want to compare active bundles after a top-up.",
+  "quickAnswer": "To check Vodacom data balance, dial *135# from your Vodacom SIM and follow the balance prompts. You can also use the VodaPay app or message “Balance” to TOBi on Vodacom’s official WhatsApp channel. Compare the displayed bundle category and expiry before buying more data.",
   "causes": [
     {
       "cause": "Vodacom shows different bundle views in app and USSD",
@@ -30,10 +30,10 @@
       "vodacom": [
         "Dial *135# and choose the balance option.",
         "If the first menu looks incomplete, retry from the main *135# self-service flow.",
-        "Open the MyVodacom app for a fuller bundle breakdown.",
+        "Open the VodaPay app for a fuller bundle breakdown.",
         "Check the right bundle type, such as anytime, night, promotional, or social data.",
         "Refresh the account after any recent top-up or transfer.",
-        "Compare USSD with MyVodacom before assuming the bundle is gone."
+        "Compare USSD with VodaPay before assuming the bundle is gone."
       ],
       "mtn": [],
       "cellc": [],
@@ -49,11 +49,11 @@
   "faqs": [
     {
       "question": "How do I check my Vodacom data balance?",
-      "answer": "Use *135# and choose balances, or use the MyVodacom app to view the latest balance. If one screen looks delayed, check both before buying more data."
+      "answer": "Use *135# and follow the balance prompts, or use VodaPay to view the latest balance. If one screen looks delayed, check both before buying more data."
     },
     {
       "question": "Can I check Vodacom airtime and data in the same place?",
-      "answer": "Yes. My Vodacom app usually shows both, while *135# gives a quick live menu on the line."
+      "answer": "Yes. VodaPay shows your account balances, while *135# gives a live self-service menu on the line."
     },
     {
       "question": "Why does my Vodacom balance look different in the morning?",
@@ -107,12 +107,24 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-05-02",
-  "reviewDueDate": "2026-07-25",
+  "lastReviewed": "2026-07-30",
+  "reviewDueDate": "2026-10-30",
   "sourceNotes": [
     "Vodacom self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
     "Operator-controlled context for balance checks and bundle confirmation: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Vodacom.",
     "Device-side evidence for Vodacom: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
+  ],
+  "officialSources": [
+    {
+      "label": "Vodacom: balances, usage and billing help",
+      "href": "https://www.vodacom.co.za/vodacom/help/balances-usage-and-billing",
+      "note": "Vodacom confirms *135#, VodaPay and TOBi as current balance-check routes."
+    },
+    {
+      "label": "Vodacom: VodaPay app support",
+      "href": "https://www.vodacom.co.za/vodacom/help/vodapay-app-support",
+      "note": "Official VodaPay guidance for checking balances and managing a Vodacom account."
+    }
   ],
   "uniqueValueSummary": "This guide is intentionally scoped to balance checks and bundle confirmation for Vodacom. It does not simply repeat a generic data-saving checklist: it separates account-side signals, device-side usage, and bundle-validity clues so a user can decide whether to change a phone setting, cancel a service, buy a different bundle, or escalate to Vodacom support. The main check is Vodacom balance, bundle validity, USSD response wording, and the difference between airtime, data, social, night, and promo balances. The balance-check page is kept indexable because it anchors several troubleshooting flows and helps users avoid buying another bundle before confirming the actual remaining balance. That distinction matters because many South African prepaid problems look similar after the balance has already dropped, while the useful evidence is usually visible only in the first few minutes after the user notices the loss.",
   "officialSupportContext": "DataCost can help users narrow balance checks and bundle confirmation, but it cannot see a private Vodacom account, reverse a charge, cancel a service on behalf of the user, or guarantee a personalised menu. For this route, the support question should be framed around Vodacom balance, bundle validity, USSD response wording, and the difference between airtime, data, social, night, and promo balances. If the evidence points to a billing fault, failed cancellation, SIM-specific offer, disputed deduction, or account-level block, the user should use the official Vodacom app, USSD flow, store, or support channel and keep the reference number or confirmation SMS.",

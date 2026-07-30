@@ -852,17 +852,17 @@ export const guides: Guide[] = [
   },
   {
     slug: 'airtime-data-saving-tips-south-africa',
-    title: '15 Airtime & Data Saving Tips South Africa (2026)',
-    metaDescription: 'Learn how to make airtime and mobile data last longer in South Africa with practical tips on bundles, USSD, app settings, and costly mistakes.',
-    h1: '15 Smart Airtime & Data Saving Tips for South Africans (2026)',
-    intro: 'If your airtime disappears too fast or your bundle never lasts, this guide is for you. It explains how South African prepaid users can reduce waste, avoid out-of-bundle charges, and choose data bundles that actually match daily usage.',
+    title: 'How to Save Airtime & Mobile Data in South Africa (2026)',
+    metaDescription: 'Make airtime and mobile data last longer with a South African checklist for bundle expiry, Android Data Saver, iPhone Low Data Mode and app usage.',
+    h1: 'How to Save Airtime and Mobile Data in South Africa',
+    intro: 'Start with the checks that prevent the biggest losses: confirm whether a bundle is active, check which apps used the data, and turn on the phone’s built-in data-saving mode. Then use the 15-step checklist below to make the change last.',
     quickSummaryTitle: 'The Short Version',
     quickSummaryItems: [
-      'Buy data bundles before you browse. Browsing directly on airtime is usually the fastest way to lose money.',
-      'Use the right bundle type for your usage: anytime, social, chat, or night bundles each solve a different problem.',
-      'Most hidden waste comes from background apps, autoplay, updates, and cloud backups running on mobile data.',
-      'Check balances and expiry often using USSD so you can top up before out-of-bundle billing starts.',
-      'Compare across networks monthly. The first bundle you see is not always the best value for your pattern.'
+      'Check the active bundle, remaining balance and expiry before changing settings; this separates normal usage from out-of-bundle charging.',
+      'On Android, turn on Data Saver and allow unrestricted background access only for essential apps. On iPhone, use Low Data Mode for the active SIM.',
+      'Set app updates, photo backups and large downloads to Wi-Fi, and reduce video quality or autoplay inside the apps you use most.',
+      'Check your operator’s out-of-bundle setting. The available control depends on the network, plan and customer profile.',
+      'Review usage after seven days, then buy a bundle whose validity and included apps match the pattern you actually measured.'
     ],
     jumpLinksTitle: 'Jump to Tips',
     jumpLinks: [
@@ -879,8 +879,8 @@ export const guides: Guide[] = [
     steps: [
       {
         id: 'tip-1-oob-stop',
-        title: '1) Stop browsing when your bundle runs out',
-        description: 'When your bundle is finished, many networks switch you to out-of-bundle billing. That can burn airtime in minutes. Treat bundle expiry as a hard stop: reconnect only after buying another bundle.'
+        title: '1) Check the bundle before assuming the phone is wasting data',
+        description: 'Confirm the remaining balance, expiry time and which bundle is active in the official app, USSD menu or account portal. If the bundle has expired or does not cover the app you used, mobile traffic may draw from another balance or airtime depending on your plan and out-of-bundle setting.'
       },
       {
         id: 'tip-2-buy-bundle-first',
@@ -900,7 +900,7 @@ export const guides: Guide[] = [
       {
         id: 'tip-5-save-ussd',
         title: '5) Save key USSD codes in your contacts',
-        description: 'Keep balance and buy codes one tap away so you can check usage fast before making another purchase. This reduces panic top-ups and helps you avoid accidental out-of-bundle sessions.'
+        description: 'Keep the current balance and bundle-buying shortcuts for your network one tap away. Codes and menus can change, so use the operator app or support channel if a saved code no longer returns the expected option.'
       },
       {
         id: 'tip-6-weekly-balance-check',
@@ -910,12 +910,12 @@ export const guides: Guide[] = [
       {
         id: 'tip-7-track-app-usage',
         title: '7) Track which apps are using the most mobile data',
-        description: 'Use your phone data-usage screen to find the top draining apps. Users are often surprised by cloud backup, streaming apps, and social media running in the background.'
+        description: 'Open the phone’s mobile-data usage screen and match its date range to the period since your last bundle purchase. Check foreground and background use separately; cloud backup, streaming, app stores and social media are common places to investigate, but the usage screen should decide what you change.'
       },
       {
         id: 'tip-8-background-data',
-        title: '8) Restrict background data for non-essential apps',
-        description: 'Many apps sync, refresh, and fetch media even when closed. Restrict background data for shopping, gaming, and media apps that do not need constant updates.'
+        title: '8) Turn on Android Data Saver or iPhone Low Data Mode',
+        description: 'Android Data Saver restricts most background mobile-data use while allowing exceptions for essential apps. On iPhone, Low Data Mode reduces background activity, automatic downloads and some high-quality streaming. Menu names can differ by Android manufacturer and iPhone carrier settings.'
       },
       {
         id: 'tip-9-autoplay-off',
@@ -935,7 +935,7 @@ export const guides: Guide[] = [
       {
         id: 'tip-12-data-warning-limit',
         title: '12) Use data warning and hard limit controls on your phone',
-        description: 'Set a monthly warning below your budget and a hard cut-off near your limit. This gives you a safety net before you overspend.'
+        description: 'Where your phone supports it, align the usage cycle with the bundle start date and set a warning below the bundle size. Android implementations may also offer a hard limit; iPhone shows per-app cellular usage but does not provide the same universal hard-cap control.'
       },
       {
         id: 'tip-13-compare-before-buy',
@@ -957,7 +957,7 @@ export const guides: Guide[] = [
     commonMistakes: [
       {
         title: 'Browsing after bundle expiry',
-        description: 'Many users assume internet will stop when data ends. On some plans it continues from airtime at out-of-bundle rates unless settings are changed.'
+        description: 'Do not assume every plan behaves the same when data ends. Check the out-of-bundle choice on the actual line and treat an expired bundle as a stop signal until you know which balance will be used.'
       },
       {
         title: 'Confusing airtime with data value',
@@ -996,7 +996,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'What is the easiest way to stop out-of-bundle charges?',
-        answer: 'Check your balance before sessions, set device limits, and avoid browsing when your bundle is depleted. Operator support can also help with out-of-bundle control settings.'
+        answer: 'Check the out-of-bundle setting for the actual SIM, monitor bundle balance and expiry, and stop mobile-data use when the bundle is depleted until the line’s charging behaviour is clear. Available controls vary by operator, plan and customer profile.'
       },
       {
         question: 'Are free airtime prize messages trustworthy?',
@@ -1005,6 +1005,30 @@ export const guides: Guide[] = [
       {
         question: 'How often should I compare data prices?',
         answer: 'A monthly check is practical for most prepaid users because promotions and bundle menus change frequently.'
+      }
+    ],
+    reviewDueDate: '2026-10-30',
+    sourceSummary: 'Official Android and Apple data-saving guidance, plus current Vodacom and MTN bundle and out-of-bundle terms. Operator controls may vary by plan and customer profile.',
+    officialSources: [
+      {
+        label: 'Google: Use less mobile data with Data Saver',
+        href: 'https://support.google.com/pixelphone/answer/7055392?hl=en',
+        note: 'Primary guidance for Android Data Saver, background restrictions and unrestricted-data exceptions.'
+      },
+      {
+        label: 'Apple: Use Low Data Mode',
+        href: 'https://support.apple.com/en-za/102433',
+        note: 'Primary guidance for reducing background activity, automatic downloads, backups and streaming data on iPhone.'
+      },
+      {
+        label: 'Vodacom: Out-of-Bundle Data Limit Lock',
+        href: 'https://www.vodacom.co.za/vodacom/terms/incontrol',
+        note: 'Official terms for Vodacom out-of-bundle data controls; availability and behaviour depend on the service and line.'
+      },
+      {
+        label: 'MTN: Internet bundle terms',
+        href: 'https://www.mtn.co.za/home/terms-and-conditions/content/mtn-internet-bundles',
+        note: 'Official bundle rules covering validity, depletion and out-of-bundle treatment for applicable MTN products.'
       }
     ]
   },
@@ -1828,6 +1852,20 @@ export const guides: Guide[] = [
       {
         question: 'What should I check after airtime disappears?',
         answer: 'Check your MTN data balance, active subscriptions, recent usage, and whether any app updates or cloud backups used mobile data.'
+      }
+    ],
+    reviewDueDate: '2026-10-30',
+    sourceSummary: 'Checked against current MTN-controlled guidance for the *136# balance route and applicable out-of-bundle treatment.',
+    officialSources: [
+      {
+        label: 'MTN: airtime balance via *136#',
+        href: 'https://www.mtn.co.za/home/terms-and-conditions/content/mtn-pulse-price-plan-terms-and-conditions',
+        note: 'MTN confirms that customers can view their airtime balance by dialling *136#.'
+      },
+      {
+        label: 'MTN: internet bundle terms',
+        href: 'https://www.mtn.co.za/home/terms-and-conditions/content/mtn-internet-bundles',
+        note: 'Official bundle rules and applicable out-of-bundle treatment.'
       }
     ]
   },

@@ -38,7 +38,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
 };
 
 const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
-  '/data-problems/how-to-check-data-balance-vodacom-ussd/': '2026-05-02T00:00:00.000Z',
+  '/data-problems/how-to-check-data-balance-vodacom-ussd/': '2026-07-30T00:00:00.000Z',
   '/data-problems/how-to-check-wasp-subscriptions-mtn/': '2026-04-19T00:00:00.000Z',
   '/data-problems/how-to-check-wasp-subscriptions-vodacom/': '2026-04-19T00:00:00.000Z',
   '/data-problems/how-to-stop-airtime-disappearing-cell-c/': '2026-04-19T00:00:00.000Z',
@@ -70,13 +70,15 @@ const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
 };
 
 const FIX_ROUTE_MODIFIED_ISO: Record<string, string> = {
+  '/fix/cell-c-data-not-working/': '2026-07-30T00:00:00.000Z',
   '/fix/huawei-router-login-192-168-8-1/': '2026-07-24T00:00:00.000Z',
+  '/fix/lte-router-red-light-no-internet/': '2026-07-30T00:00:00.000Z',
   '/fix/mtn-data-balance-check/': '2026-06-25T00:00:00.000Z',
   '/fix/telkom-data-balance-check/': '2026-06-25T00:00:00.000Z'
 };
 
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
-  'airtime-data-saving-tips-south-africa': '2026-03-31T00:00:00.000Z',
+  'airtime-data-saving-tips-south-africa': '2026-07-30T00:00:00.000Z',
   'best-data-deals-south-africa': '2026-07-04T00:00:00.000Z',
   'cheap-night-data-south-africa': '2026-07-04T00:00:00.000Z',
   'cheapest-1gb-data-south-africa': '2026-07-04T00:00:00.000Z',
@@ -94,7 +96,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-buy-data-vodacom': '2026-06-11T00:00:00.000Z',
   'how-to-check-data-balance': '2026-07-16T00:00:00.000Z',
   'how-to-check-mtn-data-balance': '2026-04-25T00:00:00.000Z',
-  'how-to-check-mtn-airtime-balance': '2026-04-25T00:00:00.000Z',
+  'how-to-check-mtn-airtime-balance': '2026-07-30T00:00:00.000Z',
   'how-to-check-vodacom-airtime-balance': '2026-07-09T00:00:00.000Z',
   'how-to-stop-wasp-vas-charges-south-africa': '2026-05-10T00:00:00.000Z',
   'stop-wasp-subscriptions-south-africa': '2026-05-10T00:00:00.000Z',
@@ -106,14 +108,14 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'vodacom-vs-mtn-data-prices': '2026-07-04T00:00:00.000Z',
   'why-does-my-data-finish-so-fast-south-africa': '2026-05-10T00:00:00.000Z',
   'why-is-my-airtime-disappearing-south-africa': '2026-05-15T00:00:00.000Z',
-  'why-is-my-data-finishing-so-fast': '2026-04-16T00:00:00.000Z',
+  'why-is-my-data-finishing-so-fast': '2026-07-30T00:00:00.000Z',
   'why-is-my-data-disappearing-south-africa': '2026-05-10T00:00:00.000Z',
   'how-to-stop-airtime-being-used-automatically': '2026-04-16T00:00:00.000Z',
   'how-to-cancel-subscriptions-mtn-vodacom-telkom': '2026-04-16T00:00:00.000Z',
-  'how-to-check-subscriptions-on-mtn': '2026-07-18T00:00:00.000Z',
+  'how-to-check-subscriptions-on-mtn': '2026-07-30T00:00:00.000Z',
   'how-to-check-subscriptions-on-vodacom': '2026-04-16T00:00:00.000Z',
   'how-to-stop-wasp-services-south-africa': '2026-04-16T00:00:00.000Z',
-  'how-to-protect-airtime-from-being-used': '2026-04-16T00:00:00.000Z',
+  'how-to-protect-airtime-from-being-used': '2026-07-30T00:00:00.000Z',
   'airtime-data-problems-south-africa': '2026-05-10T00:00:00.000Z',
   'why-is-my-data-disappearing-vodacom': '2026-04-16T00:00:00.000Z',
   'why-is-my-data-disappearing-mtn': '2026-04-16T00:00:00.000Z'

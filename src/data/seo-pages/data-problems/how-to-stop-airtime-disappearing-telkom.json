@@ -112,6 +112,18 @@
     "Operator-controlled context for airtime deductions and fallback billing: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Telkom.",
     "Device-side evidence for Telkom: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
   ],
+  "officialSources": [
+    {
+      "label": "Telkom: check balances and manage spend",
+      "href": "https://www.telkom.co.za/welcome/business/mobile-contract/how-to-buy-bundles",
+      "note": "Official Telkom guidance for *188#, MyTelkom balance checks, bundle purchase and spend controls."
+    },
+    {
+      "label": "Telkom: subscriptions and billing checks",
+      "href": "https://intouch.telkom.co.za/blog/take-the-mystery-out-of-your-monthly-bill/670",
+      "note": "Telkom explains how to inspect usage, spend limits, active content services and third-party subscriptions."
+    }
+  ],
   "uniqueValueSummary": "This Telkom-specific workflow separates four records that are often mixed together: remaining airtime, bundle balances, usage sessions, and active services. Matching a repeating deduction to one of those records is more reliable than cancelling services at random, and it creates a timestamped before-and-after record if Telkom support needs to investigate.",
   "officialSupportContext": "DataCost can help users narrow airtime deductions and fallback billing, but it cannot see a private Telkom account, reverse a charge, cancel a service on behalf of the user, or guarantee a personalised menu. For this route, the support question should be framed around Telkom airtime balance, out-of-bundle data use, carrier billing, and any recurring value-added-service charges. If the evidence points to a billing fault, failed cancellation, SIM-specific offer, disputed deduction, or account-level block, the user should use the official Telkom app, USSD flow, store, or support channel and keep the reference number or confirmation SMS.",
   "evidenceToCollect": [

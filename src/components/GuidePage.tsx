@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Clock, Tag, Info, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Clock, Tag, Info, ChevronRight, ExternalLink, ShieldCheck } from 'lucide-react';
 import { Guide, Bundle, GuideResourceLink, NavigateFunction } from '../types';
 import { bundles } from '../data';
 import { getBundleSourceSummary, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
@@ -206,6 +206,9 @@ export const GuidePage: React.FC<GuidePageProps> = ({
   const dateModifiedIso = getGuideModifiedIso(guide.slug);
   const datePublishedIso = getDefaultPublishedIso();
   const lastUpdatedLabel = formatIsoForDisplay(dateModifiedIso);
+  const reviewDueDateLabel = guide.reviewDueDate
+    ? formatIsoForDisplay(`${guide.reviewDueDate}T00:00:00.000Z`)
+    : undefined;
   const canonicalUrl = toCanonicalUrl(CANONICAL_GUIDE_PATH_OVERRIDES[guide.slug] || `/guides/${guide.slug}/`);
   const pageTitle = guide.title;
   const showPriorityInternalLinks = guide.slug === 'why-is-my-data-finishing-so-fast' || guide.slug === 'how-to-check-data-balance';
@@ -262,6 +265,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({
     url: canonicalUrl,
     datePublished: datePublishedIso,
     dateModified: dateModifiedIso,
+    citation: guide.officialSources?.map((source) => source.href),
     isPartOf: {
       '@type': 'WebSite',
       name: SITE_PRODUCT_NAME,
@@ -301,6 +305,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({
         image: DEFAULT_OG_IMAGE_URL,
         datePublished: datePublishedIso,
         dateModified: dateModifiedIso,
+        citation: guide.officialSources?.map((source) => source.href),
         publisher: {
           '@type': 'Organization',
           name: SITE_BRAND_NAME,
@@ -352,16 +357,18 @@ export const GuidePage: React.FC<GuidePageProps> = ({
 
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }} className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-slate-600 hover:text-[#1b6d24] transition-colors">
+          <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }} className="flex min-h-[44px] items-center gap-2 text-sm font-black uppercase tracking-widest text-slate-600 hover:text-[#1b6d24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1b6d24] transition-colors">
             <ArrowLeft className="w-4 h-4" />
             <span>Back</span>
           </a>
-          <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">Guide / {guide.slug.replace(/-/g, ' ')}</div>
+          <div className="hidden max-w-[60%] truncate text-right text-[10px] font-black uppercase tracking-widest text-slate-400 sm:block">
+            Guide / {guide.slug.replace(/-/g, ' ')}
+          </div>
         </div>
       </nav>
 
-      <main className="max-w-4xl mx-auto px-4 py-12">
-        <header className="mb-12">
+      <main className="max-w-4xl mx-auto px-4 py-8 md:py-12">
+        <header className="mb-10 [&>h1]:mb-8 [&>h1]:leading-[1] md:mb-12 md:[&>h1]:mb-6 md:[&>h1]:leading-[0.9]">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#a0f399]/20 text-[#217128] rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-[#a0f399]/30">
             <Clock className="w-3 h-3" />
             Updated {lastUpdatedLabel}
@@ -369,7 +376,12 @@ export const GuidePage: React.FC<GuidePageProps> = ({
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">{guide.h1}</h1>          <p className="text-xl text-slate-600 font-medium leading-relaxed">{guide.intro}</p>
         </header>
 
-        <TrustPanel lastReviewed={lastUpdatedLabel} className="mb-10" />
+        <TrustPanel
+          lastReviewed={lastUpdatedLabel}
+          reviewDueDate={reviewDueDateLabel}
+          sources={guide.sourceSummary}
+          className="mb-10"
+        />
 
         {guide.quickSummaryItems && guide.quickSummaryItems.length > 0 && (
           <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
@@ -513,6 +525,37 @@ export const GuidePage: React.FC<GuidePageProps> = ({
           </section>
         )}
 
+        {guide.officialSources && guide.officialSources.length > 0 && (
+          <section id="review-sources" className="mb-16 border-y border-slate-200 bg-white py-8 md:py-10">
+            <div className="mb-6 flex items-start gap-3">
+              <ShieldCheck className="mt-1 h-6 w-6 flex-shrink-0 text-[#1b6d24]" />
+              <div>
+                <h2 className="text-2xl font-black tracking-tighter">How this guide was reviewed</h2>
+                <p className="mt-2 max-w-2xl font-medium leading-relaxed text-slate-600">
+                  We checked the claims that can change against the primary sources below. Phone menus and
+                  operator settings can vary by device, price plan and customer profile, so confirm the final
+                  option shown on your own line.
+                </p>
+              </div>
+            </div>
+            <div className="divide-y divide-slate-200 border-y border-slate-200">
+              {guide.officialSources.map((source) => (
+                <a
+                  key={source.href}
+                  href={source.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group grid min-h-[72px] gap-2 py-5 transition-colors hover:text-[#1b6d24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1b6d24] md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)_auto] md:items-start md:gap-6"
+                >
+                  <span className="font-black text-slate-900 group-hover:text-[#1b6d24]">{source.label}</span>
+                  <span className="text-sm font-medium leading-relaxed text-slate-600">{source.note}</span>
+                  <ExternalLink className="h-4 w-4 text-slate-400 group-hover:text-[#1b6d24]" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
         <section id="faq" className="mb-16 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm scroll-mt-32">
           <h2 className="text-3xl font-black tracking-tighter mb-8">Frequently Asked Questions</h2>
           <div className="space-y-8">
@@ -551,7 +594,11 @@ export const GuidePage: React.FC<GuidePageProps> = ({
           </div>
         </section>
 
-        <AuthorReviewBlock lastReviewed={lastUpdatedLabel} className="mb-16" />
+        <AuthorReviewBlock
+          lastReviewed={lastUpdatedLabel}
+          reviewDueDate={reviewDueDateLabel}
+          className="mb-16"
+        />
 
         <section className="mb-16 bg-white border border-slate-100 rounded-2xl p-6 text-sm text-slate-500 flex items-start gap-3 shadow-sm">
           <Info className="w-5 h-5 text-slate-400 mt-0.5" />

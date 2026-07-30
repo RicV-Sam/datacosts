@@ -102,6 +102,12 @@ export interface GuideResourceLink {
   slug?: string;
 }
 
+export interface GuideOfficialSource {
+  href: string;
+  label: string;
+  note: string;
+}
+
 export interface Guide {
   slug: string;
   title: string;
@@ -121,6 +127,9 @@ export interface Guide {
   faq: FAQ[];
   comparisonType?: '1gb' | 'night' | 'best-value' | 'all';
   additionalContent?: string;
+  reviewDueDate?: string;
+  sourceSummary?: string;
+  officialSources?: GuideOfficialSource[];
 }
 
 export type NavigateFunction = (

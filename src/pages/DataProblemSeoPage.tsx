@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ExternalLink, ShieldCheck } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
@@ -63,6 +63,7 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
     image: DEFAULT_OG_IMAGE_URL,
     datePublished: datePublishedIso,
     dateModified: page.lastReviewed ? `${page.lastReviewed}T00:00:00.000Z` : datePublishedIso,
+    citation: page.officialSources.map((source) => source.href),
     author: {
       '@type': 'Person',
       name: SITE_EDITOR_NAME,
@@ -177,6 +178,33 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
           <h2 className="text-2xl font-black tracking-tight mb-4">Official Support Context</h2>
           <p className="text-slate-700 leading-relaxed">{page.officialSupportContext}</p>
         </section>
+
+        {page.officialSources.length > 0 && (
+          <section id="review-sources" className="mb-10 border-y border-slate-200 bg-white py-8 md:py-10">
+            <div className="mb-6 flex items-start gap-3">
+              <ShieldCheck className="mt-1 h-6 w-6 flex-shrink-0 text-[#1b6d24]" />
+              <div>
+                <h2 className="text-2xl font-black tracking-tight">Official sources checked</h2>
+                <p className="mt-2 text-slate-600">Use these primary sources to confirm any menu or account detail that may have changed.</p>
+              </div>
+            </div>
+            <div className="divide-y divide-slate-200 border-y border-slate-200">
+              {page.officialSources.map((source) => (
+                <a
+                  key={source.href}
+                  href={source.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group grid gap-2 py-5 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)_auto] md:items-start md:gap-6"
+                >
+                  <span className="font-black text-slate-900 group-hover:text-[#1b6d24]">{source.label}</span>
+                  <span className="text-sm leading-relaxed text-slate-600">{source.note}</span>
+                  <ExternalLink className="h-4 w-4 flex-shrink-0" />
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">When This Guide May Not Fit</h2>

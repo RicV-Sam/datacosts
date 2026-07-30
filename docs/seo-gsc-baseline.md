@@ -155,6 +155,42 @@ Operational guidance:
 - Do not treat XML sitemaps, `ads.txt`, or legacy FreeHub URLs as pages that must enter Google's web index.
 - Review the 20 current content URLs individually in URL Inspection after deployment, prioritising the pages updated in this pass.
 
+### Failed validation sample remediation: 2026-07-30
+
+The `Crawled - currently not indexed` validation stopped on
+`/guides/airtime-data-saving-tips-south-africa/`, last crawled by Google on `2026-07-25`.
+
+The page was moved onto the current review model before requesting another validation:
+
+- reframed around the user task rather than a generic listicle title
+- replaced broad network and device claims with plan- and platform-specific wording
+- added visible primary-source evidence for Android, iPhone, Vodacom and MTN controls
+- added a next-review date and exposed the source URLs as schema citations
+- refreshed the page and sitemap modification date to `2026-07-30`
+
+Deploy and inspect this exact URL before starting a new validation. A fresh validation may allow
+Google to continue reviewing the remaining examples, but it does not guarantee that every URL in
+the mixed bucket will be indexed.
+
+### Full failed-validation batch review: 2026-07-30
+
+The remaining examples from the failed validation were reviewed by intended search behaviour:
+
+| Group | URLs | Release treatment |
+| --- | ---: | --- |
+| Current indexable DataCost pages | 12 | Kept indexable with a self-canonical and one H1. Older guide, data-problem, and fix templates now expose primary sources, review dates, and schema citations where claims can change. |
+| Intentional redirect alias | 1 | `/guides/how-to-stop-wasp-vas-charges-south-africa/` remains `noindex` with the canonical target `/guides/stop-wasp-subscriptions-south-africa/`. It should move to a redirect/canonical classification, not become indexed. |
+| Utility resources | 3 | `/sitemap.xml`, `/sitemap-trust.xml`, and `/ads.txt` are crawlable machine files, not search-result pages. No content-indexing action is appropriate. |
+| Legacy FreeHub host | 6 | Requires separate FreeHub host/GSC cleanup. These URLs cannot be repaired by changing the DataCost page templates. |
+
+The batch-specific checks cover the twelve eligible pages, the intentional WASP alias, visible
+review evidence, canonical tags, and sitemap output. The production build and browser checks pass.
+
+After deployment, inspect a representative URL from each changed template, then request recrawl
+for the eligible content URLs. Start a new issue-level validation only after the live pages and
+sitemaps show the new release. Google still decides whether each eligible page is indexed, and a
+mixed validation group can remain open because of utility or legacy-host examples.
+
 ## Biweekly Review Inputs
 
 For each SEO and GSC review every two weeks, use:

@@ -18,6 +18,12 @@ type DataProblemInternalLink = {
   url: string;
 };
 
+type DataProblemOfficialSource = {
+  href: string;
+  label: string;
+  note: string;
+};
+
 type RawDataProblemPage = {
   pageTitle: string;
   metaDescription: string;
@@ -42,6 +48,7 @@ type RawDataProblemPage = {
   slug: string;
   lastReviewed?: string;
   reviewDueDate?: string;
+  officialSources?: DataProblemOfficialSource[];
 };
 
 export type DataProblemPage = {
@@ -64,6 +71,7 @@ export type DataProblemPage = {
   supportsArticleSchema: boolean;
   lastReviewed?: string;
   reviewDueDate?: string;
+  officialSources: DataProblemOfficialSource[];
 };
 
 function normalizePath(pathname: string): string {
@@ -122,7 +130,10 @@ function toDataProblemPage(pathname: string, raw: RawDataProblemPage): DataProbl
     indexingStatus: raw.indexingStatus,
     supportsArticleSchema: (raw.schemaTypes ?? []).includes('Article'),
     lastReviewed: raw.lastReviewed,
-    reviewDueDate: raw.reviewDueDate
+    reviewDueDate: raw.reviewDueDate,
+    officialSources: (raw.officialSources ?? []).filter(
+      (source) => hasText(source.href) && hasText(source.label) && hasText(source.note)
+    )
   };
 }
 

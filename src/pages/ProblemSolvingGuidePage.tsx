@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, HelpCircle, ShieldCheck, Wrench } from 'lucide-react';
+import { ArrowLeft, ExternalLink, HelpCircle, ShieldCheck, Wrench } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
@@ -35,6 +35,9 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getGuideModifiedIso(guide.slug);
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
+  const reviewDueDate = guide.reviewDueDate
+    ? formatIsoForDisplay(`${guide.reviewDueDate}T00:00:00.000Z`)
+    : undefined;
 
   const problemGuideLinks = Object.values(problemGuides)
     .filter((item) => item.slug !== guide.slug)
@@ -100,6 +103,7 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
     image: DEFAULT_OG_IMAGE_URL,
     datePublished: datePublishedIso,
     dateModified: dateModifiedIso,
+    citation: guide.officialSources?.map((source) => source.href),
     author: {
       '@type': 'Person',
       name: SITE_EDITOR_NAME,
@@ -156,8 +160,11 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-5 leading-[0.95]">{guide.h1}</h1>
           <div className="mb-5 rounded-2xl border border-slate-200 bg-white p-4">
             <p className="text-sm font-semibold text-slate-700">Last reviewed: {lastUpdated}</p>
+            {reviewDueDate && <p className="text-sm text-slate-600">Next review due: {reviewDueDate}</p>}
             <p className="text-sm text-slate-600">Reviewed by {SITE_EDITOR_NAME}, {SITE_EDITOR_ROLE}</p>
-            <p className="text-xs text-slate-500 mt-1">Based on public operator support paths, USSD guidance, and prepaid troubleshooting patterns.</p>
+            <p className="text-xs text-slate-500 mt-1">
+              {guide.sourceSummary || 'Based on public operator support paths, USSD guidance, and prepaid troubleshooting patterns.'}
+            </p>
           </div>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">{guide.intro}</p>
         </header>
@@ -261,9 +268,39 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
           <p className="text-slate-700 leading-relaxed">{guide.whenToEscalate}</p>
         </section>
 
+        {guide.officialSources && guide.officialSources.length > 0 && (
+          <section id="review-sources" className="mb-12 border-y border-slate-200 bg-white py-8 md:py-10">
+            <div className="mb-6 flex items-start gap-3">
+              <ShieldCheck className="mt-1 h-6 w-6 flex-shrink-0 text-[#1b6d24]" />
+              <div>
+                <h2 className="text-2xl font-black tracking-tight">How this guide was reviewed</h2>
+                <p className="mt-2 max-w-2xl text-slate-600">
+                  Claims that can change were checked against these primary sources. Confirm the final option shown on your own line.
+                </p>
+              </div>
+            </div>
+            <div className="divide-y divide-slate-200 border-y border-slate-200">
+              {guide.officialSources.map((source) => (
+                <a
+                  key={source.href}
+                  href={source.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group grid min-h-[72px] gap-2 py-5 hover:text-[#1b6d24] md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)_auto] md:items-start md:gap-6"
+                >
+                  <span className="font-black text-slate-900 group-hover:text-[#1b6d24]">{source.label}</span>
+                  <span className="text-sm leading-relaxed text-slate-600">{source.note}</span>
+                  <ExternalLink className="h-4 w-4 flex-shrink-0" />
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
         <AuthorReviewBlock
           lastReviewed={lastUpdated}
-          trustSummary="Based on public operator support paths, USSD flows, South African prepaid billing patterns, and user correction signals."
+          reviewDueDate={reviewDueDate}
+          trustSummary={guide.sourceSummary || 'Based on public operator support paths, USSD flows, South African prepaid billing patterns, and user correction signals.'}
           className="mb-12"
         />
       </main>
