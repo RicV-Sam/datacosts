@@ -15,6 +15,7 @@ import { networkPages } from '../data/networks';
 import { bundles } from '../data';
 import { NavigateFunction, NetworkName } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
+import { isVerifiedBundleSource } from '../utils/bundleSource';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_ALT,
@@ -143,7 +144,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
   const featuredBundles = Object.values(networkPages).flatMap((page) =>
     bundles
-      .filter((bundle) => bundle.network === page.networkName)
+      .filter((bundle) => bundle.network === page.networkName && isVerifiedBundleSource(bundle))
       .sort((a, b) => a.price - b.price)
       .slice(0, 2)
   );

@@ -1,24 +1,24 @@
 import { USSDEntry } from '../types';
 
-export const ussdRepository = [
+export const ussdRepository: readonly USSDEntry[] = [
   // VODACOM
-  {
-    id: 'ussd.vodacom.balance_main',
-    network: 'Vodacom',
-    category: 'Balance',
-    action: 'Check Balance (Main)',
-    code: '*135#',
-    explanation: 'Quick summary of airtime, data and SMS balances.',
-    status: 'verified',
-    dialable: true
-  },
   {
     id: 'ussd.vodacom.balance_detailed',
     network: 'Vodacom',
     category: 'Balance',
-    action: 'Detailed Balance',
-    code: '*135*502#',
-    explanation: 'Get a full breakdown of all your active bundles.',
+    action: 'Direct Balance Check',
+    code: '*136#',
+    explanation: 'Check your Vodacom airtime and bundle balances directly.',
+    status: 'verified',
+    dialable: true
+  },
+  {
+    id: 'ussd.vodacom.balance_main',
+    network: 'Vodacom',
+    category: 'Balance',
+    action: 'Main Self-service Menu',
+    code: '*135#',
+    explanation: 'Open Vodacom self-service, including bundle and account menus.',
     status: 'verified',
     dialable: true
   },
@@ -37,8 +37,8 @@ export const ussdRepository = [
     network: 'Vodacom',
     category: 'Data / Bundles',
     action: 'Buy Data / Bundles',
-    code: '*135*2#',
-    explanation: 'Purchase daily, weekly or monthly data and social bundles.',
+    code: '*135#',
+    explanation: 'Open the main Vodacom menu, then select the current bundle option and follow the prompts.',
     status: 'verified',
     dialable: true
   },
@@ -137,12 +137,12 @@ export const ussdRepository = [
   {
     id: 'ussd.mtn.check_number',
     network: 'MTN',
-    category: 'Number / SIM info',
-    action: 'Check My Number',
-    code: '*123*888#',
-    explanation: 'Quickly find your own phone number.',
+    category: 'Other',
+    action: 'Own-number Help',
+    code: 'N/A',
+    explanation: 'MTN does not currently publish a network-wide own-number USSD shortcut; check the MTN App, SIM details, or call 135.',
     status: 'verified',
-    dialable: true
+    dialable: false
   },
   {
     id: 'ussd.mtn.customer_care',
@@ -192,7 +192,7 @@ export const ussdRepository = [
     category: 'Data / Bundles',
     action: 'Buy Data',
     code: '*180#',
-    explanation: 'The main menu for purchasing Telkom Mo\'Nice and standard bundles.',
+    explanation: 'Open Telkom self-service to buy standard bundles and use supported account actions.',
     status: 'verified',
     dialable: true
   },
@@ -222,7 +222,7 @@ export const ussdRepository = [
     category: 'Promotions',
     action: 'Mo\'Nice Deals',
     code: '*123#',
-    explanation: 'Telkom\'s best personalized data and airtime deals.',
+    explanation: 'View personalised Telkom data and voice offers available to your line; prices and eligibility vary by customer.',
     status: 'verified',
     dialable: true
   },
@@ -244,18 +244,18 @@ export const ussdRepository = [
     category: 'Data / Bundles',
     action: 'Buy Bundles',
     code: '*147#',
-    explanation: 'Choose from a variety of data, voice, and SMS bundles.',
+    explanation: 'Open Cell C self-service, select the bundle action shown on your line, and follow the prompts.',
     status: 'verified',
     dialable: true
   },
   {
     id: 'ussd.cellc.check_number',
     network: 'Cell C',
-    category: 'Number / SIM info',
-    action: 'Check My Number',
-    code: '*147*100#',
-    explanation: 'Manual review only: DataCost could not confirm this legacy own-number shortcut in current official Cell C guidance.',
-    status: 'needs review',
+    category: 'Other',
+    action: 'Own-number Help',
+    code: 'N/A',
+    explanation: 'Cell C does not currently publish a verified own-number USSD shortcut; check the SIM packaging or account details, or call 135.',
+    status: 'verified',
     dialable: false
   },
   {
@@ -272,9 +272,9 @@ export const ussdRepository = [
     id: 'ussd.cellc.for_you',
     network: 'Cell C',
     category: 'Promotions',
-    action: 'Supa Bonus tariff migration',
-    code: '*108#',
-    explanation: 'Move an eligible Cell C prepaid line to the Supa Bonus tariff plan; use *147# or the Cell C app for ordinary bundle and account menus.',
+    action: 'Alternative Prepaid Offers',
+    code: '*141#',
+    explanation: 'Check alternative prepaid offers available to your Cell C line; use *147# for ordinary bundle and account menus.',
     status: 'verified',
     dialable: true
   },
@@ -291,4 +291,4 @@ export const ussdRepository = [
     note: 'Rain does not use traditional USSD codes for management.',
     dialable: false
   }
-] as const satisfies readonly USSDEntry[];
+];

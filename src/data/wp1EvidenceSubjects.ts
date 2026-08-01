@@ -40,10 +40,10 @@ const OPERATOR_SUBJECTS = Object.freeze([
 // Committed production authority. It is intentionally independent of the mutable
 // application collections below; those collections are only checked against it.
 const CANONICAL_EVIDENCE_SUBJECT_MANIFEST: readonly Readonly<CanonicalEvidenceSubject>[] = Object.freeze([
-  Object.freeze({"contentId":"ussd.vodacom.balance_main","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"29af8b9ca82919f40d9e5eaf90c5d0c87ad9e5ec3c064c37d802256bb6c79be1"}),
-  Object.freeze({"contentId":"ussd.vodacom.balance_detailed","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"b8fdeba47ef451c44c4e1b72151032ba2b57b8b81b4280248f77161245d26425"}),
+  Object.freeze({"contentId":"ussd.vodacom.balance_main","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"5bdf0cf82a697e3dc083054a20d28d8c6d39c338ad8e074c8d4050517594e91d"}),
+  Object.freeze({"contentId":"ussd.vodacom.balance_detailed","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"6e7b101e8cfa898246b79baf453ebb601a887d1ce74e5985ff5ec66570731790"}),
   Object.freeze({"contentId":"ussd.vodacom.recharge_voucher","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"43aa196aa53252e49681a153d4c2ceb6377caadd6bed1d38f04eaaf43b06a32f"}),
-  Object.freeze({"contentId":"ussd.vodacom.buy_data","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"da3e41d5064f5ea2abcdcadd4c91943d875188fffc994f97d0055d6360dcf3ce"}),
+  Object.freeze({"contentId":"ussd.vodacom.buy_data","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"8c3972405e86c63f619b7fd23ec3553cd207e72b50f9556ce80253a182d2bee6"}),
   Object.freeze({"contentId":"ussd.vodacom.transfer_airtime_data","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"c607ac9b2e7b2bf26a01f72776ca1927e9e5ab6139df89369f256fd445b32d1c"}),
   Object.freeze({"contentId":"ussd.vodacom.check_number","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"2be2d988ed190aa0054073d4f9f94c7196009436c2e5a42422dcf721707cc61c"}),
   Object.freeze({"contentId":"ussd.vodacom.account_menu","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"e156c118902925a47c5d0aeedd9117c34256185483375f80c4eb2974a95a3222"}),
@@ -53,7 +53,7 @@ const CANONICAL_EVIDENCE_SUBJECT_MANIFEST: readonly Readonly<CanonicalEvidenceSu
   Object.freeze({"contentId":"ussd.mtn.recharge_voucher","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"917ddedc82ed8dfffb5b9e65d6accb8f6622e64b4ba22e4dfbced264799d389f"}),
   Object.freeze({"contentId":"ussd.mtn.buy_data","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"9c99b3df1953dd1edaae2e04a653cbed3b795d1fd53874b5f2acea147616ce61"}),
   Object.freeze({"contentId":"ussd.mtn.transfer_airtime_data","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"1627b184e4edc38f9ce05623b4a27079220fce56a4c7953d658ea951c006bf53"}),
-  Object.freeze({"contentId":"ussd.mtn.check_number","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"3f1689b30ef94c874092513d5269782037f6d5b390aaca119b910c2f202f8ec2"}),
+  Object.freeze({"contentId":"ussd.mtn.check_number","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"ebae5c546d29b19f9a80de732b8ff99551302a6ca3b9ea1886d8ccb176d8a1b2"}),
   Object.freeze({"contentId":"ussd.mtn.customer_care","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"8572ff1d6bf979cdd2c57e5507ba4e5e10989fb948d6ebf85dccf5554641402d"}),
   Object.freeze({"contentId":"ussd.mtn.xtratime","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"2565f151af5ee50e667820dd4ec1368abe06425fb65a1b858faeef4b21dbd05f"}),
   Object.freeze({"contentId":"ussd.mtn.mytownoffers","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"ea6869d143418c1994b6b5d27367b4528fd6c40a2ceb6adbba42e08e7f646eb6"}),
@@ -64,54 +64,38 @@ const CANONICAL_EVIDENCE_SUBJECT_MANIFEST: readonly Readonly<CanonicalEvidenceSu
   Object.freeze({"contentId":"ussd.telkom.monice","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"773c0e744e0b3860fb354e6cf37a9575ef3ddb707972814a350df491a6ddd19c"}),
   Object.freeze({"contentId":"ussd.cellc.balance_main","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"f3fb720c1ea9bb7db5b850d53842715f77f684b44de7c82a2f07552ec73cf85b"}),
   Object.freeze({"contentId":"ussd.cellc.buy_data","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"82dbe5ab6733c56dec2bdc320036c4ea1724def10fb25d85a6ffc8fb51894e6f"}),
-  Object.freeze({"contentId":"ussd.cellc.check_number","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"fa12a04967d8560436c8c7d5cfe9a49ca0db9695b33759bac42d3d724d3aa1aa"}),
+  Object.freeze({"contentId":"ussd.cellc.check_number","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"b26783c0ecfcd6bb26ffacd8194b13d272f7b1c54ee082140ff4a31a25a04d2f"}),
   Object.freeze({"contentId":"ussd.cellc.customer_care","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"add244586a4afd320d854579003a84ce6ea68ba94dd25cb544f38a7a62ba63ae"}),
-  Object.freeze({"contentId":"ussd.cellc.for_you","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"5a23b6987e4fb10a2c0218de1f03a1f3f50b054c23bfe561136fc22147e4e256"}),
+  Object.freeze({"contentId":"ussd.cellc.for_you","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"ff4f320d6f95e47ebf99bf0446f9955209f3f88ee174d9c7b39685a7654361ac"}),
   Object.freeze({"contentId":"ussd.rain.app_only","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"5637945f20f72e10ab31f21b5d30562484bff8b3c5826053cb87e01096c9b403"}),
-  Object.freeze({"contentId":"price.mtn-50gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"8e939974bed306e1481e966b8623fd51699daddb91a0b66d6e22bd2124ae8188"}),
-  Object.freeze({"contentId":"price.mtn-10gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"5ae6b001bbab85ba524233ccef75ecb58d05154575fce46bd7e43fd29a978b5a"}),
+  Object.freeze({"contentId":"price.mtn-5gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"6b8762d061ea7420d352cf495b20b06f64d3aed25079b8a222473c4517e4eb0a"}),
   Object.freeze({"contentId":"price.mtn-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"d3b681a8c3e8e4024aac39775112c1ced572f199ec5cbda79b7fea8d2ccd1e2e"}),
-  Object.freeze({"contentId":"price.mtn-hourly-75mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"6334da74ba2d2aa142e457377cdea095f292fb635e80549386f1202337c0ecd7"}),
-  Object.freeze({"contentId":"price.mtn-daily-250mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"8fa4061699662bfa678d764eae789b6b8a8b4fdee970a73007e5868d252ab357"}),
-  Object.freeze({"contentId":"price.mtn-daily-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"904096a2e7bf486626e8bdf8510f6b4ec6383eb691b312ac0ab32af1eb656c00"}),
+  Object.freeze({"contentId":"price.mtn-hourly-150mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"757e577ebd017f6a49b96c403129fb99db231c41b93add33ca633e839d4800cb"}),
+  Object.freeze({"contentId":"price.mtn-daily-200mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"e5eb88a9902b78d638146a175ac4d8e667720e5552f1f522648fe02ff6bb0994"}),
+  Object.freeze({"contentId":"price.mtn-daily-1-5gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"ec60e7e934ee25eedcba2a0f38f087959ff061ae4050c8c2493048792f944948"}),
   Object.freeze({"contentId":"price.mtn-weekly-500mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"9b809e1e29bc50e1b5dd70f7ee5a801288bd830a6292316ff374e409b0cec22e"}),
-  Object.freeze({"contentId":"price.mtn-weekly-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"dcf14740063e3fd8c0a2b6e7d5f5edbd115b4da640e44746f6483ac2409cbc4c"}),
+  Object.freeze({"contentId":"price.mtn-weekly-1-2gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"d62d74c6f5b640824df0d12415fe236da1d491790b5fa8b1b032f993501ec47c"}),
   Object.freeze({"contentId":"price.mtn-night-250mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"ef0665cddc42bd55e1442a4fc1c4e363373b21e976d8235ca25c8db50466e1c4"}),
   Object.freeze({"contentId":"price.mtn-whatsapp-weekly-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"7b3ff6f20d827c8f0fb549a34b4a82e14383f9e1385a74f96b1a0edd66534467"}),
-  Object.freeze({"contentId":"price.mtn-monthly-recurring-20gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"229425cbf0f95cd1dbc1e06b92659e3bd9efa2f39e11584537eadbe004461932"}),
   Object.freeze({"contentId":"price.vodacom-hourly-50mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"cdeb11fb47586e7443236765a3f976cdb656dcd4ede4fe480e2125dcca828919"}),
-  Object.freeze({"contentId":"price.vodacom-daily-250mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"8e212ccc663f31a6d01e8e3664109e55766a569b537f42e69ae4573acb1ecfd1"}),
-  Object.freeze({"contentId":"price.vodacom-daily-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"e363b2775d57335a4b942de450c71d229e1b1c5072a71d3510ec79ae9b5325cc"}),
-  Object.freeze({"contentId":"price.vodacom-weekly-500mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"5884bf81075f0d47108664fc31328a909f526f409e685afd31d096c47affc6f1"}),
-  Object.freeze({"contentId":"price.vodacom-weekly-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"c1b75990d967ac7fd6e3c36a2815708c305c9087f1248d2a05817d6c8f8ae541"}),
-  Object.freeze({"contentId":"price.vodacom-monthly-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"e47246b3d786ae6791dd0d45877eace495100b9c51abef499db3cd7cc493a4df"}),
-  Object.freeze({"contentId":"price.vodacom-monthly-2gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"9ba500245caa14ccac6a79630b9887d466a0fb8bc313e97a388014373494159f"}),
+  Object.freeze({"contentId":"price.vodacom-weekly-750mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"31f8ce21468fa711a283d11505eca51b3401ec8a4256a3f5d30169c37a2c9cac"}),
+  Object.freeze({"contentId":"price.vodacom-weekly-1-5gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"ae07c112d4e955638f699e00480c4e964939fa7bb02c279d817956709ddef426"}),
+  Object.freeze({"contentId":"price.vodacom-monthly-1-5gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"5ac529d9b0091947d6189f232cf3f7d485255e31b344e20c24c640c53c067966"}),
+  Object.freeze({"contentId":"price.vodacom-monthly-3gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"b72662d05131f5d0d8a1d08a918e666a3433f03c74d22c9adb944a6a78691b4d"}),
   Object.freeze({"contentId":"price.vodacom-prepaid-lte-5gb-5gb-night-owl-price","kind":"price","owner":"price_collection","semanticFingerprint":"8b3b0dc72a69c48ee7925b44616d9b2bc3c36414cff2367838feff78e9ebd1ee"}),
   Object.freeze({"contentId":"price.vodacom-10gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"de28de9a517c438323101673d0b0b12a6ecf9f28786a05df80e006473d665ce2"}),
   Object.freeze({"contentId":"price.vodacom-20gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"bf219d3cbc0bf665d073f6eea0603b2476eb41820c3cab2205a0e654ee1d9466"}),
   Object.freeze({"contentId":"price.vodacom-50gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"4c88881ceeb1f77ab38fa5be7c80e6ba3250ca5bb955baac26fafd6f808c4c4f"}),
   Object.freeze({"contentId":"price.vodacom-night-owl-250mb-price","kind":"price","owner":"price_collection","semanticFingerprint":"a11bc3a34062615d0968e340d547ec95dce38030ed4a40aa5aee5fb1db4b9c89"}),
   Object.freeze({"contentId":"price.vodacom-whatsapp-daily-250mb-price","kind":"price","owner":"price_collection","semanticFingerprint":"fbd0bc66d124ecf10baa3ac50858ae7288caf81cbb3c2d7b45dc38e8b37990f3"}),
-  Object.freeze({"contentId":"price.telkom-daily-150mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"d8bf9c62e34e2fd0fa23cedcb06efcb53f71fbc7b8596f2e277e6cd324447c12"}),
-  Object.freeze({"contentId":"price.telkom-daily-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"dde9d6b6be3465e213e940a9cc5024922fc3d3752e8a406efac436047118c6e7"}),
-  Object.freeze({"contentId":"price.telkom-weekly-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"ee373e74cdeb81d74433cd08b4550b1d29cc4790e5a977afcaf5bd6f618cbd64"}),
-  Object.freeze({"contentId":"price.telkom-monthly-2gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"b5df7e8114fb97c49b88770913a357d4c5205bc6355c2260c0b81a74ab275f13"}),
-  Object.freeze({"contentId":"price.telkom-monthly-10gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"cbb1552069ec2a6263e1ab98a3a4c0bb0ded5d9075af340f806e85f747e44ec1"}),
-  Object.freeze({"contentId":"price.telkom-20gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"4b72004cb3478eb4896e07eea1bfa5ea424bb5adbf67d081214e13715ec0b674"}),
-  Object.freeze({"contentId":"price.telkom-40gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"c2a1c31c30907f0f46b9a4e8677972394b8abf67791a560cca171c2d05182427"}),
-  Object.freeze({"contentId":"price.telkom-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"4a3e89db06211d0653cb94f9cfa274c5a999d06ddb539ce046921a36718c6a6a"}),
-  Object.freeze({"contentId":"price.telkom-night-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"d1ede7b7a84468f200bf09825fc386424153da429309864fd8e265991405d34d"}),
-  Object.freeze({"contentId":"price.telkom-whatsapp-daily-250mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"8f411b11ac7fedfe1ff652b6821488b2711ca1fa5279b1df3221789da70c54a9"}),
-  Object.freeze({"contentId":"price.cell-c-daily-100mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"3af6208de1be2747804c05ebff6ceba026f4fdf45a734d1d213aed7764f2bd52"}),
-  Object.freeze({"contentId":"price.cell-c-daily-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"6e9bdb92b5e89fcec0b4c7e721ebfa6387339a41a8da6801e7b055e92e626736"}),
-  Object.freeze({"contentId":"price.cell-c-weekly-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"de6db9dc0aa609ec9ec06736ccfa2137d79a0c6bdefe7b1fafe44f8863fc498b"}),
+  Object.freeze({"contentId":"price.telkom-daily-150mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"96a31997ea2dae0c3e92e3570582c192ad0803586d4f65f5dfe66cc1d7472382"}),
+  Object.freeze({"contentId":"price.telkom-daily-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"e95e34f651e9bdd633ae0298b10ff1a26aaf2ec2b260ecd45b4c37d565b71f21"}),
+  Object.freeze({"contentId":"price.telkom-weekly-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"87a389c8e0238514b7d46503a0a75cea9e82aba5756d04b33b951b794c133c02"}),
+  Object.freeze({"contentId":"price.telkom-whatsapp-daily-150mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"c4f50b88d03b8f01f7337ebf013ba823fb87a139606c6ffce8abc58c1dba1cb9"}),
+  Object.freeze({"contentId":"price.cell-c-daily-80mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"4e0a388968098ea1752069965b5bc0ae188c1a512396ff6bb4d62833fd443deb"}),
+  Object.freeze({"contentId":"price.cell-c-daily-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"c0b557d5c6deaa2dea75ed9d3c3238695bb854cb91007a70a112f947fd28ebc3"}),
   Object.freeze({"contentId":"price.cell-c-monthly-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"9e64ddf46f0d568e18c01cb2112f627e1f30e98a22af91fdb35c1a8ff3702e9e"}),
-  Object.freeze({"contentId":"price.cell-c-5gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"d2619b7519705f9716fbbb6a99c06ca07b6434e2b66ebc1570132a5111bb6922"}),
-  Object.freeze({"contentId":"price.cell-c-10gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"eef46dbce6662e5c5361862a7816ca4ef3004c29946da9176d08b2d490f542ee"}),
-  Object.freeze({"contentId":"price.cell-c-30gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"9f729a0a2e85b0ff355cad62b3f0cdf48297048b6838491adcda8a2aa3572c96"}),
-  Object.freeze({"contentId":"price.cell-c-night-250mb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"8a0d6a7bbaa4da97ec2d0d57741fc481c98976239d825a66faf8879702c460ca"}),
-  Object.freeze({"contentId":"price.cell-c-whatsapp-weekly-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"c3f695adfefee22f9a8895a22d11c81947cfb687477c6ac4a4ea94b1b8f45b40"}),
-  Object.freeze({"contentId":"price.cell-c-monthly-recurring-20gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"8b46f6cd06ec35669dfbde356ef5017baafb4275a90292bd4484b56bd743ae41"}),
+  Object.freeze({"contentId":"price.cell-c-whatsapp-monthly-1gb-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"fa81a82a9d904ba83825e0a4fc279ca3a5158505e8eaf92327eccb39e2df1ffa"}),
   Object.freeze({"contentId":"price.rain-unlimited-4g-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"c025e363ecefd525078d2cfac6d48a2268a2c0c7fa83f4765c65fd0bd0fece17"}),
   Object.freeze({"contentId":"price.rain-unlimited-5g-data-price","kind":"price","owner":"price_collection","semanticFingerprint":"9e4aab27f974a408cd6d3e2f20ab75efb72e35fff4fa96aeb745a2a7f3981938"}),
   Object.freeze({"contentId":"device_step.vodacom-apn-settings","kind":"device_step","owner":"device_collection","semanticFingerprint":"02d63abde5dfaed3da72f5e8b42b60497e81136c0f3e1ff163712e2fc958cc3a"}),
@@ -189,7 +173,7 @@ const CANONICAL_EVIDENCE_SUBJECT_MANIFEST: readonly Readonly<CanonicalEvidenceSu
   Object.freeze({"contentId":"device_step.openview-no-channels","kind":"device_step","owner":"device_collection","semanticFingerprint":"4ba6c08266ab1c0b5f05a4b0e893287241db9b239337e23294174db1167fce07"}),
   Object.freeze({"contentId":"device_step.openview-only-channel-100","kind":"device_step","owner":"device_collection","semanticFingerprint":"f5889ec9cb316dcbb2afb4afa7b0cf329eb5d84d5abe63c36c934e0ef21f9f87"}),
   Object.freeze({"contentId":"device_step.openview-activation-not-working","kind":"device_step","owner":"device_collection","semanticFingerprint":"5258595c9285a71d7fea71f206a836c0a49ebc37428e7e3322434137ee435e6c"}),
-  Object.freeze({"contentId":"device_step.huawei-router-login-192-168-8-1","kind":"device_step","owner":"device_collection","semanticFingerprint":"44c52d48d84e6f5b0e05d3a61fa64f068ee61b5932dc150395b6de6a70f7d4df"}),
+  Object.freeze({"contentId":"device_step.huawei-router-login-192-168-8-1","kind":"device_step","owner":"device_collection","semanticFingerprint":"d959dc27fa457de25683576f7bbc4008c6e03ff039722343dfe253b6b3cd247f"}),
   Object.freeze({"contentId":"device_step.huawei-router-reset-south-africa","kind":"device_step","owner":"device_collection","semanticFingerprint":"1907c5311b3129e53178ce2cb9970e0523cbd24fd2684abae9434ebcc8a880ea"}),
   Object.freeze({"contentId":"device_step.zte-router-login-south-africa","kind":"device_step","owner":"device_collection","semanticFingerprint":"a96d7bed35e74d9faaaab2a0816f4d8f712737231b4693ba293742edaa1b99e6"}),
   Object.freeze({"contentId":"device_step.lte-router-sim-not-detected","kind":"device_step","owner":"device_collection","semanticFingerprint":"9abe0c1a72389ed930086320041289ec0dc8ddb0b93ebf8471bfaf03910fbb57"}),
@@ -270,8 +254,8 @@ const ALLOWED_FIELDS: Readonly<Record<EvidenceSubjectOwner, readonly string[]>> 
   ussd_repository: Object.freeze(['id', 'network', 'category', 'action', 'code', 'explanation', 'status', 'dialable', 'note']),
   price_collection: Object.freeze(['id', 'slug', 'network', 'name', 'price', 'currency', 'volume', 'validity', 'type', 'anytimeData', 'nightData', 'costPerGb', 'isBestValue', 'isSpeedKing', 'bestFor', 'note', 'watchOut', 'sourceUrl', 'sourceLabel', 'sourceConfidence', 'lastVerified', 'productType', 'nightWindow']),
   promotion_collection: Object.freeze(['id', 'title', 'provider', 'promoType', 'category', 'summary', 'verificationStatus', 'sourceUrl', 'termsUrl', 'startDate', 'endDate', 'lastChecked', 'notes', 'isSponsored', 'displayPriority']),
-  device_collection: Object.freeze(['id', 'slug', 'cluster', 'title', 'seoTitle', 'metaDescription', 'h1', 'summary', 'tags', 'provider', 'serviceType', 'quickAnswer', 'sections', 'faqs', 'relatedFixSlugs', 'relatedDataCostLinks']),
-  problem_guides: Object.freeze(['slug', 'titleTag', 'metaDescription', 'h1', 'intro', 'quickAnswer', 'causes', 'fixSteps', 'networkFixes', 'ussdSummary', 'preventionTips', 'faq', 'internalLinks', 'whenToEscalate', 'operator', 'claimScope'])
+  device_collection: Object.freeze(['id', 'slug', 'cluster', 'scope', 'title', 'seoTitle', 'metaDescription', 'h1', 'summary', 'tags', 'provider', 'serviceType', 'quickAnswer', 'sections', 'faqs', 'adminUrl', 'sourceSummary', 'officialSources', 'relatedFixSlugs', 'relatedDataCostLinks']),
+  problem_guides: Object.freeze(['slug', 'titleTag', 'metaDescription', 'h1', 'intro', 'quickAnswer', 'causes', 'fixSteps', 'networkFixes', 'ussdSummary', 'preventionTips', 'faq', 'internalLinks', 'whenToEscalate', 'reviewDueDate', 'sourceSummary', 'officialSources', 'operator', 'claimScope'])
 });
 
 type StructureValidation = {
@@ -365,7 +349,7 @@ function validateRecordStructure(owner: EvidenceSubjectOwner, value: unknown): S
     }
     if (Object.hasOwn(value, 'tags') && !isStringArray(value.tags)) invalidFields.push('tags:expected_string_array');
     if (Object.hasOwn(value, 'relatedFixSlugs') && !isStringArray(value.relatedFixSlugs)) invalidFields.push('relatedFixSlugs:expected_string_array');
-    for (const field of ['faqs', 'relatedDataCostLinks']) {
+    for (const field of ['faqs', 'officialSources', 'relatedDataCostLinks']) {
       if (Object.hasOwn(value, field) && !Array.isArray(value[field])) invalidFields.push(`${field}:expected_array`);
     }
     for (const [field, nestedFields] of [
@@ -386,7 +370,9 @@ function validateRecordStructure(owner: EvidenceSubjectOwner, value: unknown): S
         }
       }
     }
-    validateOptional('provider', (candidate) => typeof candidate === 'string', 'string');
+    for (const field of ['scope', 'provider', 'adminUrl', 'sourceSummary']) {
+      validateOptional(field, (candidate) => typeof candidate === 'string', 'string');
+    }
   } else if (!operatorFact) {
     for (const field of ['quickAnswer', 'causes', 'fixSteps', 'preventionTips', 'networkFixes', 'faq', 'internalLinks']) {
       if (!Object.hasOwn(value, field)) missingFields.push(field);
@@ -394,6 +380,10 @@ function validateRecordStructure(owner: EvidenceSubjectOwner, value: unknown): S
         invalidFields.push(`${field}:expected_${['quickAnswer', 'causes', 'fixSteps', 'preventionTips'].includes(field) ? 'string_array' : 'array'}`);
       }
     }
+    for (const field of ['reviewDueDate', 'sourceSummary']) {
+      validateOptional(field, (candidate) => typeof candidate === 'string', 'string');
+    }
+    validateOptional('officialSources', Array.isArray, 'array');
   }
   return { missingFields, invalidFields, unexpectedSemanticFields };
 }

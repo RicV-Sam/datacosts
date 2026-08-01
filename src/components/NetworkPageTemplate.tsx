@@ -304,7 +304,13 @@ export function QuickAnswerCard({
   let answer =
     'Compare the listed price, usable allocation, validity and source status together. Confirm any row without a checked date on the operator channel for your own line.';
 
-  if (network === 'Vodacom' && bundleType === 'night-data') {
+  if (bundles.length === 0 && bundleType === 'monthly-data') {
+    answer = `DataCost does not currently publish an exact ${network} monthly price on this page because no publicly reproducible row passed the latest source check. Check the live ${network} menu for your own line, then compare allocation, validity, renewal behavior and price before buying.`;
+  } else if (bundles.length === 0 && bundleType === 'cheapest-1gb') {
+    answer = `DataCost does not currently publish an exact general-use ${network} 1GB price on this page because no publicly reproducible row passed the latest source check. Check the live ${network} menu for your own line and compare the final allocation, validity and price before buying.`;
+  } else if (bundles.length === 0) {
+    answer = `DataCost does not currently publish an exact ${network} ${bundleTypeLabel.toLowerCase()} price because no publicly reproducible row passed the latest source check. Check the live operator menu before buying.`;
+  } else if (network === 'Vodacom' && bundleType === 'night-data') {
     answer = `Vodacom Night Owl data is restricted to midnight–05:00. ${verifiedBundles.length} listed bundle${verifiedBundles.length === 1 ? ' was' : 's were'} matched to official Vodacom sources with a recorded check date. Compare anytime and night allocations separately; do not value restricted night data as if it were daytime data.`;
   } else if (bundleType === 'monthly-data') {
     answer = lowestVerified
@@ -328,7 +334,93 @@ export function QuickAnswerCard({
   );
 }
 
-export function BundleTable({ bundles }: { bundles: PreparedBundle[] }) {
+export function BundleTable({
+  bundles,
+  network,
+  bundleTypeLabel,
+  bundleType
+}: {
+  bundles: PreparedBundle[];
+  network: NetworkName;
+  bundleTypeLabel: string;
+  bundleType: NetworkTemplateBundleType;
+}) {
+  if (bundles.length === 0) {
+    const liveCheck = network === 'Vodacom'
+      ? {
+          sourceHref: 'https://www.vodacom.co.za/vodacom/shopping/plans/open-market-bundle-price-changes',
+          sourceLabel: 'Open Vodacom public bundle guidance',
+          steps: [
+            'Dial *135# and follow the current data prompts to inspect the standard self-service menu.',
+            'Check *123# separately for Just 4 You offers, which can differ by SIM and campaign.',
+            bundleType === 'cheapest-1gb'
+              ? 'Confirm that the allocation is general-use 1GB, then compare its validity and final checkout price. Do not substitute social-only or night-only data.'
+              : 'Confirm the usable allocation, validity, renewal type and final checkout price before paying.'
+          ]
+        }
+      : network === 'Telkom'
+        ? {
+            sourceHref: 'https://www.telkom.co.za/help-guide',
+            sourceLabel: 'Open Telkom self-service guidance',
+            steps: [
+              'Dial *180# and follow the current self-service prompts to inspect standard data options.',
+              'Check *123# separately for Mo\'Nice offers, which can be specific to your prepaid line.',
+              bundleType === 'monthly-data'
+                ? 'Confirm that validity is 30 days and check whether the option is once-off or recurring before comparing its final price.'
+                : 'Confirm the usable allocation, validity and final checkout price before paying.'
+            ]
+          }
+        : {
+            sourceHref: `/network/${getNetworkSlug(network)}/`,
+            sourceLabel: `View current ${network} guidance`,
+            steps: [
+              `Open the current ${network} app, website or self-service menu for your own line.`,
+              'Check allocation, validity, restrictions and final price together.',
+              'Avoid relying on an old screenshot or a campaign price shown to another customer.'
+            ]
+          };
+
+    return (
+      <section aria-label="Bundle source-check status" className="space-y-6">
+        <h2 className="text-2xl font-black tracking-tight text-slate-900">Current public price status</h2>
+        <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-6">
+          <p className="font-black text-amber-950">No exact source-checked price is published here.</p>
+          <p className="mt-2 max-w-3xl text-sm font-medium leading-relaxed text-amber-900">
+            The latest review did not find a publicly reproducible {network} {bundleTypeLabel.toLowerCase()} row that met DataCost&apos;s evidence standard. Older, account-specific and campaign-only prices are intentionally withheld. Confirm the live offer on your own line before paying.
+          </p>
+          <a
+            href={`/network/${getNetworkSlug(network)}/`}
+            className="mt-4 inline-flex font-black text-[#1b6d24] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1b6d24]"
+          >
+            View source-checked {network} bundle information
+          </a>
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-6">
+          <h3 className="text-xl font-black tracking-tight text-slate-900">How to check the live offer without losing context</h3>
+          <ol className="mt-4 space-y-3">
+            {liveCheck.steps.map((step, index) => (
+              <li key={step} className="flex items-start gap-3 text-sm font-medium leading-relaxed text-slate-700">
+                <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 font-black text-emerald-900">
+                  {index + 1}
+                </span>
+                <span className="pt-1">{step}</span>
+              </li>
+            ))}
+          </ol>
+          <a
+            href={liveCheck.sourceHref}
+            target={liveCheck.sourceHref.startsWith('http') ? '_blank' : undefined}
+            rel={liveCheck.sourceHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+            className="mt-5 inline-flex items-center gap-2 font-black text-[#1b6d24] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1b6d24]"
+          >
+            {liveCheck.sourceLabel}
+            {liveCheck.sourceHref.startsWith('http') && <ExternalLink className="h-4 w-4" aria-hidden="true" />}
+          </a>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section aria-label="Bundle comparison table">
       <h2 className="text-2xl font-black tracking-tight text-slate-900">Compare listed bundles and restrictions</h2>
@@ -557,7 +649,12 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
       .sort((a, b) => getEvidenceSortRank(a) - getEvidenceSortRank(b) || a.price - b.price);
   }, [bundleData]);
 
-  const citationUrls = [...new Set(bundleData
+  const verifiedPreparedBundles = useMemo(
+    () => preparedBundles.filter(isVerifiedWithDate),
+    [preparedBundles]
+  );
+
+  const citationUrls = [...new Set(verifiedPreparedBundles
     .map((bundle) => bundle.sourceUrl)
     .filter((url): url is string => Boolean(url)))];
 
@@ -625,7 +722,7 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
   const itemListSchema = buildBundleItemListSchema(
     `${network} ${bundleTypeLabel} data bundles`,
     canonicalUrl,
-    preparedBundles,
+    verifiedPreparedBundles,
     () => canonicalUrl
   );
 
@@ -660,7 +757,9 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
+        {verifiedPreparedBundles.length > 0 && (
+          <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
+        )}
       </Helmet>
 
       <Breadcrumbs items={breadcrumbItems} />
@@ -680,7 +779,12 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
           bundleType={bundleType}
           bundles={preparedBundles}
         />
-        <BundleTable bundles={preparedBundles} />
+        <BundleTable
+          bundles={preparedBundles}
+          network={network}
+          bundleTypeLabel={bundleTypeLabel}
+          bundleType={bundleType}
+        />
         <BestForSection bundleTypeLabel={bundleTypeLabel} points={bestForItems} />
         <section>
           <h2 className="text-2xl font-black tracking-tight text-slate-900">

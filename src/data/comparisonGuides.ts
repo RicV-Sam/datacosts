@@ -86,10 +86,10 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     watchOuts: [
       'Daily 1GB can look cheap upfront but become expensive if repeated all month.',
       'Weekly 1GB can be a useful middle ground, but often still costs more per GB than monthly bundles.',
-      'Personalised offers can beat listed menu pricing, but they vary by SIM and period.'
+      'Personalised offers can differ from listed menu pricing and are not universal.'
     ],
     savingsTips: [
-      'Check operator personalised menus first before paying standard listed rates.',
+      'Check operator personalised menus and compare allocation, validity and live price with the public menu.',
       'Match validity to your habit: daily for short bursts, monthly for controlled regular use.',
       'Avoid relying on airtime browsing after bundle expiry to prevent out-of-bundle leakage.'
     ],
@@ -105,8 +105,8 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
         answer: 'Daily is usually cheapest upfront, weekly is a middle ground, and monthly often provides better control for regular users. The best option depends on how often you actually buy data.'
       },
       {
-        question: 'Can personalised deals beat these listed 1GB prices?',
-        answer: 'Yes. Personalised channels such as Just4You, Made4U and MyTownOffers for eligible customers can be cheaper than standard menu pricing for some users. Availability and price vary by SIM and location.'
+        question: 'How do personalised deals compare with these listed 1GB prices?',
+        answer: 'They may differ from public prices, but availability and price vary by SIM, profile and location. DataCost does not rank them as national offers unless they are publicly documented.'
       },
       {
         question: 'What should I check before buying a 1GB bundle?',
@@ -143,7 +143,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     savingsTips: [
       'Compare 10GB price and cost per GB together before checkout.',
       'If your usage is close to heavy each month, benchmark 20GB or 30GB options too.',
-      'Check operator app/USSD promos because 10GB value can improve significantly during campaigns.'
+      'Check operator app and USSD campaigns, then compare their allocation, validity, eligibility and live price with the public menu.'
     ],
     trustLine:
       'Our 10GB comparison focuses on practical prepaid value in South Africa, including price, validity, and fit for mid-to-heavy usage.',
@@ -353,7 +353,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     savingsTips: [
       'If you top up a 10GB bundle every month, compare your total spend against a single 20GB purchase.',
       'Use app-level controls to keep 20GB from being consumed by background activity.',
-      'Compare monthly options and personalised promos before checkout.'
+      'Compare monthly public options with any personalised offer shown on your own line before checkout.'
     ],
     whoShouldBuyTitle: 'Who should buy 20GB bundles?',
     whoShouldBuy: [
@@ -457,7 +457,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     ],
     savingsTips: [
       'For regular usage, monthly bundles often outperform repeated daily top-ups.',
-      'Check if personalised monthly deals are available before standard checkout.',
+      'Check whether your line shows a personalised monthly offer and compare its full terms with the public menu.',
       'Review expiry and renewal settings so you do not lose value through rollover assumptions.'
     ],
     trustLine:
@@ -504,12 +504,12 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     quickHeading: 'Which prepaid deals currently offer the strongest value?',
     watchOuts: [
       'Cheapest prepaid headline price can hide short validity and repeated top-up costs.',
-      'Some high-value prepaid offers are personalised and may not appear identically for every user.',
+      'Some prepaid offers are personalised and may not appear identically for every user.',
       'Coverage consistency can outweigh small price differences for users who rely on stable data access.'
     ],
     savingsTips: [
       'Compare prepaid value by usage profile: light, regular, and heavy users should not buy the same way.',
-      'Check personalised USSD/app channels before final checkout to avoid paying full menu pricing.',
+      'Check personalised USSD and app channels, then compare allocation, validity, eligibility and final price before checkout.',
       'Prevent out-of-bundle consumption by tracking expiry and active balance throughout the month.'
     ],
     trustLine:
@@ -525,7 +525,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       },
       {
         question: 'Is prepaid always cheaper than contract in South Africa?',
-        answer: 'Prepaid is often cheaper for flexible users, but total value depends on your usage discipline and the specific plan structure.'
+        answer: 'Neither is always cheaper. Compare the full contract cost, including device finance, with current public prepaid prices and any offer shown on your own line.'
       },
       {
         question: 'What is the most common prepaid mistake?',

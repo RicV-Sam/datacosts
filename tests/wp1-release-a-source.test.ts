@@ -28,7 +28,7 @@ const source = (overrides: Partial<SourceRecord> = {}): SourceRecord => ({
 type TestContentOverrides = Partial<ContentEvidenceRecord> & { subjectKind?: EvidenceSubjectKind };
 
 const CANONICAL_EVERGREEN_ID = 'operator.mtn';
-const CANONICAL_PRICE_ID = 'price.mtn-50gb-data-price';
+const CANONICAL_PRICE_ID = 'price.mtn-5gb-data-price';
 const CANONICAL_USSD_ID = 'ussd.vodacom.balance_main';
 
 const content = (overrides: TestContentOverrides = {}): ContentEvidenceRecord => {

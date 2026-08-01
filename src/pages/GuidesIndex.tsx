@@ -453,8 +453,8 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
                 requires a bit of strategy.
               </p>
               <p className="mb-4">
-                Our guides are designed to help you bypass expensive out-of-bundle rates and tap into
-                personalized promotions that aren't always advertised. From learning
+                Our guides are designed to help you bypass expensive out-of-bundle rates and check
+                line-specific offers without treating them as national prices. From learning
                 <strong> how to buy data on Vodacom or MTN</strong> efficiently, to understanding
                 when to use <strong>Night Owl bundles</strong>, our goal is to put the power back in your hands.
               </p>

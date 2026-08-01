@@ -236,7 +236,7 @@ export const guides: Guide[] = [
   {
     slug: 'best-data-deals-south-africa',
     title: 'Data Deals South Africa (2026)',
-    metaDescription: 'Find the best data deals in South Africa. Use Vodacom Just 4 You, MTN promo offers, and Telkom Mo\'Nice-style checks to find stronger value for your usage.',
+    metaDescription: 'Compare data deals in South Africa and check live Vodacom Just 4 You, MTN personalised, and Telkom Mo\'Nice offer channels on your own line.',
     h1: 'Best Data Deals in South Africa 2026: Top Value Bundles',
     intro: 'Finding a suitable data deal in South Africa requires looking beyond the standard monthly bundles. Vodacom Just4You, MTN Made4U and eligible MyTownOffers, and Telkom Mo\'Nice are live personalised channels to check on your own line, not fixed national prices.',
     comparisonType: 'best-value',
@@ -244,11 +244,11 @@ export const guides: Guide[] = [
     steps: [
       {
         title: 'Use Personalised USSD Menus',
-        description: 'Check *123# on Vodacom, *142# on MTN, and *123# on Telkom for deals tailored specifically to your usage patterns. These personalised menus can surface the best value on your specific SIM, but they are not universal.'
+        description: 'Check *123# on Vodacom, *142# on MTN, and *123# on Telkom for line-specific offers. Compare the live allocation, validity and price with each network\'s public menu because these offers are not universal.'
       },
       {
         title: 'Download the Network Apps',
-        description: 'Apps like MyVodacom and MyMTN can surface app-only or tariff-specific specials that do not always appear on the main USSD path.'
+        description: 'Apps like My Vodacom and MyMTN can show channel- or tariff-specific options. Compare the app and USSD terms because availability can differ by account and campaign.'
       },
       {
         title: 'Look for New Player Deals',
@@ -258,11 +258,11 @@ export const guides: Guide[] = [
     faq: [
       {
         question: 'Which network currently has the best data deals?',
-        answer: 'It varies by month, bundle type, and whether your SIM has personalised offers. Telkom and Rain are often strong on baseline value, while MTN and Vodacom can be competitive when your own promotional menu shows a better deal.'
+        answer: 'It varies by month, bundle type, validity, coverage and whether your SIM has a personalised offer. Compare current like-for-like public bundles and treat line-specific offers separately.'
       },
       {
         question: 'What are "Personalised Deals"?',
-        answer: 'These are promotional data offers tailored by the network to your usage profile, tariff, or campaign eligibility. They can offer better value than the standard menu, but they are not guaranteed to appear on every SIM.'
+        answer: 'These are promotional data offers tailored by the network to your usage profile, tariff, location, or campaign eligibility. Their terms can differ from the standard menu and they are not guaranteed to appear on every SIM.'
       },
       {
         question: 'Are weekly bundles better than monthly ones?',
@@ -324,7 +324,7 @@ export const guides: Guide[] = [
     faq: [
       {
         question: 'Is prepaid cheaper than a contract?',
-        answer: 'If you already own your phone, prepaid is often cheaper because you can take advantage of SIM-specific promotions, personalised offers, and flexible bundle timing that may not match contract value.'
+        answer: 'Neither option is universally cheaper. If you already own a phone, compare prepaid public pricing and any offer shown on your SIM with the full contract cost, term, device finance and included services.'
       },
       {
         question: 'Can I switch from contract to prepaid?',
@@ -336,7 +336,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Do contracts have better data rates?',
-        answer: 'Standard contract data rates are often lower than standard prepaid rates, but prepaid "Personalised Deals" (*123#/*142#) are often the cheapest in the market.'
+        answer: 'Neither is universally cheaper. Compare the full contract cost with the live prepaid public menu and any offer shown on your own SIM; validity, device financing and eligibility differ.'
       },
       {
         question: 'What is a "Hybrid" or "Top-up" contract?',
@@ -1415,8 +1415,8 @@ export const guides: Guide[] = [
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *135# from a Vodacom SIM for the main buy-data route.',
-      'Check *123# for Just4You personalised deals before paying standard menu prices.',
-      'Use MyVodacom when you need app-only offers, card payment, or a clearer bundle breakdown.',
+      'Check *123# for Just4You and compare the live allocation, validity and price with the public menu.',
+      'Use My Vodacom or VodaPay to view account availability, payment options and bundle details.',
       'Always confirm validity, data type, and final price before accepting the purchase.'
     ],
     jumpLinksTitle: 'On This Page',
@@ -1438,12 +1438,12 @@ export const guides: Guide[] = [
       {
         id: 'vodacom-just4you',
         title: 'Option 2: Just4You Personalised Deals',
-        description: 'Dial *123# to access Just 4 You deals. These personalised offers can be cheaper than the standard bundle menu, but the exact options and pricing depend on your own line and campaign eligibility.'
+        description: 'Dial *123# to access Just 4 You deals. Compare the allocation, validity and price shown on your line with the standard menu because options depend on customer profile and campaign eligibility.'
       },
       {
         id: 'vodacom-app-method',
         title: 'Option 3: Using the MyVodacom App',
-        description: 'Open the MyVodacom app, tap "Buy Bundles", and select "Data". The app often features exclusive "App-only" deals that you won\'t find on USSD.'
+        description: 'Open My Vodacom or VodaPay to view bundles available to your account. Compare the app with *135# and *123# because channel availability and offer terms can differ.'
       }
     ],
     commonMistakesTitle: 'When This Advice May Not Apply',
@@ -1489,7 +1489,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Is there a cheap 1GB bundle on Vodacom?',
-        answer: 'Short-validity 1GB options can be cheaper upfront than 30-day bundles, but final pricing changes over time. Check the main *135# menu and *123# personalised offers before you buy.'
+        answer: 'Short-validity and 30-day 1GB options serve different usage patterns. Compare the current *135# public menu with any personalised offer shown on *123#, including allocation, validity and live price.'
       }
     ]
   },
@@ -1589,7 +1589,7 @@ export const guides: Guide[] = [
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *180# from a Telkom SIM for the main prepaid data bundle menu.',
-      'Check *123# for Mo\'Nice-style personalised offers before accepting standard menu pricing.',
+      'Check *123# for Mo\'Nice personalised offers and compare the live terms with the standard *180# menu.',
       'Use the Telkom app, vouchers, or banking apps when you need a clearer checkout or external top-up route.',
       'Confirm price, validity, and data type before buying so airtime is not wasted on the wrong bundle.'
     ],
@@ -1650,7 +1650,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'How do I buy 1GB on Telkom?',
-        answer: 'Dial *180#, select "Data Bundles", and follow the prompts to find the 1GB option. For better value, check *123# first.'
+        answer: 'Dial *180#, select "Data Bundles", and follow the prompts to find the 1GB option. You can also check *123# and compare any Mo\'Nice offer shown on your line.'
       },
       {
         question: 'Does Telkom have unlimited data?',
@@ -1662,7 +1662,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Is Telkom data cheaper than Vodacom?',
-        answer: 'Telkom is often competitive on price-per-GB, especially on larger or personalised offers, but the better choice still depends on bundle size, validity, and coverage where you use it.'
+        answer: 'Compare current like-for-like bundle size, validity, public price and coverage. A Mo\'Nice offer is line-specific and should not be treated as a national Telkom price.'
       }
     ]
   },
@@ -1681,7 +1681,7 @@ export const guides: Guide[] = [
       },
       {
         title: 'Method 2: Cell C App',
-        description: 'The Cell C mobile app allows for quick recharges and can surface app-specific or promotional bundle options that do not always match the main USSD menu.'
+        description: 'Use the Cell C app or website and verify your number to view any MyConnecta offers available to your line. Compare those terms with the standard *147# bundle menu.'
       },
       {
         title: 'Method 3: Social Media Bundles',

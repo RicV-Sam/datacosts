@@ -8,7 +8,7 @@ import { Header } from '../components/Header';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
-import { isVerifiedBundleSource, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
+import { isVerifiedBundleSource } from '../utils/bundleSource';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_URL,
@@ -55,10 +55,6 @@ const regularBundles = bundles.filter(
 const rankedVerifiedBundles = regularBundles
   .filter((bundle) => isVerifiedBundleSource(bundle) && bundle.costPerGb > 0)
   .sort((a, b) => a.costPerGb - b.costPerGb);
-const rankedManualBundles = regularBundles
-  .filter((bundle) => !isVerifiedBundleSource(bundle) && bundle.costPerGb > 0)
-  .sort((a, b) => a.costPerGb - b.costPerGb);
-
 function getCheapestByVolume(volume: string) {
   return regularBundles
     .filter((bundle) => bundle.volume === volume && isVerifiedBundleSource(bundle))
@@ -79,9 +75,8 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const pageTitle = 'Which Network Has the Cheapest Data in South Africa?';
   const pageMetaDescription =
     'Find which network has the cheapest data in South Africa by comparing bundle size, validity, network and cost per GB before you buy.';
-  const topSummaryRows = [...rankedVerifiedBundles, ...rankedManualBundles].slice(0, 8);
-  const verifiedSummaryRows = topSummaryRows.filter(isVerifiedBundleSource);
-  const hasManualRequiredTopRows = topSummaryRows.some((bundle) => bundle.sourceConfidence === 'manual_required');
+  const topSummaryRows = rankedVerifiedBundles.slice(0, 8);
+  const verifiedSummaryRows = topSummaryRows;
   const cheapest1Gb = getCheapestByVolume('1GB');
   const cheapest2Gb = getCheapestByVolume('2GB');
   const cheapest5Gb = getCheapestByVolume('5GB');
@@ -164,9 +159,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
         'Not always. The lowest upfront price can still be poor value if validity is short or coverage does not fit your real usage pattern.'
     },
     {
-      question: 'Do personalised offers beat standard bundle prices?',
+      question: 'How do personalised offers compare with standard bundle prices?',
       answer:
-        'Sometimes, yes. Operator-specific personalised or app-only offers can be cheaper than baseline public prices, but they are not universal and may differ by SIM, history, or campaign.'
+        'Personalised, app and USSD campaign offers may differ from public prices, but they are not universal and can vary by SIM, history or campaign. They are excluded from national rankings unless publicly documented.'
     },
     {
       question: 'How should I compare data prices fairly?',
@@ -356,9 +351,6 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
               </tbody>
             </table>
           </div>
-          {hasManualRequiredTopRows && (
-            <p className="text-[10px] text-slate-500 font-medium italic mt-3">{MANUAL_PRICE_CHECK_NOTE}</p>
-          )}
         </section>
 
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
@@ -427,7 +419,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
             <strong>Verified leaders only:</strong> winner and schema claims use source-checked, dated rows from a comparable product family. Unverified rows can remain visible as context but are excluded from rankings and recommendations.
           </p>
           <p className="text-slate-700 leading-relaxed mt-3">
-            <strong>Public vs personalised pricing:</strong> operator-specific personalised offers, app-only promotions, and USSD campaign deals may be cheaper for some users, but they are not guaranteed across all SIMs. For that reason, they are not treated here as universal baseline pricing unless clearly represented in the dataset.
+            <strong>Public vs personalised pricing:</strong> operator-specific personalised, app and USSD campaign offers can differ by SIM, account history and campaign. They are not treated here as national baseline pricing or included in rankings unless publicly documented.
           </p>
           <p className="text-slate-700 leading-relaxed mt-3">
             Before purchase, verify the final bundle on the operator side and use the <Link to="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">USSD codes hub</Link> or <Link to="/network/" className="text-[#1b6d24] font-semibold hover:underline">network comparison hub</Link> for the next step.

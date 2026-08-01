@@ -40,22 +40,22 @@ type NetworkConfig = {
 const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   mtn: {
     networkName: 'MTN',
-    titlePrefix: 'MTN USSD Codes: *136# Balance, Data, Recharge and Please Call Me',
+    titlePrefix: 'MTN USSD Codes: *136# Balance, Data, Recharge and XtraTime',
     route: '/mtn-ussd-codes/',
     networkHubHref: '/network/mtn/',
     buyDataGuideHref: '/guides/how-to-buy-data-mtn/',
     balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'MTN USSD codes for South Africa: dial *136# to check balance, *136*2# to buy data, *121*number# for Please Call Me and *136*2*6# for XtraTime.',
+      'MTN USSD codes for South Africa: dial *136# to check balance, *136*2# to buy data, use *136*VoucherCode# to recharge and *136*2*6# for XtraTime.',
     intro:
-      'Use this page when the intent is MTN-specific. If you searched for MTN balance check, how to check MTN balance, or MTN balance check code, start here for the exact MTN airtime, data, recharge, and Please Call Me shortcuts without opening the app.',
+      'Use this page when the intent is MTN-specific. Start here for currently supported MTN balance, data, recharge, XtraTime, and customer-care routes without relying on an unverified legacy shortcut.',
     quickAnswer:
-      'For MTN balance check, dial *136# first. Use *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, *121*number# for MTN Please Call Me, and *136*2*6# for MTN XtraTime. MTN also documents *151# as an alternative on some profiles. If your intent shifts from MTN-only to cross-network comparison, move to the all-network hub.',
+      'For an MTN balance check, dial *136#. Use *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, and *136*2*6# for XtraTime. MTN does not currently publish network-wide own-number or Please Call Me shortcuts in its public guidance, so use the MTN App or call 135 for those actions.',
     quickCodes: [
       { label: 'MTN balance check', code: '*136#' },
       { label: 'Buy MTN data', code: '*136*2#' },
-      { label: 'MTN Please Call Me', code: '*121*number#' },
+      { label: 'MTN recharge', code: '*136*VoucherCode#' },
       { label: 'MTN XtraTime', code: '*136*2*6#' }
     ],
     supportNote:
@@ -75,7 +75,11 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
       },
       {
         question: 'How do I check my MTN number?',
-        answer: 'A commonly used shortcode is *123*888#.'
+        answer: 'MTN does not currently publish a network-wide own-number USSD shortcut. Check the MTN App or SIM details, or call 135 for help.'
+      },
+      {
+        question: 'What is the MTN Please Call Me code?',
+        answer: 'DataCost could not confirm a current network-wide Please Call Me shortcut in MTN\'s public guidance. Use the MTN App or call 135 instead of relying on a legacy code.'
       },
       {
         question: 'What if an MTN USSD code is not working?',
@@ -85,21 +89,21 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   },
   vodacom: {
     networkName: 'Vodacom',
-    titlePrefix: 'Vodacom USSD Codes: *135# Balance, Data, Airtime and Please Call Me',
+    titlePrefix: 'Vodacom USSD Codes: *136# Balance, *135# Menu and Airtime',
     route: '/vodacom-ussd-codes/',
     networkHubHref: '/network/vodacom/',
     buyDataGuideHref: '/guides/how-to-buy-data-vodacom/',
     balanceGuideHref: '/guides/how-to-check-vodacom-airtime-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'Vodacom USSD codes for South Africa: dial *135# to check balance and self-service, *135*2# to buy data, and *140*number# for Please Call Me.',
+      'Vodacom USSD codes for South Africa: dial *136# to check balance, *135# for self-service and bundle menus, and *140*number# for Please Call Me.',
     intro:
       'Use this Vodacom USSD page to check Vodacom balance, confirm airtime, buy bundles, top up, and handle the everyday prepaid actions that are faster from the dialler than the app. If you searched for how to check Vodacom balance or the Vodacom balance check number, this page owns the wider Vodacom USSD code set, while the dedicated balance guide handles the step-by-step walkthrough intent.',
     quickAnswer:
-      'For Vodacom balance checks, start with *135# for balances and self-service. Use *135*2# for bundle buying, *140*number# for Please Call Me, and the dedicated balance guide when you need a step-by-step airtime or data walkthrough.',
+      'For a direct Vodacom balance check, dial *136#. Use *135# for the main self-service and bundle menu, *140*number# for Please Call Me, and the dedicated balance guide when you need a step-by-step walkthrough.',
     quickCodes: [
-      { label: 'Vodacom balance check', code: '*135#' },
-      { label: 'Buy Vodacom data', code: '*135*2#' },
+      { label: 'Vodacom balance check', code: '*136#' },
+      { label: 'Vodacom bundle menu', code: '*135#' },
       { label: 'Vodacom Please Call Me', code: '*140*number#' },
       { label: 'Transfer data', code: '*135*1002#' }
     ],
@@ -108,11 +112,11 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
     faq: [
       {
         question: 'How do I check Vodacom balance?',
-        answer: 'Start with *135# from your Vodacom SIM. This is the main Vodacom balance check number and menu entry for airtime, data, and self-service checks.'
+        answer: 'Dial *136# from your Vodacom SIM for a direct balance check. Use *135# when you need the broader self-service menu.'
       },
       {
         question: 'How do I buy Vodacom data using USSD?',
-        answer: 'Dial *135*2# to open Vodacom bundle purchase options.'
+        answer: 'Dial *135#, select the current bundle option shown on your line, and follow the prompts.'
       },
       {
         question: 'How do I transfer data on Vodacom?',
@@ -144,11 +148,11 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
       { label: 'Check Telkom number', code: '*1#' }
     ],
     supportNote:
-      'Telkom promo and Mo’Nice menu paths can change over time. If one shortcode fails, use *180# or *188# to find the same action.',
+      'Use *180# for standard bundle and self-service actions, *123# for personalised Mo\'Nice offers, and *188# only to check airtime and data balances.',
     faq: [
       {
         question: 'What is the Telkom USSD code to check data or airtime balance?',
-        answer: 'Telkom users commonly use *188# for balance and bundle checks.'
+        answer: 'Dial *188# to check Telkom airtime and data balances.'
       },
       {
         question: 'How do I buy Telkom data bundles via USSD?',
@@ -184,7 +188,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
       { label: 'Cell C Please Call Me', code: '*111*number#' }
     ],
     supportNote:
-      'Cell C code paths can differ by account profile and campaign period. If a shortcode fails, use *147# as your fallback menu.',
+      'Cell C menu positions can differ by account profile and campaign period. Dial *147# and follow the on-screen prompts instead of relying on a numbered path.',
     faq: [
       {
         question: 'How do I check balance on Cell C?',
@@ -192,7 +196,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
       },
       {
         question: 'How do I buy data on Cell C without the app?',
-        answer: 'Dial *147# to access Cell C bundle and account menus.'
+        answer: 'Dial *147#, select the bundle action shown on your line, and follow the on-screen prompts.'
       },
       {
         question: 'How do I check my Cell C number?',
@@ -201,6 +205,10 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
       {
         question: 'What should I do if a Cell C code does not work?',
         answer: 'Retry with signal and use *147# as a fallback entry point, then navigate to the needed action.'
+      },
+      {
+        question: 'How do I use Cell C Airtime Share?',
+        answer: 'Dial *147#, select Airtime Share, activate the service if prompted, and follow the on-screen steps. After registration, Cell C also publishes *147*333*recipient-number*amount# as the direct sharing format.'
       }
     ]
   }
@@ -261,6 +269,7 @@ function findMostUsedCode(entries: USSDEntry[], patterns: string[]): USSDEntry |
     entries.find(
       (entry) =>
         entry.status === 'verified' &&
+        entry.code !== 'N/A' &&
         patterns.some((pattern) => `${entry.action} ${entry.category}`.toLowerCase().includes(pattern))
     ) || null
   );
@@ -384,7 +393,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
 
   if (networkSlug === 'mtn') {
     relatedLinks.push(
-      { href: '/ussd-codes-south-africa/', label: 'MTN Please Call Me code' },
+      { href: '/ussd-codes-south-africa/', label: 'MTN Please Call Me guidance' },
       { href: '/cell-c-ussd-codes/', label: 'How to check Cell C balance' }
     );
   }

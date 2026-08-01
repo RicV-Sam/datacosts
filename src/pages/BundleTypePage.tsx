@@ -38,8 +38,24 @@ function toBundleTypeLabel(bundleType: NetworkTemplateBundleType): string {
   return labels[bundleType] ?? bundleType.replace(/-/g, ' ');
 }
 
-function getIntro(network: NetworkName, bundleType: NetworkTemplateBundleType): string {
+function getIntro(
+  network: NetworkName,
+  bundleType: NetworkTemplateBundleType,
+  hasPublishedRows: boolean
+): string {
   const label = toBundleTypeLabel(bundleType).toLowerCase();
+
+  if (!hasPublishedRows && bundleType === 'monthly-data') {
+    return `Check the current ${network} monthly-data route without relying on an old or account-specific price. DataCost is retaining this page for continuity while withholding exact rows that did not pass the latest public-source review.`;
+  }
+
+  if (!hasPublishedRows && bundleType === 'cheapest-1gb') {
+    return `Check current ${network} 1GB availability without relying on an old or account-specific price. DataCost is retaining this page for continuity while withholding exact rows that did not pass the latest public-source review.`;
+  }
+
+  if (!hasPublishedRows) {
+    return `Check current ${network} ${label} availability without relying on an old or account-specific price. Exact rows are withheld until they pass a public-source review.`;
+  }
 
   if (network === 'Vodacom' && bundleType === 'night-data') {
     return 'Compare Vodacom Night Owl and prepaid LTE bundles by price, anytime allocation, night allocation, validity and the hours in which night data can actually be used.';
@@ -65,11 +81,11 @@ function getNetworkInsight(network: NetworkName, bundleType: NetworkTemplateBund
   };
 
   if (network === 'Vodacom') {
-    return `Vodacom pricing can vary by subscriber profile through Just4You and app-led offers, so the listed ${toBundleTypeLabel(bundleType).toLowerCase()} menu is a baseline, not always your final checkout price. ${typeHint[bundleType] ?? ''}`.trim();
+    return `Vodacom Just4You and account-specific app offers can vary by subscriber profile. Compare any live offer with the listed ${toBundleTypeLabel(bundleType).toLowerCase()} menu on allocation, validity and price. ${typeHint[bundleType] ?? ''}`.trim();
   }
 
   if (network === 'MTN') {
-    return `MTN frequently personalizes bundle pricing through Made4U and campaign-specific channels, and social bundles can differ in how WhatsApp or chat usage is metered versus open internet traffic. ${typeHint[bundleType] ?? ''}`.trim();
+    return `MTN Made4U and campaign-specific channels can show line-specific offers, while MyTownOffers also depends on prepaid eligibility and location. Compare allocation, validity and live price before buying. ${typeHint[bundleType] ?? ''}`.trim();
   }
 
   if (network === 'Telkom') {
@@ -77,7 +93,7 @@ function getNetworkInsight(network: NetworkName, bundleType: NetworkTemplateBund
   }
 
   if (network === 'Cell C') {
-    return `Cell C value is usually promotion-led, so weekly and social pricing can shift quickly between campaigns; users should validate active offers before topping up and avoid assuming older menus are still live. ${typeHint[bundleType] ?? ''}`.trim();
+    return `Cell C MyConnecta offers require number verification in the app or website and can vary by line. Use *147# for the standard bundle menu, then compare any live MyConnecta terms before topping up. ${typeHint[bundleType] ?? ''}`.trim();
   }
 
   return `Rain positioning is typically always-on and app-managed rather than USSD-driven, so monthly comparisons are often more relevant than short-validity prepaid behavior. ${typeHint[bundleType] ?? ''}`.trim();
@@ -172,7 +188,7 @@ function buildFaqs(
         question: `What is the lowest checked ${network} monthly option on this page?`,
         answer: lowestVerified
           ? `${lowestVerified.name} at R${lowestVerified.price} is the lowest row on this page with a recorded verification date. Confirm the final menu on your own line before buying.`
-          : `None of the listed ${network} monthly prices has a current recorded verification date. Use the table as a comparison checklist and confirm every price with ${network}.`
+          : `DataCost does not currently publish an exact ${network} monthly price on this page because no publicly reproducible row passed the latest source check. Confirm the live menu with ${network}.`
       },
       {
         question: `What is the difference between once-off and recurring ${network} data?`,
@@ -195,7 +211,7 @@ function buildFaqs(
         question: `What is the lowest checked ${network} 1GB option on this page?`,
         answer: lowestVerified
           ? `${lowestVerified.name} at R${lowestVerified.price} is the lowest general-use 1GB row here with a recorded verification date.`
-          : `None of the listed ${network} 1GB prices has a current recorded verification date, so confirm the daily, weekly and monthly menus before choosing.`
+          : `DataCost does not currently publish an exact general-use ${network} 1GB price on this page because no publicly reproducible row passed the latest source check. Confirm the live daily, weekly and monthly menus before choosing.`
       },
       {
         question: `Why does validity matter for a ${network} 1GB bundle?`,
@@ -246,8 +262,24 @@ function buildSeoTitle(network: NetworkName, bundleType: NetworkTemplateBundleTy
   return `${network} ${label} Data Deals (2026)`;
 }
 
-function buildSeoDescription(network: NetworkName, bundleType: NetworkTemplateBundleType): string {
+function buildSeoDescription(
+  network: NetworkName,
+  bundleType: NetworkTemplateBundleType,
+  hasPublishedRows: boolean
+): string {
   const label = toBundleTypeLabel(bundleType).toLowerCase();
+
+  if (!hasPublishedRows && bundleType === 'monthly-data') {
+    return `Check current ${network} monthly data availability in South Africa. Exact prices are withheld unless they pass DataCost's latest public-source review.`;
+  }
+
+  if (!hasPublishedRows && bundleType === 'cheapest-1gb') {
+    return `Check current ${network} 1GB data availability in South Africa. Exact prices are withheld unless they pass DataCost's latest public-source review.`;
+  }
+
+  if (!hasPublishedRows) {
+    return `Check current ${network} ${label} availability in South Africa. Exact prices are withheld until they pass a public-source review.`;
+  }
 
   if (bundleType === 'monthly-data') {
     return `Compare ${network} monthly data deals in South Africa by price, validity, and cost per GB. Find practical 30-day prepaid options for 2026.`;
@@ -296,6 +328,7 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
     .filter((bundle) => bundle.network === network.name)
     .filter((bundle) => typeConfig.filter(bundle))
     .sort((a, b) => a.price - b.price);
+  const hasPublishedRows = matchingBundles.length > 0;
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -304,7 +337,7 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
         bundleType={bundleTypeKey}
         seoData={{
           title: buildSeoTitle(network.name, bundleTypeKey),
-          description: buildSeoDescription(network.name, bundleTypeKey),
+          description: buildSeoDescription(network.name, bundleTypeKey, hasPublishedRows),
           keywords: [
             `${network.name.toLowerCase()} ${bundleTypeKey}`,
             `${network.name.toLowerCase()} data deals`,
@@ -313,7 +346,7 @@ export const BundleTypePage: React.FC<BundleTypePageProps> = ({ onNavigate, onSc
           canonicalPath
         }}
         bundleData={matchingBundles}
-        introText={getIntro(network.name, bundleTypeKey)}
+        introText={getIntro(network.name, bundleTypeKey, hasPublishedRows)}
         networkInsight={getNetworkInsight(network.name, bundleTypeKey)}
         bestForItems={getBestFor(network.name, bundleTypeKey)}
         faqs={buildFaqs(network.name, bundleTypeKey, matchingBundles)}

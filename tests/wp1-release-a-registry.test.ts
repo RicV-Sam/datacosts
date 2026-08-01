@@ -29,7 +29,7 @@ test('a conflicting occurrence in src/data.ts::ussdCodes fails', () => {
 
 test('an operator mismatch in ussdCodesByNetwork fails', () => {
   const occurrences = collectWp1RegistryOccurrences();
-  const target = occurrences.find((item) => item.registry === 'ussdCodesByNetwork' && item.id === 'ussd.vodacom.balance_main');
+  const target = occurrences.find((item) => item.registry === 'ussdCodesByNetwork' && item.id === 'ussd.vodacom.balance_detailed');
   assert.ok(target);
   target.operator = 'mtn';
   const result = validateWp1AnalyticsRegistry(occurrences);

@@ -30,17 +30,17 @@ export const networkPages: Record<string, NetworkPageData> = {
   'vodacom': {
     slug: 'vodacom',
     networkName: 'Vodacom',
-    intro: 'Compare Vodacom data bundles, prepaid deals, USSD codes, price, validity, and use case before you buy. Vodacom is usually chosen for coverage consistency, while savings often come from matching bundle validity to usage and checking personalised offers first.',
+    intro: 'Compare Vodacom data bundles, prepaid deals, USSD codes, price, validity, and use case before you buy. Vodacom is usually chosen for coverage consistency, while personalised offers should be checked live on the customer\'s own line.',
     bestFor: 'Coverage consistency and premium network reliability',
-    verdictSummary: 'Vodacom is usually chosen for coverage and consistency rather than being the cheapest option. Most savings come from matching bundle validity to usage and checking personalised offers first.',
+    verdictSummary: 'Vodacom is usually chosen for coverage and consistency. Compare bundle validity, allocation and the live personalised menu on your own line before buying.',
     strengths: [
       'Strong 4G and 5G footprint across urban and many rural areas',
       'Broad spread of hourly, daily, weekly and monthly prepaid options',
-      'Personalised Just 4 You offers can be cheaper than standard pricing',
+      'Personalised Just 4 You offers are available to check on *123#',
       'Widely used self-service channels via USSD, app and banking integrations'
     ],
     tips: [
-      'Check Just 4 You (*123#) before buying a standard prepaid bundle.',
+      'Check Just 4 You (*123#) and compare the live allocation, validity and price with the public menu.',
       'If you only need data for a short task, compare hourly or daily options before buying monthly bundles.',
       'Keep out-of-bundle usage disabled where possible so airtime is not consumed at high per-MB rates.'
     ],
@@ -51,8 +51,8 @@ export const networkPages: Record<string, NetworkPageData> = {
     howToBuySection: {
       title: 'How to buy Vodacom data bundles',
       paragraphs: [
-        'Most prepaid users buy data through *135# and the data menu flow on *135*2#. You can also buy through the My Vodacom or VodaPay app, plus selected banking app channels.',
-        'Before paying standard rates, check *123# (Just 4 You). These personalised offers can be cheaper, but they are not identical for every customer and can change over time.',
+        'Most prepaid users buy data by dialling *135# and following the data-bundle prompts. You can also buy through the My Vodacom or VodaPay app, plus selected banking app channels.',
+        'Check *123# for Just 4 You, then compare the allocation, validity and price shown on your line with the public menu. Offers can differ between customers and change over time.',
         'For a step-by-step walkthrough, use the How to buy Vodacom data guide: /guides/how-to-buy-data-vodacom/'
       ]
     },
@@ -60,7 +60,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       title: 'What is Vodacom Just 4 You?',
       paragraphs: [
         'Just 4 You is Vodacom\'s personalised offer channel. It is driven by usage profile and campaigns, so two prepaid users can see different deals on the same day.',
-        'Check on *123#. Treat it as a variable savings channel, not a fixed public bundle table. Prepaid LTE data rows with Night Owl allocations are a separate router/LTE product family, not smartphone once-off bundle pricing.'
+        'Check on *123#. Treat it as a variable offer channel, not a fixed public bundle table. Prepaid LTE data rows with Night Owl allocations are a separate router/LTE product family, not smartphone once-off bundle pricing.'
       ]
     },
     editorialComparisonSection: {
@@ -73,10 +73,10 @@ export const networkPages: Record<string, NetworkPageData> = {
     commonQuestionsSection: {
       title: 'Common Vodacom data questions',
       items: [
-        { question: 'Why is Vodacom data expensive?', answer: 'Vodacom standard prepaid can be pricier than value-led rivals, especially outside personalised promotions.' },
+        { question: 'Why do Vodacom data prices vary?', answer: 'Price, allocation and validity differ by bundle type, while Just 4 You offers can also differ by customer and campaign.' },
         { question: 'Why is my Vodacom data finishing so fast?', answer: 'Background updates, video autoplay and out-of-bundle usage are common reasons for rapid data drain.' },
         { question: 'How do I stop out-of-bundle charges?', answer: 'Keep an active bundle and manage out-of-bundle settings in self-service channels so airtime is protected.' },
-        { question: 'Is Vodacom cheaper through Just 4 You?', answer: 'Often yes, but not always. Just 4 You is personalised, so offer value varies by user and campaign.' },
+        { question: 'How does Vodacom Just 4 You compare with the public menu?', answer: 'There is no guaranteed price relationship. Compare the live allocation, validity and price shown on *123# with the public menu before buying.' },
         { question: 'Does Vodacom have unlimited prepaid data?', answer: 'True unlimited prepaid handset data is uncommon. Unlimited-style options are usually tied to fixed LTE or 5G product categories.' }
       ]
     },
@@ -132,11 +132,11 @@ export const networkPages: Record<string, NetworkPageData> = {
     faqs: [
       {
         question: 'How do I buy Vodacom data bundles?',
-        answer: 'You can buy Vodacom data via *135# or *135*2#, in the My Vodacom or VodaPay app, and through selected banking apps. For personalised offers, check Just 4 You on *123# first.'
+        answer: 'You can buy Vodacom data by dialling *135# and following the prompts, in the My Vodacom or VodaPay app, and through selected banking apps. Check Just 4 You on *123# and compare the live terms on your own line.'
       },
       {
         question: 'What is the cheapest Vodacom 1GB data bundle?',
-        answer: 'On Vodacom\'s public prepaid menu, shorter-validity 1GB options can be cheaper upfront than a 30-day once-off bundle. Check the current *135# menu and *123# Just 4 You offers on your own line before relying on an older price table.'
+        answer: 'Short-validity and 30-day 1GB options serve different usage patterns. Compare the current *135# public menu with any Just 4 You offer shown on *123#, including allocation, validity and live price.'
       },
       {
         question: 'Does Vodacom have unlimited data?',
@@ -160,16 +160,16 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'Is Vodacom cheaper than MTN?',
-        answer: 'It depends on the bundle and your personalised offers. Vodacom often wins on coverage consistency, while MTN may be cheaper on certain promotional prepaid bundles.'
+        answer: 'It depends on the exact public bundle, any offer shown on your line, validity and local coverage. Compare both networks\' live terms rather than assuming one is always lower-priced.'
       }
     ]
   },
   'mtn': {
     slug: 'mtn',
     networkName: 'MTN',
-    intro: 'Compare MTN data bundles, prepaid deals, USSD codes, price, validity, and use case before you buy. MTN is usually a strong all-round prepaid option, and value often improves when personalised offers are active.',
+    intro: 'Compare MTN data bundles, prepaid deals, USSD codes, price, validity, and use case before you buy. Made4U and other personalised offers can differ by SIM, tariff, location and campaign.',
     bestFor: 'Strong all-round prepaid performance',
-    verdictSummary: 'MTN is often a balanced choice for users who want strong coverage plus regular promo value, especially when personalised deals are active.',
+    verdictSummary: 'MTN is often a balanced choice for users who want strong coverage and a range of prepaid options. Compare any personalised offer with the public menu on the same allocation and validity.',
     strengths: [
       'Strong national 4G coverage with reliable urban performance',
       'Made4U and other personalised offers, including MyTownOffers where eligible',
@@ -177,8 +177,8 @@ export const networkPages: Record<string, NetworkPageData> = {
       'Good balance between performance and deal availability'
     ],
     tips: [
-      'Check *142# and other personalised MTN offer menus before buying standard prepaid bundles.',
-      'Compare personalised MTN offers against normal monthly bundles to confirm real Rand-per-GB value.',
+      'Check *142# for Made4U and compare the live allocation, validity and price with standard prepaid bundles.',
+      'Treat MyTownOffers as location- and eligibility-dependent rather than national public pricing.',
       'Avoid out-of-bundle usage by keeping a live bundle active and watching balance before expiry.'
     ],
     extraSavingsTips: [
@@ -189,7 +189,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       title: 'How to buy MTN data bundles',
       paragraphs: [
         'Most users buy MTN data through *136*2# and the MyMTN app. You can also buy through supported banking channels.',
-        'Before checking out on standard menus, review MTN personalised offers via *142# where available.',
+        'Review Made4U on *142# where available and compare the live terms with the standard menu.',
         'Need full steps? Use /guides/how-to-buy-data-mtn/.'
       ]
     },
@@ -203,14 +203,14 @@ export const networkPages: Record<string, NetworkPageData> = {
     editorialComparisonSection: {
       title: 'How MTN compares to other networks',
       paragraphs: [
-        'MTN usually sits between premium reliability and value pricing: often cheaper than Vodacom on promos, while still maintaining strong coverage.',
+        'MTN combines broad coverage with public and personalised prepaid channels. Compare like-for-like allocations and validity with Vodacom before choosing.',
         'For direct comparisons, check /guides/vodacom-vs-mtn-data-prices/ and compare /network/telkom/ or /network/cell-c/ for price-led alternatives.'
       ]
     },
     commonQuestionsSection: {
       title: 'Common MTN data questions',
       items: [
-        { question: 'Is MTN cheaper than Vodacom?', answer: 'Often on promotional bundles, yes. On standard bundles, it depends on size and validity.' },
+        { question: 'How does MTN pricing compare with Vodacom?', answer: 'There is no fixed winner. Compare the same allocation and validity, any restrictions, and the live price shown by each network.' },
         { question: 'Why does MTN data finish fast?', answer: 'Background updates and video-heavy apps are common causes, especially near bundle expiry.' },
         { question: 'How do I stop MTN out-of-bundle usage?', answer: 'Keep a valid bundle active and manage data settings before balance reaches zero.' },
         { question: 'Are MTN promos always available?', answer: 'No. Promo availability changes by campaign and customer profile.' },
@@ -224,7 +224,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       { href: '/ussd-codes-south-africa/', label: 'MTN USSD codes' }
     ],
     commonMistakes: [
-      'Ignoring app-only or personalised MTN promotions before buying standard bundles.',
+      'Assuming an app-only or personalised MTN offer is available to every customer.',
       'Buying small daily bundles repeatedly instead of moving to weekly or monthly options.',
       'Assuming every MTN promo is always active for every SIM.',
       'Letting bundles expire and dropping into out-of-bundle charging.',
@@ -267,24 +267,24 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'Is MTN better than Vodacom for data?',
-        answer: 'MTN is often strong on promo value while Vodacom often leads on coverage consistency; best choice depends on your area and usage.'
+        answer: 'Compare current public and line-specific offers alongside coverage in the places you use data. Neither network has a permanent price or coverage advantage for every customer.'
       }
     ]
   },
   'telkom': {
     slug: 'telkom',
     networkName: 'Telkom',
-    intro: 'Compare Telkom data prices and monthly-value bundles before you buy. Telkom is usually the value-first choice for lower Rand-per-GB, but network experience can still vary a lot by area.',
-    bestFor: 'Value-led prepaid data pricing',
-    verdictSummary: 'Telkom often leads on prepaid value, but best results depend on your local coverage quality and choosing the right validity period.',
+    intro: 'Compare Telkom public data bundles and any Mo\'Nice offer shown on your line before you buy. Price, allocation and validity differ by product, while network experience can vary by area.',
+    bestFor: 'Time-based and line-specific prepaid options',
+    verdictSummary: 'Telkom offers several prepaid validity options; compare the live price and allocation, then confirm coverage where you use data.',
     strengths: [
-      'Often cheaper than premium rivals on larger monthly bundles',
-      'Strong Mo\'Nice personalised pricing potential',
-      'Competitive 1GB-to-20GB price points',
-      'Attractive option for price-sensitive users'
+      'Public hourly, daily and weekly bundle categories',
+      'Mo\'Nice personalised offer channel on *123#',
+      'Multiple validity periods for different usage patterns',
+      'Public catalogue and self-service buying channels'
     ],
     tips: [
-      'Check Mo\'Nice and standard pricing before buying to see which gives lower cost per GB.',
+      'Check Mo\'Nice and the standard menu, then compare allocation, validity and price like for like.',
       'If you commute between regions, verify your real-world Telkom coverage before buying a large bundle.',
       'Track expiry dates closely so unused data does not lapse before month-end.'
     ],
@@ -296,7 +296,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       title: 'How to buy Telkom data bundles',
       paragraphs: [
         'Use *180# to buy Telkom prepaid bundles, or buy through supported app and banking channels.',
-        'Check Mo\'Nice personalised options first, because they can be cheaper than standard menu pricing for some users. Confirm the current Telkom menu path, including *123# where offered, before treating any Mo\'Nice price as public pricing.',
+        'Check Mo\'Nice on *123# and compare any offer shown on your line with the standard *180# menu. Do not treat a Mo\'Nice price as public national pricing.',
         'See /guides/how-to-buy-data-telkom/ for the full buy flow.'
       ]
     },
@@ -317,9 +317,9 @@ export const networkPages: Record<string, NetworkPageData> = {
     commonQuestionsSection: {
       title: 'Common Telkom data questions',
       items: [
-        { question: 'Is Telkom always the cheapest network?', answer: 'Often for larger prepaid bundles, but not always for every bundle size or validity window.' },
+        { question: 'Is Telkom always the cheapest network?', answer: 'No network is always cheapest across every bundle size and validity window. Compare current like-for-like public prices before buying.' },
         { question: 'Why is my Telkom speed inconsistent?', answer: 'Performance can vary by area and congestion, so local experience matters more than headline pricing.' },
-        { question: 'How do I buy Telkom data bundles?', answer: 'Use *180# or Telkom-supported channels, and check personalised options first.' },
+        { question: 'How do I buy Telkom data bundles?', answer: 'Use *180# or Telkom-supported channels. You can also check Mo\'Nice on *123# and compare the live terms.' },
         { question: 'Does Telkom have night bundles?', answer: 'Yes. Telkom describes Night Surfer as once-off data used between midnight and 07:00 on the Telkom network.' },
         { question: 'Can I use airtime to buy Telkom data?', answer: 'Yes, prepaid bundles can generally be bought with airtime balance.' }
       ]
@@ -335,7 +335,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       'Assuming Telkom is always the cheapest in every bundle category.',
       'Confusing fixed-style/home products with normal mobile prepaid bundles.',
       'Choosing headline GB size without checking validity and expiry behavior.',
-      'Ignoring personalised Mo\'Nice offers before purchasing standard bundles.'
+      'Treating a personalised Mo\'Nice offer as a fixed national price.'
     ],
     comparisonSummary: [
       { network: 'Telkom', bestFor: 'Low cost per GB', usuallyCheapest: 'Often', coverage: 'Best in metros', goodFor: 'Price-sensitive prepaid users', href: '/network/telkom/' },
@@ -346,11 +346,11 @@ export const networkPages: Record<string, NetworkPageData> = {
     faqs: [
       {
         question: 'How do I buy Telkom data?',
-        answer: 'Purchase Telkom bundles using *180# or supported app channels. Check Mo\'Nice offers before buying standard bundles.'
+        answer: 'Purchase Telkom bundles using *180# or supported app channels. Check Mo\'Nice on *123# and compare any live offer with the standard menu.'
       },
       {
-        question: 'Is Telkom data cheaper than Vodacom or MTN?',
-        answer: 'Generally, yes. Telkom usually offers the lowest cost-per-GB for standard "Anytime" prepaid data bundles compared to the other major mobile networks.'
+        question: 'How does Telkom data pricing compare with Vodacom or MTN?',
+        answer: 'The result depends on bundle size, validity and current public pricing. Compare like-for-like anytime allocations and local coverage rather than assuming a permanent winner.'
       },
       {
         question: 'How do I check my Telkom balance?',
@@ -403,15 +403,15 @@ export const networkPages: Record<string, NetworkPageData> = {
       title: 'How to buy Cell C data bundles',
       paragraphs: [
         'Buy Cell C bundles through *147# and Cell C digital channels. Many users also buy via supported banking routes.',
-        'Check personalised and promotional menus first because Cell C value is often strongest on campaign-led offers.',
+        'Use the Cell C app or website to verify your number and view any MyConnecta offers available to your line, then compare the live terms with the standard menu.',
         'For full steps, visit /guides/how-to-buy-data-cell-c/.'
       ]
     },
     personalisedSection: {
-      title: 'What are Cell C personalised deals?',
+      title: 'What are Cell C MyConnecta deals?',
       paragraphs: [
-        'Cell C frequently runs personalised or campaign-led offers that vary by user and period.',
-        'Use them as opportunistic savings channels, not guaranteed base pricing.'
+        'MyConnecta offers require number verification and can vary by usage profile, spend and period.',
+        'Use the Cell C app or website to view offers for your own line. *141# may show alternative offers, while *147# remains the standard bundle and self-service menu.'
       ]
     },
     editorialComparisonSection: {
@@ -424,10 +424,10 @@ export const networkPages: Record<string, NetworkPageData> = {
     commonQuestionsSection: {
       title: 'Common Cell C data questions',
       items: [
-        { question: 'Is Cell C always the cheapest?', answer: 'Not always. It can be very competitive on certain promotions but less aggressive on others.' },
+        { question: 'Is Cell C always the cheapest?', answer: 'No network is always cheapest. Compare the current public menu and any MyConnecta offer shown after verifying your own number.' },
         { question: 'Why does Cell C value change so often?', answer: 'Campaign-led pricing can change frequently, so deals are often time-bound.' },
         { question: 'Does Cell C have good coverage?', answer: 'Coverage experience can vary by area and by the partner radio network serving the line, so check the Cell C coverage map and test locally.' },
-        { question: 'How do I buy Cell C data?', answer: 'Use *147# and official channels, then compare active promos before checkout.' },
+        { question: 'How do I buy Cell C data?', answer: 'Use *147# for the standard bundle menu or Cell C digital channels. MyConnecta offers require number verification on the app or website.' },
         { question: 'Are Cell C social bundles full internet?', answer: 'No. Social bundles are usually app-limited and should not be treated as full browsing data.' },
         { question: 'Do Cell C night-data windows always match?', answer: 'No. Day-By-Day Daily Nite wording uses midnight to 04:59, while LTE/Home Connecta product-family rules can differ.' }
       ]
@@ -443,7 +443,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       'Buying purely on headline price without checking validity and restrictions.',
       'Confusing social/app bundles with full internet access.',
       'Ignoring local coverage experience when comparing deals.',
-      'Skipping current promo checks before buying standard bundles.'
+      'Treating a MyConnecta or campaign offer as available to every Cell C number.'
     ],
     comparisonSummary: [
       { network: 'Cell C', bestFor: 'Promo-led alternatives', usuallyCheapest: 'Sometimes', coverage: 'Dual-MOCN partner footprint', goodFor: 'Bargain hunters and selective deal buyers', href: '/network/cell-c/' },
@@ -454,15 +454,15 @@ export const networkPages: Record<string, NetworkPageData> = {
     faqs: [
       {
         question: 'How do I buy Cell C data bundles?',
-        answer: 'Dial *147# for bundle menus and use Cell C digital channels for current promotions and personalised options.'
+        answer: 'Dial *147# for the standard bundle menu. Use the Cell C app or website and verify your number to view any MyConnecta offers available to your line.'
       },
       {
         question: 'Does Cell C have good coverage?',
         answer: 'Cell C uses a national dual-MOCN model across MTN and Vodacom radio access networks. Coverage and performance are still location-dependent, so check the current Cell C map and test the places that matter to you.'
       },
       {
-        question: 'Is Cell C cheaper for data?',
-        answer: 'Cell C can be competitive on selected monthly, social, and promotional bundles, but the best-value option changes over time. Check the current *147# menu and Cell C app before assuming an older promotion is still live.'
+        question: 'How does Cell C data pricing compare?',
+        answer: 'Compare the current *147# menu with any MyConnecta offer shown after number verification. Allocation, validity, price and availability can change, so older promotions are not reliable benchmarks.'
       },
       {
         question: 'What is the cheapest Cell C 1GB option?',

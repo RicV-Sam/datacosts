@@ -117,17 +117,17 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     {
       question: 'What is the USSD code to check airtime or data balance in South Africa?',
       answer:
-        'Common balance shortcuts are MTN *136#, Vodacom *135#, Telkom *188#, and Cell C *101#. If a code routes differently on your line, use the network-specific USSD page for that operator.'
+        'Common balance shortcuts are MTN *136#, Vodacom *136#, Telkom *188#, and Cell C *101#. If a code routes differently on your line, use the network-specific USSD page for that operator.'
     },
     {
       question: 'How do I buy data using USSD in South Africa?',
       answer:
-        'Typical buy-data shortcuts are MTN *136*2#, Vodacom *135*2#, Telkom *180#, and Cell C *147#. These let you buy bundles without relying on the app.'
+        'Use MTN *136*2#, the Vodacom *135# menu, Telkom *180#, or the Cell C *147# menu. Follow the current prompts before confirming a bundle.'
     },
     {
       question: 'What is the Please Call Me code in South Africa?',
       answer:
-        'The format differs by network and can change. MTN commonly uses *121*the-number#, while this page also lists commonly used Vodacom, Telkom, and Cell C formats. If you need the full MTN shortcut set, use the dedicated MTN USSD page after this hub.'
+        'Vodacom and Telkom publish *140*the-number#, while Cell C publishes *111*the-number#. MTN does not currently publish a network-wide shortcut in its public guidance; use the MTN App or call 135 for help.'
     },
     {
       question: 'Can I borrow airtime with USSD?',
@@ -204,7 +204,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
       description: 'These are commonly used callback formats. If a format fails, use the operator menu or support path instead of guessing.',
       items: [
         { network: 'Vodacom', code: '*140*0821234567#' },
-        { network: 'MTN', code: '*121*0821234567#' },
+        { network: 'MTN', code: 'No verified public shortcut - use MTN App or 135' },
         { network: 'Telkom', code: '*140*0821234567#' },
         { network: 'Cell C', code: '*111*0821234567#' }
       ]
@@ -224,8 +224,8 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
 
   const priorityCodes = [
     { network: 'MTN', task: 'MTN balance check', code: '*136#', href: '/mtn-ussd-codes/' },
-    { network: 'MTN', task: 'Please Call Me', code: '*121*number#', href: '/mtn-ussd-codes/' },
-    { network: 'Vodacom', task: 'Self-service and balance', code: '*135#', href: '/vodacom-ussd-codes/' },
+    { network: 'Vodacom', task: 'Direct balance check', code: '*136#', href: '/vodacom-ussd-codes/' },
+    { network: 'Vodacom', task: 'Self-service and bundle menu', code: '*135#', href: '/vodacom-ussd-codes/' },
     { network: 'Telkom', task: 'Check balance', code: '*188#', href: '/telkom-ussd-codes/' },
     { network: 'Cell C', task: 'How to check Cell C balance', code: '*101#', href: '/cell-c-ussd-codes/' },
     { network: 'Cell C', task: 'Buy bundles and account menu', code: '*147#', href: '/network/cell-c/' },
@@ -301,7 +301,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
             <span className="text-[#1b6d24]">USSD Codes South Africa</span>: MTN, Vodacom, Telkom and Cell C
           </h1>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">
-            Start here if you need MTN USSD codes, Please Call Me MTN, Telkom USSD codes, Vodacom balance routes, or Cell C balance checks. This hub gives the quick cross-network answer first, then links to the dedicated operator pages when the search is network-specific.
+            Start here if you need MTN USSD guidance, verified Please Call Me formats, Telkom USSD codes, Vodacom balance routes, or Cell C balance checks. This hub gives the quick cross-network answer first, then links to the dedicated operator pages when the search is network-specific.
           </p>
           <p className="text-xs text-slate-500 mt-3">Last updated: {lastUpdated}</p>
         </header>
@@ -309,7 +309,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-8 bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-3">Quick USSD codes</h2>
           <p className="text-sm text-slate-600 leading-relaxed mb-5">
-            Start with these common South African USSD shortcuts for balance checks, MTN Please Call Me, Telkom self-service, data bundles, and airtime advance help.
+            Start with these current South African USSD routes for balance checks, verified Please Call Me formats, Telkom self-service, data bundles, and airtime advance help.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-slate-100">
             <table className="w-full min-w-[640px] text-left text-sm">
@@ -378,7 +378,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            Common balance shortcuts are <strong>MTN *136#</strong>, <strong>Vodacom *135#</strong>, <strong>Telkom *188#</strong>, and <strong>Cell C *101#</strong>. If you searched for <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Please Call Me MTN</Link>, the commonly used format is <strong>*121*number#</strong>. Use this hub for cross-network comparison, then jump to <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN USSD codes</Link>, <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link>, or <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">how to check Cell C balance</Link> when the intent becomes network-specific.
+            Common balance shortcuts are <strong>MTN *136#</strong>, <strong>Vodacom *136#</strong>, <strong>Telkom *188#</strong>, and <strong>Cell C *101#</strong>. MTN does not currently publish a network-wide Please Call Me shortcut in its public guidance, so use the <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN support routes</Link> instead of relying on a legacy code. Use this hub for cross-network comparison, then jump to <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link> or <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">how to check Cell C balance</Link> when the intent becomes network-specific.
           </p>
           <p className="mt-3 text-sm text-slate-600 leading-relaxed">
             For network-price or bundle intent instead of code lookup, go to the <Link to="/network/vodacom/" className="font-semibold text-[#1b6d24] hover:underline">Vodacom data prices page</Link>. If your query is <Link to="/guides/how-to-check-vodacom-airtime-balance/" className="font-semibold text-[#1b6d24] hover:underline">how to check balance on Vodacom</Link>, use the dedicated guide. For broader prepaid pricing research, open the <Link to="/guides/cheapest-data-south-africa/" className="font-semibold text-[#1b6d24] hover:underline">cheapest data comparison guide</Link>.

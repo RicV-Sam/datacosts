@@ -85,12 +85,12 @@ const assertRejected = (
   return result.diagnostic;
 };
 
-test('the private authority remains lookup-only and reconciles all 172 committed subjects', () => {
+test('the private authority remains lookup-only and reconciles all 156 committed subjects', () => {
   assert.deepEqual(Object.keys(subjectAuthority), ['resolveWp1EvidenceSubjectKind']);
-  assert.equal(subjectAuthority.resolveWp1EvidenceSubjectKind('price.mtn-50gb-data-price'), 'price');
+  assert.equal(subjectAuthority.resolveWp1EvidenceSubjectKind('price.mtn-5gb-data-price'), 'price');
   assert.equal(subjectAuthority.resolveWp1EvidenceSubjectKind('uncommitted.subject'), null);
   const source = readFileSync(new URL('../src/data/wp1EvidenceSubjects.ts', import.meta.url), 'utf8');
-  assert.equal([...source.matchAll(/Object\.freeze\(\{"contentId":/g)].length, 172);
+  assert.equal([...source.matchAll(/Object\.freeze\(\{"contentId":/g)].length, 156);
   assert.equal(WP1_EVIDENCE_FINGERPRINT_PROJECTION_VERSION, 'wp1-release-a.6-projection-v1');
   assert.match(source, /CANONICAL_EVIDENCE_FINGERPRINT_PROJECTION_VERSION/);
 });
@@ -138,7 +138,7 @@ test('cosmetic mutation and collection reordering remain valid in fresh processe
     `import { bundles } from './src/data.ts'; bundles.reverse();`
   ];
   for (const setup of controls) {
-    const result = runFreshAuthority(setup, 'price.mtn-50gb-data-price');
+    const result = runFreshAuthority(setup, 'price.mtn-5gb-data-price');
     assert.equal(result.accepted, true, setup);
     assert.equal(result.lookupKind, 'price', setup);
   }
@@ -169,20 +169,20 @@ test('fresh structurally valid collection injections remain untrusted', () => {
 test('actionable structural diagnostics identify malformed and wrong-owner shapes', () => {
   assertRejected(
     `import { bundles } from './src/data.ts'; bundles[0] = { slug: bundles[0].slug };`,
-    'price.mtn-50gb-data-price',
-    { code: 'missing_required_field', recordId: 'price.mtn-50gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' },
+    'price.mtn-5gb-data-price',
+    { code: 'missing_required_field', recordId: 'price.mtn-5gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' },
     'id'
   );
   assertRejected(
     `import { bundles } from './src/data.ts'; bundles[0].price = '299';`,
-    'price.mtn-50gb-data-price',
-    { code: 'invalid_field_type', recordId: 'price.mtn-50gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' },
+    'price.mtn-5gb-data-price',
+    { code: 'invalid_field_type', recordId: 'price.mtn-5gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' },
     'price'
   );
   assertRejected(
     `import { bundles } from './src/data.ts'; import { ussdRepository } from './src/data/ussd.ts'; ussdRepository[0] = { ...bundles[0], id: ussdRepository[0].id };`,
-    'ussd.vodacom.balance_main',
-    { code: 'unexpected_semantic_field', recordId: 'ussd.vodacom.balance_main', runtimeOwner: 'ussd_repository', expectedOwner: 'ussd_repository', expectedKind: 'ussd_code' },
+    'ussd.vodacom.balance_detailed',
+    { code: 'unexpected_semantic_field', recordId: 'ussd.vodacom.balance_detailed', runtimeOwner: 'ussd_repository', expectedOwner: 'ussd_repository', expectedKind: 'ussd_code' },
     'slug'
   );
   const guideKey = 'why-is-my-data-disappearing-south-africa';
@@ -221,26 +221,26 @@ test('unknown subjects, duplicate IDs and cross-owner collisions have specific d
   );
   assertRejected(
     `import { bundles } from './src/data.ts'; bundles.push({ ...bundles[0] });`,
-    'price.mtn-50gb-data-price',
-    { code: 'duplicate_subject_id', recordId: 'price.mtn-50gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' }
+    'price.mtn-5gb-data-price',
+    { code: 'duplicate_subject_id', recordId: 'price.mtn-5gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' }
   );
   assertRejected(
     `import { bundles } from './src/data.ts'; import { ussdRepository } from './src/data/ussd.ts'; ussdRepository.push({ ...ussdRepository[0], id: 'price.' + bundles[0].slug });`,
-    'price.mtn-50gb-data-price',
-    { code: 'cross_owner_collision', recordId: 'price.mtn-50gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' }
+    'price.mtn-5gb-data-price',
+    { code: 'cross_owner_collision', recordId: 'price.mtn-5gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' }
   );
   assertRejected(
     `import { bundles } from './src/data.ts'; bundles.shift();`,
-    'price.mtn-50gb-data-price',
-    { code: 'missing_canonical_subject', recordId: 'price.mtn-50gb-data-price', runtimeOwner: null, expectedOwner: 'price_collection', expectedKind: 'price' }
+    'price.mtn-5gb-data-price',
+    { code: 'missing_canonical_subject', recordId: 'price.mtn-5gb-data-price', runtimeOwner: null, expectedOwner: 'price_collection', expectedKind: 'price' }
   );
 });
 
 test('semantic mutation and unknown semantic fields fail with complete mismatch diagnostics', () => {
   const mismatch = assertRejected(
     `import { bundles } from './src/data.ts'; bundles[0].price = bundles[0].price + 1;`,
-    'price.mtn-50gb-data-price',
-    { code: 'semantic_fingerprint_mismatch', recordId: 'price.mtn-50gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' }
+    'price.mtn-5gb-data-price',
+    { code: 'semantic_fingerprint_mismatch', recordId: 'price.mtn-5gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' }
   );
   assert.match(mismatch.expectedFingerprint ?? '', /^[a-f0-9]{64}$/);
   assert.match(mismatch.actualFingerprint ?? '', /^[a-f0-9]{64}$/);
@@ -248,19 +248,19 @@ test('semantic mutation and unknown semantic fields fail with complete mismatch 
 
   assertRejected(
     `import { bundles } from './src/data.ts'; bundles[0].semanticOverride = 'evergreen';`,
-    'price.mtn-50gb-data-price',
-    { code: 'unexpected_semantic_field', recordId: 'price.mtn-50gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' },
+    'price.mtn-5gb-data-price',
+    { code: 'unexpected_semantic_field', recordId: 'price.mtn-5gb-data-price', runtimeOwner: 'price_collection', expectedOwner: 'price_collection', expectedKind: 'price' },
     'semanticOverride'
   );
 });
 
 test('claim-defining operator, code, type, currency and device fields fail authority initialisation', () => {
   const attacks = [
-    [`import { bundles } from './src/data.ts'; bundles[0].currency = 'USD';`, 'price.mtn-50gb-data-price', 'price_collection', 'price'],
-    [`import { bundles } from './src/data.ts'; bundles[0].network = 'Vodacom';`, 'price.mtn-50gb-data-price', 'price_collection', 'price'],
-    [`import { ussdRepository } from './src/data/ussd.ts'; ussdRepository[0].code = '*000#';`, 'ussd.vodacom.balance_main', 'ussd_repository', 'ussd_code'],
-    [`import { ussdRepository } from './src/data/ussd.ts'; ussdRepository[0].category = 'Other';`, 'ussd.vodacom.balance_main', 'ussd_repository', 'ussd_code'],
-    [`import { ussdRepository } from './src/data/ussd.ts'; ussdRepository[0].network = 'MTN';`, 'ussd.vodacom.balance_main', 'ussd_repository', 'ussd_code'],
+    [`import { bundles } from './src/data.ts'; bundles[0].currency = 'USD';`, 'price.mtn-5gb-data-price', 'price_collection', 'price'],
+    [`import { bundles } from './src/data.ts'; bundles[0].network = 'Vodacom';`, 'price.mtn-5gb-data-price', 'price_collection', 'price'],
+    [`import { ussdRepository } from './src/data/ussd.ts'; ussdRepository[0].code = '*000#';`, 'ussd.vodacom.balance_detailed', 'ussd_repository', 'ussd_code'],
+    [`import { ussdRepository } from './src/data/ussd.ts'; ussdRepository[0].category = 'Other';`, 'ussd.vodacom.balance_detailed', 'ussd_repository', 'ussd_code'],
+    [`import { ussdRepository } from './src/data/ussd.ts'; ussdRepository[0].network = 'MTN';`, 'ussd.vodacom.balance_detailed', 'ussd_repository', 'ussd_code'],
     [`import { fixPages } from './src/data/fixes.ts'; fixPages[0].cluster = 'ussd';`, 'device_step.vodacom-apn-settings', 'device_collection', 'device_step'],
     [`import { fixPages } from './src/data/fixes.ts'; fixPages[0].provider = 'Other';`, 'device_step.vodacom-apn-settings', 'device_collection', 'device_step'],
     [`import { fixPages } from './src/data/fixes.ts'; fixPages[0].serviceType = 'other-service';`, 'device_step.vodacom-apn-settings', 'device_collection', 'device_step']

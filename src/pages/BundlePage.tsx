@@ -5,7 +5,7 @@ import { bundles, networkMetadata } from '../data';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { RelatedPages } from '../components/RelatedPages';
-import { ArrowLeft, ExternalLink, ShieldCheck, Zap, Info, Clock, Volume2 } from 'lucide-react';
+import { ArrowLeft, ExternalLink, ShieldCheck, Zap, Info, Clock } from 'lucide-react';
 import { buildBundleProductSchema } from '../utils/structuredData';
 import { getBundleSourceNote, getBundleSourceSummary, isVerifiedBundleSource } from '../utils/bundleSource';
 import { toCanonicalUrl } from '../seo/siteConstants';
@@ -23,23 +23,30 @@ export const BundlePage: React.FC = () => {
     return <div>Bundle not found</div>;
   }
 
-  const pageTitle = `${bundle.name} Data Bundle Price (2026)`;
-  const metaDescription = `How much is the ${bundle.name}? Full price breakdown: R${bundle.price} for ${bundle.volume}. Valid for ${bundle.validity}. Cost per GB: R${bundle.costPerGb.toFixed(2)}.`;
+  const hasVerifiedSource = isVerifiedBundleSource(bundle);
+  const pageTitle = hasVerifiedSource
+    ? `${bundle.name} Data Bundle Price (2026)`
+    : `${network.name} Data Bundle Price Check | DataCost`;
+  const metaDescription = hasVerifiedSource
+    ? `How much is the ${bundle.name}? Full price breakdown: R${bundle.price} for ${bundle.volume}. Valid for ${bundle.validity}. Cost per GB: R${bundle.costPerGb.toFixed(2)}.`
+    : `This recorded ${network.name} bundle needs a fresh official source check. Confirm the current allocation, validity and price with ${network.name} before buying.`;
   const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/${bundleSlug}/`);
   const sourceSummary = getBundleSourceSummary(bundle);
   const sourceNote = getBundleSourceNote(bundle);
   const confidenceLabel = isVerifiedBundleSource(bundle) ? 'Verified Price' : 'Price Check Advised';
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    ...buildBundleProductSchema(bundle, {
-      productUrl: canonicalUrl,
-      offerUrl: canonicalUrl,
-      description: `Compare the ${bundle.name} prepaid data bundle in South Africa, including price, validity, and cost per GB.`
-    })
-  };
+  const jsonLd = hasVerifiedSource
+    ? {
+        '@context': 'https://schema.org',
+        ...buildBundleProductSchema(bundle, {
+          productUrl: canonicalUrl,
+          offerUrl: canonicalUrl,
+          description: `Compare the ${bundle.name} prepaid data bundle in South Africa, including price, validity, and cost per GB.`
+        })
+      }
+    : null;
 
-  const faqSchema = {
+  const faqSchema = hasVerifiedSource ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
@@ -60,20 +67,25 @@ export const BundlePage: React.FC = () => {
         }
       }
     ]
-  };
+  } : null;
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
+        {!hasVerifiedSource && <meta name="robots" content="noindex, follow" />}
         <link rel="canonical" href={canonicalUrl} />
-        <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
+        {jsonLd && (
+          <script type="application/ld+json">
+            {JSON.stringify(jsonLd)}
+          </script>
+        )}
+        {faqSchema && (
+          <script type="application/ld+json">
+            {JSON.stringify(faqSchema)}
+          </script>
+        )}
       </Helmet>
 
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 px-4 py-4">
@@ -98,26 +110,26 @@ export const BundlePage: React.FC = () => {
             </div>
             <div>
               <h1 className="text-4xl md:text-5xl font-black tracking-tighter leading-tight">
-                {bundle.name} Price (2026)
+                {hasVerifiedSource ? `${bundle.name} Price (2026)` : `${bundle.name} Price Check Required`}
               </h1>
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
               <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Price</div>
-              <div className="text-3xl font-black text-[#031636]">R{bundle.price}</div>
+              <div className="text-3xl font-black text-[#031636]">{hasVerifiedSource ? `R${bundle.price}` : 'Confirm'}</div>
             </div>
             <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
               <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Volume</div>
-              <div className="text-3xl font-black text-[#031636]">{bundle.volume}</div>
+              <div className="text-3xl font-black text-[#031636]">{hasVerifiedSource ? bundle.volume : 'Confirm'}</div>
             </div>
             <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
               <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Validity</div>
-              <div className="text-2xl font-black text-[#031636]">{bundle.validity}</div>
+              <div className="text-2xl font-black text-[#031636]">{hasVerifiedSource ? bundle.validity : 'Confirm'}</div>
             </div>
             <div className="bg-[#a0f399]/10 p-6 rounded-3xl border border-[#a0f399]/30 text-center">
               <div className="text-[10px] font-black uppercase tracking-widest text-[#1b6d24] mb-2">Value</div>
-              <div className="text-2xl font-black text-[#1b6d24]">R{bundle.costPerGb.toFixed(2)}/GB</div>
+              <div className="text-2xl font-black text-[#1b6d24]">{hasVerifiedSource ? `R${bundle.costPerGb.toFixed(2)}/GB` : 'N/A'}</div>
             </div>
           </div>
         </header>
@@ -127,19 +139,31 @@ export const BundlePage: React.FC = () => {
           <div className="space-y-12">
             <div className="flex flex-col md:flex-row gap-8">
               <div className="flex-1 space-y-6">
-                <div className="flex items-start gap-3">
-                  <Zap className="w-5 h-5 text-[#1b6d24] mt-1" />
-                  <div>
-                    <h3 className="font-bold text-slate-900">Anytime Data: {bundle.anytimeData}</h3>
-                    <p className="text-sm text-slate-500">This data can be used at any hour of the day or night.</p>
-                  </div>
-                </div>
-                {bundle.nightData && (
+                {hasVerifiedSource ? (
+                  <>
+                    <div className="flex items-start gap-3">
+                      <Zap className="w-5 h-5 text-[#1b6d24] mt-1" />
+                      <div>
+                        <h3 className="font-bold text-slate-900">Anytime Data: {bundle.anytimeData}</h3>
+                        <p className="text-sm text-slate-500">This data can be used at any hour of the day or night.</p>
+                      </div>
+                    </div>
+                    {bundle.nightData && (
+                      <div className="flex items-start gap-3">
+                        <Clock className="w-5 h-5 text-blue-500 mt-1" />
+                        <div>
+                          <h3 className="font-bold text-slate-900">Night Owl Data: {bundle.nightData}</h3>
+                          <p className="text-sm text-slate-500">Available for use during the listed night window{bundle.nightWindow ? ` (${bundle.nightWindow})` : ''}.</p>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
                   <div className="flex items-start gap-3">
-                    <Clock className="w-5 h-5 text-blue-500 mt-1" />
+                    <Info className="w-5 h-5 text-amber-600 mt-1" />
                     <div>
-                      <h3 className="font-bold text-slate-900">Night Owl Data: {bundle.nightData}</h3>
-                      <p className="text-sm text-slate-500">Available for use during the listed night window{bundle.nightWindow ? ` (${bundle.nightWindow})` : ''}.</p>
+                      <h3 className="font-bold text-slate-900">Recorded bundle details need confirmation</h3>
+                      <p className="text-sm text-slate-500">No current source check is recorded, so allocation, validity and price are withheld here. Use the official operator channel before buying.</p>
                     </div>
                   </div>
                 )}
@@ -184,7 +208,7 @@ export const BundlePage: React.FC = () => {
           <div className="bg-[#1b6d24] rounded-3xl p-8 text-white flex flex-col justify-between">
             <h3 className="text-xl font-black mb-4 flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-[#a0f399]" />
-              Buy This Bundle
+              {hasVerifiedSource ? 'Buy This Bundle' : 'Check This Bundle'}
             </h3>
             <p className="text-sm text-[#a0f399] mb-6 font-medium">You will be redirected to the official {network.name} website.</p>
             <a
@@ -203,12 +227,24 @@ export const BundlePage: React.FC = () => {
           <h2 className="text-2xl font-black tracking-tight mb-8">Frequently Asked Questions</h2>
           <div className="space-y-6">
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-              <h3 className="font-bold text-slate-900 mb-2">How much does the {bundle.name} cost?</h3>
-              <p className="text-sm text-slate-600">The {bundle.name} currently costs R{bundle.price} in South Africa as of 2026.</p>
+              <h3 className="font-bold text-slate-900 mb-2">
+                {hasVerifiedSource ? `How much does the ${bundle.name} cost?` : 'Is this recorded bundle price confirmed?'}
+              </h3>
+              <p className="text-sm text-slate-600">
+                {hasVerifiedSource
+                  ? `The ${bundle.name} currently costs R${bundle.price} in South Africa as of 2026.`
+                  : `No current source check is recorded. Confirm the live allocation, validity and price with ${network.name}.`}
+              </p>
             </div>
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-              <h3 className="font-bold text-slate-900 mb-2">How long is the {bundle.name} valid for?</h3>
-              <p className="text-sm text-slate-600">The {bundle.name} is valid for {bundle.validity} from the date of purchase.</p>
+              <h3 className="font-bold text-slate-900 mb-2">
+                {hasVerifiedSource ? `How long is the ${bundle.name} valid for?` : 'Where should I confirm the current terms?'}
+              </h3>
+              <p className="text-sm text-slate-600">
+                {hasVerifiedSource
+                  ? `The ${bundle.name} is valid for ${bundle.validity} from the date of purchase.`
+                  : `Use ${network.name}'s official website, app or self-service menu and verify the final terms on your own line.`}
+              </p>
             </div>
           </div>
         </section>

@@ -25,7 +25,19 @@ export const REDIRECT_ALIASES: RedirectAlias[] = [
     to: '/guides/cheap-night-data-south-africa/',
     label: 'Cheap Night Data South Africa'
   },
-  { from: '/night-data-bundles-south-africa/', to: '/guides/cheap-night-data-south-africa/', label: 'Cheap Night Data South Africa' }
+  { from: '/night-data-bundles-south-africa/', to: '/guides/cheap-night-data-south-africa/', label: 'Cheap Night Data South Africa' },
+  { from: '/network/vodacom/daily-data/', to: '/network/vodacom/', label: 'Vodacom Data Prices' },
+  {
+    from: '/network/telkom/night-data/',
+    to: '/guides/cheap-night-data-south-africa/',
+    label: 'Cheap Night Data South Africa'
+  },
+  { from: '/network/cell-c/weekly-data/', to: '/network/cell-c/', label: 'Cell C Data Prices' },
+  {
+    from: '/network/cell-c/night-data/',
+    to: '/guides/cheap-night-data-south-africa/',
+    label: 'Cheap Night Data South Africa'
+  }
 ];
 
 function normalizeAliasPath(path: string): string {

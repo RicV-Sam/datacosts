@@ -305,7 +305,15 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     ussdCodes.find((code) => matcher(code.action.toLowerCase(), code.category.toLowerCase()))?.code;
   const balanceCode = getUssdCode((action, category) => action.includes('balance') || category.includes('balance'));
   const buyDataCode = getUssdCode((action, category) => action.includes('buy data') || action.includes('bundles') || category.includes('data'));
-  const promoCode = getUssdCode((action) => action.includes('just 4 you') || action.includes('made4u') || action.includes("mo'nice") || action.includes('for you'));
+  const personalisedUssdIdByNetwork: Partial<Record<NetworkName, string>> = {
+    Vodacom: 'ussd.vodacom.just4you',
+    MTN: 'ussd.mtn.mytownoffers',
+    Telkom: 'ussd.telkom.monice'
+  };
+  const personalisedUssdId = personalisedUssdIdByNetwork[network.name];
+  const promoCode = personalisedUssdId
+    ? ussdCodes.find((code) => code.id === personalisedUssdId)?.code
+    : undefined;
   const rechargeCode = getUssdCode((action, category) => action.includes('recharge') || action.includes('voucher') || category.includes('recharge') || category.includes('airtime'));
 
   return (
@@ -505,7 +513,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
               {pageData.personalisedSection && (
                 <p className="mt-6 text-slate-300 text-sm leading-relaxed font-medium">
-                  Cheapest standard 1GB is usually short-validity. For longer value, monthly bundles typically reduce Rand-per-GB. Always check personalised offer channels before paying full menu pricing.
+                  Short-validity and monthly bundles serve different usage patterns. Compare any personalised offer shown on your line with the public menu on allocation, validity and price.
                 </p>
               )}
             </div>

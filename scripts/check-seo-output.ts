@@ -8,6 +8,9 @@ import {
   SITE_LOGO_URL,
   SITE_URL
 } from '../src/seo/siteConstants';
+import { bundles } from '../src/data';
+import { ussdRepository } from '../src/data/ussd';
+import type { USSDEntry } from '../src/types';
 import { getIndexableRoutes, getNoindexRoutes, getSitemapRoutes } from '../src/config/routeCatalog';
 import { getRouteLastMod, getRouteModifiedIso } from '../src/seo/contentDates';
 
@@ -19,6 +22,10 @@ const SOCIAL_PREVIEW_ROUTES = new Set([
   '/ussd-codes-south-africa/',
   '/guides/how-to-check-data-balance/',
   '/guides/airtime-data-saving-tips-south-africa/'
+]);
+const PROTECTED_ORGANIC_ROUTES = new Set([
+  '/network/vodacom/cheapest-1gb/',
+  '/network/telkom/monthly-data/'
 ]);
 
 const FORBIDDEN_LITERALS = [
@@ -152,6 +159,37 @@ function validateCanonicalTags(filePath: string, html: string, errors: Validatio
 
     validateOwnDomainUrl(href, filePath, `canonical tag #${index + 1}`, errors);
   });
+}
+
+function validateProtectedOrganicPage(
+  filePath: string,
+  html: string,
+  route: string,
+  errors: ValidationError[]
+): void {
+  if (!PROTECTED_ORGANIC_ROUTES.has(route)) return;
+
+  const canonicalTag = (html.match(/<link\b[^>]*>/gi) ?? []).find((tag) => {
+    const rel = getAttributeValue(tag, 'rel');
+    return rel !== null && rel.toLowerCase().split(/\s+/).includes('canonical');
+  });
+  const canonicalHref = canonicalTag ? getAttributeValue(canonicalTag, 'href') : null;
+  const expectedCanonical = new URL(route, SITE_URL).toString();
+  if (canonicalHref !== expectedCanonical) {
+    pushError(
+      errors,
+      filePath,
+      `${route} is protected organic traffic and must remain self-canonical at ${expectedCanonical}`
+    );
+  }
+
+  const robotsTag = (html.match(/<meta\b[^>]*>/gi) ?? []).find(
+    (tag) => getAttributeValue(tag, 'name')?.toLowerCase() === 'robots'
+  );
+  const robotsContent = robotsTag ? getAttributeValue(robotsTag, 'content')?.toLowerCase() ?? '' : '';
+  if (robotsContent.includes('noindex')) {
+    pushError(errors, filePath, `${route} is protected organic traffic but contains robots noindex`);
+  }
 }
 
 function validateMetaSeoUrls(filePath: string, html: string, errors: ValidationError[]): void {
@@ -431,6 +469,27 @@ function validateRobotsFile(filePath: string, text: string, errors: ValidationEr
   }
 }
 
+function validatePublishedEvidenceCollections(errors: ValidationError[]): void {
+  const bundleFile = path.resolve(process.cwd(), 'src/data.ts');
+  const ussdFile = path.resolve(process.cwd(), 'src/data/ussd.ts');
+
+  for (const bundle of bundles) {
+    if (bundle.sourceConfidence === 'manual_required') {
+      pushError(errors, bundleFile, `${bundle.slug} still requires manual price confirmation`);
+    }
+
+    if (bundle.sourceConfidence === 'verified' && (!bundle.sourceUrl || !bundle.lastVerified)) {
+      pushError(errors, bundleFile, `${bundle.slug} is verified without both sourceUrl and lastVerified`);
+    }
+  }
+
+  for (const entry of ussdRepository as readonly USSDEntry[]) {
+    if (entry.status === 'needs review') {
+      pushError(errors, ussdFile, `${entry.id} still requires manual USSD confirmation`);
+    }
+  }
+}
+
 async function main(): Promise<void> {
   const directoryStat = await stat(DIST_DIR).catch(() => null);
   if (!directoryStat?.isDirectory()) {
@@ -443,6 +502,9 @@ async function main(): Promise<void> {
   const textFiles = allFiles.filter((filePath) => filePath.endsWith('.txt') || filePath.endsWith('.xml') || filePath.endsWith('.html'));
   const errors: ValidationError[] = [];
   const sitemapRoutes = new Set<string>();
+  const renderedHtmlRoutes = new Set<string>();
+
+  validatePublishedEvidenceCollections(errors);
 
   if (htmlFiles.length === 0) {
     throw new Error(`No HTML files found in ${DIST_DIR}`);
@@ -458,7 +520,9 @@ async function main(): Promise<void> {
 
     if (filePath.endsWith('.html')) {
       const route = getRouteFromHtmlPath(filePath);
+      renderedHtmlRoutes.add(route);
       validateCanonicalTags(filePath, text, errors);
+      validateProtectedOrganicPage(filePath, text, route, errors);
       validateMetaSeoUrls(filePath, text, errors);
       validateSocialPreviewMeta(filePath, text, route, errors);
       validateRobotsMeta(filePath, text, route, errors);
@@ -485,6 +549,19 @@ async function main(): Promise<void> {
   for (const route of sitemapRoutes) {
     if (!expectedSitemapRoutes.has(route)) {
       pushError(errors, path.join(DIST_DIR, 'sitemap.xml'), `sitemap contains unexpected route: ${route}`);
+    }
+  }
+
+  const indexableRoutes = new Set(getIndexableRoutes().map(normalizeRoute));
+  for (const route of PROTECTED_ORGANIC_ROUTES) {
+    if (!indexableRoutes.has(route)) {
+      pushError(errors, path.resolve(process.cwd(), 'src/config/routeCatalog.ts'), `${route} must remain indexable`);
+    }
+    if (!renderedHtmlRoutes.has(route)) {
+      pushError(errors, path.join(DIST_DIR, route, 'index.html'), `${route} is missing protected prerendered HTML`);
+    }
+    if (!sitemapRoutes.has(route)) {
+      pushError(errors, path.join(DIST_DIR, 'sitemap-network.xml'), `${route} is missing from the sitemap`);
     }
   }
 

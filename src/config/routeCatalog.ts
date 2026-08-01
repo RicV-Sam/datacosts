@@ -211,11 +211,17 @@ export function getNetworkFacetRoutes(): string[] {
 
     const networkBundles = bundles.filter((bundle) => bundle.network === networkPage.networkName);
     const hasMatchingBundle = networkBundles.some((bundle) => bundleTypeConfig.filter(bundle));
-    if (!hasMatchingBundle) {
+    const route = `/network/${networkPage.slug}/${filterRoute.bundleType}/`;
+
+    // Keep established organic landing pages routable even when a freshness
+    // review temporarily removes every exact price row. The page then renders
+    // an evidence-safe empty state instead of returning a 404 for an indexed
+    // canonical URL.
+    if (!hasMatchingBundle && !ORGANIC_PROTECTED_FACET_ROUTES.has(route)) {
       continue;
     }
 
-    routes.add(`/network/${networkPage.slug}/${filterRoute.bundleType}/`);
+    routes.add(route);
   }
 
   return [...routes].map(normalizeCanonicalPath);
