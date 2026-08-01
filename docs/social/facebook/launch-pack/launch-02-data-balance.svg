@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1080" viewBox="0 0 1080 1080" role="img" aria-label="DataCost graphic on a deep navy background reading: Check before you top up. Data balance methods for MTN, Vodacom, Telkom and Cell C. A circular balance gauge appears on the right.">
+  <defs>
+    <radialGradient id="glow" cx="84%" cy="47%" r="52%">
+      <stop offset="0" stop-color="#0c62a0" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#031636" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bottomLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0bc8e8"/>
+      <stop offset="1" stop-color="#8bdf47"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="#031636"/>
+  <rect width="1080" height="1080" fill="url(#glow)"/>
+  <g opacity="0.16" stroke="#0bc8e8" fill="none">
+    <path d="M620 132 C768 166 922 126 1080 180"/>
+    <path d="M610 844 C784 742 914 830 1080 696"/>
+    <path d="M684 918 C824 826 938 894 1080 792"/>
+    <circle cx="1000" cy="186" r="5" fill="#8bdf47" stroke="none"/>
+    <circle cx="650" cy="842" r="5" fill="#0bc8e8" stroke="none"/>
+  </g>
+  <image href="../assets/datacost-facebook-profile-linkedin-aligned-1080-v2.png" x="70" y="62" width="118" height="118" preserveAspectRatio="xMidYMid meet"/>
+  <text x="208" y="111" fill="#ffffff" font-size="40" font-weight="900">Data<tspan fill="#0bc8e8">Cost</tspan></text>
+  <text x="208" y="148" fill="#b8c9de" font-size="24" font-weight="500">South Africa</text>
+  <text x="80" y="270" fill="#a0f399" font-size="22" font-weight="900" letter-spacing="5">CHECK BEFORE YOU BUY AGAIN</text>
+  <text x="78" y="385" fill="#ffffff" font-size="76" font-weight="900" letter-spacing="-2">Check before</text>
+<text x="78" y="477" fill="#0bc8e8" font-size="76" font-weight="900" letter-spacing="-2">you top up</text>
+  <text x="82" y="595" fill="#dce8f5" font-size="30" font-weight="500">Data balance methods for MTN, Vodacom,</text>
+<text x="82" y="641" fill="#dce8f5" font-size="30" font-weight="500">Telkom and Cell C</text>
+  <g>
+      <circle cx="840" cy="480" r="142" fill="#071f48" stroke="#1a4975" stroke-width="28"/>
+      <circle cx="840" cy="480" r="142" fill="none" stroke="#0bc8e8" stroke-width="28" stroke-linecap="round" stroke-dasharray="635 892" transform="rotate(-90 840 480)"/>
+      <circle cx="840" cy="480" r="96" fill="#031636"/>
+      <text x="840" y="470" text-anchor="middle" fill="#ffffff" font-size="66" font-weight="900">DATA</text>
+      <text x="840" y="522" text-anchor="middle" fill="#a0f399" font-size="28" font-weight="800" letter-spacing="4">BALANCE</text>
+      <rect x="732" y="676" width="62" height="58" rx="12" fill="#0bc8e8" opacity="0.55"/>
+      <rect x="810" y="632" width="62" height="102" rx="12" fill="#0bc8e8" opacity="0.78"/>
+      <rect x="888" y="574" width="62" height="160" rx="12" fill="#8bdf47"/>
+    </g>
+  <rect x="72" y="938" width="936" height="2" fill="url(#bottomLine)" opacity="0.9"/>
+  <text x="78" y="1005" fill="#ffffff" font-size="28" font-weight="800">datacost.co.za</text>
+  <circle cx="294" cy="995" r="8" fill="#8bdf47"/>
+  <text x="1002" y="1005" text-anchor="end" fill="#9eb2ca" font-size="20" font-weight="600">Independent consumer information</text>
+</svg>

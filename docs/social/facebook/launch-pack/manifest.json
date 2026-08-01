@@ -1,0 +1,78 @@
+{
+  "campaign": "facebook_launch",
+  "prepared": "2026-07-17",
+  "pageUrl": "https://www.facebook.com/datacostza",
+  "status": "ready-for-user-approval",
+  "provenance": "Exact post copy and 1080 x 1080 layouts rendered deterministically by scripts/generate-facebook-launch-assets.mjs using the approved DataCost profile mark. No generative-image model was used for these four launch graphics.",
+  "format": {
+    "width": 1080,
+    "height": 1080,
+    "safeMargin": 72
+  },
+  "posts": [
+    {
+      "id": "welcome",
+      "order": 0,
+      "assetFile": "launch-00-welcome.png",
+      "masterFile": "launch-00-welcome.svg",
+      "schedule": "Day 1, 19:00 SAST",
+      "sourceUrl": "https://datacost.co.za/",
+      "linkUrl": "https://datacost.co.za/?utm_source=facebook&utm_medium=organic_social&utm_campaign=facebook_launch&utm_content=pinned_welcome",
+      "utmContent": "pinned_welcome",
+      "label": "WELCOME TO DATACOST",
+      "headline": ["Understand what", "your data", "really costs."],
+      "highlightLine": 1,
+      "support": ["Independent South African mobile data,", "airtime and connectivity information."],
+      "visualType": "welcome",
+      "altText": "DataCost welcome graphic on a deep navy background. It reads: Understand what your data really costs. Independent South African mobile data, airtime and connectivity information."
+    },
+    {
+      "id": "ussd-codes",
+      "order": 1,
+      "assetFile": "launch-01-ussd-codes.png",
+      "masterFile": "launch-01-ussd-codes.svg",
+      "schedule": "Day 2, 07:45 SAST",
+      "sourceUrl": "https://datacost.co.za/ussd-codes-south-africa/",
+      "linkUrl": "https://datacost.co.za/ussd-codes-south-africa/?utm_source=facebook&utm_medium=organic_social&utm_campaign=facebook_launch&utm_content=launch_01_ussd_codes",
+      "utmContent": "launch_01_ussd_codes",
+      "label": "SAVE THESE SHORTCUTS",
+      "headline": ["South African", "USSD codes"],
+      "highlightLine": 1,
+      "support": ["Balance checks • bundles", "• self-service"],
+      "visualType": "ussd",
+      "altText": "DataCost graphic on a deep navy background reading: South African USSD codes. Balance checks, bundles and self-service. A simple phone keypad illustration appears on the right."
+    },
+    {
+      "id": "data-balance",
+      "order": 2,
+      "assetFile": "launch-02-data-balance.png",
+      "masterFile": "launch-02-data-balance.svg",
+      "schedule": "Day 4, 12:30 SAST",
+      "sourceUrl": "https://datacost.co.za/guides/how-to-check-data-balance/",
+      "linkUrl": "https://datacost.co.za/guides/how-to-check-data-balance/?utm_source=facebook&utm_medium=organic_social&utm_campaign=facebook_launch&utm_content=launch_02_data_balance",
+      "utmContent": "launch_02_data_balance",
+      "label": "CHECK BEFORE YOU BUY AGAIN",
+      "headline": ["Check before", "you top up"],
+      "highlightLine": 1,
+      "support": ["Data balance methods for MTN, Vodacom,", "Telkom and Cell C"],
+      "visualType": "balance",
+      "altText": "DataCost graphic on a deep navy background reading: Check before you top up. Data balance methods for MTN, Vodacom, Telkom and Cell C. A circular balance gauge appears on the right."
+    },
+    {
+      "id": "data-saving",
+      "order": 3,
+      "assetFile": "launch-03-data-saving.png",
+      "masterFile": "launch-03-data-saving.svg",
+      "schedule": "Day 9, 07:45 SAST",
+      "sourceUrl": "https://datacost.co.za/guides/airtime-data-saving-tips-south-africa/",
+      "linkUrl": "https://datacost.co.za/guides/airtime-data-saving-tips-south-africa/?utm_source=facebook&utm_medium=organic_social&utm_campaign=facebook_launch&utm_content=launch_03_data_saving_tips",
+      "utmContent": "launch_03_data_saving_tips",
+      "label": "SAVE MORE OF YOUR DATA",
+      "headline": ["Make your data", "last longer"],
+      "highlightLine": 1,
+      "support": ["15 practical airtime and", "data-saving tips"],
+      "visualType": "saving",
+      "altText": "DataCost graphic on a deep navy background reading: Make your data last longer. 15 practical airtime and data-saving tips. A shield with a check mark appears on the right."
+    }
+  ]
+}

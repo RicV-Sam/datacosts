@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1080" viewBox="0 0 1080 1080" role="img" aria-label="DataCost welcome graphic on a deep navy background. It reads: Understand what your data really costs. Independent South African mobile data, airtime and connectivity information.">
+  <defs>
+    <radialGradient id="glow" cx="84%" cy="47%" r="52%">
+      <stop offset="0" stop-color="#0c62a0" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#031636" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bottomLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0bc8e8"/>
+      <stop offset="1" stop-color="#8bdf47"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="#031636"/>
+  <rect width="1080" height="1080" fill="url(#glow)"/>
+  <g opacity="0.16" stroke="#0bc8e8" fill="none">
+    <path d="M620 132 C768 166 922 126 1080 180"/>
+    <path d="M610 844 C784 742 914 830 1080 696"/>
+    <path d="M684 918 C824 826 938 894 1080 792"/>
+    <circle cx="1000" cy="186" r="5" fill="#8bdf47" stroke="none"/>
+    <circle cx="650" cy="842" r="5" fill="#0bc8e8" stroke="none"/>
+  </g>
+  <image href="../assets/datacost-facebook-profile-linkedin-aligned-1080-v2.png" x="70" y="62" width="118" height="118" preserveAspectRatio="xMidYMid meet"/>
+  <text x="208" y="111" fill="#ffffff" font-size="40" font-weight="900">Data<tspan fill="#0bc8e8">Cost</tspan></text>
+  <text x="208" y="148" fill="#b8c9de" font-size="24" font-weight="500">South Africa</text>
+  <text x="80" y="270" fill="#a0f399" font-size="22" font-weight="900" letter-spacing="5">WELCOME TO DATACOST</text>
+  <text x="78" y="385" fill="#ffffff" font-size="76" font-weight="900" letter-spacing="-2">Understand what</text>
+<text x="78" y="477" fill="#0bc8e8" font-size="76" font-weight="900" letter-spacing="-2">your data</text>
+<text x="78" y="569" fill="#ffffff" font-size="76" font-weight="900" letter-spacing="-2">really costs.</text>
+  <text x="82" y="687" fill="#dce8f5" font-size="30" font-weight="500">Independent South African mobile data,</text>
+<text x="82" y="733" fill="#dce8f5" font-size="30" font-weight="500">airtime and connectivity information.</text>
+  <g>
+    <rect x="716" y="560" width="54" height="150" rx="14" fill="#0bc8e8" opacity="0.48"/>
+    <rect x="790" y="482" width="54" height="228" rx="14" fill="#0bc8e8" opacity="0.68"/>
+    <rect x="864" y="386" width="54" height="324" rx="14" fill="#0bc8e8" opacity="0.9"/>
+    <rect x="938" y="290" width="54" height="420" rx="14" fill="#8bdf47"/>
+    <polyline points="706,554 798,466 872,420 952,276" fill="none" stroke="#d8f7ff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="706" cy="554" r="12" fill="#0bc8e8"/>
+    <circle cx="798" cy="466" r="12" fill="#0bc8e8"/>
+    <circle cx="872" cy="420" r="12" fill="#0bc8e8"/>
+    <circle cx="952" cy="276" r="12" fill="#8bdf47"/>
+  </g>
+  <rect x="72" y="938" width="936" height="2" fill="url(#bottomLine)" opacity="0.9"/>
+  <text x="78" y="1005" fill="#ffffff" font-size="28" font-weight="800">datacost.co.za</text>
+  <circle cx="294" cy="995" r="8" fill="#8bdf47"/>
+  <text x="1002" y="1005" text-anchor="end" fill="#9eb2ca" font-size="20" font-weight="600">Independent consumer information</text>
+</svg>

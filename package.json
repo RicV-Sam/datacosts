@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "generate:sitemap": "tsx scripts/generate-sitemap.ts",
+    "generate:facebook-launch": "node scripts/generate-facebook-launch-assets.mjs",
     "update:fibre-prices": "tsx scripts/update-fibre-prices.ts",
     "check:fibre-prices": "tsx scripts/check-fibre-prices.ts",
     "submit:bing": "node scripts/submit-bing.mjs",
