@@ -9,11 +9,11 @@
     "vodacom"
   ],
   "intentScore": 5,
-  "quickAnswer": "Vodacom data disappears because background apps, hotspot sharing, or fallback browsing keep using your bundle after you stop watching it. Check usage in My Vodacom app or dial *135#, then switch off the app or setting draining the line.",
+  "quickAnswer": "Vodacom data can keep dropping because background apps, hotspot sharing, or other traffic continues after you stop watching it. Check usage in the My Vodacom app or dial *135#, identify the active bundle, and check the line's out-of-bundle setting before buying more data.",
   "causes": [
     {
       "cause": "Vodacom video or social bundles end before the main balance",
-      "explanation": "Most users notice this after a normal-looking session, then a surprise drain the next morning or after a second top-up on Vodacom. Vodacom often splits usage across bundle types, so fallback use appears faster. Users usually notice it after overnight refreshes or repeated top-ups."
+      "explanation": "Vodacom can keep separate general, social, video, night, or promotional balances. A restricted or short-validity balance may deplete or expire before the general balance, so confirm the exact bundle and validity shown on the line."
     },
     {
       "cause": "The wrong bundle type finished first",
@@ -34,7 +34,7 @@
       "vodacom": [
         "Open My Vodacom app.",
         "Dial *135#.",
-        "Turn off fallback browsing.",
+        "Check whether out-of-bundle use is enabled or allowed on the line and change the setting if needed.",
         "Check whether hotspot, updates, or backup used data in the background.",
         "Confirm which bundle type expired before topping up again."
       ],
@@ -52,11 +52,11 @@
   "faqs": [
     {
       "question": "Why does my Vodacom data keep disappearing?",
-      "answer": "Vodacom data keeps disappearing because one app, hotspot session, or fallback setting is still using the line. Check recent usage, then switch off the app or setting before buying another bundle."
+      "answer": "A busy app, hotspot session, restricted bundle, expiry, or allowed out-of-bundle use may explain the loss. Check recent usage and the active bundle, then change the responsible app or account setting before buying another bundle."
     },
     {
       "question": "How do I stop data from disappearing on Vodacom?",
-      "answer": "Use My Vodacom app and *135# to confirm which bundle is being used, then switch off fallback browsing and block the heaviest background app."
+      "answer": "Use the My Vodacom app and *135# to confirm which bundle is being used, check the line's out-of-bundle setting, and restrict the heaviest background app."
     },
     {
       "question": "Why did my Vodacom data disappear overnight?",
@@ -107,11 +107,11 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-04-18",
-  "reviewDueDate": "2026-07-18",
+  "lastReviewed": "2026-08-01",
+  "reviewDueDate": "2026-11-01",
   "sourceNotes": [
-    "Vodacom self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
-    "Operator-controlled context for unexpected data loss: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Vodacom.",
+    "Vodacom self-service evidence: the current official balance and self-service entry point is *135#; compare the latest app, account, or USSD result with the balance shown before the problem started.",
+    "Operator-controlled context: current Vodacom data-bundle and out-of-bundle terms show that charging behaviour depends on the product and line setting, so this guide does not assume fallback use is always enabled.",
     "Device-side evidence for Vodacom: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
   ],
   "uniqueValueSummary": "This guide is intentionally scoped to Vodacom data-loss diagnosis and bundle-type clues for Vodacom. It does not simply repeat a generic data-saving checklist: it separates account-side signals, device-side usage, and bundle-validity clues so a user can decide whether to change a phone setting, cancel a service, buy a different bundle, or escalate to Vodacom support. The main check is Vodacom bundle type, validity, hotspot state, background usage, out-of-bundle behaviour, and fallback browsing settings. The Vodacom explanation page is kept separate from the fix page because it helps users diagnose which Vodacom balance type was touched first. That distinction matters because many South African prepaid problems look similar after the balance has already dropped, while the useful evidence is usually visible only in the first few minutes after the user notices the loss. It is intended for users still trying to explain the loss before choosing the right corrective action.",

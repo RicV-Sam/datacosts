@@ -3,20 +3,20 @@ import { Guide } from '../types';
 export const guides: Guide[] = [
   {
     slug: 'cheapest-1gb-data-south-africa',
-    title: 'Cheapest 1GB Data South Africa 2026 - Best Prices Compared',
-    metaDescription: 'Find the absolute cheapest 1GB data bundle in South Africa. Compare Vodacom, MTN, Telkom, and Cell C for the best monthly and prepaid data deals.',
+    title: 'Cheapest 1GB Data South Africa 2026 - Prices Compared',
+    metaDescription: 'Compare source-checked 1GB data rows in South Africa and see which Vodacom, MTN, Telkom, or Cell C prices still need live confirmation.',
     h1: 'Cheapest 1GB Data in South Africa: 2026 Comparison',
-    intro: 'If you are looking for the cheapest 1GB data bundle in South Africa, you have come to the right place. Data costs are constantly changing, with networks like Telkom and MTN often leading the pack in value. In this guide, we break down the current prices for 1GB bundles across all major mobile operators to help you save money on your next recharge.',
+    intro: '1GB prices, validity and eligibility can change by network, product and SIM. This guide compares the rows DataCost has reviewed, labels those that still need live confirmation, and explains what to check before recharging.',
     comparisonType: '1gb',
     stepsTitle: 'How to Find the Best 1GB Deal',
     steps: [
       {
         title: 'Check for Promotional Bundles',
-        description: 'Networks often have personalised or campaign-led deals, such as MTN MyTownOffers or Telkom Mo\'Nice options, that can be cheaper than standard 1GB bundles. Always dial the current USSD menu to see your own offers.'
+        description: 'Networks often have personalised or campaign-led deals, such as MTN Made4U, MyTownOffers for eligible customers, or Telkom Mo\'Nice options. Always check the current menu on your own SIM and compare allocation, validity and price.'
       },
       {
         title: 'Compare Anytime vs. Night Data',
-        description: 'Some "1GB" bundles are actually 500MB Anytime and 500MB Night-Owl. Ensure you are getting 1GB of Anytime data if that is what you need.'
+        description: 'Some headline totals split data between Anytime and a restricted night allocation. Confirm how much is usable at the hours you need instead of assuming the full total is Anytime data.'
       },
       {
         title: 'Look at Validity Periods',
@@ -238,7 +238,7 @@ export const guides: Guide[] = [
     title: 'Data Deals South Africa (2026)',
     metaDescription: 'Find the best data deals in South Africa. Use Vodacom Just 4 You, MTN promo offers, and Telkom Mo\'Nice-style checks to find stronger value for your usage.',
     h1: 'Best Data Deals in South Africa 2026: Top Value Bundles',
-    intro: 'Finding the best data deals in South Africa requires looking beyond the standard monthly bundles. From Vodacom\'s Just 4 You menu to MTN MyTownOffers and Telkom\'s Mo\'Nice-style deals, personalised or campaign-led bundles can beat the standard public menu. Treat them as live channels to check on your own line, not as fixed national prices.',
+    intro: 'Finding a suitable data deal in South Africa requires looking beyond the standard monthly bundles. Vodacom Just4You, MTN Made4U and eligible MyTownOffers, and Telkom Mo\'Nice are live personalised channels to check on your own line, not fixed national prices.',
     comparisonType: 'best-value',
     stepsTitle: 'How to Access "Hidden" Data Deals',
     steps: [
@@ -587,7 +587,7 @@ export const guides: Guide[] = [
       {
         id: 'cause-oob-airtime',
         title: '1) Your phone is using airtime after your data bundle runs out',
-        description: 'This is one of the biggest causes of prepaid airtime loss in South Africa. When your data bundle expires or finishes, some sessions continue using airtime at out-of-bundle rates. Check your current data balance first, then buy a bundle before browsing again. If possible, disable out-of-bundle usage or set strict spend controls with your network support team.'
+        description: 'This can cause prepaid airtime loss in South Africa. If out-of-bundle use is enabled or allowed on the line, traffic after a data bundle expires or finishes may be charged from airtime. Check your current data balance first, then buy a bundle before browsing again. Use your network\'s current self-service or support channel to review out-of-bundle controls or request a spend block.'
       },
       {
         id: 'cause-background-apps',
@@ -639,7 +639,7 @@ export const guides: Guide[] = [
     commonMistakes: [
       {
         title: 'Browsing after bundle expiry',
-        description: 'Many users keep browsing after a bundle finishes, not realizing airtime is being charged at out-of-bundle rates.'
+        description: 'Continuing to browse after a bundle finishes can charge airtime at out-of-bundle rates if that use is enabled or allowed on the line.'
       },
       {
         title: 'Confusing airtime and data bundle behavior',
@@ -1058,7 +1058,7 @@ export const guides: Guide[] = [
       },
       {
         title: 'Check Telkom Balance',
-        description: 'Dial *188# to receive an instant pop-up or SMS showing your Anytime and Night-Owl data balances.'
+        description: 'Dial *188# to receive an instant pop-up or SMS showing airtime, Anytime data and Night Surfer balances where applicable.'
       },
       {
         title: 'Check Cell C Balance',
@@ -1077,7 +1077,7 @@ export const guides: Guide[] = [
     faq: [
       {
         question: 'Is it free to check my data balance?',
-        answer: 'Using USSD codes like *136# or *188# is completely free on all South African mobile networks.'
+        answer: 'The main balance codes listed here are generally provided as operator self-service channels, but confirm the prompt or operator terms for any different or third-party USSD string.'
       },
       {
         question: 'Why is my data balance not updating?',
@@ -1088,8 +1088,8 @@ export const guides: Guide[] = [
         answer: 'Yes, you can log in to your router\'s web interface (usually 192.168.8.1) or use the network\'s app on your phone if it is linked to the router\'s SIM.'
       },
       {
-        question: 'What is "Night Owl" data balance?',
-        answer: 'This is a separate data balance that can only be used between midnight (00:00) and 05:00 AM. Your regular Anytime data won\'t be used during these hours.'
+        question: 'What is an off-peak or night-data balance?',
+        answer: 'It is a separate allocation usable only during that product’s stated window. Vodacom Night Owl, MTN Night Express and Telkom Night Surfer use different hours and depletion rules, so check the exact bundle terms.'
       },
       {
         question: 'How do I see which apps are using my data?',
@@ -1207,10 +1207,10 @@ export const guides: Guide[] = [
     title: 'Why Your Data Disappears on Vodacom (Fix Guide 2026)',
     metaDescription: 'Vodacom data disappearing in South Africa? Learn how to check usage, stop out-of-bundle charges, and fix MyVodacom + USSD settings fast.',
     h1: 'Why Your Data Disappears on Vodacom (Fix Guide 2026)',
-    intro: 'If your Vodacom data seems to vanish quickly, the cause is usually trackable. In most South African cases, it is a combination of out-of-bundle fallback, background app traffic, active content subscriptions, and automatic mobile-data updates. This guide focuses only on Vodacom behaviour and practical fixes.',
+    intro: 'If your Vodacom data seems to vanish quickly, the cause is usually trackable. Check background app traffic, bundle validity and type, hotspot use, content subscriptions, automatic updates, and whether out-of-bundle use is enabled or allowed on the line. This guide focuses only on Vodacom behaviour and practical fixes.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
-      'On Vodacom prepaid, data can disappear fast when your bundle expires and usage falls back to airtime at out-of-bundle rates.',
+      'If Vodacom out-of-bundle use is enabled or allowed on the line, continued traffic after expiry or depletion may be billed from airtime.',
       'MyVodacom usage history and Vodacom USSD checks usually reveal the exact cause within minutes.',
       'Turning off mobile updates, auditing content services, and using strict device limits can stop repeat losses.'
     ],
@@ -1229,7 +1229,7 @@ export const guides: Guide[] = [
       {
         id: 'vodacom-causes',
         title: 'Vodacom-Specific Causes',
-        description: '1) Out-of-bundle fallback: once a bundle runs out or expires, continued browsing can consume airtime rapidly. 2) Background usage spikes: video apps, cloud backup, and autoplay often drain data silently. 3) WASP/content services: premium content or recurring service charges can reduce value unexpectedly. 4) App auto-updates on mobile data: Play Store/App Store updates can burn large chunks at once. 5) Vodacom quirks: personalized Just4You bundles can have short validity windows, so expired promos can lead to unplanned fallback usage.'
+        description: '1) Out-of-bundle fallback: if out-of-bundle use is enabled or allowed on the line, continued browsing after a bundle runs out or expires can consume airtime rapidly. 2) Background usage spikes: video apps, cloud backup, and autoplay often drain data silently. 3) WASP/content services: premium content or recurring service charges can reduce value unexpectedly. 4) App auto-updates on mobile data: Play Store/App Store updates can burn large chunks at once. 5) Vodacom quirks: personalized Just4You bundles can have short validity windows, so expired promos can lead to unplanned fallback usage.'
       },
       {
         id: 'vodacom-fixes',
@@ -1309,10 +1309,10 @@ export const guides: Guide[] = [
     title: 'Why Your Data Disappears on MTN (Fix Guide 2026)',
     metaDescription: 'MTN data disappearing in South Africa? Check MTN app usage, stop out-of-bundle fallback, and fix auto-updates and subscription drains quickly.',
     h1: 'Why Your Data Disappears on MTN (Fix Guide 2026)',
-    intro: 'If your MTN bundle is finishing too quickly, there is usually a specific pattern behind it. In South Africa, common MTN triggers include out-of-bundle billing after expiry, heavy background app activity, unnoticed content services, and mobile-data auto-updates. This page focuses on MTN-only causes and actions.',
+    intro: 'If your MTN bundle is finishing too quickly, there is usually a specific pattern behind it. Check heavy background app activity, unnoticed content services, mobile-data auto-updates, bundle expiry and whether out-of-bundle use is enabled or allowed on the line. This page focuses on MTN-only causes and actions.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
-      'On MTN, data can drop sharply when a bundle expires and usage switches to out-of-bundle charging from airtime.',
+      'If MTN out-of-bundle use is enabled or allowed on the line, continued traffic after expiry or depletion may be billed from airtime.',
       'MTN app usage logs plus quick USSD checks help you identify where data is going in real time.',
       'Disabling mobile auto-updates, tightening app permissions, and auditing recurring services usually fixes repeat loss.'
     ],
@@ -1331,7 +1331,7 @@ export const guides: Guide[] = [
       {
         id: 'mtn-causes',
         title: 'MTN-Specific Causes',
-        description: '1) Out-of-bundle behaviour: once your MTN bundle is depleted, airtime can drain quickly if browsing continues. 2) Background data bursts from social/video/cloud apps. 3) WASP/content subscriptions reducing available airtime value. 4) Auto-downloads and app updates on mobile data. 5) MTN promo behaviour: some personalized offers have strict validity rules, and once expired, normal usage can become far more expensive.'
+        description: '1) Out-of-bundle behaviour: if out-of-bundle use is enabled or allowed on the line, continued browsing after an MTN bundle is depleted can drain airtime quickly. 2) Background data bursts from social/video/cloud apps. 3) WASP/content subscriptions reducing available airtime value. 4) Auto-downloads and app updates on mobile data. 5) MTN promo behaviour: some personalized offers have strict validity rules, and once expired, normal usage can become far more expensive.'
       },
       {
         id: 'mtn-fixes',
@@ -1498,12 +1498,12 @@ export const guides: Guide[] = [
     title: 'How to Buy Data on MTN - USSD Codes & MTN App Guide 2026',
     metaDescription: 'Step-by-step guide on how to buy MTN data bundles using USSD codes like *136*2# and the MTN app. Check MTN personalised offers and standard bundle routes before you buy.',
     h1: 'How to Buy Data on MTN: Easy USSD & App Methods',
-    intro: 'MTN is known for its high-speed network and wide variety of data options. Whether you need a small WhatsApp bundle or a massive 100GB package, MTN makes it easy to recharge using your airtime. This guide will show you the exact USSD codes and steps needed to buy MTN data bundles quickly.',
+    intro: 'MTN offers standard, tariff-specific and personalised data options through USSD and digital channels. Availability can vary by prepaid profile, so this guide separates the main purchase menu from personalised offers and explains what to confirm before buying.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *136*2# from an MTN SIM for the direct data-bundle menu.',
       'Use *136# when you want the broader self-service path first.',
-      'Check *142# for MyTownOffers or other personalised offers that may be cheaper than standard bundles.',
+      'Check *142# for Made4U and other personalised offers; MyTownOffers may appear for eligible prepaid customers in selected areas.',
       'Confirm validity, data type, and final price before accepting the transaction.'
     ],
     jumpLinksTitle: 'On This Page',
@@ -1530,7 +1530,7 @@ export const guides: Guide[] = [
       {
         id: 'mtn-boosta',
         title: 'Method 3: MTN personalised deals',
-        description: 'Dial *142# to check MyTownOffers and other personalised MTN deals. These offers can provide better value than the standard data menu, but they vary by SIM and campaign.'
+        description: 'Dial *142# to check Made4U and other personalised MTN deals. MyTownOffers may appear for eligible prepaid customers in selected areas. Confirm the live price, allocation and validity because offers vary by SIM, place and campaign.'
       }
     ],
     commonMistakesTitle: 'When This Advice May Not Apply',
@@ -1671,7 +1671,7 @@ export const guides: Guide[] = [
     title: 'How to Buy Data on Cell C - USSD Codes & App Guide 2026',
     metaDescription: 'Learn how to buy Cell C data bundles using USSD *147# and the Cell C app. Find the best social, daily, and monthly data deals.',
     h1: 'How to Buy Data on Cell C: Step-by-Step',
-    intro: 'Cell C offers a variety of flexible data options, from social media specific bundles to large monthly packages. Even if you are roaming on another network, you can still use Cell C USSD codes to top up. This guide covers the most efficient ways to buy Cell C data using airtime or the app.',
+    intro: 'Cell C offers data options through USSD and digital channels, but bundle availability and use on partner coverage are product-specific. Check the exact bundle terms and coverage conditions before buying. This guide covers the main ways to buy Cell C data using airtime or the app.',
     comparisonType: 'all',
     stepsTitle: 'How to Purchase Cell C Data Bundles',
     steps: [
@@ -1685,7 +1685,7 @@ export const guides: Guide[] = [
       },
       {
         title: 'Method 3: Social Media Bundles',
-        description: 'If you only need data for WhatsApp, Facebook, or YouTube, Cell C offers specific social bundles that are much cheaper than general anytime data.'
+        description: 'If you mainly use WhatsApp, Facebook, or YouTube, check whether Cell C currently offers a matching social bundle. Confirm the supported apps, validity and live price before comparing it with general anytime data.'
       }
     ],
     faq: [
@@ -1707,7 +1707,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Does Cell C roaming use extra data?',
-        answer: 'No, if you have an active data bundle, it will be used even when roaming on MTN or Vodacom towers (where applicable) at no extra cost.'
+        answer: 'It depends on the bundle and plan. Some Cell C products permit use on named national partner networks, while others are Cell C-network-only and exclude national roaming. Check the exact bundle terms and coverage conditions before buying or using it.'
       }
     ]
   },

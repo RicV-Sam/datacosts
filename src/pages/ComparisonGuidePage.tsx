@@ -10,7 +10,7 @@ import { NavigateFunction, Bundle, NetworkName } from '../types';
 import { getComparisonGuideBySlug } from '../data/comparisonGuides';
 import { isNoindexRoute } from '../config/routeCatalog';
 import { buildBundleItemListSchema } from '../utils/structuredData';
-import { getBundleSourceSummary, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
+import { getBundleSourceSummary, isVerifiedBundleSource, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
 import { networkPages } from '../data/networks';
 import { formatIsoForDisplay, getComparisonGuideModifiedIso, getDefaultPublishedIso } from '../seo/contentDates';
 import {
@@ -68,6 +68,10 @@ function isSocialBundle(bundle: Bundle): boolean {
   return bundle.type === 'Social' || bundle.name.toLowerCase().includes('whatsapp') || bundle.name.toLowerCase().includes('social');
 }
 
+function isSmartphoneOnceOffBundle(bundle: Bundle): boolean {
+  return bundle.productType === 'smartphone_once_off_data';
+}
+
 function getTargetSizeGb(mode: string): number | null {
   const targetMap: Record<string, number> = {
     'cheapest-2gb': 2,
@@ -85,11 +89,23 @@ function filterBundlesByMode(mode: string): Bundle[] {
   const base = bundles.filter((bundle) => CORE_NETWORKS.includes(bundle.network));
 
   if (mode === 'cheapest-1gb') {
-    return base.filter((bundle) => bundle.volume === '1GB' && !isNightBundle(bundle) && !isSocialBundle(bundle));
+    return base.filter(
+      (bundle) =>
+        bundle.volume === '1GB' &&
+        isSmartphoneOnceOffBundle(bundle) &&
+        !isNightBundle(bundle) &&
+        !isSocialBundle(bundle)
+    );
   }
 
   if (mode === 'cheapest-10gb') {
-    return base.filter((bundle) => bundle.volume === '10GB' && !isNightBundle(bundle) && !isSocialBundle(bundle));
+    return base.filter(
+      (bundle) =>
+        bundle.volume === '10GB' &&
+        isSmartphoneOnceOffBundle(bundle) &&
+        !isNightBundle(bundle) &&
+        !isSocialBundle(bundle)
+    );
   }
 
   if (
@@ -99,15 +115,29 @@ function filterBundlesByMode(mode: string): Bundle[] {
     mode === 'cheapest-20gb' ||
     mode === 'cheapest-50gb'
   ) {
-    return base.filter((bundle) => !isNightBundle(bundle) && !isSocialBundle(bundle));
+    return base.filter(
+      (bundle) => isSmartphoneOnceOffBundle(bundle) && !isNightBundle(bundle) && !isSocialBundle(bundle)
+    );
   }
 
   if (mode === 'best-monthly') {
-    return base.filter((bundle) => isMonthlyBundle(bundle) && !isNightBundle(bundle) && !isSocialBundle(bundle));
+    return base.filter(
+      (bundle) =>
+        isSmartphoneOnceOffBundle(bundle) &&
+        isMonthlyBundle(bundle) &&
+        !isNightBundle(bundle) &&
+        !isSocialBundle(bundle)
+    );
   }
 
   if (mode === 'best-prepaid') {
-    return base.filter((bundle) => !isNightBundle(bundle) && !isSocialBundle(bundle) && bundle.type !== 'Contract');
+    return base.filter(
+      (bundle) =>
+        isSmartphoneOnceOffBundle(bundle) &&
+        !isNightBundle(bundle) &&
+        !isSocialBundle(bundle) &&
+        bundle.type !== 'Contract'
+    );
   }
 
   if (mode === 'cheapest-whatsapp') {
@@ -121,53 +151,27 @@ function filterBundlesByMode(mode: string): Bundle[] {
   return base;
 }
 
-function pickClosestBundleForTarget(rows: Bundle[], targetGb: number): Bundle | null {
-  if (!rows.length) return null;
-
-  const exactMatches = rows.filter((bundle) => volumeToGb(bundle.volume) === targetGb);
-  if (exactMatches.length > 0) {
-    return [...exactMatches].sort((a, b) => a.price - b.price)[0];
-  }
-
-  const sizedRows = rows
-    .map((bundle) => ({ bundle, gb: volumeToGb(bundle.volume) }))
-    .filter((item) => Number.isFinite(item.gb) && item.gb > 0);
-
-  if (!sizedRows.length) {
-    return [...rows].sort((a, b) => a.price - b.price)[0];
-  }
-
-  const ranked = [...sizedRows].sort((a, b) => {
-    const aDistance = Math.abs(a.gb - targetGb);
-    const bDistance = Math.abs(b.gb - targetGb);
-    if (aDistance !== bDistance) return aDistance - bDistance;
-
-    // Slightly prefer same-or-higher sizes for users searching a target bundle amount.
-    const aPenalty = a.gb < targetGb ? 1 : 0;
-    const bPenalty = b.gb < targetGb ? 1 : 0;
-    if (aPenalty !== bPenalty) return aPenalty - bPenalty;
-
-    if (a.bundle.costPerGb !== b.bundle.costPerGb) return a.bundle.costPerGb - b.bundle.costPerGb;
-    return a.bundle.price - b.bundle.price;
-  });
-
-  return ranked[0].bundle;
+function preferVerifiedRows(rows: Bundle[]): Bundle[] {
+  const verifiedRows = rows.filter(isVerifiedBundleSource);
+  return verifiedRows.length > 0 ? verifiedRows : rows;
 }
 
 function pickBestRowBundleForMode(rows: Bundle[], mode: string): Bundle | null {
   if (!rows.length) return null;
 
-  const targetGb = getTargetSizeGb(mode);
+  const targetGb = mode === 'cheapest-1gb' ? 1 : getTargetSizeGb(mode);
   if (targetGb) {
-    return pickClosestBundleForTarget(rows, targetGb);
+    const exactMatches = rows.filter((bundle) => volumeToGb(bundle.volume) === targetGb);
+    return [...preferVerifiedRows(exactMatches)].sort((a, b) => a.price - b.price)[0] || null;
   }
 
   if (mode === 'best-monthly' || mode === 'best-prepaid') {
-    const byValue = rows.filter((bundle) => bundle.costPerGb > 0).sort((a, b) => a.costPerGb - b.costPerGb)[0];
-    return byValue || rows.sort((a, b) => a.price - b.price)[0];
+    const preferredRows = preferVerifiedRows(rows);
+    const byValue = preferredRows.filter((bundle) => bundle.costPerGb > 0).sort((a, b) => a.costPerGb - b.costPerGb)[0];
+    return byValue || [...preferredRows].sort((a, b) => a.price - b.price)[0];
   }
 
-  return rows.sort((a, b) => a.price - b.price)[0];
+  return [...preferVerifiedRows(rows)].sort((a, b) => a.price - b.price)[0];
 }
 
 function getBundleType(bundle: Bundle): string {
@@ -188,7 +192,9 @@ function getBundleWatchOut(bundle: Bundle): string {
 }
 
 function getWinners(mode: string, rows: ComparisonRow[], coverageFirstNetwork: NetworkName = 'Vodacom'): WinnerCard[] {
-  const validRows = rows.filter((row) => row.bundle).map((row) => row.bundle as Bundle);
+  const validRows = rows
+    .filter((row) => row.bundle && isVerifiedBundleSource(row.bundle))
+    .map((row) => row.bundle as Bundle);
   if (!validRows.length) {
     return [];
   }
@@ -225,8 +231,8 @@ function getWinners(mode: string, rows: ComparisonRow[], coverageFirstNetwork: N
   const targetGb = getTargetSizeGb(mode);
   if (targetGb) {
     return [
-      { label: `Cheapest ${targetGb}GB-style pick`, text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}.` },
-      { label: `Best ${targetGb}GB-style value`, text: bestValue ? `${bestValue.network}: ${bestValue.name} (~R${bestValue.costPerGb.toFixed(2)}/GB).` : `${cheapest.network}: ${cheapest.name}.` },
+      { label: `Cheapest verified ${targetGb}GB pick`, text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}.` },
+      { label: `Best verified ${targetGb}GB value`, text: bestValue ? `${bestValue.network}: ${bestValue.name} (~R${bestValue.costPerGb.toFixed(2)}/GB).` : `${cheapest.network}: ${cheapest.name}.` },
       { label: 'Coverage-first fallback', text: `${coverageFirst.network}: useful when stability is more important than the absolute lowest listed price.` }
     ];
   }
@@ -302,6 +308,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
 
   const winners = getWinners(definition.mode, rows, definition.coverageFirstNetwork);
   const listedRows = rows.filter((row) => row.bundle).map((row) => row.bundle as Bundle);
+  const verifiedListedRows = listedRows.filter(isVerifiedBundleSource);
   const hasManualRequiredRows = listedRows.some((bundle) => bundle.sourceConfidence === 'manual_required');
   const dateModifiedIso = getComparisonGuideModifiedIso(definition.slug);
   const datePublishedIso = getDefaultPublishedIso();
@@ -381,7 +388,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
   const itemListSchema = buildBundleItemListSchema(
     definition.tableTitle,
     canonicalUrl,
-    listedRows,
+    verifiedListedRows,
     (bundle) => {
       const networkSlug = Object.values(networkPages).find((page) => page.networkName === bundle.network)?.slug;
       if (!networkSlug) return canonicalUrl;
@@ -503,6 +510,9 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
                       {row.bundle ? (
                         <>
                           <div>{row.bundle.name}</div>
+                          <div className={`mt-1 text-[10px] font-black uppercase tracking-wider ${isVerifiedBundleSource(row.bundle) ? 'text-emerald-700' : 'text-amber-700'}`}>
+                            {isVerifiedBundleSource(row.bundle) ? 'Source checked' : 'Confirm live - excluded from leader claims'}
+                          </div>
                           {getBundleSourceSummary(row.bundle) && (
                             <div className="mt-1 text-[10px] font-medium text-slate-500">{getBundleSourceSummary(row.bundle)}</div>
                           )}

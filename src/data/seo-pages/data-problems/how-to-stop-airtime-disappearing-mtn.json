@@ -35,7 +35,7 @@
       "mtn": [
         "Open MyMTN app.",
         "Dial *136#.",
-        "Turn off fallback data use.",
+        "Check whether out-of-bundle data use is enabled or allowed on the line; use MTN's current self-service or support channel to request a change or block if needed.",
         "Check calls, SMS, app purchases, and subscriptions from the same period.",
         "Monitor the next morning balance to see which charge repeats."
       ],
@@ -100,8 +100,8 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-04-18",
-  "reviewDueDate": "2026-07-18",
+  "lastReviewed": "2026-08-01",
+  "reviewDueDate": "2026-11-01",
   "sourceNotes": [
     "MTN self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
     "Operator-controlled context for airtime deductions and fallback billing: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for MTN.",

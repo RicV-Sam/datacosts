@@ -10,6 +10,7 @@ import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
+import { isVerifiedBundleSource } from '../utils/bundleSource';
 
 interface VodacomVsMTNProps {
   onNavigate: NavigateFunction;
@@ -30,8 +31,18 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
 
   const vodacomStats = networkStats.find(n => n.network === 'Vodacom');
   const mtnStats = networkStats.find(n => n.network === 'MTN');
-  const vodacomBundles = bundles.filter((bundle) => bundle.network === 'Vodacom');
-  const mtnBundles = bundles.filter((bundle) => bundle.network === 'MTN');
+  const vodacomBundles = bundles.filter(
+    (bundle) =>
+      bundle.network === 'Vodacom' &&
+      bundle.productType === 'smartphone_once_off_data' &&
+      isVerifiedBundleSource(bundle)
+  );
+  const mtnBundles = bundles.filter(
+    (bundle) =>
+      bundle.network === 'MTN' &&
+      bundle.productType === 'smartphone_once_off_data' &&
+      isVerifiedBundleSource(bundle)
+  );
 
   const vodacom1Gb = vodacomBundles.filter((bundle) => bundle.volume === '1GB').sort((a, b) => a.price - b.price)[0];
   const mtn1Gb = mtnBundles.filter((bundle) => bundle.volume === '1GB').sort((a, b) => a.price - b.price)[0];
@@ -41,19 +52,34 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
   const mtnMonthly = mtnBundles
     .filter((bundle) => bundle.validity.toLowerCase().includes('30 day') || bundle.validity.toLowerCase().includes('month'))
     .sort((a, b) => a.costPerGb - b.costPerGb)[0];
-  const vodacomNight = vodacomBundles
-    .filter((bundle) => bundle.name.toLowerCase().includes('night') || (bundle.nightData !== undefined && bundle.nightData !== ''))
+  const vodacomNight = bundles
+    .filter(
+      (bundle) =>
+        bundle.network === 'Vodacom' &&
+        bundle.productType === 'night_data' &&
+        isVerifiedBundleSource(bundle)
+    )
     .sort((a, b) => a.costPerGb - b.costPerGb)[0];
-  const mtnNight = mtnBundles
-    .filter((bundle) => bundle.name.toLowerCase().includes('night') || (bundle.nightData !== undefined && bundle.nightData !== ''))
+  const mtnNight = bundles
+    .filter(
+      (bundle) =>
+        bundle.network === 'MTN' &&
+        bundle.productType === 'night_data' &&
+        isVerifiedBundleSource(bundle)
+    )
     .sort((a, b) => a.costPerGb - b.costPerGb)[0];
-  const vodacomPrepaid = vodacomBundles.filter((bundle) => bundle.type === 'Prepaid').sort((a, b) => a.costPerGb - b.costPerGb)[0];
-  const mtnPrepaid = mtnBundles.filter((bundle) => bundle.type === 'Prepaid').sort((a, b) => a.costPerGb - b.costPerGb)[0];
+  const vodacomPrepaid = vodacom1Gb;
+  const mtnPrepaid = mtn1Gb;
 
-  const vodacomBestCost = Math.min(...vodacomBundles.map((bundle) => bundle.costPerGb));
-  const mtnBestCost = Math.min(...mtnBundles.map((bundle) => bundle.costPerGb));
-  const cheaperNow = vodacomBestCost < mtnBestCost ? 'Vodacom' : 'MTN';
-  const betterValueNow = mtnBestCost <= vodacomBestCost ? 'MTN' : 'Vodacom';
+  const vodacomBestCost = vodacom1Gb?.costPerGb;
+  const mtnBestCost = mtn1Gb?.costPerGb;
+  const cheaperNow = vodacom1Gb && mtn1Gb
+    ? vodacom1Gb.price < mtn1Gb.price ? 'Vodacom' : 'MTN'
+    : null;
+  const betterValueNow = cheaperNow;
+  const verifiedComparisonAnswer = cheaperNow && vodacom1Gb && mtn1Gb
+    ? `${cheaperNow} is cheaper in the source-checked, like-for-like 1GB 30-day smartphone-data comparison (${mtn1Gb.name} at R${mtn1Gb.price} versus ${vodacom1Gb.name} at R${vodacom1Gb.price}).`
+    : 'No source-checked, like-for-like 1GB comparison is currently available for both networks.';
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -64,7 +90,7 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
         name: 'Is Vodacom or MTN cheaper for data right now?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `${cheaperNow} is currently cheaper on the lowest listed cost-per-GB in this comparison dataset.`
+          text: verifiedComparisonAnswer
         }
       },
       {
@@ -72,7 +98,9 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
         name: 'Which network gives better value: Vodacom or MTN?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `${betterValueNow} currently offers one of the stronger value profiles in this comparison dataset, while final value still depends on your location, usage pattern, and promotions.`
+          text: betterValueNow
+            ? `${betterValueNow} has the lower source-checked price in the like-for-like 1GB 30-day smartphone-data benchmark. Final value still depends on coverage and live offers.`
+            : 'No source-checked like-for-like benchmark currently supports a value leader.'
         }
       },
       {
@@ -139,9 +167,7 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            In this comparison dataset, <span className="font-black">{cheaperNow}</span> is currently cheaper on the lowest listed cost-per-GB,
-            while <span className="font-black">{betterValueNow}</span> shows one of the stronger overall value profiles.
-            For most users, the better choice depends on local coverage and whether you buy 1GB, monthly, or night-data bundles most often.
+            {verifiedComparisonAnswer} For most users, the better choice still depends on local coverage and whether the compared validity and product type fit their usage.
           </p>
           <p className="text-xs text-slate-500 mt-3">
             Pricing and promotions can change quickly by account and campaign period. Always confirm final offer details on the operator page before checkout.
@@ -153,11 +179,11 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
           <div className="space-y-4">
             <p className="text-slate-700">
               <span className="font-black text-slate-900">Is Vodacom or MTN cheaper for data?</span>{' '}
-              {cheaperNow} is currently cheaper on the lowest listed cost-per-GB in this comparison dataset.
+              {verifiedComparisonAnswer}
             </p>
             <p className="text-slate-700">
               <span className="font-black text-slate-900">Which network gives better value?</span>{' '}
-              {betterValueNow} currently offers one of the stronger value profiles in this comparison dataset, but coverage and promotion availability still matter.
+              {betterValueNow ? `${betterValueNow} has the lower verified price in the matched 1GB benchmark, but coverage and promotion availability still matter.` : 'No verified matched benchmark supports a leader.'}
             </p>
           </div>
         </section>
@@ -187,9 +213,9 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
               </thead>
               <tbody className="divide-y divide-slate-50">
                 <tr>
-                  <td className="px-6 py-4 font-bold">Lowest listed cost/GB</td>
-                  <td className="px-6 py-4 text-slate-700">From about R{vodacomBestCost.toFixed(2)}/GB</td>
-                  <td className="px-6 py-4 text-slate-700">From about R{mtnBestCost.toFixed(2)}/GB</td>
+                  <td className="px-6 py-4 font-bold">Source-checked 1GB cost/GB</td>
+                  <td className="px-6 py-4 text-slate-700">{vodacomBestCost !== undefined ? `R${vodacomBestCost.toFixed(2)}/GB` : 'No verified match'}</td>
+                  <td className="px-6 py-4 text-slate-700">{mtnBestCost !== undefined ? `R${mtnBestCost.toFixed(2)}/GB` : 'No verified match'}</td>
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-bold">Cheapest listed 1GB</td>
@@ -215,7 +241,7 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
             </table>
           </div>
           <p className="text-xs text-slate-500 mt-3">
-            These figures reflect currently listed bundles in this dataset, not account-specific promotions.
+             Leader claims use source-checked, dated rows from matched product families. Manual and account-specific offers are excluded until confirmed live.
           </p>
         </section>
 
@@ -279,7 +305,7 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
           <div className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm">
             <h2 className="text-2xl font-black tracking-tight mb-4 text-[#c59200]">When MTN Is Better</h2>
             <ul className="text-slate-700 text-sm space-y-2">
-              <li>1. You want lower currently listed cost-per-GB on common bundles.</li>
+              <li>1. You want the lower source-checked price in the matched 1GB benchmark.</li>
               <li>2. You buy monthly or promo-led prepaid bundles regularly.</li>
               <li>3. MTN coverage is strong where you live and work.</li>
             </ul>
@@ -292,7 +318,7 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
             How We Compare Vodacom vs MTN
           </h2>
           <p className="text-slate-700 leading-relaxed mb-4">
-            We compare currently listed bundles by price, validity, and cost-per-GB. We then layer practical factors like coverage and bundle fit by use case.
+            We compare source-checked rows only, matching product type, size and validity before naming a price leader. Manual rows and unlike router, social or split-allocation products do not drive the verdict.
           </p>
           <Link to="/methodology/" className="font-bold text-[#1b6d24] hover:underline">Read full methodology</Link>
         </section>
@@ -341,12 +367,12 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
           <div className="space-y-6">
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
               <h3 className="font-bold text-slate-900 mb-2">Is Vodacom or MTN cheaper for data right now?</h3>
-              <p className="text-sm text-slate-600">{cheaperNow} is currently cheaper on the lowest listed cost-per-GB in this comparison dataset.</p>
+              <p className="text-sm text-slate-600">{verifiedComparisonAnswer}</p>
               <p className="text-sm text-slate-600 mt-2">Actual checkout pricing can differ by account-specific promotions and campaign windows.</p>
             </div>
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
               <h3 className="font-bold text-slate-900 mb-2">Which network gives better value overall: Vodacom or MTN?</h3>
-              <p className="text-sm text-slate-600">{betterValueNow} currently offers one of the stronger overall value profiles in this comparison dataset.</p>
+              <p className="text-sm text-slate-600">{betterValueNow ? `${betterValueNow} has the lower verified price in the matched 1GB benchmark.` : 'No verified matched benchmark supports a value leader.'}</p>
               <p className="text-sm text-slate-600 mt-2">If your local coverage is better on the other network, that may still be the smarter choice for you.</p>
             </div>
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">

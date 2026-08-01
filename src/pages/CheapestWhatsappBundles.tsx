@@ -8,6 +8,7 @@ import { MobileNav } from '../components/MobileNav';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 
 interface CheapestWhatsappBundlesProps {
   onNavigate: NavigateFunction;
@@ -19,16 +20,18 @@ export const CheapestWhatsappBundles: React.FC<CheapestWhatsappBundlesProps> = (
   const metaDescription =
     'Find the cheapest WhatsApp-friendly bundle options in South Africa and compare practical low-data choices by network.';
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-whatsapp-bundles-south-africa/');
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const lastUpdated = formatIsoForDisplay(getRouteModifiedIso('/guides/cheapest-whatsapp-bundles-south-africa/'));
 
-  const lowDataBundles = bundles
-    .filter((bundle) => bundle.volume === '1GB' || bundle.volume === '2GB')
-    .sort((a, b) => (a.costPerGb || Number.POSITIVE_INFINITY) - (b.costPerGb || Number.POSITIVE_INFINITY));
+  const whatsappBundles = bundles
+    .filter((bundle) => bundle.type === 'Social')
+    .sort((a, b) => a.price - b.price);
 
-  const cheapestWhatsappLike = lowDataBundles[0];
+  const cheapestWhatsappLike = whatsappBundles.find(
+    (bundle) => bundle.sourceConfidence === 'verified' && Boolean(bundle.lastVerified),
+  );
   const networks: Array<'Vodacom' | 'MTN' | 'Telkom' | 'Cell C'> = ['Vodacom', 'MTN', 'Telkom', 'Cell C'];
   const whatsappRows = networks.map((network) => {
-    const candidate = lowDataBundles
+    const candidate = whatsappBundles
       .filter((bundle) => bundle.network === network)
       .sort((a, b) => a.price - b.price)[0];
     return { network, candidate };
@@ -144,7 +147,7 @@ export const CheapestWhatsappBundles: React.FC<CheapestWhatsappBundlesProps> = (
                 <h3 className="font-black text-slate-900 mb-2">{row.network}</h3>
                 <p className="text-sm text-slate-700">
                   {row.candidate
-                    ? `Practical low-data option in this dataset: ${row.candidate.name} at R${row.candidate.price}.`
+                    ? `${row.candidate.name} at R${row.candidate.price}. ${row.candidate.sourceConfidence === 'verified' && row.candidate.lastVerified ? 'Source checked.' : 'Confirm this offer live before buying.'}`
                     : 'No low-data listing captured here. Check current social-bundle options via app or USSD menu.'}
                 </p>
               </div>
@@ -166,10 +169,15 @@ export const CheapestWhatsappBundles: React.FC<CheapestWhatsappBundlesProps> = (
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
-                {lowDataBundles.length > 0 ? lowDataBundles.map((bundle) => (
+                {whatsappBundles.length > 0 ? whatsappBundles.map((bundle) => (
                   <tr key={bundle.id} className="hover:bg-slate-50 transition-colors">
                     <td className="px-6 py-4 font-bold">{bundle.network}</td>
-                    <td className="px-6 py-4 text-slate-700">{bundle.name}</td>
+                    <td className="px-6 py-4 text-slate-700">
+                      {bundle.name}
+                      <span className="block text-xs text-slate-500">
+                        {bundle.sourceConfidence === 'verified' && bundle.lastVerified ? 'Source checked' : 'Confirm live'}
+                      </span>
+                    </td>
                     <td className="px-6 py-4 text-slate-700">R{bundle.price}</td>
                     <td className="px-6 py-4 text-slate-700">{bundle.validity}</td>
                     <td className="px-6 py-4 text-slate-700">~R{bundle.costPerGb.toFixed(2)}/GB</td>

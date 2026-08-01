@@ -1,11 +1,15 @@
 import { Bundle, NetworkStats, NetworkMetadata, NetworkName } from './types';
 
-const PRICE_REVIEW_DATE = '2026-07-04';
+const PRICE_REVIEW_DATE = '2026-08-01';
 
 const SOURCES = {
   mtnInternetBundles: {
-    sourceUrl: 'https://www.mtn.co.za/home/terms-and-conditions/content/mtn-internet-bundles-terms-and-conditions',
+    sourceUrl: 'https://www.mtn.co.za/home/terms-and-conditions/content/mtn-internet-bundles',
     sourceLabel: 'MTN Internet Bundles terms'
+  },
+  mtnWhatsappBundles: {
+    sourceUrl: 'https://onlinecms.mtn.co.za/sites/default/files/whatsapp-bundles.pdf',
+    sourceLabel: 'MTN WhatsApp Bundles terms'
   },
   mtnNightExpress: {
     sourceUrl: 'https://www.mtn.co.za/home/terms-and-conditions/content/mtn-night-express-data-bundles',
@@ -23,6 +27,10 @@ const SOURCES = {
     sourceUrl: 'https://www.vodacom.co.za/vodacom/terms/night-owl-terms-and-conditions',
     sourceLabel: 'Vodacom Night Owl terms'
   },
+  vodacomPrepaidData: {
+    sourceUrl: 'https://www.vodacom.co.za/vodacom/shopping/data/prepaid-data',
+    sourceLabel: 'Vodacom prepaid data page'
+  },
   telkomPrepaidBundles: {
     sourceUrl: 'https://www.telkom.co.za/prepaid-services/time-based-bundle',
     sourceLabel: 'Telkom prepaid bundle page'
@@ -36,8 +44,8 @@ const SOURCES = {
     sourceLabel: 'Cell C Day-By-Day Data Bundles FAQ'
   },
   rainHome: {
-    sourceUrl: 'https://www.rain.co.za/home',
-    sourceLabel: 'rainOne Home page'
+    sourceUrl: 'https://www.rain.co.za/5Ghomewifi',
+    sourceLabel: 'Rain unlimited home 5G page'
   }
 } as const;
 
@@ -74,7 +82,7 @@ export const networkMetadata: Record<NetworkName, NetworkMetadata> = {
     color: '#1a1c1c',
     textColor: '#FFFFFF',
     logoLetter: 'C',
-    description: "Cell C roams on MTN/Vodacom infrastructure in most areas, offering good value.",
+    description: 'Cell C uses a national dual-MOCN model across MTN and Vodacom radio access networks; local experience can vary.',
     ussdBalance: '*101#',
     externalUrl: 'https://www.cellc.co.za',
   },
@@ -83,8 +91,8 @@ export const networkMetadata: Record<NetworkName, NetworkMetadata> = {
     color: '#FF4400',
     textColor: '#FFFFFF',
     logoLetter: 'R',
-    description: 'Rain focuses on app-managed unlimited-style data plans in supported coverage areas.',
-    ussdBalance: 'N/A (App only)',
+    description: 'Rain focuses on online-account-managed unlimited-style data plans in supported coverage areas.',
+    ussdBalance: 'N/A (App or web)',
     externalUrl: 'https://www.rain.co.za',
   },
 };
@@ -126,12 +134,12 @@ export const bundles: Bundle[] = [
     slug: 'mtn-1gb-data-price',
     network: 'MTN',
     name: 'MTN Monthly 1GB',
-    price: 80,
+    price: 79,
     volume: '1GB',
     validity: '30 Days',
     type: 'Monthly',
     anytimeData: '1GB',
-    costPerGb: 80,
+    costPerGb: 79,
     bestFor: 'Entry-level monthly option',
     watchOut: 'Higher cost per GB than larger bundles',
     ...SOURCES.mtnInternetBundles,
@@ -195,12 +203,12 @@ export const bundles: Bundle[] = [
     slug: 'mtn-weekly-500mb-data-price',
     network: 'MTN',
     name: 'MTN Weekly 500MB',
-    price: 37,
+    price: 50,
     volume: '500MB',
     validity: '7 Days',
     type: 'Weekly',
     anytimeData: '500MB',
-    costPerGb: 74,
+    costPerGb: 100,
     bestFor: 'Moderate weekly usage',
     watchOut: 'Higher cost per GB than monthly bundles',
     ...SOURCES.mtnInternetBundles,
@@ -250,17 +258,18 @@ export const bundles: Bundle[] = [
     slug: 'mtn-whatsapp-weekly-1gb-data-price',
     network: 'MTN',
     name: 'MTN WhatsApp 1GB Weekly',
-    price: 20,
+    price: 22,
     volume: '1GB',
     validity: '7 Days',
     type: 'Social',
     anytimeData: '1GB (WhatsApp)',
-    costPerGb: 20,
+    costPerGb: 22,
     bestFor: 'Chat-first users',
     note: 'App-specific bundle',
     watchOut: 'Social-only access, not full internet',
-    sourceLabel: 'Manual official confirmation required',
-    sourceConfidence: 'manual_required',
+    ...SOURCES.mtnWhatsappBundles,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
     productType: 'promo_campaign_offer',
   },
   {
@@ -293,15 +302,16 @@ export const bundles: Bundle[] = [
     costPerGb: 100,
     bestFor: 'Emergency top-up for quick low-data tasks',
     watchOut: 'Very short validity (1 hour)',
-    sourceLabel: 'Manual official confirmation required',
-    sourceConfidence: 'manual_required',
+    ...SOURCES.vodacomPrepaidData,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
     productType: 'smartphone_once_off_data',
   },
   {
     id: 'voda-daily-250mb',
     slug: 'vodacom-daily-250mb-data-price',
     network: 'Vodacom',
-    name: 'Vodacom Daily 250MB',
+    name: 'Vodacom Internet Daily 250MB',
     price: 27,
     volume: '250MB',
     validity: '1 Day',
@@ -309,10 +319,9 @@ export const bundles: Bundle[] = [
     anytimeData: '250MB',
     costPerGb: 108,
     bestFor: 'Light users who need data for a single day',
-    watchOut: 'Short validity (1 day)',
+    watchOut: 'Vodacom public pages currently show conflicting prices; confirm the live offer on your line',
     ...SOURCES.vodacomSmartphoneData,
-    sourceConfidence: 'verified',
-    lastVerified: PRICE_REVIEW_DATE,
+    sourceConfidence: 'manual_required',
     productType: 'smartphone_once_off_data',
   },
   {
@@ -496,8 +505,9 @@ export const bundles: Bundle[] = [
     costPerGb: 56,
     bestFor: 'Late-night updates and overnight downloads',
     watchOut: 'Night-only usage window',
-    ...SOURCES.vodacomNightOwl,
-    sourceConfidence: 'manual_required',
+    ...SOURCES.vodacomPrepaidData,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
     productType: 'night_data',
     nightWindow: '00:00-05:00',
   },
@@ -515,8 +525,9 @@ export const bundles: Bundle[] = [
     bestFor: 'Chat-first users with low daily spend',
     note: 'App-specific bundle',
     watchOut: 'Social-only access, not full internet',
-    sourceLabel: 'Manual official confirmation required',
-    sourceConfidence: 'manual_required',
+    ...SOURCES.vodacomPrepaidData,
+    sourceConfidence: 'verified',
+    lastVerified: PRICE_REVIEW_DATE,
     productType: 'promo_campaign_offer',
   },
   {
@@ -869,10 +880,10 @@ export const bundles: Bundle[] = [
     id: 'rain-unlimited-4g',
     slug: 'rain-unlimited-4g-data-price',
     network: 'Rain',
-    name: 'rainOne Home the101 30Mbps',
+    name: 'Rain unlimited home 30Mbps',
     price: 679,
     volume: 'Unlimited',
-    validity: '30 Days',
+    validity: 'Month-to-month',
     type: 'Monthly',
     anytimeData: 'Unlimited',
     costPerGb: 0,
@@ -887,15 +898,15 @@ export const bundles: Bundle[] = [
     id: 'rain-unlimited-5g',
     slug: 'rain-unlimited-5g-data-price',
     network: 'Rain',
-    name: 'rainOne Home the101 pro 60Mbps',
-    price: 899,
+    name: 'Rain unlimited home pro 60Mbps',
+    price: 799,
     volume: 'Unlimited',
-    validity: '30 Days',
+    validity: 'Month-to-month',
     type: 'Monthly',
     anytimeData: 'Unlimited',
     costPerGb: 0,
     bestFor: 'Home users who need higher rain 5G speed tiers',
-    watchOut: 'Home 5G plan; rainGO and loop are separate product families',
+    watchOut: 'Home 5G plan; compare speed, coverage and router terms with other Rain product families',
     ...SOURCES.rainHome,
     sourceConfidence: 'verified',
     lastVerified: PRICE_REVIEW_DATE,
@@ -924,7 +935,7 @@ export const ussdCodes = [
   { id: 'ussd.telkom.buy_data', network: 'Telkom', purpose: 'Buy Data', code: '*180#', category: 'Data' },
   { id: 'ussd.cellc.balance_main', network: 'Cell C', purpose: 'Check Balance', code: '*101#', category: 'Balance' },
   { id: 'ussd.cellc.buy_data', network: 'Cell C', purpose: 'Buy Data', code: '*147#', category: 'Data' },
-  { id: 'ussd.rain.app_only', network: 'Rain', purpose: 'Check Balance', code: 'N/A (App only)', category: 'Balance' },
+  { id: 'ussd.rain.app_only', network: 'Rain', purpose: 'Check Balance', code: 'N/A (App or web)', category: 'Balance' },
 ] as const satisfies readonly USSDCode[];
 
 export const networkStats: NetworkStats[] = [
@@ -951,7 +962,7 @@ export const networkStats: NetworkStats[] = [
   },
   {
     network: 'Cell C',
-    coverage: 'Roaming-backed footprint',
+    coverage: 'Dual-MOCN partner footprint',
     avgSpeed5G: 'Partner-network dependent',
     resilience: 'Dependent on partners',
     pricePoint: 'Value focused',
@@ -961,6 +972,6 @@ export const networkStats: NetworkStats[] = [
     coverage: 'Supported urban coverage areas',
     avgSpeed5G: 'High when coverage is strong',
     resilience: 'High (Newer infrastructure)',
-    pricePoint: 'Unlimited Fixed-LTE',
+    pricePoint: 'Unlimited home 5G',
   },
 ];

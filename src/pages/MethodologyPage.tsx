@@ -13,6 +13,7 @@ import {
   toCanonicalUrl
 } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 
 interface MethodologyPageProps {
   onNavigate: NavigateFunction;
@@ -24,6 +25,8 @@ export const MethodologyPage: React.FC<MethodologyPageProps> = ({ onNavigate, on
   const metaDescription =
     'See how DataCost checks South African mobile data prices, calculates cost per GB, handles personalised offers, updates guides, and corrects errors.';
   const canonicalUrl = toCanonicalUrl('/methodology/');
+  const dateModifiedIso = getRouteModifiedIso('/methodology/');
+  const lastReviewed = formatIsoForDisplay(dateModifiedIso);
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Methodology', href: '/methodology/' }
@@ -35,6 +38,7 @@ export const MethodologyPage: React.FC<MethodologyPageProps> = ({ onNavigate, on
     name: pageTitle,
     description: metaDescription,
     url: canonicalUrl,
+    dateModified: dateModifiedIso,
     isPartOf: {
       '@type': 'WebSite',
       name: SITE_PRODUCT_NAME,
@@ -68,6 +72,7 @@ export const MethodologyPage: React.FC<MethodologyPageProps> = ({ onNavigate, on
           <p className="text-slate-600 font-medium max-w-2xl mx-auto">
             DataCost compares mobile prices and prepaid workflows for South African users. This page explains what we measure, what we do not claim, and how we handle corrections.
           </p>
+          <p className="mt-3 text-xs font-bold uppercase tracking-wider text-slate-500">Reviewed {lastReviewed}</p>
         </header>
 
         <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
@@ -127,7 +132,7 @@ export const MethodologyPage: React.FC<MethodologyPageProps> = ({ onNavigate, on
         <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
           <h2 className="text-2xl font-black tracking-tight">Personalised Offers and Limits</h2>
           <p className="text-slate-600 leading-relaxed">
-            Personalised offers can be excellent value, but they are not universal. Examples include Just4You, Boosta, Mo'Nice, Made4U, app-only deals, recharge campaigns, loyalty offers, and SIM-specific promotions.
+            Personalised offers can be excellent value, but they are not universal. Examples include Just4You, Made4U, MyTownOffers for eligible customers, Mo'Nice, app-only deals, recharge campaigns, loyalty offers, and SIM-specific promotions.
           </p>
           <p className="text-slate-600 leading-relaxed">
             DataCost may mention these channels as places to check, but we do not treat a personalised price as a guaranteed national price unless the offer is publicly available and clearly documented. A user on a different tariff, usage history, region, or SIM profile may see a different menu.

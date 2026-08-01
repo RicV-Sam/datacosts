@@ -146,11 +146,11 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
   const faqs = [
     {
       question: "How can I find the cheapest data in South Africa?",
-      answer: "The cheapest data is usually found through personalized USSD deals like Vodacom 'Just4You' (*123#), MTN 'Boosta' (*142#), or Telkom 'Mo'Nice' (*123#). For standard bundles, Telkom and Rain generally offer the lowest cost per GB."
+      answer: "Check live personalised channels such as Vodacom Just4You (*123#), MTN Made4U (*142#), and Telkom Mo'Nice (*123#), then compare current public bundles. Availability and value vary by SIM, place, validity and coverage, so there is no universal cheapest network."
     },
     {
       question: "Which network has the best prepaid data deals?",
-      answer: "Currently, Telkom often leads for 'Anytime' prepaid value, while MTN and Vodacom are highly competitive with their short-term (1-hour or 1-day) promotional bundles found in their respective apps."
+      answer: 'There is no fixed winner. Compare the allocation, validity, usable hours, coverage and live checkout price; personalised offers vary by SIM.'
     },
     {
       question: "How do I buy data without using the app?",

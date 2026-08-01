@@ -7,6 +7,7 @@ import {
 import { getIndexableRoutes, getNoindexRoutes, getSitemapRoutes } from '../src/config/routeCatalog';
 
 const DATA_PROBLEMS_DIR = path.resolve(process.cwd(), 'src/data/seo-pages/data-problems');
+const DATE_ONLY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const REQUIRED_STRING_FIELDS = [
   'quickAnswer',
   'uniqueValueSummary',
@@ -195,13 +196,27 @@ async function main(): Promise<void> {
       pushError(errors, file, 'uses an affiliate link without enough original analysis depth');
     }
 
-    if (status === 'index') {
-      const reviewed = hasText(raw.lastReviewed) ? new Date(`${raw.lastReviewed}T00:00:00.000Z`) : null;
-      const reviewDue = hasText(raw.reviewDueDate) ? new Date(`${raw.reviewDueDate}T00:00:00.000Z`) : null;
-      if (reviewed && reviewDue && reviewDue <= reviewed) {
-        pushError(errors, file, 'reviewDueDate must be after lastReviewed');
-      }
+    const reviewedText = hasText(raw.lastReviewed) ? raw.lastReviewed : null;
+    const reviewDueText = hasText(raw.reviewDueDate) ? raw.reviewDueDate : null;
+    const today = new Date().toISOString().slice(0, 10);
 
+    if (reviewedText && !DATE_ONLY_PATTERN.test(reviewedText)) {
+      pushError(errors, file, 'lastReviewed must use YYYY-MM-DD format');
+    }
+    if (reviewDueText && !DATE_ONLY_PATTERN.test(reviewDueText)) {
+      pushError(errors, file, 'reviewDueDate must use YYYY-MM-DD format');
+    }
+    if (reviewedText && reviewedText > today) {
+      pushError(errors, file, `lastReviewed is in the future: ${reviewedText}`);
+    }
+    if (reviewDueText && reviewDueText < today) {
+      pushError(errors, file, `reviewDueDate is overdue: ${reviewDueText}`);
+    }
+    if (reviewedText && reviewDueText && reviewDueText <= reviewedText) {
+      pushError(errors, file, 'reviewDueDate must be after lastReviewed');
+    }
+
+    if (status === 'index') {
       const highValueSnippets = [
         raw.quickAnswer,
         raw.uniqueValueSummary,

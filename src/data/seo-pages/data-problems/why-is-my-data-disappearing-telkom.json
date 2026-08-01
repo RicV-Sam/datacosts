@@ -37,7 +37,7 @@
       "telkom": [
         "Open Telkom app.",
         "Dial *188#.",
-        "Turn off fallback browsing.",
+        "Check whether out-of-bundle browsing is enabled or allowed on the line; use Telkom's current self-service or support channel to request a change or block if needed.",
         "Check whether hotspot, updates, or backup used data in the background.",
         "Confirm which bundle type expired before topping up again."
       ]
@@ -56,7 +56,7 @@
     },
     {
       "question": "How do I stop data from disappearing on Telkom?",
-      "answer": "Use the Telkom app and *188# to confirm which bundle is being used, then switch off fallback browsing and block the heaviest background app."
+      "answer": "Use the Telkom app and *188# to confirm which bundle is being used. If out-of-bundle browsing is enabled or allowed, use Telkom's current self-service or support channel to request a change or block, then restrict the heaviest background app."
     },
     {
       "question": "Why did my Telkom data disappear overnight?",
@@ -107,8 +107,8 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-05-02",
-  "reviewDueDate": "2026-07-18",
+  "lastReviewed": "2026-08-01",
+  "reviewDueDate": "2026-11-01",
   "sourceNotes": [
     "Telkom self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
     "Operator-controlled context for unexpected data loss: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Telkom.",

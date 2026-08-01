@@ -8,7 +8,7 @@ import { Header } from '../components/Header';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
-import { MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
+import { isVerifiedBundleSource, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_URL,
@@ -46,18 +46,28 @@ const isMonthlyBundle = (bundle: Bundle) =>
   bundle.validity.toLowerCase().includes('30 day') ||
   bundle.validity.toLowerCase().includes('month');
 
-const regularBundles = bundles.filter((bundle) => !isNightBundle(bundle) && !isSocialBundle(bundle));
-const rankedBundles = regularBundles.filter((bundle) => bundle.costPerGb > 0).sort((a, b) => a.costPerGb - b.costPerGb);
+const regularBundles = bundles.filter(
+  (bundle) =>
+    bundle.productType === 'smartphone_once_off_data' &&
+    !isNightBundle(bundle) &&
+    !isSocialBundle(bundle)
+);
+const rankedVerifiedBundles = regularBundles
+  .filter((bundle) => isVerifiedBundleSource(bundle) && bundle.costPerGb > 0)
+  .sort((a, b) => a.costPerGb - b.costPerGb);
+const rankedManualBundles = regularBundles
+  .filter((bundle) => !isVerifiedBundleSource(bundle) && bundle.costPerGb > 0)
+  .sort((a, b) => a.costPerGb - b.costPerGb);
 
 function getCheapestByVolume(volume: string) {
   return regularBundles
-    .filter((bundle) => bundle.volume === volume)
+    .filter((bundle) => bundle.volume === volume && isVerifiedBundleSource(bundle))
     .sort((a, b) => a.price - b.price)[0];
 }
 
 function getBestValueByFilter(filter: (bundle: Bundle) => boolean) {
   return regularBundles
-    .filter((bundle) => filter(bundle) && bundle.costPerGb > 0)
+    .filter((bundle) => filter(bundle) && isVerifiedBundleSource(bundle) && bundle.costPerGb > 0)
     .sort((a, b) => a.costPerGb - b.costPerGb)[0];
 }
 
@@ -69,7 +79,8 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const pageTitle = 'Which Network Has the Cheapest Data in South Africa?';
   const pageMetaDescription =
     'Find which network has the cheapest data in South Africa by comparing bundle size, validity, network and cost per GB before you buy.';
-  const topSummaryRows = rankedBundles.slice(0, 8);
+  const topSummaryRows = [...rankedVerifiedBundles, ...rankedManualBundles].slice(0, 8);
+  const verifiedSummaryRows = topSummaryRows.filter(isVerifiedBundleSource);
   const hasManualRequiredTopRows = topSummaryRows.some((bundle) => bundle.sourceConfidence === 'manual_required');
   const cheapest1Gb = getCheapestByVolume('1GB');
   const cheapest2Gb = getCheapestByVolume('2GB');
@@ -78,7 +89,13 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const cheapestDaily = getBestValueByFilter((bundle) => isDailyBundle(bundle) && !isNightBundle(bundle));
   const cheapestMonthly = getBestValueByFilter((bundle) => isMonthlyBundle(bundle) && !isNightBundle(bundle));
   const cheapestNight = bundles
-    .filter((bundle) => isNightBundle(bundle) && bundle.costPerGb > 0)
+    .filter(
+      (bundle) =>
+        bundle.productType === 'night_data' &&
+        isNightBundle(bundle) &&
+        isVerifiedBundleSource(bundle) &&
+        bundle.costPerGb > 0
+    )
     .sort((a, b) => a.costPerGb - b.costPerGb)[0];
 
   const intentSections = [
@@ -137,9 +154,9 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
     {
       question: 'Which network has the cheapest data in South Africa right now?',
       answer:
-        topSummaryRows[0]
-          ? `${topSummaryRows[0].network} currently leads this visible dataset-backed value table with ${topSummaryRows[0].name} at about R${topSummaryRows[0].costPerGb.toFixed(2)}/GB.`
-          : 'The leading network changes as the visible dataset changes.'
+        verifiedSummaryRows[0]
+          ? `${verifiedSummaryRows[0].network} has the lowest cost per GB among the source-checked, anytime smartphone-data rows in this table with ${verifiedSummaryRows[0].name} at about R${verifiedSummaryRows[0].costPerGb.toFixed(2)}/GB.`
+          : 'No source-checked, like-for-like smartphone-data row currently supports a leader claim.'
     },
     {
       question: 'Is the cheapest data always the best option?',
@@ -184,7 +201,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const itemListSchema = buildBundleItemListSchema(
     'Cheapest Data South Africa Summary',
     canonicalUrl,
-    topSummaryRows,
+    verifiedSummaryRows,
     (bundle) => getNetworkPageUrl(bundle.network)
   );
   const articleSchema = {
@@ -306,7 +323,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Cheapest data quick comparison</h2>
           <p className="text-slate-700 leading-relaxed mb-5">
-            This summary table ranks the visible non-social, non-night bundles in the DataCost dataset by cost per GB. It is a comparison aid, not a permanent cheapest-network claim or a promise that personalised operator offers are available to every SIM. For a broader starting point, use the <Link to="/" className="font-semibold text-[#1b6d24] hover:underline">compare data deals in South Africa</Link> homepage.
+            This summary puts source-checked, anytime smartphone-data rows first and keeps unverified rows only as clearly marked context. Router, social and night products are excluded from this ranking. For a broader starting point, use the <Link to="/" className="font-semibold text-[#1b6d24] hover:underline">compare data deals in South Africa</Link> homepage.
           </p>
           <div className="overflow-x-auto rounded-3xl border border-slate-100">
             <table className="w-full min-w-[720px] text-left bg-white">
@@ -325,7 +342,12 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
                   <tr key={bundle.id}>
                     <td className="px-5 py-4 font-black text-slate-900">{index + 1}</td>
                     <td className="px-5 py-4 font-bold text-slate-900">{bundle.network}</td>
-                    <td className="px-5 py-4 text-slate-700">{bundle.name}</td>
+                    <td className="px-5 py-4 text-slate-700">
+                      {bundle.name}
+                      <span className={`block mt-1 text-[10px] font-black uppercase tracking-wider ${isVerifiedBundleSource(bundle) ? 'text-emerald-700' : 'text-amber-700'}`}>
+                        {isVerifiedBundleSource(bundle) ? 'Source checked' : 'Confirm live - excluded from leader claims'}
+                      </span>
+                    </td>
                     <td className="px-5 py-4 text-slate-700">R{bundle.price}</td>
                     <td className="px-5 py-4 text-slate-700">{bundle.validity}</td>
                     <td className="px-5 py-4 text-slate-700">~R{bundle.costPerGb.toFixed(2)}/GB</td>
@@ -351,7 +373,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
               <p className="text-slate-700 leading-relaxed mb-4">{section.helper}</p>
               {section.bundle ? (
                 <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
-                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Current dataset view</div>
+                   <div className="text-[10px] font-black uppercase tracking-widest text-emerald-700 mb-1">Source-checked like-for-like leader</div>
                   <div className="font-black text-slate-900 text-lg">{section.bundle.network}: {section.bundle.name}</div>
                   <p className="text-slate-700 mt-2">
                     Price: <strong>R{section.bundle.price}</strong> | Validity: <strong>{section.bundle.validity}</strong> | Approx. value:{' '}
@@ -402,7 +424,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
             Methodology and pricing notes
           </h2>
           <p className="text-slate-700 leading-relaxed">
-            <strong>Dataset-backed only:</strong> this page uses the visible DataCost bundle dataset as its price reference layer. It is intended to compare public baseline bundle pricing already captured in the site data.
+            <strong>Verified leaders only:</strong> winner and schema claims use source-checked, dated rows from a comparable product family. Unverified rows can remain visible as context but are excluded from rankings and recommendations.
           </p>
           <p className="text-slate-700 leading-relaxed mt-3">
             <strong>Public vs personalised pricing:</strong> operator-specific personalised offers, app-only promotions, and USSD campaign deals may be cheaper for some users, but they are not guaranteed across all SIMs. For that reason, they are not treated here as universal baseline pricing unless clearly represented in the dataset.

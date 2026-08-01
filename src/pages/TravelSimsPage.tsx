@@ -456,11 +456,11 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
             <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm">
               <div className="w-12 h-12 bg-[#e60000] text-white rounded-2xl flex items-center justify-center text-xl font-black mb-6">V</div>
               <h3 className="text-2xl font-black mb-4">Vodacom</h3>
-              <p className="text-sm text-slate-600 mb-6 leading-relaxed font-medium">The dominant network. If you are going on a Safari in Kruger or driving the Garden Route, Vodacom is your safest bet for a signal.</p>
+              <p className="text-sm text-slate-600 mb-6 leading-relaxed font-medium">Vodacom is one option for mixed itineraries. Check its current coverage map along your exact route, especially for game reserves, rural roads and smaller towns.</p>
               <ul className="space-y-2 mb-8">
-                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Widest Coverage</li>
-                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Easy Top-ups Everywhere</li>
-                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> eSIM Available for Tourists</li>
+                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Check Route Coverage</li>
+                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Multiple Top-up Channels</li>
+                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Confirm eSIM Eligibility</li>
               </ul>
               <button
                 onClick={() => onNavigate('network', 'vodacom')}
@@ -472,11 +472,11 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
             <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm">
               <div className="w-12 h-12 bg-[#ffcc00] text-[#031636] rounded-2xl flex items-center justify-center text-xl font-black mb-6">M</div>
               <h3 className="text-2xl font-black mb-4">MTN</h3>
-              <p className="text-sm text-slate-600 mb-6 leading-relaxed font-medium">Often rated as the fastest network in major cities. Excellent 5G network and very competitive data bundles for heavy users.</p>
+              <p className="text-sm text-slate-600 mb-6 leading-relaxed font-medium">MTN is another option for city and multi-stop trips. Check current coverage for every destination and compare public bundles with the offer shown on your SIM.</p>
               <ul className="space-y-2 mb-8">
-                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Fastest 5G in Cities</li>
-                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Great 'Boosta' Bundles</li>
-                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Reliable Data Speed</li>
+                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Check City and Route Coverage</li>
+                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Made4U on *142#</li>
+                <li className="flex items-center gap-2 text-xs font-bold text-slate-500"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Compare Public Bundles</li>
               </ul>
               <button
                 onClick={() => onNavigate('network', 'mtn')}
@@ -493,11 +493,11 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
           <h2 className="text-3xl font-black tracking-tighter mb-6">Vodacom for Tourists</h2>
           <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
             <p className="text-slate-600 leading-relaxed font-medium mb-6">
-              Vodacom is the safe choice for mixed travel plans. Choose this if your itinerary includes road trips, smaller towns, or game reserves outside major city centers.
+              Consider Vodacom for a mixed itinerary only after checking its official map for your specific road trips, towns and reserves. No provider can guarantee signal at every stop.
             </p>
             <div className="bg-emerald-50 border border-emerald-100 p-6 rounded-2xl mb-8">
               <h4 className="font-black text-[#1b6d24] mb-2">Pro Tip:</h4>
-              <p className="text-sm text-slate-700 font-medium">Once your SIM is active, dial <strong>*123#</strong> to access 'Just 4 You' deals. These are personalized discounts that can often get you data for much less than the standard menu prices.</p>
+              <p className="text-sm text-slate-700 font-medium">Once your SIM is active, dial <strong>*123#</strong> to check Just4You deals. Offers vary by SIM, so confirm the allocation, validity and final price against the public menu.</p>
             </div>
           </div>
         </section>
@@ -507,11 +507,11 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
           <h2 className="text-3xl font-black tracking-tighter mb-6">MTN for Tourists</h2>
           <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
             <p className="text-slate-600 leading-relaxed font-medium mb-6">
-              MTN is the better pick for urban-heavy trips. Choose this if you will spend most of your time in Cape Town, Johannesburg, Pretoria, or Durban and want strong city performance.
+              Consider MTN for an urban-heavy trip after checking current coverage at your accommodation and planned venues in Cape Town, Johannesburg, Pretoria, Durban, or other stops.
             </p>
             <div className="bg-blue-50 border border-blue-100 p-6 rounded-2xl mb-8">
               <h4 className="font-black text-blue-700 mb-2">What to buy?</h4>
-              <p className="text-sm text-slate-700 font-medium">Ask for a standard prepaid SIM. Once RICA is done, buy an <strong>MTN Boosta</strong> bundle via USSD or the app. You'll get significantly more data (often double) than standard bundles.</p>
+              <p className="text-sm text-slate-700 font-medium">Ask for a standard prepaid SIM. Once RICA is complete, compare the standard <strong>*136*2#</strong> menu with Made4U on <strong>*142#</strong>. Offers vary by SIM, so confirm price, allocation and validity before buying.</p>
             </div>
             <p className="text-xs text-slate-500 font-medium">
               Helpful next step: use our{' '}

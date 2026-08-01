@@ -176,7 +176,7 @@ export const WhyAirtimeDisappearingPage: React.FC<WhyAirtimeDisappearingPageProp
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            Airtime usually disappears because your phone kept using mobile data after a bundle expired, background apps kept syncing, an airtime advance was repaid, premium SMS was billed, or a recurring WASP / value-added subscription is active. Check your balance first, stop browsing until you confirm an active bundle, then rule out paid services and SMS charges.
+            Airtime can disappear when out-of-bundle use is enabled or allowed and your phone keeps using mobile data after a bundle expires. Other causes include background syncing, airtime-advance repayment, premium SMS billing, or a recurring WASP / value-added subscription. Check your balance first, stop browsing until you confirm an active bundle, then rule out paid services and SMS charges.
           </p>
           <p className="mt-3 text-sm text-slate-600 leading-relaxed">
             If your balance dropped after borrowing credit, compare the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">airtime advance codes</Link> and repayment notes before assuming a billing fault.

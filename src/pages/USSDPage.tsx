@@ -92,6 +92,10 @@ function isDialable(code: string): boolean {
   return code.includes('*') || code.includes('#') || /^\d+$/.test(code);
 }
 
+function canDialEntry(entry: USSDEntry): boolean {
+  return entry.status === 'verified' && entry.dialable === true && isDialable(entry.code);
+}
+
 function getMajorNetworkCodes(network: NetworkName): USSDEntry[] {
   return ussdRepository.filter((entry) => entry.network === network).slice(0, 8);
 }
@@ -128,7 +132,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     {
       question: 'Can I borrow airtime with USSD?',
       answer:
-        'Sometimes, yes. MTN has a verified XtraTime route on *151#. Other operators may place airtime-advance access inside their main self-service menus, so this page keeps that wording conservative where direct verification is less clear.'
+        'Sometimes, yes. MTN currently advertises XtraTime on *136*2*6# and also documents *151# as an alternative on some profiles. Other operators may place airtime-advance access inside their main self-service menus, so this page keeps that wording conservative where direct verification is less clear.'
     }
   ];
 
@@ -497,7 +501,18 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
                   {codes.map((entry, index) => (
                     <div key={`${network.name}-${entry.code}-${index}`} className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
-                      <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{entry.category}</div>
+                      <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                        <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">{entry.category}</div>
+                        <span
+                          className={`rounded-full px-2 py-1 text-[9px] font-black uppercase tracking-wider ${
+                            entry.status === 'verified'
+                              ? 'bg-emerald-50 text-emerald-700'
+                              : 'bg-amber-50 text-amber-800'
+                          }`}
+                        >
+                          {entry.status === 'verified' ? 'Verified' : 'Needs live-SIM review'}
+                        </span>
+                      </div>
                       <div className="font-black text-slate-900">{entry.action}</div>
                       <div className="text-sm text-slate-600 mb-3">{entry.explanation}</div>
                       <div className="flex items-center gap-2">
@@ -511,7 +526,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
                             <span className="inline-flex items-center gap-1"><Copy className="w-3 h-3" /> Copy</span>
                           )}
                         </button>
-                        {isDialable(entry.code) ? (
+                        {canDialEntry(entry) ? (
                           <button
                             onClick={() => dialCode(entry.code)}
                             className="px-3 py-2 rounded-lg bg-[#031636] text-white text-xs font-black uppercase tracking-wider hover:bg-[#1b6d24] inline-flex items-center gap-1"
@@ -568,7 +583,18 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {filteredCodes.map((entry, index) => (
               <div key={`${entry.network}-${entry.code}-${index}`} className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
-                <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{entry.network} / {entry.category}</div>
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">{entry.network} / {entry.category}</div>
+                  <span
+                    className={`rounded-full px-2 py-1 text-[9px] font-black uppercase tracking-wider ${
+                      entry.status === 'verified'
+                        ? 'bg-emerald-50 text-emerald-700'
+                        : 'bg-amber-50 text-amber-800'
+                    }`}
+                  >
+                    {entry.status === 'verified' ? 'Verified' : 'Needs live-SIM review'}
+                  </span>
+                </div>
                 <div className="font-black text-slate-900">{entry.action}</div>
                 <div className="text-sm text-slate-600 mb-3">{entry.explanation}</div>
                 <div className="font-black text-slate-900">{entry.code}</div>

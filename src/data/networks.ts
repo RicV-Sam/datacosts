@@ -124,7 +124,7 @@ export const networkPages: Record<string, NetworkPageData> = {
         network: 'Cell C',
         bestFor: 'Value mixes',
         usuallyCheapest: 'Sometimes',
-        coverage: 'Roaming-backed footprint',
+        coverage: 'Dual-MOCN partner footprint',
         goodFor: 'Flexible monthly and social buyers',
         href: '/network/cell-c/'
       }
@@ -172,7 +172,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     verdictSummary: 'MTN is often a balanced choice for users who want strong coverage plus regular promo value, especially when personalised deals are active.',
     strengths: [
       'Strong national 4G coverage with reliable urban performance',
-      'Frequent promo mechanics through MyTownOffers and other personalised offers',
+      'Made4U and other personalised offers, including MyTownOffers where eligible',
       'Wide spread of daily, weekly and monthly prepaid options',
       'Good balance between performance and deal availability'
     ],
@@ -196,7 +196,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     personalisedSection: {
       title: 'What are MTN personalised deals?',
       paragraphs: [
-        'MTN often runs personalised prepaid offers, including MyTownOffers and other SIM-specific campaigns, that vary by user profile and campaign period.',
+        'MTN runs Made4U and other SIM-specific offers; MyTownOffers can appear for eligible prepaid customers in selected areas.',
         'Treat promo offers as variable, not guaranteed public pricing.'
       ]
     },
@@ -234,7 +234,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       { network: 'MTN', bestFor: 'Balanced speed and value', usuallyCheapest: 'Sometimes', coverage: 'Strong national footprint', goodFor: 'Users wanting all-round prepaid performance', href: '/network/mtn/' },
       { network: 'Vodacom', bestFor: 'Consistency and coverage', usuallyCheapest: 'No', coverage: 'Very strong national footprint', goodFor: 'Signal reliability first', href: '/network/vodacom/' },
       { network: 'Telkom', bestFor: 'Low cost per GB', usuallyCheapest: 'Often', coverage: 'Best in metros', goodFor: 'Budget-first data buyers', href: '/network/telkom/' },
-      { network: 'Cell C', bestFor: 'Promo-driven value', usuallyCheapest: 'Sometimes', coverage: 'Roaming-backed', goodFor: 'Deal hunters', href: '/network/cell-c/' }
+      { network: 'Cell C', bestFor: 'Promo-driven value', usuallyCheapest: 'Sometimes', coverage: 'Dual-MOCN partner footprint', goodFor: 'Deal hunters', href: '/network/cell-c/' }
     ],
     faqs: [
       {
@@ -250,8 +250,8 @@ export const networkPages: Record<string, NetworkPageData> = {
         answer: 'Dial *136# to see a quick summary of your airtime and data, or use the MTN app for a detailed breakdown of all active bundles.'
       },
       {
-        question: 'What are MTN MyTownOffers or personalised deals?',
-        answer: 'MTN personalised deals are SIM-specific offers that can appear on *142#, *136*2#, or the MTN app. They can be better value than the standard public menu, but they are not universal.'
+        question: 'What are MTN Made4U and personalised offers?',
+        answer: 'Made4U and other SIM-specific offers can appear on *142#, *136*2#, or the MTN app. MyTownOffers may appear for eligible prepaid customers in selected areas. These offers are not universal, so confirm the live price and validity.'
       },
       {
         question: 'Can I buy MTN data with airtime?',
@@ -341,7 +341,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       { network: 'Telkom', bestFor: 'Low cost per GB', usuallyCheapest: 'Often', coverage: 'Best in metros', goodFor: 'Price-sensitive prepaid users', href: '/network/telkom/' },
       { network: 'MTN', bestFor: 'Balanced performance', usuallyCheapest: 'Sometimes', coverage: 'Strong national footprint', goodFor: 'Users wanting consistency and promos', href: '/network/mtn/' },
       { network: 'Vodacom', bestFor: 'Coverage consistency', usuallyCheapest: 'No', coverage: 'Very strong national footprint', goodFor: 'Reliability-focused users', href: '/network/vodacom/' },
-      { network: 'Cell C', bestFor: 'Deal alternatives', usuallyCheapest: 'Sometimes', coverage: 'Roaming-backed', goodFor: 'Promo-led buyers', href: '/network/cell-c/' }
+      { network: 'Cell C', bestFor: 'Deal alternatives', usuallyCheapest: 'Sometimes', coverage: 'Dual-MOCN partner footprint', goodFor: 'Promo-led buyers', href: '/network/cell-c/' }
     ],
     faqs: [
       {
@@ -426,7 +426,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       items: [
         { question: 'Is Cell C always the cheapest?', answer: 'Not always. It can be very competitive on certain promotions but less aggressive on others.' },
         { question: 'Why does Cell C value change so often?', answer: 'Campaign-led pricing can change frequently, so deals are often time-bound.' },
-        { question: 'Does Cell C have good coverage?', answer: 'Coverage experience can vary by area and roaming conditions, so local testing matters.' },
+        { question: 'Does Cell C have good coverage?', answer: 'Coverage experience can vary by area and by the partner radio network serving the line, so check the Cell C coverage map and test locally.' },
         { question: 'How do I buy Cell C data?', answer: 'Use *147# and official channels, then compare active promos before checkout.' },
         { question: 'Are Cell C social bundles full internet?', answer: 'No. Social bundles are usually app-limited and should not be treated as full browsing data.' },
         { question: 'Do Cell C night-data windows always match?', answer: 'No. Day-By-Day Daily Nite wording uses midnight to 04:59, while LTE/Home Connecta product-family rules can differ.' }
@@ -446,7 +446,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       'Skipping current promo checks before buying standard bundles.'
     ],
     comparisonSummary: [
-      { network: 'Cell C', bestFor: 'Promo-led alternatives', usuallyCheapest: 'Sometimes', coverage: 'Roaming-backed footprint', goodFor: 'Bargain hunters and selective deal buyers', href: '/network/cell-c/' },
+      { network: 'Cell C', bestFor: 'Promo-led alternatives', usuallyCheapest: 'Sometimes', coverage: 'Dual-MOCN partner footprint', goodFor: 'Bargain hunters and selective deal buyers', href: '/network/cell-c/' },
       { network: 'Telkom', bestFor: 'Large-bundle value', usuallyCheapest: 'Often', coverage: 'Best in metros', goodFor: 'Budget-first monthly users', href: '/network/telkom/' },
       { network: 'MTN', bestFor: 'Balanced all-round use', usuallyCheapest: 'Sometimes', coverage: 'Strong national footprint', goodFor: 'Coverage and promo balance', href: '/network/mtn/' },
       { network: 'Vodacom', bestFor: 'Reliability and consistency', usuallyCheapest: 'No', coverage: 'Very strong national footprint', goodFor: 'Users prioritising stable service', href: '/network/vodacom/' }
@@ -458,7 +458,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'Does Cell C have good coverage?',
-        answer: 'Yes, Cell C has significant coverage across South Africa because it utilizes roaming agreements with both MTN and Vodacom in areas where it doesn\'t have its own towers.'
+        answer: 'Cell C uses a national dual-MOCN model across MTN and Vodacom radio access networks. Coverage and performance are still location-dependent, so check the current Cell C map and test the places that matter to you.'
       },
       {
         question: 'Is Cell C cheaper for data?',
@@ -489,18 +489,18 @@ export const networkPages: Record<string, NetworkPageData> = {
   'rain': {
     slug: 'rain',
     networkName: 'Rain',
-    intro: 'Rain is different from the prepaid mobile networks in this comparison because it focuses on app-managed monthly products instead of large prepaid USSD bundle menus. Current public lines include rainOne Home, rainGO mobile, and loop device plans, so compare the product family before treating a Rain price as a normal mobile-data bundle.',
+    intro: 'Rain is different from the prepaid mobile networks in this comparison because it focuses on app- and web-managed monthly products instead of large prepaid USSD bundle menus. Current public families include unlimited home, rainOne Unlimited, unlimited mobile with LoopPhone, and the loop portable router, so compare the product family before treating a Rain price as a normal mobile-data bundle.',
     bestFor: 'Home, fixed-use, and high-volume data where Rain coverage fits',
     strengths: [
-      'rainOne Home unlimited 5G home-wifi plans',
-      'rainGO mobile with bundled data, minutes and SMS',
-      'loop portable router plans with location-based unlimited-zone rules',
+      'Unlimited home 5G home-wifi plans',
+      'rainOne Unlimited home-and-mobile options',
+      'Unlimited mobile with LoopPhone and the loop portable-router family',
       'No contracts or long-term commitments',
       'Simple, app-based account management'
     ],
     tips: [
       'Rain is often best evaluated as a home internet, mobile-combo, or portable-router product rather than a normal prepaid mobile bundle.',
-      'Check your 5G coverage before committing to rainOne Home or loop plans.',
+      'Check Rain coverage and the exact product\'s location or loopzone rules before committing to unlimited home or loop plans.',
       'Manage everything through the Rain dashboard or mobile app for instant control.'
     ],
     verdictSummary: 'Rain has fewer listed deals here because its product structure is different from prepaid mobile bundle menus: compare coverage fit, monthly price, device terms, location rules and included mobile extras rather than SKU count.',
@@ -511,11 +511,11 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'Is Rain data truly unlimited?',
-        answer: 'rainOne Home and loop include unlimited-style elements, but product terms, speed tiers, device terms, location rules and coverage conditions still matter. Check the official Rain product page before relying on it as a home connection.'
+        answer: 'Rain unlimited home, rainOne Unlimited and loop products include unlimited-style elements, but speed tiers, device terms, location rules and coverage conditions still matter. Check the exact official product page before buying.'
       },
       {
         question: 'Is Rain better for home internet or mobile?',
-        answer: 'rainOne Home is a home internet-style product. rainGO is the mobile-phone product, while loop is a portable router/device product with location-zone rules.'
+        answer: 'Unlimited home is the home-wifi family, rainOne Unlimited combines home and mobile services, unlimited mobile is offered with LoopPhone, and the loop is a portable-router product with location rules.'
       }
     ]
   }

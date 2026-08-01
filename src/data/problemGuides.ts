@@ -56,14 +56,14 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
       'If your bundle keeps dropping too quickly, the cause is usually visible once you check app-level usage and bundle expiry behavior.',
     quickAnswer: [
       'Data usually disappears because background sync, autoplay video, cloud backups, and updates keep running over mobile data.',
-      'When bundles expire, out-of-bundle billing makes usage feel even faster and more expensive.',
+      'If out-of-bundle use is enabled or allowed on the line, traffic after bundle expiry can be billed separately and feel much more expensive.',
       'Check top draining apps first, then lock updates and backups to Wi-Fi only.'
     ],
     causes: [
       'Background data usage from social, chat, and cloud apps.',
       'Premium streaming quality and autoplay video.',
       'Automatic app and system updates over mobile data.',
-      'Out-of-bundle billing after bundle expiry.',
+      'Out-of-bundle billing after expiry where the line permits fallback use.',
       'Hotspot sharing without a usage limit.'
     ],
     fixSteps: [
@@ -771,7 +771,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
       'If your bundles do not last as expected, the main drivers are usually visible in your app-level usage report and easy to control.',
     quickAnswer: [
       'Fast data loss is usually caused by autoplay video, background refresh, cloud backup, and app updates running on mobile data.',
-      'After bundle depletion, out-of-bundle billing makes normal usage feel extremely expensive.',
+      'If out-of-bundle use is enabled or allowed on the line, traffic after depletion can be billed separately and feel extremely expensive.',
       'Limit top-draining apps first, then lock heavy traffic to Wi-Fi only.'
     ],
     causes: [
@@ -779,7 +779,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
       'Background app refresh and cloud synchronization.',
       'Automatic updates over mobile data.',
       'Hotspot sharing and connected-device overuse.',
-      'Out-of-bundle billing after bundle expiry.'
+      'Out-of-bundle billing after expiry where the line permits fallback use.'
     ],
     fixSteps: [
       'Sort app usage by highest consumption over the last 7 days.',

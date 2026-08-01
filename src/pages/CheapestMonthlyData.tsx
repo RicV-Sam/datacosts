@@ -6,47 +6,63 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { bundles } from '../data';
-import { NavigateFunction } from '../types';
+import { Bundle, NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 
 interface CheapestMonthlyDataProps {
   onNavigate: NavigateFunction;
   onScrollTo: (id: string) => void;
 }
 
+const isSourceChecked = (bundle: Bundle) =>
+  bundle.sourceConfidence === 'verified' && Boolean(bundle.lastVerified);
+
+const isComparableSmartphoneBundle = (bundle: Bundle) =>
+  isSourceChecked(bundle) &&
+  (bundle.productType === 'smartphone_once_off_data' || bundle.productType === 'smartphone_recurring_data') &&
+  !bundle.nightData;
+
+const getComparisonStatus = (bundle: Bundle) => {
+  if (!isSourceChecked(bundle)) return 'Confirm live';
+  return isComparableSmartphoneBundle(bundle)
+    ? 'Source checked · ranking eligible'
+    : 'Source checked · different product type';
+};
+
 export const CheapestMonthlyData: React.FC<CheapestMonthlyDataProps> = ({ onNavigate, onScrollTo }) => {
   const pageTitle = 'Monthly Data Deals South Africa (2026)';
   const metaDescription =
-    'Find the cheapest monthly data bundles in South Africa. Compare current 30-day prices, value per GB, and best monthly options by use case.';
+    'Compare source-checked monthly smartphone data bundles in South Africa, with other listed prices clearly marked for live confirmation.';
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-monthly-data-south-africa/');
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const lastUpdated = formatIsoForDisplay(getRouteModifiedIso('/guides/best-monthly-data-deals-south-africa/'));
 
   const monthlyBundles = bundles
     .filter((bundle) => bundle.validity.toLowerCase().includes('30 day') || bundle.validity.toLowerCase().includes('month') || bundle.type === 'Monthly')
     .sort((a, b) => (a.costPerGb || Number.POSITIVE_INFINITY) - (b.costPerGb || Number.POSITIVE_INFINITY));
 
-  const cheapestMonthly = monthlyBundles
-    .filter((bundle) => bundle.costPerGb > 0)
+  const comparableMonthlyBundles = monthlyBundles
+    .filter((bundle) => isComparableSmartphoneBundle(bundle) && bundle.costPerGb > 0);
+  const cheapestMonthly = [...comparableMonthlyBundles]
     .sort((a, b) => a.costPerGb - b.costPerGb)[0];
   const bestMonthlyValue = cheapestMonthly;
 
   const networks: Array<'Vodacom' | 'MTN' | 'Telkom' | 'Cell C' | 'Rain'> = ['Vodacom', 'MTN', 'Telkom', 'Cell C', 'Rain'];
   const networkRows = networks.map((network) => {
-    const options = monthlyBundles.filter((bundle) => bundle.network === network);
-    const cheapest = options.sort((a, b) => a.price - b.price)[0];
-    const bestValue = options
-      .filter((bundle) => bundle.costPerGb > 0)
+    const options = comparableMonthlyBundles.filter((bundle) => bundle.network === network);
+    const cheapest = [...options].sort((a, b) => a.price - b.price)[0];
+    const bestValue = [...options]
       .sort((a, b) => a.costPerGb - b.costPerGb)[0] ?? options[0];
     return { network, cheapest, bestValue };
   });
 
-  const regularUserPick = monthlyBundles
-    .filter((bundle) => bundle.costPerGb > 0 && bundle.volume !== '1GB' && bundle.volume !== 'Unlimited')
-    .sort((a, b) => a.price - b.price)[0] ?? monthlyBundles[0];
-  const heavyUserPick = monthlyBundles
+  const regularUserPick = comparableMonthlyBundles
     .filter((bundle) => bundle.volume !== '1GB')
-    .sort((a, b) => (parseInt(b.volume, 10) || 0) - (parseInt(a.volume, 10) || 0))[0] ?? monthlyBundles[0];
-  const prepaidMonthlyPick = monthlyBundles
+    .sort((a, b) => a.price - b.price)[0];
+  const heavyUserPick = comparableMonthlyBundles
+    .filter((bundle) => (parseInt(bundle.volume, 10) || 0) >= 10)
+    .sort((a, b) => (parseInt(b.volume, 10) || 0) - (parseInt(a.volume, 10) || 0))[0];
+  const prepaidMonthlyPick = comparableMonthlyBundles
     .filter((bundle) => bundle.type === 'Prepaid')
     .sort((a, b) => (a.costPerGb || Number.POSITIVE_INFINITY) - (b.costPerGb || Number.POSITIVE_INFINITY))[0];
 
@@ -124,7 +140,7 @@ export const CheapestMonthlyData: React.FC<CheapestMonthlyDataProps> = ({ onNavi
             Cheapest <span className="text-[#1b6d24]">Monthly Data</span> South Africa
           </h1>
           <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto mb-8">
-            Compare current 30-day bundle pricing so you can choose a monthly plan that fits your usage and budget.
+            Compare verified full-internet smartphone bundles on a like-for-like basis, with other product types and unconfirmed rows clearly labelled.
           </p>
         </header>
 
@@ -164,11 +180,11 @@ export const CheapestMonthlyData: React.FC<CheapestMonthlyDataProps> = ({ onNavi
                 <h3 className="font-black text-slate-900 mb-2">{row.network}</h3>
                 <p className="text-sm text-slate-700">
                   {row.cheapest
-                    ? `Cheapest listed: ${row.cheapest.name} (R${row.cheapest.price}).`
-                    : 'No monthly-tagged listing in this dataset.'}
+                    ? `Lowest verified comparable price: ${row.cheapest.name} (R${row.cheapest.price}).`
+                    : 'No verified comparable smartphone row; see the table for other listings and source status.'}
                 </p>
                 <p className="text-sm text-slate-700 mt-1">
-                  {row.bestValue ? `Best-value listed: ${row.bestValue.name}${row.bestValue.costPerGb > 0 ? ` (~R${row.bestValue.costPerGb.toFixed(2)}/GB)` : ''}.` : ''}
+                  {row.bestValue ? `Best verified comparable value: ${row.bestValue.name}${row.bestValue.costPerGb > 0 ? ` (~R${row.bestValue.costPerGb.toFixed(2)}/GB)` : ''}.` : ''}
                 </p>
               </div>
             ))}
@@ -186,6 +202,7 @@ export const CheapestMonthlyData: React.FC<CheapestMonthlyDataProps> = ({ onNavi
                   <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Price</th>
                   <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Volume</th>
                   <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Cost per GB</th>
+                  <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
@@ -196,6 +213,7 @@ export const CheapestMonthlyData: React.FC<CheapestMonthlyDataProps> = ({ onNavi
                     <td className="px-6 py-4 text-slate-700">R{bundle.price}</td>
                     <td className="px-6 py-4 text-slate-700">{bundle.volume}</td>
                     <td className="px-6 py-4 text-slate-700">{bundle.costPerGb > 0 ? `~R${bundle.costPerGb.toFixed(2)}/GB` : 'N/A (unlimited model)'}</td>
+                    <td className="px-6 py-4 text-slate-700">{getComparisonStatus(bundle)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -244,7 +262,7 @@ export const CheapestMonthlyData: React.FC<CheapestMonthlyDataProps> = ({ onNavi
             <div>
               <h2 className="text-xl font-black tracking-tight">Trust and Pricing Transparency</h2>
               <p className="text-slate-600 text-sm mt-1">
-                Last updated: {lastUpdated}. Pricing can change quickly. Listed bundles are based on currently available data, and final offer details should be confirmed on operator pages.
+                Last updated: {lastUpdated}. Winner claims use only verified full-internet smartphone rows. Other products remain listed for context, and rows marked Confirm live must be checked before purchase.
               </p>
             </div>
           </div>

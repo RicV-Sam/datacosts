@@ -16,7 +16,7 @@ export const Verdict: React.FC = () => {
               <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">Value Watch</p>
               <h4 className="text-xl font-bold">MTN</h4>
               <p className="text-sm text-slate-300 leading-relaxed mt-2">
-                MTN often looks competitive in DataCost's bundle comparisons, especially where Boosta-style offers are available.
+                MTN's public bundles and personalised Made4U offers can differ by SIM. Compare the live allocation, validity and checkout price before buying.
               </p>
             </div>
           </div>

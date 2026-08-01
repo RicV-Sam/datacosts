@@ -22,8 +22,8 @@ const advanceRows = [
     network: 'MTN',
     intent: 'Borrow airtime / check advance',
     product: 'MTN XtraTime',
-    code: '*151#',
-    status: 'Verified advance-airtime route in DataCost USSD data.',
+    code: '*136*2*6#',
+    status: 'Current MTN catalogue route; *151# remains an officially documented alternative on some profiles.',
     repayment: 'Repayment and any service fee are normally deducted from your next recharge or incoming airtime.',
     href: '/mtn-ussd-codes/'
   },
@@ -75,7 +75,7 @@ const faqItems = [
   },
   {
     question: 'What is the MTN airtime advance code?',
-    answer: 'Dial *151# for MTN XtraTime. Check the fee and repayment amount before accepting any advance airtime.'
+    answer: 'Dial *136*2*6# for the current MTN XtraTime route. MTN also documents *151# as an alternative on some profiles. Check the fee and repayment amount before accepting.'
   },
   {
     question: 'What is the Vodacom airtime advance code?',
@@ -193,7 +193,7 @@ export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = (
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick answer</h2>
           <p className="mb-5 text-slate-700 leading-relaxed">
-            To borrow airtime from Vodacom, start with the <strong>*135#</strong> self-service menu and check whether an advance is offered for your SIM. MTN users can start with <strong>*151#</strong>, Telkom with <strong>*180#</strong>, and Cell C with <strong>*147#</strong>. Check the fee, eligibility, and repayment amount on screen before accepting any airtime advance.
+            To borrow airtime from Vodacom, start with the <strong>*135#</strong> self-service menu and check whether an advance is offered for your SIM. MTN users can start with <strong>*136*2*6#</strong>, Telkom with <strong>*180#</strong>, and Cell C with <strong>*147#</strong>. Check the fee, eligibility, and repayment amount on screen before accepting any airtime advance.
           </p>
           <div className="overflow-x-auto">
             <table className="min-w-[680px] w-full text-left text-sm">

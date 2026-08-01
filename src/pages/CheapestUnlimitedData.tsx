@@ -10,6 +10,7 @@ import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
+import { isVerifiedBundleSource } from '../utils/bundleSource';
 
 interface CheapestUnlimitedDataProps {
   onNavigate: NavigateFunction;
@@ -29,12 +30,22 @@ export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ on
   ];
 
   const unlimitedBundles = bundles
-    .filter((bundle) => bundle.volume === 'Unlimited' || bundle.name.toLowerCase().includes('unlimited'))
+    .filter(
+      (bundle) =>
+        (bundle.volume === 'Unlimited' || bundle.name.toLowerCase().includes('unlimited')) &&
+        bundle.productType === 'home_internet_fixed_lte' &&
+        isVerifiedBundleSource(bundle)
+    )
     .sort((a, b) => a.price - b.price);
   const cheapestUnlimited = unlimitedBundles[0];
 
   const cappedMonthly = bundles
-    .filter((bundle) => bundle.validity.toLowerCase().includes('30 day') || bundle.type === 'Monthly')
+    .filter(
+      (bundle) =>
+        (bundle.validity.toLowerCase().includes('30 day') || bundle.type === 'Monthly') &&
+        bundle.productType === 'smartphone_once_off_data' &&
+        isVerifiedBundleSource(bundle)
+    )
     .filter((bundle) => bundle.volume !== 'Unlimited' && bundle.costPerGb > 0)
     .sort((a, b) => a.costPerGb - b.costPerGb);
   const bestCappedMonthly = cappedMonthly[0];
@@ -157,7 +168,7 @@ export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ on
             <div className="rounded-2xl border border-slate-100 p-5 bg-slate-50">
               <h3 className="font-black text-slate-900 mb-2">Capped Monthly Plans</h3>
               <p className="text-slate-700">Often lower total spend for moderate users, especially when cost-per-GB is strong.</p>
-              <p className="text-slate-700 mt-2">Best-value capped monthly in this dataset: {bestCappedMonthly ? `${bestCappedMonthly.name} (~R${bestCappedMonthly.costPerGb.toFixed(2)}/GB)` : 'No clear listing'}.</p>
+               <p className="text-slate-700 mt-2">Best source-checked capped smartphone benchmark: {bestCappedMonthly ? `${bestCappedMonthly.name} (~R${bestCappedMonthly.costPerGb.toFixed(2)}/GB)` : 'No verified comparable listing'}.</p>
             </div>
           </div>
         </section>
@@ -195,7 +206,7 @@ export const CheapestUnlimitedData: React.FC<CheapestUnlimitedDataProps> = ({ on
             <div>
               <h2 className="text-xl font-black tracking-tight">Trust and Pricing Transparency</h2>
               <p className="text-slate-600 text-sm mt-1">
-                Last updated: {lastUpdated}. Pricing can change quickly. These are currently listed plans in our comparison dataset, and final offer details should be confirmed on the operator page.
+                Last updated: {lastUpdated}. Unlimited leaders and the capped benchmark use source-checked, dated rows from separate, clearly labelled product families. Final terms should still be confirmed on the operator page.
               </p>
             </div>
           </div>

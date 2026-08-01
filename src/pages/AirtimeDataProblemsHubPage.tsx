@@ -111,7 +111,7 @@ const faqItems = [
   {
     question: 'What causes airtime to disappear in South Africa?',
     answer:
-      'The most common causes are WASP subscriptions, premium SMS services, and out-of-bundle data billing when a bundle runs out.'
+      'Common causes include WASP subscriptions, premium SMS services, and out-of-bundle data billing when that use is enabled or allowed after a bundle runs out.'
   },
   {
     question: 'Why does data finish fast even after buying a bundle?',
@@ -250,7 +250,7 @@ export const AirtimeDataProblemsHubPage: React.FC<AirtimeDataProblemsHubPageProp
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Summary</h2>
           <p className="text-slate-700 leading-relaxed mb-3">
-            Most mobile billing complaints in South Africa come from three patterns: hidden subscriptions, background data drain, and out-of-bundle billing.
+            Common mobile billing patterns include hidden subscriptions, background data drain, and out-of-bundle billing where the line allows it.
           </p>
           <p className="text-slate-700 leading-relaxed">
             This page groups the fastest fixes by issue type so you can go straight to the right guide for Vodacom, MTN, Telkom, or Cell C.

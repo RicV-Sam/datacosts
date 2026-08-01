@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { motion } from 'motion/react';
 import { Router, TowerControl, Signal, Globe, Zap, ArrowRight } from 'lucide-react';
-import { NetworkName, Bundle, NetworkMetadata } from '../types';
+import { NetworkName } from '../types';
 import { networkMetadata, bundles } from '../data';
 import { networkPages } from '../data/networks';
 import { formatIsoForDisplay, getNetworkPageModifiedIso } from '../seo/contentDates';
@@ -23,9 +23,16 @@ const NetworkIcon = ({ network, className }: { network: NetworkName; className?:
 
 export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }> = ({ network, onViewDeals, isBestValue }) => {
   const meta = networkMetadata[network];
-  const networkBundles = bundles.filter(b => b.network === network).slice(0, 2);
-  const bundlesCount = bundles.filter(b => b.network === network).length;
-  const minCostPerGb = Math.min(...bundles.filter(b => b.network === network).map(b => b.costPerGb));
+  const allNetworkBundles = bundles.filter(b => b.network === network);
+  const verifiedBundles = allNetworkBundles.filter(b => b.sourceConfidence === 'verified' && Boolean(b.lastVerified));
+  const comparableAnytimeBundles = verifiedBundles.filter(
+    b => b.productType === 'smartphone_once_off_data' || b.productType === 'smartphone_recurring_data'
+  );
+  const networkBundles = [...verifiedBundles, ...allNetworkBundles.filter(b => !verifiedBundles.includes(b))].slice(0, 2);
+  const minCostPerGb = comparableAnytimeBundles.length > 0
+    ? Math.min(...comparableAnytimeBundles.filter(b => b.costPerGb > 0).map(b => b.costPerGb))
+    : Infinity;
+  const minimumListedPrice = Math.min(...allNetworkBundles.map(b => b.price));
   const networkPage = Object.values(networkPages).find(p => p.networkName === network);
   const lastUpdated = networkPage ? formatIsoForDisplay(getNetworkPageModifiedIso(networkPage.slug)) : '';
 
@@ -57,7 +64,7 @@ export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }>
         </div>
         <div>
           <h2 className="text-2xl font-black text-[#031636] tracking-tight">{network}</h2>
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{bundlesCount} active deals</span>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{verifiedBundles.length} verified · {allNetworkBundles.length} listed</span>
         </div>
       </div>
 
@@ -66,18 +73,20 @@ export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }>
           <div key={bundle.id} className="flex justify-between items-center pb-3 border-b border-slate-50">
             <div className="flex flex-col">
               <span className="text-xs text-slate-500 font-bold mb-0.5">{bundle.name}</span>
-              <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">{bundle.volume}</span>
+              <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">
+                {bundle.volume} · {bundle.sourceConfidence === 'verified' ? 'Source checked' : 'Confirm live'}
+              </span>
             </div>
             <span className="text-xl font-black text-[#031636]">R{bundle.price}</span>
           </div>
         ))}
         <div className="flex flex-col gap-1 py-3 px-4 bg-slate-50 rounded-xl border border-slate-100/50">
-          <span className="text-[10px] text-slate-500 font-black uppercase tracking-wider">Cheapest Cost/GB</span>
+          <span className="text-[10px] text-slate-500 font-black uppercase tracking-wider">Lowest Verified Anytime Cost/GB</span>
           <span className="text-2xl font-black text-[#1b6d24]">
-            {network === 'Rain' ? 'Unlimited' : minCostPerGb > 0 ? `R${minCostPerGb.toFixed(2)}` : 'N/A'}
+            {network === 'Rain' ? 'Unlimited' : Number.isFinite(minCostPerGb) ? `R${minCostPerGb.toFixed(2)}` : 'N/A'}
           </span>
           {network === 'Rain' && (
-            <span className="text-[10px] text-slate-400 font-bold uppercase">From R479/month</span>
+            <span className="text-[10px] text-slate-400 font-bold uppercase">Listed from R{minimumListedPrice}/month</span>
           )}
         </div>
       </div>
@@ -103,10 +112,17 @@ export const NetworkCards: React.FC<{ onViewDeals: (network: NetworkName) => voi
   const networks: NetworkName[] = ['Vodacom', 'MTN', 'Telkom', 'Cell C', 'Rain'];
 
   const bestValueNetwork = useMemo(() => {
-    // Exclude Rain from "cheapest cost per GB" calculation if it's 0 (unlimited)
-    // Or handle it by finding the network with the absolute lowest costPerGb > 0
     const costs = networks.map(n => {
-      const networkCosts = bundles.filter(b => b.network === n && b.costPerGb > 0).map(b => b.costPerGb);
+      const networkCosts = bundles
+        .filter(
+          b =>
+            b.network === n &&
+            (b.productType === 'smartphone_once_off_data' || b.productType === 'smartphone_recurring_data') &&
+            b.sourceConfidence === 'verified' &&
+            Boolean(b.lastVerified) &&
+            b.costPerGb > 0
+        )
+        .map(b => b.costPerGb);
       return { network: n, minCost: networkCosts.length > 0 ? Math.min(...networkCosts) : Infinity };
     });
     return costs.sort((a, b) => a.minCost - b.minCost)[0]?.network;

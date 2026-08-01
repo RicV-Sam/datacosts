@@ -6,7 +6,8 @@ import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { NavigateFunction } from '../types';
-import { toCanonicalUrl } from '../seo/siteConstants';
+import { SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 import { fixPages, fixClusterLabelById, getFixPath } from '../data/fixes';
 import { fibrePages } from '../data/fibre';
 
@@ -132,11 +133,26 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onNavigate, onScrollTo
   const pageTitle = 'DataCost Sitemap';
   const metaDescription = 'Browse the main DataCost pages for South African data prices, USSD codes, problem-solving guides, and trust information.';
   const canonicalUrl = toCanonicalUrl('/sitemap/');
+  const dateModifiedIso = getRouteModifiedIso('/sitemap/');
+  const lastReviewed = formatIsoForDisplay(dateModifiedIso);
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Sitemap', href: '/sitemap/' }
   ];
   const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: pageTitle,
+    description: metaDescription,
+    url: canonicalUrl,
+    dateModified: dateModifiedIso,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: SITE_PRODUCT_NAME,
+      url: SITE_URL
+    }
+  };
 
   return (
     <div className="min-h-screen bg-mesh text-[#1a1c1c] font-sans pb-24">
@@ -145,6 +161,7 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onNavigate, onScrollTo
         <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
       </Helmet>
 
       <Header onScrollTo={onScrollTo} activeSection="home" />
@@ -158,6 +175,7 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onNavigate, onScrollTo
             A human-readable index of the main DataCost pages. The XML sitemap for search engines remains at{' '}
             <a href="/sitemap.xml" className="text-[#1b6d24] font-bold hover:underline">/sitemap.xml</a>.
           </p>
+          <p className="mt-3 text-xs font-bold uppercase tracking-wider text-slate-500">Reviewed {lastReviewed}</p>
         </header>
 
         <section className="grid grid-cols-1 md:grid-cols-2 gap-5">

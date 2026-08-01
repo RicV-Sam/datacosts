@@ -8,8 +8,8 @@ import { TrustPanel } from '../components/TrustPanel';
 import { ArrowLeft, ChevronRight, ShieldCheck, Zap, Info, Smartphone, HelpCircle, Clock, Tag, ExternalLink, CheckCircle2, Link as LinkIcon } from 'lucide-react';
 import { NetworkName, NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema } from '../utils/structuredData';
-import { getBundleSourceSummary, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
-import { formatIsoForDisplay, getDefaultPublishedIso, getNetworkModifiedIso, getNetworkPageModifiedIso } from '../seo/contentDates';
+import { getBundleSourceSummary, isVerifiedBundleSource, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
+import { formatIsoForDisplay, getDefaultPublishedIso, getNetworkModifiedIso, getNetworkPageModifiedIso, getNetworkUssdModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
 interface NetworkPageProps {
@@ -85,25 +85,33 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   }
 
   const sortedBundles = [...networkBundles].sort((a, b) => a.price - b.price);
+  const verifiedBundles = sortedBundles.filter(isVerifiedBundleSource);
   const hasManualRequiredRows = sortedBundles.some((bundle) => bundle.sourceConfidence === 'manual_required');
-  const standardBundles = sortedBundles.filter((bundle) => !isSocialBundle(bundle));
-  const generalUseBundles = standardBundles.filter((bundle) => !isNightBundle(bundle) && !isHourlyBundle(bundle));
-  const nightBundles = sortedBundles.filter((bundle) => isNightBundle(bundle));
+  const generalUseBundles = verifiedBundles.filter(
+    (bundle) =>
+      (network.name === 'Rain'
+        ? bundle.productType === 'home_internet_fixed_lte'
+        : bundle.productType === 'smartphone_once_off_data') &&
+      !isNightBundle(bundle) &&
+      !isSocialBundle(bundle) &&
+      !isHourlyBundle(bundle)
+  );
+  const nightBundles = verifiedBundles.filter((bundle) => bundle.productType === 'night_data' && isNightBundle(bundle));
 
-  const bestCheapGeneralBundle = [...generalUseBundles, ...standardBundles].sort((a, b) => a.price - b.price)[0];
+  const bestCheapGeneralBundle = [...generalUseBundles].sort((a, b) => a.price - b.price)[0];
   const best1GbOption = generalUseBundles.filter((bundle) => bundle.volume.toLowerCase().includes('1gb')).sort((a, b) => a.price - b.price)[0];
-  const bestMonthlyValue = standardBundles.filter((bundle) => isMonthlyBundle(bundle)).sort((a, b) => a.costPerGb - b.costPerGb)[0];
-  const bestNightBundle = nightBundles.sort((a, b) => a.costPerGb - b.costPerGb)[0];
-  const bestHeavyUser = standardBundles
+  const bestMonthlyValue = generalUseBundles.filter((bundle) => isMonthlyBundle(bundle)).sort((a, b) => a.costPerGb - b.costPerGb)[0];
+  const bestNightBundle = [...nightBundles].sort((a, b) => a.costPerGb - b.costPerGb)[0];
+  const bestHeavyUser = generalUseBundles
     .filter((bundle) => isMonthlyBundle(bundle) && (bundle.volume.toLowerCase().includes('10gb') || bundle.volume.toLowerCase().includes('20gb') || bundle.volume.toLowerCase().includes('30gb') || bundle.volume.toLowerCase().includes('50gb')))
     .sort((a, b) => a.costPerGb - b.costPerGb)[0];
 
   const summaryCards: SummaryCard[] = [
-    bestCheapGeneralBundle ? { label: `Best cheap general-use ${network.name} bundle`, bundle: bestCheapGeneralBundle } : null,
-    best1GbOption ? { label: `Best ${network.name} 1GB option`, bundle: best1GbOption } : null,
-    bestMonthlyValue ? { label: `Best monthly ${network.name} value`, bundle: bestMonthlyValue } : null,
-    bestNightBundle ? { label: `Best ${network.name} night bundle`, bundle: bestNightBundle } : null,
-    bestHeavyUser ? { label: `Best ${network.name} heavy-use bundle`, bundle: bestHeavyUser } : null
+    bestCheapGeneralBundle ? { label: `Lowest verified general-use ${network.name} price`, bundle: bestCheapGeneralBundle } : null,
+    best1GbOption ? { label: `Lowest verified ${network.name} 1GB price`, bundle: best1GbOption } : null,
+    bestMonthlyValue ? { label: `Best verified monthly ${network.name} value`, bundle: bestMonthlyValue } : null,
+    bestNightBundle ? { label: `Best verified ${network.name} night value`, bundle: bestNightBundle } : null,
+    bestHeavyUser ? { label: `Best verified ${network.name} heavy-use value`, bundle: bestHeavyUser } : null
   ].filter((item): item is SummaryCard => item !== null);
 
   const comparisonRows = pageData.comparisonSummary || [];
@@ -133,9 +141,11 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const canonicalUrl = toCanonicalUrl(`/network/${networkSlug}/`);
   const dateModifiedIso = getNetworkPageModifiedIso(networkSlug);
   const sourceCheckedIso = getNetworkModifiedIso(networkSlug);
+  const ussdCheckedIso = getNetworkUssdModifiedIso(networkSlug);
   const datePublishedIso = getDefaultPublishedIso();
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
   const sourceCheckedLabel = formatIsoForDisplay(sourceCheckedIso);
+  const ussdCheckedLabel = formatIsoForDisplay(ussdCheckedIso);
 
   const webPageSchema = {
     '@context': 'https://schema.org',
@@ -194,7 +204,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const bundleItemListSchema = buildBundleItemListSchema(
     `${network.name} Mobile Data Bundles`,
     canonicalUrl,
-    sortedBundles,
+    verifiedBundles,
     () => canonicalUrl
   );
 
@@ -535,6 +545,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                           <span>{bundle.name}</span>
                           {isHighlight && <span className="inline-flex items-center px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-lg text-[10px] font-black uppercase tracking-widest">Best Value</span>}
                         </div>
+                        <div className={`mt-1 text-[10px] font-black uppercase tracking-wider ${isVerifiedBundleSource(bundle) ? 'text-emerald-700' : 'text-amber-700'}`}>
+                          {isVerifiedBundleSource(bundle) ? 'Source checked' : 'Confirm live - excluded from leader claims'}
+                        </div>
                         {sourceSummary && (
                           <div className="mt-1 text-[10px] font-medium text-slate-500">{sourceSummary}</div>
                         )}
@@ -646,7 +659,18 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
               ussdCodes.map((ussd, i) => (
                 <div key={i} className="bg-white border border-slate-100 p-6 rounded-[2rem] flex justify-between items-center group hover:border-[#a0f399] transition-all shadow-sm">
                   <div>
-                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{ussd.action}</div>
+                    <div className="mb-2 flex flex-wrap items-center gap-2">
+                      <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{ussd.action}</div>
+                      <span
+                        className={`rounded-full px-2 py-1 text-[9px] font-black uppercase tracking-wider ${
+                          ussd.status === 'verified'
+                            ? 'bg-emerald-50 text-emerald-700'
+                            : 'bg-amber-50 text-amber-800'
+                        }`}
+                      >
+                        {ussd.status === 'verified' ? 'Verified' : 'Needs live-SIM review'}
+                      </span>
+                    </div>
                     <div className="text-2xl font-black text-[#031636] font-mono tracking-tighter group-hover:text-[#1b6d24] transition-colors">
                       {ussd.code}
                     </div>
@@ -674,7 +698,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             </p>
           )}
           <div className="mt-5 text-xs text-slate-500 font-medium">
-            Last checked {sourceCheckedLabel}. USSD codes can change by campaign or customer profile.
+            Last checked {ussdCheckedLabel}. USSD codes can change by campaign or customer profile.
             {' '}
             <a href="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">View full South Africa USSD directory</a>.
           </div>

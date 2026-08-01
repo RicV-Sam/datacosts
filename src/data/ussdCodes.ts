@@ -30,9 +30,9 @@ export const ussdCodesByNetwork = {
       { id: 'ussd.vodacom.balance_main', codeType: 'balance', label: 'Airtime Balance', code: '*135#' },
       { id: 'ussd.vodacom.data_balance', codeType: 'balance', label: 'Data Balance', code: '*135#' },
       { id: 'ussd.vodacom.buy_data', codeType: 'data', label: 'Buy Data', code: '*135*2#' },
-      { id: 'ussd.vodacom.recharge_voucher', codeType: 'recharge', label: 'Recharge', code: '*136*Voucher#' },
+      { id: 'ussd.vodacom.recharge_voucher', codeType: 'recharge', label: 'Recharge', code: '*136*01*PIN#' },
       { id: 'ussd.vodacom.please_call_me', codeType: 'other', label: 'Please Call Me', code: '*140*number#' },
-      { id: 'ussd.vodacom.transfer_airtime_data', codeType: 'transfer', label: 'Transfer Airtime', code: '*135*1002#' }
+      { id: 'ussd.vodacom.transfer_airtime_data', codeType: 'transfer', label: 'Transfer Data', code: '*135*1002#' }
     ]
   },
   cellc: {
@@ -41,7 +41,7 @@ export const ussdCodesByNetwork = {
       { id: 'ussd.cellc.balance_main', codeType: 'balance', label: 'Airtime Balance', code: '*101#' },
       { id: 'ussd.cellc.recharge_voucher', codeType: 'recharge', label: 'Recharge', code: '*102*PIN#' },
       { id: 'ussd.cellc.please_call_me', codeType: 'other', label: 'Please Call Me', code: '*111*number#' },
-      { id: 'ussd.cellc.transfer_airtime', codeType: 'transfer', label: 'Transfer Airtime', code: '*102*2#' }
+      { id: 'ussd.cellc.transfer_airtime', codeType: 'transfer', label: 'Airtime Share', code: '*147#' }
     ]
   },
   telkom: {

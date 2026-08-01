@@ -8,7 +8,8 @@ import {
   SITE_LOGO_URL,
   SITE_URL
 } from '../src/seo/siteConstants';
-import { getIndexableRoutes, getNoindexRoutes } from '../src/config/routeCatalog';
+import { getIndexableRoutes, getNoindexRoutes, getSitemapRoutes } from '../src/config/routeCatalog';
+import { getRouteLastMod, getRouteModifiedIso } from '../src/seo/contentDates';
 
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
 const CANONICAL_PREFIX = SITE_URL;
@@ -301,7 +302,13 @@ function validateRobotsMeta(filePath: string, html: string, route: string, error
   }
 }
 
-function walkJsonLd(value: unknown, filePath: string, context: string, errors: ValidationError[]): void {
+function walkJsonLd(
+  value: unknown,
+  filePath: string,
+  route: string,
+  context: string,
+  errors: ValidationError[]
+): void {
   if (typeof value === 'string') {
     if (/^https?:\/\//i.test(value)) {
       validateOwnDomainUrl(value, filePath, context, errors);
@@ -311,19 +318,33 @@ function walkJsonLd(value: unknown, filePath: string, context: string, errors: V
 
   if (Array.isArray(value)) {
     value.forEach((item, index) => {
-      walkJsonLd(item, filePath, `${context}[${index}]`, errors);
+      walkJsonLd(item, filePath, route, `${context}[${index}]`, errors);
     });
     return;
   }
 
   if (value && typeof value === 'object') {
     for (const [key, nestedValue] of Object.entries(value)) {
-      walkJsonLd(nestedValue, filePath, `${context}.${key}`, errors);
+      if (key === 'dateModified') {
+        const expected = getRouteModifiedIso(route);
+        if (typeof nestedValue !== 'string') {
+          pushError(errors, filePath, `${context}.dateModified must be a string`);
+        } else if (nestedValue !== expected) {
+          pushError(
+            errors,
+            filePath,
+            `${route} dateModified must be "${expected}" but found "${nestedValue}"`
+          );
+        } else if (nestedValue.slice(0, 10) > new Date().toISOString().slice(0, 10)) {
+          pushError(errors, filePath, `${route} dateModified is in the future: ${nestedValue}`);
+        }
+      }
+      walkJsonLd(nestedValue, filePath, route, `${context}.${key}`, errors);
     }
   }
 }
 
-function validateJsonLd(filePath: string, html: string, errors: ValidationError[]): void {
+function validateJsonLd(filePath: string, html: string, route: string, errors: ValidationError[]): void {
   const scriptPattern = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
   let match: RegExpExecArray | null;
   let scriptIndex = 0;
@@ -338,7 +359,7 @@ function validateJsonLd(filePath: string, html: string, errors: ValidationError[
 
     try {
       const parsed = JSON.parse(rawJson);
-      walkJsonLd(parsed, filePath, `JSON-LD #${scriptIndex}`, errors);
+      walkJsonLd(parsed, filePath, route, `JSON-LD #${scriptIndex}`, errors);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       pushError(errors, filePath, `JSON-LD script #${scriptIndex} could not be parsed: ${message}`);
@@ -346,7 +367,12 @@ function validateJsonLd(filePath: string, html: string, errors: ValidationError[
   }
 }
 
-function validateSitemapFile(filePath: string, xml: string, errors: ValidationError[]): void {
+function validateSitemapFile(
+  filePath: string,
+  xml: string,
+  sitemapRoutes: Set<string>,
+  errors: ValidationError[]
+): void {
   const siteOrigin = SITE_URL.replace(/\/$/, '');
   const noindexUrls = new Set(getNoindexRoutes().map((route) => `${siteOrigin}${route}`));
   const urls = getAbsoluteUrls(xml);
@@ -355,6 +381,44 @@ function validateSitemapFile(filePath: string, xml: string, errors: ValidationEr
 
     if (noindexUrls.has(url)) {
       pushError(errors, filePath, `sitemap includes noindex route: ${url}`);
+    }
+  }
+
+  if (!xml.includes('<urlset')) return;
+
+  const entryPattern = /<url>([\s\S]*?)<\/url>/gi;
+  let entryMatch: RegExpExecArray | null;
+  while ((entryMatch = entryPattern.exec(xml)) !== null) {
+    const entry = entryMatch[1];
+    const loc = entry.match(/<loc>([^<]+)<\/loc>/i)?.[1];
+    const lastmod = entry.match(/<lastmod>([^<]+)<\/lastmod>/i)?.[1];
+    if (!loc) {
+      pushError(errors, filePath, 'sitemap URL entry is missing loc');
+      continue;
+    }
+
+    let route: string;
+    try {
+      route = normalizeRoute(new URL(loc).pathname);
+    } catch {
+      pushError(errors, filePath, `sitemap loc is not a valid URL: ${loc}`);
+      continue;
+    }
+
+    if (sitemapRoutes.has(route)) {
+      pushError(errors, filePath, `sitemap contains duplicate route: ${route}`);
+    }
+    sitemapRoutes.add(route);
+
+    const expected = getRouteLastMod(route);
+    if (lastmod !== expected) {
+      pushError(
+        errors,
+        filePath,
+        `${route} sitemap lastmod must be "${expected}" but found "${lastmod ?? 'missing'}"`
+      );
+    } else if (lastmod > new Date().toISOString().slice(0, 10)) {
+      pushError(errors, filePath, `${route} sitemap lastmod is in the future: ${lastmod}`);
     }
   }
 }
@@ -378,6 +442,7 @@ async function main(): Promise<void> {
   const sitemapFiles = allFiles.filter((filePath) => /(?:^|[\\/])sitemap.*\.xml$/i.test(filePath));
   const textFiles = allFiles.filter((filePath) => filePath.endsWith('.txt') || filePath.endsWith('.xml') || filePath.endsWith('.html'));
   const errors: ValidationError[] = [];
+  const sitemapRoutes = new Set<string>();
 
   if (htmlFiles.length === 0) {
     throw new Error(`No HTML files found in ${DIST_DIR}`);
@@ -397,17 +462,29 @@ async function main(): Promise<void> {
       validateMetaSeoUrls(filePath, text, errors);
       validateSocialPreviewMeta(filePath, text, route, errors);
       validateRobotsMeta(filePath, text, route, errors);
-      validateJsonLd(filePath, text, errors);
+      validateJsonLd(filePath, text, route, errors);
       continue;
     }
 
     if (filePath.endsWith('.xml')) {
-      validateSitemapFile(filePath, text, errors);
+      validateSitemapFile(filePath, text, sitemapRoutes, errors);
       continue;
     }
 
     if (path.basename(filePath).toLowerCase() === 'robots.txt') {
       validateRobotsFile(filePath, text, errors);
+    }
+  }
+
+  const expectedSitemapRoutes = new Set(getSitemapRoutes().map(normalizeRoute));
+  for (const route of expectedSitemapRoutes) {
+    if (!sitemapRoutes.has(route)) {
+      pushError(errors, path.join(DIST_DIR, 'sitemap.xml'), `sitemap is missing expected route: ${route}`);
+    }
+  }
+  for (const route of sitemapRoutes) {
+    if (!expectedSitemapRoutes.has(route)) {
+      pushError(errors, path.join(DIST_DIR, 'sitemap.xml'), `sitemap contains unexpected route: ${route}`);
     }
   }
 

@@ -4,7 +4,7 @@ export const MANUAL_PRICE_CHECK_NOTE =
   'Price check advised: this bundle may vary by SIM, app, promotion, region, or checkout flow. Confirm with the operator before buying.';
 
 export function isVerifiedBundleSource(bundle: Bundle): boolean {
-  return bundle.sourceConfidence === 'verified';
+  return bundle.sourceConfidence === 'verified' && Boolean(bundle.lastVerified);
 }
 
 export function getBundleSourceNote(bundle: Bundle): string | null {

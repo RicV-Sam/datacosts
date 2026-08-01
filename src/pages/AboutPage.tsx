@@ -15,6 +15,7 @@ import {
 } from '../seo/siteConstants';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { ORGANIZATION_SAME_AS } from '../config/socialProfiles';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 
 interface AboutPageProps {
   onNavigate: NavigateFunction;
@@ -26,6 +27,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
   const metaDescription =
     'Learn who edits DataCost, why the site exists, how we compare South African mobile data prices, how the site is funded, and how users can report errors.';
   const canonicalUrl = toCanonicalUrl('/about/');
+  const dateModifiedIso = getRouteModifiedIso('/about/');
+  const lastReviewed = formatIsoForDisplay(dateModifiedIso);
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about/' }
@@ -37,6 +40,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
     name: pageTitle,
     description: metaDescription,
     url: canonicalUrl,
+    dateModified: dateModifiedIso,
     isPartOf: {
       '@type': 'WebSite',
       name: SITE_PRODUCT_NAME,
@@ -76,6 +80,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
           <p className="text-slate-600 font-medium max-w-2xl mx-auto">
             DataCost is an independent South African telecom resource for comparing mobile data prices, checking USSD routes, and solving everyday prepaid billing problems.
           </p>
+          <p className="mt-3 text-xs font-bold uppercase tracking-wider text-slate-500">Reviewed {lastReviewed}</p>
         </header>
 
         <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
@@ -113,7 +118,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
             We do not present operator marketing labels as rankings. Our comparisons prioritize consumer signals such as total price, included data, validity, estimated cost per GB, usage restrictions, and whether a deal is likely to be available to ordinary prepaid users.
           </p>
           <p className="text-slate-600 leading-relaxed">
-            Where personalised menus such as Just4You, Boosta, or Mo'Nice may differ by SIM, we label that limitation rather than treating a personalised offer as a universal market price.
+            Where personalised menus such as Just4You, Made4U, MyTownOffers, or Mo'Nice may differ by SIM or location, we label that limitation rather than treating a personalised offer as a universal market price.
           </p>
         </section>
 

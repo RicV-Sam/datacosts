@@ -61,21 +61,21 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
     },
     {
       network: 'Telkom',
-      code: '*180#',
+      code: '*180# / support',
       steps: [
-        'Dial *180# on your Telkom mobile number.',
-        'Check active subscriptions in the self-service menu.',
-        'Stop each paid service one by one.',
+        'Dial *180# on your Telkom mobile number and look for a content-services or subscriptions option.',
+        'If that option is not shown, use the MyTelkom app or official support instead of guessing a menu path.',
+        'Ask for each paid service to be stopped and for future premium-content billing to be blocked where available.',
         'Save confirmation SMS messages as proof.',
       ],
     },
     {
       network: 'Cell C',
-      code: '*133*1#',
+      code: 'Manage WASPs / 135',
       steps: [
-        'Dial *133*1# from your Cell C SIM.',
-        'Open subscription management.',
-        'Cancel any active premium services.',
+        'Sign in to the official Cell C Manage WASPs page and review the listed services.',
+        'Cancel any active premium service you do not recognise.',
+        'If the online manager is unavailable, call 135 from the Cell C line and request cancellation plus a content block.',
         'Check your balance over the next 24 to 48 hours.',
       ],
     },
@@ -90,7 +90,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
         "name": "How do I stop WASP subscriptions?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Dial your network's subscription USSD code, view active services, and unsubscribe from each one. Then switch on a content block if your network provides it."
+          "text": "Use the current operator route for subscription management, review active services, and unsubscribe from each unwanted service. Then switch on a content block if your network provides one."
         }
       },
       {
@@ -191,7 +191,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 text-sm leading-relaxed">
-            The fastest way to stop WASP charges is to dial your network subscription code, cancel every active paid service, and enable a content block if available. For most users, this reduces unexpected airtime deductions after confirmation messages are received.
+            Use the current operator route below, cancel every active paid service, and enable a content block if available. Vodacom and MTN publish direct USSD routes; Telkom and Cell C may require their main self-service, app, web, or support channels.
           </p>
         </section>
 
@@ -211,13 +211,13 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
             <div>
               <h3 className="text-lg font-black mb-2">How to stop WASP subscriptions immediately</h3>
               <p className="text-sm text-slate-700 leading-relaxed">
-                Dial your network code below, open subscription management, and cancel all active paid services. Keep the cancellation SMS messages in case you need to dispute ongoing charges later.
+                Use the network route below, open subscription management where available, and cancel all active paid services. Keep confirmation messages in case you need to dispute ongoing charges later.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-black mb-2">How to check if you have active subscriptions</h3>
               <p className="text-sm text-slate-700 leading-relaxed">
-                Use the same USSD menu and look for terms like "subscriptions", "content services", or "premium services". If unfamiliar services appear, unsubscribe and monitor your airtime for the next day or two.
+                Look for terms such as "subscriptions", "content services", "premium services", or "Manage WASPs" in the operator's current self-service channel. If unfamiliar services appear, unsubscribe and monitor your airtime for the next day or two.
               </p>
             </div>
           </div>
@@ -268,7 +268,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
         <section className="mb-20 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">What to do if charges continue</h2>
           <div className="space-y-3 text-sm text-slate-700 leading-relaxed">
-            <p>1. Repeat the USSD check and confirm no active premium services remain.</p>
+            <p>1. Repeat the operator subscription check and confirm no active premium services remain.</p>
             <p>2. Contact your network support team and request a paid content block.</p>
             <p>3. Share your cancellation SMS records and ask for a charge investigation.</p>
             <p>4. If needed, compare your options on our <Link to="/network/" className="text-[#1b6d24] font-semibold hover:underline">network comparison hub</Link> before switching providers.</p>
@@ -285,7 +285,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
           <div className="space-y-6">
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
               <h3 className="font-bold text-slate-900 mb-2">How do I stop WASP subscriptions?</h3>
-              <p className="text-sm text-slate-600">Dial your network code, open your subscription list, and cancel all paid services. Then enable a content block if your network menu offers one.</p>
+              <p className="text-sm text-slate-600">Use your network's current subscription route, open the service list, and cancel unwanted paid services. Then enable a content block if the operator offers one.</p>
             </div>
             <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
               <h3 className="font-bold text-slate-900 mb-2">Why am I being charged for services I didn't subscribe to?</h3>

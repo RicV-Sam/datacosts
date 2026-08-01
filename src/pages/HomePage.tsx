@@ -373,7 +373,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
         <section className="mb-16" id="deals">
           <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4">Compare Data Prices by Network</h2>
-          <p className="text-slate-600 font-medium mb-6">See live network cards and jump directly to each operator hub.</p>
+          <p className="text-slate-600 font-medium mb-6">Review network cards and jump directly to each operator hub.</p>
           <NetworkCards
             onViewDeals={(network) => {
               const page = Object.values(networkPages).find((p) => p.networkName === network);

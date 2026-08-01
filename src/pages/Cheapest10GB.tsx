@@ -6,34 +6,51 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { bundles } from '../data';
-import { NavigateFunction } from '../types';
+import { Bundle, NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 
 interface Cheapest10GBProps {
   onNavigate: NavigateFunction;
   onScrollTo: (id: string) => void;
 }
 
+const isSourceChecked = (bundle: Bundle) =>
+  bundle.sourceConfidence === 'verified' && Boolean(bundle.lastVerified);
+
+const isComparableSmartphoneBundle = (bundle: Bundle) =>
+  isSourceChecked(bundle) &&
+  (bundle.productType === 'smartphone_once_off_data' || bundle.productType === 'smartphone_recurring_data') &&
+  !bundle.nightData;
+
+const getComparisonStatus = (bundle: Bundle) => {
+  if (!isSourceChecked(bundle)) return 'Confirm live';
+  return isComparableSmartphoneBundle(bundle)
+    ? 'Source checked · ranking eligible'
+    : 'Source checked · different product type';
+};
+
 export const Cheapest10GB: React.FC<Cheapest10GBProps> = ({ onNavigate, onScrollTo }) => {
   const pageTitle = 'Cheapest 10GB Data South Africa (2026)';
   const metaDescription =
-    'Compare the cheapest 10GB data bundles in South Africa. See currently listed 10GB deals, value per GB, and who should choose a 10GB bundle.';
+    'Compare source-checked 10GB smartphone data in South Africa, with other listed prices clearly marked for live confirmation.';
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-10gb-data-south-africa/');
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const lastUpdated = formatIsoForDisplay(getRouteModifiedIso('/guides/cheapest-10gb-data-south-africa/'));
 
   const tenGbBundles = bundles
     .filter((bundle) => bundle.volume === '10GB')
     .sort((a, b) => (a.costPerGb || Number.POSITIVE_INFINITY) - (b.costPerGb || Number.POSITIVE_INFINITY));
 
-  const cheapest10Gb = tenGbBundles.sort((a, b) => a.price - b.price)[0];
-  const best10GbValue = tenGbBundles
-    .filter((bundle) => bundle.costPerGb > 0)
-    .sort((a, b) => a.costPerGb - b.costPerGb)[0] ?? tenGbBundles[0];
+  const comparableTenGbBundles = tenGbBundles
+    .filter((bundle) => isComparableSmartphoneBundle(bundle) && bundle.costPerGb > 0);
+  const cheapest10Gb = [...comparableTenGbBundles].sort((a, b) => a.price - b.price)[0];
+  const best10GbValue = [...comparableTenGbBundles]
+    .sort((a, b) => a.costPerGb - b.costPerGb)[0];
 
   const networks: Array<'Vodacom' | 'MTN' | 'Telkom' | 'Cell C' | 'Rain'> = ['Vodacom', 'MTN', 'Telkom', 'Cell C', 'Rain'];
   const networkRows = networks.map((network) => {
-    const options = tenGbBundles.filter((bundle) => bundle.network === network);
-    const cheapest = options.sort((a, b) => a.price - b.price)[0];
+    const options = comparableTenGbBundles.filter((bundle) => bundle.network === network);
+    const cheapest = [...options].sort((a, b) => a.price - b.price)[0];
     return { network, cheapest };
   });
 
@@ -111,7 +128,7 @@ export const Cheapest10GB: React.FC<Cheapest10GBProps> = ({ onNavigate, onScroll
             Cheapest <span className="text-[#1b6d24]">10GB Data</span> South Africa
           </h1>
           <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto mb-8">
-            A focused comparison of currently listed 10GB bundles to help you pick the right mid-volume option.
+            A focused comparison that reserves winner claims for verified full-internet smartphone bundles and labels other rows for context.
           </p>
         </header>
 
@@ -151,8 +168,8 @@ export const Cheapest10GB: React.FC<Cheapest10GBProps> = ({ onNavigate, onScroll
                 <h3 className="font-black text-slate-900 mb-2">{row.network}</h3>
                 <p className="text-sm text-slate-700">
                   {row.cheapest
-                    ? `${row.cheapest.name} at R${row.cheapest.price} (~R${row.cheapest.costPerGb.toFixed(2)}/GB).`
-                    : 'No listed 10GB bundle in this dataset for this network.'}
+                    ? `Lowest verified comparable price: ${row.cheapest.name} at R${row.cheapest.price} (~R${row.cheapest.costPerGb.toFixed(2)}/GB).`
+                    : 'No verified comparable 10GB smartphone row; see the table for other listings and source status.'}
                 </p>
               </div>
             ))}
@@ -170,6 +187,7 @@ export const Cheapest10GB: React.FC<Cheapest10GBProps> = ({ onNavigate, onScroll
                   <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Price</th>
                   <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Validity</th>
                   <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Cost per GB</th>
+                  <th className="px-6 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
@@ -180,10 +198,11 @@ export const Cheapest10GB: React.FC<Cheapest10GBProps> = ({ onNavigate, onScroll
                     <td className="px-6 py-4 text-slate-700">R{bundle.price}</td>
                     <td className="px-6 py-4 text-slate-700">{bundle.validity}</td>
                     <td className="px-6 py-4 text-slate-700">~R{bundle.costPerGb.toFixed(2)}/GB</td>
+                    <td className="px-6 py-4 text-slate-700">{getComparisonStatus(bundle)}</td>
                   </tr>
                 )) : (
                   <tr>
-                    <td className="px-6 py-4 text-slate-600" colSpan={5}>No 10GB bundles found in the current dataset.</td>
+                    <td className="px-6 py-4 text-slate-600" colSpan={6}>No 10GB bundles found in the current dataset.</td>
                   </tr>
                 )}
               </tbody>
@@ -232,7 +251,7 @@ export const Cheapest10GB: React.FC<Cheapest10GBProps> = ({ onNavigate, onScroll
             <div>
               <h2 className="text-xl font-black tracking-tight">Trust and Pricing Transparency</h2>
               <p className="text-slate-600 text-sm mt-1">
-                Last updated: {lastUpdated}. Prices can change quickly. Listed bundles are based on currently available data, and final offer details should be confirmed on operator pages.
+                Last updated: {lastUpdated}. Winner claims use only verified full-internet smartphone rows. Other products remain listed for context, and rows marked Confirm live must be checked before purchase.
               </p>
             </div>
           </div>

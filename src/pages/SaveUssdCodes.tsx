@@ -7,7 +7,7 @@ import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { UssdTool } from '../components/UssdTool';
 import { NavigateFunction } from '../types';
-import { getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
+import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { triggerOneSignalPrompt } from '../utils/oneSignal';
 
@@ -43,6 +43,7 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
   const canonicalUrl = toCanonicalUrl('/save-ussd-codes/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/save-ussd-codes/');
+  const lastReviewed = formatIsoForDisplay(dateModifiedIso);
 
   const webPageSchema = {
     '@context': 'https://schema.org',
@@ -118,6 +119,9 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
             <Link to="/ussd-codes-south-africa/" className="font-bold text-[#1b6d24] hover:underline">
               See the complete South Africa USSD guide.
             </Link>
+          </p>
+          <p className="mt-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+            USSD entries reviewed {lastReviewed}
           </p>
         </section>
 

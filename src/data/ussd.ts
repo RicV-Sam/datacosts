@@ -27,8 +27,8 @@ export const ussdRepository = [
     network: 'Vodacom',
     category: 'Airtime / Recharge',
     action: 'Recharge with Voucher',
-    code: '*136*VoucherCode#',
-    explanation: 'Instantly top up your account using a physical voucher.',
+    code: '*136*01*PIN#',
+    explanation: 'Load a prepaid voucher by inserting its recharge PIN.',
     status: 'verified',
     dialable: false
   },
@@ -46,9 +46,9 @@ export const ussdRepository = [
     id: 'ussd.vodacom.transfer_airtime_data',
     network: 'Vodacom',
     category: 'Transfers',
-    action: 'Transfer Airtime / Data',
+    action: 'Transfer Data',
     code: '*135*1002#',
-    explanation: 'Send airtime or data to another Vodacom number.',
+    explanation: 'Open Vodacom data-transfer options for another Vodacom number.',
     status: 'verified',
     dialable: true
   },
@@ -159,8 +159,8 @@ export const ussdRepository = [
     network: 'MTN',
     category: 'Promotions / Advance airtime / Extras',
     action: 'XtraTime',
-    code: '*151#',
-    explanation: 'Advance airtime or data when you are low on balance.',
+    code: '*136*2*6#',
+    explanation: 'Open the current XtraTime menu for eligible airtime or data advances; *151# may remain available on some profiles.',
     status: 'verified',
     dialable: true
   },
@@ -168,9 +168,9 @@ export const ussdRepository = [
     id: 'ussd.mtn.mytownoffers',
     network: 'MTN',
     category: 'Promotions',
-    action: 'MTN MyTownOffers / personalised deals',
+    action: 'MTN Made4U / personalised offers',
     code: '*142#',
-    explanation: 'Discounted data bundles and personalized network offers.',
+    explanation: 'Check Made4U and other SIM-specific offers, including MyTownOffers where the line and location qualify.',
     status: 'verified',
     dialable: true
   },
@@ -182,7 +182,7 @@ export const ussdRepository = [
     category: 'Balance',
     action: 'Check Balance',
     code: '*188#',
-    explanation: 'Shows your anytime and night-owl data balances.',
+    explanation: 'Shows airtime, Anytime data and Night Surfer balances where applicable.',
     status: 'verified',
     dialable: true
   },
@@ -254,9 +254,9 @@ export const ussdRepository = [
     category: 'Number / SIM info',
     action: 'Check My Number',
     code: '*147*100#',
-    explanation: 'Confirm your Cell C mobile number.',
-    status: 'verified',
-    dialable: true
+    explanation: 'Manual review only: DataCost could not confirm this legacy own-number shortcut in current official Cell C guidance.',
+    status: 'needs review',
+    dialable: false
   },
   {
     id: 'ussd.cellc.customer_care',
@@ -272,9 +272,9 @@ export const ussdRepository = [
     id: 'ussd.cellc.for_you',
     network: 'Cell C',
     category: 'Promotions',
-    action: 'Cell C For You',
+    action: 'Supa Bonus tariff migration',
     code: '*108#',
-    explanation: 'Access special discounted offers for your SIM.',
+    explanation: 'Move an eligible Cell C prepaid line to the Supa Bonus tariff plan; use *147# or the Cell C app for ordinary bundle and account menus.',
     status: 'verified',
     dialable: true
   },

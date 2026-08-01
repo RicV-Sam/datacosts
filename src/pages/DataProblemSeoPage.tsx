@@ -9,7 +9,7 @@ import { TrustPanel } from '../components/TrustPanel';
 import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { NavigateFunction } from '../types';
-import { formatIsoForDisplay, getDefaultPublishedIso } from '../seo/contentDates';
+import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_URL,
   SITE_EDITOR_BIO,
@@ -37,6 +37,9 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
 
   const canonicalUrl = toCanonicalUrl(page.canonicalPath);
   const datePublishedIso = getDefaultPublishedIso();
+  // Keep two explicit clocks: route metadata tracks the last page modification,
+  // while the JSON field records when the underlying guidance was editorially reviewed.
+  const dateModifiedIso = getRouteModifiedIso(page.canonicalPath);
   const lastReviewed = page.lastReviewed ? formatIsoForDisplay(`${page.lastReviewed}T00:00:00.000Z`) : formatIsoForDisplay(datePublishedIso);
   const reviewDueDate = page.reviewDueDate ? formatIsoForDisplay(`${page.reviewDueDate}T00:00:00.000Z`) : undefined;
   const shouldNoindex = page.indexingStatus !== 'index';
@@ -62,7 +65,7 @@ export const DataProblemSeoPage: React.FC<DataProblemSeoPageProps> = ({ onNaviga
     url: canonicalUrl,
     image: DEFAULT_OG_IMAGE_URL,
     datePublished: datePublishedIso,
-    dateModified: page.lastReviewed ? `${page.lastReviewed}T00:00:00.000Z` : datePublishedIso,
+    dateModified: dateModifiedIso,
     citation: page.officialSources.map((source) => source.href),
     author: {
       '@type': 'Person',

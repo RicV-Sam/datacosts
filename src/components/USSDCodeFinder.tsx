@@ -27,7 +27,7 @@ export const USSDCodeFinder: React.FC<USSDCodeFinderProps> = ({ onViewAll }) => 
   }, [search, activeNetwork]);
 
   const handleCopy = async (record: (typeof ussdCodes)[number]) => {
-    if (record.code === 'N/A (App only)') return;
+    if (record.code.startsWith('N/A')) return;
     const success = await copyUssdCodeToClipboard(record.code, {
       operator: toAnalyticsOperator(record.network),
       codeType: toUssdCodeType(`${record.category} ${record.purpose}`),
@@ -133,7 +133,7 @@ export const USSDCodeFinder: React.FC<USSDCodeFinderProps> = ({ onViewAll }) => 
                 <code className="text-xl font-black text-[#031636] tracking-widest">{code.code}</code>
                 <button
                   onClick={() => handleCopy(code)}
-                  disabled={code.code === 'N/A (App only)'}
+                  disabled={code.code.startsWith('N/A')}
                   className="p-3 text-slate-400 hover:text-[#217128] hover:bg-[#a0f399]/10 rounded-xl transition-all disabled:opacity-30 disabled:hover:bg-transparent"
                   title="Copy code"
                 >
@@ -159,7 +159,7 @@ export const USSDCodeFinder: React.FC<USSDCodeFinderProps> = ({ onViewAll }) => 
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
           <p className="mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-            Access hundreds of verified codes for all networks
+            Full operator directories show verification and review status
           </p>
         </div>
       )}

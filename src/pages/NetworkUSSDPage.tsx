@@ -47,16 +47,16 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
     balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'MTN USSD codes for South Africa: dial *136# to check balance, *136*2# to buy data, *121*number# for Please Call Me and *151# for XtraTime.',
+      'MTN USSD codes for South Africa: dial *136# to check balance, *136*2# to buy data, *121*number# for Please Call Me and *136*2*6# for XtraTime.',
     intro:
       'Use this page when the intent is MTN-specific. If you searched for MTN balance check, how to check MTN balance, or MTN balance check code, start here for the exact MTN airtime, data, recharge, and Please Call Me shortcuts without opening the app.',
     quickAnswer:
-      'For MTN balance check, dial *136# first. Use *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, *121*number# for MTN Please Call Me, and *151# for MTN XtraTime. If your intent shifts from MTN-only to cross-network comparison, move to the all-network hub.',
+      'For MTN balance check, dial *136# first. Use *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, *121*number# for MTN Please Call Me, and *136*2*6# for MTN XtraTime. MTN also documents *151# as an alternative on some profiles. If your intent shifts from MTN-only to cross-network comparison, move to the all-network hub.',
     quickCodes: [
       { label: 'MTN balance check', code: '*136#' },
       { label: 'Buy MTN data', code: '*136*2#' },
       { label: 'MTN Please Call Me', code: '*121*number#' },
-      { label: 'MTN XtraTime', code: '*151#' }
+      { label: 'MTN XtraTime', code: '*136*2*6#' }
     ],
     supportNote:
       'MTN menus can vary by prepaid profile and active campaigns. If a code path changes, use *136# as your fallback entry point.',
@@ -101,7 +101,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
       { label: 'Vodacom balance check', code: '*135#' },
       { label: 'Buy Vodacom data', code: '*135*2#' },
       { label: 'Vodacom Please Call Me', code: '*140*number#' },
-      { label: 'Transfer airtime', code: '*135*1002#' }
+      { label: 'Transfer data', code: '*135*1002#' }
     ],
     supportNote:
       'Vodacom often updates self-service menu flows. If a direct code fails, start from *135# and navigate to the same task.',
@@ -115,8 +115,8 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
         answer: 'Dial *135*2# to open Vodacom bundle purchase options.'
       },
       {
-        question: 'How do I transfer airtime on Vodacom?',
-        answer: 'Use the transfer/self-service path from *135*1002# where available.'
+        question: 'How do I transfer data on Vodacom?',
+        answer: 'Use *135*1002# for the data-transfer shortcut, or open *135# and follow Services, then Data Transfer. Airtime transfer uses a separate Vodacom route.'
       },
       {
         question: 'What if a Vodacom code changed?',
@@ -196,7 +196,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
       },
       {
         question: 'How do I check my Cell C number?',
-        answer: 'A commonly used number check route is *147*100#.'
+        answer: 'DataCost has not confirmed a current Cell C own-number USSD shortcut. Check the SIM packaging or account details, or use an official Cell C support channel for a current route.'
       },
       {
         question: 'What should I do if a Cell C code does not work?',
@@ -258,12 +258,20 @@ const FIX_LINKS_BY_NETWORK_SLUG: Record<SupportedNetworkSlug, Array<{ href: stri
 
 function findMostUsedCode(entries: USSDEntry[], patterns: string[]): USSDEntry | null {
   return (
-    entries.find((entry) => patterns.some((pattern) => `${entry.action} ${entry.category}`.toLowerCase().includes(pattern))) || null
+    entries.find(
+      (entry) =>
+        entry.status === 'verified' &&
+        patterns.some((pattern) => `${entry.action} ${entry.category}`.toLowerCase().includes(pattern))
+    ) || null
   );
 }
 
 function isDialable(code: string): boolean {
   return code.includes('*') || code.includes('#');
+}
+
+function canDialEntry(entry: USSDEntry): boolean {
+  return entry.status === 'verified' && entry.dialable === true && isDialable(entry.code);
 }
 
 export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, onBack, onScrollTo, onNavigate }) => {
@@ -492,7 +500,12 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {mostUsedRows.map((entry) => (
               <div key={`${entry.action}-${entry.code}`} className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
-                <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{entry.category}</div>
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">{entry.category}</div>
+                  <span className="rounded-full bg-emerald-50 px-2 py-1 text-[9px] font-black uppercase tracking-wider text-emerald-700">
+                    Verified
+                  </span>
+                </div>
                 <h3 className="font-black text-slate-900 mb-2">{entry.action}</h3>
                 <p className="text-sm text-slate-600 mb-4">{entry.explanation}</p>
                 <div className="flex items-center justify-between rounded-xl border border-slate-100 bg-white px-4 py-3">
@@ -508,7 +521,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
                         <span className="inline-flex items-center gap-1"><Copy className="w-3 h-3" /> Copy</span>
                       )}
                     </button>
-                    {isDialable(entry.code) ? (
+                    {canDialEntry(entry) ? (
                       <button
                         onClick={() => dialCode(entry.code)}
                         className="rounded-lg bg-[#031636] px-3 py-2 text-xs font-black uppercase tracking-wider text-white hover:bg-[#1b6d24]"
@@ -539,7 +552,18 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {filteredEntries.slice(0, 10).map((entry) => (
               <div key={`${entry.action}-${entry.code}`} className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-                <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{entry.category}</div>
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">{entry.category}</div>
+                  <span
+                    className={`rounded-full px-2 py-1 text-[9px] font-black uppercase tracking-wider ${
+                      entry.status === 'verified'
+                        ? 'bg-emerald-50 text-emerald-700'
+                        : 'bg-amber-50 text-amber-800'
+                    }`}
+                  >
+                    {entry.status === 'verified' ? 'Verified' : 'Needs live-SIM review'}
+                  </span>
+                </div>
                 <div className="font-black text-slate-900">{entry.action}</div>
                 <p className="text-sm text-slate-600 mb-3">{entry.explanation}</p>
                 <code className="font-black text-slate-900">{entry.code}</code>
@@ -557,7 +581,18 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
             <div className="space-y-3">
               {group.entries.map((entry, index) => (
                 <article key={`${entry.action}-${entry.code}-${index}`} className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
-                  <h3 className="font-black text-slate-900 mb-2">{entry.action}</h3>
+                  <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="font-black text-slate-900">{entry.action}</h3>
+                    <span
+                      className={`rounded-full px-2 py-1 text-[9px] font-black uppercase tracking-wider ${
+                        entry.status === 'verified'
+                          ? 'bg-emerald-50 text-emerald-700'
+                          : 'bg-amber-50 text-amber-800'
+                      }`}
+                    >
+                      {entry.status === 'verified' ? 'Verified' : 'Needs live-SIM review'}
+                    </span>
+                  </div>
                   <p className="text-sm text-slate-600 mb-3">{entry.explanation}</p>
                   <div className="flex items-center justify-between rounded-xl border border-slate-100 bg-white px-4 py-3">
                     <code className="text-base font-black text-slate-900">{entry.code}</code>
@@ -572,7 +607,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
                           <span className="inline-flex items-center gap-1"><Copy className="w-3 h-3" /> Copy</span>
                         )}
                       </button>
-                      {isDialable(entry.code) ? (
+                      {canDialEntry(entry) ? (
                         <button
                           onClick={() => dialCode(entry.code)}
                           className="rounded-lg bg-[#031636] px-3 py-2 text-xs font-black uppercase tracking-wider text-white hover:bg-[#1b6d24]"

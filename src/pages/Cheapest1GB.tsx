@@ -8,6 +8,7 @@ import { MobileNav } from '../components/MobileNav';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 
 interface Cheapest1GBProps {
   onNavigate: NavigateFunction;
@@ -21,10 +22,16 @@ export const Cheapest1GB: React.FC<Cheapest1GBProps> = ({ onNavigate, onScrollTo
   const canonicalUrl = toCanonicalUrl('/guides/cheapest-1gb-data-south-africa/');
 
   const oneGbBundles = bundles
-    .filter((bundle) => bundle.volume === '1GB')
+    .filter(
+      (bundle) =>
+        bundle.volume === '1GB' &&
+        (bundle.productType === 'smartphone_once_off_data' || bundle.productType === 'smartphone_recurring_data') &&
+        bundle.sourceConfidence === 'verified' &&
+        Boolean(bundle.lastVerified),
+    )
     .sort((a, b) => a.price - b.price);
   const cheapest1Gb = oneGbBundles[0];
-  const lastUpdated = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const lastUpdated = formatIsoForDisplay(getRouteModifiedIso('/guides/cheapest-1gb-data-south-africa/'));
 
   const networks: Array<'Vodacom' | 'MTN' | 'Telkom' | 'Cell C'> = ['Vodacom', 'MTN', 'Telkom', 'Cell C'];
   const networkRows = networks.map((network) => {

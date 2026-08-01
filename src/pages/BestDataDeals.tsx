@@ -8,7 +8,7 @@ import { MobileNav } from '../components/MobileNav';
 import { bundles } from '../data';
 import { NavigateFunction } from '../types';
 import { networkPages } from '../data/networks';
-import { MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
+import { isVerifiedBundleSource, MANUAL_PRICE_CHECK_NOTE } from '../utils/bundleSource';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_URL,
@@ -48,25 +48,43 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     { label: 'Best Data Deals', href: '/guides/best-data-deals-south-africa/' }
   ];
 
-  const validValueBundles = bundles
-    .filter((bundle) => bundle.costPerGb > 0)
+  const comparableAnytimeBundles = bundles.filter(
+    (bundle) => bundle.productType === 'smartphone_once_off_data' && bundle.costPerGb > 0
+  );
+  const verifiedAnytimeBundles = comparableAnytimeBundles
+    .filter(isVerifiedBundleSource)
+    .sort((a, b) => a.costPerGb - b.costPerGb);
+  const manualAnytimeBundles = comparableAnytimeBundles
+    .filter((bundle) => !isVerifiedBundleSource(bundle))
     .sort((a, b) => a.costPerGb - b.costPerGb);
 
-  const topDeals = validValueBundles.slice(0, 8);
+  const topDeals = [...verifiedAnytimeBundles, ...manualAnytimeBundles].slice(0, 8);
   const hasManualRequiredTopDeals = topDeals.some((bundle) => bundle.sourceConfidence === 'manual_required');
-  const cheapestOverall = [...bundles].sort((a, b) => a.price - b.price)[0];
-  const bestPrepaidDeal = [...bundles]
-    .filter((bundle) => bundle.type !== 'Contract' && bundle.costPerGb > 0)
+  const cheapestOverall = [...verifiedAnytimeBundles].sort((a, b) => a.price - b.price)[0];
+  const bestPrepaidDeal = [...verifiedAnytimeBundles]
+    .filter((bundle) => bundle.type !== 'Contract')
     .sort((a, b) => a.costPerGb - b.costPerGb)[0];
-  const bestMonthlyDeal = [...bundles]
-    .filter((bundle) => isMonthlyBundle(bundle.validity, bundle.type) && bundle.costPerGb > 0)
+  const bestMonthlyDeal = [...verifiedAnytimeBundles]
+    .filter((bundle) => isMonthlyBundle(bundle.validity, bundle.type))
     .sort((a, b) => a.costPerGb - b.costPerGb)[0];
   const rainBest = [...bundles]
-    .filter((bundle) => bundle.network === 'Rain' && bundle.costPerGb > 0)
-    .sort((a, b) => a.costPerGb - b.costPerGb)[0];
+    .filter(
+      (bundle) =>
+        bundle.network === 'Rain' &&
+        bundle.productType === 'home_internet_fixed_lte' &&
+        isVerifiedBundleSource(bundle)
+    )
+    .sort((a, b) => a.price - b.price)[0];
 
   const networkBreakdown = NETWORK_ORDER.map((networkName) => {
-    const rows = bundles.filter((bundle) => bundle.network === networkName);
+    const rows = bundles.filter(
+      (bundle) =>
+        bundle.network === networkName &&
+        isVerifiedBundleSource(bundle) &&
+        (networkName === 'Rain'
+          ? bundle.productType === 'home_internet_fixed_lte'
+          : bundle.productType === 'smartphone_once_off_data')
+    );
     const cheapest = [...rows].sort((a, b) => a.price - b.price)[0];
     const bestValue = [...rows]
       .filter((bundle) => bundle.costPerGb > 0)
@@ -80,18 +98,18 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
     {
       question: 'Which network has the cheapest data in South Africa?',
       answer: cheapestOverall
-        ? `${cheapestOverall.network} currently shows one of the lowest upfront prices in this dataset with ${cheapestOverall.name} at R${cheapestOverall.price}.`
-        : 'Cheapest upfront pricing changes regularly, so compare current listings before checkout.'
+        ? `${cheapestOverall.network} has the lowest upfront price among the source-checked anytime smartphone-data rows used here with ${cheapestOverall.name} at R${cheapestOverall.price}.`
+        : 'No source-checked, like-for-like smartphone-data row currently supports a cheapest claim.'
     },
     {
       question: 'What is the best prepaid data deal right now?',
       answer: bestPrepaidDeal
-        ? `${bestPrepaidDeal.network} currently has one of the strongest prepaid value options with ${bestPrepaidDeal.name} at about R${bestPrepaidDeal.costPerGb.toFixed(2)}/GB.`
-        : 'Best prepaid value depends on current promotions and your local coverage.'
+        ? `${bestPrepaidDeal.network} has the lowest cost per GB among the source-checked anytime smartphone-data rows used here with ${bestPrepaidDeal.name} at about R${bestPrepaidDeal.costPerGb.toFixed(2)}/GB.`
+        : 'No source-checked, like-for-like smartphone-data row currently supports a best-value claim.'
     },
     {
       question: 'Is Telkom data cheaper than Vodacom?',
-      answer: 'Telkom is often cheaper on cost per GB, while Vodacom is often chosen for coverage consistency. The right pick depends on your area and usage pattern.'
+      answer: 'The current dataset does not contain a source-checked Telkom smartphone-data row suitable for a live leader comparison with Vodacom. Confirm Telkom pricing first, then compare the same product type, size and validity.'
     },
     {
       question: 'Which network is best for monthly data bundles?',
@@ -241,7 +259,12 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
                 {topDeals.map((bundle) => (
                   <tr key={bundle.id} className="hover:bg-slate-50 transition-colors">
                     <td className="px-6 py-4 font-bold">{bundle.network}</td>
-                    <td className="px-6 py-4 text-slate-700">{bundle.name}</td>
+                    <td className="px-6 py-4 text-slate-700">
+                      {bundle.name}
+                      <span className={`block mt-1 text-[10px] font-black uppercase tracking-wider ${isVerifiedBundleSource(bundle) ? 'text-emerald-700' : 'text-amber-700'}`}>
+                        {isVerifiedBundleSource(bundle) ? 'Source checked' : 'Confirm live - excluded from leader claims'}
+                      </span>
+                    </td>
                     <td className="px-6 py-4 text-slate-700">R{bundle.price}</td>
                     <td className="px-6 py-4 text-slate-700">{bundle.validity}</td>
                     <td className="px-6 py-4 text-slate-700">~R{bundle.costPerGb.toFixed(2)}/GB</td>
@@ -260,8 +283,8 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
             {networkBreakdown.map((row) => (
               <div key={row.networkName} className="rounded-2xl border border-slate-100 p-5 bg-slate-50">
                 <h3 className="font-black text-slate-900 mb-2">{row.networkName}</h3>
-                <p className="text-sm text-slate-700">Cheapest listed: {row.cheapest ? `${row.cheapest.name} (R${row.cheapest.price})` : 'N/A'}.</p>
-                <p className="text-sm text-slate-700 mt-1">Best value listed: {row.bestValue ? `${row.bestValue.name} (~R${row.bestValue.costPerGb.toFixed(2)}/GB)` : 'N/A'}.</p>
+                <p className="text-sm text-slate-700">Lowest source-checked price: {row.cheapest ? `${row.cheapest.name} (R${row.cheapest.price})` : 'No verified comparable row'}.</p>
+                <p className="text-sm text-slate-700 mt-1">Best source-checked value: {row.bestValue && row.bestValue.costPerGb > 0 ? `${row.bestValue.name} (~R${row.bestValue.costPerGb.toFixed(2)}/GB)` : 'No verified cost-per-GB row'}.</p>
                 {row.networkSlug ? (
                   <Link to={`/network/${row.networkSlug}/`} className="text-sm font-bold text-[#1b6d24] hover:underline mt-3 inline-block">
                     View {row.networkName} network page
@@ -322,7 +345,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
         <section className="mb-16 bg-[#031636] text-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Which network has the best data deals?</h2>
           <p className="text-slate-200 leading-relaxed mb-4">
-            There is no permanent winner every month. Telkom often leads on low cost-per-GB, MTN often performs strongly on promo-driven value, Vodacom is often chosen for coverage reliability, Cell C can be highly competitive on campaigns, and Rain can be useful for high-usage cases where coverage fits.
+            There is no permanent winner. This page only names leaders from source-checked rows within the same product family; networks without a verified comparable row are left without a winner until their public pricing can be confirmed.
           </p>
           <p className="text-slate-300 text-sm">
             Use this page as the national benchmark, then verify final offers on each operator page before checkout.
@@ -335,7 +358,7 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
             Methodology and trust
           </h2>
           <p className="text-slate-700 leading-relaxed">
-            <strong>Independent analysis:</strong> DataCost compares publicly listed pricing, validity terms, and value-per-GB benchmarks across major South African operators.
+            <strong>Independent analysis:</strong> Leader and FAQ claims use source-checked, dated rows from comparable product families. Manual rows remain visible only as context and must be confirmed live.
           </p>
           <p className="text-slate-700 leading-relaxed mt-3">
             <strong>Prices may change:</strong> Promotions and personalized offers can change quickly, so always verify final bundle terms with the operator before purchase.

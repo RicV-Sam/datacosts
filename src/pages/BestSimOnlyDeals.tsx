@@ -30,14 +30,31 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
 
   const simOnlyStyle = bundles
     .filter((bundle) => bundle.type === 'Monthly')
+    .filter(
+      (bundle) =>
+        bundle.productType === 'smartphone_once_off_data' || bundle.productType === 'smartphone_recurring_data',
+    )
     .filter((bundle) => bundle.volume !== 'Unlimited' && bundle.costPerGb > 0)
-    .sort((a, b) => a.costPerGb - b.costPerGb);
+    .sort((a, b) => {
+      const aVerified = a.sourceConfidence === 'verified' && Boolean(a.lastVerified);
+      const bVerified = b.sourceConfidence === 'verified' && Boolean(b.lastVerified);
+      if (aVerified !== bVerified) return aVerified ? -1 : 1;
+      return a.costPerGb - b.costPerGb;
+    });
 
   const topSimOnly = simOnlyStyle.slice(0, 6);
-  const bestSimOnly = topSimOnly[0];
+  const bestSimOnly = simOnlyStyle
+    .filter((bundle) => bundle.sourceConfidence === 'verified' && Boolean(bundle.lastVerified))
+    .sort((a, b) => a.costPerGb - b.costPerGb)[0];
 
   const prepaidOptions = bundles
-    .filter((bundle) => bundle.type === 'Prepaid')
+    .filter(
+      (bundle) =>
+        bundle.productType === 'smartphone_once_off_data' &&
+        bundle.type !== 'Monthly' &&
+        bundle.sourceConfidence === 'verified' &&
+        Boolean(bundle.lastVerified),
+    )
     .sort((a, b) => (a.costPerGb || Number.POSITIVE_INFINITY) - (b.costPerGb || Number.POSITIVE_INFINITY));
   const bestPrepaid = prepaidOptions[0];
 
@@ -51,8 +68,8 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
         acceptedAnswer: {
           '@type': 'Answer',
           text: bestSimOnly
-            ? `${bestSimOnly.network} currently has one of the strongest SIM-only style value options in this comparison dataset: ${bestSimOnly.name} at about R${bestSimOnly.costPerGb.toFixed(2)}/GB.`
-            : 'SIM-only value depends on current monthly listings, usage needs, and local coverage.',
+            ? `${bestSimOnly.network} has the lowest cost per GB among the source-checked monthly smartphone-data rows used as benchmarks here: ${bestSimOnly.name} at about R${bestSimOnly.costPerGb.toFixed(2)}/GB. Confirm the terms of any actual SIM-only plan separately.`
+            : 'No source-checked monthly smartphone-data benchmark is available. Confirm current SIM-only plan terms directly with each operator.',
         },
       },
       {
@@ -126,9 +143,9 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
             {bestSimOnly
-              ? `In this comparison dataset, ${bestSimOnly.network} currently offers one of the strongest SIM-only style values with ${bestSimOnly.name} at about R${bestSimOnly.costPerGb.toFixed(2)}/GB.`
-              : 'In this comparison dataset, SIM-only value depends on the latest monthly bundle mix and coverage in your area.'}{' '}
-            If you need predictable monthly usage, SIM-only can be practical. If you chase promos, prepaid can still compete.
+              ? `Among the source-checked monthly smartphone-data rows used as benchmarks here, ${bestSimOnly.network} has the lowest listed cost per GB with ${bestSimOnly.name} at about R${bestSimOnly.costPerGb.toFixed(2)}/GB.`
+              : 'No source-checked monthly smartphone-data benchmark is currently available.'}{' '}
+            This does not make the row a contract SIM-only plan: confirm billing, recurrence, device and cancellation terms on the live operator offer.
           </p>
         </section>
 
@@ -138,8 +155,8 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
             <p>
               <span className="font-black text-slate-900">What is the best SIM-only deal right now?</span>{' '}
               {bestSimOnly
-                ? `${bestSimOnly.network} currently has one of the strongest SIM-only style options in this dataset.`
-                : 'Best SIM-only value can shift as bundle listings change.'}
+                ? `${bestSimOnly.network} currently has the lowest cost per GB among the verified monthly benchmark rows.`
+                : 'No verified monthly benchmark currently supports a leader claim.'}
             </p>
             <p>
               <span className="font-black text-slate-900">SIM-only vs prepaid: which is better?</span>{' '}
@@ -149,7 +166,7 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
         </section>
 
         <section className="mb-20">
-          <h2 className="text-2xl font-black tracking-tight mb-8">Top SIM-Only Deals</h2>
+          <h2 className="text-2xl font-black tracking-tight mb-8">Monthly Data Benchmarks for SIM-Only Shopping</h2>
           <div className="overflow-x-auto bg-white rounded-3xl border border-slate-100 shadow-xl">
             <table className="w-full text-left">
               <thead>
@@ -165,7 +182,12 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
                 {topSimOnly.length > 0 ? topSimOnly.map((bundle) => (
                   <tr key={bundle.id} className="hover:bg-slate-50 transition-colors">
                     <td className="px-6 py-4 font-bold">{bundle.network}</td>
-                    <td className="px-6 py-4 text-slate-700">{bundle.name}</td>
+                    <td className="px-6 py-4 text-slate-700">
+                      {bundle.name}
+                      <span className="block text-xs text-slate-500">
+                        {bundle.sourceConfidence === 'verified' && bundle.lastVerified ? 'Source checked' : 'Confirm live; excluded from leader claims'}
+                      </span>
+                    </td>
                     <td className="px-6 py-4 text-slate-700">R{bundle.price}</td>
                     <td className="px-6 py-4 text-slate-700">{bundle.volume}</td>
                     <td className="px-6 py-4 text-slate-700">~R{bundle.costPerGb.toFixed(2)}/GB</td>
@@ -186,12 +208,12 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
             <div className="rounded-2xl border border-slate-100 p-5 bg-slate-50">
               <h3 className="font-black text-slate-900 mb-2">SIM-Only</h3>
               <p className="text-slate-700">Better for planned monthly usage and predictable recurring spend.</p>
-              <p className="text-slate-700 mt-2">Current best-value option in this dataset: {bestSimOnly ? `${bestSimOnly.name}` : 'No clear listing'}.</p>
+              <p className="text-slate-700 mt-2">Source-checked monthly benchmark: {bestSimOnly ? `${bestSimOnly.name}` : 'No verified benchmark'}.</p>
             </div>
             <div className="rounded-2xl border border-slate-100 p-5 bg-slate-50">
               <h3 className="font-black text-slate-900 mb-2">Prepaid</h3>
               <p className="text-slate-700">Better for flexibility and users who actively compare promos before each recharge.</p>
-              <p className="text-slate-700 mt-2">Current prepaid benchmark in this dataset: {bestPrepaid ? `${bestPrepaid.name}` : 'No clear listing'}.</p>
+              <p className="text-slate-700 mt-2">Source-checked prepaid benchmark: {bestPrepaid ? `${bestPrepaid.name}` : 'No verified benchmark'}.</p>
             </div>
           </div>
         </section>
@@ -200,12 +222,12 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
           <h2 className="text-2xl font-black tracking-tight mb-6">Best Value Recommendation</h2>
           <h3 className="text-xl font-black mb-3 flex items-center gap-2">
             <ShieldCheck className="w-6 h-6 text-[#1b6d24]" />
-            Best-value SIM-only option in this dataset: {bestSimOnly?.network ?? 'No clear leader'}
+            Lowest verified monthly benchmark: {bestSimOnly?.network ?? 'No clear leader'}
           </h3>
           <p className="text-slate-600 leading-relaxed">
             {bestSimOnly
-              ? `${bestSimOnly.name} currently leads this SIM-only style comparison on listed cost-per-GB.`
-              : 'Value can shift quickly as network listings and promos change.'}
+              ? `${bestSimOnly.name} has the lowest listed cost per GB among the source-checked monthly smartphone-data rows. Confirm any actual SIM-only plan terms separately.`
+              : 'No source-checked monthly row currently supports a leader claim.'}
           </p>
         </section>
 
@@ -215,7 +237,7 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
             <div>
               <h2 className="text-xl font-black tracking-tight">Trust and Pricing Transparency</h2>
               <p className="text-slate-600 text-sm mt-1">
-                Last updated: {lastUpdated}. Pricing can change quickly. These are currently listed options in our comparison dataset, and final offer details should be confirmed on operator pages.
+                Last reviewed: {lastUpdated}. Verified rows were source checked; rows marked Confirm live are retained for context and do not drive leader claims. Actual SIM-only plan terms must be confirmed on operator pages.
               </p>
             </div>
           </div>
@@ -226,7 +248,7 @@ export const BestSimOnlyDeals: React.FC<BestSimOnlyDealsProps> = ({ onNavigate, 
           <div className="space-y-6">
             <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
               <h3 className="font-bold text-slate-900 mb-2">What is the best SIM-only deal in South Africa?</h3>
-              <p className="text-sm text-slate-600">{bestSimOnly ? `${bestSimOnly.network} currently shows one of the strongest SIM-only style values in this dataset.` : 'Best SIM-only value depends on current monthly listings and your coverage.'}</p>
+              <p className="text-sm text-slate-600">{bestSimOnly ? `${bestSimOnly.network} has the lowest cost per GB among the source-checked monthly benchmark rows, but actual SIM-only plan terms still need a live check.` : 'No source-checked monthly benchmark currently supports a leader claim.'}</p>
             </div>
             <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
               <h3 className="font-bold text-slate-900 mb-2">Is SIM-only better than prepaid?</h3>
