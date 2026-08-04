@@ -249,6 +249,10 @@ function validateSocialPreviewMeta(
   if (!html.includes('href="https://www.facebook.com/datacostza"')) {
     pushError(errors, filePath, `${route} is missing the DataCost Facebook footer link`);
   }
+
+  if (!html.includes('href="https://www.linkedin.com/company/datacostza/"')) {
+    pushError(errors, filePath, `${route} is missing the DataCost LinkedIn footer link`);
+  }
 }
 
 type ImageDimensions = { width: number; height: number };

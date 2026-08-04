@@ -2,6 +2,10 @@ export const SOCIAL_PROFILES = {
   facebook: {
     label: 'Facebook',
     url: 'https://www.facebook.com/datacostza'
+  },
+  linkedin: {
+    label: 'LinkedIn',
+    url: 'https://www.linkedin.com/company/datacostza/'
   }
 } as const;
 

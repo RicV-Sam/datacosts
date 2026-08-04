@@ -35,16 +35,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateTo }) => {
           <p className="text-xs text-slate-500 max-w-xs leading-relaxed">
             Copyright 2026 DataCost.co.za. Independent South African mobile-data comparison, USSD guidance, and prepaid troubleshooting.
           </p>
-          <a
-            href={SOCIAL_PROFILES.facebook.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Follow DataCost on Facebook (opens in a new tab)"
-            onClick={() => trackEvent('social_profile_click', { platform: 'facebook', location: 'footer' })}
-            className="inline-flex mt-4 text-xs font-bold text-[#1b6d24] hover:underline"
-          >
-            Follow DataCost on Facebook
-          </a>
+          <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+            {Object.entries(SOCIAL_PROFILES).map(([platform, profile]) => (
+              <a
+                key={platform}
+                href={profile.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Follow DataCost on ${profile.label} (opens in a new tab)`}
+                onClick={() => trackEvent('social_profile_click', { platform, location: 'footer' })}
+                className="inline-flex text-xs font-bold text-[#1b6d24] hover:underline"
+              >
+                Follow DataCost on {profile.label}
+              </a>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-col gap-4">
