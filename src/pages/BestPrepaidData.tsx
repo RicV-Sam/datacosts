@@ -281,7 +281,7 @@ export const BestPrepaidData: React.FC<BestPrepaidDataProps> = ({ onNavigate, on
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <Link to="/guides/cheapest-data-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Cheapest Data South Africa</Link>
-            <Link to="/guides/best-data-deals-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Best Data Deals South Africa</Link>
+            <Link to="/best-data-deals-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Best Data Deals South Africa</Link>
             <Link to="/guides/prepaid-vs-contract-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Prepaid vs Contract</Link>
             <Link to="/fix/mobile-data-on-but-not-working/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Mobile Data On But Not Working</Link>
             <Link to="/fix/airtime-disappearing-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">Airtime Disappearing Quick Fix</Link>

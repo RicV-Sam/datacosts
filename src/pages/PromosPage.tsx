@@ -129,7 +129,7 @@ export const PromosPage: React.FC<PromosPageProps> = ({ onNavigate, onScrollTo }
         <section className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm md:p-8">
           <h2 className="mb-4 text-2xl font-black tracking-tight">Useful alternatives while promos are empty</h2>
           <div className="grid gap-3 md:grid-cols-2">
-            <Link to="/guides/best-data-deals-south-africa/" className="rounded-2xl bg-slate-50 p-4 text-sm font-black text-slate-900 hover:bg-[#a0f399]/10">Best data deals guide</Link>
+            <Link to="/best-data-deals-south-africa/" className="rounded-2xl bg-slate-50 p-4 text-sm font-black text-slate-900 hover:bg-[#a0f399]/10">Best data deals guide</Link>
             <Link to="/buy-data-airtime-south-africa/" className="rounded-2xl bg-slate-50 p-4 text-sm font-black text-slate-900 hover:bg-[#a0f399]/10">How to buy data and airtime</Link>
             <Link to="/guides/buy-data-with-bank-apps-south-africa/" className="rounded-2xl bg-slate-50 p-4 text-sm font-black text-slate-900 hover:bg-[#a0f399]/10">Buy data with bank apps</Link>
             <Link to="/fibre/" className="rounded-2xl bg-slate-50 p-4 text-sm font-black text-slate-900 hover:bg-[#a0f399]/10">Fibre and home internet hub</Link>

@@ -518,7 +518,7 @@ export const guides: Guide[] = [
       { href: '/telkom-ussd-codes/', label: 'Telkom USSD Codes', description: 'Quick Telkom balance and service shortcuts.', action: 'route' },
       { href: '/cell-c-ussd-codes/', label: 'Cell C USSD Codes', description: 'Quick Cell C balance and service shortcuts.', action: 'route' },
       { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare better overall bundle value.', action: 'route' },
-      { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find stronger monthly and prepaid value.', action: 'guide', slug: 'best-data-deals-south-africa' },
+      { href: '/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find stronger monthly and prepaid value.', action: 'guide', slug: 'best-data-deals-south-africa' },
       { href: '/guides/cheapest-2gb-data-south-africa/', label: 'Cheapest 2GB Data', description: 'For light monthly usage.', action: 'route' },
       { href: '/guides/cheapest-5gb-data-south-africa/', label: 'Cheapest 5GB Data', description: 'For moderate monthly usage.', action: 'route' },
       { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data', description: 'Mainstream monthly benchmark.', action: 'route' },
@@ -658,7 +658,7 @@ export const guides: Guide[] = [
     nextSteps: [
       { href: '/guides/', label: 'Guides Hub', description: 'Browse more telecom problem-solving and money-saving guides.', action: 'route' },
       { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare lower-cost options before your next recharge.', action: 'route' },
-      { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find stronger value bundles by network and use case.', action: 'guide', slug: 'best-data-deals-south-africa' },
+      { href: '/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find stronger value bundles by network and use case.', action: 'guide', slug: 'best-data-deals-south-africa' },
       { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs Contract in South Africa', description: 'Choose the right billing model for your spending habits.', action: 'guide', slug: 'prepaid-vs-contract-south-africa' },
       { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Use quick checks to catch problems before airtime is gone.', action: 'guide', slug: 'how-to-check-data-balance' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Get fast balance and bundle-buy shortcuts.', action: 'route' },
@@ -811,7 +811,7 @@ export const guides: Guide[] = [
       { href: '/save-ussd-codes/', label: 'Save Important USSD Codes', description: 'Keep key short codes handy on your phone.', action: 'route' },
       { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Separate data drain from subscription deductions.', action: 'guide', slug: 'how-to-check-data-balance' },
       { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare better-value bundles once charges are under control.', action: 'route' },
-      { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find practical data options after fixing deductions.', action: 'guide', slug: 'best-data-deals-south-africa' },
+      { href: '/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find practical data options after fixing deductions.', action: 'guide', slug: 'best-data-deals-south-africa' },
       { href: '/network/', label: 'Network Comparison Hub', description: 'Browse network pages and support context.', action: 'route' },
       { href: 'https://waspa.org.za/', label: 'WASPA Official Website', description: 'Reference industry guidance and complaint information where applicable.', action: 'route' }
     ],
@@ -975,7 +975,7 @@ export const guides: Guide[] = [
     nextStepsTitle: 'How to Find Cheaper Options on DataCost',
     nextSteps: [
       { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Market-wide benchmark before you buy.', action: 'route' },
-      { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find promo-style and high-value bundles.', action: 'guide', slug: 'best-data-deals-south-africa' },
+      { href: '/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find promo-style and high-value bundles.', action: 'guide', slug: 'best-data-deals-south-africa' },
       { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs Contract in South Africa', description: 'Choose the right billing model for your budget.', action: 'guide', slug: 'prepaid-vs-contract-south-africa' },
       { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices', description: 'Compare two major networks side by side.', action: 'route' },
       { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes', description: 'Quick access to buy and balance shortcuts.', action: 'route' },
@@ -1641,7 +1641,7 @@ export const guides: Guide[] = [
       { href: '/network/telkom/', label: 'Telkom Network Page', description: 'Compare Telkom prepaid data prices and value notes.', action: 'route' },
       { href: '/airtime-advance-codes/', label: 'Telkom airtime advance USSD code', description: 'Check borrow-airtime routes, eligibility, and repayment notes.', action: 'route' },
       { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare Telkom against MTN, Vodacom, and Cell C by price and validity.', action: 'route' },
-      { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals South Africa', description: 'Review broader prepaid data deals by use case.', action: 'guide', slug: 'best-data-deals-south-africa' }
+      { href: '/best-data-deals-south-africa/', label: 'Best Data Deals South Africa', description: 'Review broader prepaid data deals by use case.', action: 'guide', slug: 'best-data-deals-south-africa' }
     ],
     faq: [
       {

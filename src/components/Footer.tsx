@@ -9,10 +9,12 @@ interface FooterProps {
 }
 
 const featuredGuides = [
+  { href: '/best-data-deals-south-africa/', label: 'Monthly Data Deal Tracker' },
+  { href: '/best-10gb-data-deals-south-africa/', label: 'Best 10GB Data Deals' },
+  { href: '/best-20gb-data-deals-south-africa/', label: 'Best 20GB Data Deals' },
+  { href: '/best-30gb-data-deals-south-africa/', label: 'Best 30GB Data Deals' },
   { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data South Africa' },
   { href: '/guides/airtime-data-saving-tips-south-africa/', label: 'Airtime & Data Saving Tips' },
-  { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data' },
-  { href: '/guides/cheapest-2gb-data-south-africa/', label: 'Cheapest 2GB Data' },
   { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals' },
   { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices' }
 ];

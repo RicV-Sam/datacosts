@@ -38,14 +38,14 @@ export const BestDataDeals: React.FC<BestDataDealsProps> = ({ onNavigate, onScro
   const pageTitle = 'Best Data Deals South Africa: MTN, Vodacom, Telkom';
   const metaDescription =
     'Compare South Africa\'s prepaid data deals by network, price, validity and use case before buying your next bundle.';
-  const canonicalUrl = toCanonicalUrl('/guides/best-data-deals-south-africa/');
+  const canonicalUrl = toCanonicalUrl('/best-data-deals-south-africa/');
   const datePublishedIso = getDefaultPublishedIso();
-  const dateModifiedIso = getRouteModifiedIso('/guides/best-data-deals-south-africa/');
+  const dateModifiedIso = getRouteModifiedIso('/best-data-deals-south-africa/');
   const lastUpdated = formatIsoForDisplay(dateModifiedIso);
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Guides', href: '/guides/' },
-    { label: 'Best Data Deals', href: '/guides/best-data-deals-south-africa/' }
+    { label: 'Best Data Deals', href: '/best-data-deals-south-africa/' }
   ];
 
   const comparableAnytimeBundles = bundles.filter(

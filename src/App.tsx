@@ -25,7 +25,8 @@ const TermsPage = lazy(() => import('./pages/TermsPage').then((mod) => ({ defaul
 const CookiePolicyPage = lazy(() => import('./pages/CookiePolicyPage').then((mod) => ({ default: mod.CookiePolicyPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then((mod) => ({ default: mod.ContactPage })));
 const CheapestData = lazy(() => import('./pages/CheapestData').then((mod) => ({ default: mod.CheapestData })));
-const BestDataDeals = lazy(() => import('./pages/BestDataDeals').then((mod) => ({ default: mod.BestDataDeals })));
+const MonthlyDataDealsHubPage = lazy(() => import('./pages/MonthlyDataDealsHubPage').then((mod) => ({ default: mod.MonthlyDataDealsHubPage })));
+const MonthlyDataDealSizePage = lazy(() => import('./pages/MonthlyDataDealSizePage').then((mod) => ({ default: mod.MonthlyDataDealSizePage })));
 const CheapestUnlimitedData = lazy(() => import('./pages/CheapestUnlimitedData').then((mod) => ({ default: mod.CheapestUnlimitedData })));
 const BestSimOnlyDeals = lazy(() => import('./pages/BestSimOnlyDeals').then((mod) => ({ default: mod.BestSimOnlyDeals })));
 const VodacomVsMTN = lazy(() => import('./pages/VodacomVsMTN').then((mod) => ({ default: mod.VodacomVsMTN })));
@@ -60,7 +61,11 @@ function AppContent() {
     let path = '/';
     if (page === 'ussd') path = '/ussd-codes-south-africa/';
     if (page === 'alerts') path = '/alerts/';
-    if (page === 'guide' && slug) path = `/guides/${slug}/`;
+    if (page === 'guide' && slug) {
+      path = slug === 'best-data-deals-south-africa'
+        ? '/best-data-deals-south-africa/'
+        : `/guides/${slug}/`;
+    }
     if (page === 'network') {
       path = slug ? `/network/${slug}/` : '/network/';
     }
@@ -340,9 +345,25 @@ function AppContent() {
           element={<ComparisonGuidePage guideSlug="cheapest-1gb-data-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route
-          path="/guides/best-data-deals-south-africa/"
-          element={<BestDataDeals onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+          path="/best-data-deals-south-africa/"
+          element={<MonthlyDataDealsHubPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
+        <Route path="/best-data-deals-south-africa" element={<Navigate to="/best-data-deals-south-africa/" replace />} />
+        <Route
+          path="/best-10gb-data-deals-south-africa/"
+          element={<MonthlyDataDealSizePage sizeGb={10} onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route path="/best-10gb-data-deals-south-africa" element={<Navigate to="/best-10gb-data-deals-south-africa/" replace />} />
+        <Route
+          path="/best-20gb-data-deals-south-africa/"
+          element={<MonthlyDataDealSizePage sizeGb={20} onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route path="/best-20gb-data-deals-south-africa" element={<Navigate to="/best-20gb-data-deals-south-africa/" replace />} />
+        <Route
+          path="/best-30gb-data-deals-south-africa/"
+          element={<MonthlyDataDealSizePage sizeGb={30} onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route path="/best-30gb-data-deals-south-africa" element={<Navigate to="/best-30gb-data-deals-south-africa/" replace />} />
         <Route
           path="/guides/best-prepaid-data-deals-south-africa/"
           element={<ComparisonGuidePage guideSlug="best-prepaid-data-deals-south-africa" onNavigate={navigateTo} onScrollTo={handleScrollTo} />}

@@ -354,7 +354,7 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
               <h3 className="font-black text-slate-900">Related Guides</h3>
               <ul className="text-sm mt-2 space-y-2">
                 <li><Link to="/guides/cheapest-data-south-africa/" className="text-[#1b6d24] hover:underline">Cheapest Data South Africa</Link></li>
-                <li><Link to="/guides/best-data-deals-south-africa/" className="text-[#1b6d24] hover:underline">Best Data Deals South Africa</Link></li>
+                <li><Link to="/best-data-deals-south-africa/" className="text-[#1b6d24] hover:underline">Best Data Deals South Africa</Link></li>
                 <li><Link to="/guides/cheapest-1gb-data-south-africa/" className="text-[#1b6d24] hover:underline">Cheapest 1GB Data South Africa</Link></li>
                 <li><Link to="/guides/how-to-check-data-balance/" className="text-[#1b6d24] hover:underline">How to Check Data Balance</Link></li>
               </ul>

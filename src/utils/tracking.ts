@@ -11,6 +11,7 @@ import {
   type RegisteredUssdCodeId
 } from '../seo/wp1AnalyticsRegistry';
 import { refreshAnalyticsConsent } from './analyticsConsent';
+import type { DealProviderId, TrackedDataSizeGb } from '../data/monthlyDeals';
 
 const UTM_PARAMS = '?utm_source=datacost&utm_medium=referral&utm_campaign=datacost_tool';
 
@@ -22,6 +23,10 @@ export const USSD_COPY_PLACEMENTS = ['homepage_finder', 'ussd_hub', 'network_uss
 export const QUICK_ANSWER_ACTION_TYPES = ['copy', 'dial', 'open_guide', 'open_operator'] as const;
 export const QUICK_ANSWER_PLACEMENTS = ['quick_answer_primary', 'quick_answer_secondary'] as const;
 export const DESTINATION_TYPES = ['internal_guide', 'operator_site', 'tel'] as const;
+export const DEAL_PROVIDER_IDS = ['airmobile', 'capitec-connect', 'cell-c', 'fnb-connect', 'melon-mobile', 'mtn', 'nedbank-connect', 'standard-bank-connect', 'telkom', 'vodacom'] as const;
+export const DEAL_SOURCE_CLICK_PLACEMENTS = ['comparison_table', 'comparison_card', 'source_register'] as const;
+export const DEAL_SIZE_NAVIGATION_PLACEMENTS = ['hub_summary', 'size_switcher', 'related_deals'] as const;
+export const TRACKED_DEAL_SIZE_VALUES = [5, 10, 15, 20, 30, 50] as const;
 
 export type AnalyticsOperator = (typeof ANALYTICS_OPERATORS)[number];
 export type UssdCodeType = (typeof USSD_CODE_TYPES)[number];
@@ -29,6 +34,8 @@ export type UssdCopyPlacement = (typeof USSD_COPY_PLACEMENTS)[number];
 export type QuickAnswerActionType = (typeof QUICK_ANSWER_ACTION_TYPES)[number];
 export type QuickAnswerPlacement = (typeof QUICK_ANSWER_PLACEMENTS)[number];
 export type DestinationType = (typeof DESTINATION_TYPES)[number];
+export type DealSourceClickPlacement = (typeof DEAL_SOURCE_CLICK_PLACEMENTS)[number];
+export type DealSizeNavigationPlacement = (typeof DEAL_SIZE_NAVIGATION_PLACEMENTS)[number];
 
 export interface CopyUssdCodeEvent {
   operator: AnalyticsOperator;
@@ -44,6 +51,21 @@ export interface QuickAnswerActionEvent {
   actionType: QuickAnswerActionType;
   placement: QuickAnswerPlacement;
   destinationType?: DestinationType;
+  canonicalPath?: never;
+}
+
+export interface DealOfferSourceClickEvent {
+  providerId: DealProviderId;
+  offerId: string;
+  targetGb: TrackedDataSizeGb;
+  placement: DealSourceClickPlacement;
+  canonicalPath?: never;
+}
+
+export interface DealSizeNavigationEvent {
+  targetGb: TrackedDataSizeGb;
+  placement: DealSizeNavigationPlacement;
+  sourceGb?: TrackedDataSizeGb;
   canonicalPath?: never;
 }
 
@@ -77,6 +99,18 @@ export function trackEvent(eventName: string, params: TrackingParams = {}): void
 
 function approvedValue<T extends readonly string[]>(values: T, value: unknown, field: string): T[number] {
   if (typeof value !== 'string' || !values.includes(value)) throw new Error(`Invalid ${field}`);
+  return value;
+}
+
+function approvedDealSize(value: unknown): TrackedDataSizeGb {
+  if (typeof value !== 'number' || !TRACKED_DEAL_SIZE_VALUES.includes(value as TrackedDataSizeGb)) {
+    throw new Error('Invalid target_gb');
+  }
+  return value as TrackedDataSizeGb;
+}
+
+function approvedOfferId(value: unknown): string {
+  if (typeof value !== 'string' || !/^[a-z0-9-]+$/.test(value)) throw new Error('Invalid offer_id');
   return value;
 }
 
@@ -147,6 +181,25 @@ export function trackQuickAnswerAction(event: QuickAnswerActionEvent): void {
     destination_type: event.destinationType
       ? approvedValue(DESTINATION_TYPES, event.destinationType, 'destination_type')
       : undefined
+  });
+}
+
+export function trackDealOfferSourceClick(event: DealOfferSourceClickEvent): void {
+  trackEvent('deal_offer_source_click', {
+    canonical_path: canonicalPath(),
+    provider_id: approvedValue(DEAL_PROVIDER_IDS, event.providerId, 'provider_id'),
+    offer_id: approvedOfferId(event.offerId),
+    target_gb: approvedDealSize(event.targetGb),
+    placement: approvedValue(DEAL_SOURCE_CLICK_PLACEMENTS, event.placement, 'placement')
+  });
+}
+
+export function trackDealSizeNavigation(event: DealSizeNavigationEvent): void {
+  trackEvent('deal_size_navigation', {
+    canonical_path: canonicalPath(),
+    target_gb: approvedDealSize(event.targetGb),
+    source_gb: event.sourceGb === undefined ? undefined : approvedDealSize(event.sourceGb),
+    placement: approvedValue(DEAL_SIZE_NAVIGATION_PLACEMENTS, event.placement, 'placement')
   });
 }
 

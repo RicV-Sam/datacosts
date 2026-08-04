@@ -228,7 +228,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
 
   const relatedPages = [
     '/',
-    '/guides/best-data-deals-south-africa/',
+    '/best-data-deals-south-africa/',
     '/guides/best-prepaid-data-deals-south-africa/',
     '/guides/cheapest-1gb-data-south-africa/',
     '/guides/cheapest-2gb-data-south-africa/',
@@ -251,7 +251,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
 
   const relatedLabels: Record<string, string> = {
     '/': 'DataCost Home',
-    '/guides/best-data-deals-south-africa/': 'Best Data Deals South Africa',
+    '/best-data-deals-south-africa/': 'Best Data Deals South Africa',
     '/guides/best-prepaid-data-deals-south-africa/': 'Best Prepaid Phone Plans',
     '/guides/cheapest-1gb-data-south-africa/': 'Cheapest 1GB Data South Africa',
     '/guides/cheapest-2gb-data-south-africa/': 'Cheapest 2GB Data South Africa',

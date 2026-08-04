@@ -375,7 +375,7 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onScrollTo, onNavigate }
             <Link to="/save-ussd-codes/" className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24]">Save USSD Codes Tool</Link>
             <Link to="/ussd-codes-south-africa/" className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24]">USSD Codes South Africa</Link>
             <Link to="/" className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24]">DataCost Homepage</Link>
-            <Link to="/guides/best-data-deals-south-africa/" className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24]">Best Data Deals Guide</Link>
+            <Link to="/best-data-deals-south-africa/" className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24]">Best Data Deals Guide</Link>
             <Link to="/network/mtn/" className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24]">MTN Network Hub</Link>
             <Link to="/network/vodacom/" className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-bold text-slate-700 hover:border-[#1b6d24] hover:text-[#1b6d24]">Vodacom Network Hub</Link>
           </div>

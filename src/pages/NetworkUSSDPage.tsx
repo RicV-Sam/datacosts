@@ -386,7 +386,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
     { href: config.buyDataGuideHref, label: `How to Buy Data on ${config.networkName}` },
     { href: '/airtime-advance-codes/', label: 'airtime advance codes' },
     { href: '/guides/cheapest-data-south-africa/', label: 'cheapest data in South Africa' },
-    { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa' },
+    { href: '/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance' },
     { href: '/alerts/', label: 'Mobile Alerts' }
   ];

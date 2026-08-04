@@ -399,7 +399,9 @@ export const HomePage: React.FC<HomePageProps> = ({
             {guides.slice(0, 6).map((guide) => (
               <a
                 key={guide.slug}
-                href={`/guides/${guide.slug}/`}
+                href={guide.slug === 'best-data-deals-south-africa'
+                  ? '/best-data-deals-south-africa/'
+                  : `/guides/${guide.slug}/`}
                 onClick={(e) => { e.preventDefault(); onNavigate('guide', guide.slug); }}
                 className="text-left p-5 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md hover:border-[#a0f399]/40 transition-all"
               >

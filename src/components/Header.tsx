@@ -54,7 +54,9 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
       title: guide.title,
       subtitle: guide.metaDescription,
       type: 'route' as const,
-      value: `/guides/${guide.slug}/`
+      value: guide.slug === 'best-data-deals-south-africa'
+        ? '/best-data-deals-south-africa/'
+        : `/guides/${guide.slug}/`
     }))
   ], []);
 

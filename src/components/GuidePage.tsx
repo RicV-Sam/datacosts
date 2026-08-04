@@ -76,7 +76,7 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
     { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'How to Stop WASP / VAS Charges', description: 'Rule out recurring subscription deductions.', action: 'guide', slug: 'stop-wasp-subscriptions-south-africa' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Track where usage goes week by week.', action: 'guide', slug: 'how-to-check-data-balance' },
     { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare lower-cost bundle options.', action: 'route' },
-    { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals', description: 'Find stronger promo and value options.', action: 'guide', slug: 'best-data-deals-south-africa' },
+    { href: '/best-data-deals-south-africa/', label: 'Best Data Deals', description: 'Find stronger promo and value options.', action: 'guide', slug: 'best-data-deals-south-africa' },
     { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa', description: 'Fast balance and buy shortcuts.', action: 'route' }
   ],
   'why-is-my-airtime-disappearing-south-africa': [
@@ -144,7 +144,7 @@ const GUIDE_RELATED_LINKS: Record<string, RelatedLink[]> = {
   ],
   'airtime-data-saving-tips-south-africa': [
     { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data in South Africa', description: 'Compare market-wide prepaid prices.', action: 'route' },
-    { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find promo-led value bundles.', action: 'guide', slug: 'best-data-deals-south-africa' },
+    { href: '/best-data-deals-south-africa/', label: 'Best Data Deals in South Africa', description: 'Find promo-led value bundles.', action: 'guide', slug: 'best-data-deals-south-africa' },
     { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs Contract South Africa', description: 'Choose a lower-risk billing model.', action: 'guide', slug: 'prepaid-vs-contract-south-africa' },
     { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices', description: 'Compare pricing between major networks.', action: 'route' },
     { href: '/ussd-codes-south-africa/', label: 'South Africa USSD Codes', description: 'Save buy and balance short codes.', action: 'route' },
@@ -191,6 +191,7 @@ function dedupeResourceLinks(items: GuideResourceLink[]): GuideResourceLink[] {
 }
 
 const CANONICAL_GUIDE_PATH_OVERRIDES: Record<string, string> = {
+  'best-data-deals-south-africa': '/best-data-deals-south-africa/',
   'how-to-stop-wasp-vas-charges-south-africa': '/guides/stop-wasp-subscriptions-south-africa/'
 };
 
@@ -219,7 +220,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({
     .filter((g) => g.slug !== guide.slug)
     .slice(0, 6)
     .map((g) => ({
-      href: `/guides/${g.slug}/`,
+      href: CANONICAL_GUIDE_PATH_OVERRIDES[g.slug] || `/guides/${g.slug}/`,
       label: g.h1,
       description: 'Read the full guide.',
       action: 'guide' as const,

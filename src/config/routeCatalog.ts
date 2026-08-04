@@ -274,7 +274,10 @@ export function getIndexableRoutes(): string[] {
   routes.add('/contact/');
   routes.add('/guides/cheapest-data-south-africa/');
   routes.add('/guides/cheapest-1gb-data-south-africa/');
-  routes.add('/guides/best-data-deals-south-africa/');
+  routes.add('/best-data-deals-south-africa/');
+  routes.add('/best-10gb-data-deals-south-africa/');
+  routes.add('/best-20gb-data-deals-south-africa/');
+  routes.add('/best-30gb-data-deals-south-africa/');
   routes.add('/guides/best-prepaid-data-deals-south-africa/');
   routes.add('/guides/best-monthly-data-deals-south-africa/');
   routes.add('/guides/cheapest-2gb-data-south-africa/');
@@ -314,7 +317,9 @@ export function getIndexableRoutes(): string[] {
   }
 
   for (const guide of guides) {
-    routes.add(`/guides/${guide.slug}/`);
+    routes.add(guide.slug === 'best-data-deals-south-africa'
+      ? '/best-data-deals-south-africa/'
+      : `/guides/${guide.slug}/`);
   }
 
   for (const fixRoute of getIndexableFixRoutes()) {

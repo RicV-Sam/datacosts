@@ -128,7 +128,7 @@ const waspLinks: FixLink[] = [
 ];
 
 const tvLinks: FixLink[] = [
-  { label: 'Compare data after fixing', href: '/guides/best-data-deals-south-africa/' },
+  { label: 'Compare data after fixing', href: '/best-data-deals-south-africa/' },
   { label: 'Network pages', href: '/network/' }
 ];
 

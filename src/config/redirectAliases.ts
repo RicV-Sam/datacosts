@@ -6,6 +6,7 @@ export type RedirectAlias = {
 
 export const REDIRECT_ALIASES: RedirectAlias[] = [
   { from: '/privacy/', to: '/privacy-policy/', label: 'Privacy Policy' },
+  { from: '/guides/best-data-deals-south-africa/', to: '/best-data-deals-south-africa/', label: 'Best Data Deals South Africa' },
   { from: '/ussd-codes/', to: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa' },
   { from: '/cheapest-1gb-data-south-africa/', to: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa' },
   { from: '/guides/convert-airtime-to-data/', to: '/guides/convert-airtime-to-data-south-africa/', label: 'Convert Airtime to Data South Africa' },

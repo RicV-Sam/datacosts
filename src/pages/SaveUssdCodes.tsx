@@ -165,7 +165,7 @@ export const SaveUssdCodes: React.FC<SaveUssdCodesProps> = ({ onBack, onScrollTo
             <Link className="rounded-xl border border-slate-200 px-3 py-2 font-semibold text-slate-700" to="/network/cell-c/">Cell C network page</Link>
             <Link className="rounded-xl border border-slate-200 px-3 py-2 font-semibold text-slate-700" to="/network/telkom/">Telkom network page</Link>
             <Link className="rounded-xl border border-slate-200 px-3 py-2 font-semibold text-slate-700" to="/guides/how-to-check-data-balance/">Guide: how to check data balance</Link>
-            <Link className="rounded-xl border border-slate-200 px-3 py-2 font-semibold text-slate-700" to="/guides/best-data-deals-south-africa/">Guide: best data deals</Link>
+            <Link className="rounded-xl border border-slate-200 px-3 py-2 font-semibold text-slate-700" to="/best-data-deals-south-africa/">Guide: best data deals</Link>
           </div>
         </section>
         <section className="mt-5 rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">

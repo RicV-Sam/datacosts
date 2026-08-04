@@ -187,7 +187,7 @@ const fallbackLinks: FibreLink[] = [
     description: 'Compare Vodacom mobile and home-internet fallback options.'
   },
   {
-    href: '/guides/best-data-deals-south-africa/',
+    href: '/best-data-deals-south-africa/',
     label: 'Best data deals',
     description: 'Use mobile bundles while waiting for fibre or as backup data.'
   }

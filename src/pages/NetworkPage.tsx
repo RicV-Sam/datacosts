@@ -267,7 +267,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     { href: '/fibre/fibre-prices-south-africa/', label: 'Fibre prices and FNOs', description: 'Check source-backed fibre price examples and learn who owns the line before choosing mobile fallback.' },
     { href: '/airtime-advance-codes/', label: `${network.name} airtime advance codes`, description: 'Check borrow-airtime routes, eligibility, fees and repayment notes.' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Keep track of active bundles and expiry.' },
-    { href: '/guides/best-data-deals-south-africa/', label: 'Best Data Deals South Africa', description: 'Compare best-value prepaid bundle options.' },
+    { href: '/best-data-deals-south-africa/', label: 'Best Data Deals South Africa', description: 'Compare best-value prepaid bundle options.' },
     { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data South Africa', description: 'Compare the lowest-cost bundle options by intent.' },
     { href: '/guides/cheapest-10gb-data-south-africa/', label: 'Cheapest 10GB Data South Africa', description: 'National comparison for regular users.' },
     { href: '/guides/cheapest-1gb-data-south-africa/', label: 'Cheapest 1GB Data South Africa', description: 'National low-volume benchmark.' }
@@ -431,7 +431,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
               Need an account shortcut instead of a deal comparison? Open the{' '}
               <a href="/cell-c-ussd-codes/" className="text-[#1b6d24] font-semibold hover:underline">Cell C USSD codes</a>
               {' '}page. For a market-wide benchmark, compare the{' '}
-              <a href="/guides/best-data-deals-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">best data deals in South Africa</a>.
+              <a href="/best-data-deals-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">best data deals in South Africa</a>.
             </p>
           </section>
         )}

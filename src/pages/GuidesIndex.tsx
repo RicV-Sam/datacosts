@@ -28,7 +28,8 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/guides/');
 
-  const getGuidePath = (slug: string) => `/guides/${slug}/`;
+  const getGuidePath = (slug: string) =>
+    slug === 'best-data-deals-south-africa' ? '/best-data-deals-south-africa/' : `/guides/${slug}/`;
   const guideMap = new Map(guides.map((guide) => [guide.slug, guide]));
   const getGuide = (slug: string) => guideMap.get(slug);
 
@@ -40,7 +41,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
     { slug: 'stolen-phone-south-africa', title: 'Stolen Phone in South Africa: What to Do Immediately', description: 'Emergency steps to protect your bank, lock the phone, block the SIM, request IMEI blacklisting and report it to SAPS.', path: '/guides/stolen-phone-south-africa/' },
     { slug: 'check-router-sim-data-balance-and-recharge', title: 'Check and Recharge a Router SIM Remotely', description: 'Provider apps, router USSD and modem scripting options for unattended LTE and 5G sites.', path: '/guides/check-router-sim-data-balance-and-recharge/' },
     { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', description: 'Start here for a quick market-level view of where prepaid data is cheapest right now.', path: '/guides/cheapest-data-south-africa/' },
-    { slug: 'best-data-deals-south-africa', title: 'Best Data Deals South Africa', description: 'Compare overall value across prepaid, monthly, and heavy-use options.', path: '/guides/best-data-deals-south-africa/' },
+    { slug: 'best-data-deals-south-africa', title: 'Monthly Data Deal Tracker South Africa', description: 'Compare current 10GB, 20GB and 30GB offers with anytime and restricted data separated.', path: '/best-data-deals-south-africa/' },
     { slug: 'best-monthly-data-deals-south-africa', title: 'Best Monthly Data Deals South Africa', description: 'Focused monthly comparison for users who buy data every month.', path: '/guides/best-monthly-data-deals-south-africa/' },
     { slug: 'why-does-my-data-finish-so-fast-south-africa' },
     { slug: 'why-is-my-airtime-disappearing-south-africa' },
@@ -72,7 +73,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         { slug: 'best-prepaid-data-deals-south-africa', title: 'Best Prepaid Data Deals South Africa', description: 'Find practical prepaid options by network, use case, and currently listed cost-per-GB.', path: '/guides/best-prepaid-data-deals-south-africa/' },
         { slug: 'best-sim-only-deals-south-africa', title: 'Best SIM-Only Deals South Africa', description: 'Compare SIM-only style monthly data options against prepaid alternatives.', path: '/guides/best-sim-only-deals-south-africa/' },
         { slug: 'cheapest-whatsapp-bundles-south-africa', title: 'Cheapest WhatsApp Bundles South Africa', description: 'Find low-cost WhatsApp-focused bundle options and practical alternatives.', path: '/guides/cheapest-whatsapp-bundles-south-africa/' },
-        { slug: 'best-data-deals-south-africa' },
+        { slug: 'best-data-deals-south-africa', title: 'Monthly Data Deal Tracker South Africa', description: 'Officially sourced 10GB, 20GB and 30GB monthly comparisons.', path: '/best-data-deals-south-africa/' },
         { slug: 'cheap-night-data-south-africa' },
         { slug: 'prepaid-vs-contract-south-africa' }
       ]
@@ -173,7 +174,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         "@type": "ListItem",
         "position": index + 1,
         "name": guide.title,
-        "url": toCanonicalUrl(`/guides/${guide.slug}/`)
+        "url": toCanonicalUrl(getGuidePath(guide.slug))
       })),
       {
         "@type": "ListItem",

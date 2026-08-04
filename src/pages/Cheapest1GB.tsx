@@ -281,7 +281,7 @@ export const Cheapest1GB: React.FC<Cheapest1GBProps> = ({ onNavigate, onScrollTo
               <h3 className="font-black text-slate-900">Telkom 1GB Page</h3>
               <p className="text-sm text-slate-600 mt-2">See Telkom 1GB options and related prepaid pricing.</p>
             </Link>
-            <Link to="/guides/best-data-deals-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">
+            <Link to="/best-data-deals-south-africa/" className="bg-slate-50 rounded-2xl border border-slate-100 p-5 hover:border-[#1b6d24] transition-colors">
               <h3 className="font-black text-slate-900">Best Data Deals Guide</h3>
               <p className="text-sm text-slate-600 mt-2">Compare promo-led offers when value beats standard 1GB pricing.</p>
             </Link>
