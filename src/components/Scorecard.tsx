@@ -11,8 +11,8 @@ export const Scorecard: React.FC = () => {
           <ShieldCheck className="w-6 h-6" />
         </div>
         <div>
-          <h3 className="text-4xl font-black text-[#031636] tracking-tight">Independent Scorecard</h3>
-          <p className="text-sm text-slate-500 font-bold uppercase tracking-widest">DataCost internal benchmark</p>
+          <h3 className="text-4xl font-black text-[#031636] tracking-tight">Network Comparison Checklist</h3>
+          <p className="text-sm text-slate-500 font-bold uppercase tracking-widest">Source-aware comparison prompts</p>
         </div>
       </div>
 
@@ -28,25 +28,25 @@ export const Scorecard: React.FC = () => {
         <div className="space-y-6">
           {/* Coverage */}
           <MetricRow
-            label="Coverage"
+            label="Coverage check"
             icon={<Globe className="w-5 h-5" />}
             stats={networkStats.map(s => ({ network: s.network, value: s.coverage }))}
           />
           {/* Speed */}
           <MetricRow
-            label="5G Profile"
+            label="4G/5G check"
             icon={<Gauge className="w-5 h-5" />}
             stats={networkStats.map(s => ({ network: s.network, value: s.avgSpeed5G }))}
           />
           {/* Resilience */}
           <MetricRow
-            label="Resilience"
+            label="Resilience evidence"
             icon={<BatteryCharging className="w-5 h-5" />}
             stats={networkStats.map(s => ({ network: s.network, value: s.resilience }))}
           />
           {/* Cost */}
           <MetricRow
-            label="Price Point"
+            label="Reviewed catalogue"
             icon={<Banknote className="w-5 h-5" />}
             stats={networkStats.map(s => ({ network: s.network, value: s.pricePoint }))}
           />
@@ -56,7 +56,7 @@ export const Scorecard: React.FC = () => {
 
         <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-            Internal comparison based on listed pricing, public operator context, and practical usage fit. See methodology for details.
+            Pricing rows are source checked. Coverage, speed and resilience still require current local or independent evidence.
           </p>
           <a href="/methodology/" className="text-[11px] font-bold uppercase tracking-widest text-[#1b6d24] hover:underline">
             Methodology
@@ -64,11 +64,11 @@ export const Scorecard: React.FC = () => {
           <div className="flex gap-4">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-[#1b6d24]" />
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Strong Fit</span>
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Source checked</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-blue-500" />
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Value Fit</span>
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Check locally</span>
             </div>
           </div>
         </div>

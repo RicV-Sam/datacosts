@@ -432,6 +432,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
               <a href="/cell-c-ussd-codes/" className="text-[#1b6d24] font-semibold hover:underline">Cell C USSD codes</a>
               {' '}page. For a market-wide benchmark, compare the{' '}
               <a href="/best-data-deals-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">best data deals in South Africa</a>.
+              {' '}If you are leaving a fixed-term plan, follow the{' '}
+              <a href="/guides/how-to-cancel-cellphone-contract-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">South Africa cellphone contract cancellation guide</a>
+              {' '}before choosing a replacement bundle.
             </p>
           </section>
         )}

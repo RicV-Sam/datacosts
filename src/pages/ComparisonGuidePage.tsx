@@ -191,7 +191,7 @@ function getBundleWatchOut(bundle: Bundle): string {
   return 'Check offer terms';
 }
 
-function getWinners(mode: string, rows: ComparisonRow[], coverageFirstNetwork: NetworkName = 'Vodacom'): WinnerCard[] {
+function getWinners(mode: string, rows: ComparisonRow[]): WinnerCard[] {
   const validRows = rows
     .filter((row) => row.bundle && isVerifiedBundleSource(row.bundle))
     .map((row) => row.bundle as Bundle);
@@ -202,13 +202,12 @@ function getWinners(mode: string, rows: ComparisonRow[], coverageFirstNetwork: N
   const cheapest = [...validRows].sort((a, b) => a.price - b.price)[0];
   const bestValue = [...validRows].filter((bundle) => bundle.costPerGb > 0).sort((a, b) => a.costPerGb - b.costPerGb)[0];
   const heavyUse = [...validRows].sort((a, b) => volumeToGb(b.volume) - volumeToGb(a.volume))[0];
-  const coverageFirst = validRows.find((bundle) => bundle.network === coverageFirstNetwork) || validRows[0];
 
   if (mode === 'cheapest-whatsapp') {
     return [
       { label: 'Cheapest social bundle', text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}.` },
       { label: 'Best social value', text: bestValue ? `${bestValue.network}: ${bestValue.name} at about R${bestValue.costPerGb.toFixed(2)}/GB.` : `${cheapest.network}: ${cheapest.name}.` },
-      { label: 'Coverage-first social fallback', text: `${coverageFirst.network}: better when you want stronger overall network consistency with social add-ons.` }
+      { label: 'Coverage check', text: 'Use the operator whose current coverage map and a local SIM test are strongest where you need service.' }
     ];
   }
 
@@ -224,7 +223,7 @@ function getWinners(mode: string, rows: ComparisonRow[], coverageFirstNetwork: N
     return [
       { label: 'Best prepaid value', text: bestValue ? `${bestValue.network}: ${bestValue.name} (~R${bestValue.costPerGb.toFixed(2)}/GB).` : `${cheapest.network}: ${cheapest.name}.` },
       { label: 'Cheapest upfront prepaid', text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}.` },
-      { label: 'Coverage-first pick', text: `${coverageFirst.network}: usually preferred when stability is more important than absolute lowest price.` }
+      { label: 'Coverage check', text: 'Use the operator whose current coverage map and a local SIM test are strongest where you need service.' }
     ];
   }
 
@@ -233,7 +232,7 @@ function getWinners(mode: string, rows: ComparisonRow[], coverageFirstNetwork: N
     return [
       { label: `Cheapest verified ${targetGb}GB pick`, text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}.` },
       { label: `Best verified ${targetGb}GB value`, text: bestValue ? `${bestValue.network}: ${bestValue.name} (~R${bestValue.costPerGb.toFixed(2)}/GB).` : `${cheapest.network}: ${cheapest.name}.` },
-      { label: 'Coverage-first fallback', text: `${coverageFirst.network}: useful when stability is more important than the absolute lowest listed price.` }
+      { label: 'Coverage check', text: 'Use the operator whose current coverage map and a local SIM test are strongest where you need service.' }
     ];
   }
 
@@ -306,7 +305,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
     return { network, bundle: chosen };
   });
 
-  const winners = getWinners(definition.mode, rows, definition.coverageFirstNetwork);
+  const winners = getWinners(definition.mode, rows);
   const listedRows = rows.filter((row) => row.bundle).map((row) => row.bundle as Bundle);
   const verifiedListedRows = listedRows.filter(isVerifiedBundleSource);
   const hasManualRequiredRows = listedRows.some((bundle) => bundle.sourceConfidence === 'manual_required');

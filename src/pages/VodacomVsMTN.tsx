@@ -295,18 +295,18 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
 
         <section className="mb-20 grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm">
-            <h2 className="text-2xl font-black tracking-tight mb-4 text-[#E60000]">When Vodacom Is Better</h2>
+            <h2 className="text-2xl font-black tracking-tight mb-4 text-[#E60000]">When Vodacom May Fit Better</h2>
             <ul className="text-slate-700 text-sm space-y-2">
-              <li>1. You prioritize broader coverage consistency in your area.</li>
-              <li>2. You prefer network stability over the absolute lowest listed price.</li>
+              <li>1. Vodacom tests better at the exact places where you use your phone.</li>
+              <li>2. Its currently listed bundle size and validity better match your usage.</li>
               <li>3. Your account-specific Vodacom offers are currently stronger.</li>
             </ul>
           </div>
           <div className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm">
-            <h2 className="text-2xl font-black tracking-tight mb-4 text-[#c59200]">When MTN Is Better</h2>
+            <h2 className="text-2xl font-black tracking-tight mb-4 text-[#c59200]">When MTN May Fit Better</h2>
             <ul className="text-slate-700 text-sm space-y-2">
-              <li>1. You want the lower source-checked price in the matched 1GB benchmark.</li>
-              <li>2. You buy monthly or promo-led prepaid bundles regularly.</li>
+              <li>1. MTN&apos;s currently listed bundle size and validity better match your usage.</li>
+              <li>2. A current public or account-specific MTN offer fits your budget.</li>
               <li>3. MTN coverage is strong where you live and work.</li>
             </ul>
           </div>
@@ -335,8 +335,8 @@ export const VodacomVsMTN: React.FC<VodacomVsMTNProps> = ({ onNavigate, onScroll
               <p className="text-sm text-slate-600 mt-2">View current MTN bundles and value breakdowns.</p>
             </Link>
               <Link to="/guides/cheapest-1gb-data-south-africa/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
-              <h3 className="font-black text-slate-900">Vodacom 1GB Deals</h3>
-              <p className="text-sm text-slate-600 mt-2">Use the national 1GB benchmark before checking operator menus.</p>
+              <h3 className="font-black text-slate-900">National 1GB Comparison</h3>
+              <p className="text-sm text-slate-600 mt-2">See which networks currently have source-checked, comparable 1GB rows.</p>
             </Link>
             <Link to="/guides/best-monthly-data-deals-south-africa/" className="bg-white rounded-2xl border border-slate-100 p-6 hover:border-[#1b6d24] transition-colors">
               <h3 className="font-black text-slate-900">MTN Monthly Data Deals</h3>

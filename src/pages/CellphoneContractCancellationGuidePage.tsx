@@ -149,9 +149,9 @@ const nextGuides = [
 ];
 
 export const CellphoneContractCancellationGuidePage: React.FC<Props> = ({ onNavigate, onScrollTo }) => {
-  const title = 'How to Cancel a Cellphone Contract in South Africa';
-  const seoTitle = 'Cancel a Cellphone Contract in South Africa: MTN, Vodacom, Telkom & Cell C';
-  const description = 'How and when to cancel an MTN, Vodacom, Telkom or Cell C contract in South Africa, including notice, early fees, device returns, expiry and complaints.';
+  const title = 'Cellphone Contract Cancellation in South Africa';
+  const seoTitle = 'Cellphone Contract Cancellation South Africa: Steps & Fees';
+  const description = 'Follow the cellphone contract cancellation process in South Africa: notice, settlement fees, device returns, number choices and complaint steps.';
   const canonicalUrl = toCanonicalUrl(routePath);
   const modified = getRouteModifiedIso(routePath);
   const breadcrumbs = [
@@ -218,7 +218,7 @@ export const CellphoneContractCancellationGuidePage: React.FC<Props> = ({ onNavi
 
       <DataCostAnswerIntro
         number={4}
-        question="How do I cancel my cellphone contract, when should I cancel, and why am I still being billed after returning the phone?"
+        question="What is the South Africa cellphone contract cancellation process?"
         answer="Give the provider a clear cancellation instruction in writing or another recorded form and keep proof. If you are still inside the fixed term, first request an itemised settlement quote; at least 20 business days’ notice is generally required and a reasonable early-cancellation charge may apply. If the fixed term has expired, the agreement normally continues month-to-month until cancelled. Returning a device does not by itself prove that the mobile service was cancelled."
       />
 

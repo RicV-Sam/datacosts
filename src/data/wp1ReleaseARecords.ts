@@ -1,7 +1,7 @@
 import { ussdRepository } from './ussd';
 import { type ContentEvidenceRecord, type SourceRecord } from '../seo/wp1SourceFreshness';
 
-export const WP1_EVIDENCE_AS_OF = '2026-08-01';
+export const WP1_EVIDENCE_AS_OF = '2026-08-02';
 
 export const wp1SourceRecords: SourceRecord[] = [
   {
@@ -65,7 +65,7 @@ export const wp1SourceRecords: SourceRecord[] = [
     sourceType: 'operator',
     checkedAt: WP1_EVIDENCE_AS_OF,
     verificationMethod: 'operator_page',
-    claimScope: 'Vodacom main self-service, voucher recharge and data-transfer USSD routes.',
+    claimScope: 'Vodacom main self-service, voucher recharge and published data-bundle transfer/purchase USSD routes.',
     status: 'verified',
     confidence: 'high'
   },

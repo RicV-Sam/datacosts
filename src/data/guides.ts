@@ -48,10 +48,10 @@ export const guides: Guide[] = [
   },
   {
     slug: 'cheap-night-data-south-africa',
-    title: 'Cheap Night Data South Africa 2026: Best Night Owl Bundles',
-    metaDescription: 'Discover the cheapest night data bundles in South Africa. Compare MTN Night Express, Vodacom Night Owl, and Telkom night data deals to save big.',
-    h1: 'Cheap Night Data South Africa: Best Night Owl Bundles',
-    intro: 'Night data, often called "Night Owl", "Night Express", or "Night Surfer" data, is one of the most cost-effective ways to download large files, update apps, or stream content in South Africa. Major networks like MTN, Vodacom, Telkom, and Cell C can offer off-peak allocations, but the exact night window differs by operator and bundle type. If you are looking for the absolute lowest cost per GB, night data is still one of the strongest categories to check.',
+    title: 'Night Data South Africa 2026: Hours and Bundle Checks',
+    metaDescription: 'Compare reviewed MTN Night Express and Vodacom Night Owl rows, usage windows, validity and the checks to make before buying night data.',
+    h1: 'Night Data South Africa: Hours, Validity and Bundle Checks',
+    intro: 'Night data can be useful for downloads, updates or streaming during a restricted off-peak window. The reviewed catalogue currently includes MTN Night Express and Vodacom Night Owl rows; other operator offers should only be compared after their current allocation, validity and night window are verified.',
     comparisonType: 'night',
     stepsTitle: 'How to Maximise Your Night Data',
     steps: [
@@ -75,11 +75,11 @@ export const guides: Guide[] = [
       },
       {
         question: 'Which network has the best night data?',
-        answer: 'Telkom is traditionally famous for its massive night data allocations, but MTN\'s Night Express and Vodacom\'s Night Owl bundles are highly competitive, especially in promotional deals.'
+        answer: 'There is no permanent winner. Compare only current source-checked rows with the same validity, then check allocation, cost per usable GB and the exact night window.'
       },
       {
         question: 'Does night data work on 5G?',
-        answer: 'Yes, night data bundles work on 5G, 4G, and LTE networks, provided you have a compatible device and coverage.'
+        answer: 'It depends on the operator, product terms, device and local coverage. Confirm that the specific night bundle supports the network technology you plan to use.'
       },
       {
         question: 'What happens if I use data after 5 AM?',
@@ -87,7 +87,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Can I use night data for YouTube or Netflix?',
-        answer: 'Absolutely. Night data can be used for any internet activity, making it perfect for high-quality video streaming during off-peak hours.'
+        answer: 'General night-data bundles may support normal internet traffic during their usage window, but check the specific product terms and your remaining balance before streaming.'
       }
     ]
   },
@@ -102,7 +102,7 @@ export const guides: Guide[] = [
     steps: [
       {
         title: 'Vodacom: Convert Airtime',
-        description: 'Dial *135# from your phone. Select "Buy" (option 2), then "Data". Choose your preferred bundle size and validity, and select "Airtime" as your payment method.'
+        description: 'Dial *135# from your Vodacom phone, select the current buy-data action shown on your line, compare bundle size and validity, and confirm the final airtime payment before accepting.'
       },
       {
         title: 'MTN: Convert Airtime',
@@ -274,7 +274,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Is Rain really unlimited?',
-        answer: 'Rain offers several "Unlimited" plans. While they don\'t have a data cap, they do have different speed tiers (e.g., 10Mbps vs 30Mbps vs 5G) and can be affected by network congestion.'
+        answer: 'Rain\'s current unlimited home family includes 30Mbps, 60Mbps and unlimited-speed tiers. The plans are uncapped, but speed is best effort and depends on coverage and network conditions.'
       }
     ]
   },
@@ -1433,7 +1433,7 @@ export const guides: Guide[] = [
       {
         id: 'vodacom-ussd-method',
         title: 'Option 1: Using USSD Codes (Fastest)',
-        description: 'Dial *135# from your Vodacom SIM. Select "Buy" (usually option 2), then select "Data". Follow the prompts to choose your bundle size and validity period.'
+        description: 'Dial *135# from your Vodacom SIM, select the current buy-data action shown, then compare the bundle size, data type, validity and final price before confirming.'
       },
       {
         id: 'vodacom-just4you',
@@ -1607,7 +1607,7 @@ export const guides: Guide[] = [
       {
         id: 'telkom-ussd-method',
         title: 'Option 1: Buy data with Telkom USSD',
-        description: 'Dial *180# from your Telkom SIM, choose the data bundle menu, then compare the available daily, weekly, and monthly options. USSD is the most useful route when you do not have active mobile data.'
+        description: 'Dial *180# from your Telkom SIM, choose the current data action shown, then compare the available bundle sizes and validity periods. USSD is useful when you do not have active mobile data.'
       },
       {
         id: 'telkom-monice',
@@ -1650,11 +1650,11 @@ export const guides: Guide[] = [
       },
       {
         question: 'How do I buy 1GB on Telkom?',
-        answer: 'Dial *180#, select "Data Bundles", and follow the prompts to find the 1GB option. You can also check *123# and compare any Mo\'Nice offer shown on your line.'
+        answer: 'Dial *180# and follow the current prompts to see whether a 1GB option is available. You can also check *123# and compare any Mo\'Nice offer shown on your line.'
       },
       {
         question: 'Does Telkom have unlimited data?',
-        answer: 'Yes, Telkom offers "Infinite" and "FreeMe" plans that include unlimited data with speed caps after a certain threshold is reached.'
+        answer: 'Telkom\'s Infinite family is a separate post-paid mobile category. FreeMe bundles are capped, so check the current plan\'s included data, validity and any speed or fair-use terms before buying.'
       },
       {
         question: 'How do I check my Telkom balance?',
@@ -1677,7 +1677,7 @@ export const guides: Guide[] = [
     steps: [
       {
         title: 'Method 1: Using the *147# Menu',
-        description: 'Dial *147# on your Cell C SIM. Select "Data" (usually option 1 or 2) and browse through the available validity periods (Daily, Weekly, Monthly).'
+        description: 'Dial *147# on your Cell C SIM, select the current data or bundle action shown on your line, and compare the available validity periods before confirming.'
       },
       {
         title: 'Method 2: Cell C App',

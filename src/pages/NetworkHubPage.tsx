@@ -33,11 +33,11 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
   const faqs = [
     {
       question: 'Which mobile network has the best coverage in South Africa?',
-      answer: 'Vodacom and MTN are often the strongest for broad national coverage. Your exact experience can still differ by suburb, building, and device.'
+      answer: 'No network is best everywhere. Compare current official coverage maps and test the exact homes, workplaces and routes that matter to you.'
     },
     {
       question: 'Which network is cheapest for data in South Africa?',
-      answer: 'Telkom, Cell C, and promotional deals on other networks can offer strong value. Prices and deal quality change often, so compare before each recharge.'
+      answer: 'There is no permanent cheapest network. Compare current source-checked rows with the same data type, size and validity before each recharge.'
     },
     {
       question: 'Is MTN or Vodacom better?',
@@ -84,32 +84,32 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
     {
       name: 'Vodacom',
       href: '/network/vodacom/',
-      summary: 'Often chosen for broad coverage and dependable day-to-day performance across many areas.',
-      bestFor: 'Choose this if coverage stability is your top priority.'
+      summary: 'Compare Vodacom prepaid, LTE and personalised channels with the exact coverage locations you need.',
+      bestFor: 'Choose it when its local coverage test and current bundle terms fit your use.'
     },
     {
       name: 'MTN',
       href: '/network/mtn/',
-      summary: 'Strong all-round option with competitive prepaid offers and solid performance in many urban areas.',
-      bestFor: 'Choose this if you want a balance of speed and value.'
+      summary: 'Compare MTN prepaid, social and night-data products with the exact coverage locations you need.',
+      bestFor: 'Choose it when its local coverage test and current bundle terms fit your use.'
     },
     {
       name: 'Telkom',
       href: '/network/telkom/',
-      summary: 'Frequently competitive on prepaid pricing, especially for users watching cost per GB closely.',
-      bestFor: 'Choose this if your main goal is better bundle value.'
+      summary: 'The reviewed Telkom catalogue includes daily, weekly and social prepaid rows.',
+      bestFor: 'Choose it when the current validity, price and local coverage fit your use.'
     },
     {
       name: 'Cell C',
       href: '/network/cell-c/',
-      summary: 'Can be a practical budget option when current promos and your coverage needs line up.',
-      bestFor: 'Choose this if you are willing to shop current promotions.'
+      summary: 'Compare Cell C daily, monthly and social rows, including product-specific restrictions.',
+      bestFor: 'Choose it when its current offer and local dual-MOCN experience fit your use.'
     },
     {
       name: 'Rain',
       href: '/network/rain/',
-      summary: 'Worth comparing for high-volume monthly usage where coverage and speeds match your location.',
-      bestFor: 'Choose this if you use a lot of data each month.'
+      summary: 'Rain lists uncapped home 5G tiers with speed and coverage conditions.',
+      bestFor: 'Choose it when home coverage, speed tier and router terms fit your location.'
     }
   ];
 
@@ -232,27 +232,27 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
             <div className="bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:border-[#1b6d24] transition-colors group">
               <Globe className="w-8 h-8 text-[#1b6d24] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Vodacom</div>
-              <div className="text-sm font-black text-slate-900 leading-tight">Strong Coverage Option</div>
+              <div className="text-sm font-black text-slate-900 leading-tight">Check coverage and prepaid rows</div>
             </div>
             <div className="bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:border-[#1b6d24] transition-colors group">
               <Gauge className="w-8 h-8 text-[#1b6d24] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">MTN</div>
-              <div className="text-sm font-black text-slate-900 leading-tight">Strong All-Round Option</div>
+              <div className="text-sm font-black text-slate-900 leading-tight">Check coverage and bundle terms</div>
             </div>
             <div className="bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:border-[#1b6d24] transition-colors group">
               <Zap className="w-8 h-8 text-[#1b6d24] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Telkom</div>
-              <div className="text-sm font-black text-slate-900 leading-tight">Strong Value Option</div>
+              <div className="text-sm font-black text-slate-900 leading-tight">Check daily and weekly rows</div>
             </div>
             <div className="bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:border-[#1b6d24] transition-colors group">
               <ShieldCheck className="w-8 h-8 text-[#1b6d24] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Cell C</div>
-              <div className="text-sm font-black text-slate-900 leading-tight">Budget Promo Option</div>
+              <div className="text-sm font-black text-slate-900 leading-tight">Check current prepaid rows</div>
             </div>
             <div className="col-span-2 md:col-span-1 bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:border-[#1b6d24] transition-colors group">
               <Wifi className="w-8 h-8 text-[#1b6d24] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Rain</div>
-              <div className="text-sm font-black text-slate-900 leading-tight">High-Usage Data Option</div>
+              <div className="text-sm font-black text-slate-900 leading-tight">Check home 5G coverage</div>
             </div>
           </div>
           <p className="text-sm text-slate-500 font-medium mt-6 text-center max-w-3xl mx-auto">

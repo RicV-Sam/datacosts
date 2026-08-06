@@ -61,10 +61,11 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
     },
     {
       network: 'Telkom',
-      code: '*180# / support',
+      code: '*179# / MyTelkom',
       steps: [
-        'Dial *180# on your Telkom mobile number and look for a content-services or subscriptions option.',
-        'If that option is not shown, use the MyTelkom app or official support instead of guessing a menu path.',
+        'Dial *179# on your Telkom mobile number and follow the current unsubscribe prompts.',
+        'In MyTelkom, open My Products, then Subscriptions and Content Services to review active third-party services.',
+        'If neither route is available, use official Telkom support instead of guessing a menu path.',
         'Ask for each paid service to be stopped and for future premium-content billing to be blocked where available.',
         'Save confirmation SMS messages as proof.',
       ],
@@ -191,7 +192,7 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 text-sm leading-relaxed">
-            Use the current operator route below, cancel every active paid service, and enable a content block if available. Vodacom and MTN publish direct USSD routes; Telkom and Cell C may require their main self-service, app, web, or support channels.
+            Use the current operator route below, cancel every active paid service, and enable a content block if available. Vodacom, MTN and Telkom publish direct USSD routes; Cell C may require its main self-service, app, web, or support channels.
           </p>
         </section>
 

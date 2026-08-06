@@ -32,7 +32,7 @@ export const ussdCodesByNetwork = {
       { id: 'ussd.vodacom.buy_data', codeType: 'data', label: 'Buy Data menu', code: '*135#' },
       { id: 'ussd.vodacom.recharge_voucher', codeType: 'recharge', label: 'Recharge', code: '*136*01*PIN#' },
       { id: 'ussd.vodacom.please_call_me', codeType: 'other', label: 'Please Call Me', code: '*140*number#' },
-      { id: 'ussd.vodacom.transfer_airtime_data', codeType: 'transfer', label: 'Transfer Data', code: '*135*1002#' }
+      { id: 'ussd.vodacom.transfer_airtime_data', codeType: 'transfer', label: 'Data Bundle Transfer / Buy', code: '*135*1002#' }
     ]
   },
   cellc: {

@@ -21,7 +21,7 @@ const NetworkIcon = ({ network, className }: { network: NetworkName; className?:
   }
 };
 
-export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }> = ({ network, onViewDeals, isBestValue }) => {
+export const NetworkCard: React.FC<NetworkCardProps & { hasLowestReviewedCostPerGb?: boolean }> = ({ network, onViewDeals, hasLowestReviewedCostPerGb }) => {
   const meta = networkMetadata[network];
   const allNetworkBundles = bundles.filter(b => b.network === network);
   const verifiedBundles = allNetworkBundles.filter(b => b.sourceConfidence === 'verified' && Boolean(b.lastVerified));
@@ -41,10 +41,10 @@ export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }>
       whileHover={{ y: -8 }}
       className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 relative overflow-hidden group border border-white shadow-xl hover:shadow-2xl hover:border-[#a0f399]/30 transition-all duration-300 flex flex-col min-h-[400px]"
     >
-      {isBestValue && (
+      {hasLowestReviewedCostPerGb && (
         <div className="absolute top-4 right-4 z-10">
           <span className="bg-[#a0f399] text-[#1b6d24] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
-            Best Value
+            Lowest reviewed cost/GB
           </span>
         </div>
       )}
@@ -111,7 +111,7 @@ export const NetworkCard: React.FC<NetworkCardProps & { isBestValue?: boolean }>
 export const NetworkCards: React.FC<{ onViewDeals: (network: NetworkName) => void }> = ({ onViewDeals }) => {
   const networks: NetworkName[] = ['Vodacom', 'MTN', 'Telkom', 'Cell C', 'Rain'];
 
-  const bestValueNetwork = useMemo(() => {
+  const lowestReviewedCostNetwork = useMemo(() => {
     const costs = networks.map(n => {
       const networkCosts = bundles
         .filter(
@@ -135,7 +135,7 @@ export const NetworkCards: React.FC<{ onViewDeals: (network: NetworkName) => voi
           key={network}
           network={network}
           onViewDeals={onViewDeals}
-          isBestValue={network === bestValueNetwork}
+          hasLowestReviewedCostPerGb={network === lowestReviewedCostNetwork}
         />
       ))}
     </section>

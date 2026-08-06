@@ -114,10 +114,10 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         network: 'Telkom',
-        bestFor: 'Low cost per GB',
-        usuallyCheapest: 'Often',
-        coverage: 'Best in metros',
-        goodFor: 'Budget-focused prepaid users',
+        bestFor: 'Reviewed daily, weekly and social rows',
+        usuallyCheapest: 'Compare live',
+        coverage: 'Check local map',
+        goodFor: 'Users matching validity to their use case',
         href: '/network/telkom/'
       },
       {
@@ -233,7 +233,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     comparisonSummary: [
       { network: 'MTN', bestFor: 'Balanced speed and value', usuallyCheapest: 'Sometimes', coverage: 'Strong national footprint', goodFor: 'Users wanting all-round prepaid performance', href: '/network/mtn/' },
       { network: 'Vodacom', bestFor: 'Consistency and coverage', usuallyCheapest: 'No', coverage: 'Very strong national footprint', goodFor: 'Signal reliability first', href: '/network/vodacom/' },
-      { network: 'Telkom', bestFor: 'Low cost per GB', usuallyCheapest: 'Often', coverage: 'Best in metros', goodFor: 'Budget-first data buyers', href: '/network/telkom/' },
+      { network: 'Telkom', bestFor: 'Reviewed daily, weekly and social rows', usuallyCheapest: 'Compare live', coverage: 'Check local map', goodFor: 'Users matching validity to their use case', href: '/network/telkom/' },
       { network: 'Cell C', bestFor: 'Promo-driven value', usuallyCheapest: 'Sometimes', coverage: 'Dual-MOCN partner footprint', goodFor: 'Deal hunters', href: '/network/cell-c/' }
     ],
     faqs: [
@@ -310,7 +310,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     editorialComparisonSection: {
       title: 'How Telkom compares to other networks',
       paragraphs: [
-        'Telkom is often strongest on price-per-GB for larger bundles, while MTN and Vodacom are often preferred for broader consistency.',
+        'The reviewed Telkom catalogue currently includes daily, weekly and social prepaid rows. Compare those with equivalent products instead of inferring a large-bundle price leader from a different validity or product family.',
         'Compare /network/mtn/, /network/vodacom/ and /network/cell-c/ to match price against your local coverage realities.'
       ]
     },
@@ -338,7 +338,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       'Treating a personalised Mo\'Nice offer as a fixed national price.'
     ],
     comparisonSummary: [
-      { network: 'Telkom', bestFor: 'Low cost per GB', usuallyCheapest: 'Often', coverage: 'Best in metros', goodFor: 'Price-sensitive prepaid users', href: '/network/telkom/' },
+      { network: 'Telkom', bestFor: 'Reviewed daily, weekly and social rows', usuallyCheapest: 'Compare live', coverage: 'Check local map', goodFor: 'Users matching validity to their use case', href: '/network/telkom/' },
       { network: 'MTN', bestFor: 'Balanced performance', usuallyCheapest: 'Sometimes', coverage: 'Strong national footprint', goodFor: 'Users wanting consistency and promos', href: '/network/mtn/' },
       { network: 'Vodacom', bestFor: 'Coverage consistency', usuallyCheapest: 'No', coverage: 'Very strong national footprint', goodFor: 'Reliability-focused users', href: '/network/vodacom/' },
       { network: 'Cell C', bestFor: 'Deal alternatives', usuallyCheapest: 'Sometimes', coverage: 'Dual-MOCN partner footprint', goodFor: 'Promo-led buyers', href: '/network/cell-c/' }
@@ -447,7 +447,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     ],
     comparisonSummary: [
       { network: 'Cell C', bestFor: 'Promo-led alternatives', usuallyCheapest: 'Sometimes', coverage: 'Dual-MOCN partner footprint', goodFor: 'Bargain hunters and selective deal buyers', href: '/network/cell-c/' },
-      { network: 'Telkom', bestFor: 'Large-bundle value', usuallyCheapest: 'Often', coverage: 'Best in metros', goodFor: 'Budget-first monthly users', href: '/network/telkom/' },
+      { network: 'Telkom', bestFor: 'Reviewed daily, weekly and social rows', usuallyCheapest: 'Compare live', coverage: 'Check local map', goodFor: 'Users matching validity to their use case', href: '/network/telkom/' },
       { network: 'MTN', bestFor: 'Balanced all-round use', usuallyCheapest: 'Sometimes', coverage: 'Strong national footprint', goodFor: 'Coverage and promo balance', href: '/network/mtn/' },
       { network: 'Vodacom', bestFor: 'Reliability and consistency', usuallyCheapest: 'No', coverage: 'Very strong national footprint', goodFor: 'Users prioritising stable service', href: '/network/vodacom/' }
     ],

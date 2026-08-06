@@ -46,9 +46,9 @@ export const ussdRepository: readonly USSDEntry[] = [
     id: 'ussd.vodacom.transfer_airtime_data',
     network: 'Vodacom',
     category: 'Transfers',
-    action: 'Transfer Data',
+    action: 'Data Bundle Transfer / Buy',
     code: '*135*1002#',
-    explanation: 'Open Vodacom data-transfer options for another Vodacom number.',
+    explanation: 'Open Vodacom\'s published data-bundle transfer and purchase route, then follow the current prompts.',
     status: 'verified',
     dialable: true
   },
