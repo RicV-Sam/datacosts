@@ -54,6 +54,26 @@ function findPrice(text: string, pattern: RegExp): number | null {
   return Number.isFinite(value) && value > 0 ? value : null;
 }
 
+function findRsawebPrice(html: string, vendor: string, downloadMbps: number, uploadMbps: number): number | null {
+  const pattern = new RegExp(
+    `data-vendor="${vendor}"[^>]*data-speed-download="${downloadMbps}"[^>]*data-speed-upload="${uploadMbps}"[^>]*data-price="([\\d.]+)"`,
+    'i'
+  );
+  return findPrice(html, pattern);
+}
+
+function findAfrihostPrepaidPrice(html: string, downloadMbps: number, uploadMbps: number): number | null {
+  const providerStart = html.indexOf('"name":"Vuma Reach Prepaid"');
+  if (providerStart < 0) return null;
+  const providerEnd = html.indexOf('],"meta"', providerStart);
+  const providerJson = html.slice(providerStart, providerEnd > providerStart ? providerEnd : undefined);
+  const pattern = new RegExp(
+    `"speed_down":${downloadMbps},"speed_up":${uploadMbps},"price":"([\\d.]+)"`,
+    'i'
+  );
+  return findPrice(providerJson, pattern);
+}
+
 function updateRows(
   existing: FibrePricePackage[],
   updates: Array<{ id: string; monthlyPrice: number | null; promoPrice?: number | null }>
@@ -80,19 +100,19 @@ const extractors: ExtractorConfig[] = [
       return updateRows(existing, [
         {
           id: 'webafrica-openserve-webconnect-40-20',
-          monthlyPrice: findPrice(text, /Openserve Webconnect Uncapped 40\/20 Mbps[\s\S]{0,180}?Price:\s*R\s*([\d\s]+)\/month/i)
+          monthlyPrice: findPrice(text, /Price:\s*R\s*([\d\s]+)\/month[\s\S]{0,180}?Openserve Webconnect Uncapped 40\/20 Mbps/i)
         },
         {
           id: 'webafrica-vumatel-1000-250',
-          monthlyPrice: findPrice(text, /Vumatel Uncapped 1000\/250 Mbps[\s\S]{0,180}?Price:\s*R\s*([\d\s]+)\/month/i)
+          monthlyPrice: findPrice(text, /Price:\s*R\s*([\d\s]+)\/month[\s\S]{0,180}?Vumatel Uncapped 1000\/250 Mbps/i)
         },
         {
           id: 'webafrica-octotel-500-200',
-          monthlyPrice: findPrice(text, /Octotel Uncapped 500\/200 Mbps[\s\S]{0,180}?Price:\s*R\s*([\d\s]+)\/month/i)
+          monthlyPrice: findPrice(text, /Price:\s*R\s*([\d\s]+)\/month[\s\S]{0,180}?Octotel Uncapped 500\/200 Mbps/i)
         },
         {
           id: 'webafrica-frogfoot-air-25-10',
-          monthlyPrice: findPrice(text, /Frogfoot Air Uncapped 25\/10 Mbps[\s\S]{0,180}?Price:\s*R\s*([\d\s]+)\/month/i)
+          monthlyPrice: findPrice(text, /Price:\s*R\s*([\d\s]+)\/month[\s\S]{0,180}?Frogfoot Air Uncapped 25\/10 Mbps/i)
         }
       ]);
     }
@@ -120,16 +140,16 @@ const extractors: ExtractorConfig[] = [
       return updateRows(existing, [
         {
           id: 'rsaweb-openserve-webconnect-40-20',
-          monthlyPrice: findPrice(text, /Openserve Web Connect 40\/20Mbps Fibre Uncapped[\s\S]{0,260}?R([\d\s,]+)\s*per month/i)
+          monthlyPrice: findRsawebPrice(html, 'openserve', 40, 20)
         },
         {
           id: 'rsaweb-vumatel-30-30',
-          monthlyPrice: findPrice(text, /Vumatel 30\/30Mbps Fibre Uncapped[\s\S]{0,260}?thereafter,\s*pay\s*R([\d\s,]+)pm/i),
-          promoPrice: findPrice(text, /Vumatel 30\/30Mbps Fibre Uncapped[\s\S]{0,120}?ONLY\s*R([\d\s,]+)/i)
+          monthlyPrice: findRsawebPrice(html, 'vumatel', 30, 30),
+          promoPrice: findPrice(text, /Vumatel 30\/30Mbps Fibre Uncapped[\s\S]{0,600}?ONLY\s*R([\d\s,]+)/i)
         },
         {
           id: 'rsaweb-vuma-reach-10-10-prepaid',
-          monthlyPrice: findPrice(text, /VUMA Reach 10\/10Mbps Prepaid Fibre[\s\S]{0,160}?R([\d\s,]+)/i)
+          monthlyPrice: findRsawebPrice(html, 'vumareach', 10, 10)
         }
       ]);
     }
@@ -154,6 +174,21 @@ const extractors: ExtractorConfig[] = [
         {
           id: 'mweb-openserve-30-30',
           monthlyPrice: findPrice(text, /R\s*([\d\s,]+)\s*pm[\s\S]{0,80}?30Mbps[\s\S]{0,40}?30Mbps/i)
+        }
+      ]);
+    }
+  },
+  {
+    sourceUrl: 'https://www.afrihost.com/fibre/prepaid',
+    extract: (html, existing) => {
+      return updateRows(existing, [
+        {
+          id: 'afrihost-prepaid-20-10',
+          monthlyPrice: findAfrihostPrepaidPrice(html, 20, 10)
+        },
+        {
+          id: 'afrihost-prepaid-100-50',
+          monthlyPrice: findAfrihostPrepaidPrice(html, 100, 50)
         }
       ]);
     }
@@ -191,10 +226,17 @@ async function main(): Promise<void> {
 
   snapshot = {
     ...snapshot,
-    checkedAt: today,
+    checkedAt: prices.reduce((oldest, price) => (price.checkedAt < oldest ? price.checkedAt : oldest), today),
     generatedBy: 'scripts/update-fibre-prices.ts',
     prices
   };
+
+  const rowsNotCheckedToday = prices.filter((price) => price.checkedAt !== today);
+  if (commit && rowsNotCheckedToday.length > 0) {
+    throw new Error(
+      `Refusing to commit a partial refresh. Rows not checked today: ${rowsNotCheckedToday.map((price) => price.id).join(', ')}`
+    );
+  }
 
   const targetPath = commit ? SNAPSHOT_PATH : DRAFT_PATH;
   await writeFile(targetPath, `${JSON.stringify(snapshot, null, 2)}\n`, 'utf8');

@@ -1,7 +1,7 @@
 const DEFAULT_PUBLISHED_ISO = '2025-01-15T00:00:00.000Z';
 const DEFAULT_MODIFIED_ISO = '2026-02-15T00:00:00.000Z';
 const PUBLISHER_REVIEW_MODIFIED_ISO = '2026-05-24T00:00:00.000Z';
-const FIBRE_REVIEW_MODIFIED_ISO = '2026-06-20T00:00:00.000Z';
+const FIBRE_REVIEW_MODIFIED_ISO = '2026-08-06T00:00:00.000Z';
 
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/': '2026-08-02T00:00:00.000Z',
@@ -16,8 +16,8 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/best-20gb-data-deals-south-africa/': '2026-08-04T00:00:00.000Z',
   '/best-30gb-data-deals-south-africa/': '2026-08-04T00:00:00.000Z',
   '/buy-data-airtime-south-africa/': '2026-06-18T00:00:00.000Z',
-  '/fibre/': '2026-07-04T00:00:00.000Z',
-  '/fibre/cheapest-fibre-packages-south-africa/': '2026-07-30T00:00:00.000Z',
+  '/fibre/': FIBRE_REVIEW_MODIFIED_ISO,
+  '/fibre/cheapest-fibre-packages-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/prepaid-fibre-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/fibre-vs-lte-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/how-to-check-fibre-coverage-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,

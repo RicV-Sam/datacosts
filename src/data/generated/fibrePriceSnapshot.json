@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-06-20",
+  "checkedAt": "2026-08-06",
   "generatedBy": "scripts/update-fibre-prices.ts",
   "notes": "Checked examples from public provider pages. Fibre prices vary by exact address, fibre network operator, install status, promotions and provider terms.",
   "prices": [
@@ -15,7 +15,7 @@
       "setupNotes": "Free setup worth R2000 and free wireless router shown on the public Webafrica fibre page.",
       "sourceUrl": "https://www.webafrica.co.za/fibre/",
       "sourceLabel": "Webafrica fibre page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "high",
       "requiresAddressCheck": true,
       "tags": ["entry", "openserve", "monthly"]
@@ -32,7 +32,7 @@
       "setupNotes": "Public Webafrica page lists free setup subject to provider terms.",
       "sourceUrl": "https://www.webafrica.co.za/fibre/",
       "sourceLabel": "Webafrica fibre page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "high",
       "requiresAddressCheck": true,
       "tags": ["gigabit", "vumatel", "monthly"]
@@ -49,7 +49,7 @@
       "setupNotes": "Public Webafrica page lists free setup subject to provider terms.",
       "sourceUrl": "https://www.webafrica.co.za/fibre/",
       "sourceLabel": "Webafrica fibre page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "high",
       "requiresAddressCheck": true,
       "tags": ["fast", "octotel", "monthly"]
@@ -66,7 +66,7 @@
       "setupNotes": "Frogfoot Air is area-specific and uses the Frogfoot network.",
       "sourceUrl": "https://www.webafrica.co.za/fibre/",
       "sourceLabel": "Webafrica fibre page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "medium",
       "requiresAddressCheck": true,
       "tags": ["entry", "frogfoot", "monthly"]
@@ -83,7 +83,7 @@
       "setupNotes": "Axxess lists multiple FNO-backed packages; exact network depends on address.",
       "sourceUrl": "https://www.axxess.co.za/fibre/uncapped",
       "sourceLabel": "Axxess uncapped fibre page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "medium",
       "requiresAddressCheck": true,
       "tags": ["entry", "monthly"]
@@ -100,7 +100,7 @@
       "setupNotes": "Public Axxess package table shows free once-off installation and connection on selected rows.",
       "sourceUrl": "https://www.axxess.co.za/fibre/uncapped",
       "sourceLabel": "Axxess uncapped fibre page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "medium",
       "requiresAddressCheck": true,
       "tags": ["low-cost", "evotel", "monthly"]
@@ -117,7 +117,7 @@
       "setupNotes": "RSAWEB public shop page lists free installation and free setup on this row.",
       "sourceUrl": "https://shop.rsaweb.co.za/product-category/fibre/ftth/",
       "sourceLabel": "RSAWEB FTTH shop page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "high",
       "requiresAddressCheck": true,
       "tags": ["entry", "openserve", "monthly"]
@@ -131,10 +131,10 @@
       "uploadMbps": 30,
       "monthlyPrice": 515,
       "promoPrice": 415,
-      "setupNotes": "RSAWEB public shop page showed a limited-time first-month style promotion and then regular monthly price.",
+      "setupNotes": "RSAWEB public shop page showed a limited-time R415 promotional price for up to two months, then the listed R515 monthly price.",
       "sourceUrl": "https://shop.rsaweb.co.za/product-category/fibre/ftth/",
       "sourceLabel": "RSAWEB FTTH shop page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "high",
       "requiresAddressCheck": true,
       "tags": ["entry", "vumatel", "monthly", "promo"]
@@ -151,7 +151,7 @@
       "setupNotes": "RSAWEB page lists no contract, top up as needed, and no cancellation fee for this prepaid row.",
       "sourceUrl": "https://shop.rsaweb.co.za/product-category/fibre/ftth/",
       "sourceLabel": "RSAWEB FTTH shop page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "high",
       "requiresAddressCheck": true,
       "tags": ["prepaid", "low-cost", "vuma-reach"]
@@ -168,7 +168,7 @@
       "setupNotes": "Vox public page says deals are address-specific and selected packages include a free-to-use Wi-Fi router.",
       "sourceUrl": "https://www.vox.co.za/fibre-to-the-home/",
       "sourceLabel": "Vox fibre to the home page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "high",
       "requiresAddressCheck": true,
       "tags": ["entry", "monthly"]
@@ -185,7 +185,7 @@
       "setupNotes": "Mweb public Openserve page shows once-off processing, setup and termination fee notes; confirm exact terms by address.",
       "sourceUrl": "https://www.mweb.co.za/fibre-provider/openserve",
       "sourceLabel": "Mweb Openserve fibre page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "high",
       "requiresAddressCheck": true,
       "tags": ["openserve", "monthly"]
@@ -202,7 +202,7 @@
       "setupNotes": "Afrihost prepaid fibre page says packages are uncapped and prices include data and line rental; availability depends on area.",
       "sourceUrl": "https://www.afrihost.com/fibre/prepaid",
       "sourceLabel": "Afrihost prepaid fibre page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "medium",
       "requiresAddressCheck": true,
       "tags": ["prepaid", "entry"]
@@ -219,7 +219,7 @@
       "setupNotes": "Afrihost prepaid fibre page says packages are uncapped and include data and line rental; availability depends on area.",
       "sourceUrl": "https://www.afrihost.com/fibre/prepaid",
       "sourceLabel": "Afrihost prepaid fibre page",
-      "checkedAt": "2026-06-20",
+      "checkedAt": "2026-08-06",
       "confidence": "medium",
       "requiresAddressCheck": true,
       "tags": ["prepaid", "mid-speed"]
