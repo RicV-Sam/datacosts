@@ -587,14 +587,14 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'cheap-night-data-south-africa',
     mode: 'cheap-night',
     canonicalPath: '/guides/cheap-night-data-south-africa/',
-    title: 'Night Data South Africa (2026)',
+    title: 'Night Data South Africa 2026: Hours and Bundle Checks',
     metaDescription:
-      'Compare cheap night data bundles in South Africa. See which networks offer the lowest night-bundle prices, usage windows, and practical watch-outs.',
-    h1: 'Cheap Night Data South Africa (2026)',
+      'Compare reviewed MTN Night Express and Vodacom Night Owl rows, usage windows, validity and the checks to make before buying night data.',
+    h1: 'Night Data South Africa: Hours, Validity and Bundle Checks',
     intro:
-      'Night bundles can offer very strong value for users who schedule downloads and updates overnight. This page compares currently listed night-style bundles and highlights where users often get caught by timing and usage-window limits.',
-    tableTitle: 'Night Bundle Comparison Across Major Networks',
-    quickHeading: 'Which night bundles are currently cheapest?',
+      'Night data can be useful for downloads, updates or streaming during a restricted off-peak window. The reviewed catalogue currently includes MTN Night Express and Vodacom Night Owl rows; other operator offers should only be compared after their current allocation, validity and night window are verified.',
+    tableTitle: 'Reviewed Night Data Bundle Comparison',
+    quickHeading: 'Which night-data rows are currently source checked?',
     watchOuts: [
       'Night bundle data is usually restricted to specific off-peak hours.',
       'Night GB does not automatically replace daytime anytime data.',
@@ -606,11 +606,11 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       'Check network-specific night windows and terms before buying.'
     ],
     trustLine:
-      'We treat night bundles as a separate category because their usage windows make them fundamentally different from normal prepaid data.',
+      'We compare only source-checked night-data rows and keep their restricted usage windows separate from normal anytime data.',
     faqs: [
       {
         question: 'Which network has the cheapest night data in South Africa?',
-        answer: 'Night-bundle leaders can rotate as pricing changes. This page compares currently listed night options across major operators.'
+        answer: 'There is no permanent winner. Compare only current source-checked rows with the same validity, then check allocation, cost per usable GB and the exact night window.'
       },
       {
         question: 'When are night bundles worth buying?',

@@ -84,7 +84,7 @@ const FIX_ROUTE_MODIFIED_ISO: Record<string, string> = {
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'airtime-data-saving-tips-south-africa': '2026-07-30T00:00:00.000Z',
   'best-data-deals-south-africa': '2026-08-02T00:00:00.000Z',
-  'cheap-night-data-south-africa': '2026-08-02T00:00:00.000Z',
+  'cheap-night-data-south-africa': '2026-08-06T00:00:00.000Z',
   'cheapest-1gb-data-south-africa': '2026-08-02T00:00:00.000Z',
   'convert-airtime-to-data-south-africa': '2026-08-02T00:00:00.000Z',
   'buy-data-with-bank-apps-south-africa': '2026-06-18T00:00:00.000Z',
@@ -128,7 +128,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'best-monthly-data-deals-south-africa': '2026-08-02T00:00:00.000Z',
   'best-prepaid-data-deals-south-africa': '2026-08-02T00:00:00.000Z',
-  'cheap-night-data-south-africa': '2026-08-02T00:00:00.000Z',
+  'cheap-night-data-south-africa': '2026-08-06T00:00:00.000Z',
   'cheapest-1gb-data-south-africa': '2026-08-02T00:00:00.000Z',
   'cheapest-2gb-data-south-africa': '2026-08-02T00:00:00.000Z',
   'cheapest-5gb-data-south-africa': '2026-08-02T00:00:00.000Z',
