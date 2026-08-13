@@ -161,6 +161,76 @@ function validateCanonicalTags(filePath: string, html: string, errors: Validatio
   });
 }
 
+function validateIndexableMarkup(
+  filePath: string,
+  html: string,
+  route: string,
+  indexableRoutes: Set<string>,
+  errors: ValidationError[]
+): void {
+  if (!indexableRoutes.has(route)) return;
+
+  const h1Count = (html.match(/<h1\b/gi) ?? []).length;
+  if (h1Count !== 1) {
+    pushError(errors, filePath, `${route} must render exactly one H1 but rendered ${h1Count}`);
+  }
+
+  const canonicalTags = (html.match(/<link\b[^>]*>/gi) ?? []).filter((tag) =>
+    getAttributeValue(tag, 'rel')?.toLowerCase().split(/\s+/).includes('canonical')
+  );
+  const canonicalHref = canonicalTags.length === 1 ? getAttributeValue(canonicalTags[0], 'href') : null;
+  const expectedCanonical = new URL(route, SITE_URL).toString();
+  if (canonicalHref !== expectedCanonical) {
+    pushError(errors, filePath, `${route} must be self-canonical at ${expectedCanonical}`);
+  }
+}
+
+function getInternalHrefPaths(html: string): string[] {
+  const anchorTags = html.match(/<a\b[^>]*>/gi) ?? [];
+  return anchorTags
+    .map((tag) => getAttributeValue(tag, 'href'))
+    .filter((href): href is string => Boolean(href))
+    .filter((href) => href.startsWith('/') && !href.startsWith('//'))
+    .map((href) => {
+      try {
+        return new URL(href, SITE_URL).pathname;
+      } catch {
+        return href.split(/[?#]/, 1)[0];
+      }
+    });
+}
+
+function validateInternalLinkGraph(
+  htmlByRoute: Map<string, { filePath: string; html: string }>,
+  indexableRoutes: Set<string>,
+  publicPaths: Set<string>,
+  errors: ValidationError[]
+): void {
+  const inboundCounts = new Map([...indexableRoutes].map((route) => [route, 0]));
+
+  for (const [sourceRoute, { filePath, html }] of htmlByRoute) {
+    for (const pathname of getInternalHrefPaths(html)) {
+      const normalizedTarget = normalizeRoute(pathname);
+      const targetExists = htmlByRoute.has(normalizedTarget) || publicPaths.has(pathname.replace(/^\/+/, ''));
+      if (!targetExists) {
+        pushError(errors, filePath, `${sourceRoute} links to missing internal target: ${pathname}`);
+        continue;
+      }
+
+      if (sourceRoute !== normalizedTarget && inboundCounts.has(normalizedTarget)) {
+        inboundCounts.set(normalizedTarget, (inboundCounts.get(normalizedTarget) ?? 0) + 1);
+      }
+    }
+  }
+
+  for (const [route, inboundCount] of inboundCounts) {
+    if (route !== '/' && inboundCount === 0) {
+      const filePath = htmlByRoute.get(route)?.filePath ?? path.join(DIST_DIR, route, 'index.html');
+      pushError(errors, filePath, `${route} is indexable but has no internal inbound links`);
+    }
+  }
+}
+
 function validateProtectedOrganicPage(
   filePath: string,
   html: string,
@@ -507,6 +577,9 @@ async function main(): Promise<void> {
   const errors: ValidationError[] = [];
   const sitemapRoutes = new Set<string>();
   const renderedHtmlRoutes = new Set<string>();
+  const htmlByRoute = new Map<string, { filePath: string; html: string }>();
+  const indexableRoutes = new Set(getIndexableRoutes().map(normalizeRoute));
+  const publicPaths = new Set(allFiles.map((filePath) => path.relative(DIST_DIR, filePath).replace(/\\/g, '/')));
 
   validatePublishedEvidenceCollections(errors);
 
@@ -525,7 +598,9 @@ async function main(): Promise<void> {
     if (filePath.endsWith('.html')) {
       const route = getRouteFromHtmlPath(filePath);
       renderedHtmlRoutes.add(route);
+      htmlByRoute.set(route, { filePath, html: text });
       validateCanonicalTags(filePath, text, errors);
+      validateIndexableMarkup(filePath, text, route, indexableRoutes, errors);
       validateProtectedOrganicPage(filePath, text, route, errors);
       validateMetaSeoUrls(filePath, text, errors);
       validateSocialPreviewMeta(filePath, text, route, errors);
@@ -544,6 +619,8 @@ async function main(): Promise<void> {
     }
   }
 
+  validateInternalLinkGraph(htmlByRoute, indexableRoutes, publicPaths, errors);
+
   const expectedSitemapRoutes = new Set(getSitemapRoutes().map(normalizeRoute));
   for (const route of expectedSitemapRoutes) {
     if (!sitemapRoutes.has(route)) {
@@ -556,7 +633,6 @@ async function main(): Promise<void> {
     }
   }
 
-  const indexableRoutes = new Set(getIndexableRoutes().map(normalizeRoute));
   for (const route of PROTECTED_ORGANIC_ROUTES) {
     if (!indexableRoutes.has(route)) {
       pushError(errors, path.resolve(process.cwd(), 'src/config/routeCatalog.ts'), `${route} must remain indexable`);

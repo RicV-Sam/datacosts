@@ -9,7 +9,7 @@ test('verify ussd page updates', async ({ page }, testInfo) => {
   await expect(page.locator('h1')).toHaveText('USSD Codes South Africa: MTN, Vodacom, Telkom and Cell C');
 
   const lastUpdated = await page.textContent('main');
-  expect(lastUpdated).toContain('9 July 2026');
+  expect(lastUpdated).toContain('2 August 2026');
   await page.screenshot({ path: testInfo.outputPath('v4_hero.png') });
 
   // 2. Verify current quick-code utility

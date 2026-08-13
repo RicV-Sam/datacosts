@@ -41,6 +41,31 @@ const problemPages = [
     group: 'Data issues'
   },
   {
+    href: '/data-problems/how-to-stop-apps-using-data-in-background-samsung/',
+    label: 'How to stop Samsung apps using data in the background',
+    group: 'Data issues'
+  },
+  {
+    href: '/data-problems/why-is-my-data-disappearing-overnight-android/',
+    label: 'Why Android data disappears overnight',
+    group: 'Data issues'
+  },
+  {
+    href: '/data-problems/how-to-stop-data-disappearing-mtn/',
+    label: 'How to stop data disappearing on MTN',
+    group: 'Data issues'
+  },
+  {
+    href: '/guides/why-is-my-data-disappearing-mtn/',
+    label: 'Why data disappears on MTN',
+    group: 'Data issues'
+  },
+  {
+    href: '/guides/why-is-my-data-disappearing-vodacom/',
+    label: 'Why data disappears on Vodacom',
+    group: 'Data issues'
+  },
+  {
     href: '/data-problems/why-does-my-data-run-out-so-fast-telkom/',
     label: 'Why Telkom data runs out so fast',
     group: 'Data issues'
@@ -81,6 +106,21 @@ const problemPages = [
     group: 'Airtime issues'
   },
   {
+    href: '/data-problems/how-to-stop-airtime-disappearing-vodacom/',
+    label: 'How to stop Vodacom airtime disappearing',
+    group: 'Airtime issues'
+  },
+  {
+    href: '/data-problems/how-to-stop-airtime-disappearing-cell-c/',
+    label: 'How to stop Cell C airtime disappearing',
+    group: 'Airtime issues'
+  },
+  {
+    href: '/data-problems/why-is-my-airtime-disappearing-mtn-prepaid/',
+    label: 'Why MTN prepaid airtime disappears',
+    group: 'Airtime issues'
+  },
+  {
     href: '/guides/how-to-cancel-subscriptions-mtn-vodacom-telkom/',
     label: 'How to cancel subscriptions on major networks',
     group: 'Subscription issues'
@@ -103,6 +143,26 @@ const problemPages = [
   {
     href: '/fix/stop-wasp-services-vodacom/',
     label: 'Stop WASP services on Vodacom',
+    group: 'Subscription issues'
+  },
+  {
+    href: '/data-problems/how-to-check-wasp-subscriptions-mtn/',
+    label: 'How to check WASP subscriptions on MTN',
+    group: 'Subscription issues'
+  },
+  {
+    href: '/data-problems/how-to-check-wasp-subscriptions-vodacom/',
+    label: 'How to check WASP subscriptions on Vodacom',
+    group: 'Subscription issues'
+  },
+  {
+    href: '/data-problems/how-to-stop-wasp-charges-cell-c/',
+    label: 'How to stop WASP charges on Cell C',
+    group: 'Subscription issues'
+  },
+  {
+    href: '/data-problems/how-to-stop-wasp-charges-telkom/',
+    label: 'How to stop WASP charges on Telkom',
     group: 'Subscription issues'
   }
 ];

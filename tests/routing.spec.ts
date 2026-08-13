@@ -42,6 +42,14 @@ for (const alias of [
   {
     output: 'dist/fibre/cheap-fibre-south-africa/index.html',
     target: '/fibre/cheapest-fibre-packages-south-africa/'
+  },
+  {
+    output: 'dist/network/vodacom/daily-data/index.html',
+    target: '/network/vodacom/'
+  },
+  {
+    output: 'dist/network/cell-c/weekly-data/index.html',
+    target: '/network/cell-c/'
   }
 ]) {
   test(`${alias.output} uses a crawlable permanent meta-refresh signal`, async () => {
@@ -83,9 +91,7 @@ const evidenceBlockedNetworkFacets = [
   '/network/cell-c/monthly-data/',
   '/network/cell-c/cheapest-1gb/',
   '/network/telkom/cheapest-1gb/',
-  '/network/vodacom/daily-data/',
   '/network/cell-c/daily-data/',
-  '/network/cell-c/weekly-data/',
   '/network/telkom/daily-data/'
 ];
 
@@ -128,12 +134,15 @@ test('reviewed and evidence-blocked network facets have the intended indexing po
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.getByRole('heading', { name: 'Official sources and review status' })).toBeVisible();
     expect(sitemapXml).toContain(`<loc>https://datacost.co.za${route}</loc>`);
-    expect(sitemapXml).toContain('<lastmod>2026-07-30</lastmod>');
+    expect(sitemapXml).toContain('<lastmod>2026-08-02</lastmod>');
   }
 
   for (const route of evidenceBlockedNetworkFacets) {
     await page.goto(route);
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
+    await expect.poll(
+      () => page.locator('meta[name="robots"]').getAttribute('content'),
+      { message: `${route} must remain noindex,follow` }
+    ).toBe('noindex,follow');
     expect(sitemapXml).not.toContain(`https://datacost.co.za${route}`);
   }
 });
@@ -145,19 +154,19 @@ test('Vodacom night comparison exposes allocation, restrictions and truthful sou
   await expect(page.getByText('5GB night').first()).toBeVisible();
   await expect(page.getByText('00:00-05:00').first()).toBeVisible();
   await expect(page.getByText('Prepaid LTE / router').first()).toBeVisible();
-  await expect(page.getByText('Checked 4 July 2026').first()).toBeVisible();
+  await expect(page.getByText('Checked 1 August 2026').first()).toBeVisible();
   await expect(page.getByText('Recheck before buying').first()).toBeVisible();
   await expect(page.getByRole('link', { name: /Vodacom prepaid LTE data page/i }).first()).toHaveAttribute('href', /vodacom\.co\.za/);
 
   const rows = page.locator('tbody tr');
-  await expect(rows.first()).toContainText('Vodacom Prepaid LTE 5GB Anytime + 5GB Night Owl');
-  await expect(rows.first()).toContainText('R19.80 / anytime GB');
-  await expect(rows.first()).toContainText('Restricted night data is excluded from this figure.');
+  const prepaidLteRow = rows.filter({ hasText: 'Vodacom Prepaid LTE 5GB Anytime + 5GB Night Owl' });
+  await expect(prepaidLteRow).toContainText('R19.80 / anytime GB');
+  await expect(prepaidLteRow).toContainText('Restricted night data is excluded from this figure.');
 
-  const uncheckedRow = rows.filter({ hasText: 'Vodacom Night Owl 250MB' });
-  await expect(uncheckedRow).toContainText('Confirm');
-  await expect(uncheckedRow).toContainText('Dataset reference: R14');
-  await expect(uncheckedRow).toContainText('No R/GB comparison is shown for an unchecked price.');
+  const nightOwlRow = rows.filter({ hasText: 'Vodacom Night Owl 250MB' });
+  await expect(nightOwlRow).toContainText('R56.00 / night GB');
+  await expect(nightOwlRow).toContainText('Checked 2 August 2026');
+  await expect(nightOwlRow).toContainText('Vodacom prepaid data page');
 
   const itemListText = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
     scripts.map((script) => script.textContent || '').find((text) => text.includes('"@type":"ItemList"')) || ''
@@ -169,10 +178,7 @@ test('Vodacom night comparison exposes allocation, restrictions and truthful sou
   const verifiedItem = itemList.itemListElement.find(
     (entry: { item: { name: string } }) => entry.item.name === 'Vodacom Prepaid LTE 5GB Anytime + 5GB Night Owl'
   );
-  expect(itemList.itemListElement[0].item.name).toBe('Vodacom Prepaid LTE 5GB Anytime + 5GB Night Owl');
-  expect(itemList.itemListElement.at(-1).item.name).toBe('Vodacom Night Owl 250MB');
-  expect(manualItem.item.offers.price).toBeUndefined();
-  expect(manualItem.item.offers.availability).toBeUndefined();
+  expect(manualItem.item.offers.price).toBe('14.00');
   expect(verifiedItem.item.offers.price).toBe('99.00');
 });
 
