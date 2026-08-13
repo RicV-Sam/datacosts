@@ -99,7 +99,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-buy-data-telkom': '2026-08-02T00:00:00.000Z',
   'how-to-buy-data-vodacom': '2026-08-02T00:00:00.000Z',
   'how-to-check-data-balance': '2026-08-01T00:00:00.000Z',
-  'how-to-check-mtn-data-balance': '2026-04-25T00:00:00.000Z',
+  'how-to-check-mtn-data-balance': '2026-08-13T00:00:00.000Z',
   'how-to-check-mtn-airtime-balance': '2026-07-30T00:00:00.000Z',
   'how-to-check-vodacom-airtime-balance': '2026-07-09T00:00:00.000Z',
   'how-to-stop-wasp-vas-charges-south-africa': '2026-05-10T00:00:00.000Z',

@@ -382,7 +382,10 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
     { href: '/ussd-codes-south-africa/', label: 'USSD codes South Africa' },
     { href: config.networkHubHref, label: networkSlug === 'cell-c' ? 'Cell C data deals' : `${config.networkName} Network Page` },
     ...FIX_LINKS_BY_NETWORK_SLUG[networkSlug],
-    { href: config.balanceGuideHref, label: `Check ${config.networkName} balance and bundles` },
+    {
+      href: config.balanceGuideHref,
+      label: networkSlug === 'mtn' ? 'How to check MTN data balance' : `Check ${config.networkName} balance and bundles`
+    },
     { href: config.buyDataGuideHref, label: `How to Buy Data on ${config.networkName}` },
     { href: '/airtime-advance-codes/', label: 'airtime advance codes' },
     { href: '/guides/cheapest-data-south-africa/', label: 'cheapest data in South Africa' },

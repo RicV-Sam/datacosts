@@ -1713,11 +1713,11 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-check-mtn-data-balance',
-    title: 'Check MTN Data Balance in South Africa',
-    metaDescription: 'Check your MTN data balance with *136# or *136*1#, then use the MTN app for bundle details and troubleshooting.',
+    title: 'How to Check MTN Data Balance in South Africa',
+    metaDescription: 'How to check MTN data balance in South Africa: start with *136# or *136*1#, then use the MTN app for bundle validity and usage details.',
     h1: 'How to Check MTN Data Balance',
-    intro: 'If you are on MTN prepaid or top-up in South Africa, check your data balance before streaming, hotspotting, or buying another bundle. Start with *136# or *136*1#, then use the MTN app if you need a fuller bundle breakdown.',
-    quickSummaryTitle: 'Quick Answer',
+    intro: 'To check your MTN data balance in South Africa, start with *136# or *136*1# from the MTN SIM you want to check. Use the MTN app when you need a fuller breakdown of remaining data, bundle validity, or recent usage before buying another bundle.',
+    quickSummaryTitle: 'How to Check MTN Data Balance: Quick Answer',
     quickSummaryItems: [
       'Dial *136# for the main MTN balance menu.',
       'Use *136*1# if your line supports the direct MTN data balance shortcut.',
