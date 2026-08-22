@@ -228,6 +228,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const fixGuideLinksBySlug: Record<string, Array<{ href: string; label: string; description: string }>> = {
     mtn: [
       { href: '/fix/mtn-data-not-working/', label: 'MTN data not working', description: 'Check balance, APN, signal, and account status before topping up again.' },
+      { href: '/guides/how-to-check-subscriptions-on-mtn/', label: 'How to check subscriptions on MTN', description: 'Review recurring paid services when airtime is disappearing.' },
       { href: '/fix/lte-router-connected-no-internet/', label: 'LTE router connected but no internet', description: 'Troubleshoot router Wi-Fi, SIM, APN, and LTE status.' }
     ],
     vodacom: [

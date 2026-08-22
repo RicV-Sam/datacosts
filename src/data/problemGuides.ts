@@ -404,16 +404,16 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
   },
   'how-to-check-subscriptions-on-mtn': {
     slug: 'how-to-check-subscriptions-on-mtn',
-    titleTag: 'How to Check MTN Subscriptions South Africa (2026)',
+    titleTag: 'How to Check Subscriptions on MTN (2026)',
     metaDescription:
-      'How to check MTN subscriptions in South Africa and stop airtime loss. Find active WASP, premium SMS, and recurring services, then fix deductions fast.',
+      'How to check subscriptions on MTN using the MTN App, *123# content-service menu or MTN Play, then stop unwanted recurring airtime deductions.',
     h1: 'How to Check Subscriptions on MTN South Africa (2026)',
     intro:
-      'MTN airtime deductions often come from recurring services. A focused subscription audit is usually the fastest way to stop repeated losses.',
+      'To check subscriptions on MTN, start with MTN self-service rather than guessing which charge is responsible. Review active paid services, cancel anything you do not recognise, and confirm the service is inactive before recharging again.',
     quickAnswer: [
-      'List active paid services on MTN, cancel unknown entries, and verify inactive status before recharging again.',
-      'Recurring deductions are commonly tied to WASP subscriptions, premium SMS, or old paid add-ons.',
-      'After cleanup, monitor one day of deductions to confirm stability.'
+      'Check subscriptions on MTN in the MTN App, or dial *123# and follow the content-service prompts shown for your line.',
+      'For supported MTN Play services, sign in to the MTN Play subscription account to view or manage the subscription.',
+      'Cancel unknown services, verify that they show as inactive, then monitor airtime for 24 hours. Contact MTN if deductions continue.'
     ],
     causes: [
       'WASP services billed on recurring intervals.',

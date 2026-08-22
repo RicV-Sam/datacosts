@@ -116,7 +116,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'why-is-my-data-disappearing-south-africa': '2026-08-01T00:00:00.000Z',
   'how-to-stop-airtime-being-used-automatically': '2026-04-16T00:00:00.000Z',
   'how-to-cancel-subscriptions-mtn-vodacom-telkom': '2026-04-16T00:00:00.000Z',
-  'how-to-check-subscriptions-on-mtn': '2026-07-30T00:00:00.000Z',
+  'how-to-check-subscriptions-on-mtn': '2026-08-22T00:00:00.000Z',
   'how-to-check-subscriptions-on-vodacom': '2026-04-16T00:00:00.000Z',
   'how-to-stop-wasp-services-south-africa': '2026-04-16T00:00:00.000Z',
   'how-to-protect-airtime-from-being-used': '2026-07-30T00:00:00.000Z',
@@ -149,7 +149,7 @@ const NETWORK_MODIFIED_BY_SLUG: Record<string, string> = {
 
 const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
   'cell-c': '2026-08-02T00:00:00.000Z',
-  mtn: '2026-08-02T00:00:00.000Z',
+  mtn: '2026-08-22T00:00:00.000Z',
   rain: '2026-08-01T00:00:00.000Z',
   telkom: '2026-08-02T00:00:00.000Z',
   vodacom: '2026-08-02T00:00:00.000Z'
