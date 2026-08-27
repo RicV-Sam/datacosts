@@ -105,7 +105,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-stop-wasp-vas-charges-south-africa': '2026-05-10T00:00:00.000Z',
   'stop-wasp-subscriptions-south-africa': '2026-08-02T00:00:00.000Z',
   'out-of-bundle-data-costs-south-africa': '2026-05-01T00:00:00.000Z',
-  'prepaid-vs-contract-south-africa': '2026-08-02T00:00:00.000Z',
+  'prepaid-vs-contract-south-africa': '2026-08-27T00:00:00.000Z',
   'cheapest-data-south-africa': '2026-08-01T00:00:00.000Z',
   'cheapest-unlimited-data-south-africa': '2026-08-01T00:00:00.000Z',
   'best-sim-only-deals-south-africa': '2026-08-01T00:00:00.000Z',

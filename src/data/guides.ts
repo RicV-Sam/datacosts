@@ -280,24 +280,30 @@ export const guides: Guide[] = [
   },
   {
     slug: 'prepaid-vs-contract-south-africa',
-    title: 'Prepaid vs Contract South Africa (2026)',
-    metaDescription: 'Choosing between prepaid and contract? We compare the costs, flexibility, and data rates of prepaid vs contract in SA to find the best option for you.',
-    h1: 'Prepaid vs. Contract in South Africa: Which is Cheaper?',
-    intro: 'Choosing between a prepaid SIM and a long-term contract is a major financial decision for many South Africans. While contracts often offer a "free" smartphone, prepaid gives you total control over your spending without being locked into a 24-month commitment. In this guide, we weigh the pros and cons of both options to help you decide which is better for your wallet.',
+    title: 'Prepaid vs Contract Phone Pricing in South Africa (2026)',
+    metaDescription: 'Compare prepaid vs contract phone pricing in South Africa by total cost, device payments, flexibility, monthly inclusions and extra usage charges.',
+    h1: 'Prepaid vs Contract Phone Pricing in South Africa',
+    intro: 'Prepaid and contract phone pricing cannot be compared on the monthly headline alone. Compare the total service and device cost for the same period, then factor in included data and minutes, top-ups or out-of-bundle use, once-off fees, flexibility and coverage where you use the SIM.',
     comparisonType: 'all',
+    quickSummaryTitle: 'Prepaid vs Contract: Quick Answer',
+    quickSummaryItems: [
+      'Prepaid is the more flexible option because you choose when and how much to load, but you normally arrange the phone separately.',
+      'A contract can make monthly billing and device payments more predictable, but the full-term cost and exit conditions matter more than the advertised monthly amount.',
+      'For a fair price comparison, add the service cost, device cost, once-off fees and likely extra usage over the same number of months.'
+    ],
     stepsTitle: 'Comparison at a Glance',
     steps: [
       {
         title: 'Prepaid: Pros & Cons',
-        description: 'Pros: Total cost control, no credit check, access to promo deals. Cons: You must buy your own phone upfront, out-of-bundle rates can be high if you aren\'t careful.'
+        description: 'Pros: flexible spending, no fixed monthly service commitment and easy network testing. Cons: you arrange the phone separately and must actively manage bundle purchases, validity and extra usage.'
       },
       {
         title: 'Contract: Pros & Cons',
-        description: 'Pros: Lower upfront cost for new phones, reliable monthly data allocation. Cons: 24-36 month lock-in, harder to change networks, credit check required.'
+        description: 'Pros: predictable monthly inclusions and the option to spread eligible device costs. Cons: a fixed term may reduce flexibility, and the total payable can include service, device and once-off charges.'
       },
       {
         title: 'The "SIM-Only" Middle Ground',
-        description: 'Many networks now offer month-to-month SIM-only contracts. These give you the better data rates of a contract without the long-term commitment or phone cost.'
+        description: 'SIM-only plans separate mobile service from the phone. Compare their billing term, cancellation conditions and included usage with prepaid before deciding.'
       }
     ],
     nextStepsTitle: 'Changing or Ending Your Current Contract',
