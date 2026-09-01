@@ -16,6 +16,7 @@ const featuredGuides = [
   { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data South Africa' },
   { href: '/guides/airtime-data-saving-tips-south-africa/', label: 'Airtime & Data Saving Tips' },
   { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals' },
+  { href: '/guides/mvnos-south-africa/', label: 'MVNOs in South Africa' },
   { href: '/guides/vodacom-vs-mtn-data-prices/', label: 'Vodacom vs MTN Data Prices' }
 ];
 

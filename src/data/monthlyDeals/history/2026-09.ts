@@ -1,7 +1,9 @@
 import type {
   DealAccessTier,
   DealBilling,
+  DealCommitment,
   DealOfferSource,
+  DealPaymentModel,
   DealProductType,
   MonthlyDataDealOffer,
   MonthlyDataDealSnapshot
@@ -9,6 +11,17 @@ import type {
 import { getExpectedComparisonSizes } from '../sizeBands';
 
 const CHECKED_AT = '2026-09-01';
+const PREPAID_PAYMENT: DealPaymentModel = { kind: 'prepaid', settlement: 'upfront' };
+const ONCE_OFF_COMMITMENT: DealCommitment = { kind: 'once_off' };
+const MONTH_TO_MONTH_COMMITMENT: DealCommitment = { kind: 'month_to_month' };
+
+function paymentNotConfirmed(note: string): DealPaymentModel {
+  return { kind: 'not_confirmed', note };
+}
+
+function commitmentNotConfirmed(note: string): DealCommitment {
+  return { kind: 'not_confirmed', note };
+}
 
 function officialSource(url: string, title: string): DealOfferSource {
   return { url, title, checkedAt: CHECKED_AT, official: true };
@@ -21,6 +34,8 @@ function createAnytimeSeries(config: {
   prices: Record<number, number>;
   validity: MonthlyDataDealOffer['validity'];
   billing: DealBilling;
+  paymentModel: DealPaymentModel;
+  commitment: DealCommitment;
   productType: DealProductType;
   accessTier: DealAccessTier;
   purchaseChannels: string[];
@@ -49,6 +64,8 @@ function createAnytimeSeries(config: {
       allocation,
       validity: config.validity,
       billing: config.billing,
+      paymentModel: config.paymentModel,
+      commitment: config.commitment,
       productType: config.productType,
       accessTier: config.accessTier,
       purchaseChannels: config.purchaseChannels,
@@ -67,6 +84,8 @@ const airmobileOffers = createAnytimeSeries({
   prices: { 10: 150, 20: 250, 30: 350 },
   validity: { kind: 'monthly', label: 'Monthly allocation' },
   billing: 'recurring_monthly',
+  paymentModel: PREPAID_PAYMENT,
+  commitment: MONTH_TO_MONTH_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'public',
   purchaseChannels: ['Afrihost website', 'Afrihost app'],
@@ -88,6 +107,8 @@ const nedbankOffers = createAnytimeSeries({
   prices: { 10: 150, 20: 250, 30: 350 },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: PREPAID_PAYMENT,
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'qualifying_price_plan',
   purchaseChannels: ['Nedbank Money app', 'Nedbank Online Banking'],
@@ -109,6 +130,8 @@ const melonAnytimeOffers = createAnytimeSeries({
   prices: { 10: 179, 20: 299, 30: 379 },
   validity: { kind: 'days', days: 30, label: '30-day monthly plan' },
   billing: 'recurring_monthly',
+  paymentModel: paymentNotConfirmed('The reviewed checkout confirms a contract-free recurring plan but does not label the payment model as prepaid, Top Up or postpaid.'),
+  commitment: MONTH_TO_MONTH_COMMITMENT,
   productType: 'mobile_plan',
   accessTier: 'public',
   purchaseChannels: ['Melon Mobile checkout', 'Melon Mobile app'],
@@ -143,6 +166,8 @@ const fnbDataPlanOffers = createAnytimeSeries({
   prices: { 12: 179, 25: 215 },
   validity: { kind: 'monthly', label: 'Monthly allocation' },
   billing: 'recurring_monthly',
+  paymentModel: paymentNotConfirmed('The reviewed pricing guide does not identify whether this exact data plan is prepaid, Top Up or postpaid.'),
+  commitment: MONTH_TO_MONTH_COMMITMENT,
   productType: 'mobile_plan',
   accessTier: 'qualifying_price_plan',
   purchaseChannels: ['FNB app', 'FNB Online Banking', 'FNB Connect call centre'],
@@ -161,6 +186,8 @@ const fnbOffers = createAnytimeSeries({
   prices: { 20: 549, 30: 599 },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: paymentNotConfirmed('The reviewed pricing guide does not identify which FNB Connect payment models can buy this exact once-off bundle.'),
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'qualifying_price_plan',
   purchaseChannels: ['FNB app', 'FNB Online Banking', 'FNB Connect USSD'],
@@ -186,6 +213,8 @@ const standardBank10Gb: MonthlyDataDealOffer = {
   allocation: { anytimeGb: 10, nightGb: 0, streamingGb: 0, socialGb: 0, otherRestricted: [] },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: paymentNotConfirmed('The reviewed SIM-plan catalogue lists an upfront bundle price but does not label the underlying service as prepaid, Top Up or postpaid.'),
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'qualifying_price_plan',
   purchaseChannels: ['Standard Bank Connect website', '*136#'],
@@ -206,6 +235,8 @@ const standardBank20Gb: MonthlyDataDealOffer = {
   allocation: { anytimeGb: 20, nightGb: 0, streamingGb: 0, socialGb: 0, otherRestricted: [] },
   validity: { kind: 'monthly', label: 'Monthly allocation' },
   billing: 'recurring_monthly',
+  paymentModel: paymentNotConfirmed('The reviewed source says the subscription is billed monthly in advance but does not classify it as prepaid, Top Up or postpaid.'),
+  commitment: commitmentNotConfirmed('The reviewed public plan page does not state a minimum term or cancellation period.'),
   productType: 'mobile_plan',
   accessTier: 'qualifying_price_plan',
   purchaseChannels: ['Standard Bank Connect website'],
@@ -230,6 +261,8 @@ const standardBank35Gb: MonthlyDataDealOffer = {
   allocation: { anytimeGb: 35, nightGb: 0, streamingGb: 0, socialGb: 0, otherRestricted: [] },
   validity: { kind: 'monthly', label: 'Monthly allocation' },
   billing: 'recurring_monthly',
+  paymentModel: paymentNotConfirmed('The reviewed source lists a monthly subscription but does not classify it as prepaid, Top Up or postpaid.'),
+  commitment: commitmentNotConfirmed('The reviewed public plan page does not state a minimum term or cancellation period.'),
   productType: 'mobile_plan',
   accessTier: 'qualifying_price_plan',
   purchaseChannels: ['Standard Bank Connect website'],
@@ -261,6 +294,8 @@ const capitec10Gb: MonthlyDataDealOffer = {
   },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: PREPAID_PAYMENT,
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'qualifying_price_plan',
   purchaseChannels: ['Capitec app', 'Capitec Connect USSD'],
@@ -292,6 +327,8 @@ const capitec20GbLongValidity: MonthlyDataDealOffer = {
   },
   validity: { kind: 'days', days: 60, label: '60 days' },
   billing: 'once_off',
+  paymentModel: PREPAID_PAYMENT,
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'qualifying_price_plan',
   purchaseChannels: ['Capitec app', 'Capitec Connect USSD'],
@@ -313,6 +350,8 @@ const vodacom10GbAdvertised: MonthlyDataDealOffer = {
   allocation: { anytimeGb: 5, nightGb: 5, streamingGb: 0, socialGb: 0, otherRestricted: [] },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: PREPAID_PAYMENT,
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'prepaid_lte',
   accessTier: 'qualifying_price_plan',
   purchaseChannels: ['*123#', 'VodaPay app'],
@@ -356,6 +395,8 @@ const cellC20GbAdvertised: MonthlyDataDealOffer = {
   allocation: { anytimeGb: 10, nightGb: 10, streamingGb: 0, socialGb: 0, otherRestricted: [] },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: paymentNotConfirmed('The reviewed live catalogue does not state whether this bundle is limited to prepaid, Top Up or postpaid lines.'),
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'provider_customer',
   purchaseChannels: ['*147#', 'Cell C website', 'Cell C app'],
@@ -379,6 +420,8 @@ const mtnStreaming20Gb: MonthlyDataDealOffer = {
   allocation: { anytimeGb: 0, nightGb: 0, streamingGb: 20, socialGb: 0, otherRestricted: [] },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: PREPAID_PAYMENT,
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'provider_customer',
   purchaseChannels: ['*142#', 'MTN app'],
@@ -403,6 +446,8 @@ const mtnSuperData30Gb: MonthlyDataDealOffer = {
   allocation: { anytimeGb: 30, nightGb: 0, streamingGb: 0, socialGb: 0, otherRestricted: [] },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: PREPAID_PAYMENT,
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'qualifying_price_plan',
   purchaseChannels: ['*137#', '*136*2#', 'MTN app', 'MTN website', 'MTN stores', 'informal retail channel'],
@@ -432,6 +477,8 @@ const telkomDailyDose30Gb: MonthlyDataDealOffer = {
   },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: { kind: 'mixed', note: 'The official eligibility includes Prepaid, Hybrid and Prepaid LTE customers.' },
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'provider_customer',
   purchaseChannels: ['*180#', 'MyTelkom app', 'Telkom website', 'Telkom Pay', 'Telkom WhatsApp', 'Telkom stores'],
@@ -461,6 +508,8 @@ const melonGigaDay30Gb: MonthlyDataDealOffer = {
   },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: PREPAID_PAYMENT,
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'provider_customer',
   purchaseChannels: ['Melon Mobile website', 'Melon Mobile app'],
@@ -490,6 +539,8 @@ const cellCDayByDay30Gb: MonthlyDataDealOffer = {
   },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: { kind: 'mixed', note: 'The official eligibility includes Prepaid, TopUp and Postpaid customers.' },
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'mobile_data',
   accessTier: 'provider_customer',
   purchaseChannels: ['*147#', 'Cell C app', 'Cell C website'],
@@ -513,6 +564,8 @@ const mtnHomeWifi30GbAdvertised: MonthlyDataDealOffer = {
   allocation: { anytimeGb: 15, nightGb: 15, streamingGb: 0, socialGb: 0, otherRestricted: [] },
   validity: { kind: 'days', days: 30, label: '30 days' },
   billing: 'once_off',
+  paymentModel: PREPAID_PAYMENT,
+  commitment: ONCE_OFF_COMMITMENT,
   productType: 'prepaid_lte',
   accessTier: 'qualifying_price_plan',
   purchaseChannels: ['MTN Home Wi-Fi subscriber channels', 'selected MTN stores'],

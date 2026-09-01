@@ -42,6 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
     { id: 'fibre-vs-lte', title: 'Fibre vs LTE/5G South Africa', subtitle: 'Choose between fixed fibre, LTE, 5G and mobile data for home use', type: 'route' as const, value: '/fibre/fibre-vs-lte-south-africa/' },
     { id: 'buy-data-airtime', title: 'How to Buy Data and Airtime', subtitle: 'Compare safe USSD, app, bank-app, retailer and provider top-up routes', type: 'route' as const, value: '/buy-data-airtime-south-africa/' },
     { id: 'bank-apps-data', title: 'Buy Data with Bank Apps', subtitle: 'Safer checks for South African bank-app data and airtime purchases', type: 'route' as const, value: '/guides/buy-data-with-bank-apps-south-africa/' },
+    { id: 'mvno-guide', title: 'MVNOs in South Africa', subtitle: 'Compare prepaid and monthly providers, bank rewards, flexibility and eligibility', type: 'route' as const, value: '/guides/mvnos-south-africa/' },
     { id: 'promos', title: 'Airtime, Data and Fibre Promos', subtitle: 'Verified promo listings only after source checks', type: 'route' as const, value: '/promos/' },
     { id: 'guides', title: 'Guides', subtitle: 'Browse all guides', type: 'scroll' as const, value: 'guides' },
     { id: 'trust', title: 'Trust Center', subtitle: 'Editorial standards, methodology, corrections, and privacy', type: 'route' as const, value: '/trust/' },

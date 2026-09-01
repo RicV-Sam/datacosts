@@ -17,9 +17,12 @@ export function getAdvertisedAllocationTotalGb(allocation: DealDataAllocation): 
     allocation.nightGb +
     allocation.streamingGb +
     allocation.socialGb +
-    (allocation.conditionalBonusGb ?? 0) +
     allocation.otherRestricted.reduce((total, item) => total + item.gb, 0)
   );
+}
+
+export function getMaximumEligibleAllocationTotalGb(allocation: DealDataAllocation): number {
+  return getAdvertisedAllocationTotalGb(allocation) + (allocation.conditionalBonusGb ?? 0);
 }
 
 export function getExpectedComparisonSizes(allocation: DealDataAllocation): TrackedDataSizeGb[] {

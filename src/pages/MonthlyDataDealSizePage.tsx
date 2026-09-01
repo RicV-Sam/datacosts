@@ -193,7 +193,7 @@ export const MonthlyDataDealSizePage: React.FC<MonthlyDataDealSizePageProps> = (
               </h2>
               <p className="mt-4 text-sm font-semibold leading-6">
                 {lowestAdvertised && lowestMetrics
-                  ? `${lowestAdvertised.advertisedDataLabel}. That works out to ${formatRand(lowestMetrics.costPerAdvertisedGb ?? 0)} per advertised GB, but only ${lowestAdvertised.allocation.anytimeGb}GB is counted as pooled anytime data.`
+                  ? `${lowestAdvertised.advertisedDataLabel}. That works out to ${formatRand(lowestMetrics.costPerAdvertisedGb ?? 0)} per base advertised GB, excluding conditional bonus data; only ${lowestAdvertised.allocation.anytimeGb}GB is counted as pooled anytime data.`
                   : 'No officially priced monthly offer reaches this advertised size in the current snapshot.'}
               </p>
             </aside>

@@ -308,13 +308,14 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
         <section className="mb-20 bg-slate-50/50 rounded-[2.5rem] p-8 md:p-10 border border-slate-100">
           <h2 className="text-2xl font-black tracking-tighter mb-4">Supporting Guides for Better Decisions</h2>
           <p className="text-slate-600 font-medium mb-6 max-w-3xl">
-            Use these pages with the network summaries above to compare pricing context and practical mobile actions.
+            Use these pages with the infrastructure-network summaries above to compare pricing context, practical mobile actions and providers that operate on a host network.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Link to="/guides/cheapest-data-south-africa/" className="bg-white border border-slate-100 rounded-2xl p-4 text-sm font-semibold text-slate-800 hover:border-[#1b6d24] transition-colors">Cheapest Data in South Africa</Link>
             <Link to="/best-data-deals-south-africa/" className="bg-white border border-slate-100 rounded-2xl p-4 text-sm font-semibold text-slate-800 hover:border-[#1b6d24] transition-colors">Best Data Deals in South Africa</Link>
             <Link to="/guides/cheapest-1gb-data-south-africa/" className="bg-white border border-slate-100 rounded-2xl p-4 text-sm font-semibold text-slate-800 hover:border-[#1b6d24] transition-colors">Cheapest 1GB Data in South Africa</Link>
             <Link to="/guides/vodacom-vs-mtn-data-prices/" className="bg-white border border-slate-100 rounded-2xl p-4 text-sm font-semibold text-slate-800 hover:border-[#1b6d24] transition-colors">Vodacom vs MTN Data Prices</Link>
+            <Link to="/guides/mvnos-south-africa/" className="bg-white border border-slate-100 rounded-2xl p-4 text-sm font-semibold text-slate-800 hover:border-[#1b6d24] transition-colors">MVNO Providers: Prepaid and Monthly Options</Link>
             <Link to="/ussd-codes-south-africa/" className="bg-white border border-slate-100 rounded-2xl p-4 text-sm font-semibold text-slate-800 hover:border-[#1b6d24] transition-colors">USSD Codes South Africa</Link>
           </div>
         </section>

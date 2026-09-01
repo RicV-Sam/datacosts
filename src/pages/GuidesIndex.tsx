@@ -43,6 +43,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
     { slug: 'cheapest-data-south-africa', title: 'Cheapest Data in South Africa', description: 'Start here for a quick market-level view of where prepaid data is cheapest right now.', path: '/guides/cheapest-data-south-africa/' },
     { slug: 'best-data-deals-south-africa', title: 'Monthly Data Deal Tracker South Africa', description: 'Compare current 10GB, 20GB and 30GB offers with anytime and restricted data separated.', path: '/best-data-deals-south-africa/' },
     { slug: 'best-monthly-data-deals-south-africa', title: 'Best Monthly Data Deals South Africa', description: 'Focused monthly comparison for users who buy data every month.', path: '/guides/best-monthly-data-deals-south-africa/' },
+    { slug: 'mvnos-south-africa', title: 'MVNOs in South Africa: Prepaid and Monthly Options', description: 'Compare public and bank-linked mobile providers by payment model, flexibility, rewards and the conditions that affect real value.', path: '/guides/mvnos-south-africa/' },
     { slug: 'why-does-my-data-finish-so-fast-south-africa' },
     { slug: 'why-is-my-airtime-disappearing-south-africa' },
     { slug: 'stop-wasp-subscriptions-south-africa', title: 'Stop WASP Subscriptions in South Africa', description: 'Stop unwanted WASP and VAS deductions with a network-by-network cancellation workflow.', path: '/guides/stop-wasp-subscriptions-south-africa/' },
@@ -72,6 +73,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         { slug: 'best-monthly-data-deals-south-africa', title: 'Best Monthly Data Deals South Africa', description: 'A focused 30-day bundle comparison for users who buy data monthly and want better value.', path: '/guides/best-monthly-data-deals-south-africa/' },
         { slug: 'best-prepaid-data-deals-south-africa', title: 'Best Prepaid Data Deals South Africa', description: 'Find practical prepaid options by network, use case, and currently listed cost-per-GB.', path: '/guides/best-prepaid-data-deals-south-africa/' },
         { slug: 'best-sim-only-deals-south-africa', title: 'Best SIM-Only Deals South Africa', description: 'Compare SIM-only style monthly data options against prepaid alternatives.', path: '/guides/best-sim-only-deals-south-africa/' },
+        { slug: 'mvnos-south-africa', title: 'MVNOs in South Africa', description: 'Compare prepaid and monthly options, including bank-linked rewards and eligibility conditions.', path: '/guides/mvnos-south-africa/' },
         { slug: 'cheapest-whatsapp-bundles-south-africa', title: 'Cheapest WhatsApp Bundles South Africa', description: 'Find low-cost WhatsApp-focused bundle options and practical alternatives.', path: '/guides/cheapest-whatsapp-bundles-south-africa/' },
         { slug: 'best-data-deals-south-africa', title: 'Monthly Data Deal Tracker South Africa', description: 'Officially sourced 10GB, 20GB and 30GB monthly comparisons.', path: '/best-data-deals-south-africa/' },
         { slug: 'cheap-night-data-south-africa' },
@@ -179,6 +181,12 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       {
         "@type": "ListItem",
         "position": guides.length + 1,
+        "name": "MVNOs in South Africa: Prepaid and Monthly Options",
+        "url": toCanonicalUrl('/guides/mvnos-south-africa/')
+      },
+      {
+        "@type": "ListItem",
+        "position": guides.length + 2,
         "name": "Best Travel SIMs & eSIMs for South Africa",
         "url": toCanonicalUrl('/travel-sims-south-africa/')
       }

@@ -11,7 +11,9 @@ import {
   type RegisteredUssdCodeId
 } from '../seo/wp1AnalyticsRegistry';
 import { refreshAnalyticsConsent } from './analyticsConsent';
-import type { DealProviderId, TrackedDataSizeGb } from '../data/monthlyDeals';
+import { DEAL_PROVIDER_IDS, type DealProviderId, type TrackedDataSizeGb } from '../data/monthlyDeals';
+
+export { DEAL_PROVIDER_IDS };
 
 const UTM_PARAMS = '?utm_source=datacost&utm_medium=referral&utm_campaign=datacost_tool';
 
@@ -23,7 +25,6 @@ export const USSD_COPY_PLACEMENTS = ['homepage_finder', 'ussd_hub', 'network_uss
 export const QUICK_ANSWER_ACTION_TYPES = ['copy', 'dial', 'open_guide', 'open_operator'] as const;
 export const QUICK_ANSWER_PLACEMENTS = ['quick_answer_primary', 'quick_answer_secondary'] as const;
 export const DESTINATION_TYPES = ['internal_guide', 'operator_site', 'tel'] as const;
-export const DEAL_PROVIDER_IDS = ['airmobile', 'capitec-connect', 'cell-c', 'fnb-connect', 'melon-mobile', 'mtn', 'nedbank-connect', 'standard-bank-connect', 'telkom', 'vodacom'] as const;
 export const DEAL_SOURCE_CLICK_PLACEMENTS = ['comparison_table', 'comparison_card', 'source_register'] as const;
 export const DEAL_SIZE_NAVIGATION_PLACEMENTS = ['hub_summary', 'size_switcher', 'related_deals'] as const;
 export const TRACKED_DEAL_SIZE_VALUES = [5, 10, 15, 20, 30, 50] as const;

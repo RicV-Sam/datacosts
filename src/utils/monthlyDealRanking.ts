@@ -1,4 +1,6 @@
 import {
+  getAdvertisedAllocationTotalGb,
+  getMaximumEligibleAllocationTotalGb,
   isAmountInDealSizeBand,
   type DealAccessTier,
   type MonthlyDataDealOffer,
@@ -7,10 +9,12 @@ import {
 
 export interface DealOfferMetrics {
   advertisedTotalGb: number;
+  maximumEligibleTotalGb: number;
   restrictedGb: number;
   anytimeShare: number;
   costPerAnytimeGb: number | null;
   costPerAdvertisedGb: number | null;
+  costPerMaximumEligibleGb: number | null;
 }
 
 export interface DealAwards {
@@ -36,10 +40,12 @@ export function getDealOfferMetrics(offer: MonthlyDataDealOffer): DealOfferMetri
     offer.allocation.streamingGb +
     offer.allocation.socialGb +
     otherRestrictedGb;
-  const advertisedTotalGb = offer.allocation.anytimeGb + restrictedGb + (offer.allocation.conditionalBonusGb ?? 0);
+  const advertisedTotalGb = getAdvertisedAllocationTotalGb(offer.allocation);
+  const maximumEligibleTotalGb = getMaximumEligibleAllocationTotalGb(offer.allocation);
 
   return {
     advertisedTotalGb,
+    maximumEligibleTotalGb,
     restrictedGb,
     anytimeShare: advertisedTotalGb > 0 ? offer.allocation.anytimeGb / advertisedTotalGb : 0,
     costPerAnytimeGb:
@@ -49,6 +55,10 @@ export function getDealOfferMetrics(offer: MonthlyDataDealOffer): DealOfferMetri
     costPerAdvertisedGb:
       advertisedTotalGb > 0
         ? roundCurrency(offer.priceZar / advertisedTotalGb)
+        : null,
+    costPerMaximumEligibleGb:
+      maximumEligibleTotalGb > 0
+        ? roundCurrency(offer.priceZar / maximumEligibleTotalGb)
         : null
   };
 }

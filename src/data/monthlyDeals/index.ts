@@ -4,6 +4,7 @@ import type { MonthlyDataDealSnapshot, MonthlyDataDealOffer, TrackedDataSizeGb }
 
 export * from './types';
 export * from './sizeBands';
+export * from './providers';
 
 export const LAUNCHED_DEAL_SIZES_GB: TrackedDataSizeGb[] = [10, 20, 30];
 

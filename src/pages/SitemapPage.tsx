@@ -62,6 +62,7 @@ const sitemapGroups: SitemapGroup[] = [
       { href: '/guides/best-prepaid-data-deals-south-africa/', label: 'Best Prepaid Data Deals' },
       { href: '/guides/best-monthly-data-deals-south-africa/', label: 'Best Monthly Data Deals' },
       { href: '/guides/best-sim-only-deals-south-africa/', label: 'Best SIM-Only Deals' },
+      { href: '/guides/mvnos-south-africa/', label: 'MVNOs in South Africa' },
       { href: '/guides/cheap-night-data-south-africa/', label: 'Cheap Night Data South Africa' },
       { href: '/guides/cheapest-whatsapp-bundles-south-africa/', label: 'Cheapest WhatsApp Bundles' },
       { href: '/guides/out-of-bundle-data-costs-south-africa/', label: 'Out-of-bundle Data Costs' },

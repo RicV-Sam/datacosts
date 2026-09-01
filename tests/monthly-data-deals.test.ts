@@ -2,8 +2,10 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   currentMonthlyDealSnapshot,
+  dealProviders,
   getExpectedComparisonSizes,
   getCurrentOffersForSize,
+  isMvnoProviderId,
   monthlyDealHistory,
   TRACKED_DATA_SIZES_GB
 } from '../src/data/monthlyDeals';
@@ -16,6 +18,7 @@ test('tracker supports future sizes while preserving immutable monthly history',
   assert.deepEqual(monthlyDealHistory.map((snapshot) => snapshot.month), ['2026-08', '2026-09']);
   assert.equal(monthlyDealHistory[0].checkedAt, '2026-08-04');
   assert.equal(monthlyDealHistory[0].offers.length, 28);
+  assert.ok(monthlyDealHistory[0].offers.every((offer) => !offer.paymentModel && !offer.commitment));
   assert.equal(currentMonthlyDealSnapshot.month, '2026-09');
   assert.equal(currentMonthlyDealSnapshot.checkedAt, '2026-09-01');
   assert.equal(currentMonthlyDealSnapshot.offers.length, 28);
@@ -33,9 +36,11 @@ test('derived calculations keep anytime and advertised totals separate', () => {
   const conditional = currentMonthlyDealSnapshot.offers.find((row) => row.id === 'capitec-connect-10gb-30-day-2026-09');
   assert.ok(conditional);
   const conditionalMetrics = getDealOfferMetrics(conditional);
-  assert.equal(conditionalMetrics.advertisedTotalGb, 12);
+  assert.equal(conditionalMetrics.advertisedTotalGb, 10);
+  assert.equal(conditionalMetrics.maximumEligibleTotalGb, 12);
   assert.equal(conditionalMetrics.costPerAnytimeGb, 15);
-  assert.equal(conditionalMetrics.costPerAdvertisedGb, 12.5);
+  assert.equal(conditionalMetrics.costPerAdvertisedGb, 15);
+  assert.equal(conditionalMetrics.costPerMaximumEligibleGb, 12.5);
 });
 
 test('daily-release and streaming data never become anytime data', () => {
@@ -61,6 +66,39 @@ test('size bands deterministically include pooled-anytime and advertised-total c
   assert.deepEqual(getExpectedComparisonSizes(vodacom40Advertised.allocation), [20, 30]);
   assert.deepEqual(getExpectedComparisonSizes(fnb25.allocation), [20]);
   assert.deepEqual(getExpectedComparisonSizes(standardBank35.allocation), [30]);
+
+  assert.deepEqual(getExpectedComparisonSizes({
+    anytimeGb: 9,
+    nightGb: 0,
+    streamingGb: 0,
+    socialGb: 0,
+    otherRestricted: [],
+    conditionalBonusGb: 2,
+    conditionalBonusNote: 'Only for eligible customers.'
+  }), [5]);
+});
+
+test('current offers separate provider type, payment model, commitment and price cadence', () => {
+  assert.equal(dealProviders.length, 10);
+  assert.deepEqual(
+    dealProviders.filter((provider) => provider.kind === 'mvno').map((provider) => provider.id),
+    ['airmobile', 'capitec-connect', 'fnb-connect', 'melon-mobile', 'nedbank-connect', 'standard-bank-connect']
+  );
+  assert.ok(isMvnoProviderId('airmobile'));
+  assert.ok(!isMvnoProviderId('mtn'));
+  assert.ok(currentMonthlyDealSnapshot.offers.every((offer) => offer.paymentModel && offer.commitment));
+
+  const airmobile = currentMonthlyDealSnapshot.offers.find((offer) => offer.id === 'airmobile-data-only-10gb-2026-09');
+  assert.ok(airmobile);
+  assert.equal(airmobile.billing, 'recurring_monthly');
+  assert.equal(airmobile.paymentModel?.kind, 'prepaid');
+  assert.equal(airmobile.commitment?.kind, 'month_to_month');
+
+  const standardBank = currentMonthlyDealSnapshot.offers.find((offer) => offer.id === 'standard-bank-connect-connected-gigs-plus-20gb-2026-09');
+  assert.ok(standardBank);
+  assert.equal(standardBank.billing, 'recurring_monthly');
+  assert.equal(standardBank.paymentModel?.kind, 'not_confirmed');
+  assert.equal(standardBank.commitment?.kind, 'not_confirmed');
 });
 
 test('ranking keeps cheapest genuine anytime, unit value and advertised price separate', () => {
@@ -97,8 +135,13 @@ test('structured ItemList mirrors visible source-checked rows without speculativ
   const serialized = JSON.stringify(schema);
   assert.ok(serialized.includes('"priceCurrency":"ZAR"'));
   assert.ok(serialized.includes('"Pooled anytime data"'));
-  assert.ok(serialized.includes('"Cost per advertised GB"'));
+  assert.ok(serialized.includes('"Cost per base advertised GB"'));
   assert.ok(serialized.includes('"Conditional bonus data"'));
+  assert.ok(serialized.includes('"Provider type"'));
+  assert.ok(serialized.includes('"Payment model"'));
+  assert.ok(serialized.includes('"Commitment"'));
+  assert.ok(serialized.includes('"Price cadence"'));
+  assert.ok(!serialized.includes('"Cost per maximum eligible GB"'));
   assert.ok(serialized.includes('"Streaming-only data"'));
   assert.ok(!serialized.includes('priceValidUntil'));
   assert.ok(!serialized.includes('InStock'));

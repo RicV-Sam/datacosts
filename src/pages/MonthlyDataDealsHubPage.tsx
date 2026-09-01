@@ -182,7 +182,7 @@ export const MonthlyDataDealsHubPage: React.FC<MonthlyDataDealsHubPageProps> = (
                 </div>
                 <div className="flex items-start gap-3">
                   <Database className="mt-1 h-5 w-5 shrink-0 text-[#166534]" aria-hidden="true" />
-                  <div><h3 className="font-black text-[#031636]">Two cost-per-GB figures</h3><p className="mt-1 text-sm font-medium leading-6 text-slate-700">We calculate cost per anytime GB and cost per full advertised GB so the trade-off is visible.</p></div>
+                  <div><h3 className="font-black text-[#031636]">Two cost-per-GB figures</h3><p className="mt-1 text-sm font-medium leading-6 text-slate-700">We calculate cost per anytime GB and cost per base advertised GB. Conditional bonuses stay separate and never lower the base figure.</p></div>
                 </div>
                 <div className="flex items-start gap-3">
                   <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-[#166534]" aria-hidden="true" />
@@ -217,7 +217,7 @@ export const MonthlyDataDealsHubPage: React.FC<MonthlyDataDealsHubPageProps> = (
                   'Start with a live official provider page or terms document and record the check date.',
                   'Store each data wallet separately: anytime, night, streaming, social and other restricted data.',
                   'Include only 28–31-day or clearly monthly products in monthly awards.',
-                  'Place offers into deterministic size bands using pooled anytime data and the full advertised total.',
+                  'Place offers into deterministic size bands using pooled anytime data and the base advertised total, excluding conditional bonuses.',
                   'Award best overall by lowest monthly price among pooled-anytime qualifiers; calculate R/anytime-GB separately.'
                 ].map((item, index) => (
                   <li key={item} className="flex gap-3 text-sm font-medium leading-6 text-slate-700">
@@ -250,9 +250,10 @@ export const MonthlyDataDealsHubPage: React.FC<MonthlyDataDealsHubPageProps> = (
         <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6" aria-labelledby="next-title">
           <div className="border-t border-slate-300 pt-10">
             <h2 id="next-title" className="text-2xl font-black tracking-tight text-[#031636]">Continue comparing</h2>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
               <Link to="/guides/cheapest-data-south-africa/" className="min-h-12 border border-slate-300 bg-white p-4 font-bold text-[#031636] hover:border-[#166534]">Cheapest data guide</Link>
               <Link to="/guides/best-monthly-data-deals-south-africa/" className="min-h-12 border border-slate-300 bg-white p-4 font-bold text-[#031636] hover:border-[#166534]">Broader monthly guide</Link>
+              <Link to="/guides/mvnos-south-africa/" className="min-h-12 border border-slate-300 bg-white p-4 font-bold text-[#031636] hover:border-[#166534]">Compare MVNOs</Link>
               <Link to="/network/" className="min-h-12 border border-slate-300 bg-white p-4 font-bold text-[#031636] hover:border-[#166534]">Compare networks</Link>
               <Link to="/guides/buy-data-with-bank-apps-south-africa/" className="min-h-12 border border-slate-300 bg-white p-4 font-bold text-[#031636] hover:border-[#166534]">Buy data with bank apps</Link>
             </div>

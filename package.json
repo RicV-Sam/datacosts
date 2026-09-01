@@ -17,7 +17,7 @@
     "test:seo-growth": "tsx --test tests/seo-traffic-growth.test.ts",
     "check:adsense": "tsx scripts/check-adsense-output.ts",
     "check:monthly-deals": "tsx scripts/check-monthly-deals.ts",
-    "test:monthly-deals": "tsx --test tests/monthly-data-deals.test.ts tests/monthly-data-deals-analytics.test.ts",
+    "test:monthly-deals": "tsx --test tests/monthly-data-deals.test.ts tests/monthly-data-deals-analytics.test.ts tests/mvno-guide.test.ts",
     "check:editorial-integrity": "tsx --test tests/network-qualitative-claims.test.ts tests/rain-route-migration.test.ts",
     "check:wp1-contracts": "tsx scripts/check-wp1-release-a.ts && tsx --test tests/wp1-release-a-source.test.ts tests/wp1-release-a-analytics.test.ts tests/wp1-release-a-measurement.test.ts tests/wp1-release-a-remediation-source-negative.test.ts tests/wp1-release-a-remediation-analytics-negative.test.ts tests/wp1-release-a-remediation-measurement-negative.test.ts tests/wp1-release-a-registry.test.ts tests/wp1-release-a6-subject-authority-negative.test.ts tests/wp1-privacy-scan.test.ts tests/network-ussd-most-used.test.ts tests/ussd-content-freshness.test.ts tests/wp1-generation-cleanliness.test.ts tests/wp1-search-regression.test.ts",
     "check:wp1-privacy": "tsx scripts/check-wp1-privacy.ts",

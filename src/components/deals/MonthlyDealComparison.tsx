@@ -1,6 +1,12 @@
 import React from 'react';
 import { ExternalLink, Info, Moon, ShieldCheck } from 'lucide-react';
-import type { MonthlyDataDealOffer, TrackedDataSizeGb } from '../../data/monthlyDeals';
+import {
+  isMvnoOffer,
+  type DealCommitment,
+  type DealPaymentModel,
+  type MonthlyDataDealOffer,
+  type TrackedDataSizeGb
+} from '../../data/monthlyDeals';
 import { getDealOfferMetrics } from '../../utils/monthlyDealRanking';
 import { trackDealOfferSourceClick } from '../../utils/tracking';
 
@@ -27,7 +33,24 @@ function getRestrictedSummary(offer: MonthlyDataDealOffer): string[] {
 }
 
 function getBillingLabel(offer: MonthlyDataDealOffer): string {
-  return offer.billing === 'once_off' ? 'Once-off purchase' : 'Recurring monthly';
+  return offer.billing === 'once_off' ? 'Once-off price' : 'Recurring monthly price';
+}
+
+function getPaymentLabel(paymentModel?: DealPaymentModel): string {
+  if (!paymentModel) return 'Not recorded';
+  if (paymentModel.kind === 'prepaid') return 'Prepaid / upfront';
+  if (paymentModel.kind === 'top_up') return 'Top Up / pre-funded';
+  if (paymentModel.kind === 'postpaid') return 'Postpaid / in arrears';
+  if (paymentModel.kind === 'mixed') return 'Mixed payment models';
+  return 'Not confirmed';
+}
+
+function getCommitmentLabel(commitment?: DealCommitment): string {
+  if (!commitment) return 'Not recorded';
+  if (commitment.kind === 'once_off') return 'Once-off';
+  if (commitment.kind === 'month_to_month') return 'Month-to-month';
+  if (commitment.kind === 'fixed_term') return `${commitment.months}-month fixed term`;
+  return 'Term not confirmed';
 }
 
 function SourceLink({ offer, sizeGb, placement }: {
@@ -63,6 +86,11 @@ function StatusBadges({ offer, bestOverallId, bestAnytimeValueId, lowestAdvertis
 }) {
   return (
     <div className="flex flex-wrap gap-2">
+      {isMvnoOffer(offer) ? (
+        <span className="inline-flex items-center rounded-full bg-violet-100 px-2.5 py-1 text-xs font-black text-violet-950">
+          MVNO
+        </span>
+      ) : null}
       {offer.id === bestOverallId ? (
         <span className="inline-flex items-center gap-1 rounded-full bg-[#dff9dc] px-2.5 py-1 text-xs font-black text-[#14532d]">
           <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" /> Best overall
@@ -126,7 +154,7 @@ export const MonthlyDealComparison: React.FC<MonthlyDealComparisonProps> = ({
                   <dd className="mt-1 font-black text-slate-900">{metrics.costPerAnytimeGb === null ? 'Not comparable' : formatRand(metrics.costPerAnytimeGb)}</dd>
                 </div>
                 <div>
-                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-500">R / advertised GB</dt>
+                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-500">R / base advertised GB</dt>
                   <dd className="mt-1 font-black text-slate-900">{metrics.costPerAdvertisedGb === null ? 'Not comparable' : formatRand(metrics.costPerAdvertisedGb)}</dd>
                 </div>
                 <div>
@@ -134,8 +162,16 @@ export const MonthlyDealComparison: React.FC<MonthlyDealComparisonProps> = ({
                   <dd className="mt-1 font-black text-slate-900">{offer.validity.label}</dd>
                 </div>
                 <div>
-                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-500">Billing</dt>
+                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-500">Price cadence</dt>
                   <dd className="mt-1 font-black text-slate-900">{getBillingLabel(offer)}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-500">Payment</dt>
+                  <dd className="mt-1 font-black text-slate-900">{getPaymentLabel(offer.paymentModel)}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-500">Commitment</dt>
+                  <dd className="mt-1 font-black text-slate-900">{getCommitmentLabel(offer.commitment)}</dd>
                 </div>
               </dl>
 
@@ -170,7 +206,7 @@ export const MonthlyDealComparison: React.FC<MonthlyDealComparisonProps> = ({
           <caption className="sr-only">Officially sourced {sizeGb}GB-class monthly mobile data offers</caption>
           <thead className="bg-[#031636] text-white">
             <tr>
-              {['Provider and offer', 'Price', 'Pooled anytime', 'Restricted allocation', 'R / anytime GB', 'R / advertised GB', 'Validity', 'Access and source'].map((label) => (
+              {['Provider and offer', 'Price', 'Pooled anytime', 'Restricted allocation', 'R / anytime GB', 'R / base advertised GB', 'Validity and terms', 'Access and source'].map((label) => (
                 <th key={label} scope="col" className="px-4 py-4 text-xs font-black uppercase tracking-wider">{label}</th>
               ))}
             </tr>
@@ -202,7 +238,12 @@ export const MonthlyDealComparison: React.FC<MonthlyDealComparisonProps> = ({
                   <td className="px-4 py-5 font-bold text-slate-900">
                     {metrics.costPerAdvertisedGb === null ? 'Not comparable' : formatRand(metrics.costPerAdvertisedGb)}
                   </td>
-                  <td className="px-4 py-5 text-sm font-semibold text-slate-700">{offer.validity.label}<span className="mt-2 block text-xs text-slate-500">{getBillingLabel(offer)}</span></td>
+                  <td className="px-4 py-5 text-sm font-semibold text-slate-700">
+                    {offer.validity.label}
+                    <span className="mt-2 block text-xs text-slate-500">{getPaymentLabel(offer.paymentModel)}</span>
+                    <span className="mt-1 block text-xs text-slate-500">{getCommitmentLabel(offer.commitment)}</span>
+                    <span className="mt-1 block text-xs text-slate-500">{getBillingLabel(offer)}</span>
+                  </td>
                   <td className="max-w-[260px] px-4 py-5 text-sm leading-6 text-slate-700">
                     <p>{offer.eligibility}</p>
                     <p className="mt-2 font-semibold text-slate-600">Buy via {offer.purchaseChannels.join(', ')}.</p>
