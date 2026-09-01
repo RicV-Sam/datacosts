@@ -3,6 +3,7 @@ const DEFAULT_MODIFIED_ISO = '2026-02-15T00:00:00.000Z';
 const PUBLISHER_REVIEW_MODIFIED_ISO = '2026-05-24T00:00:00.000Z';
 const FIBRE_REVIEW_MODIFIED_ISO = '2026-08-06T00:00:00.000Z';
 const PRICING_AUDIT_MODIFIED_ISO = '2026-09-01T00:00:00.000Z';
+const EDITORIAL_AUDIT_MODIFIED_ISO = '2026-09-01T00:00:00.000Z';
 const MONTHLY_DEAL_REVIEW_MODIFIED_ISO = '2026-09-01T00:00:00.000Z';
 
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
@@ -18,10 +19,11 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/best-20gb-data-deals-south-africa/': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
   '/best-30gb-data-deals-south-africa/': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
   '/buy-data-airtime-south-africa/': '2026-06-18T00:00:00.000Z',
-  '/fibre/': FIBRE_REVIEW_MODIFIED_ISO,
+  '/fibre/': EDITORIAL_AUDIT_MODIFIED_ISO,
   '/fibre/cheapest-fibre-packages-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/prepaid-fibre-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
-  '/fibre/fibre-vs-lte-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
+  '/fibre/fibre-vs-lte-south-africa/': EDITORIAL_AUDIT_MODIFIED_ISO,
+  '/fibre/fibre-vs-rain-5g-south-africa/': EDITORIAL_AUDIT_MODIFIED_ISO,
   '/fibre/how-to-check-fibre-coverage-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/fibre-installation-costs-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/coverage-by-area/': FIBRE_REVIEW_MODIFIED_ISO,
@@ -38,7 +40,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/telkom-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
   '/terms/': '2026-05-10T00:00:00.000Z',
   '/trust/': PUBLISHER_REVIEW_MODIFIED_ISO,
-  '/travel-sims-south-africa/': '2026-08-02T00:00:00.000Z',
+  '/travel-sims-south-africa/': EDITORIAL_AUDIT_MODIFIED_ISO,
   '/ussd-codes-south-africa/': PRICING_AUDIT_MODIFIED_ISO,
   '/vodacom-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO
 };
@@ -111,7 +113,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'cheapest-data-south-africa': '2026-08-01T00:00:00.000Z',
   'cheapest-unlimited-data-south-africa': '2026-08-01T00:00:00.000Z',
   'best-sim-only-deals-south-africa': '2026-08-01T00:00:00.000Z',
-  'vodacom-vs-mtn-data-prices': '2026-08-02T00:00:00.000Z',
+  'vodacom-vs-mtn-data-prices': EDITORIAL_AUDIT_MODIFIED_ISO,
   'why-does-my-data-finish-so-fast-south-africa': '2026-05-10T00:00:00.000Z',
   'why-is-my-airtime-disappearing-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'why-is-my-data-finishing-so-fast': PRICING_AUDIT_MODIFIED_ISO,

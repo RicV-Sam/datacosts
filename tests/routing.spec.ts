@@ -50,12 +50,17 @@ for (const alias of [
   {
     output: 'dist/network/cell-c/weekly-data/index.html',
     target: '/network/cell-c/'
+  },
+  {
+    output: 'dist/network/rain/rain-unlimited-4g-data-price/index.html',
+    target: '/network/rain/'
   }
 ]) {
   test(`${alias.output} uses a crawlable permanent meta-refresh signal`, async () => {
     const html = await readFile(path.resolve(process.cwd(), alias.output), 'utf8');
     expect(html).toContain(`<meta http-equiv="refresh" content="0;url=${alias.target}">`);
     expect(html).toContain(`<link data-rh="true" rel="canonical" href="https://datacost.co.za${alias.target}">`);
+    expect(html).toMatch(new RegExp(`<a\\b[^>]*href="${alias.target.replaceAll('/', '\\/')}"[^>]*>.*Open canonical page`, 's'));
     expect(html).not.toMatch(/<meta\b[^>]*name=["']robots["'][^>]*noindex/i);
     expect(html).not.toContain('pagead/js/adsbygoogle.js');
   });
@@ -134,7 +139,7 @@ test('reviewed and evidence-blocked network facets have the intended indexing po
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.getByRole('heading', { name: 'Official sources and review status' })).toBeVisible();
     expect(sitemapXml).toContain(`<loc>https://datacost.co.za${route}</loc>`);
-    expect(sitemapXml).toContain('<lastmod>2026-08-02</lastmod>');
+    expect(sitemapXml).toContain('<lastmod>2026-09-01</lastmod>');
   }
 
   for (const route of evidenceBlockedNetworkFacets) {
@@ -154,7 +159,7 @@ test('Vodacom night comparison exposes allocation, restrictions and truthful sou
   await expect(page.getByText('5GB night').first()).toBeVisible();
   await expect(page.getByText('00:00-05:00').first()).toBeVisible();
   await expect(page.getByText('Prepaid LTE / router').first()).toBeVisible();
-  await expect(page.getByText('Checked 1 August 2026').first()).toBeVisible();
+  await expect(page.getByText('Checked 1 September 2026').first()).toBeVisible();
   await expect(page.getByText('Recheck before buying').first()).toBeVisible();
   await expect(page.getByRole('link', { name: /Vodacom prepaid LTE data page/i }).first()).toHaveAttribute('href', /vodacom\.co\.za/);
 
@@ -165,7 +170,7 @@ test('Vodacom night comparison exposes allocation, restrictions and truthful sou
 
   const nightOwlRow = rows.filter({ hasText: 'Vodacom Night Owl 250MB' });
   await expect(nightOwlRow).toContainText('R56.00 / night GB');
-  await expect(nightOwlRow).toContainText('Checked 2 August 2026');
+  await expect(nightOwlRow).toContainText('Checked 1 September 2026');
   await expect(nightOwlRow).toContainText('Vodacom prepaid data page');
 
   const itemListText = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>

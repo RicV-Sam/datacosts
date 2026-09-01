@@ -82,7 +82,7 @@ export const networkMetadata: Record<NetworkName, NetworkMetadata> = {
     color: '#1a1c1c',
     textColor: '#FFFFFF',
     logoLetter: 'C',
-    description: 'Cell C uses a national dual-MOCN model across MTN and Vodacom radio access networks; local experience can vary.',
+    description: 'Cell C describes its network model as using partner radio access networks; local experience can vary.',
     ussdBalance: '*101#',
     externalUrl: 'https://www.cellc.co.za',
   },
@@ -620,6 +620,8 @@ export const bundles: Bundle[] = [
     productType: 'promo_campaign_offer',
   },
   {
+    // Historical evidence key only. The legacy 4G-named route-shaped identifier now
+    // resolves to the canonical Rain network page via REDIRECT_ALIASES.
     id: 'rain-unlimited-4g',
     slug: 'rain-unlimited-4g-data-price',
     network: 'Rain',
@@ -705,7 +707,7 @@ export const networkStats: NetworkStats[] = [
   },
   {
     network: 'Cell C',
-    coverage: 'Dual-MOCN partner footprint',
+    coverage: 'Check official map locally',
     avgSpeed5G: 'Partner-network dependent',
     resilience: 'No independent benchmark',
     pricePoint: 'Daily, monthly and social rows',

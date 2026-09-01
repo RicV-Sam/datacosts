@@ -1,9 +1,9 @@
 {
   "version": 2,
   "baselineCommit": "d35bb614fca0c280bd86bbc2418a2c0dbe042a5a",
-  "htmlCount": 248,
-  "routeCount": 248,
-  "titleCount": 248,
+  "htmlCount": 249,
+  "routeCount": 249,
+  "titleCount": 249,
   "sitemapUrlCount": 170,
   "sitemapMembershipHash": "5ef32a3a855a54351491c40ef9f27680ab3352cd5e6a8d0d47bde258130b3c73",
   "structuredDataBlockCount": 860,
@@ -15,7 +15,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/",
       "h1": "Compare Cheapest Data Deals in South Africa",
-      "visibleTextHash": "b5da2a6216000b7b625b83a8bd9dd2b25ef7e544175df1145a14216e0333bd1c",
+      "visibleTextHash": "5a71e267830af8b300208e8f665bd77515edc6f8bb7c3885422aaed72dc8ae02",
       "internalLinksHash": "15a3f6da811a4b838fddf20cf333114f3cd80494ca33e4e9666e3ddf268936d0",
       "internalLinks": [
         "/about/|About",
@@ -3702,8 +3702,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fibre/",
       "h1": "Fibre Internet in South Africa: Prices, Coverage, FNOs and ISPs Explained",
-      "visibleTextHash": "60064978669cbac333506751da9e8a610a15f470881e8adae1111c2b3c72ae6d",
-      "internalLinksHash": "2c98765cd53f6058b9a99116dd6f4a127516e9bc8b197ba5a003549d727ebd66",
+      "visibleTextHash": "39e458fe85d985a47fcd2eda35c8bf34eaf383f9f5ed25ad48816796d46f448d",
+      "internalLinksHash": "c5166a4d2e50530948de877398d111728e92b26cc879001f53559fdb2437d310",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -3732,8 +3732,8 @@
         "/fibre/fibre-prices-south-africa/|Fibre prices South Africa Checked public price examples and the costs to confirm before ordering.",
         "/fibre/fibre-vs-lte-south-africa/|Fibre vs LTE/5G Choose between fixed fibre, prepaid fibre, LTE, 5G and mobile data.",
         "/fibre/fibre-vs-lte-south-africa/|Fibre vs LTE/5G When fixed fibre beats mobile-data fallback for home internet.",
-        "/fibre/fibre-vs-lte-south-africa/|Fibre vs LTE/5G in South Africa: Which Is Better for Home Internet? Choose fibre when your address is covered and you need stable household internet. Choose LTE or 5G when fibre is unavailable, installation is blocked, or portability matters.",
-        "/fibre/fibre-vs-rain-5g-south-africa/|Fibre vs Rain 5G in South Africa Choose fibre for predictable fixed home use when covered. Consider Rain 5G or fixed wireless when fibre is unavailable, installation is delayed, or portability matters.",
+        "/fibre/fibre-vs-lte-south-africa/|Fibre vs LTE/5G in South Africa: Which Is Better for Home Internet? Compare exact-address availability and service terms. Fibre avoids mobile radio-signal variability; LTE/5G can reduce installation delay and may offer portability where the product rules allow it.",
+        "/fibre/fibre-vs-rain-5g-south-africa/|Fibre vs Rain 5G in South Africa Compare exact-address availability, service terms and a local test. Fibre avoids radio-signal variability; Rain 5G can avoid fibre installation but is a best-effort wireless service whose coverage and speed depend on local conditions.",
         "/fibre/fno-vs-isp-south-africa/|FNO vs ISP Know who owns the line, who bills you and who fixes faults.",
         "/fibre/fno-vs-isp-south-africa/|FNO vs ISP in South Africa: Who Owns the Fibre Line and Who Bills You? The FNO owns or manages the physical fibre infrastructure. The ISP sells the internet package, bills you and is usually your first support contact.",
         "/fibre/frogfoot-fibre-south-africa/|Frogfoot Fibre in South Africa Frogfoot provides the infrastructure. You order through an ISP or approved flow, and availability depends on the exact coverage area.",
@@ -3787,7 +3787,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "9e88c3af5800d46aa1ad3bb926aa2caee3c1285eb0616a16d59b26ca9cd274e4",
+      "structuredDataHash": "6cca3152c9dfd3f338b05b3d77efd6d4b5172c7919454c1155a613f7ddafed92",
       "structuredDataBlockCount": 4,
       "structuredDataSummary": [
         {
@@ -3815,7 +3815,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-06T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -4601,7 +4601,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fibre/fibre-vs-lte-south-africa/",
       "h1": "Fibre vs LTE/5G in South Africa: Which Is Better for Home Internet?",
-      "visibleTextHash": "a51acd80b4d8070bf4f030b5df0e7772ca5117c2e6f7e6789c761edd52a76235",
+      "visibleTextHash": "f2457696b9f5ccf611ac3b733797cd6c209bceae6fb389f617d4af7eac775f7c",
       "internalLinksHash": "54345c913c3e5910486e8e7d46b2aa62155c5fc79dd55954b49c3ce07a597f77",
       "internalLinks": [
         "/about/|About",
@@ -4653,7 +4653,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "aab9d7a5194bf13b3be8c89a02b2bbf56a302116bf59de5208ba34c25a8093d6",
+      "structuredDataHash": "2f348e07ce48c9d9c73117373f740ef06893ac73680174d5bfa7fe6e44a7d399",
       "structuredDataBlockCount": 4,
       "structuredDataSummary": [
         {
@@ -4670,7 +4670,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-06T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -4720,7 +4720,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fibre/fibre-vs-rain-5g-south-africa/",
       "h1": "Fibre vs Rain 5G in South Africa",
-      "visibleTextHash": "8566d567c68dd204845bac1d7633f2121006d491e750b1c3b7a5c79694a0d5cf",
+      "visibleTextHash": "57e3ff4253ec3d74d2dd46d07ed9523e2b644679dc4db45ea80c777f8e06b57b",
       "internalLinksHash": "9680098971caeac9424f1b648203b77b8371731ce94019b951cfbe1995d19c05",
       "internalLinks": [
         "/about/|About",
@@ -4770,7 +4770,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "9ce5ef63391874f43c85f9a30145a0a56083a2b0d2a0c5a398580040a4a68483",
+      "structuredDataHash": "f9565b2bfa6031d9657539275ed108972f5675fbe8a1cb323830901c07382e63",
       "structuredDataBlockCount": 4,
       "structuredDataSummary": [
         {
@@ -4787,7 +4787,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-06T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -21463,11 +21463,11 @@
     {
       "route": "/guides/vodacom-vs-mtn-data-prices/",
       "title": "Vodacom vs MTN Data Prices (2026)",
-      "description": "Is Vodacom better than MTN for data? We compare the latest data prices, speeds, and coverage to help you choose the right network in 2026.",
+      "description": "Compare source-checked Vodacom and MTN data rows, see where like-for-like matches are unavailable, and check local coverage.",
       "robots": "",
       "canonical": "https://datacost.co.za/guides/vodacom-vs-mtn-data-prices/",
       "h1": "Vodacom vs MTN Data Prices (2026)",
-      "visibleTextHash": "dc68df1bfc91b203a077976ff9f9cb58ebea5fa1a389e2e815a27d3c5abedaf8",
+      "visibleTextHash": "5aef40bfc88f32fbd0dbde88e25b1f03e8f57d167500a4a21e6fb083ae18099d",
       "internalLinksHash": "f0186be9ea3194646eb9f72a1132cc34130bf72ba59991af9258233227d3116a",
       "internalLinks": [
         "/about/|About",
@@ -21524,7 +21524,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "d377ee1e320efa5f4b1a9789879370517125a4e263bbff7f8e8989cf7793472b",
+      "structuredDataHash": "e7823bb26957bd181198d8c0ac9510eb85ec2c178ff96a6aa779b003b07761cd",
       "structuredDataBlockCount": 2,
       "structuredDataSummary": [
         {
@@ -22546,7 +22546,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/",
       "h1": "Compare Mobile Networks South Africa",
-      "visibleTextHash": "93b789640dd8773d640bb0477006b7fcf5a670004bd1644d05a67838adbab72c",
+      "visibleTextHash": "ad2741b8377d7e4061d5a3be696c7339ac74c97b057b95566185879ecedea0d5",
       "internalLinksHash": "2abe5e2e48620bace8eddba52007d0c2b74ad4eba664b5ebcd5e1213315955a8",
       "internalLinks": [
         "/about/|About",
@@ -22689,7 +22689,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/cell-c/",
       "h1": "Cell C Data Deals &amp; Prepaid Bundles South Africa",
-      "visibleTextHash": "0904775b6b6c1e10e085ba95172aff7e82b10dd4f7605abf5bbe2f2b6c2fbb6d",
+      "visibleTextHash": "dba9188c0237f8a39e693cc60f1e86d56b8e17df192d6a5eabef59508e98c150",
       "internalLinksHash": "fd4a008279b132b4769f0c5af0f3f04bb0e7bd01700f0483731939b27e244df9",
       "internalLinks": [
         "/about/|About",
@@ -22750,7 +22750,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "7c2b6ad4c349072924516c7647d61195e7f35d38f4910012aec24a37327ee33f",
+      "structuredDataHash": "0409cd02005d7d377fabaacffbfd961baa376b96f624622a4050b48577160429",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -23379,7 +23379,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/mtn/",
       "h1": "MTN Data Bundles, Deals &amp; USSD Codes South Africa",
-      "visibleTextHash": "7674964221ad3e740e8acad3891102cc837ee0968a1b591045b9e41580e0236d",
+      "visibleTextHash": "9f09cbc34804ee8edd714266f275c8593c9a22eed2db93b28db9dedd101ce8bd",
       "internalLinksHash": "2dae1fc9e9e05110cb5ee8f404d2d7bcb00ee7dfc70e3e49891dd0dc88bde349",
       "internalLinks": [
         "/about/|About",
@@ -23437,7 +23437,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "531aafac0f7d9250b00b7199a9dc5a88457b3ea98f8c1d060224c0f2e9ef5f29",
+      "structuredDataHash": "38ca3534b20924b70a918f2d4445f3444751b4c65bc9321d3f3c271afd084c24",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -24290,7 +24290,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/rain/",
       "h1": "Rain Data Prices South Africa",
-      "visibleTextHash": "20997ea1c8f6b0f9e3c35ec74c6b3278521ad3780286cbcfbd4539a090fcb251",
+      "visibleTextHash": "207419a161d6885cbaa2eaae932b5445ff3889c28034e977ea6c3482f567e9e3",
       "internalLinksHash": "ec0bd9d6c5dcbea422908fe4a64f7c079d7c65c5364d0e6c1af5e4a8cff166a4",
       "internalLinks": [
         "/about/|About",
@@ -24544,13 +24544,29 @@
       ]
     },
     {
+      "route": "/network/rain/rain-unlimited-4g-data-price/",
+      "title": "Rain Unlimited 5G Home WiFi Moved | DataCost",
+      "description": "Rain Unlimited 5G Home WiFi has moved. Continue to the canonical DataCost page at https://datacost.co.za/network/rain/.",
+      "robots": "",
+      "canonical": "https://datacost.co.za/network/rain/",
+      "h1": "Rain Unlimited 5G Home WiFi",
+      "visibleTextHash": "7e3a348f2a819068335b0da92625143dd7c27ed930a531ab13ccb121225f3e1b",
+      "internalLinksHash": "04147756e14f74e99075f66831be8a2cd5797fb88ea44b69225c4f997ab6539a",
+      "internalLinks": [
+        "/network/rain/|Open canonical page"
+      ],
+      "structuredDataHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "structuredDataBlockCount": 0,
+      "structuredDataSummary": []
+    },
+    {
       "route": "/network/telkom/",
       "title": "Telkom Data Prices: Bundles &amp; USSD Codes",
       "description": "Compare Telkom data prices in South Africa, including prepaid bundles, monthly options, USSD balance codes, and value notes before you buy.",
       "robots": "",
       "canonical": "https://datacost.co.za/network/telkom/",
       "h1": "Telkom Data Prices South Africa",
-      "visibleTextHash": "80171323b289732795552b5be3998f67224367d4d5df24f764a617775402a92b",
+      "visibleTextHash": "87a2451c842f26ce383b99d7e8e58eeb49c211594f4ba62824284cc2bbd05f0b",
       "internalLinksHash": "8a307ceb88de3b1571f5d14f441dde6cc8b2f8439d65bab8c367c22985594ea1",
       "internalLinks": [
         "/about/|About",
@@ -24608,7 +24624,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "47c1a1cf012a06f7eb8cb7aaa3e53fc36caac8ae7c2600d12033bcec22defd1e",
+      "structuredDataHash": "6d9e10f5bf2966b0461c44ff1b8311461b2dc39c43ea186bcb53ec1481e7ff1a",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -24690,7 +24706,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/telkom/cheapest-1gb/",
       "h1": "Telkom Cheapest 1GB Data Deals (2026)",
-      "visibleTextHash": "df564670efa57250c2ef0d2a774a8faffde6744ba94e734c03e38aced44e7971",
+      "visibleTextHash": "38ec4052def754fdeaf21d81aa6caf3e34b531f3a0a3b84dda580ecac9e1a64f",
       "internalLinksHash": "4935797470b375282459ba97e56a0eaa25f5c963799dc1bbde483a35c07dea16",
       "internalLinks": [
         "/about/|About",
@@ -24820,7 +24836,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/telkom/daily-data/",
       "h1": "Telkom Daily Data Deals (2026)",
-      "visibleTextHash": "e54c6d6522c7a0e87e493f72bbe8826eb2faae0cef50cfa12f1ac825f778cda6",
+      "visibleTextHash": "b142c8bb226572ae0883c3ed911f6ed18c5035898685a9251ce40f3da8959e3f",
       "internalLinksHash": "194e61c2105f5ebfd6b1333f11d5f6688d81388d9798e69835ea5f88b57b8044",
       "internalLinks": [
         "/about/|About",
@@ -24948,7 +24964,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/telkom/monthly-data/",
       "h1": "Telkom Monthly Data Deals (2026)",
-      "visibleTextHash": "dc3fe01d30b291b1a95c15939d6984effad3d16bf353e046f24f1c8905fb61c4",
+      "visibleTextHash": "bd147592c87c08d1c9dfe1b2d361dfbd45cf9bae5883697f720d8c7a245468a1",
       "internalLinksHash": "6effbb6cb9e0302f1d7080d34ddf920228cd0f627a105da564ae322aed306070",
       "internalLinks": [
         "/about/|About",
@@ -25079,7 +25095,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/telkom/social-data/",
       "h1": "Telkom Social Data Deals (2026)",
-      "visibleTextHash": "4151c51be34f8ad2eb9534620898ae693951a9d066d5f83db99a5341ee6e3852",
+      "visibleTextHash": "96d127600db65470fd4e0b600f608d90729864bec36b6545d0fc3ee497494b23",
       "internalLinksHash": "194e61c2105f5ebfd6b1333f11d5f6688d81388d9798e69835ea5f88b57b8044",
       "internalLinks": [
         "/about/|About",
@@ -25207,7 +25223,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/telkom/weekly-data/",
       "h1": "Telkom Weekly Data Deals (2026)",
-      "visibleTextHash": "9ce5caf6297d413540e3bde4370b2de091d5c23fd4ff3473f20ce50ad3c97498",
+      "visibleTextHash": "c37c3dbfba757f0a02fc448161dacbcddcacb9f922ad19423255602a479b86dc",
       "internalLinksHash": "194e61c2105f5ebfd6b1333f11d5f6688d81388d9798e69835ea5f88b57b8044",
       "internalLinks": [
         "/about/|About",
@@ -25335,7 +25351,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/vodacom/",
       "h1": "Vodacom Prepaid Data Deals &amp; Prices South Africa",
-      "visibleTextHash": "50d35e573fbb57d89ada9f8caf32075ab7fdb32077a8d0ddfb0ace46429e6d4a",
+      "visibleTextHash": "f53f87ba8be557272a14d88236fdf281c759e6363c57878f4a332acb0f51cf97",
       "internalLinksHash": "2549407982598bb05a19931deff6b40f5ca3bbd89748c5be074b24d3d4182d2c",
       "internalLinks": [
         "/about/|About",
@@ -26887,7 +26903,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/travel-sims-south-africa/",
       "h1": "Travel SIMs &amp; eSIMs for South Africa (2026)",
-      "visibleTextHash": "b67fb7c2c1643245647550cff0e51c7a0ebaf785debab0399b657e6f75045021",
+      "visibleTextHash": "fb1c58c58bd8b416e4c94915288a07dfdffade20a80acc2db684ded94efd4704",
       "internalLinksHash": "1a274e2cd0df80e000b866dbe4273633fea06da76db0def36d44d0fe82631093",
       "internalLinks": [
         "/about/|About",
@@ -26922,7 +26938,7 @@
         "/vodacom-ussd-codes/|Vodacom USSD Codes",
         "/|Home"
       ],
-      "structuredDataHash": "3b7216756478f33132e720609597fe40d41deff35b464ea05a24857206e2f27b",
+      "structuredDataHash": "f3081c36de5f5690684f73399d839434cc2dd1da4d6acc3967a6379a53752a56",
       "structuredDataBlockCount": 4,
       "structuredDataSummary": [
         {
@@ -26939,7 +26955,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -26977,7 +26993,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -27517,6 +27533,6 @@
   ],
   "robotsHash": "7d9446d603be38b3728b336696f72f4aa467a6321c3ff943423729632e41aaf0",
   "robotsText": "User-agent: *\nAllow: /\n\nSitemap: https://datacost.co.za/sitemap.xml",
-  "redirectsHash": "62b0a9f1e18f97fa669685de8027cb00fee511bb278e5a6e302d44bd5c18f519",
-  "redirectsText": "# Generated by scripts/generate-sitemap.ts\n# Canonical URLs stay in XML sitemaps; these aliases recover common short or legacy paths.\n/privacy/ /privacy-policy/ 301\n/guides/best-data-deals-south-africa/ /best-data-deals-south-africa/ 301\n/ussd-codes/ /ussd-codes-south-africa/ 301\n/cheapest-1gb-data-south-africa/ /guides/cheapest-1gb-data-south-africa/ 301\n/guides/convert-airtime-to-data/ /guides/convert-airtime-to-data-south-africa/ 301\n/airtime-disappearing/ /guides/why-is-my-airtime-disappearing-south-africa/ 301\n/how-to-cancel-wasp-subscriptions-south-africa/ /guides/stop-wasp-subscriptions-south-africa/ 301\n/guides/how-to-stop-wasp-vas-charges-south-africa/ /guides/stop-wasp-subscriptions-south-africa/ 301\n/guides/how-to-stop-wasp-services-south-africa/ /guides/stop-wasp-subscriptions-south-africa/ 301\n/fix-mobile-problems/ /fix/ 301\n/fix-a-problem/ /fix/ 301\n/fibre/cheap-fibre-south-africa/ /fibre/cheapest-fibre-packages-south-africa/ 301\n/telkom-night-data-bundles/ /guides/cheap-night-data-south-africa/ 301\n/night-data-bundles-south-africa/ /guides/cheap-night-data-south-africa/ 301\n/network/vodacom/daily-data/ /network/vodacom/ 301\n/network/telkom/night-data/ /guides/cheap-night-data-south-africa/ 301\n/network/cell-c/weekly-data/ /network/cell-c/ 301\n/network/cell-c/night-data/ /guides/cheap-night-data-south-africa/ 301"
+  "redirectsHash": "0949fa42cf22649cfe676d34ccf87fbc95185c003578cffea4861098b674e21c",
+  "redirectsText": "# Generated by scripts/generate-sitemap.ts\n# Canonical URLs stay in XML sitemaps; these aliases recover common short or legacy paths.\n/privacy/ /privacy-policy/ 301\n/guides/best-data-deals-south-africa/ /best-data-deals-south-africa/ 301\n/ussd-codes/ /ussd-codes-south-africa/ 301\n/cheapest-1gb-data-south-africa/ /guides/cheapest-1gb-data-south-africa/ 301\n/guides/convert-airtime-to-data/ /guides/convert-airtime-to-data-south-africa/ 301\n/airtime-disappearing/ /guides/why-is-my-airtime-disappearing-south-africa/ 301\n/how-to-cancel-wasp-subscriptions-south-africa/ /guides/stop-wasp-subscriptions-south-africa/ 301\n/guides/how-to-stop-wasp-vas-charges-south-africa/ /guides/stop-wasp-subscriptions-south-africa/ 301\n/guides/how-to-stop-wasp-services-south-africa/ /guides/stop-wasp-subscriptions-south-africa/ 301\n/fix-mobile-problems/ /fix/ 301\n/fix-a-problem/ /fix/ 301\n/fibre/cheap-fibre-south-africa/ /fibre/cheapest-fibre-packages-south-africa/ 301\n/telkom-night-data-bundles/ /guides/cheap-night-data-south-africa/ 301\n/network/rain/rain-unlimited-4g-data-price/ /network/rain/ 301\n/night-data-bundles-south-africa/ /guides/cheap-night-data-south-africa/ 301\n/network/vodacom/daily-data/ /network/vodacom/ 301\n/network/telkom/night-data/ /guides/cheap-night-data-south-africa/ 301\n/network/cell-c/weekly-data/ /network/cell-c/ 301\n/network/cell-c/night-data/ /guides/cheap-night-data-south-africa/ 301"
 }

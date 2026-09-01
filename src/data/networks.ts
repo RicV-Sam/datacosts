@@ -30,11 +30,11 @@ export const networkPages: Record<string, NetworkPageData> = {
   'vodacom': {
     slug: 'vodacom',
     networkName: 'Vodacom',
-    intro: 'Compare Vodacom data bundles, prepaid deals, USSD codes, price, validity, and use case before you buy. Vodacom is usually chosen for coverage consistency, while personalised offers should be checked live on the customer\'s own line.',
-    bestFor: 'Coverage consistency and premium network reliability',
-    verdictSummary: 'Vodacom is usually chosen for coverage and consistency. Compare bundle validity, allocation and the live personalised menu on your own line before buying.',
+    intro: 'Compare Vodacom data bundles, prepaid deals, USSD codes, price, validity, and use case before you buy. Check coverage in the places that matter to you, and verify personalised offers live on your own line.',
+    bestFor: 'Comparing public and personalised offers after a local coverage check',
+    verdictSummary: 'Compare bundle validity, allocation and the live personalised menu on your own line, then check the official coverage map and test locally before choosing.',
     strengths: [
-      'Strong 4G and 5G footprint across urban and many rural areas',
+      'Official 4G and 5G coverage maps for location-specific checks',
       'Broad spread of hourly, daily, weekly and monthly prepaid options',
       'Personalised Just 4 You offers are available to check on *123#',
       'Widely used self-service channels via USSD, app and banking integrations'
@@ -66,7 +66,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     editorialComparisonSection: {
       title: 'How Vodacom compares to other networks',
       paragraphs: [
-        'Vodacom usually wins on consistency and coverage, but standard prepaid pricing can be higher than value-led rivals.',
+        'Vodacom publishes both standard and personalised prepaid channels. Compare the same allocation and validity with other networks, then check coverage locally.',
         'For the head-to-head view, read /guides/vodacom-vs-mtn-data-prices/. You can also compare /network/mtn/, /network/telkom/, and /network/cell-c/.'
       ]
     },
@@ -98,33 +98,33 @@ export const networkPages: Record<string, NetworkPageData> = {
     comparisonSummary: [
       {
         network: 'Vodacom',
-        bestFor: 'Coverage consistency',
-        usuallyCheapest: 'No',
-        coverage: 'Strong national footprint',
-        goodFor: 'Users who prioritise reliable signal',
+        bestFor: 'Public and personalised channels',
+        usuallyCheapest: 'Compare current rows',
+        coverage: 'Official map + local test',
+        goodFor: 'Users matching terms and local coverage',
         href: '/network/vodacom/'
       },
       {
         network: 'MTN',
-        bestFor: 'Speed and promos',
-        usuallyCheapest: 'Sometimes',
-        coverage: 'Strong urban and suburban',
-        goodFor: 'Promo hunters and heavy app users',
+        bestFor: 'Public and personalised channels',
+        usuallyCheapest: 'Compare current rows',
+        coverage: 'Official map + local test',
+        goodFor: 'Users matching terms and local coverage',
         href: '/network/mtn/'
       },
       {
         network: 'Telkom',
         bestFor: 'Reviewed daily, weekly and social rows',
-        usuallyCheapest: 'Compare live',
-        coverage: 'Check local map',
+        usuallyCheapest: 'Compare current rows',
+        coverage: 'Official map + local test',
         goodFor: 'Users matching validity to their use case',
         href: '/network/telkom/'
       },
       {
         network: 'Cell C',
         bestFor: 'Value mixes',
-        usuallyCheapest: 'Sometimes',
-        coverage: 'Dual-MOCN partner footprint',
+        usuallyCheapest: 'Compare current rows',
+        coverage: 'Official map + local test',
         goodFor: 'Flexible monthly and social buyers',
         href: '/network/cell-c/'
       }
@@ -168,13 +168,13 @@ export const networkPages: Record<string, NetworkPageData> = {
     slug: 'mtn',
     networkName: 'MTN',
     intro: 'Compare MTN data bundles, prepaid deals, USSD codes, price, validity, and use case before you buy. Made4U and other personalised offers can differ by SIM, tariff, location and campaign.',
-    bestFor: 'Strong all-round prepaid performance',
-    verdictSummary: 'MTN is often a balanced choice for users who want strong coverage and a range of prepaid options. Compare any personalised offer with the public menu on the same allocation and validity.',
+    bestFor: 'Comparing public and personalised prepaid options',
+    verdictSummary: 'Compare MTN public and personalised offers on the same allocation and validity, then check the official coverage map and test the locations that matter to you.',
     strengths: [
-      'Strong national 4G coverage with reliable urban performance',
+      'Official 4G and 5G coverage maps for location-specific checks',
       'Made4U and other personalised offers, including MyTownOffers where eligible',
       'Wide spread of daily, weekly and monthly prepaid options',
-      'Good balance between performance and deal availability'
+      'Public and personalised prepaid channels to compare'
     ],
     tips: [
       'Check *142# for Made4U and compare the live allocation, validity and price with standard prepaid bundles.',
@@ -203,7 +203,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     editorialComparisonSection: {
       title: 'How MTN compares to other networks',
       paragraphs: [
-        'MTN combines broad coverage with public and personalised prepaid channels. Compare like-for-like allocations and validity with Vodacom before choosing.',
+        'MTN combines public and personalised prepaid channels. Compare like-for-like allocations and validity with Vodacom, then check both coverage maps locally before choosing.',
         'For direct comparisons, check /guides/vodacom-vs-mtn-data-prices/ and compare /network/telkom/ or /network/cell-c/ for price-led alternatives.'
       ]
     },
@@ -231,10 +231,10 @@ export const networkPages: Record<string, NetworkPageData> = {
       'Comparing headline bundle size without checking validity and cost per GB.'
     ],
     comparisonSummary: [
-      { network: 'MTN', bestFor: 'Balanced speed and value', usuallyCheapest: 'Sometimes', coverage: 'Strong national footprint', goodFor: 'Users wanting all-round prepaid performance', href: '/network/mtn/' },
-      { network: 'Vodacom', bestFor: 'Consistency and coverage', usuallyCheapest: 'No', coverage: 'Very strong national footprint', goodFor: 'Signal reliability first', href: '/network/vodacom/' },
-      { network: 'Telkom', bestFor: 'Reviewed daily, weekly and social rows', usuallyCheapest: 'Compare live', coverage: 'Check local map', goodFor: 'Users matching validity to their use case', href: '/network/telkom/' },
-      { network: 'Cell C', bestFor: 'Promo-driven value', usuallyCheapest: 'Sometimes', coverage: 'Dual-MOCN partner footprint', goodFor: 'Deal hunters', href: '/network/cell-c/' }
+      { network: 'MTN', bestFor: 'Public and personalised channels', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching terms and local coverage', href: '/network/mtn/' },
+      { network: 'Vodacom', bestFor: 'Public and personalised channels', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching terms and local coverage', href: '/network/vodacom/' },
+      { network: 'Telkom', bestFor: 'Reviewed daily, weekly and social rows', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching validity to their use case', href: '/network/telkom/' },
+      { network: 'Cell C', bestFor: 'Promo-led offers', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching terms and local coverage', href: '/network/cell-c/' }
     ],
     faqs: [
       {
@@ -243,7 +243,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'What is the cheapest MTN 1GB option?',
-        answer: 'Short-validity 1GB bundles are often cheapest upfront, while longer-validity bundles can be better for controlled monthly usage.'
+        answer: 'Short-validity 1GB bundles can have a lower upfront price, while longer-validity bundles can be easier to budget for regular usage.'
       },
       {
         question: 'How do I check my MTN data balance?',
@@ -290,7 +290,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     ],
     extraSavingsTips: [
       'Do not assume Telkom is cheapest in every bundle size; compare 1GB and daily categories separately.',
-      'If coverage is inconsistent in your area, a slightly pricier but more stable network may be better value overall.'
+      'If coverage is inconsistent in your area, compare another network with a current map check and local SIM test before deciding.'
     ],
     howToBuySection: {
       title: 'How to buy Telkom data bundles',
@@ -338,10 +338,10 @@ export const networkPages: Record<string, NetworkPageData> = {
       'Treating a personalised Mo\'Nice offer as a fixed national price.'
     ],
     comparisonSummary: [
-      { network: 'Telkom', bestFor: 'Reviewed daily, weekly and social rows', usuallyCheapest: 'Compare live', coverage: 'Check local map', goodFor: 'Users matching validity to their use case', href: '/network/telkom/' },
-      { network: 'MTN', bestFor: 'Balanced performance', usuallyCheapest: 'Sometimes', coverage: 'Strong national footprint', goodFor: 'Users wanting consistency and promos', href: '/network/mtn/' },
-      { network: 'Vodacom', bestFor: 'Coverage consistency', usuallyCheapest: 'No', coverage: 'Very strong national footprint', goodFor: 'Reliability-focused users', href: '/network/vodacom/' },
-      { network: 'Cell C', bestFor: 'Deal alternatives', usuallyCheapest: 'Sometimes', coverage: 'Dual-MOCN partner footprint', goodFor: 'Promo-led buyers', href: '/network/cell-c/' }
+      { network: 'Telkom', bestFor: 'Reviewed daily, weekly and social rows', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching validity to their use case', href: '/network/telkom/' },
+      { network: 'MTN', bestFor: 'Public and personalised channels', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching terms and local coverage', href: '/network/mtn/' },
+      { network: 'Vodacom', bestFor: 'Public and personalised channels', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching terms and local coverage', href: '/network/vodacom/' },
+      { network: 'Cell C', bestFor: 'Promo-led offers', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching terms and local coverage', href: '/network/cell-c/' }
     ],
     faqs: [
       {
@@ -374,7 +374,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'Is Telkom better than Cell C for value?',
-        answer: 'Telkom often leads on large-bundle cost per GB, while Cell C can be competitive on specific promotions.'
+        answer: 'There is no permanent leader. Compare source-checked rows with the same product type, allocation and validity.'
       }
     ]
   },
@@ -383,12 +383,12 @@ export const networkPages: Record<string, NetworkPageData> = {
     networkName: 'Cell C',
     intro: 'Compare Cell C data deals, Cell C data bundles, prepaid data, promo-led offers, price, validity, and value before you buy. Use the Cell C USSD help below to check bundle and account routes, then match the offer to your real use case.',
     bestFor: 'Promo-driven prepaid value alternatives',
-    verdictSummary: 'Cell C can deliver strong value on targeted promotions, but users should verify validity limits and local network experience before committing.',
+    verdictSummary: 'Cell C lists standard, monthly and promotional options. Compare the live allocation and validity, then check the current coverage information and test locally before committing.',
     strengths: [
-      'Competitive pricing on selected Cell C data deals and monthly bundles',
+      'Selected standard, monthly and promotional rows to compare',
       'Promo-led offers for value seekers who check current menus first',
       'Social and targeted bundles for app-heavy users',
-      'Alternative pricing route versus premium networks'
+      'A separate offer set to compare with other networks'
     ],
     tips: [
       'Check current promo bundles first before buying standard Cell C options.',
@@ -417,8 +417,8 @@ export const networkPages: Record<string, NetworkPageData> = {
     editorialComparisonSection: {
       title: 'How Cell C compares to other networks',
       paragraphs: [
-        'Cell C often appeals to users chasing promos and selective value, while MTN and Vodacom are more often chosen for consistency.',
-        'Compare /network/telkom/ for baseline budget pricing and /network/mtn/ or /network/vodacom/ for broader network performance.'
+        'Cell C publishes standard and promotional offers. Compare the same product type, allocation and validity with other networks before choosing.',
+        'Compare /network/telkom/, /network/mtn/ and /network/vodacom/, then check each current coverage map and test locally.'
       ]
     },
     commonQuestionsSection: {
@@ -446,10 +446,10 @@ export const networkPages: Record<string, NetworkPageData> = {
       'Treating a MyConnecta or campaign offer as available to every Cell C number.'
     ],
     comparisonSummary: [
-      { network: 'Cell C', bestFor: 'Promo-led alternatives', usuallyCheapest: 'Sometimes', coverage: 'Dual-MOCN partner footprint', goodFor: 'Bargain hunters and selective deal buyers', href: '/network/cell-c/' },
-      { network: 'Telkom', bestFor: 'Reviewed daily, weekly and social rows', usuallyCheapest: 'Compare live', coverage: 'Check local map', goodFor: 'Users matching validity to their use case', href: '/network/telkom/' },
-      { network: 'MTN', bestFor: 'Balanced all-round use', usuallyCheapest: 'Sometimes', coverage: 'Strong national footprint', goodFor: 'Coverage and promo balance', href: '/network/mtn/' },
-      { network: 'Vodacom', bestFor: 'Reliability and consistency', usuallyCheapest: 'No', coverage: 'Very strong national footprint', goodFor: 'Users prioritising stable service', href: '/network/vodacom/' }
+      { network: 'Cell C', bestFor: 'Promo-led alternatives', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching terms and local coverage', href: '/network/cell-c/' },
+      { network: 'Telkom', bestFor: 'Reviewed daily, weekly and social rows', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching validity to their use case', href: '/network/telkom/' },
+      { network: 'MTN', bestFor: 'Public and personalised channels', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching terms and local coverage', href: '/network/mtn/' },
+      { network: 'Vodacom', bestFor: 'Public and personalised channels', usuallyCheapest: 'Compare current rows', coverage: 'Official map + local test', goodFor: 'Users matching terms and local coverage', href: '/network/vodacom/' }
     ],
     faqs: [
       {
@@ -458,7 +458,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'Does Cell C have good coverage?',
-        answer: 'Cell C uses a national dual-MOCN model across MTN and Vodacom radio access networks. Coverage and performance are still location-dependent, so check the current Cell C map and test the places that matter to you.'
+        answer: 'Cell C describes its network model as using partner radio access networks. Coverage and performance are still location-dependent, so check the current Cell C map and test the places that matter to you.'
       },
       {
         question: 'How does Cell C data pricing compare?',
@@ -482,7 +482,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'Is Cell C better than Telkom for value?',
-        answer: 'Cell C can be very competitive on promotions, while Telkom often leads on baseline large-bundle pricing.'
+        answer: 'There is no permanent leader. Compare current source-checked rows with the same product type, allocation and validity.'
       }
     ]
   },
@@ -496,7 +496,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       'rainOne Unlimited home-and-mobile options',
       'Unlimited mobile with LoopPhone and the loop portable-router family',
       'No contracts or long-term commitments',
-      'Simple, app-based account management'
+      'App and web account-management channels'
     ],
     tips: [
       'Rain is often best evaluated as a home internet, mobile-combo, or portable-router product rather than a normal prepaid mobile bundle.',

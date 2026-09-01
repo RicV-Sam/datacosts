@@ -758,28 +758,28 @@ export const fibrePages: FibrePageDefinition[] = [
       'Compare fibre, LTE and 5G home internet in South Africa by speed stability, latency, setup, portability, coverage, gaming, streaming and work use.',
     h1: 'Fibre vs LTE/5G in South Africa: Which Is Better for Home Internet?',
     intro: 'Fibre and LTE/5G both solve home-internet problems, but they behave differently.',
-    quickAnswer: 'Choose fibre when your address is covered and you need stable household internet. Choose LTE or 5G when fibre is unavailable, installation is blocked, or portability matters.',
+    quickAnswer: 'Compare exact-address availability and service terms. Fibre avoids mobile radio-signal variability; LTE/5G can reduce installation delay and may offer portability where the product rules allow it.',
     summaryCards: [
-      { label: 'Fibre wins', text: 'Stability, latency and heavy multi-device use.' },
-      { label: 'LTE/5G wins', text: 'Fast setup, portability and no fibre installation.' },
-      { label: 'Backup', text: 'Many homes need mobile data as fibre failover.' }
+      { label: 'Fibre trade-off', text: 'Fixed-line service without mobile radio-signal variability.' },
+      { label: 'LTE/5G trade-off', text: 'Potentially faster setup, with signal and product-location rules.' },
+      { label: 'Resilience', text: 'Decide whether your household needs a separate backup connection.' }
     ],
-    sourceIds: ['afrihost-fibre', 'webafrica-fibre'],
+    sourceIds: ['afrihost-fibre', 'webafrica-fibre', 'rain-5g-home', 'rain-legal'],
     blocks: [
       {
         type: 'table',
         id: 'compare',
         title: 'Fibre vs LTE/5G',
         rows: [
-          { label: 'Speed stability', value: 'Usually fibre', note: 'Fixed line performance is usually more predictable than mobile signal.' },
-          { label: 'Latency', value: 'Usually fibre', note: 'Better for gaming and work calls when the line is healthy.' },
-          { label: 'Setup speed', value: 'LTE/5G', note: 'A router/SIM can be faster than fibre installation.' },
-          { label: 'Portability', value: 'LTE/5G', note: 'Wireless products are easier to move.' },
+          { label: 'Speed stability', value: 'Test the exact services', note: 'Fibre avoids radio-signal changes; either service can still be affected by provider or network conditions.' },
+          { label: 'Latency', value: 'Measure locally', note: 'Check latency on the exact service if gaming or live calls matter.' },
+          { label: 'Setup speed', value: 'Wireless can be quicker', note: 'A ready router/SIM may avoid fibre installation, subject to coverage and delivery.' },
+          { label: 'Portability', value: 'Check product rules', note: 'Some wireless products can move; fixed-wireless services may have address or location conditions.' },
           { label: 'Coverage', value: 'Depends on address/signal', note: 'Fibre needs a live address; LTE/5G needs strong local signal.' }
         ]
       },
       { type: 'speed-tool', id: 'speed-tool', title: 'Speed band for fibre or wireless', intro: 'Estimate your usage before choosing the cheapest package.' },
-      standardSourceBlock(['afrihost-fibre', 'webafrica-fibre'])
+      standardSourceBlock(['afrihost-fibre', 'webafrica-fibre', 'rain-5g-home', 'rain-legal'])
     ],
     relatedLinks: [hubLink, { href: '/fibre/fibre-vs-rain-5g-south-africa/', label: 'Fibre vs Rain 5G', description: 'Compare fibre with Rain-style wireless home internet.' }, ...fallbackLinks]
   }),
@@ -792,27 +792,27 @@ export const fibrePages: FibrePageDefinition[] = [
       'Compare fibre and Rain 5G-style home internet in South Africa by coverage, installation, signal, latency, stability, router placement and household use.',
     h1: 'Fibre vs Rain 5G in South Africa',
     intro: 'Rain 5G-style wireless home internet can be a useful fibre alternative, especially where fibre is not installed.',
-    quickAnswer: 'Choose fibre for predictable fixed home use when covered. Consider Rain 5G or fixed wireless when fibre is unavailable, installation is delayed, or portability matters.',
+    quickAnswer: 'Compare exact-address availability, service terms and a local test. Fibre avoids radio-signal variability; Rain 5G can avoid fibre installation but is a best-effort wireless service whose coverage and speed depend on local conditions.',
     summaryCards: [
-      { label: 'Fibre', text: 'Best for stable latency and many devices.' },
-      { label: 'Rain 5G', text: 'Useful if signal is strong and fibre is unavailable.' },
-      { label: 'Test first', text: 'Wireless performance depends heavily on location and router placement.' }
+      { label: 'Fibre', text: 'Fixed-line service with address and installation requirements.' },
+      { label: 'Rain 5G', text: 'Wireless setup with coverage, signal and router-placement dependencies.' },
+      { label: 'Compare first', text: 'Check exact-address availability, terms and tested performance.' }
     ],
-    sourceIds: ['afrihost-fibre'],
+    sourceIds: ['afrihost-fibre', 'rain-5g-home', 'rain-legal'],
     blocks: [
       {
         type: 'table',
         id: 'compare-rain',
         title: 'Fibre vs Rain 5G-style wireless',
         rows: [
-          { label: 'Installation', value: 'Wireless is simpler', note: 'No trenching or fibre installation if the router is ready.' },
+          { label: 'Installation', value: 'Different setup paths', note: 'Rain can avoid trenching or fibre installation if coverage and the supplied router are available.' },
           { label: 'Signal dependence', value: 'Wireless depends more on location', note: 'Router placement and tower load can change performance.' },
-          { label: 'Latency', value: 'Fibre usually safer', note: 'Gaming and work calls usually prefer stable fibre latency.' },
+          { label: 'Latency', value: 'Test the exact services', note: 'Measure latency locally if gaming or live work calls matter.' },
           { label: 'Load shedding', value: 'Both need power', note: 'Router backup helps, but upstream network power also matters.' }
         ]
       },
-      { type: 'callout', id: 'fallback', title: 'Best answer for many homes', body: 'Use fibre as the primary connection where available, then keep mobile data or wireless as a backup if work or school cannot stop during outages.', tone: 'success' },
-      standardSourceBlock(['afrihost-fibre'])
+      { type: 'callout', id: 'fallback', title: 'Plan for connection outages', body: 'If work or school cannot stop during an outage, compare the cost and independence of a separate mobile-data or wireless backup.', tone: 'success' },
+      standardSourceBlock(['afrihost-fibre', 'rain-5g-home', 'rain-legal'])
     ],
     relatedLinks: [hubLink, coreFibreLinks[5], { href: '/network/rain/', label: 'Rain network page', description: 'Review Rain data and home internet alternatives.' }, { href: '/fix/rain-router-no-internet/', label: 'Rain router no internet', description: 'Troubleshoot Rain router connection problems.' }]
   }),

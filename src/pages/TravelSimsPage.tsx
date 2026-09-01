@@ -107,7 +107,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
     },
     {
       question: "Which network has the best coverage for tourists?",
-      answer: "Coverage varies by exact location, terrain, network technology and device. Compare Vodacom and MTN's current official coverage maps for every city, road and reserve on your itinerary; map results do not guarantee service at a specific spot."
+      answer: "Coverage varies by exact location, terrain, network technology and device. Compare the current official coverage map for every operator you are considering across each city, road and reserve on your itinerary; map results do not guarantee service at a specific spot."
     },
     {
       question: "How much does mobile data cost in South Africa?",
@@ -195,7 +195,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
           <h2 className="text-3xl font-black tracking-tighter mb-6">Best SIM for South Africa: Quick Answer</h2>
           <div className="space-y-3">
             <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-sm">
-              <strong>Best for convenience:</strong> Choose a <strong>travel eSIM</strong> before you fly so data works when you land.
+              <strong>If pre-arrival setup matters:</strong> Compare a <strong>travel eSIM</strong> that can be installed before you fly.
             </div>
             <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-sm">
               <strong>Vodacom prepaid:</strong> Check its official coverage map for the towns, roads and reserves on your itinerary before choosing.
@@ -204,7 +204,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
               <strong>MTN prepaid:</strong> Check its official coverage map and current prepaid offers against your destinations and expected use.
             </div>
             <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-sm">
-              <strong>Best for 2+ week stays:</strong> Get a <strong>local prepaid SIM</strong> after landing for better value per GB.
+              <strong>For 2+ week stays:</strong> Compare the current total cost, allowance and validity of a <strong>local prepaid SIM</strong> with extending a travel eSIM.
             </div>
             <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-sm">
               <strong>Landing late and need instant data:</strong> Activate a <strong>small travel eSIM</strong> first, then switch to local prepaid the next day.
@@ -242,7 +242,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-100">
                     <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Option</th>
-                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Best For</th>
+                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Use case</th>
                     <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Pros</th>
                     <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Cons</th>
                   </tr>
@@ -292,11 +292,11 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
 
         {/* 4. “BEST PICKS” SUMMARY BLOCK */}
         <section className="mb-16">
-          <h2 className="text-2xl font-black tracking-tighter mb-8">Top Tourist Recommendations</h2>
+          <h2 className="text-2xl font-black tracking-tighter mb-8">Tourist setup options</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white border border-slate-100 p-8 rounded-[2rem] shadow-sm relative group hover:border-[#a0f399] transition-all">
               <div className="absolute -top-3 left-8 bg-[#031636] text-[#a0f399] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-[0.1em]">
-                Best for Convenience
+                Setup Before Landing
               </div>
               <Globe className="w-8 h-8 text-[#1b6d24] mb-4" />
                   <h3 className="text-xl font-black mb-2">Travel eSIM</h3>
@@ -305,7 +305,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
                 onClick={() => scrollToSection('esim-options')}
                 className="w-full py-3 bg-slate-50 text-slate-900 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-[#a0f399] transition-all flex items-center justify-center gap-2"
               >
-                Check The Easiest South Africa eSIM Options <ArrowRight className="w-3 h-3" />
+                Compare South Africa eSIM Options <ArrowRight className="w-3 h-3" />
               </button>
             </div>
             <div className="bg-white border-2 border-[#a0f399] p-8 rounded-[2rem] shadow-xl relative group scale-105 z-10">
@@ -356,11 +356,11 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="mt-1 flex-shrink-0 text-emerald-600"><CheckCircle2 className="w-4 h-4" /></div>
-                    <p className="text-sm font-medium text-slate-700"><strong>Best if you want:</strong> A simple first 24 hours for Uber, WhatsApp, and Google Maps.</p>
+                    <p className="text-sm font-medium text-slate-700"><strong>Consider this when:</strong> You need data during the first 24 hours for Uber, WhatsApp, and Google Maps.</p>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="mt-1 flex-shrink-0 text-red-600"><Info className="w-4 h-4" /></div>
-                    <p className="text-sm font-medium text-slate-700"><strong>Worth noting:</strong> Most travel eSIMs are data-only and can cost more per GB.</p>
+                    <p className="text-sm font-medium text-slate-700"><strong>Worth noting:</strong> Check whether the plan is data-only and compare its final price per GB with current local options.</p>
                   </li>
                 </ul>
               </div>
@@ -372,15 +372,15 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
                     <div className="mt-1 flex-shrink-0 text-emerald-600"><CheckCircle2 className="w-4 h-4" /></div>
-                    <p className="text-sm font-medium text-slate-700"><strong>Choose this if:</strong> You are staying more than 1 week and want better value.</p>
+                    <p className="text-sm font-medium text-slate-700"><strong>Compare this when:</strong> You are staying more than 1 week and can complete local RICA registration.</p>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="mt-1 flex-shrink-0 text-emerald-600"><CheckCircle2 className="w-4 h-4" /></div>
-                    <p className="text-sm font-medium text-slate-700"><strong>Best if you want:</strong> A local number for calls, bookings, and driver contact.</p>
+                    <p className="text-sm font-medium text-slate-700"><strong>Consider this when:</strong> You need a local number for calls, bookings, and driver contact.</p>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="mt-1 flex-shrink-0 text-red-600"><Info className="w-4 h-4" /></div>
-                    <p className="text-sm font-medium text-slate-700"><strong>Worth it if:</strong> You do not mind RICA registration in exchange for lower long-stay cost.</p>
+                    <p className="text-sm font-medium text-slate-700"><strong>Compare first:</strong> Include RICA setup, total long-stay cost, allowance, validity and top-up access.</p>
                   </li>
                 </ul>
               </div>
@@ -630,7 +630,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
               onClick={() => scrollToSection('esim-options')}
               className="px-6 py-3 bg-white text-[#031636] rounded-xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform"
             >
-              Compare the Best SIM Options Before You Fly
+              Compare SIM Options Before You Fly
             </button>
             <button
               onClick={() => onNavigate('network')}
@@ -679,7 +679,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
             <div className="bg-white border border-slate-100 p-6 rounded-3xl shadow-sm">
               <PlaneLanding className="w-6 h-6 text-[#1b6d24] mb-3" />
               <h4 className="font-black mb-2">Landing Late Tonight</h4>
-              <p className="text-xs text-slate-500 font-medium">Choose travel eSIM first. It is the fastest option when airport shops may be closed or busy.</p>
+              <p className="text-xs text-slate-500 font-medium">A travel eSIM installed before arrival avoids relying on airport shop hours; compare device support and activation terms first.</p>
             </div>
             <div className="bg-white border border-slate-100 p-6 rounded-3xl shadow-sm">
               <Globe className="w-6 h-6 text-[#1b6d24] mb-3" />
@@ -699,7 +699,7 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
             <div className="bg-white border border-slate-100 p-6 rounded-3xl shadow-sm">
               <Smartphone className="w-6 h-6 text-[#1b6d24] mb-3" />
               <h4 className="font-black mb-2">Visiting Family for a Month</h4>
-              <p className="text-xs text-slate-500 font-medium">Choose local prepaid with bigger bundles and top up using USSD when needed.</p>
+              <p className="text-xs text-slate-500 font-medium">Compare local prepaid and travel eSIM totals for the full month, including allowance, validity, RICA setup and top-up access.</p>
             </div>
             <div className="bg-white border border-slate-100 p-6 rounded-3xl shadow-sm">
               <MessageSquare className="w-6 h-6 text-[#1b6d24] mb-3" />
@@ -724,14 +724,14 @@ export const TravelSimsPage: React.FC<TravelSimsPageProps> = ({ onNavigate, onSc
               <div className="text-2xl font-black text-slate-200">02</div>
               <div>
                 <h4 className="font-black text-lg">1 Week Holiday</h4>
-                <p className="text-sm text-slate-600 font-medium">Balanced approach: small travel eSIM on day one, then local prepaid if you need more data.</p>
+                <p className="text-sm text-slate-600 font-medium">Compare a small travel eSIM with local prepaid based on arrival timing, expected data use and RICA setup.</p>
               </div>
             </div>
             <div className="bg-slate-50 border border-slate-100 p-6 rounded-3xl flex items-center gap-6 border-l-4 border-l-[#1b6d24]">
               <div className="text-2xl font-black text-[#1b6d24]">03</div>
               <div>
                 <h4 className="font-black text-lg">2+ Week Stay</h4>
-                <p className="text-sm text-slate-600 font-medium">Local prepaid is usually the smart money move. Better rates and easier long-stay top-ups.</p>
+                <p className="text-sm text-slate-600 font-medium">Compare the full-stay local prepaid total with extending a travel eSIM, including allowance, validity, setup and top-up access.</p>
               </div>
             </div>
           </div>

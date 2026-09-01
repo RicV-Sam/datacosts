@@ -26,6 +26,11 @@ export const REDIRECT_ALIASES: RedirectAlias[] = [
     to: '/guides/cheap-night-data-south-africa/',
     label: 'Cheap Night Data South Africa'
   },
+  {
+    from: '/network/rain/rain-unlimited-4g-data-price/',
+    to: '/network/rain/',
+    label: 'Rain Unlimited 5G Home WiFi'
+  },
   { from: '/night-data-bundles-south-africa/', to: '/guides/cheap-night-data-south-africa/', label: 'Cheap Night Data South Africa' },
   { from: '/network/vodacom/daily-data/', to: '/network/vodacom/', label: 'Vodacom Data Prices' },
   {

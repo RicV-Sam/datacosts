@@ -89,7 +89,7 @@ function getNetworkInsight(network: NetworkName, bundleType: NetworkTemplateBund
   }
 
   if (network === 'Telkom') {
-    return `Telkom often competes on prepaid value, but bundle behavior depends on local coverage quality and, for night offers, Night Surfer-style usage windows that do not mirror anytime data behavior. ${typeHint[bundleType] ?? ''}`.trim();
+    return `Compare Telkom's current source-checked rows on allocation, validity and price. Bundle behavior also depends on local coverage and, for night offers, Night Surfer-style usage windows that do not mirror anytime data behavior. ${typeHint[bundleType] ?? ''}`.trim();
   }
 
   if (network === 'Cell C') {

@@ -89,6 +89,18 @@ export const fibreSources: FibreSource[] = [
     label: 'MetroFibre',
     url: 'https://metrofibre.co.za/',
     note: 'Open-access network and ISP/reseller ecosystem information.'
+  },
+  {
+    id: 'rain-5g-home',
+    label: 'Rain unlimited 5G home WiFi',
+    url: 'https://www.rain.co.za/5Ghomewifi',
+    note: 'Current Rain home-WiFi tiers, router terms, coverage checks and best-effort speed caveats.'
+  },
+  {
+    id: 'rain-legal',
+    label: 'Rain legal and product terms',
+    url: 'https://www.rain.co.za/legal',
+    note: 'Official fixed-wireless service, device, acceptable-use and best-effort performance terms.'
   }
 ];
 

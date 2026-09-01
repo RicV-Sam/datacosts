@@ -103,7 +103,7 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
       name: 'Cell C',
       href: '/network/cell-c/',
       summary: 'Compare Cell C daily, monthly and social rows, including product-specific restrictions.',
-      bestFor: 'Choose it when its current offer and local dual-MOCN experience fit your use.'
+      bestFor: 'Choose it when its current offer and local partner-network experience fit your use.'
     },
     {
       name: 'Rain',

@@ -408,6 +408,10 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           className="mb-12"
         />
 
+        <p className="-mt-8 mb-12 text-sm font-medium leading-relaxed text-slate-600">
+          Pricing rows show their source-check status. Coverage, speed and reliability are not ranked here without a current independent benchmark; check the official coverage map and test the places that matter to you.
+        </p>
+
         {networkSlug === 'vodacom' && (
           <section className="mb-12 bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm">
             <h2 className="text-2xl font-black tracking-tighter mb-4">Quick Answer</h2>
@@ -471,7 +475,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-[#1b6d24] rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-emerald-100">
               <ShieldCheck className="w-3.5 h-3.5" />
-              Quick Verdict
+              Practical fit
             </div>
             <h2 className="text-2xl font-black tracking-tighter mb-4">{pageData.bestFor}</h2>
             <p className="text-slate-600 font-medium leading-relaxed">
@@ -481,7 +485,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
           <div className="bg-[#f8fafc] border border-slate-100 rounded-[2.5rem] p-8 shadow-sm">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-blue-100">
               <CheckCircle2 className="w-3.5 h-3.5" />
-              Key Advantages
+              Products and channels to compare
             </div>
             <ul className="space-y-3">
               {pageData.strengths.map((strength, i) => (
@@ -633,7 +637,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                   <tr className="border-b border-slate-100">
                     <th className="px-3 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Network</th>
                     <th className="px-3 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Best for</th>
-                    <th className="px-3 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Usually cheapest?</th>
+                    <th className="px-3 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Price check</th>
                     <th className="px-3 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Coverage</th>
                     <th className="px-3 py-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Good for</th>
                   </tr>
