@@ -53,6 +53,16 @@ export const ussdRepository: readonly USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.vodacom.please_call_me',
+    network: 'Vodacom',
+    category: 'Other',
+    action: 'Please Call Me',
+    code: '*140*number#',
+    explanation: 'Send a callback request by replacing number with the recipient\'s mobile number.',
+    status: 'verified',
+    dialable: false
+  },
+  {
     id: 'ussd.vodacom.check_number',
     network: 'Vodacom',
     category: 'Number / SIM info',
@@ -68,7 +78,7 @@ export const ussdRepository: readonly USSDEntry[] = [
     category: 'Self-service / Account',
     action: 'Manage My Account',
     code: '*135#',
-    explanation: 'Change settings, manage VAS services and update profile.',
+    explanation: 'Open Vodacom\'s services menu and follow the prompts for services available to your line.',
     status: 'verified',
     dialable: true
   },
@@ -105,12 +115,22 @@ export const ussdRepository: readonly USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.mtn.data_balance',
+    network: 'MTN',
+    category: 'Balance',
+    action: 'Detailed Balance Inquiries',
+    code: '*136*1#',
+    explanation: 'Open MTN\'s detailed balance view for the balances available on your line.',
+    status: 'verified',
+    dialable: true
+  },
+  {
     id: 'ussd.mtn.recharge_voucher',
     network: 'MTN',
     category: 'Airtime / Recharge',
-    action: 'Recharge Account',
-    code: '*136*VoucherCode#',
-    explanation: 'Top up your MTN prepaid account.',
+    action: 'Voucher Recharge Guidance',
+    code: 'N/A',
+    explanation: 'MTN\'s current public USSD list does not confirm a direct voucher-loading shortcut for your own line. It publishes *136*10# for card recharge; otherwise use a current official recharge channel or call 135.',
     status: 'verified',
     dialable: false
   },
@@ -135,12 +155,22 @@ export const ussdRepository: readonly USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.mtn.please_call_me',
+    network: 'MTN',
+    category: 'Other',
+    action: 'Please Call Me / CallBack',
+    code: '*121*number#',
+    explanation: 'Send a callback request by replacing number with the recipient\'s mobile number; dial *121# for the callback menu.',
+    status: 'verified',
+    dialable: false
+  },
+  {
     id: 'ussd.mtn.check_number',
     network: 'MTN',
     category: 'Other',
     action: 'Own-number Help',
     code: 'N/A',
-    explanation: 'A current own-number shortcut was not confirmed in this audit. MTN\'s July 2026 table listed *123*888#; verify it on your SIM, check the MTN App or call 135.',
+    explanation: 'A current own-number shortcut was not confirmed in this audit. MTN\'s 2023 catalogues listed *123*888#; verify it on your SIM, check the MTN App or call 135.',
     status: 'verified',
     dialable: false
   },
@@ -197,6 +227,26 @@ export const ussdRepository: readonly USSDEntry[] = [
     dialable: true
   },
   {
+    id: 'ussd.telkom.recharge_voucher',
+    network: 'Telkom',
+    category: 'Airtime / Recharge',
+    action: 'Recharge with Voucher',
+    code: '*188*PIN#',
+    explanation: 'Recharge by replacing PIN with the voucher PIN.',
+    status: 'verified',
+    dialable: false
+  },
+  {
+    id: 'ussd.telkom.please_call_me',
+    network: 'Telkom',
+    category: 'Other',
+    action: 'Please Call Me',
+    code: '*140*number#',
+    explanation: 'Send a callback request by replacing number with the recipient\'s mobile number.',
+    status: 'verified',
+    dialable: false
+  },
+  {
     id: 'ussd.telkom.check_number',
     network: 'Telkom',
     category: 'Number / SIM info',
@@ -245,6 +295,36 @@ export const ussdRepository: readonly USSDEntry[] = [
     action: 'Buy Bundles',
     code: '*147#',
     explanation: 'Open Cell C self-service, select the bundle action shown on your line, and follow the prompts.',
+    status: 'verified',
+    dialable: true
+  },
+  {
+    id: 'ussd.cellc.recharge_voucher',
+    network: 'Cell C',
+    category: 'Airtime / Recharge',
+    action: 'Recharge with Voucher',
+    code: '*102*PIN#',
+    explanation: 'Recharge by replacing PIN with the voucher PIN.',
+    status: 'verified',
+    dialable: false
+  },
+  {
+    id: 'ussd.cellc.please_call_me',
+    network: 'Cell C',
+    category: 'Other',
+    action: 'Please Call Me',
+    code: '*111*number#',
+    explanation: 'Send a callback request by replacing number with the recipient\'s mobile number.',
+    status: 'verified',
+    dialable: false
+  },
+  {
+    id: 'ussd.cellc.transfer_airtime',
+    network: 'Cell C',
+    category: 'Transfers',
+    action: 'Airtime Share Menu',
+    code: '*147#',
+    explanation: 'Open Cell C self-service, select Airtime Share, and follow the prompts.',
     status: 'verified',
     dialable: true
   },

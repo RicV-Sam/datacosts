@@ -11,6 +11,7 @@ import { copyUssdCodeToClipboard, toAnalyticsOperator, toUssdCodeType } from '..
 import { registeredUssdCodeId } from '../seo/wp1AnalyticsRegistry';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
+import { findMostUsedCode } from '../utils/ussdSelection';
 
 type SupportedNetworkSlug = 'mtn' | 'vodacom' | 'telkom' | 'cell-c';
 
@@ -40,22 +41,22 @@ type NetworkConfig = {
 const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
   mtn: {
     networkName: 'MTN',
-    titlePrefix: 'MTN USSD Codes: *136# Balance, Data, Recharge and XtraTime',
+    titlePrefix: 'MTN USSD Codes: *136# Balance, Data, CallBack and XtraTime',
     route: '/mtn-ussd-codes/',
     networkHubHref: '/network/mtn/',
     buyDataGuideHref: '/guides/how-to-buy-data-mtn/',
     balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'MTN USSD codes for South Africa: dial *136# to check balance, *136*2# to buy data, use *136*VoucherCode# to recharge and *151# for XtraTime.',
+      'MTN USSD codes for South Africa: dial *136# to check balance, *136*2# to buy data, *121*number# for CallBack and *151# for XtraTime.',
     intro:
-      'Use this page when the intent is MTN-specific. Start here for currently supported MTN balance, data, recharge, XtraTime, and customer-care routes without relying on an unverified legacy shortcut.',
+      'Use this page when the intent is MTN-specific. Start here for currently supported MTN balance, data, CallBack, XtraTime, and customer-care routes without relying on unverified legacy shortcuts.',
     quickAnswer:
-      'For an MTN balance check, dial *136#. Use *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, and *151# for XtraTime. MTN also documents selecting XtraTime from *136*2#. Current own-number and Please Call Me shortcuts still need provider confirmation, so use the MTN App or call 135 for those actions.',
+      'For an MTN balance check, dial *136#. Use *136*1# for detailed balance inquiries, *136*2# to buy bundles, *121*number# to send a CallBack request, *151# for XtraTime, and *136*10# for card recharge. Current own-line voucher-loading and own-number shortcuts were not confirmed, so use an official recharge channel, the MTN App, or 135 for those actions.',
     quickCodes: [
       { label: 'MTN balance check', code: '*136#' },
       { label: 'Buy MTN data', code: '*136*2#' },
-      { label: 'MTN recharge', code: '*136*VoucherCode#' },
+      { label: 'MTN CallBack', code: '*121*number#' },
       { label: 'MTN XtraTime', code: '*151#' }
     ],
     supportNote:
@@ -70,16 +71,16 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
         answer: 'Dial *136*2# to open MTN data and bundle purchase options.'
       },
       {
-        question: 'What is the MTN recharge code?',
-        answer: 'Use *136*VoucherCode# when you have a recharge voucher PIN. If that format fails on your line, start from *136# and follow the recharge menu.'
+        question: 'How can I recharge MTN by card or voucher?',
+        answer: 'Dial *136*10# for MTN\'s current debit- or credit-card recharge route. MTN\'s current public USSD list does not confirm a direct voucher-loading shortcut for your own line, so use a current official MTN recharge channel or call 135 instead of relying on the legacy *136*VoucherCode# format.'
       },
       {
         question: 'How do I check my MTN number?',
-        answer: 'A current shortcut was not confirmed in this audit. MTN\'s July 2026 code table listed *123*888#, but its catalogue period has ended, so verify the code on your SIM or use the MTN App or 135.'
+        answer: 'A current shortcut was not confirmed in this audit. MTN\'s 2023 catalogues listed *123*888#, but current public guidance omits it, so verify the code on your SIM or use the MTN App or 135.'
       },
       {
         question: 'What is the MTN Please Call Me code?',
-        answer: 'DataCost could not confirm a current network-wide Please Call Me shortcut in MTN\'s public guidance. Use the MTN App or call 135 instead of relying on a legacy code.'
+        answer: 'Dial *121*number# and replace number with the recipient\'s mobile number. MTN also publishes *121# as the CallBack menu route.'
       },
       {
         question: 'What if an MTN USSD code is not working?',
@@ -264,17 +265,6 @@ const FIX_LINKS_BY_NETWORK_SLUG: Record<SupportedNetworkSlug, Array<{ href: stri
   ]
 };
 
-function findMostUsedCode(entries: USSDEntry[], patterns: string[]): USSDEntry | null {
-  return (
-    entries.find(
-      (entry) =>
-        entry.status === 'verified' &&
-        entry.code !== 'N/A' &&
-        patterns.some((pattern) => `${entry.action} ${entry.category}`.toLowerCase().includes(pattern))
-    ) || null
-  );
-}
-
 function isDialable(code: string): boolean {
   return code.includes('*') || code.includes('#');
 }
@@ -301,7 +291,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
 
   const mostUsedRows = [
     findMostUsedCode(networkEntries, ['balance']),
-    findMostUsedCode(networkEntries, ['buy data', 'bundle', 'data']),
+    findMostUsedCode(networkEntries, ['buy data', 'bundle']),
     findMostUsedCode(networkEntries, ['recharge', 'voucher', 'airtime']),
     findMostUsedCode(networkEntries, ['check my number', 'number']),
     findMostUsedCode(networkEntries, ['support', 'care', 'helpdesk'])
@@ -396,7 +386,7 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
 
   if (networkSlug === 'mtn') {
     relatedLinks.push(
-      { href: '/ussd-codes-south-africa/', label: 'MTN Please Call Me guidance' },
+      { href: '/ussd-codes-south-africa/', label: 'MTN Please Call Me code' },
       { href: '/cell-c-ussd-codes/', label: 'How to check Cell C balance' }
     );
   }

@@ -34,13 +34,13 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/promos/': '2026-06-18T00:00:00.000Z',
   '/save-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
   '/sitemap/': '2026-08-01T00:00:00.000Z',
-  '/cell-c-ussd-codes/': '2026-08-01T00:00:00.000Z',
-  '/telkom-ussd-codes/': '2026-08-01T00:00:00.000Z',
+  '/cell-c-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
+  '/telkom-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
   '/terms/': '2026-05-10T00:00:00.000Z',
   '/trust/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/travel-sims-south-africa/': '2026-08-02T00:00:00.000Z',
   '/ussd-codes-south-africa/': PRICING_AUDIT_MODIFIED_ISO,
-  '/vodacom-ussd-codes/': '2026-08-02T00:00:00.000Z'
+  '/vodacom-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO
 };
 
 const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
@@ -158,11 +158,11 @@ const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
 };
 
 const NETWORK_USSD_MODIFIED_BY_SLUG: Record<string, string> = {
-  'cell-c': '2026-08-01T00:00:00.000Z',
+  'cell-c': PRICING_AUDIT_MODIFIED_ISO,
   mtn: PRICING_AUDIT_MODIFIED_ISO,
   rain: PRICING_AUDIT_MODIFIED_ISO,
-  telkom: '2026-08-01T00:00:00.000Z',
-  vodacom: '2026-08-02T00:00:00.000Z'
+  telkom: PRICING_AUDIT_MODIFIED_ISO,
+  vodacom: PRICING_AUDIT_MODIFIED_ISO
 };
 
 const BUNDLE_TYPE_MODIFIED_ISO = '2026-07-30T00:00:00.000Z';

@@ -36,7 +36,6 @@ export const REGISTERED_USSD_CODE_IDS = [
   'ussd.vodacom.buy_data',
   'ussd.vodacom.check_number',
   'ussd.vodacom.customer_care',
-  'ussd.vodacom.data_balance',
   'ussd.vodacom.just4you',
   'ussd.vodacom.please_call_me',
   'ussd.vodacom.recharge_voucher',

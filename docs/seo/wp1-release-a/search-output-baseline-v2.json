@@ -15,8 +15,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/",
       "h1": "Compare Cheapest Data Deals in South Africa",
-      "visibleTextHash": "e75bc79d84513315fbe009fff5571308ac02f487fe042351b121ac6809691a6d",
-      "internalLinksHash": "c3fbc7d37486dcebd9dadd60963bc01f41591de26189929813a3969c005cea4a",
+      "visibleTextHash": "b5da2a6216000b7b625b83a8bd9dd2b25ef7e544175df1145a14216e0333bd1c",
+      "internalLinksHash": "15a3f6da811a4b838fddf20cf333114f3cd80494ca33e4e9666e3ddf268936d0",
       "internalLinks": [
         "/about/|About",
         "/about/|About DataCost",
@@ -62,7 +62,7 @@
         "/guides/how-to-check-data-balance/|How to check data balance",
         "/guides/how-to-stop-airtime-being-used-automatically/|Stop airtime being used automatically in South Africa",
         "/guides/out-of-bundle-data-costs-south-africa/|Out-of-Bundle Data Costs South Africa (2026) Understand out-of-bundle data costs in South Africa. Compare Vodacom, MTN, Telkom, and Cell C risks, and learn how to protect airtime.",
-        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs Contract South Africa (2026) Choosing between prepaid and contract? We compare the costs, flexibility, and data rates of prepaid vs contract in SA to find the best option for you.",
+        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs Contract Phone Pricing in South Africa (2026) Compare prepaid vs contract phone pricing in South Africa by total cost, device payments, flexibility, monthly inclusions and extra usage charges.",
         "/guides/stop-wasp-subscriptions-south-africa/|How to stop WASP / VAS charges",
         "/guides/stop-wasp-subscriptions-south-africa/|How to stop WASP services and premium deductions",
         "/guides/stop-wasp-subscriptions-south-africa/|Stop WASP subscriptions",
@@ -108,7 +108,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "bb94c60fcc42ebf5cb50731aff94a92c7e37b3b5459a1d71cd7b42e1bd81f015",
+      "structuredDataHash": "b58c40ac62328585aa8ca8e7b4bedda02be2d1e4cf86394d5cf9f6afc94dd98c",
       "structuredDataBlockCount": 4,
       "structuredDataSummary": [
         {
@@ -155,7 +155,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -263,8 +263,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/airtime-advance-codes/",
       "h1": "How to Borrow Airtime: Vodacom, MTN, Cell C and Telkom",
-      "visibleTextHash": "cff29e74fb39bf333b718e49951fcb84debb8c09a50f69c30718cbe9f47d2ef3",
-      "internalLinksHash": "331390c6b2046eedb52cb48d819a84b49a05b0dc9c41b446d17d4c6bc9b05ed7",
+      "visibleTextHash": "9e34a71a111a2c8d9ac7ea8b01f897d05876730ab4e93a5eee87d24b5d54f81e",
+      "internalLinksHash": "f737f7eae2df6ffe5f3245339e5de84ca914e017da0ca752cb2bdd7e99aad0b5",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -292,7 +292,7 @@
         "/guides/|Guides",
         "/methodology/|Methodology",
         "/mtn-ussd-codes/|MTN USSD Codes",
-        "/mtn-ussd-codes/|MTN USSD codes *136*2*6#",
+        "/mtn-ussd-codes/|MTN USSD codes *151#",
         "/mtn-ussd-codes/|See MTN USSD codes",
         "/network/cell-c/|Compare Cell C data deals",
         "/network/|Compare Data",
@@ -311,12 +311,12 @@
         "/ussd-codes-south-africa/|USSD Codes Directory",
         "/vodacom-ussd-codes/|See Vodacom USSD codes",
         "/vodacom-ussd-codes/|Vodacom USSD Codes",
-        "/vodacom-ussd-codes/|Vodacom USSD codes *135# menu",
+        "/vodacom-ussd-codes/|Vodacom USSD codes *135*082#",
         "/|DataCost.co.za",
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "96f86b7059d6a116c5fab0899ea66d2ae6168eb6ff66065bff91fe0487f2df95",
+      "structuredDataHash": "1c3addaf6abdd5cbecfc1acdf0781810015eb0c9951a56bff5489270556a2055",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -333,7 +333,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -475,12 +475,12 @@
     },
     {
       "route": "/best-10gb-data-deals-south-africa/",
-      "title": "Best 10GB Data Deals in South Africa — August 2026",
+      "title": "Best 10GB Data Deals in South Africa — September 2026",
       "description": "Compare current 10GB-class South African mobile data offers by anytime data, restricted allocations, price, validity and eligibility using official provider sources.",
       "robots": "",
       "canonical": "https://datacost.co.za/best-10gb-data-deals-south-africa/",
-      "h1": "Best 10GB data deals in South Africa August 2026",
-      "visibleTextHash": "4a1ad622e4686db13195a230ec30b40eee2b4f2234a0d9587b35278a8ba3ea50",
+      "h1": "Best 10GB data deals in South Africa September 2026",
+      "visibleTextHash": "d8f39ad0555fc4ecf29db0f58cee9aaa9dc47454832c6ff9e6c426f0be95befb",
       "internalLinksHash": "d9ee2878e497e72899ebbe6781940df0b604fcc14bcc6a173e7b67ef5c9f573a",
       "internalLinks": [
         "/about/|About",
@@ -538,7 +538,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "53614552ae64645ec7fb89987e6a4538fb1934ee1799652262fde04aa27f9f63",
+      "structuredDataHash": "3060f0025c0a54e0d7fdbf4773ebf2095d29e57c51f8127e32d3a74f12bc66df",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -559,7 +559,7 @@
             "2026-08-04T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-04T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -600,12 +600,12 @@
     },
     {
       "route": "/best-20gb-data-deals-south-africa/",
-      "title": "Best 20GB Data Deals in South Africa — August 2026",
+      "title": "Best 20GB Data Deals in South Africa — September 2026",
       "description": "Compare current 20GB-class South African mobile data offers by anytime data, restricted allocations, price, validity and eligibility using official provider sources.",
       "robots": "",
       "canonical": "https://datacost.co.za/best-20gb-data-deals-south-africa/",
-      "h1": "Best 20GB data deals in South Africa August 2026",
-      "visibleTextHash": "90f23ae38e72ee9fb400ef436b4794501808fedcec8884e74ac349b975c54afa",
+      "h1": "Best 20GB data deals in South Africa September 2026",
+      "visibleTextHash": "5aa70a6c264bace3697f7a884cd8183a2e3e50025ff04ebba6e3801a93f89465",
       "internalLinksHash": "2b0461c90727d20c77927f5de088faa8d1dab38b64feaa981efcce3ba44a048a",
       "internalLinks": [
         "/about/|About",
@@ -664,7 +664,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "32fc4fa9b62d33be2f13bfda6935db9b26befe83d007b466affd247be085026f",
+      "structuredDataHash": "1470044e559ccb353c0720b8b558607949aacbe703330956094d702bb46732f4",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -685,7 +685,7 @@
             "2026-08-04T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-04T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -709,7 +709,7 @@
           ],
           "ids": [],
           "urls": [
-            "https://connect.standardbank.co.za/checkout",
+            "https://connect.standardbank.co.za/sim-plans",
             "https://datacost.co.za/best-20gb-data-deals-south-africa/",
             "https://my.melonmobile.co.za/offers/selected-plan?data=20&plan=byop&sms=0&voice=0",
             "https://personal.nedbank.co.za/nedbank-connect/prepaid-bundles.html",
@@ -727,12 +727,12 @@
     },
     {
       "route": "/best-30gb-data-deals-south-africa/",
-      "title": "Best 30GB Data Deals in South Africa — August 2026",
+      "title": "Best 30GB Data Deals in South Africa — September 2026",
       "description": "Compare current 30GB-class South African mobile data offers by anytime data, restricted allocations, price, validity and eligibility using official provider sources.",
       "robots": "",
       "canonical": "https://datacost.co.za/best-30gb-data-deals-south-africa/",
-      "h1": "Best 30GB data deals in South Africa August 2026",
-      "visibleTextHash": "e8b819376e137006f156bba372f6c826f64e7f1686a62dcd97b7e24dd43a5e68",
+      "h1": "Best 30GB data deals in South Africa September 2026",
+      "visibleTextHash": "8d4271bda2b00a20310b9e724455bcd18c3ee7961f34f64eae4715d6a0d54b4d",
       "internalLinksHash": "bf82f00ea32aa3ffd209736484807696c0cd9e11cda7e0f1576197a5a5a5321f",
       "internalLinks": [
         "/about/|About",
@@ -792,7 +792,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "17b2e6b73fd64b462d6961dd876cca14b7e1a99a2b22633aa1447ffe2a3aeab0",
+      "structuredDataHash": "4b41f6b0b7ba44d1fcdc8b3dfc664e14f3f9a83c47643c4369b357f1ebe9dc79",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -813,7 +813,7 @@
             "2026-08-04T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-04T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -857,12 +857,12 @@
     },
     {
       "route": "/best-data-deals-south-africa/",
-      "title": "Best Data Deals in South Africa — August 2026",
+      "title": "Best Data Deals in South Africa — September 2026",
       "description": "Compare current South African 10GB, 20GB and 30GB mobile data deals using official sources, anytime-data costs, restrictions, validity and eligibility.",
       "robots": "",
       "canonical": "https://datacost.co.za/best-data-deals-south-africa/",
-      "h1": "Best data deals in South Africa August 2026",
-      "visibleTextHash": "4daa53a6ffb0ca97158c290295cdde98fb8b7622ba04735fab05277898790e37",
+      "h1": "Best data deals in South Africa September 2026",
+      "visibleTextHash": "c319c8b0bf4c10a2058773a6826c04e272caacd84a7a6b12ddd022d584a0ffbc",
       "internalLinksHash": "f358f9d97b1657d0e9e04ff143a2758aa24e32e03ae0c8100b98b904931180d3",
       "internalLinks": [
         "/about/|About",
@@ -914,7 +914,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "135b78d6b8e198200a0ba94c3cf9e7de833f7d88512e7242373365e3fcc2600d",
+      "structuredDataHash": "2bfe1b9e40d94b95d2ed22aa2dbdc39d8ad59592bf02e01266aba301a8c4c468",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -935,7 +935,7 @@
             "2026-08-04T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-04T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -1073,7 +1073,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/cell-c-ussd-codes/",
       "h1": "Cell C USSD Codes: *101# Balance, *147# Data and Recharge",
-      "visibleTextHash": "5b5cce16cd8fdfb46f88acb9252728301599d4b644842bbdb78d4d2f74657f72",
+      "visibleTextHash": "dd656e968ed5e61deaa305208e2dd82e39587b83b14d2e421782fadcc106a1e1",
       "internalLinksHash": "bc106575824d48de6b3d805055dce17af53ae08921703550f0afa9c1247aa0cb",
       "internalLinks": [
         "/about/|About",
@@ -1131,7 +1131,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "1b4f57d627c88a3a01a33d989e86c679c43feff9cfa27f53cef6b9f8c1bcab54",
+      "structuredDataHash": "bd10276b764597228757c67bfa50ed706b8e96db200924ddd60e7cd1033131fd",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -1169,7 +1169,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -16653,8 +16653,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/",
       "h1": "South Africa Telecom Guides Hub",
-      "visibleTextHash": "953d664e949fb354bb2797d2085402171f463faa73553c50d3f80d9a17bfd6d7",
-      "internalLinksHash": "f23a03302c8c0dc878c1abdb4a1d0c6970ba673cb50c3c8a304959f7de8bbeed",
+      "visibleTextHash": "d0abf249c1be0ed75d0569423b96ec444f578fc436c520fbef4e42715681ae5d",
+      "internalLinksHash": "4ff7ef2e564b372fbe946a30c9ae559a55ae7bdd9947a57adbc5cd79d1b7285b",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -16729,7 +16729,7 @@
         "/guides/how-to-stop-airtime-being-used-automatically/|How to Stop Airtime Being Used Automatically Fix recurring deductions and fallback usage. Read Guide",
         "/guides/out-of-bundle-data-costs-south-africa/|Out-of-Bundle Data Costs South Africa (2026) Understand out-of-bundle data costs in South Africa. Compare Vodacom, MTN, Telkom, and Cell C risks, and learn how to protect airtime. Read Guide",
         "/guides/out-of-bundle-data-costs-south-africa/|Out-of-Bundle Data Costs South Africa Understand OOB rates, airtime protection, and what to do after unexpected billing. Read Guide",
-        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs Contract South Africa (2026) Choosing between prepaid and contract? We compare the costs, flexibility, and data rates of prepaid vs contract in SA to find the best option for you. Read Guide",
+        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs Contract Phone Pricing in South Africa (2026) Compare prepaid vs contract phone pricing in South Africa by total cost, device payments, flexibility, monthly inclusions and extra usage charges. Read Guide",
         "/guides/stolen-phone-south-africa/|Stolen Phone in South Africa: What to Do Immediately Emergency steps to protect your bank, lock the phone, block the SIM, request IMEI blacklisting and report it to SAPS. Read Guide",
         "/guides/stolen-phone-south-africa/|Stolen Phone in South Africa: What to Do Immediately Safety-first help for banking, remote locking, SIM blocking, IMEI blacklisting and SAPS reporting. Read Guide",
         "/guides/stop-wasp-subscriptions-south-africa/|Stop WASP Subscriptions in South Africa How to stop unwanted premium billing and protect your airtime. Read Guide",
@@ -16773,7 +16773,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "8fc727d4669f5ec9b06e15a100e730e3d906153a7036d7e6a450de774b7a0f88",
+      "structuredDataHash": "8d19b7eb74b8d035e950ca07376498de8a287b68e6b5b9d54f7470e61ac1233c",
       "structuredDataBlockCount": 4,
       "structuredDataSummary": [
         {
@@ -16797,7 +16797,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -16860,7 +16860,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -16872,7 +16872,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/airtime-data-problems-south-africa/",
       "h1": "Airtime &amp; Data Problems in South Africa (Fix Guide 2026)",
-      "visibleTextHash": "b170684125851e1e435c2497eb0a191b8836b51621f568297371b4d32e2f62eb",
+      "visibleTextHash": "21ed1e470e337e987f988ec3a2a968c284c430bf07fd3fa884c17d4b734405b5",
       "internalLinksHash": "5f1095bd45d3b48fb62b5800140443f6047e182bc01fc98a97d991bff4d9e494",
       "internalLinks": [
         "/about/|About",
@@ -16946,7 +16946,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "aff773965358769d27313745afc1bae27d632d0b88fa5c5016aba499778d57c1",
+      "structuredDataHash": "7bbb85da39344d80b0a30d931a4348157e3b59636bd31a4777d18a588c57d968",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -16964,7 +16964,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-08-13T00:00:00.000Z"
           ]
         },
         {
@@ -17234,7 +17234,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/best-monthly-data-deals-south-africa/",
       "h1": "Best Monthly Data Deals South Africa (2026)",
-      "visibleTextHash": "17c9c0112b67e88e9e57a78b2a793b9acc1df126bf2e3e767f8f634bee795e5e",
+      "visibleTextHash": "091d20cf0bdcba4e27691b9b16d8ca66f0fdd1f96a607745df9df6775e03b4ca",
       "internalLinksHash": "b0b33d88ffb3958752371dae8e9590f911050a411497423a229783dd52a8ce34",
       "internalLinks": [
         "/about/|About",
@@ -17290,7 +17290,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "85d1bd7b6430916b929db3309dee54ce07842d64166e77a5714e473eb50a272d",
+      "structuredDataHash": "b1f6a60d39a1e966120434c9abe39c931723a748d059caa01218ed701b518f05",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -17306,7 +17306,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -17363,7 +17363,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -17375,7 +17375,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/best-prepaid-data-deals-south-africa/",
       "h1": "Best Prepaid Data Deals South Africa (2026)",
-      "visibleTextHash": "fda3668b61b0733c219f6828857d6c5132d50a336da01c9317826476966aadd6",
+      "visibleTextHash": "5a6e0c65279f60d8a6eefbc5279f4f0e812e36c3b623f93ecdbd325536243ff5",
       "internalLinksHash": "50eb6a1e8073fcd3f9cf32bcf536a06c782c4dd66ad97700da13d24d9b97e253",
       "internalLinks": [
         "/about/|About",
@@ -17431,7 +17431,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "5288e4f4c27d438ee32215dd561d405fcf12b0830cff928c0e40017dc2ff4aa4",
+      "structuredDataHash": "af21ce82a3bab478894708e1fe1081bda8516e57ddd9aa0a8e11100b6a110a64",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -17447,7 +17447,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -17504,7 +17504,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -17808,7 +17808,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/cheap-night-data-south-africa/",
       "h1": "Night Data South Africa: Hours, Validity and Bundle Checks",
-      "visibleTextHash": "6db79fbd855580b029e60034bf4f50cc57dc2667a499c116a22160810e9b3338",
+      "visibleTextHash": "d5cf42dd94c6b050e626dd6730b9dc9e9d05ffdbd34aca4017780018251ad510",
       "internalLinksHash": "7feffa80f0162a733b2463a3a6372dec79b4fca5e73e99b3683036345355b428",
       "internalLinks": [
         "/about/|About",
@@ -17864,7 +17864,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "31d6d02eccbaba158bba9cde9926f057660d0cb4467824580e856f2fd7843ab9",
+      "structuredDataHash": "761efecbe1a62810c53e4d17ff224d49fc1ce346318408e5804d9917835300d2",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -17880,7 +17880,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-06T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -17936,7 +17936,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-06T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -17948,7 +17948,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/cheapest-10gb-data-south-africa/",
       "h1": "Cheapest 10GB Data Deals South Africa (2026)",
-      "visibleTextHash": "646678d4be37421098873b423a60e5d21f1c359747696a89cad5c47ffbf14dbb",
+      "visibleTextHash": "a983744504d9fc47c9b11f8ada10cb219b4032149326095114569602bbf6560f",
       "internalLinksHash": "7804f2ec4b637b1af81ffc8e53389b9b5e4fe81a725a3c4be69af5cb3dec0925",
       "internalLinks": [
         "/about/|About",
@@ -18004,7 +18004,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "28139d134d4262316343c0fa869364447e70811405feddbf9d7c9ebc6e940dbd",
+      "structuredDataHash": "980ef86ffde187a68b814d2ff8f67265660a52c303ad621d074216c3679f0199",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -18020,7 +18020,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -18069,7 +18069,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -18081,7 +18081,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/cheapest-15gb-data-south-africa/",
       "h1": "Cheapest 15GB Data in South Africa (2026)",
-      "visibleTextHash": "9e4db0eeb2522a9d594f6e96cc6c2e87d01202ebc0701cd21376d45a70fa9ca6",
+      "visibleTextHash": "2391e97b81d1768b4a5f88f7ac91d8dc9e11d3510ce4f03ffe70acae6d878b0c",
       "internalLinksHash": "fc5fddf5e9f49b30dfc0c82d3a3467bfc0f6c21ad113a597d7f5b83eb65b9f58",
       "internalLinks": [
         "/about/|About",
@@ -18137,7 +18137,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "0046ec5b58ba7b99b922a03d1819b14262b05ba9e2d2d3da31d88f9d5a788610",
+      "structuredDataHash": "ef6f762d90517623d66fb9d782194ca82884666ad5e1cd44475c330d43ca60f1",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -18153,7 +18153,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -18202,7 +18202,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -18214,7 +18214,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/cheapest-1gb-data-south-africa/",
       "h1": "Cheapest 1GB Data in South Africa (2026)",
-      "visibleTextHash": "b8fc846a27b69a5bf9a761791651b47275946cfccbc8c7a257f7d980c8d087bd",
+      "visibleTextHash": "f2e494e63fbd80adf38f2edcabedaa1c1b69d66c8eca85f4016374b9207ef1a8",
       "internalLinksHash": "f793ccf20e33ec4f74fe8485d197e62c5dc53cfd36fff2442e4dc87095c2d3d3",
       "internalLinks": [
         "/about/|About",
@@ -18270,7 +18270,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "a8a9f118b5e22369d3bfc1cfb17d19a0683dc8569074395bec8a8e3840a0a1ee",
+      "structuredDataHash": "daacc80b531e5ce7470088694633da6479d7204aae499b5150aa612d14d4dc8a",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -18286,7 +18286,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -18342,7 +18342,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -18354,7 +18354,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/cheapest-20gb-data-south-africa/",
       "h1": "Cheapest 20GB Data in South Africa (2026)",
-      "visibleTextHash": "e72a3493562ba5cfc71b61ea9d0a689f13abe0341af31709b4b0e30120e4512c",
+      "visibleTextHash": "adb5253dc65da8c328b1efb5cedbe30a3adfd3568efd48cfd49558245f040248",
       "internalLinksHash": "0d56be53cf56ce1828c613848eae2c3601bb7b8a8ef8047afa0dfbcf1cb69b0a",
       "internalLinks": [
         "/about/|About",
@@ -18410,7 +18410,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "885e77c182fa92333f7c726a58156a00ebd0936ca5777e9125df2d2689e3d7d8",
+      "structuredDataHash": "b2195949ec0d1245a58b99de34415bf1e7986e9a746befb9ec8e217e376473aa",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -18426,7 +18426,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -18475,7 +18475,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -18487,7 +18487,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/cheapest-2gb-data-south-africa/",
       "h1": "Cheapest 2GB Data in South Africa (2026)",
-      "visibleTextHash": "d8d92f87e685c03bafc9ca5261faecbdec680b698ba973750c6c77d8aa2bce12",
+      "visibleTextHash": "60add1690b18825809854fc3890e7c66e93ef59d8cbf492ae825bc0f3c8ecf6b",
       "internalLinksHash": "055c0582161c0442d8ec9316c926f1f14701dd0f93a8ee366a269f84885261af",
       "internalLinks": [
         "/about/|About",
@@ -18545,7 +18545,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "e426b1ad534ca96b4c27170b90df45758993cba2a977a2f4edb4bbcecc844165",
+      "structuredDataHash": "ff71fbe1f31d06ab41c6f78ee0e86c1d9ac8bcebe86c0215f92c291eb98eb242",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -18561,7 +18561,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -18610,7 +18610,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -18622,7 +18622,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/cheapest-50gb-data-south-africa/",
       "h1": "Cheapest 50GB Data in South Africa (2026)",
-      "visibleTextHash": "f3ae48b756267fd63f1fbf08015b3f5c83f0cf0fb35e2a7455dd4531c48cce2f",
+      "visibleTextHash": "ea5cf90ee3c949c99882e1edcc3c51e74823aabd0b0718b6629db1bd6ab16536",
       "internalLinksHash": "82990145269bd62c817a8f2f1edf8b507aa6583f25042342cf4355f884a69557",
       "internalLinks": [
         "/about/|About",
@@ -18678,7 +18678,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "98a09287fe8be1613398a46d47eedffea02040c63efe8cc58e640bbb60b3d9f5",
+      "structuredDataHash": "2955c847da41b7574a631a7f56179b76327417089210eab37c108c62f27b3b63",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -18694,7 +18694,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -18743,7 +18743,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -18755,7 +18755,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/cheapest-5gb-data-south-africa/",
       "h1": "Cheapest 5GB Data in South Africa (2026)",
-      "visibleTextHash": "72ea946ff8d52fd0301afcb00054ecfaecb275b043668feb4beb5bf669af7e48",
+      "visibleTextHash": "b0a2251fe939443e49747a56cf24f4e768acae1b6b47d682c1aa7bb7bf983026",
       "internalLinksHash": "720c0ea97d6e68d398000cd36db5a314b68d56a9de2c012608c95d467426ae3b",
       "internalLinks": [
         "/about/|About",
@@ -18811,7 +18811,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "ea2c2844db98670154fd47f04e620b5240cd6b9244ebebd07c779a32019ed700",
+      "structuredDataHash": "45e772bcc8c391bb3027616fa5c311c19ea431cbf5197bb4729281b81b02a085",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -18827,7 +18827,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -18876,7 +18876,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -19120,7 +19120,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/cheapest-whatsapp-bundles-south-africa/",
       "h1": "Cheapest WhatsApp Bundles South Africa (2026)",
-      "visibleTextHash": "68cb5f9453ac108ae9b3df5632f8c0d47ffae9b5ae29531976bc6991428ae099",
+      "visibleTextHash": "7e960ec9c821546029b361bccf3d7a62d4f782c12b0c412243cbb68195ab3d3a",
       "internalLinksHash": "0cf6dba80aea47286cfd9506ac0a461fd15c263d1f98e0b4430d47ec39f1322c",
       "internalLinks": [
         "/about/|About",
@@ -19176,7 +19176,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "fb5efc678f6856bbd7e38640a373f1a23498e7e2e7986ebbb518e9d576e8e35c",
+      "structuredDataHash": "90e68b96facbc7ac22dea551975ee1287198c190983dd8a0de6e5a384934ac2c",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -19192,7 +19192,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -19249,7 +19249,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -19482,8 +19482,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/how-to-buy-data-cell-c/",
       "h1": "How to Buy Data on Cell C: Step-by-Step",
-      "visibleTextHash": "f4544de0d2956167c3fc7f94b5149a1c0a33eafeddd82a25fae7b189401c56d7",
-      "internalLinksHash": "5d4d840f6bb232faa87b299802d15ee6b6b5f01236b3109c9c3e7e361da574d6",
+      "visibleTextHash": "a8962dbdef38e3dea0f75074bbfe459fef5dc9e8ee5a17cd6220ba291b2e3836",
+      "internalLinksHash": "cc626c4d1beb1c6e8202e7a24bded7c4327d81fcaa49ea44e4611e81819496dc",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -19508,7 +19508,7 @@
         "/guides/cheapest-data-south-africa/|Cheapest Data South Africa",
         "/guides/convert-airtime-to-data-south-africa/|How to Convert Airtime to Data in South Africa Read the full guide.",
         "/guides/out-of-bundle-data-costs-south-africa/|Out-of-Bundle Data Costs in South Africa (2026) Read the full guide.",
-        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs. Contract in South Africa: Which is Cheaper? Read the full guide.",
+        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs Contract Phone Pricing in South Africa Read the full guide.",
         "/guides/vodacom-vs-mtn-data-prices/|Vodacom vs MTN Data Prices",
         "/guides/|Guides",
         "/methodology/|Methodology",
@@ -19589,8 +19589,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/how-to-buy-data-mtn/",
       "h1": "How to Buy Data on MTN: Easy USSD &amp; App Methods",
-      "visibleTextHash": "9654d40eb819bde915b214714a02a4edfbe2eeca5992eede1953c2a4400f16eb",
-      "internalLinksHash": "cec7b7cfa5fd986ebd7f82c6195868590ba6f260111e98e946f4c97f26afd3a1",
+      "visibleTextHash": "875088ee091552526bb7786781f48a35ddcd041b6d233d9a4dd090197543d5d3",
+      "internalLinksHash": "d07a704520ab6bae2ad92992f72a9032e4fe18c3083e275a31b2725d0858d568",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -19618,7 +19618,7 @@
         "/guides/how-to-check-mtn-airtime-balance/|Check MTN Airtime Balance Confirm airtime before purchase or out-of-bundle usage.",
         "/guides/how-to-check-mtn-data-balance/|Check MTN Data Balance Verify remaining bundle and validity before buying.",
         "/guides/out-of-bundle-data-costs-south-africa/|Out-of-Bundle Data Costs in South Africa (2026) Read the full guide.",
-        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs. Contract in South Africa: Which is Cheaper? Read the full guide.",
+        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs Contract Phone Pricing in South Africa Read the full guide.",
         "/guides/vodacom-vs-mtn-data-prices/|Vodacom vs MTN Data Prices",
         "/guides/|Guides",
         "/methodology/|Methodology",
@@ -19701,8 +19701,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/how-to-buy-data-telkom/",
       "h1": "How to Buy Telkom Data: USSD, App, Voucher &amp; Bank Options",
-      "visibleTextHash": "295dc2585caaaa05a6690fb65d2ee39dc282a0000a8979a7fbb2b1b6f9058315",
-      "internalLinksHash": "6b0b6ac7b5e7f47f131135b979862632dc1c2d5294f901ec4f60cbddf7981fa3",
+      "visibleTextHash": "9611a98008092d0bf5ca1a583a289bbe9bb85e7a56103fa5bee97a0993b01a38",
+      "internalLinksHash": "c90df73e6333997f6cbe2743ba00b2c2a0b864041538b733d8ee0cd6d09c90df",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -19730,7 +19730,7 @@
         "/guides/cheapest-data-south-africa/|Cheapest Data in South Africa Compare Telkom against MTN, Vodacom, and Cell C by price and validity.",
         "/guides/convert-airtime-to-data-south-africa/|How to Convert Airtime to Data in South Africa Read the full guide.",
         "/guides/out-of-bundle-data-costs-south-africa/|Out-of-Bundle Data Costs in South Africa (2026) Read the full guide.",
-        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs. Contract in South Africa: Which is Cheaper? Read the full guide.",
+        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs Contract Phone Pricing in South Africa Read the full guide.",
         "/guides/vodacom-vs-mtn-data-prices/|Vodacom vs MTN Data Prices",
         "/guides/|Guides",
         "/methodology/|Methodology",
@@ -19813,8 +19813,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/how-to-buy-data-vodacom/",
       "h1": "How to Buy Data on Vodacom: Step-by-Step Guide",
-      "visibleTextHash": "b789b98fa7c98a375b5b4e4a328c5e166254008105dfea96162e8c7e97e1e23b",
-      "internalLinksHash": "64854dd85d0db859810fd6b66fd7a2c090b66209fbfbeaf727b326413e48d716",
+      "visibleTextHash": "507a2a1480fdf376104292c554dc5ceaaf4eee174b195994bd5ea6fcbb6ac8db",
+      "internalLinksHash": "7b22e004f16bc8ecf7f709eda97111d29280c209bf6486e26636d9b587859586",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -19842,7 +19842,7 @@
         "/guides/convert-airtime-to-data-south-africa/|How to Convert Airtime to Data in South Africa Read the full guide.",
         "/guides/how-to-check-vodacom-airtime-balance/|Check Vodacom Airtime Balance Confirm airtime before buying or browsing.",
         "/guides/out-of-bundle-data-costs-south-africa/|Out-of-Bundle Data Costs in South Africa (2026) Read the full guide.",
-        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs. Contract in South Africa: Which is Cheaper? Read the full guide.",
+        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs Contract Phone Pricing in South Africa Read the full guide.",
         "/guides/vodacom-vs-mtn-data-prices/|Vodacom vs MTN Data Prices",
         "/guides/|Guides",
         "/methodology/|Methodology",
@@ -19864,7 +19864,7 @@
         "/|Compare All Prices",
         "/|Home"
       ],
-      "structuredDataHash": "af7db7a1a939205906d92eca34675320b6c11e70815bb70ecb7465ea28f9fa07",
+      "structuredDataHash": "d4d3ff2df11dd866ebdb53cf3895d13f3693de31890a9f7f7173295eddeed499",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -19891,7 +19891,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -19914,7 +19914,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -20032,7 +20032,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/how-to-cancel-subscriptions-mtn-vodacom-telkom/",
       "h1": "How to Cancel Subscriptions on MTN, Vodacom, Telkom &amp; Cell C in South Africa (2026)",
-      "visibleTextHash": "12ce7e30d0c19913ccdb49b5708da5218924bd420db3ecbe3bdfe0bfbb5ea8ce",
+      "visibleTextHash": "5606a4cf2edce9c78d6fe9710242d2f48405b4af5c06c9a215d831317e9c5db4",
       "internalLinksHash": "5fb12bd791e0e081283c2f586f39849926000a2c3d90837a354bae36ed9614bc",
       "internalLinks": [
         "/about/|About",
@@ -20085,7 +20085,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "36200771b2666dd73d9819091309d017e98b303c9f35a2459f34d767ccdf6c75",
+      "structuredDataHash": "3b1814191408333156f7bc00cd4f1c5c2253d4dfe814222f3cf5be1119917abc",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -20103,7 +20103,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-04-16T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -20470,12 +20470,12 @@
     },
     {
       "route": "/guides/how-to-check-subscriptions-on-mtn/",
-      "title": "How to Check MTN Subscriptions South Africa (2026)",
-      "description": "How to check MTN subscriptions in South Africa and stop airtime loss. Find active WASP, premium SMS, and recurring services, then fix deductions fast.",
+      "title": "How to Check Subscriptions on MTN (2026)",
+      "description": "How to check subscriptions on MTN using the MTN App, *123# content-service menu or MTN Play, then stop unwanted recurring airtime deductions.",
       "robots": "",
       "canonical": "https://datacost.co.za/guides/how-to-check-subscriptions-on-mtn/",
       "h1": "How to Check Subscriptions on MTN South Africa (2026)",
-      "visibleTextHash": "ca8c86d77ca7bc91f3fc47caffb144d889ec2fe1902e59ad134dad7b39694a00",
+      "visibleTextHash": "7319fcf8ddfffe66f40dcfcdf29423d332246bbce9342e2f18be9b191d6e2399",
       "internalLinksHash": "71f28a61229e6b97ef275c6a9eb8c5b7147131d108eae5778d31e7d1370d33ff",
       "internalLinks": [
         "/about/|About",
@@ -20526,7 +20526,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "be2c2e3fd57d924409174ebee850b30419017fc1e680c177d59f847cfb5f5127",
+      "structuredDataHash": "4d02e368cddfc0e243350fa33eb22df326cb3dc9e51264092c4ba806cb716a34",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -20544,7 +20544,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-07-30T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -20572,12 +20572,12 @@
     },
     {
       "route": "/guides/how-to-check-subscriptions-on-vodacom/",
-      "title": "How to Check Vodacom Subs (Vodacom, MTN Fix 2026)",
+      "title": "How to Check Vodacom Subscriptions (2026 Fix)",
       "description": "How to check Vodacom subscriptions in South Africa and stop hidden deductions. Find active WASP, premium SMS, and recurring services, then fix fast.",
       "robots": "",
       "canonical": "https://datacost.co.za/guides/how-to-check-subscriptions-on-vodacom/",
       "h1": "How to Check Subscriptions on Vodacom South Africa (2026)",
-      "visibleTextHash": "daa8dca446c604bdbad98dddc17866e590e2bce78511942d758054bbcfd0d3cb",
+      "visibleTextHash": "d73d8a7a0947da55882727f805ba3477b1d9981cdb2d1c236b73871aef56cc4d",
       "internalLinksHash": "b1ace286e355753bdaaf6a2be4d811fcb33272e6440cf4713e3bf93b6f18659d",
       "internalLinks": [
         "/about/|About",
@@ -20629,7 +20629,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "0c5e78f3407b147a90df46f3002319815947b9cba6c04f3b0bc6806406835c0f",
+      "structuredDataHash": "da49b657f5ba7f8c72b0047f55eecd3dc571d55a7313cfd539dda29edada08aa",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -20647,7 +20647,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-04-16T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -20795,7 +20795,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/how-to-protect-airtime-from-being-used/",
       "h1": "How to Protect Airtime from Being Used on MTN, Vodacom, Telkom &amp; Cell C (2026)",
-      "visibleTextHash": "7fe24755b5bec2e2694bc4fc9d9775d8c2dea6147bad8276c8d6f3e8f165730f",
+      "visibleTextHash": "aeb7986d8fd405f6d293f7e97420cd7b24b0854507f4a93773f04825c14ac491",
       "internalLinksHash": "0652c062a095935e29c0c5ccfd93e811da09fe05b5e93aed5d1e8f2214258cb7",
       "internalLinks": [
         "/about/|About",
@@ -20848,7 +20848,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "c17042fd2d4332c72b406c9393bb17711245d00c70a5f421ba09fb5d1235b6a3",
+      "structuredDataHash": "b0da2c69eb5d2d295c0f11cc7d231fc4fb3913e4581e536fdff033ad0f07fb09",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -20866,7 +20866,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-07-30T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -20899,7 +20899,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/how-to-stop-airtime-being-used-automatically/",
       "h1": "How to Stop Airtime Being Used Automatically on MTN, Vodacom, Telkom &amp; Cell C (2026)",
-      "visibleTextHash": "5ca614917ff1be3d0335a808b1e39d50f18b97e4f651f4443cfbf5570b4862db",
+      "visibleTextHash": "2aa1bfd2f2b26477934787d4d0e53f625e92c7b7e88be2cf2532f717db5f5ede",
       "internalLinksHash": "016b67e0fe6d671722b1ca1f0e6890bb49585430172ac194f991b1b9844169c4",
       "internalLinks": [
         "/about/|About",
@@ -20952,7 +20952,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "bd4e5cbe1d4a128b380691dc0a00886ee3350371f8abbe49ee3610fb9d927555",
+      "structuredDataHash": "6c4677e5b7b2d03c30391696e005d945c9e89bd96983baf16581937d9a4b2e49",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -20970,7 +20970,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-04-16T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -21142,12 +21142,12 @@
     },
     {
       "route": "/guides/prepaid-vs-contract-south-africa/",
-      "title": "Prepaid vs Contract South Africa (2026)",
-      "description": "Choosing between prepaid and contract? We compare the costs, flexibility, and data rates of prepaid vs contract in SA to find the best option for you.",
+      "title": "Prepaid vs Contract Phone Pricing in South Africa (2026)",
+      "description": "Compare prepaid vs contract phone pricing in South Africa by total cost, device payments, flexibility, monthly inclusions and extra usage charges.",
       "robots": "",
       "canonical": "https://datacost.co.za/guides/prepaid-vs-contract-south-africa/",
-      "h1": "Prepaid vs. Contract in South Africa: Which is Cheaper?",
-      "visibleTextHash": "d101cf67dcda53642f49a52a1ada8722fe393d923928a23accc15baf6c77c3b4",
+      "h1": "Prepaid vs Contract Phone Pricing in South Africa",
+      "visibleTextHash": "d6cd6b9bccecc6a170d35d6052cb78275348bf9ef5dde1a272cd3fc862b406c1",
       "internalLinksHash": "e257809d38756b2cf661ab213898e4a9e07e132d564fa84feca6bfe3ebde4f7a",
       "internalLinks": [
         "/about/|About",
@@ -21195,7 +21195,7 @@
         "/|Compare All Prices",
         "/|Home"
       ],
-      "structuredDataHash": "adfb4492e548aeeec15441bb2b2edcc6e3a25819bb60ffccff31686b10fad186",
+      "structuredDataHash": "fa705e5c0c3e9510b0e491458d869d54020baa7d11dd507f2ca1e9e0bc08c333",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -21222,7 +21222,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-08-27T00:00:00.000Z"
           ]
         },
         {
@@ -21245,7 +21245,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-08-27T00:00:00.000Z"
           ]
         }
       ]
@@ -21787,7 +21787,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/why-is-my-airtime-disappearing-south-africa/",
       "h1": "Why Is My Airtime Disappearing?",
-      "visibleTextHash": "925d7ebd0c208c0e7d75382285316e93d9d286ecbc14b3d72161cddb7fdf8e97",
+      "visibleTextHash": "d307dd0dde461096b51dd091266a0c3dbf5b7bcf05baf3d1ab19d732c577d162",
       "internalLinksHash": "70e4ddb2192c420749e2112ba6944257be058de3681c1f60834c99c68a3009c6",
       "internalLinks": [
         "/about/|About",
@@ -21850,7 +21850,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "bc8fa9d29482f851c6666063060cf98ac2c408b16555f8d1fb40f499765c5b46",
+      "structuredDataHash": "abe173adde6f22a5ac74625eee027b5a25df1f0680ddcfe208a36fd5bfab3032",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -21867,7 +21867,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -21900,8 +21900,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/why-is-my-data-disappearing-mtn/",
       "h1": "Why Your Data Disappears on MTN (Fix Guide 2026)",
-      "visibleTextHash": "23e75ffd1187e5066eb0e721104e274081e73bb462e44d005035e82353db0326",
-      "internalLinksHash": "38c9062bafc327a300fdfa1a9d1d980923af3cd831a70d9a9c31ecf6e6dd6647",
+      "visibleTextHash": "2edae6dfe8aa38fa087bc76f4d87ebb95b46fbbca796a62fc480e3b3721340bd",
+      "internalLinksHash": "fb32a92ceaf11c52c192a597256aefb6a1a4fadb2e1c3274e79dcc44257e7fcd",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -21930,7 +21930,7 @@
         "/guides/convert-airtime-to-data-south-africa/|How to Convert Airtime to Data in South Africa Read the full guide.",
         "/guides/how-to-check-subscriptions-on-mtn/|How to Check Subscriptions on MTN Identify recurring services affecting spend and deductions.",
         "/guides/out-of-bundle-data-costs-south-africa/|Out-of-Bundle Data Costs in South Africa (2026) Read the full guide.",
-        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs. Contract in South Africa: Which is Cheaper? Read the full guide.",
+        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs Contract Phone Pricing in South Africa Read the full guide.",
         "/guides/stop-wasp-subscriptions-south-africa/|Stop WASP / VAS Charges Use the SA-wide cancellation workflow when recurring charges appear.",
         "/guides/vodacom-vs-mtn-data-prices/|Vodacom vs MTN Data Prices",
         "/guides/why-is-my-data-disappearing-south-africa/|South Africa Parent Guide: Why Data Disappears See the broader national diagnosis flow and compare behaviours across networks.",
@@ -22014,7 +22014,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/why-is-my-data-disappearing-south-africa/",
       "h1": "Why Is My Data Disappearing on Vodacom, MTN, Telkom &amp; Cell C? (2026)",
-      "visibleTextHash": "82eabd55d4b98060d9db124178e3a536e99aee32b8cb42ec1c161738434691bd",
+      "visibleTextHash": "6a1c9a0c5025c7ef6b13bb6a7e350cca585eb99b61e44ccca5ea20569adbefbe",
       "internalLinksHash": "5f23b9d37c0cb4660a3204184e8dffefa2111ebb31f24f62da2f06a9ffd29dd7",
       "internalLinks": [
         "/about/|About",
@@ -22069,7 +22069,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "b8283c5a7ad8aa5d862b6ec0ea45dbefb0007925b6ad1a4ad42833785b625774",
+      "structuredDataHash": "6fef963234d77cd2d3c91b58fe018ba946ca176d2892eb34f85f125e5f52f110",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -22087,7 +22087,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -22120,8 +22120,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/why-is-my-data-disappearing-vodacom/",
       "h1": "Why Your Data Disappears on Vodacom (Fix Guide 2026)",
-      "visibleTextHash": "e7eb31a592a251e5b2590175d7e65f8fa765f7c3f1d9e38f8e165ab72021e3ee",
-      "internalLinksHash": "d8c31ab4fc6cb92dfa85d34f99609ba7061adbcf16ef777ac94c1656a517d8b7",
+      "visibleTextHash": "de11363e41b7be07e00bd17ad3c63002f1227075c0b9104a12e4cdd7e04944a1",
+      "internalLinksHash": "031b7e074b2cc2804285d1ae07a374dd7b71945639516953ecce1d5c0b3b1bcb",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -22150,7 +22150,7 @@
         "/guides/convert-airtime-to-data-south-africa/|How to Convert Airtime to Data in South Africa Read the full guide.",
         "/guides/how-to-check-subscriptions-on-vodacom/|How to Check Subscriptions on Vodacom Verify active services that may be reducing airtime or data value.",
         "/guides/out-of-bundle-data-costs-south-africa/|Out-of-Bundle Data Costs in South Africa (2026) Read the full guide.",
-        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs. Contract in South Africa: Which is Cheaper? Read the full guide.",
+        "/guides/prepaid-vs-contract-south-africa/|Prepaid vs Contract Phone Pricing in South Africa Read the full guide.",
         "/guides/stop-wasp-subscriptions-south-africa/|Stop WASP / VAS Charges Follow cancellation steps if recurring charges are detected.",
         "/guides/vodacom-vs-mtn-data-prices/|Vodacom vs MTN Data Prices",
         "/guides/why-is-my-data-disappearing-south-africa/|South Africa Parent Guide: Why Data Disappears Use the national overview for cross-network causes and baseline checks.",
@@ -22234,7 +22234,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/why-is-my-data-finishing-so-fast/",
       "h1": "Why Is My Data Finishing So Fast on MTN, Vodacom, Telkom &amp; Cell C? (2026)",
-      "visibleTextHash": "8dc09068246ea4507a94a3eb37b3f6572a7ce283ee2095941ab67d3a32630f90",
+      "visibleTextHash": "6f8620935f70c4f5eb79ec0beb28312922d726aa8709cb0e2cf3f84d756d6467",
       "internalLinksHash": "45bef2dbd597c28156f247334b9e227e09e64cf94a9f8dd28a19b7b7c97bcda2",
       "internalLinks": [
         "/about/|About",
@@ -22287,7 +22287,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "9157ae3b65f0a87c1a3e968b3e910dcd2b6bb0aa16561c827af3dde20fd1d29f",
+      "structuredDataHash": "d3597cf27a44f3814e44340e33a01b9b53744540337577fba3ba7f5485cae6bc",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -22305,7 +22305,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -22430,13 +22430,13 @@
     },
     {
       "route": "/mtn-ussd-codes/",
-      "title": "MTN USSD Codes: *136# Balance, Data, Recharge and XtraTime",
-      "description": "MTN USSD codes for South Africa: dial *136# to check balance, *136*2# to buy data, use *136*VoucherCode# to recharge and *136*2*6# for XtraTime.",
+      "title": "MTN USSD Codes: *136# Balance, Data, CallBack and XtraTime",
+      "description": "MTN USSD codes for South Africa: dial *136# to check balance, *136*2# to buy data, *121*number# for CallBack and *151# for XtraTime.",
       "robots": "",
       "canonical": "https://datacost.co.za/mtn-ussd-codes/",
-      "h1": "MTN USSD Codes: *136# Balance, Data, Recharge and XtraTime",
-      "visibleTextHash": "516f077bb7d237a3f13b4ebecdd199856b8fab365489d0bf27ec9115be1c2b0b",
-      "internalLinksHash": "cf26c0183226601aa5e3dbe74460515016a3d6ae2b4a9aa5139f516d986d91bd",
+      "h1": "MTN USSD Codes: *136# Balance, Data, CallBack and XtraTime",
+      "visibleTextHash": "54c273c021cff3642e64d2674eb589b90adc097540eb95856773720695b81483",
+      "internalLinksHash": "85a5e9aa160fd8c3b045c1069f8012b165d65aadfadfefe8ce35b8c638428301",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -22486,7 +22486,7 @@
         "/trust/|Trust",
         "/trust/|Trust Center",
         "/ussd-codes-south-africa/|All Networks",
-        "/ussd-codes-south-africa/|MTN Please Call Me guidance",
+        "/ussd-codes-south-africa/|MTN Please Call Me code",
         "/ussd-codes-south-africa/|USSD Codes",
         "/ussd-codes-south-africa/|USSD Codes Directory",
         "/ussd-codes-south-africa/|USSD codes South Africa",
@@ -22496,7 +22496,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "a5175a8e782808054a8a9a8c9890047d4f44d0e25a35c6956ec5e4fea3f3ba5b",
+      "structuredDataHash": "192382d3a34e4d69910d542830c9b339935ed3a481e1bc07c8cd0d4563b68ed2",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -22534,7 +22534,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -22546,7 +22546,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/",
       "h1": "Compare Mobile Networks South Africa",
-      "visibleTextHash": "b1667763a43fd71eb67a4b28ac08e8468eac2d6482baeda54b657148614fdd77",
+      "visibleTextHash": "93b789640dd8773d640bb0477006b7fcf5a670004bd1644d05a67838adbab72c",
       "internalLinksHash": "2abe5e2e48620bace8eddba52007d0c2b74ad4eba664b5ebcd5e1213315955a8",
       "internalLinks": [
         "/about/|About",
@@ -22606,7 +22606,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "2e70bff2fdd3f58ccaa76912a2da234fb84ada8652fef134a963fe3cf91da063",
+      "structuredDataHash": "9cf95aca9ddc40aab71a1d46b0efafe9122c5d24acbb288fa4d7e738747ff9f1",
       "structuredDataBlockCount": 4,
       "structuredDataSummary": [
         {
@@ -22630,7 +22630,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -22677,7 +22677,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -22689,7 +22689,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/cell-c/",
       "h1": "Cell C Data Deals &amp; Prepaid Bundles South Africa",
-      "visibleTextHash": "a3141fdc11bc68daa193636958cffba8657004cdf40b1c359a0cb67d35c0714a",
+      "visibleTextHash": "0904775b6b6c1e10e085ba95172aff7e82b10dd4f7605abf5bbe2f2b6c2fbb6d",
       "internalLinksHash": "fd4a008279b132b4769f0c5af0f3f04bb0e7bd01700f0483731939b27e244df9",
       "internalLinks": [
         "/about/|About",
@@ -22750,7 +22750,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "d7264c9f34763de758d09d2741b8a59756285eb03b26611b53a1f57cc8d4a10a",
+      "structuredDataHash": "7c2b6ad4c349072924516c7647d61195e7f35d38f4910012aec24a37327ee33f",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -22767,7 +22767,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -22820,7 +22820,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -22832,7 +22832,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/cell-c/cheapest-1gb/",
       "h1": "Cell C Cheapest 1GB Data Deals (2026)",
-      "visibleTextHash": "087d7b672082af6029a93ff6ffe77d2cdd0f5c8113a73114b9966090e20d1c20",
+      "visibleTextHash": "90ee60b9b5ec80ccc1048e14537341640e08c81b471073721778477f6df34f50",
       "internalLinksHash": "5b9c49e2a5030053c69b7d0aa551688baa1ece07a1e2a94a01426bda884ad8af",
       "internalLinks": [
         "/about/|About",
@@ -22875,7 +22875,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "78ea565d3654fd6860b90f0608e3f55041c804bb5a014e3175848acdc1b9a1b2",
+      "structuredDataHash": "991d5afdda2d5111011278f376aaf5378ed2c19bebdda6bc0f5679e5fa048139",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -22895,7 +22895,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -22949,7 +22949,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -22961,7 +22961,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/cell-c/daily-data/",
       "h1": "Cell C Daily Data Deals (2026)",
-      "visibleTextHash": "f048b5cfc818fe64f0e91da3b7b968d9811a651700579de87822ff945fccff0b",
+      "visibleTextHash": "d7042975ab6dfaaa6655574e69bd8ce4d4c5acdf99ae0cdae50992a62ba3998e",
       "internalLinksHash": "76535ff14f91f91343f9a3d3a91afc26658f7bc387e6cf5d821795a7c445d8d0",
       "internalLinks": [
         "/about/|About",
@@ -23003,7 +23003,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "44c8428e330d41aed568dce5008cae1368acd1dabec208336387418824ac886e",
+      "structuredDataHash": "a92d962ae7e2219ac3dee8c5a26282c1a9c680e640ef8f256257f59755c730b5",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -23023,7 +23023,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -23077,7 +23077,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -23089,7 +23089,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/cell-c/monthly-data/",
       "h1": "Cell C Monthly Data Deals (2026)",
-      "visibleTextHash": "b7fdbbf9c7533cbd20b3e015930ebecd2f4a7b56c59627d4f9417b521d210439",
+      "visibleTextHash": "b51e3e4c83698ae4cbafaeeacdc260b46f4c7ab632f0e8cb90c5146314feec7a",
       "internalLinksHash": "b64833eddfabecb4aaf075e4d9dc2cefc5bd73fbb5314ba395bffbd1d53eb764",
       "internalLinks": [
         "/about/|About",
@@ -23133,7 +23133,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "cebfdb1320b2e4f76731eba6334dbd57c65240f2044b631ac5f79364d9787a3c",
+      "structuredDataHash": "6c168f7e8159703e6cfb09c490c36a496f2c65d33c3a4fd1a8d7d9b11f9d7a64",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -23153,7 +23153,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -23207,7 +23207,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -23235,7 +23235,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/cell-c/social-data/",
       "h1": "Cell C Social Data Deals (2026)",
-      "visibleTextHash": "3be80e0318760623c19f647899b49b705037def46bce5b6e0f577e5883b80f2a",
+      "visibleTextHash": "870b28e63a5df4c0e55b5a4fa764936053c72fbd7be09629074c7907735f340d",
       "internalLinksHash": "76535ff14f91f91343f9a3d3a91afc26658f7bc387e6cf5d821795a7c445d8d0",
       "internalLinks": [
         "/about/|About",
@@ -23277,7 +23277,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "095448a65acb4ddc93069cc30ebd49eb469cb5184a830ed8651a86298b39a98c",
+      "structuredDataHash": "7e93bbb77f6f6aecbe0d5898214f8212dae0cf90ecc89bede55d1196b8a4caac",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -23297,7 +23297,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -23351,7 +23351,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -23379,8 +23379,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/mtn/",
       "h1": "MTN Data Bundles, Deals &amp; USSD Codes South Africa",
-      "visibleTextHash": "858f259144939d46fbd6391f8492f012e4dfb618166eba90e818b1749f569f01",
-      "internalLinksHash": "957959939e4c0297353657ad969b72a1a0a41590229e0aac1524f8d3ea5cf422",
+      "visibleTextHash": "7674964221ad3e740e8acad3891102cc837ee0968a1b591045b9e41580e0236d",
+      "internalLinksHash": "2dae1fc9e9e05110cb5ee8f404d2d7bcb00ee7dfc70e3e49891dd0dc88bde349",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -23395,7 +23395,6 @@
         "/cookie-policy/|Cookie Policy",
         "/editorial-policy/|Editorial Policy",
         "/editorial-policy/|editorial policy",
-        "/fibre/fibre-prices-south-africa/|Fibre prices and FNOs Check source-backed fibre price examples and learn who owns the line before choosing mobile fallback.",
         "/fibre/fibre-vs-lte-south-africa/|Fibre vs LTE home internet Compare fixed fibre, LTE, 5G and mobile-data fallback before using a SIM as home internet.",
         "/fix/lte-router-connected-no-internet/|LTE router connected but no internet Troubleshoot router Wi-Fi, SIM, APN, and LTE status.",
         "/fix/mtn-data-not-working/|MTN data not working Check balance, APN, signal, and account status before topping up again.",
@@ -23409,6 +23408,7 @@
         "/guides/how-to-buy-data-mtn/|How to buy MTN data Step-by-step buy flow for MTN.",
         "/guides/how-to-check-mtn-airtime-balance/|How to check MTN airtime balance Confirm airtime before out-of-bundle use.",
         "/guides/how-to-check-mtn-data-balance/|How to check MTN data balance USSD and app steps for MTN data checks.",
+        "/guides/how-to-check-subscriptions-on-mtn/|How to check subscriptions on MTN Review recurring paid services when airtime is disappearing.",
         "/guides/vodacom-vs-mtn-data-prices/|MTN vs Vodacom",
         "/guides/vodacom-vs-mtn-data-prices/|Vodacom vs MTN Data Prices",
         "/guides/why-is-my-data-finishing-so-fast/|Why MTN data finishes fast",
@@ -23416,7 +23416,7 @@
         "/methodology/|Methodology",
         "/methodology/|methodology",
         "/mtn-ussd-codes/|MTN USSD Codes",
-        "/mtn-ussd-codes/|MTN USSD codes Open the MTN-specific balance, recharge, and Please Call Me shortcuts.",
+        "/mtn-ussd-codes/|MTN USSD codes Open the MTN-specific balance, bundle, and Please Call Me shortcuts.",
         "/network/cell-c/|Cell C",
         "/network/mtn/|MTN",
         "/network/telkom/|Telkom",
@@ -23437,7 +23437,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "8570b8352ffccc23f07bcb4672985c4556e4ca42d603bb047ab3dd0a90b6f3c5",
+      "structuredDataHash": "531aafac0f7d9250b00b7199a9dc5a88457b3ea98f8c1d060224c0f2e9ef5f29",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -23454,7 +23454,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -23507,7 +23507,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -23519,7 +23519,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/mtn/cheapest-1gb/",
       "h1": "MTN Cheapest 1GB Data Deals (2026)",
-      "visibleTextHash": "503bdff45c878b137a9bf029e806b78794db08b667be3bd1518da81a27d01ca7",
+      "visibleTextHash": "788b735d46acfa2190c2fe081d70d06b1b55e1b3feb93cdbfce7e2740a6b94f6",
       "internalLinksHash": "dcb5c39f9c9b170ca414ddcfce9231160085d675c8e626768e909a5060547d6a",
       "internalLinks": [
         "/about/|About",
@@ -23562,7 +23562,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "69cbe7ce9c84e14d5a485a367a2b7911ed60d9420863d69d818e5f4cdb802319",
+      "structuredDataHash": "4b0df78a3d02d26586e285e0ffd56abf35200265bd246e2a848f33c2cb144ede",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -23582,7 +23582,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -23636,7 +23636,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -23648,7 +23648,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/mtn/daily-data/",
       "h1": "MTN Daily Data Deals (2026)",
-      "visibleTextHash": "0307ef2120e42ccad783f9467bfc17409f121625a6e6d24bcc822d9a83013976",
+      "visibleTextHash": "26ec8d619628276383dc31329ff05d314e7bfe8d0d56206ef91c29e45e1a05d2",
       "internalLinksHash": "6a8caec96719aa57063b4e64e6ac3a79fe9eb223c2ad137ed334f54f7ad48f69",
       "internalLinks": [
         "/about/|About",
@@ -23690,7 +23690,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "5ba745463299ec9d8215e02aaa6324f0becbe18b1dd39bec30a43e5f0f7a5f9d",
+      "structuredDataHash": "28f96cfcb124c7f21ad834c712cc7951e2ac8bb6ecdb10173849eb937e383627",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -23710,7 +23710,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -23764,7 +23764,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -23776,7 +23776,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/mtn/monthly-data/",
       "h1": "MTN Monthly Data Deals (2026)",
-      "visibleTextHash": "ce8b828414768cf7d20b5958ba37148776877b2e2cb9db7ba3a54c410fe59d97",
+      "visibleTextHash": "14f25810043b01136d958b8d76a2889ceb593a2577811032e1fcdb63f376808d",
       "internalLinksHash": "18a8836c17015ca8c34986ccaa4251e6af79e080a053c7d660a9b56ead1d19f9",
       "internalLinks": [
         "/about/|About",
@@ -23820,7 +23820,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "114b2db1786dd57bb03f71d9939e1796c3ea56b5e1bce52f6bf149a7f94e1283",
+      "structuredDataHash": "d5ba0d1eb1f3786b3b9807106eb6a28f665f693f3b33c5db766fa8190901ecf3",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -23840,7 +23840,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -23894,7 +23894,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -23906,7 +23906,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/mtn/night-data/",
       "h1": "MTN Night Data Deals (2026)",
-      "visibleTextHash": "ee6e9e9403f278f29ba6013f137ab8d4f61876ce3369163b23ca99e6623f1d98",
+      "visibleTextHash": "3234c1ed18651556e27c71524b3227ae393c25165f43bc0e82561cf52478e4b8",
       "internalLinksHash": "6a8caec96719aa57063b4e64e6ac3a79fe9eb223c2ad137ed334f54f7ad48f69",
       "internalLinks": [
         "/about/|About",
@@ -23948,7 +23948,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "14a494d9d54c83539a4b1662de76a8193bf95896d9f683e88265fd19e0467f63",
+      "structuredDataHash": "61424ef58c9711a8dec245a5db9a5e895ac4a8f4a9faa0a54ac33935d0ccf769",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -23968,7 +23968,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -24022,7 +24022,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -24034,7 +24034,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/mtn/social-data/",
       "h1": "MTN Social Data Deals (2026)",
-      "visibleTextHash": "257491df83ee2801f14ef0870b6a98e531246bc51998c1fd8bf2664c08cb8d40",
+      "visibleTextHash": "c5049cc4e2ae44ff266161a5e3c909b037bd148b8d27f17b48c524fbd82eebe0",
       "internalLinksHash": "6a8caec96719aa57063b4e64e6ac3a79fe9eb223c2ad137ed334f54f7ad48f69",
       "internalLinks": [
         "/about/|About",
@@ -24076,7 +24076,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "8c7b97375d1381cef356decfe28cd2023c570dbd6ed2e791dec17b9a831e913c",
+      "structuredDataHash": "aeef88beb323fa1872e92997327d5cc001a4b8715f438a206acd66b3a96b4f6a",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -24096,7 +24096,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -24150,7 +24150,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -24162,7 +24162,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/mtn/weekly-data/",
       "h1": "MTN Weekly Data Deals (2026)",
-      "visibleTextHash": "791766bd89586b7d6404b467794ee2c9dd8d508229c3e6b6dbf561c4cd87c1ac",
+      "visibleTextHash": "60cdcef609a7d545e098b180ab323fe5c3d4d016a76a2eb0aeca2c44792544c3",
       "internalLinksHash": "6a8caec96719aa57063b4e64e6ac3a79fe9eb223c2ad137ed334f54f7ad48f69",
       "internalLinks": [
         "/about/|About",
@@ -24204,7 +24204,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "31ddd266ede1a416821979c855bc4ac679474ae89174b5468f897fc0a196a987",
+      "structuredDataHash": "0a752308983ad605f092258f141f487bd4fbd56a02753354ea845099da8ac1c6",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -24224,7 +24224,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -24278,7 +24278,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -24290,7 +24290,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/rain/",
       "h1": "Rain Data Prices South Africa",
-      "visibleTextHash": "6a2e5356756796622ba22c00692362367f9b1fa590359268984a4f69081ab33a",
+      "visibleTextHash": "20997ea1c8f6b0f9e3c35ec74c6b3278521ad3780286cbcfbd4539a090fcb251",
       "internalLinksHash": "ec0bd9d6c5dcbea422908fe4a64f7c079d7c65c5364d0e6c1af5e4a8cff166a4",
       "internalLinks": [
         "/about/|About",
@@ -24340,7 +24340,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "290ab2c82b8587cb88981da45c07b46319e108c7815132897232eabb85d8d1cc",
+      "structuredDataHash": "7b853f671a3e268836253eabfb6844a1d6d70bfeffa2cb73fdcdd9cef517010c",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -24357,7 +24357,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -24410,7 +24410,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -24422,7 +24422,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/rain/monthly-data/",
       "h1": "Rain Monthly Data Deals (2026)",
-      "visibleTextHash": "6aa762022af26ad82c32d81ff85bb313134f394bf525cf082a6ba85e8eca64e0",
+      "visibleTextHash": "edb534842ffc49925dc36e8f48ff4e1ada85a33e8d885c7924c2c0d506763bd3",
       "internalLinksHash": "61f7dd0169d66c1dab940aa95b128a347e2ba4a78d4616e85632bbfe3e59f6ab",
       "internalLinks": [
         "/about/|About",
@@ -24464,7 +24464,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "2f765c76d44cbe8fd9453c41c6b8ede0358d4b5fa073f25e7971b5cc1cc77f38",
+      "structuredDataHash": "7f683feb25f333d2b16e6a22c2245dc4f261b6d6d6bee1bc8cee902a609f3214",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -24484,7 +24484,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -24538,7 +24538,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -24550,7 +24550,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/telkom/",
       "h1": "Telkom Data Prices South Africa",
-      "visibleTextHash": "454dfc5a276396d3118016998079bb5c75896d2642bf82f9c1fc7d3bb46b64d2",
+      "visibleTextHash": "80171323b289732795552b5be3998f67224367d4d5df24f764a617775402a92b",
       "internalLinksHash": "8a307ceb88de3b1571f5d14f441dde6cc8b2f8439d65bab8c367c22985594ea1",
       "internalLinks": [
         "/about/|About",
@@ -24608,7 +24608,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "bf57bed020718cd12074fa0f518bb33758d0273fc3168ee4f1677c3992a60742",
+      "structuredDataHash": "47c1a1cf012a06f7eb8cb7aaa3e53fc36caac8ae7c2600d12033bcec22defd1e",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -24625,7 +24625,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -24678,7 +24678,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -24690,7 +24690,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/telkom/cheapest-1gb/",
       "h1": "Telkom Cheapest 1GB Data Deals (2026)",
-      "visibleTextHash": "a2701de08a893ddc1a40d0499b6304536ebfdf20fd31b4cb48045acdeb72f1de",
+      "visibleTextHash": "df564670efa57250c2ef0d2a774a8faffde6744ba94e734c03e38aced44e7971",
       "internalLinksHash": "4935797470b375282459ba97e56a0eaa25f5c963799dc1bbde483a35c07dea16",
       "internalLinks": [
         "/about/|About",
@@ -24734,7 +24734,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "a7c60acbd3af1572c9c353377e1f1b6eb9f81a03443751ecbd57da7101dc0b8e",
+      "structuredDataHash": "e5693028211c442a4203c7fb53051ec15dd5b2102c7ccda1f89f822fa6bc2206",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -24754,7 +24754,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -24808,7 +24808,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -24820,7 +24820,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/telkom/daily-data/",
       "h1": "Telkom Daily Data Deals (2026)",
-      "visibleTextHash": "52a7d7f2929364bf54a3b0e22d9a7354314d0dabef724d389d826d6f40109f25",
+      "visibleTextHash": "e54c6d6522c7a0e87e493f72bbe8826eb2faae0cef50cfa12f1ac825f778cda6",
       "internalLinksHash": "194e61c2105f5ebfd6b1333f11d5f6688d81388d9798e69835ea5f88b57b8044",
       "internalLinks": [
         "/about/|About",
@@ -24862,7 +24862,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "0869b9788b0bd9e79414d7510313fb929e3393f08ca8baad45e572a003dc132e",
+      "structuredDataHash": "b12a8fef7330c9057b95eb28a7acc54e5b20444b07a5719d047565dca99b1125",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -24882,7 +24882,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -24936,7 +24936,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -24948,7 +24948,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/telkom/monthly-data/",
       "h1": "Telkom Monthly Data Deals (2026)",
-      "visibleTextHash": "8978afd7cb90473b5efe6c214d3d3c779d69f50f4523194e812ce189de315f4d",
+      "visibleTextHash": "dc3fe01d30b291b1a95c15939d6984effad3d16bf353e046f24f1c8905fb61c4",
       "internalLinksHash": "6effbb6cb9e0302f1d7080d34ddf920228cd0f627a105da564ae322aed306070",
       "internalLinks": [
         "/about/|About",
@@ -24993,7 +24993,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "59fba803c5a9d1e3ca3d67bff2591594735eae347a5e3b7fccc190b0cefb1813",
+      "structuredDataHash": "f97d0ea2e2ca94a30c7a74ea9d5ff5553ca2f71416393dc431544ff3209242ed",
       "structuredDataBlockCount": 4,
       "structuredDataSummary": [
         {
@@ -25013,7 +25013,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -25051,7 +25051,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -25079,7 +25079,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/telkom/social-data/",
       "h1": "Telkom Social Data Deals (2026)",
-      "visibleTextHash": "9ee6c88057bbd0f03ee9068fcede70033057c13ea5f91cd29b0ba4aad0fa95b1",
+      "visibleTextHash": "4151c51be34f8ad2eb9534620898ae693951a9d066d5f83db99a5341ee6e3852",
       "internalLinksHash": "194e61c2105f5ebfd6b1333f11d5f6688d81388d9798e69835ea5f88b57b8044",
       "internalLinks": [
         "/about/|About",
@@ -25121,7 +25121,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "a48109ab1e54d216b0d40c04fe522e3f82b628b92ae057266e79736c88fda06f",
+      "structuredDataHash": "f7a61297199a9a8f3f8650056989f36d95efe0eb0da6e0daa0b2d0d2ce0f66bf",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -25141,7 +25141,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -25195,7 +25195,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -25207,7 +25207,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/telkom/weekly-data/",
       "h1": "Telkom Weekly Data Deals (2026)",
-      "visibleTextHash": "cfaefb6620f04852df6eec74fed6b3d4ca794635114d3a64b96cd3057289a1f6",
+      "visibleTextHash": "9ce5caf6297d413540e3bde4370b2de091d5c23fd4ff3473f20ce50ad3c97498",
       "internalLinksHash": "194e61c2105f5ebfd6b1333f11d5f6688d81388d9798e69835ea5f88b57b8044",
       "internalLinks": [
         "/about/|About",
@@ -25249,7 +25249,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "064763ed6fd5748d94e9e5176ef00eeb80742901837cf1698274d1e538dcf7c3",
+      "structuredDataHash": "4b7833772e9c0973db5ff05b2d34f1aeed5623684280e099b38c7d39ad0d19fa",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -25269,7 +25269,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -25323,7 +25323,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -25335,7 +25335,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/vodacom/",
       "h1": "Vodacom Prepaid Data Deals &amp; Prices South Africa",
-      "visibleTextHash": "ffff3b2e364c45b50d2e088892f49e3a48091b0f72c6ecaac778d621952b22ed",
+      "visibleTextHash": "50d35e573fbb57d89ada9f8caf32075ab7fdb32077a8d0ddfb0ace46429e6d4a",
       "internalLinksHash": "2549407982598bb05a19931deff6b40f5ca3bbd89748c5be074b24d3d4182d2c",
       "internalLinks": [
         "/about/|About",
@@ -25402,7 +25402,7 @@
         "/|Home",
         "/|homepage"
       ],
-      "structuredDataHash": "f4f799bd68d6716dd0cf3ecc9b1280f19aee5e0682035450e032845d0df07543",
+      "structuredDataHash": "0e82cb9974a9bb7be59b2eaca2db1162493113251f2bc60b014b88ade926e014",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -25419,7 +25419,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -25472,7 +25472,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -25484,7 +25484,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/vodacom/cheapest-1gb/",
       "h1": "Vodacom Cheapest 1GB Data Deals (2026)",
-      "visibleTextHash": "44e946ecf339a402b178737cc0a87a6779a7f7296b72d875a0017e013d33a988",
+      "visibleTextHash": "63fc6afce37cc5eddb1cda857a7f292893447a0d996ec2b231fdfc77dca7e1a0",
       "internalLinksHash": "2157338ede7b1917104cf5ee348843dcbe79f85bb27dc91d19fe8120f08a145a",
       "internalLinks": [
         "/about/|About",
@@ -25529,7 +25529,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "ce5a325f8a4e1cfa0c43658edf0da1e78bfb3943583a305e0b3de7c4d75a6fcc",
+      "structuredDataHash": "5f8732f519ea3cc172da59d28a523a120132b883c30e29a0aa789dfa0ddbb6da",
       "structuredDataBlockCount": 4,
       "structuredDataSummary": [
         {
@@ -25549,7 +25549,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -25587,7 +25587,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -25615,7 +25615,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/vodacom/monthly-data/",
       "h1": "Vodacom Monthly Data Deals (2026)",
-      "visibleTextHash": "49d28dcb6a83fea2fce574286ce4220a87f3f60bbe931ef8823bd04005922e55",
+      "visibleTextHash": "36cf7706ccbd2f028a982731e92b2d4c48af1ad9e2d6cedebb9a4fda2754657e",
       "internalLinksHash": "66a255b503f97293fb613aa55c0dcd6eb3ce8300213bdb93897344e22b4a7261",
       "internalLinks": [
         "/about/|About",
@@ -25660,7 +25660,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "ed309b811a530f82df9edd754cd8c70fe625608861b18bfcd2865376f240165b",
+      "structuredDataHash": "177dd2cca1477307efcf08158165de288fcaf245eeb55876773b92ba8dd6d01e",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -25680,7 +25680,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -25734,7 +25734,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -25746,7 +25746,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/network/vodacom/night-data/",
       "h1": "Vodacom Night Data Deals (2026)",
-      "visibleTextHash": "c8b76e8d2176f37696b93710ac482002d116c2ba3338f4ee0044f198b34e69c7",
+      "visibleTextHash": "ce08564b9cca5c3454943ff8ae31ddf3942e20a0beb8ef8e25ceb47084527422",
       "internalLinksHash": "01511cb0c937addd6dd8a42dba33909ea8596d04fea8751f8e1456d28d94dcaf",
       "internalLinks": [
         "/about/|About",
@@ -25788,7 +25788,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "383de7577adcd4289a6aebec9ab0328032fd98b841c1d57a36b9d880ad50cf61",
+      "structuredDataHash": "6ee729016a1b9cd21bbc7c4a5ea573834522176424eab77ee60375fb5ab0c411",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -25808,7 +25808,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -25862,7 +25862,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -25874,7 +25874,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/vodacom/social-data/",
       "h1": "Vodacom Social Data Deals (2026)",
-      "visibleTextHash": "a3fcd448f46b6fa4382d7c721863f1599e59e9f3515bba4844a83c6f53ee4704",
+      "visibleTextHash": "ad3e06c468e32cc5386254f5a2927a3c33a8a7ba70d5f706db31e634704cfbe2",
       "internalLinksHash": "01511cb0c937addd6dd8a42dba33909ea8596d04fea8751f8e1456d28d94dcaf",
       "internalLinks": [
         "/about/|About",
@@ -25916,7 +25916,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "2a45b36cb6a290d13a3bf08f879530338989067eee17446f0e1dbb12cbea849b",
+      "structuredDataHash": "9476dd0865864f829f515d698af62ca8bd1d9375c902bd55e444809f1aa13221",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -25936,7 +25936,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -25990,7 +25990,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -26002,7 +26002,7 @@
       "robots": "noindex,follow",
       "canonical": "https://datacost.co.za/network/vodacom/weekly-data/",
       "h1": "Vodacom Weekly Data Deals (2026)",
-      "visibleTextHash": "9200dbd5b3413b692cb3d54b498df94c840d8da3428d55bb19161a64b32f117a",
+      "visibleTextHash": "02f01feab2d93db17612917844b7bdda03e82b8ca96e49178f0a74226980fca2",
       "internalLinksHash": "01511cb0c937addd6dd8a42dba33909ea8596d04fea8751f8e1456d28d94dcaf",
       "internalLinks": [
         "/about/|About",
@@ -26044,7 +26044,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "66ea0ace5c1fa495fc1362254eb32d1aa39d69421b6c0bab429d3dd5860c9a67",
+      "structuredDataHash": "c589e919e30e16903f15015b6a519900769ef49b061e0e2c3a04b725f7efa749",
       "structuredDataBlockCount": 5,
       "structuredDataSummary": [
         {
@@ -26064,7 +26064,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         },
         {
@@ -26118,7 +26118,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -26333,7 +26333,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/save-ussd-codes/",
       "h1": "Save Your USSD Codes to Your Phone",
-      "visibleTextHash": "906ac6abdae886ca4c0612def120544ab88435a5bd380653f7e554f4f8117beb",
+      "visibleTextHash": "b3431e9b064936e11158f43757e5175ef8e87260fbeeba6657f1f43c29b437a2",
       "internalLinksHash": "083c1a292d93858b4c342d08500c9e722f667ae48f2cede7dce9f7823ee313f6",
       "internalLinks": [
         "/about/|About",
@@ -26384,7 +26384,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "0645c20e4881b10776e93ccd40191dd93a29d130dc433f4ab131a6bd46218fe5",
+      "structuredDataHash": "96bba77f2ea7ce8d414df43683f7942fc38a4d4a4d5f4ee3b907155cff9e6138",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -26422,7 +26422,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -26701,7 +26701,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/telkom-ussd-codes/",
       "h1": "Telkom USSD Codes: *188# Balance, *180# Data, Recharge and Help",
-      "visibleTextHash": "9fbd2ee3a25f6049c7507ac6f6ec6b12478e7b39d55d6ce74c5f74cc2d5257b4",
+      "visibleTextHash": "2844d3ee9fe9084ef0773935312818b3a5eafef7b046b380236a2d0e27ad0d35",
       "internalLinksHash": "796023d151ec499746c5682a963ff86225206b31e0e222eb6372f3cfaa866d9a",
       "internalLinks": [
         "/about/|About",
@@ -26759,7 +26759,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "ab12705516136fc39952251dbc4f3bbf7555358fe7c708a12c67eb07a8a644eb",
+      "structuredDataHash": "f9eb37d46eb3b60a5451ae141478e0653fc12b966f5c3c53d8c7d83ce70e65b9",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -26797,7 +26797,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-01T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -27075,8 +27075,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/ussd-codes-south-africa/",
       "h1": "USSD Codes South Africa : MTN, Vodacom, Telkom and Cell C",
-      "visibleTextHash": "a2e819ffcc4275cbf183c2afd6d72d9f0157a11bc76e977e1b1c53d2c443c99e",
-      "internalLinksHash": "650a363af53a2c5fa225fe19246c574ce1ce6b07577d0087bcc63374c755e010",
+      "visibleTextHash": "e9f6968bcb2c865511d7e6683d7bbd14b8144f0aa076929e65662342fea9832b",
+      "internalLinksHash": "3a888ea8a73cdbb4f96754ccd294b67d692413c424b0f6632b8c5b8728bc3256",
       "internalLinks": [
         "/about/|About",
         "/airtime-advance-codes/|Airtime Advance Codes",
@@ -27132,7 +27132,7 @@
         "/methodology/|methodology",
         "/mtn-ussd-codes/|MTN USSD Codes",
         "/mtn-ussd-codes/|MTN USSD codes",
-        "/mtn-ussd-codes/|MTN support routes",
+        "/mtn-ussd-codes/|MTN USSD page",
         "/mtn-ussd-codes/|Open",
         "/mtn-ussd-codes/|Open full MTN USSD page",
         "/network/cell-c/|Open",
@@ -27169,7 +27169,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "62041fb5cfff3a1825fb81e8fb3d7ecdd53d01fc0651b4e5f1d2e5303077b5a7",
+      "structuredDataHash": "5b210a2eb1358105c543bcf6056960aa7d7de6d769d65e2801de2aca615e0eac",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -27208,7 +27208,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]
@@ -27236,7 +27236,7 @@
       "robots": "",
       "canonical": "https://datacost.co.za/vodacom-ussd-codes/",
       "h1": "Vodacom USSD Codes: *136# Balance, *135# Menu and Airtime",
-      "visibleTextHash": "742c561c4c15bf9df7a5076c714c159de6f92194b1b4dbf8c22e308a6c437526",
+      "visibleTextHash": "91b19665ba8d539b62270000857ff7f7676dfd14ec543bf8a3ae9afa7ba8155b",
       "internalLinksHash": "b8cad536ab4807c919fd721d28735fb6637303ee27525f01932dd2772dc42950",
       "internalLinks": [
         "/about/|About",
@@ -27299,7 +27299,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "61315c07faea84c73e0c21a3c4626dc93170a84a759901d4f3b0cf35ef589f46",
+      "structuredDataHash": "c51e26ba50fd6d26d86658712e75e57b4b1e825858a9f31eab628f8efb8aea86",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -27337,7 +27337,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-08-02T00:00:00.000Z"
+            "2026-09-01T00:00:00.000Z"
           ]
         }
       ]

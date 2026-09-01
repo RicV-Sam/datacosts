@@ -24,6 +24,7 @@ import {
   toCanonicalUrl
 } from '../seo/siteConstants';
 import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
+import { getMajorNetworkCodes } from '../utils/ussdSelection';
 
 interface USSDPageProps {
   onBack: () => void;
@@ -96,10 +97,6 @@ function canDialEntry(entry: USSDEntry): boolean {
   return entry.status === 'verified' && entry.dialable === true && isDialable(entry.code);
 }
 
-function getMajorNetworkCodes(network: NetworkName): USSDEntry[] {
-  return ussdRepository.filter((entry) => entry.network === network).slice(0, 8);
-}
-
 export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNavigate }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeNetwork, setActiveNetwork] = useState<'All' | NetworkName>('All');
@@ -127,7 +124,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     {
       question: 'What is the Please Call Me code in South Africa?',
       answer:
-        'Vodacom and Telkom publish *140*the-number#, while Cell C publishes *111*the-number#. A current MTN shortcut was not confirmed in this audit; verify it with MTN or use the MTN App or 135.'
+        'MTN publishes *121*the-number#, Vodacom and Telkom publish *140*the-number#, and Cell C publishes *111*the-number#. Replace the-number with the recipient\'s mobile number.'
     },
     {
       question: 'Can I borrow airtime with USSD?',
@@ -203,10 +200,10 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
       title: 'Please call me codes',
       description: 'These are commonly used callback formats. If a format fails, use the operator menu or support path instead of guessing.',
       items: [
-        { network: 'Vodacom', code: '*140*0821234567#' },
-        { network: 'MTN', code: 'No verified public shortcut - use MTN App or 135' },
-        { network: 'Telkom', code: '*140*0821234567#' },
-        { network: 'Cell C', code: '*111*0821234567#' }
+        { network: 'Vodacom', code: '*140*number#' },
+        { network: 'MTN', code: '*121*number#' },
+        { network: 'Telkom', code: '*140*number#' },
+        { network: 'Cell C', code: '*111*number#' }
       ]
     },
     {
@@ -378,7 +375,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            Common balance shortcuts are <strong>MTN *136#</strong>, <strong>Vodacom *136#</strong>, <strong>Telkom *188#</strong>, and <strong>Cell C *101#</strong>. A current MTN Please Call Me shortcut was not confirmed in this audit, so use the <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN support routes</Link> instead of relying on an old code without testing it. Use this hub for cross-network comparison, then jump to <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link> or <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">how to check Cell C balance</Link> when the intent becomes network-specific.
+            Common balance shortcuts are <strong>MTN *136#</strong>, <strong>Vodacom *136#</strong>, <strong>Telkom *188#</strong>, and <strong>Cell C *101#</strong>. MTN now publishes <strong>*121*number#</strong> for CallBack requests; use the <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN USSD page</Link> for the current menu fallback and the still-withheld own-number shortcut. Use this hub for cross-network comparison, then jump to <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link> or <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">how to check Cell C balance</Link> when the intent becomes network-specific.
           </p>
           <p className="mt-3 text-sm text-slate-600 leading-relaxed">
             For network-price or bundle intent instead of code lookup, go to the <Link to="/network/vodacom/" className="font-semibold text-[#1b6d24] hover:underline">Vodacom data prices page</Link>. If your query is <Link to="/guides/how-to-check-vodacom-airtime-balance/" className="font-semibold text-[#1b6d24] hover:underline">how to check balance on Vodacom</Link>, use the dedicated guide. For broader prepaid pricing research, open the <Link to="/guides/cheapest-data-south-africa/" className="font-semibold text-[#1b6d24] hover:underline">cheapest data comparison guide</Link>.
@@ -493,7 +490,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
 
         <section className="mb-10 space-y-6">
           {MAJOR_NETWORKS.map((network) => {
-            const codes = getMajorNetworkCodes(network.name);
+            const codes = getMajorNetworkCodes(ussdRepository, network.name);
             return (
               <section key={network.name} id={network.id} className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm scroll-mt-28">
                 <h2 className="text-2xl font-black tracking-tight mb-3">{network.name} USSD codes</h2>

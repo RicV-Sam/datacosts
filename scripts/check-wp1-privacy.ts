@@ -24,15 +24,6 @@ export interface PrivacyFinding {
 
 export const PRIVACY_ALLOWLIST: readonly PrivacyAllowlistEntry[] = [
   {
-    file: 'src/pages/USSDPage.tsx',
-    startLine: 202,
-    endLine: 205,
-    exactMatchSha256: ['4d4436bf4c47c0baa362ca2ab91383ac69467e7d6fc03b3e6014770f0a79082d'],
-    matchDescription: 'Exact pre-existing illustrative subscriber placeholder embedded in four public please-call-me dial examples.',
-    reason: 'Rendered USSD examples are frozen by the Release A no-search-output-change constraint; review separately before any public copy change.',
-    approvedBy: 'seo_lead'
-  },
-  {
     file: 'src/pages/RouterSimBalanceGuidePage.tsx',
     startLine: 31,
     endLine: 32,
@@ -47,6 +38,7 @@ export const PRIVACY_ALLOWLIST: readonly PrivacyAllowlistEntry[] = [
 ];
 
 const PHONE_PATTERN = /(?<!\d)(?:\+27|0027|0)[ -]?[6-8]\d(?:[ -]?\d){7}(?!\d)/g;
+const HEX_DIGEST_PATTERN = /\b[0-9a-f]{64}\b/gi;
 const TEXT_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.mjs', '.cjs', '.json', '.md', '.txt', '.html', '.xml', '.yml', '.yaml']);
 
 export function privacyMatchFingerprint(value: string): string {
@@ -65,6 +57,16 @@ function isAllowlisted(file: string, line: number, value: string, allowlist: rea
   );
 }
 
+function isInsideHexDigest(line: string, start: number, length: number): boolean {
+  HEX_DIGEST_PATTERN.lastIndex = 0;
+  for (const digest of line.matchAll(HEX_DIGEST_PATTERN)) {
+    const digestStart = digest.index ?? -1;
+    const digestEnd = digestStart + digest[0].length;
+    if (start >= digestStart && start + length <= digestEnd) return true;
+  }
+  return false;
+}
+
 export function scanPrivacyText(
   file: string,
   text: string,
@@ -76,6 +78,7 @@ export function scanPrivacyText(
     const lineNumber = index + 1;
     PHONE_PATTERN.lastIndex = 0;
     for (const match of lines[index].matchAll(PHONE_PATTERN)) {
+      if (isInsideHexDigest(lines[index], match.index ?? 0, match[0].length)) continue;
       if (isAllowlisted(file, lineNumber, match[0], allowlist)) continue;
       const masked = match[0].replace(/\d(?=\d{4})/g, 'x');
       findings.push({

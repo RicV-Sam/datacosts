@@ -251,7 +251,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   };
   const operatorSpecificUssdLinksBySlug: Record<string, Array<{ href: string; label: string; description: string }>> = {
     mtn: [
-      { href: '/mtn-ussd-codes/', label: 'MTN USSD codes', description: 'Open the MTN-specific balance, recharge, and Please Call Me shortcuts.' }
+      { href: '/mtn-ussd-codes/', label: 'MTN USSD codes', description: 'Open the MTN-specific balance, bundle, and Please Call Me shortcuts.' }
     ],
     vodacom: [
       { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD codes', description: 'Open the Vodacom-specific balance, buy-data, and self-service shortcuts.' }

@@ -17,18 +17,17 @@ export const ussdCodesByNetwork = {
     name: 'MTN',
     codes: [
       { id: 'ussd.mtn.balance_main', codeType: 'balance', label: 'Airtime Balance', code: '*136#' },
-      { id: 'ussd.mtn.data_balance', codeType: 'balance', label: 'Data Balance', code: '*136*1#' },
+      { id: 'ussd.mtn.data_balance', codeType: 'balance', label: 'Detailed Balance', code: '*136*1#' },
       { id: 'ussd.mtn.buy_data', codeType: 'data', label: 'Buy Data', code: '*136*2#' },
-      { id: 'ussd.mtn.recharge_voucher', codeType: 'recharge', label: 'Recharge', code: '*136*Voucher#' },
-      { id: 'ussd.mtn.please_call_me', codeType: 'other', label: 'Please Call Me guidance — current shortcut needs confirmation', code: 'N/A' },
+      { id: 'ussd.mtn.recharge_voucher', codeType: 'recharge', label: 'Own-line voucher guidance — no current direct shortcut confirmed', code: 'N/A' },
+      { id: 'ussd.mtn.please_call_me', codeType: 'other', label: 'Please Call Me / CallBack', code: '*121*number#' },
       { id: 'ussd.mtn.check_number', codeType: 'other', label: 'Own-number guidance — current shortcut needs confirmation', code: 'N/A' }
     ]
   },
   vodacom: {
     name: 'Vodacom',
     codes: [
-      { id: 'ussd.vodacom.balance_detailed', codeType: 'balance', label: 'Airtime Balance', code: '*136#' },
-      { id: 'ussd.vodacom.data_balance', codeType: 'balance', label: 'Data Balance', code: '*136#' },
+      { id: 'ussd.vodacom.balance_detailed', codeType: 'balance', label: 'Airtime & Data Balance', code: '*136#' },
       { id: 'ussd.vodacom.buy_data', codeType: 'data', label: 'Buy Data menu', code: '*135#' },
       { id: 'ussd.vodacom.recharge_voucher', codeType: 'recharge', label: 'Recharge', code: '*136*01*PIN#' },
       { id: 'ussd.vodacom.please_call_me', codeType: 'other', label: 'Please Call Me', code: '*140*number#' },
@@ -60,5 +59,5 @@ export const ussdNetworkOrder: UssdNetworkKey[] = ['mtn', 'vodacom', 'cellc', 't
 export const ussdMostUsed = [
   { label: 'Check Airtime Balance', code: '*136# (MTN/Vodacom) / *101# (Cell C) / *188# (Telkom)' },
   { label: 'Buy Data Quickly', code: '*136*2# (MTN) / *135# (Vodacom) / *147# (Cell C) / *180# (Telkom)' },
-  { label: 'Verified Please Call Me', code: '*140*number# (Vodacom/Telkom) / *111*number# (Cell C)' }
+  { label: 'Verified Please Call Me', code: '*121*number# (MTN) / *140*number# (Vodacom/Telkom) / *111*number# (Cell C)' }
 ];

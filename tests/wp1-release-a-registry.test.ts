@@ -2,20 +2,33 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   collectWp1RegistryOccurrences,
+  REGISTERED_USSD_CODE_IDS,
   validateWp1AnalyticsRegistry,
   type RegistryOccurrence
 } from '../src/seo/wp1AnalyticsRegistry';
+import { resolveWp1EvidenceSubjectKind } from '../src/data/wp1EvidenceSubjects';
+import { wp1ContentRecords } from '../src/data/wp1ReleaseARecords';
 
 test('the canonical event registry covers every current producer with exact totals', () => {
   const result = validateWp1AnalyticsRegistry();
   assert.deepEqual(result.errors, []);
-  assert.equal(result.occurrenceCount, 64);
-  assert.equal(result.uniqueIdCount, 40);
-  assert.equal(result.codeOccurrenceCount, 61);
-  assert.equal(result.uniqueCodeIdCount, 37);
+  assert.equal(result.occurrenceCount, 71);
+  assert.equal(result.uniqueIdCount, 39);
+  assert.equal(result.codeOccurrenceCount, 68);
+  assert.equal(result.uniqueCodeIdCount, 36);
   assert.equal(result.answerOccurrenceCount, 3);
   assert.equal(result.uniqueAnswerIdCount, 3);
   assert.deepEqual(result.registries, ['quickAnswers', 'ussdCodes', 'ussdCodesByNetwork', 'ussdRepository']);
+});
+
+test('every registered USSD event ID is evidence-owned and source-backed', () => {
+  const evidenceById = new Map(wp1ContentRecords.map((record) => [record.recordId, record]));
+  for (const id of REGISTERED_USSD_CODE_IDS) {
+    assert.equal(resolveWp1EvidenceSubjectKind(id), 'ussd_code', id);
+    const evidence = evidenceById.get(id);
+    assert.ok(evidence, id);
+    assert.ok(evidence.sourceRecordIds.length > 0, id);
+  }
 });
 
 test('a conflicting occurrence in src/data.ts::ussdCodes fails', () => {

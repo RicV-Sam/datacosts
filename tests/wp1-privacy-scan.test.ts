@@ -14,6 +14,13 @@ test('USSD codes and ISO dates are not classified as phone numbers', () => {
   assert.deepEqual(scanPrivacyText('tests/safe-fixture.txt', 'code=*136# checkedAt=2026-07-21 value=user_input_must_not_be_sent', []), []);
 });
 
+test('cryptographic digests are ignored without hiding phone-shaped values beside them', () => {
+  const digest = '1c3addaf6abdd5cbecfc1acdf082780015eb0c9951a56bff5489270556a2055aa';
+  const syntheticPhoneShape = ['0', '82', '123', '4567'].join('');
+  assert.deepEqual(scanPrivacyText('docs/generated.json', `hash=${digest}`, []), []);
+  assert.equal(scanPrivacyText('docs/generated.json', `hash=${digest} phone=${syntheticPhoneShape}`, []).length, 1);
+});
+
 test('allowlisting is line-scoped and requires a documented entry', () => {
   const syntheticPhoneShape = ['+27', '82', '123', '4567'].join('');
   const findings = scanPrivacyText('docs/public-contact.md', `first\ncontact ${syntheticPhoneShape}\nlast`, [{
@@ -30,8 +37,8 @@ test('allowlisting is line-scoped and requires a documented entry', () => {
 
 test('a documented line does not allow an arbitrary replacement phone value', () => {
   const syntheticPhoneShape = ['0', '82', '999', '0000'].join('');
-  const text = '\n'.repeat(201) + `replacement ${syntheticPhoneShape}`;
-  const findings = scanPrivacyText('src/pages/USSDPage.tsx', text, PRIVACY_ALLOWLIST);
+  const text = '\n'.repeat(30) + `replacement ${syntheticPhoneShape}`;
+  const findings = scanPrivacyText('src/pages/RouterSimBalanceGuidePage.tsx', text, PRIVACY_ALLOWLIST);
   assert.equal(findings.length, 1);
-  assert.equal(findings[0].line, 202);
+  assert.equal(findings[0].line, 31);
 });
