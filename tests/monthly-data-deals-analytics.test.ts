@@ -49,7 +49,7 @@ test('deal events use the rendered canonical and controlled low-cardinality fiel
 
   trackDealOfferSourceClick({
     providerId: 'vodacom',
-    offerId: 'vodacom-prepaid-lte-10-plus-10-2026-08',
+    offerId: 'vodacom-prepaid-lte-10-plus-10-2026-09',
     targetGb: 20,
     placement: 'comparison_card'
   });
@@ -59,7 +59,7 @@ test('deal events use the rendered canonical and controlled low-cardinality fiel
     ['event', 'deal_offer_source_click', {
       canonical_path: '/best-20gb-data-deals-south-africa/',
       provider_id: 'vodacom',
-      offer_id: 'vodacom-prepaid-lte-10-plus-10-2026-08',
+      offer_id: 'vodacom-prepaid-lte-10-plus-10-2026-09',
       target_gb: 20,
       placement: 'comparison_card'
     }],

@@ -3,6 +3,7 @@ const DEFAULT_MODIFIED_ISO = '2026-02-15T00:00:00.000Z';
 const PUBLISHER_REVIEW_MODIFIED_ISO = '2026-05-24T00:00:00.000Z';
 const FIBRE_REVIEW_MODIFIED_ISO = '2026-08-06T00:00:00.000Z';
 const PRICING_AUDIT_MODIFIED_ISO = '2026-09-01T00:00:00.000Z';
+const MONTHLY_DEAL_REVIEW_MODIFIED_ISO = '2026-09-01T00:00:00.000Z';
 
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/': PRICING_AUDIT_MODIFIED_ISO,
@@ -12,10 +13,10 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/contact/': '2026-05-10T00:00:00.000Z',
   '/cookie-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/editorial-policy/': '2026-05-10T00:00:00.000Z',
-  '/best-data-deals-south-africa/': '2026-08-04T00:00:00.000Z',
-  '/best-10gb-data-deals-south-africa/': '2026-08-04T00:00:00.000Z',
-  '/best-20gb-data-deals-south-africa/': '2026-08-04T00:00:00.000Z',
-  '/best-30gb-data-deals-south-africa/': '2026-08-04T00:00:00.000Z',
+  '/best-data-deals-south-africa/': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
+  '/best-10gb-data-deals-south-africa/': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
+  '/best-20gb-data-deals-south-africa/': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
+  '/best-30gb-data-deals-south-africa/': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
   '/buy-data-airtime-south-africa/': '2026-06-18T00:00:00.000Z',
   '/fibre/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/cheapest-fibre-packages-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
@@ -84,7 +85,7 @@ const FIX_ROUTE_MODIFIED_ISO: Record<string, string> = {
 
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'airtime-data-saving-tips-south-africa': '2026-07-30T00:00:00.000Z',
-  'best-data-deals-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'best-data-deals-south-africa': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
   'cheap-night-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheapest-1gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'convert-airtime-to-data-south-africa': '2026-08-02T00:00:00.000Z',

@@ -45,3 +45,9 @@ The tracker does not insert a manual ad unit inside the winner summaries, compar
 ## August 2026 exclusions
 
 Expired MTN Repriced Monthly and SuperFlex offers were excluded. Stock-limited BozzaGigs terms were excluded because no current product page confirms availability. Telkom’s Big Deal was withheld because its live page and linked terms conflict on contract length. Vodacom’s current 30GB promotion was withheld because the official public terms do not publish a price. Rain had no clean, generally comparable 10GB, 20GB or 30GB monthly SKU.
+
+## September 2026 review
+
+All 28 August rows and all 17 source URLs were rechecked on 1 September 2026. Prices, allocations and validity periods were unchanged, so the September snapshot retains the same offer set with fresh source dates and month-specific IDs.
+
+The active source register now contains 16 unique URLs because the Standard Bank Connect 20GB row uses the publicly rendered SIM-plans page instead of the empty unauthenticated checkout shell. The FNB guide’s current cover period conflicts with legacy effective-date wording on page 32, so the rows retain the published prices with that date inconsistency disclosed. Cell C’s live catalogue remains session-sensitive, and the older MTN Entertainment/Home Wi-Fi terms plus the undated Cell C Day-by-Day PDF remain current first-party evidence with explicit freshness caveats.
