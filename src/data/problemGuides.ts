@@ -76,7 +76,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
     networkFixes: [
       {
         name: 'Vodacom',
-        balanceCode: '*135#',
+        balanceCode: '*136#',
         notes: 'Confirm remaining bundle and expiry before heavy usage.',
         action: 'Top up before expiry to avoid out-of-bundle airtime burn.'
       },
@@ -199,7 +199,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
     networkFixes: [
       {
         name: 'Vodacom',
-        balanceCode: '*135#',
+        balanceCode: '*136#',
         notes: 'Check active paid services and recurring value-added entries.',
         action: 'Request premium content restrictions if charges return.'
       },
@@ -314,7 +314,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
     networkFixes: [
       {
         name: 'Vodacom',
-        balanceCode: '*135#',
+        balanceCode: '*136#',
         notes: 'Use VAS/service controls to remove active paid content.',
         action: 'Ask support for premium-content blocking if recharges still leak.'
       },
@@ -432,7 +432,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
     networkFixes: [
       {
         name: 'Vodacom',
-        balanceCode: '*135#',
+        balanceCode: '*136#',
         notes: 'If on dual-SIM, confirm Vodacom is not the real deduction source.',
         action: 'Temporarily disable the secondary SIM data path during checks.'
       },
@@ -532,7 +532,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
   },
   'how-to-check-subscriptions-on-vodacom': {
     slug: 'how-to-check-subscriptions-on-vodacom',
-    titleTag: 'How to Check Vodacom Subs (Vodacom, MTN Fix 2026)',
+    titleTag: 'How to Check Vodacom Subscriptions (2026 Fix)',
     metaDescription:
       'How to check Vodacom subscriptions in South Africa and stop hidden deductions. Find active WASP, premium SMS, and recurring services, then fix fast.',
     h1: 'How to Check Subscriptions on Vodacom South Africa (2026)',
@@ -540,7 +540,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
       'Vodacom airtime drops in small recurring amounts usually point to active paid services. A full service audit gives the fastest resolution.',
     quickAnswer: [
       'Check all active Vodacom paid services, cancel unknown items, and confirm inactive status.',
-      'Most repeat deductions come from WASP, premium SMS, or old value-added content.',
+      'Repeat deductions can come from WASP, premium SMS, or old value-added content.',
       'Track one recharge cycle after cleanup to confirm the issue is fixed.'
     ],
     causes: [
@@ -560,7 +560,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
     networkFixes: [
       {
         name: 'Vodacom',
-        balanceCode: '*135#',
+        balanceCode: '*136#',
         notes: 'Prioritize VAS and recurring service checks.',
         action: 'Ask for premium-content restrictions if charges reappear.'
       },
@@ -650,7 +650,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
       'Stop WASP services in South Africa now. Cancel recurring premium charges and fix hidden airtime deductions on Vodacom, MTN, Telkom, and Cell C.',
     h1: 'How to Stop WASP Services in South Africa on MTN, Vodacom, Telkom & Cell C (2026)',
     intro:
-      'WASP charges are a top reason for unexplained airtime loss. The fix is systematic: identify active paid services, cancel them, and block repeat billing.',
+      'WASP charges can cause unexplained airtime loss. The fix is systematic: identify active paid services, cancel them, and block repeat billing.',
     quickAnswer: [
       'WASP services are recurring paid content subscriptions that can deduct airtime automatically.',
       'Stop them by canceling all unknown paid services and enabling premium-content restrictions.',
@@ -673,7 +673,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
     networkFixes: [
       {
         name: 'Vodacom',
-        balanceCode: '*135#',
+        balanceCode: '*136#',
         notes: 'Remove active paid content and verify service status updates.',
         action: 'Apply premium-content restrictions to prevent re-subscription.'
       },
@@ -791,7 +791,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
     networkFixes: [
       {
         name: 'Vodacom',
-        balanceCode: '*135#',
+        balanceCode: '*136#',
         notes: 'Confirm bundle validity and remaining balance before high usage sessions.',
         action: 'Top up before expiry to avoid out-of-bundle penalties.'
       },
@@ -929,7 +929,7 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
     networkFixes: [
       {
         name: 'Vodacom',
-        balanceCode: '*135#',
+        balanceCode: '*136#',
         notes: 'Use VAS controls and verify inactive service states.',
         action: 'Apply premium-content restrictions for long-term protection.'
       },

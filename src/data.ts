@@ -1,6 +1,6 @@
 import { Bundle, NetworkStats, NetworkMetadata, NetworkName } from './types';
 
-const PRICE_REVIEW_DATE = '2026-08-01';
+const PRICE_REVIEW_DATE = '2026-09-01';
 
 const SOURCES = {
   mtnInternetBundles: {
@@ -450,7 +450,7 @@ export const bundles: Bundle[] = [
     watchOut: 'Night-only usage window',
     ...SOURCES.vodacomPrepaidData,
     sourceConfidence: 'verified',
-    lastVerified: '2026-08-02',
+    lastVerified: PRICE_REVIEW_DATE,
     productType: 'night_data',
     nightWindow: '00:00-05:00',
   },
@@ -579,7 +579,7 @@ export const bundles: Bundle[] = [
     watchOut: 'Expires at midnight on the day of purchase',
     ...SOURCES.cellcDataBundles,
     sourceConfidence: 'verified',
-    lastVerified: '2026-08-02',
+    lastVerified: PRICE_REVIEW_DATE,
     productType: 'smartphone_once_off_data',
   },
   {

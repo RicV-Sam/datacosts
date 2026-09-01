@@ -2,12 +2,13 @@ const DEFAULT_PUBLISHED_ISO = '2025-01-15T00:00:00.000Z';
 const DEFAULT_MODIFIED_ISO = '2026-02-15T00:00:00.000Z';
 const PUBLISHER_REVIEW_MODIFIED_ISO = '2026-05-24T00:00:00.000Z';
 const FIBRE_REVIEW_MODIFIED_ISO = '2026-08-06T00:00:00.000Z';
+const PRICING_AUDIT_MODIFIED_ISO = '2026-09-01T00:00:00.000Z';
 
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
-  '/': '2026-08-02T00:00:00.000Z',
+  '/': PRICING_AUDIT_MODIFIED_ISO,
   '/alerts/': '2026-05-10T00:00:00.000Z',
   '/about/': '2026-08-01T00:00:00.000Z',
-  '/airtime-advance-codes/': '2026-08-01T00:00:00.000Z',
+  '/airtime-advance-codes/': PRICING_AUDIT_MODIFIED_ISO,
   '/contact/': '2026-05-10T00:00:00.000Z',
   '/cookie-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/editorial-policy/': '2026-05-10T00:00:00.000Z',
@@ -24,20 +25,20 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/fibre/fibre-installation-costs-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/coverage-by-area/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fix/': '2026-07-24T00:00:00.000Z',
-  '/guides/': '2026-08-02T00:00:00.000Z',
+  '/guides/': PRICING_AUDIT_MODIFIED_ISO,
   '/methodology/': '2026-08-01T00:00:00.000Z',
-  '/mtn-ussd-codes/': '2026-08-01T00:00:00.000Z',
-  '/network/': '2026-08-02T00:00:00.000Z',
+  '/mtn-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
+  '/network/': PRICING_AUDIT_MODIFIED_ISO,
   '/privacy-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/promos/': '2026-06-18T00:00:00.000Z',
-  '/save-ussd-codes/': '2026-08-02T00:00:00.000Z',
+  '/save-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
   '/sitemap/': '2026-08-01T00:00:00.000Z',
   '/cell-c-ussd-codes/': '2026-08-01T00:00:00.000Z',
   '/telkom-ussd-codes/': '2026-08-01T00:00:00.000Z',
   '/terms/': '2026-05-10T00:00:00.000Z',
   '/trust/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/travel-sims-south-africa/': '2026-08-02T00:00:00.000Z',
-  '/ussd-codes-south-africa/': '2026-08-02T00:00:00.000Z',
+  '/ussd-codes-south-africa/': PRICING_AUDIT_MODIFIED_ISO,
   '/vodacom-ussd-codes/': '2026-08-02T00:00:00.000Z'
 };
 
@@ -83,9 +84,9 @@ const FIX_ROUTE_MODIFIED_ISO: Record<string, string> = {
 
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'airtime-data-saving-tips-south-africa': '2026-07-30T00:00:00.000Z',
-  'best-data-deals-south-africa': '2026-08-02T00:00:00.000Z',
-  'cheap-night-data-south-africa': '2026-08-06T00:00:00.000Z',
-  'cheapest-1gb-data-south-africa': '2026-08-02T00:00:00.000Z',
+  'best-data-deals-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheap-night-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-1gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'convert-airtime-to-data-south-africa': '2026-08-02T00:00:00.000Z',
   'buy-data-with-bank-apps-south-africa': '2026-06-18T00:00:00.000Z',
   'check-router-sim-data-balance-and-recharge': '2026-07-12T00:00:00.000Z',
@@ -97,7 +98,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-buy-data-cell-c': '2026-08-02T00:00:00.000Z',
   'how-to-buy-data-mtn': '2026-08-01T00:00:00.000Z',
   'how-to-buy-data-telkom': '2026-08-02T00:00:00.000Z',
-  'how-to-buy-data-vodacom': '2026-08-02T00:00:00.000Z',
+  'how-to-buy-data-vodacom': PRICING_AUDIT_MODIFIED_ISO,
   'how-to-check-data-balance': '2026-08-01T00:00:00.000Z',
   'how-to-check-mtn-data-balance': '2026-08-13T00:00:00.000Z',
   'how-to-check-mtn-airtime-balance': '2026-07-30T00:00:00.000Z',
@@ -111,54 +112,54 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'best-sim-only-deals-south-africa': '2026-08-01T00:00:00.000Z',
   'vodacom-vs-mtn-data-prices': '2026-08-02T00:00:00.000Z',
   'why-does-my-data-finish-so-fast-south-africa': '2026-05-10T00:00:00.000Z',
-  'why-is-my-airtime-disappearing-south-africa': '2026-08-01T00:00:00.000Z',
-  'why-is-my-data-finishing-so-fast': '2026-08-01T00:00:00.000Z',
-  'why-is-my-data-disappearing-south-africa': '2026-08-01T00:00:00.000Z',
-  'how-to-stop-airtime-being-used-automatically': '2026-04-16T00:00:00.000Z',
-  'how-to-cancel-subscriptions-mtn-vodacom-telkom': '2026-04-16T00:00:00.000Z',
-  'how-to-check-subscriptions-on-mtn': '2026-08-22T00:00:00.000Z',
-  'how-to-check-subscriptions-on-vodacom': '2026-04-16T00:00:00.000Z',
-  'how-to-stop-wasp-services-south-africa': '2026-04-16T00:00:00.000Z',
-  'how-to-protect-airtime-from-being-used': '2026-07-30T00:00:00.000Z',
-  'airtime-data-problems-south-africa': '2026-08-01T00:00:00.000Z',
+  'why-is-my-airtime-disappearing-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'why-is-my-data-finishing-so-fast': PRICING_AUDIT_MODIFIED_ISO,
+  'why-is-my-data-disappearing-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'how-to-stop-airtime-being-used-automatically': PRICING_AUDIT_MODIFIED_ISO,
+  'how-to-cancel-subscriptions-mtn-vodacom-telkom': PRICING_AUDIT_MODIFIED_ISO,
+  'how-to-check-subscriptions-on-mtn': PRICING_AUDIT_MODIFIED_ISO,
+  'how-to-check-subscriptions-on-vodacom': PRICING_AUDIT_MODIFIED_ISO,
+  'how-to-stop-wasp-services-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'how-to-protect-airtime-from-being-used': PRICING_AUDIT_MODIFIED_ISO,
+  'airtime-data-problems-south-africa': '2026-08-13T00:00:00.000Z',
   'why-is-my-data-disappearing-vodacom': '2026-08-01T00:00:00.000Z',
   'why-is-my-data-disappearing-mtn': '2026-08-01T00:00:00.000Z'
 };
 
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
-  'best-monthly-data-deals-south-africa': '2026-08-02T00:00:00.000Z',
-  'best-prepaid-data-deals-south-africa': '2026-08-02T00:00:00.000Z',
-  'cheap-night-data-south-africa': '2026-08-06T00:00:00.000Z',
-  'cheapest-1gb-data-south-africa': '2026-08-02T00:00:00.000Z',
-  'cheapest-2gb-data-south-africa': '2026-08-02T00:00:00.000Z',
-  'cheapest-5gb-data-south-africa': '2026-08-02T00:00:00.000Z',
-  'cheapest-10gb-data-south-africa': '2026-08-02T00:00:00.000Z',
-  'cheapest-15gb-data-south-africa': '2026-08-02T00:00:00.000Z',
-  'cheapest-20gb-data-south-africa': '2026-08-02T00:00:00.000Z',
-  'cheapest-50gb-data-south-africa': '2026-08-02T00:00:00.000Z',
-  'cheapest-whatsapp-bundles-south-africa': '2026-08-02T00:00:00.000Z'
+  'best-monthly-data-deals-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'best-prepaid-data-deals-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheap-night-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-1gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-2gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-5gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-10gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-15gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-20gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-50gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-whatsapp-bundles-south-africa': PRICING_AUDIT_MODIFIED_ISO
 };
 
 const NETWORK_MODIFIED_BY_SLUG: Record<string, string> = {
-  'cell-c': '2026-08-02T00:00:00.000Z',
-  mtn: '2026-08-01T00:00:00.000Z',
-  rain: '2026-08-01T00:00:00.000Z',
-  telkom: '2026-08-01T00:00:00.000Z',
-  vodacom: '2026-08-02T00:00:00.000Z'
+  'cell-c': PRICING_AUDIT_MODIFIED_ISO,
+  mtn: PRICING_AUDIT_MODIFIED_ISO,
+  rain: PRICING_AUDIT_MODIFIED_ISO,
+  telkom: PRICING_AUDIT_MODIFIED_ISO,
+  vodacom: PRICING_AUDIT_MODIFIED_ISO
 };
 
 const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
-  'cell-c': '2026-08-02T00:00:00.000Z',
-  mtn: '2026-08-22T00:00:00.000Z',
-  rain: '2026-08-01T00:00:00.000Z',
-  telkom: '2026-08-02T00:00:00.000Z',
-  vodacom: '2026-08-02T00:00:00.000Z'
+  'cell-c': PRICING_AUDIT_MODIFIED_ISO,
+  mtn: PRICING_AUDIT_MODIFIED_ISO,
+  rain: PRICING_AUDIT_MODIFIED_ISO,
+  telkom: PRICING_AUDIT_MODIFIED_ISO,
+  vodacom: PRICING_AUDIT_MODIFIED_ISO
 };
 
 const NETWORK_USSD_MODIFIED_BY_SLUG: Record<string, string> = {
   'cell-c': '2026-08-01T00:00:00.000Z',
-  mtn: '2026-08-01T00:00:00.000Z',
-  rain: '2026-08-01T00:00:00.000Z',
+  mtn: PRICING_AUDIT_MODIFIED_ISO,
+  rain: PRICING_AUDIT_MODIFIED_ISO,
   telkom: '2026-08-01T00:00:00.000Z',
   vodacom: '2026-08-02T00:00:00.000Z'
 };

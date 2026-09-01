@@ -20,8 +20,8 @@ export const ussdCodesByNetwork = {
       { id: 'ussd.mtn.data_balance', codeType: 'balance', label: 'Data Balance', code: '*136*1#' },
       { id: 'ussd.mtn.buy_data', codeType: 'data', label: 'Buy Data', code: '*136*2#' },
       { id: 'ussd.mtn.recharge_voucher', codeType: 'recharge', label: 'Recharge', code: '*136*Voucher#' },
-      { id: 'ussd.mtn.please_call_me', codeType: 'other', label: 'Please Call Me guidance', code: 'N/A - use MTN App or 135' },
-      { id: 'ussd.mtn.check_number', codeType: 'other', label: 'Own-number guidance', code: 'N/A - use MTN App or 135' }
+      { id: 'ussd.mtn.please_call_me', codeType: 'other', label: 'Please Call Me guidance — current shortcut needs confirmation', code: 'N/A' },
+      { id: 'ussd.mtn.check_number', codeType: 'other', label: 'Own-number guidance — current shortcut needs confirmation', code: 'N/A' }
     ]
   },
   vodacom: {

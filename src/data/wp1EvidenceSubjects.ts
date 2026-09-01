@@ -55,7 +55,7 @@ const CANONICAL_EVIDENCE_SUBJECT_MANIFEST: readonly Readonly<CanonicalEvidenceSu
   Object.freeze({"contentId":"ussd.mtn.transfer_airtime_data","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"1627b184e4edc38f9ce05623b4a27079220fce56a4c7953d658ea951c006bf53"}),
   Object.freeze({"contentId":"ussd.mtn.check_number","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"ebae5c546d29b19f9a80de732b8ff99551302a6ca3b9ea1886d8ccb176d8a1b2"}),
   Object.freeze({"contentId":"ussd.mtn.customer_care","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"8572ff1d6bf979cdd2c57e5507ba4e5e10989fb948d6ebf85dccf5554641402d"}),
-  Object.freeze({"contentId":"ussd.mtn.xtratime","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"2565f151af5ee50e667820dd4ec1368abe06425fb65a1b858faeef4b21dbd05f"}),
+  Object.freeze({"contentId":"ussd.mtn.xtratime","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"972363f5b23314e1c67f656211461fe559118dd0b50dcf9388b4480ee947ba57"}),
   Object.freeze({"contentId":"ussd.mtn.mytownoffers","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"ea6869d143418c1994b6b5d27367b4528fd6c40a2ceb6adbba42e08e7f646eb6"}),
   Object.freeze({"contentId":"ussd.telkom.balance_main","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"eafce8a5f9b289541d603ebed889a04b0d07da2610dcd1a141e4f6c153843714"}),
   Object.freeze({"contentId":"ussd.telkom.buy_data","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"3847001a70b1e6e4e8d272423bf9b4f659e083754e096be7f715244e2e04e13e"}),

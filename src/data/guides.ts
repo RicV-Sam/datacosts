@@ -42,7 +42,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Can I get free 1GB data?',
-        answer: 'Some networks offer free data when you first join or via their rewards apps (like MyVodacom or MTN App). Check your network app for current promotions.'
+        answer: 'Joining or rewards promotions may include data, but availability changes and is not guaranteed. Check your network app and the live offer terms before relying on it.'
       }
     ]
   },
@@ -266,11 +266,11 @@ export const guides: Guide[] = [
       },
       {
         question: 'Are weekly bundles better than monthly ones?',
-        answer: 'Frequently, yes. If you can manage your usage, buying four weekly bundles can sometimes give you more total data for less money than one 30-day bundle.'
+        answer: 'Sometimes. Compare the total price, anytime allocation and expiry of repeated weekly purchases with one 30-day bundle; either option can be cheaper depending on the live offers.'
       },
       {
         question: 'How do I get 5G data deals?',
-        answer: 'Most modern data bundles from Vodacom, MTN, and Telkom automatically include 5G access at no extra cost, provided you have a 5G phone and are in a 5G area.'
+        answer: '5G access depends on the network, tariff or bundle, compatible device and local coverage. Check the live product terms instead of assuming every bundle includes 5G at no extra cost.'
       },
       {
         question: 'Is Rain really unlimited?',
@@ -700,7 +700,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Why does my airtime disappear after my bundle finishes?',
-        answer: 'This is usually out-of-bundle billing. Once your bundle ends, continued internet usage can be deducted from airtime at a higher per-MB rate.'
+        answer: 'If out-of-bundle usage is enabled or allowed on your line, continued internet use after a bundle ends can be deducted from airtime. Check your line settings and usage history before assuming this is the cause.'
       },
       {
         question: 'How do I check my balance on MTN, Vodacom, Telkom, or Cell C?',
@@ -1483,7 +1483,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Can I buy Vodacom data for someone else?',
-        answer: 'Yes, dial *135#, select "Buy", choose "Data", and then look for the option to "Purchase for another number".'
+        answer: 'Vodacom publishes *135*1002# as a data-bundle transfer and purchase route. Follow the current prompts; if the required option is not shown, use the My Vodacom app or contact support.'
       },
       {
         question: 'How do I check my Vodacom data balance?',

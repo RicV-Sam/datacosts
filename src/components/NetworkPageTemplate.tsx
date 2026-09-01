@@ -95,7 +95,7 @@ function getProductTypeLabel(productType?: ProductType): string | null {
     night_data: 'Night-only data',
     personalised_app_only_offer: 'Personalised app offer',
     promo_campaign_offer: 'Promotional offer',
-    home_internet_fixed_lte: 'Fixed LTE / home internet'
+    home_internet_fixed_lte: 'Fixed wireless / home internet'
   };
   return labels[productType];
 }

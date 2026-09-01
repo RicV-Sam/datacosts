@@ -47,16 +47,16 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
     balanceGuideHref: '/guides/how-to-check-mtn-data-balance/',
     comparisonHref: '/guides/vodacom-vs-mtn-data-prices/',
     metaDescription:
-      'MTN USSD codes for South Africa: dial *136# to check balance, *136*2# to buy data, use *136*VoucherCode# to recharge and *136*2*6# for XtraTime.',
+      'MTN USSD codes for South Africa: dial *136# to check balance, *136*2# to buy data, use *136*VoucherCode# to recharge and *151# for XtraTime.',
     intro:
       'Use this page when the intent is MTN-specific. Start here for currently supported MTN balance, data, recharge, XtraTime, and customer-care routes without relying on an unverified legacy shortcut.',
     quickAnswer:
-      'For an MTN balance check, dial *136#. Use *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, and *136*2*6# for XtraTime. MTN does not currently publish network-wide own-number or Please Call Me shortcuts in its public guidance, so use the MTN App or call 135 for those actions.',
+      'For an MTN balance check, dial *136#. Use *136*2# to buy data, *136*VoucherCode# to recharge with a voucher, and *151# for XtraTime. MTN also documents selecting XtraTime from *136*2#. Current own-number and Please Call Me shortcuts still need provider confirmation, so use the MTN App or call 135 for those actions.',
     quickCodes: [
       { label: 'MTN balance check', code: '*136#' },
       { label: 'Buy MTN data', code: '*136*2#' },
       { label: 'MTN recharge', code: '*136*VoucherCode#' },
-      { label: 'MTN XtraTime', code: '*136*2*6#' }
+      { label: 'MTN XtraTime', code: '*151#' }
     ],
     supportNote:
       'MTN menus can vary by prepaid profile and active campaigns. If a code path changes, use *136# as your fallback entry point.',
@@ -75,7 +75,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
       },
       {
         question: 'How do I check my MTN number?',
-        answer: 'MTN does not currently publish a network-wide own-number USSD shortcut. Check the MTN App or SIM details, or call 135 for help.'
+        answer: 'A current shortcut was not confirmed in this audit. MTN\'s July 2026 code table listed *123*888#, but its catalogue period has ended, so verify the code on your SIM or use the MTN App or 135.'
       },
       {
         question: 'What is the MTN Please Call Me code?',

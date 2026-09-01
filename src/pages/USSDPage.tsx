@@ -127,12 +127,12 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
     {
       question: 'What is the Please Call Me code in South Africa?',
       answer:
-        'Vodacom and Telkom publish *140*the-number#, while Cell C publishes *111*the-number#. MTN does not currently publish a network-wide shortcut in its public guidance; use the MTN App or call 135 for help.'
+        'Vodacom and Telkom publish *140*the-number#, while Cell C publishes *111*the-number#. A current MTN shortcut was not confirmed in this audit; verify it with MTN or use the MTN App or 135.'
     },
     {
       question: 'Can I borrow airtime with USSD?',
       answer:
-        'Sometimes, yes. MTN currently advertises XtraTime on *136*2*6# and also documents *151# as an alternative on some profiles. Other operators may place airtime-advance access inside their main self-service menus, so this page keeps that wording conservative where direct verification is less clear.'
+        'Sometimes, yes. MTN documents *151# and the XtraTime option under *136*2#. Vodacom publishes *135*082# for eligible Airtime/Data Advance customers. Other operators may place advance access inside their main self-service menus.'
     }
   ];
 
@@ -378,7 +378,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 leading-relaxed">
-            Common balance shortcuts are <strong>MTN *136#</strong>, <strong>Vodacom *136#</strong>, <strong>Telkom *188#</strong>, and <strong>Cell C *101#</strong>. MTN does not currently publish a network-wide Please Call Me shortcut in its public guidance, so use the <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN support routes</Link> instead of relying on a legacy code. Use this hub for cross-network comparison, then jump to <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link> or <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">how to check Cell C balance</Link> when the intent becomes network-specific.
+            Common balance shortcuts are <strong>MTN *136#</strong>, <strong>Vodacom *136#</strong>, <strong>Telkom *188#</strong>, and <strong>Cell C *101#</strong>. A current MTN Please Call Me shortcut was not confirmed in this audit, so use the <Link to="/mtn-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">MTN support routes</Link> instead of relying on an old code without testing it. Use this hub for cross-network comparison, then jump to <Link to="/telkom-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">Telkom USSD codes</Link> or <Link to="/cell-c-ussd-codes/" className="font-semibold text-[#1b6d24] hover:underline">how to check Cell C balance</Link> when the intent becomes network-specific.
           </p>
           <p className="mt-3 text-sm text-slate-600 leading-relaxed">
             For network-price or bundle intent instead of code lookup, go to the <Link to="/network/vodacom/" className="font-semibold text-[#1b6d24] hover:underline">Vodacom data prices page</Link>. If your query is <Link to="/guides/how-to-check-vodacom-airtime-balance/" className="font-semibold text-[#1b6d24] hover:underline">how to check balance on Vodacom</Link>, use the dedicated guide. For broader prepaid pricing research, open the <Link to="/guides/cheapest-data-south-africa/" className="font-semibold text-[#1b6d24] hover:underline">cheapest data comparison guide</Link>.

@@ -1,7 +1,7 @@
 import { ussdRepository } from './ussd';
 import { type ContentEvidenceRecord, type SourceRecord } from '../seo/wp1SourceFreshness';
 
-export const WP1_EVIDENCE_AS_OF = '2026-08-02';
+export const WP1_EVIDENCE_AS_OF = '2026-09-01';
 
 export const wp1SourceRecords: SourceRecord[] = [
   {
@@ -97,9 +97,29 @@ export const wp1SourceRecords: SourceRecord[] = [
     effectiveFrom: '2026-07-07',
     expiresAt: '2026-08-06',
     verificationMethod: 'operator_page',
-    claimScope: 'Current MTN public USSD list, including menu, bundle, XtraTime and Made4U routes; no own-number or Please Call Me shortcut is listed.',
+    claimScope: 'Historical July 2026 MTN public USSD catalogue, including menu, bundle, XtraTime and Made4U routes.',
+    status: 'expired',
+    confidence: 'high'
+  },
+  {
+    recordId: 'source.ussd.mtn.xtratime',
+    sourceUrl: 'https://www.mtn.co.za/home/xtra-time/',
+    sourceType: 'operator',
+    checkedAt: WP1_EVIDENCE_AS_OF,
+    verificationMethod: 'operator_page',
+    claimScope: 'Current MTN XtraTime access through *151# or the XtraTime option under *136*2#.',
     status: 'verified',
     confidence: 'high'
+  },
+  {
+    recordId: 'source.ussd.mtn.historical-code-table',
+    sourceUrl: 'https://onlinecms.mtn.co.za/sites/default/files/July%20YT.pdf',
+    sourceType: 'operator',
+    checkedAt: WP1_EVIDENCE_AS_OF,
+    verificationMethod: 'operator_page',
+    claimScope: 'Historical MTN code table lists *123*888# for My Number and *121*(number)# for Call Back; the catalogue period has ended, so current SIM confirmation remains required.',
+    status: 'verified',
+    confidence: 'medium'
   },
   {
     recordId: 'source.ussd.mtn.mytownoffers',
@@ -160,6 +180,16 @@ export const wp1SourceRecords: SourceRecord[] = [
     claimScope: 'Cell C alternative prepaid offers available on *141#.',
     status: 'verified',
     confidence: 'high'
+  },
+  {
+    recordId: 'source.ussd.rain.4g-mobile-services',
+    sourceUrl: 'https://www.rain.co.za/legal?section=rainGO',
+    sourceType: 'operator',
+    checkedAt: WP1_EVIDENCE_AS_OF,
+    verificationMethod: 'operator_page',
+    claimScope: 'Rain states that USSD is unavailable on its 4G Mobile Services network.',
+    status: 'verified',
+    confidence: 'high'
   }
 ];
 
@@ -173,15 +203,16 @@ const ussdSourceIdsByRecordId: Readonly<Record<string, readonly string[]>> = Obj
   'ussd.vodacom.recharge_voucher': ['source.ussd.vodacom.useful-codes'],
   'ussd.vodacom.buy_data': ['source.ussd.vodacom.prepaid-data'],
   'ussd.vodacom.transfer_airtime_data': ['source.ussd.vodacom.useful-codes'],
-  'ussd.mtn.check_number': ['source.ussd.mtn.yello-trader-2026-07'],
-  'ussd.mtn.xtratime': ['source.ussd.mtn.yello-trader-2026-07'],
-  'ussd.mtn.mytownoffers': ['source.ussd.mtn.yello-trader-2026-07', 'source.ussd.mtn.mytownoffers'],
+  'ussd.mtn.check_number': ['source.ussd.mtn.historical-code-table'],
+  'ussd.mtn.xtratime': ['source.ussd.mtn.xtratime'],
+  'ussd.mtn.mytownoffers': ['source.ussd.mtn.mytownoffers'],
   'ussd.telkom.balance_main': ['source.ussd.telkom.help-guide'],
   'ussd.telkom.buy_data': ['source.ussd.telkom.help-guide'],
   'ussd.telkom.monice': ['source.ussd.telkom.monice'],
   'ussd.cellc.buy_data': ['source.ussd.cellc.data-bundles'],
   'ussd.cellc.check_number': ['source.ussd.cellc.contact'],
-  'ussd.cellc.for_you': ['source.ussd.cellc.alternative-offers']
+  'ussd.cellc.for_you': ['source.ussd.cellc.alternative-offers'],
+  'ussd.rain.app_only': ['source.ussd.rain.4g-mobile-services']
 });
 
 const ussdEvidenceRecords: ContentEvidenceRecord[] = ussdRepository.map((record) => ({

@@ -22,8 +22,8 @@ const advanceRows = [
     network: 'MTN',
     intent: 'Borrow airtime / check advance',
     product: 'MTN XtraTime',
-    code: '*136*2*6#',
-    status: 'Current MTN catalogue route; *151# remains an officially documented alternative on some profiles.',
+    code: '*151#',
+    status: 'MTN also documents *136*2# followed by the XtraTime option.',
     repayment: 'Repayment and any service fee are normally deducted from your next recharge or incoming airtime.',
     href: '/mtn-ussd-codes/'
   },
@@ -31,10 +31,10 @@ const advanceRows = [
     anchor: 'vodacom-airtime-advance',
     network: 'Vodacom',
     intent: 'Airtime advance / emergency airtime',
-    product: 'Airtime advance via self-service menu',
-    code: '*135# menu',
-    status: 'Use the main Vodacom menu because direct menu paths can vary by SIM and offer eligibility.',
-    repayment: 'Confirm the fee and repayment terms on the Vodacom menu before accepting an advance.',
+    product: 'Vodacom Airtime/Data Advance',
+    code: '*135*082#',
+    status: 'Vodacom publishes this direct route; use *135# as a fallback if the option is not shown.',
+    repayment: 'Vodacom says repayment plus a fee is deducted from the next recharge; confirm the amount before accepting.',
     href: '/vodacom-ussd-codes/'
   },
   {
@@ -71,15 +71,15 @@ const faqItems = [
   {
     question: 'How do I borrow airtime from Vodacom?',
     answer:
-      'Start with the *135# Vodacom self-service menu and look for an airtime advance option. Availability depends on the SIM and account profile, so review the fee and repayment amount shown before accepting.'
+      'Dial *135*082# for Vodacom Airtime/Data Advance, or use *135# as a fallback. Vodacom says the SIM must have been active for at least three months; review the fee and repayment amount before accepting.'
   },
   {
     question: 'What is the MTN airtime advance code?',
-    answer: 'Dial *136*2*6# for the current MTN XtraTime route. MTN also documents *151# as an alternative on some profiles. Check the fee and repayment amount before accepting.'
+    answer: 'Dial *151# for MTN XtraTime, or dial *136*2# and select XtraTime. Check the fee and repayment amount before accepting.'
   },
   {
     question: 'What is the Vodacom airtime advance code?',
-    answer: 'Start with *135# and follow the Vodacom self-service menu. Direct advance-airtime menu paths can vary by SIM and eligibility.'
+    answer: 'Dial *135*082# for Vodacom Airtime/Data Advance. If that route is not shown for your SIM, use the *135# self-service menu as a fallback.'
   },
   {
     question: 'Why can airtime advance fail?',
@@ -193,7 +193,7 @@ export const AirtimeAdvanceCodesPage: React.FC<AirtimeAdvanceCodesPageProps> = (
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick answer</h2>
           <p className="mb-5 text-slate-700 leading-relaxed">
-            To borrow airtime from Vodacom, start with the <strong>*135#</strong> self-service menu and check whether an advance is offered for your SIM. MTN users can start with <strong>*136*2*6#</strong>, Telkom with <strong>*180#</strong>, and Cell C with <strong>*147#</strong>. Check the fee, eligibility, and repayment amount on screen before accepting any airtime advance.
+            To borrow airtime from Vodacom, dial <strong>*135*082#</strong> and check whether an advance is offered for your SIM. MTN users can dial <strong>*151#</strong> or choose XtraTime from <strong>*136*2#</strong>, Telkom users can start with <strong>*180#</strong>, and Cell C users with <strong>*147#</strong>. Check the fee, eligibility, and repayment amount on screen before accepting any airtime advance.
           </p>
           <div className="overflow-x-auto">
             <table className="min-w-[680px] w-full text-left text-sm">

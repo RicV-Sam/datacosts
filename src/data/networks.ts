@@ -501,13 +501,13 @@ export const networkPages: Record<string, NetworkPageData> = {
     tips: [
       'Rain is often best evaluated as a home internet, mobile-combo, or portable-router product rather than a normal prepaid mobile bundle.',
       'Check Rain coverage and the exact product\'s location or loopzone rules before committing to unlimited home or loop plans.',
-      'Manage everything through the Rain dashboard or mobile app for instant control.'
+      'Use the Rain dashboard or mobile app for the account actions available to your product.'
     ],
     verdictSummary: 'Rain has fewer listed deals here because its product structure is different from prepaid mobile bundle menus: compare coverage fit, monthly price, device terms, location rules and included mobile extras rather than SKU count.',
     faqs: [
       {
         question: 'Does Rain have USSD codes?',
-        answer: 'No, Rain does not use USSD codes. All management, from activation to checking usage and changing plans, is done via the Rain app or their website portal.'
+        answer: 'Rain specifically says USSD is unavailable on its 4G Mobile Services network. Use the Rain app or website for the account actions available to your current product.'
       },
       {
         question: 'Is Rain data truly unlimited?',

@@ -140,7 +140,7 @@ export const ussdRepository: readonly USSDEntry[] = [
     category: 'Other',
     action: 'Own-number Help',
     code: 'N/A',
-    explanation: 'MTN does not currently publish a network-wide own-number USSD shortcut; check the MTN App, SIM details, or call 135.',
+    explanation: 'A current own-number shortcut was not confirmed in this audit. MTN\'s July 2026 table listed *123*888#; verify it on your SIM, check the MTN App or call 135.',
     status: 'verified',
     dialable: false
   },
@@ -159,8 +159,8 @@ export const ussdRepository: readonly USSDEntry[] = [
     network: 'MTN',
     category: 'Promotions / Advance airtime / Extras',
     action: 'XtraTime',
-    code: '*136*2*6#',
-    explanation: 'Open the current XtraTime menu for eligible airtime or data advances; *151# may remain available on some profiles.',
+    code: '*151#',
+    explanation: 'Open XtraTime for eligible airtime or data advances; MTN also documents *136*2# followed by the XtraTime option.',
     status: 'verified',
     dialable: true
   },
@@ -286,9 +286,9 @@ export const ussdRepository: readonly USSDEntry[] = [
     category: 'Other',
     action: 'Rain Management',
     code: 'N/A',
-    explanation: 'Rain is fully managed via the Rain app or website.',
+    explanation: 'Use the Rain app or website for account management; Rain specifically says USSD is unavailable on its 4G Mobile Services network.',
     status: 'verified',
-    note: 'Rain does not use traditional USSD codes for management.',
+    note: 'The verified no-USSD statement is scoped to Rain 4G Mobile Services.',
     dialable: false
   }
 ];

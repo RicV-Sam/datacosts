@@ -159,11 +159,11 @@ export const ProblemSolvingGuidePage: React.FC<ProblemSolvingGuidePageProps> = (
         <header className="mb-10">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-5 leading-[0.95]">{guide.h1}</h1>
           <div className="mb-5 rounded-2xl border border-slate-200 bg-white p-4">
-            <p className="text-sm font-semibold text-slate-700">Last reviewed: {lastUpdated}</p>
+            <p className="text-sm font-semibold text-slate-700">Last updated: {lastUpdated}</p>
             {reviewDueDate && <p className="text-sm text-slate-600">Next review due: {reviewDueDate}</p>}
             <p className="text-sm text-slate-600">Reviewed by {SITE_EDITOR_NAME}, {SITE_EDITOR_ROLE}</p>
             <p className="text-xs text-slate-500 mt-1">
-              {guide.sourceSummary || 'Based on public operator support paths, USSD guidance, and prepaid troubleshooting patterns.'}
+              {guide.sourceSummary || 'General troubleshooting guidance; confirm operator-specific steps against current official support information.'}
             </p>
           </div>
           <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-3xl">{guide.intro}</p>
