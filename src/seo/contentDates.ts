@@ -41,7 +41,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/terms/': '2026-05-10T00:00:00.000Z',
   '/trust/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/travel-sims-south-africa/': EDITORIAL_AUDIT_MODIFIED_ISO,
-  '/ussd-codes-south-africa/': PRICING_AUDIT_MODIFIED_ISO,
+  '/ussd-codes-south-africa/': '2026-09-03T00:00:00.000Z',
   '/vodacom-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO
 };
 

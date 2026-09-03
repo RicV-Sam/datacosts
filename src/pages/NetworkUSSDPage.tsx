@@ -462,6 +462,11 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
               If you need the clearest step-by-step answer for <Link to="/guides/how-to-check-vodacom-airtime-balance/" className="font-semibold text-[#1b6d24] hover:underline">how to check balance on Vodacom</Link>, use the guide after this page. If you also need the wider menu for recharge, bundles, or self-service, stay here on the Vodacom USSD page.
             </p>
           ) : null}
+          {networkSlug === 'mtn' ? (
+            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+              For the step-by-step data workflow, open <Link to="/guides/how-to-check-mtn-data-balance/" className="font-semibold text-[#1b6d24] hover:underline">how to check balance on MTN</Link>. For the cross-network directory and the verified <Link to="/ussd-codes-south-africa/" className="font-semibold text-[#1b6d24] hover:underline">Please Call Me MTN code</Link>, use the South Africa USSD hub.
+            </p>
+          ) : null}
           <p className="mt-3 text-sm text-slate-600 leading-relaxed">
             Need to borrow airtime when you are out of credit? Use the <Link to="/airtime-advance-codes/" className="font-semibold text-[#1b6d24] hover:underline">{config.networkName} airtime advance USSD code</Link> guide to compare eligibility, fees, and repayment notes.
           </p>

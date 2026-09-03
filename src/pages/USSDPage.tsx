@@ -380,6 +380,9 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
           <p className="mt-3 text-sm text-slate-600 leading-relaxed">
             For network-price or bundle intent instead of code lookup, go to the <Link to="/network/vodacom/" className="font-semibold text-[#1b6d24] hover:underline">Vodacom data prices page</Link>. If your query is <Link to="/guides/how-to-check-vodacom-airtime-balance/" className="font-semibold text-[#1b6d24] hover:underline">how to check balance on Vodacom</Link>, use the dedicated guide. For broader prepaid pricing research, open the <Link to="/guides/cheapest-data-south-africa/" className="font-semibold text-[#1b6d24] hover:underline">cheapest data comparison guide</Link>.
           </p>
+          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            For an MTN-specific walkthrough, use <Link to="/guides/how-to-check-mtn-data-balance/" className="font-semibold text-[#1b6d24] hover:underline">how to check data balance on MTN in South Africa</Link>. If you are checking when an off-peak bundle can be used, see the <Link to="/guides/cheap-night-data-south-africa/" className="font-semibold text-[#1b6d24] hover:underline">MTN night data time</Link> guide instead.
+          </p>
         </section>
 
         <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
