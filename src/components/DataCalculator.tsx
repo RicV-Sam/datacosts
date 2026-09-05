@@ -25,7 +25,7 @@ export const DataCalculator: React.FC = () => {
   }, [totalDataNeeded, currentSpend]);
 
   return (
-    <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-8 border border-white shadow-xl hover:shadow-2xl transition-all duration-300" id="calculator">
+    <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-4 sm:p-8 border border-white shadow-xl hover:shadow-2xl transition-all duration-300" id="calculator">
       <div className="flex items-center gap-3 mb-8">
         <div className="w-10 h-10 bg-[#031636] rounded-xl flex items-center justify-center text-white">
           <Calculator className="w-5 h-5" />
@@ -72,12 +72,14 @@ export const DataCalculator: React.FC = () => {
           />
 
           <div className="pt-6 border-t border-slate-100">
-            <label className="block text-sm font-bold text-slate-700 mb-2">
+            <label htmlFor="calculator-spend" className="block text-sm font-bold text-slate-700 mb-2">
               I currently pay (R/month)
             </label>
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 font-bold">R</span>
               <input
+                id="calculator-spend"
+                min="0"
                 type="number"
                 placeholder="0"
                 value={currentSpend}
@@ -88,9 +90,9 @@ export const DataCalculator: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-slate-50 rounded-2xl p-8 flex flex-col justify-center">
+        <div className="bg-slate-50 rounded-2xl p-4 sm:p-8 flex flex-col justify-center">
           <div className="text-center mb-8">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-2 block">Estimated Monthly Need</span>
+            <span className="text-[10px] font-bold text-slate-600 uppercase tracking-[0.2em] mb-2 block">Estimated Monthly Need</span>
             <div className="text-6xl font-black text-[#031636] tracking-tighter">
               {totalDataNeeded.toFixed(1)}<span className="text-2xl ml-1">GB</span>
             </div>
@@ -106,9 +108,9 @@ export const DataCalculator: React.FC = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       className="bg-[#a0f399] p-4 rounded-xl text-[#1b6d24] text-center mb-4 border border-[#1b6d24]/20"
                     >
-                      <p className="text-xs font-black uppercase tracking-widest mb-1">Potential Monthly Saving</p>
+                      <p className="text-xs font-black uppercase tracking-widest mb-1">Difference from entered spend</p>
                       <p className="text-3xl font-black">R{recommendations.savings.toFixed(2)}</p>
-                      <p className="text-[10px] font-bold mt-1">By switching to {recommendations.cheapest.network}</p>
+                      <p className="text-[10px] font-bold mt-1">Data price only; excludes calls, devices and switching costs.</p>
                     </motion.div>
                   )}
                   <RecommendationCard
@@ -153,18 +155,18 @@ export const DataCalculator: React.FC = () => {
                       onClick={() => trackAndRedirect(recommendations.cheapest.network, 'calculator', recommendations.cheapest.name)}
                       className="w-full py-4 bg-[#031636] text-white rounded-2xl font-black text-sm shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2 hover:opacity-90"
                     >
-                      View Best Deal
+                      Check operator price
                       <ArrowRight className="w-4 h-4" />
                     </button>
-                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-center">
+                    <p className="text-[10px] text-slate-600 font-bold uppercase tracking-wider text-center">
                       You will be redirected to the operator's official website
                     </p>
                   </div>
                 </>
               ) : (
-                <div className="flex items-center gap-2 text-slate-400 text-sm justify-center py-8">
+                <div className="flex items-center gap-2 text-slate-600 text-sm justify-center py-8">
                   <Info className="w-4 h-4" />
-                  <span>Adjust sliders to see recommendations</span>
+                  <span>No reviewed phone-data bundle covers this estimate for 30 days. <a href="/network/" className="underline text-blue-700">Compare network options</a> or check current operator offers.</span>
                 </div>
               )}
             </AnimatePresence>
@@ -175,6 +177,7 @@ export const DataCalculator: React.FC = () => {
       {/* Methodology Section */}
       <div className="mt-12 pt-8 border-t border-slate-100">
         <button
+          aria-expanded={showMethodology}
           onClick={() => setShowMethodology(!showMethodology)}
           className="flex items-center gap-2 text-slate-500 hover:text-[#031636] transition-colors"
         >
@@ -190,23 +193,23 @@ export const DataCalculator: React.FC = () => {
               exit={{ height: 0, opacity: 0 }}
               className="overflow-hidden"
             >
-              <div className="pt-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div id="calculator-methodology" className="pt-6 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                   <h4 className="text-xs font-black text-[#031636] uppercase mb-2">Usage Estimation</h4>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    We use industry-standard averages for data consumption: HD Video (~1.5GB/hr), Social Media (~200MB/hr), and basic web browsing/messaging.
+                    These are adjustable planning estimates, not measured usage: video 1.5GB/hr, social 0.2GB/hr, chat 0.05GB/hr and web 0.1GB/hr, multiplied by 30 days. Quality settings and apps change actual usage. We use 1GB = 1,000MB.
                   </p>
                 </div>
                 <div>
                   <h4 className="text-xs font-black text-[#031636] uppercase mb-2">Cost Logic</h4>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    "Cheapest" is the absolute lowest price for a bundle that meets your data needs. "Best Value" prioritizes the lowest cost per GB.
+                    The lowest suitable option is the cheapest eligible listed phone bundle covering the full estimate for at least 30 days. Best value uses unrestricted data only. This is not a whole-market ranking.
                   </p>
                 </div>
                 <div>
                   <h4 className="text-xs font-black text-[#031636] uppercase mb-2">Data Sources</h4>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    Pricing is compared against public network provider information using the DataCost methodology. We only include standard prepaid and monthly bundles in these recommendations.
+                    Only source-checked phone bundles reviewed within 30 days qualify. Fixed-home and router products are excluded. Confirm current price, eligibility, renewal terms and local coverage with the operator.
                   </p>
                 </div>
               </div>
@@ -238,7 +241,7 @@ const RecommendationCard: React.FC<{
       exit={{ opacity: 0, y: -10 }}
       className="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm"
     >
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex flex-wrap gap-2 items-center justify-between mb-3">
         <span className={`flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full uppercase border ${colorClasses[color]}`}>
           {icon} {type}
         </span>
@@ -248,6 +251,8 @@ const RecommendationCard: React.FC<{
         <div>
           <h4 className="font-bold text-slate-900 text-sm leading-tight">{bundle.name}</h4>
           <span className="text-[10px] text-slate-500 font-medium">{bundle.volume} - {bundle.validity}</span>
+          {bundle.sourceUrl && <a href={bundle.sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-2 block text-xs text-blue-700 underline">Official source · checked {bundle.lastVerified}</a>}
+          {bundle.watchOut && <p className="mt-1 text-xs text-slate-600">{bundle.watchOut}</p>}
           {note && <span className="mt-1 block text-[10px] font-bold text-amber-700">{note}</span>}
         </div>
         <div className="text-xl font-black text-[#031636]">R{bundle.price}</div>
@@ -273,6 +278,8 @@ const UsageSlider: React.FC<{
       <span className="text-xs font-bold text-[#031636]">{value} {unit}</span>
     </div>
     <input 
+      aria-label={label}
+      aria-valuetext={`${value} ${unit}`}
       type="range" 
       min="0" 
       max={max} 

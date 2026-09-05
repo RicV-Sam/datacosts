@@ -45,9 +45,9 @@ export function parseDataAmountToGb(value: string): number {
     const amount = Number(match[1]);
     const unit = match[2];
     if (!Number.isFinite(amount) || amount <= 0) return total;
-    if (unit === 'tb') return total + amount * 1024;
+    if (unit === 'tb') return total + amount * 1000;
     if (unit === 'gb') return total + amount;
-    return total + amount / 1024;
+    return total + amount / 1000;
   }, 0);
 }
 
@@ -71,23 +71,20 @@ function getGeneralDataGb(bundle: Bundle): number {
 
 function getValidityDays(bundle: Bundle): number {
   const validity = bundle.validity.toLowerCase();
-  if (validity.includes('hour')) return 1 / 24;
-  if (validity.includes('week') || validity.includes('7 day')) return 7;
-  if (validity.includes('month') || validity.includes('30 day') || bundle.type === 'Monthly' || bundle.type === 'Prepaid') return 30;
-  if (validity.includes('night') || validity.includes('day') || bundle.type === 'Daily') return 1;
-  return 30;
+  const duration = validity.match(/^(\d+)\s*(hour|day|week|month)s?$/);
+  if (duration) return Number(duration[1]) * ({ hour: 1 / 24, day: 1, week: 7, month: 30 }[duration[2]] ?? 0);
+  if (validity === 'month-to-month' || validity === 'monthly') return 30;
+  return 0;
 }
 
 function isRealisticMonthlyMatch(bundle: Bundle, monthlyNeedGb: number): boolean {
   const generalDataGb = getGeneralDataGb(bundle);
-  if (generalDataGb === Number.POSITIVE_INFINITY) return true;
   if (generalDataGb <= 0) return false;
 
   const validityDays = getValidityDays(bundle);
-  if (monthlyNeedGb > 10 && validityDays < 28) return false;
-  if (monthlyNeedGb > 3 && validityDays < 7) return false;
+  if (validityDays < 30) return false;
 
-  return generalDataGb >= monthlyNeedGb * 0.9;
+  return generalDataGb >= monthlyNeedGb;
 }
 
 function getValueScore(bundle: Bundle, monthlyNeedGb: number): number {
@@ -97,37 +94,22 @@ function getValueScore(bundle: Bundle, monthlyNeedGb: number): number {
   return bundle.price / generalDataGb;
 }
 
-function getClosestMonthlyFallback(bundles: Bundle[], monthlyNeedGb: number): Bundle | null {
-  const monthlyGeneralBundles = bundles
-    .filter((bundle) => getGeneralDataGb(bundle) > 0)
-    .filter((bundle) => getValidityDays(bundle) >= 28)
-    .sort((a, b) => {
-      const aGap = Math.abs(getGeneralDataGb(a) - monthlyNeedGb);
-      const bGap = Math.abs(getGeneralDataGb(b) - monthlyNeedGb);
-      if (aGap !== bGap) return aGap - bGap;
-      return getValueScore(a, monthlyNeedGb) - getValueScore(b, monthlyNeedGb);
-    });
-
-  return monthlyGeneralBundles[0] ?? null;
-}
-
-function getEmergencyTopUp(bundles: Bundle[]): Bundle | null {
-  const topUps = bundles
-    .filter((bundle) => !isSocialBundle(bundle) && !isNightOnlyBundle(bundle))
-    .filter((bundle) => getGeneralDataGb(bundle) > 0 && getGeneralDataGb(bundle) <= 2)
-    .sort((a, b) => a.price - b.price);
-
-  return topUps[0] ?? null;
-}
-
 export function getDataRecommendations(
   allBundles: Bundle[],
   monthlyNeedGb: number,
-  currentSpend: number | ''
+  currentSpend: number | '',
+  now: Date = new Date()
 ): DataRecommendation | null {
-  const suitableBundles = allBundles.filter((bundle) => isRealisticMonthlyMatch(bundle, monthlyNeedGb));
-  const fallback = suitableBundles.length > 0 ? null : getClosestMonthlyFallback(allBundles, monthlyNeedGb);
-  const recommendationPool = suitableBundles.length > 0 ? suitableBundles : (fallback ? [fallback] : []);
+  if (!Number.isFinite(monthlyNeedGb) || monthlyNeedGb <= 0) return null;
+  const eligible = allBundles.filter((bundle) => {
+    const checked = Date.parse(`${bundle.lastVerified}T00:00:00Z`);
+    const age = now.getTime() - checked;
+    return bundle.sourceConfidence === 'verified' && Boolean(bundle.sourceUrl?.startsWith('https://')) &&
+      Number.isFinite(age) && age >= 0 && age < 30 * 86400000 &&
+      Number.isFinite(bundle.price) && bundle.price > 0 &&
+      (bundle.productType === 'smartphone_once_off_data' || bundle.productType === 'smartphone_recurring_data');
+  });
+  const recommendationPool = eligible.filter((bundle) => isRealisticMonthlyMatch(bundle, monthlyNeedGb));
 
   if (!recommendationPool.length) return null;
 
@@ -136,15 +118,13 @@ export function getDataRecommendations(
   const heavyUser = monthlyNeedGb > 50
     ? [...recommendationPool].filter((bundle) => getGeneralDataGb(bundle) === Number.POSITIVE_INFINITY).sort((a, b) => a.price - b.price)[0] ?? null
     : null;
-  const topUp = suitableBundles.length === 0 ? getEmergencyTopUp(allBundles) : null;
+  const topUp = null;
 
-  const savings = typeof currentSpend === 'number'
+  const savings = typeof currentSpend === 'number' && Number.isFinite(currentSpend)
     ? Math.max(0, currentSpend - cheapest.price)
     : 0;
 
-  const note = suitableBundles.length > 0
-    ? 'Recommendations exclude social-only and night-only bundles because they do not cover normal monthly internet use.'
-    : 'No listed bundle fully covers the estimate, so this is the closest monthly-style option; any small top-up shown is only an emergency add-on.';
+  const note = 'Listed phone-data bundles cover the full estimate for at least 30 days. Night and social allowances, router products and personalised offers are excluded. Confirm coverage, eligibility and the checkout price before buying.';
 
   return { bestValue, cheapest, heavyUser, topUp, savings, note };
 }

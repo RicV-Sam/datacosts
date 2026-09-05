@@ -161,7 +161,7 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
       },
       {
         question: 'How do I check my Telkom number?',
-        answer: 'A commonly used code is *1#.'
+        answer: 'Dial *1# from your Telkom SIM to display your mobile number (MSISDN) and SIM identifier (IMSI). On a dual-SIM phone, choose the Telkom line. Use the mobile number when someone asks for your phone number; the IMSI is a different identifier.'
       },
       {
         question: 'Why does a Telkom code sometimes fail?',
@@ -649,6 +649,13 @@ export const NetworkUSSDPage: React.FC<NetworkUSSDPageProps> = ({ networkSlug, o
             <li>4. Try again later if menus are temporarily unavailable during maintenance.</li>
           </ul>
           <p className="text-slate-600 text-sm mt-4">{config.supportNote}</p>
+          {networkSlug === 'telkom' && (
+            <p className="text-slate-600 text-sm mt-3">
+              Telkom confirms the *1# number check, *188# balance check and *180# purchase menu in its{' '}
+              <a href="https://intouch.telkom.co.za/blog/never-get-caught-offline-again/640" className="text-[#1b6d24] font-semibold hover:underline">official USSD guide</a>
+              {' '}(checked 5 September 2026).
+            </p>
+          )}
         </section>        <section className="mb-10 bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6">Related Pages</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">

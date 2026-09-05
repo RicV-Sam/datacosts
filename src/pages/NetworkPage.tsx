@@ -30,7 +30,8 @@ const isHourlyBundle = (bundle: Bundle) => bundle.type === 'Hourly' || bundle.va
 const isDailyBundle = (bundle: Bundle) => bundle.type === 'Daily' || (bundle.validity.toLowerCase().includes('day') && !bundle.validity.toLowerCase().includes('7 day') && !bundle.validity.toLowerCase().includes('30 day'));
 const isWeeklyBundle = (bundle: Bundle) => bundle.type === 'Weekly' || bundle.validity.toLowerCase().includes('week') || bundle.validity.toLowerCase().includes('7 day');
 const isMonthlyBundle = (bundle: Bundle) => bundle.type === 'Monthly' || bundle.validity.toLowerCase().includes('30 day') || bundle.validity.toLowerCase().includes('month');
-const isNightBundle = (bundle: Bundle) => bundle.name.toLowerCase().includes('night') || (bundle.nightData !== undefined && bundle.nightData !== '');
+// A night bonus does not make the separately stated anytime allowance night-only.
+const isNightBundle = (bundle: Bundle) => bundle.productType === 'night_data';
 const isSocialBundle = (bundle: Bundle) => bundle.type === 'Social' || bundle.name.toLowerCase().includes('whatsapp') || bundle.name.toLowerCase().includes('social');
 
 const getNetworkBundleType = (bundle: Bundle): string => {
@@ -422,6 +423,16 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
               Checking prices before a top-up? Confirm your <a href="/guides/how-to-check-vodacom-airtime-balance/" className="text-[#1b6d24] font-semibold hover:underline">Vodacom balance and airtime</a> first so you do not buy another bundle while old airtime, data, or validity is still active.
             </p>
           </section>
+        )}
+
+        {networkSlug === 'telkom' && (
+          <p className="mb-8 text-slate-700 leading-relaxed">
+            Looking specifically for a month of data? Compare the{' '}
+            <a href="/network/telkom/monthly-data/" className="text-[#1b6d24] font-semibold hover:underline">Telkom monthly data bundles</a>
+            {' '}by price, allowance and validity. For short-term options, use the bundle table below.
+            {' '}For number checks, balances or purchase codes, open the{' '}
+            <a href="/telkom-ussd-codes/" className="text-[#1b6d24] font-semibold hover:underline">Telkom USSD guide</a>.
+          </p>
         )}
 
         {networkSlug === 'cell-c' && (
