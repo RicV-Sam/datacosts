@@ -10,6 +10,7 @@ import { getRedirectAliasRoutes, REDIRECT_ALIASES } from './src/config/redirectA
 import { SITE_ORIGIN } from './src/seo/siteConstants';
 import { getBundledDataProblemSourceFiles } from './src/config/dataProblemPublishing';
 import { canRenderPublisherAdsOnRoute } from './src/config/publisherReadiness';
+import { ADSENSE_AUTO_ADS_LOADER, ADSENSE_SCRIPT_URL } from './src/config/adsense';
 
 const DEFAULT_DEV_DATA_PROBLEMS_SOURCE_DIR = 'C:/Users/ricca/Desktop/DataCost-SEO-Engine/seo-engine/output/data-problems';
 const LOCAL_DATA_PROBLEMS_SOURCE_DIR = path.resolve(__dirname, 'src/data/seo-pages/data-problems');
@@ -20,8 +21,6 @@ const DEV_EXTERNAL_DATA_PROBLEMS_SOURCE_DIRS = [
 const DATA_PROBLEMS_SOURCE_FILES = getBundledDataProblemSourceFiles();
 const DATA_PROBLEMS_VIRTUAL_MODULE_ID = 'virtual:data-problems-content';
 const DATA_PROBLEMS_VIRTUAL_RESOLVED_ID = `\0${DATA_PROBLEMS_VIRTUAL_MODULE_ID}`;
-const ADSENSE_CLIENT_ID = 'ca-pub-6084410613829318';
-const ADSENSE_AUTO_ADS_SCRIPT = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}" crossorigin="anonymous"></script>`;
 
 type ExternalDataProblemJson = {
   slug: string;
@@ -69,11 +68,11 @@ function removePrerenderedAdsenseRuntime(html: string): string {
 }
 
 function ensureAdsenseAutoAdsScript(html: string): string {
-  if (html.includes(`pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`)) {
+  if (html.includes(ADSENSE_SCRIPT_URL)) {
     return html;
   }
 
-  return insertBeforeHeadClose(html, ADSENSE_AUTO_ADS_SCRIPT);
+  return insertBeforeHeadClose(html, ADSENSE_AUTO_ADS_LOADER);
 }
 
 function ensureTitle(html: string, title: string): string {

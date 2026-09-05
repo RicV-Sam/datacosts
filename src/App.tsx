@@ -1,5 +1,5 @@
-import { Fragment, Suspense, lazy, useState } from 'react';
-import { BrowserRouter, Navigate, Route, Routes, useNavigate, useParams } from 'react-router-dom';
+import { Fragment, Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { guides } from './data/guides';
 import { REDIRECT_ALIASES } from './config/redirectAliases';
 import { NetworkName, NavigateFunction } from './types';
@@ -55,6 +55,17 @@ const RetentionOfferVsSwitchGuidePage = lazy(() => import('./pages/RetentionOffe
 const PromosPage = lazy(() => import('./pages/PromosPage').then((mod) => ({ default: mod.PromosPage })));
 
 function AppContent() {
+  const location = useLocation();
+  const documentPath = useRef(window.location.pathname);
+  useEffect(() => {
+    // Auto ads are installed in each prerendered document. A client-only route
+    // change can leave them missing, or carry ads onto an excluded page. Load
+    // the destination document so Google gets a fresh page lifecycle; retain
+    // client-side hash/query updates and the fast development workflow.
+    if (import.meta.env.PROD && location.pathname !== documentPath.current) {
+      window.location.replace(`${location.pathname}${location.search}${location.hash}`);
+    }
+  }, [location.pathname, location.search, location.hash]);
   const [selectedNetwork, setSelectedNetwork] = useState<NetworkName | null>(null);
   const [activeSection] = useState('home');
   const navigate = useNavigate();

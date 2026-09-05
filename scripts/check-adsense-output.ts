@@ -6,12 +6,11 @@ import {
   PUBLISHER_CONTENT_MIN_WORDS
 } from '../src/config/publisherReadiness';
 import { getNoindexRoutes } from '../src/config/routeCatalog';
+import { ADSENSE_AUTO_ADS_LOADER, ADSENSE_CLIENT_ID, ADSENSE_SCRIPT_URL } from '../src/config/adsense';
 
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
 const PUBLIC_ADS_TXT = path.resolve(process.cwd(), 'public/ads.txt');
 const TEXT_EXTENSIONS = new Set(['.css', '.html', '.js', '.json', '.svg', '.txt', '.xml']);
-const ADSENSE_CLIENT_ID = 'ca-pub-6084410613829318';
-const ADSENSE_SCRIPT_URL = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`;
 
 const FORBIDDEN_PATTERNS: Array<{ label: string; pattern: RegExp }> = [
   { label: 'prerendered AdSense runtime script', pattern: /pagead2\.googlesyndication\.com\/pagead\/managed\/js\/adsense/i },
@@ -119,12 +118,7 @@ function getMetaDescription(html: string): string | null {
 }
 
 function hasApprovedAdsenseAutoAdsScript(html: string): boolean {
-  const scriptTags = html.match(/<script\b[^>]*><\/script>/gi) ?? [];
-  return scriptTags.some((tag) => {
-    const src = getAttributeValue(tag, 'src');
-    const crossorigin = getAttributeValue(tag, 'crossorigin');
-    return src === ADSENSE_SCRIPT_URL && crossorigin?.toLowerCase() === 'anonymous';
-  });
+  return html.includes(ADSENSE_AUTO_ADS_LOADER);
 }
 
 function addDuplicateFinding(
@@ -161,6 +155,8 @@ async function main(): Promise<void> {
   const htmlFiles = files.filter((filePath) => filePath.endsWith('.html'));
   const noindexRoutes = getNoindexRoutes();
   const findings: Finding[] = [];
+  let enabledPageCount = 0;
+  let excludedPageCount = 0;
   const titlesByValue = new Map<string, string[]>();
   const descriptionsByValue = new Map<string, string[]>();
 
@@ -187,13 +183,18 @@ async function main(): Promise<void> {
     const canCarryPublisherAds = !isRenderedNoindex && canRenderPublisherAdsOnRoute(route, noindexRoutes);
 
     const hasAdsenseScript = hasApprovedAdsenseAutoAdsScript(text);
+    if (/<script\b[^>]*src=["'][^"']*pagead\/js\/adsbygoogle\.js/i.test(text)) {
+      findings.push({ file: toDisplayPath(filePath), label: 'loads AdSense before React content is ready' });
+    }
+    if (canCarryPublisherAds) enabledPageCount += 1;
+    else excludedPageCount += 1;
     if (canCarryPublisherAds && !hasAdsenseScript) {
       findings.push({
         file: toDisplayPath(filePath),
         label: `is missing approved AdSense Auto ads script for ${ADSENSE_CLIENT_ID}`
       });
     }
-    if (!canCarryPublisherAds && hasAdsenseScript) {
+    if (!canCarryPublisherAds && text.includes(ADSENSE_SCRIPT_URL)) {
       findings.push({
         file: toDisplayPath(filePath),
         label: 'must not include the AdSense Auto ads script on an ad-blocked route'
@@ -260,6 +261,7 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
+  console.log(`AdSense coverage: ${enabledPageCount} enabled pages, ${excludedPageCount} excluded utility/noindex/redirect pages.`);
   console.log(`AdSense output check passed for ${files.length} generated text files and ${htmlFiles.length} HTML pages in ${toDisplayPath(DIST_DIR)}.`);
 }
 

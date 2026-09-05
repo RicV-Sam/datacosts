@@ -15,7 +15,7 @@
     "audit:gsc-coverage": "node scripts/audit-gsc-coverage.mjs",
     "check:seo": "tsx scripts/check-seo-output.ts",
     "test:seo-growth": "tsx --test tests/seo-traffic-growth.test.ts",
-    "check:adsense": "tsx scripts/check-adsense-output.ts",
+    "check:adsense": "tsx --test tests/publisher-ad-coverage.test.ts && tsx scripts/check-adsense-output.ts",
     "check:monthly-deals": "tsx scripts/check-monthly-deals.ts",
     "test:monthly-deals": "tsx --test tests/monthly-data-deals.test.ts tests/monthly-data-deals-analytics.test.ts tests/mvno-guide.test.ts",
     "check:editorial-integrity": "tsx --test tests/network-qualitative-claims.test.ts tests/rain-route-migration.test.ts",

@@ -20,7 +20,7 @@ export const PUBLISHER_AD_PLACEMENT_POLICY = [
   'Do not place ads before the first useful answer or primary comparison.',
   'Do not place ads next to navigation, search, USSD dial buttons, form submits, or other action controls.',
   'Do not use overlays, interstitial traps, sticky takeovers, or layouts that hide the content users came for.',
-  'Do not render ads on noindex, redirect, legal, contact, sitemap, alerts, or thin utility routes.',
+  'Do not render ads on noindex, redirect, error, sitemap, alerts, or unfinished routes.',
   'Do not make ads visually imitate network cards, correction links, operator buttons, or editorial rankings.'
 ];
 
@@ -31,24 +31,18 @@ export const ALLOWED_PUBLISHER_AD_PLACEMENTS: PublisherAdPlacement[] = [
   'footer-supplement'
 ];
 
+// Content pages and working tools carry Auto ads, including legal/contact
+// information. Navigation, error and unfinished screens are excluded below.
+// Noindex routes currently represent evidence-gated or unpublished content.
 const AD_FREE_EXACT_ROUTES = new Set([
   '/404/',
-  '/about/',
-  '/africa-expansion/',
-  '/alerts/',
-  '/contact/',
+  // Short cookie notice does not meet the site's publisher-content threshold.
   '/cookie-policy/',
-  '/editorial-policy/',
-  '/methodology/',
-  '/promos/',
-  '/privacy-policy/',
-  '/save-ussd-codes/',
+  '/alerts/',
   '/sitemap/',
-  '/terms/'
 ]);
 
 const AD_FREE_PREFIXES = [
-  '/fix/',
   '/privacy/',
   '/fix-mobile-problems/',
   '/fix-a-problem/'
