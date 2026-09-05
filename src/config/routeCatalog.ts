@@ -269,6 +269,7 @@ export function getIndexableRoutes(): string[] {
   routes.add('/cookie-policy/');
   routes.add('/trust/');
   routes.add('/about/');
+  routes.add('/africa-expansion/');
   routes.add('/methodology/');
   routes.add('/editorial-policy/');
   routes.add('/contact/');

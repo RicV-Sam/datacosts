@@ -144,6 +144,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onScrollTo }) 
             Corrections that affect buying decisions, airtime loss, subscription cancellation, or balance-checking instructions are treated as priority updates.
           </p>
         </section>
+        <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
+          <h2 className="text-2xl font-black tracking-tight">Looking Beyond South Africa</h2>
+          <p className="text-slate-600 leading-relaxed">
+            Our intent is to bring clearer mobile data information to more African markets through <a href="https://afri-data-cost.com/" className="text-[#1b6d24] font-bold underline underline-offset-4">Afri Data Cost</a>, which currently covers Nigeria, Ghana and Kenya with country-specific pricing and network guidance. DataCost continues to serve South African readers.
+          </p>
+          <a href="/africa-expansion/" className="inline-block text-[#1b6d24] font-bold underline underline-offset-4">Read about our Africa expansion</a>
+        </section>
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />

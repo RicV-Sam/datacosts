@@ -8,8 +8,9 @@ const MONTHLY_DEAL_REVIEW_MODIFIED_ISO = '2026-09-01T00:00:00.000Z';
 
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/': PRICING_AUDIT_MODIFIED_ISO,
+  '/africa-expansion/': '2026-09-05T00:00:00.000Z',
   '/alerts/': '2026-05-10T00:00:00.000Z',
-  '/about/': '2026-08-01T00:00:00.000Z',
+  '/about/': '2026-09-05T00:00:00.000Z',
   '/airtime-advance-codes/': PRICING_AUDIT_MODIFIED_ISO,
   '/contact/': '2026-05-10T00:00:00.000Z',
   '/cookie-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
@@ -35,7 +36,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/privacy-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/promos/': '2026-06-18T00:00:00.000Z',
   '/save-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
-  '/sitemap/': '2026-09-01T00:00:00.000Z',
+  '/sitemap/': '2026-09-05T00:00:00.000Z',
   '/cell-c-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
   '/telkom-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
   '/terms/': '2026-05-10T00:00:00.000Z',

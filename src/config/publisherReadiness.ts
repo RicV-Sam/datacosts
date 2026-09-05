@@ -34,6 +34,7 @@ export const ALLOWED_PUBLISHER_AD_PLACEMENTS: PublisherAdPlacement[] = [
 const AD_FREE_EXACT_ROUTES = new Set([
   '/404/',
   '/about/',
+  '/africa-expansion/',
   '/alerts/',
   '/contact/',
   '/cookie-policy/',

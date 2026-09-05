@@ -16,6 +16,7 @@ const NetworkHubPage = lazy(() => import('./pages/NetworkHubPage').then((mod) =>
 const GuidesIndex = lazy(() => import('./pages/GuidesIndex').then((mod) => ({ default: mod.GuidesIndex })));
 const BundleTypePage = lazy(() => import('./pages/BundleTypePage').then((mod) => ({ default: mod.BundleTypePage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((mod) => ({ default: mod.NotFoundPage })));
+const AfricaExpansionPage = lazy(() => import('./pages/AfricaExpansionPage').then((mod) => ({ default: mod.AfricaExpansionPage })));
 const AboutPage = lazy(() => import('./pages/AboutPage').then((mod) => ({ default: mod.AboutPage })));
 const TrustCenterPage = lazy(() => import('./pages/TrustCenterPage').then((mod) => ({ default: mod.TrustCenterPage })));
 const MethodologyPage = lazy(() => import('./pages/MethodologyPage').then((mod) => ({ default: mod.MethodologyPage })));
@@ -310,6 +311,11 @@ function AppContent() {
           element={<PromosPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
         />
         <Route path="/promos" element={<Navigate to="/promos/" replace />} />
+        <Route
+          path="/africa-expansion/"
+          element={<AfricaExpansionPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
+        />
+        <Route path="/africa-expansion" element={<Navigate to="/africa-expansion/" replace />} />
         <Route
           path="/about/"
           element={<AboutPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />}

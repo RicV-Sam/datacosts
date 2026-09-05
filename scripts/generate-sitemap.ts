@@ -57,6 +57,7 @@ function buildSitemapSections(routes: string[]): SitemapSection[] {
   const trustRouteSet = new Set([
     '/trust/',
     '/about/',
+    '/africa-expansion/',
     '/contact/',
     '/privacy-policy/',
     '/terms/',

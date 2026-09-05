@@ -122,6 +122,7 @@ const sitemapGroups: SitemapGroup[] = [
     title: 'Trust and Legal',
     links: [
       { href: '/about/', label: 'About DataCost' },
+      { href: '/africa-expansion/', label: 'Our Africa Expansion' },
       { href: '/trust/', label: 'Trust Center' },
       { href: '/methodology/', label: 'Methodology' },
       { href: '/editorial-policy/', label: 'Editorial Policy' },
