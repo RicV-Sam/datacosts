@@ -1,10 +1,9 @@
+import { submitIndexNow, DEFAULT_ENDPOINT } from './lib/indexnow-client.mjs';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
 const DEFAULT_HOST = 'datacost.co.za';
-const DEFAULT_ENDPOINT = 'https://www.bing.com/indexnow';
-const MAX_URLS_PER_REQUEST = 10_000;
 const KEY_PATTERN = /^[A-Za-z0-9-]{8,128}$/;
 
 function getArgValue(name, fallback) {
@@ -19,10 +18,6 @@ function hasFlag(name) {
 
 function toIsoDate(date) {
   return date.toISOString().slice(0, 10);
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function decodeXml(value) {
@@ -99,66 +94,6 @@ async function readSitemapUrls(publicDir, host, sinceDays, includeAll) {
   return [...urls].sort();
 }
 
-function shouldRetryStatus(status) {
-  return status === 403 || status >= 500;
-}
-
-async function submitIndexNow({ endpoint, host, key, keyLocation, urls, dryRun, retries, retryDelayMs }) {
-  const payload = {
-    host,
-    key,
-    keyLocation,
-    urlList: urls
-  };
-
-  if (dryRun) {
-    console.log(`IndexNow dry run: would submit ${urls.length} URL(s) to ${endpoint}`);
-    console.log(JSON.stringify(payload, null, 2));
-    return;
-  }
-
-  let lastError;
-  for (let attempt = 1; attempt <= retries + 1; attempt += 1) {
-    try {
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'User-Agent': 'DataCost IndexNow notifier'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      const body = await response.text();
-      const bodySuffix = body ? ` Body: ${body.slice(0, 500)}` : '';
-
-      if (response.status === 200 || response.status === 202) {
-        console.log(`IndexNow accepted ${urls.length} URL(s) with HTTP ${response.status}.${bodySuffix}`);
-        return;
-      }
-
-      lastError = Object.assign(
-        new Error(`IndexNow submission failed with HTTP ${response.status}.${bodySuffix}`),
-        { retryable: shouldRetryStatus(response.status) }
-      );
-      throw lastError;
-    } catch (error) {
-      lastError = error;
-      const retryable = error && typeof error === 'object' && 'retryable' in error
-        ? Boolean(error.retryable)
-        : true;
-      if (attempt <= retries && retryable) {
-        const message = error instanceof Error ? error.message : String(error);
-        console.warn(`IndexNow submission attempt ${attempt} failed: ${message} Retrying in ${retryDelayMs}ms...`);
-        await sleep(retryDelayMs);
-        continue;
-      }
-
-      throw lastError;
-    }
-  }
-}
-
 async function main() {
   const publicDir = path.resolve(process.cwd(), 'public');
   const host = getArgValue('host', process.env.INDEXNOW_HOST || DEFAULT_HOST);
@@ -184,15 +119,6 @@ async function main() {
   const key = await discoverIndexNowKey(publicDir);
   const keyLocation = process.env.INDEXNOW_KEY_LOCATION || `https://${host}/${key}.txt`;
   const urls = await readSitemapUrls(publicDir, host, sinceDays, includeAll);
-
-  if (urls.length === 0) {
-    console.log(`IndexNow: no sitemap URLs matched ${includeAll ? '--all' : `last ${sinceDays} day(s)`}.`);
-    return;
-  }
-
-  if (urls.length > MAX_URLS_PER_REQUEST) {
-    throw new Error(`IndexNow URL batch has ${urls.length} URLs, exceeding ${MAX_URLS_PER_REQUEST}.`);
-  }
 
   await submitIndexNow({ endpoint, host, key, keyLocation, urls, dryRun, retries, retryDelayMs });
 }

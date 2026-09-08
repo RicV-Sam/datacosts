@@ -12,3 +12,5 @@ coverage/
 .playwright-cli/
 playwright-report/
 test-results/
+.indexnow-status.json
+.indexnow-status.json.tmp
