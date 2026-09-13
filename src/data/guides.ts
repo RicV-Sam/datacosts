@@ -1675,9 +1675,16 @@ export const guides: Guide[] = [
   {
     slug: 'how-to-buy-data-cell-c',
     title: 'How to Buy Data on Cell C - USSD Codes & App Guide 2026',
-    metaDescription: 'Learn how to buy Cell C data bundles using USSD *147# and the Cell C app. Find the best social, daily, and monthly data deals.',
+    metaDescription: 'How to buy data on Cell C: dial *147# or use the Cell C app. Check the bundle price, validity and restrictions before confirming your purchase.',
     h1: 'How to Buy Data on Cell C: Step-by-Step',
-    intro: 'Cell C offers data options through USSD and digital channels, but bundle availability and use on partner coverage are product-specific. Check the exact bundle terms and coverage conditions before buying. This guide covers the main ways to buy Cell C data using airtime or the app.',
+    intro: 'To buy data on Cell C, dial *147# from your Cell C SIM and choose the data or bundle option shown on your line, or use the Cell C app. Before confirming, check the price, expiry and whether the bundle covers general internet use or only selected apps. Bundle availability and use on partner coverage are product-specific, so check the exact terms and coverage conditions.',
+    quickSummaryTitle: 'How to Buy Data on Cell C: Quick Answer',
+    quickSummaryItems: [
+      'Dial *147# from the Cell C SIM you want to recharge and follow the current data or bundle menu.',
+      'Compare the price, data allowance and validity before confirming. Check any app-only or network restrictions.',
+      'You can also buy through the Cell C app or the official Cell C data-bundles page.',
+      'After buying, check your remaining data with *101#, *147# or the Cell C app.'
+    ],
     comparisonType: 'all',
     stepsTitle: 'How to Purchase Cell C Data Bundles',
     steps: [
@@ -1693,6 +1700,11 @@ export const guides: Guide[] = [
         title: 'Method 3: Social Media Bundles',
         description: 'If you mainly use WhatsApp, Facebook, or YouTube, check whether Cell C currently offers a matching social bundle. Confirm the supported apps, validity and live price before comparing it with general anytime data.'
       }
+    ],
+    nextStepsTitle: 'Useful Cell C Guides',
+    nextSteps: [
+      { href: '/cell-c-ussd-codes/', label: 'Cell C USSD Codes', description: 'Find Cell C balance, recharge and account shortcuts.', action: 'route' },
+      { href: '/network/cell-c/', label: 'Compare Cell C Data Bundles', description: 'Review listed bundles and their source-check notes before choosing.', action: 'route' }
     ],
     faq: [
       {

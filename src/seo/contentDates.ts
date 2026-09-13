@@ -99,7 +99,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-cancel-cellphone-contract-south-africa': '2026-08-06T00:00:00.000Z',
   'what-to-do-when-cellphone-contract-ends-south-africa': '2026-07-19T00:00:00.000Z',
   'cellphone-retention-offer-vs-switching-south-africa': '2026-07-19T00:00:00.000Z',
-  'how-to-buy-data-cell-c': '2026-08-02T00:00:00.000Z',
+  'how-to-buy-data-cell-c': '2026-09-13T00:00:00.000Z',
   'how-to-buy-data-mtn': '2026-08-01T00:00:00.000Z',
   'how-to-buy-data-telkom': '2026-08-02T00:00:00.000Z',
   'how-to-buy-data-vodacom': PRICING_AUDIT_MODIFIED_ISO,
