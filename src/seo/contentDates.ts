@@ -111,7 +111,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'stop-wasp-subscriptions-south-africa': '2026-08-02T00:00:00.000Z',
   'out-of-bundle-data-costs-south-africa': '2026-05-01T00:00:00.000Z',
   'prepaid-vs-contract-south-africa': '2026-08-27T00:00:00.000Z',
-  'cheapest-data-south-africa': '2026-08-01T00:00:00.000Z',
+  'cheapest-data-south-africa': '2026-09-14T00:00:00.000Z',
   'cheapest-unlimited-data-south-africa': '2026-08-01T00:00:00.000Z',
   'best-sim-only-deals-south-africa': '2026-09-01T00:00:00.000Z',
   'mvnos-south-africa': '2026-09-01T00:00:00.000Z',
@@ -132,7 +132,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
 };
 
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
-  'best-monthly-data-deals-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'best-monthly-data-deals-south-africa': '2026-09-14T00:00:00.000Z',
   'best-prepaid-data-deals-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheap-night-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheapest-1gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,

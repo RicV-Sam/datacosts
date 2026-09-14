@@ -439,7 +439,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       'Compare the best monthly data deals in South Africa. See 30-day prepaid options from Vodacom, MTN, Telkom and Cell C by cost per GB.',
     h1: 'Best Monthly Data Deals South Africa (2026)',
     intro:
-      'Monthly bundles are where most prepaid users make or lose value over time. This page compares currently listed 30-day style options so regular users can evaluate Rand-per-GB, practical fit, and coverage trade-offs in one place.',
+      'Choose monthly data by the allowance you can use, the expiry period and your eligibility. This table compares selected once-off smartphone bundles from Vodacom, MTN, Telkom and Cell C; use the linked 10GB, 20GB and 30GB comparisons for larger allowances and a wider provider selection.',
     tableTitle: 'Monthly Bundle Comparison Across Major Networks',
     quickHeading: 'What are the best monthly prepaid data deals right now?',
     watchOuts: [
@@ -448,7 +448,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       'A cheaper monthly offer is only valuable if your local coverage is dependable.'
     ],
     savingsTips: [
-      'For regular usage, monthly bundles often outperform repeated daily top-ups.',
+      'Compare the total you would spend on repeated top-ups over the same period, allowing for data that expires unused.',
       'Check whether your line shows a personalised monthly offer and compare its full terms with the public menu.',
       'Review expiry and renewal settings so you do not lose value through rollover assumptions.'
     ],
@@ -457,11 +457,11 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     faqs: [
       {
         question: 'Which network gives the best monthly data value in South Africa?',
-        answer: 'It depends on bundle size and current promos. This page compares currently listed monthly options so you can judge value by cost per GB and usage fit.'
+        answer: 'There is no single winner for every allowance and eligibility requirement. The quick picks here apply only to the selected once-off smartphone bundles in this table. Use the dedicated 10GB, 20GB and 30GB monthly comparisons for larger allowances, with night data, daily-release data and bank-account requirements shown separately.'
       },
       {
         question: 'Are monthly bundles always better than daily bundles?',
-        answer: 'For regular users, monthly is often better over time. For occasional users, daily can still be practical if usage is infrequent.'
+        answer: 'No. Compare the total cost for the same usage and period. A daily bundle may suit an occasional top-up; a monthly allowance may suit use spread across the month. Data that expires before you use it reduces the practical value of either option.'
       },
       {
         question: 'How do I choose the right monthly bundle size?',

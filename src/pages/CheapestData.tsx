@@ -8,7 +8,7 @@ import { Header } from '../components/Header';
 import { MobileNav } from '../components/MobileNav';
 import { NavigateFunction, Bundle } from '../types';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
-import { isVerifiedBundleSource } from '../utils/bundleSource';
+import { getBundleSourceSummary, isVerifiedBundleSource } from '../utils/bundleSource';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import {
   DEFAULT_OG_IMAGE_URL,
@@ -99,7 +99,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
       title: 'Cheapest 1GB data',
       bundle: cheapest1Gb,
       href: '/guides/cheapest-1gb-data-south-africa/',
-      helper: 'Best for low-volume monthly use or single-device top-ups.'
+      helper: 'Compare both price and expiry: a 1GB bundle that expires tonight is not a month-long allowance.'
     },
     {
       id: 'cheapest-2gb',
@@ -134,7 +134,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
       title: 'Cheapest monthly data',
       bundle: cheapestMonthly,
       href: '/guides/best-monthly-data-deals-south-africa/',
-      helper: 'Monthly options usually offer a better long-term cost per GB than repeated short-validity top-ups.'
+      helper: 'This pick is limited to the recorded once-off smartphone bundles used on this page. Compare larger monthly allowances separately before choosing.'
     },
     {
       id: 'cheapest-night-data',
@@ -318,7 +318,13 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Cheapest data quick comparison</h2>
           <p className="text-slate-700 leading-relaxed mb-5">
-            This summary puts source-checked, anytime smartphone-data rows first and keeps unverified rows only as clearly marked context. Router, social and night products are excluded from this ranking. For a broader starting point, use the <Link to="/" className="font-semibold text-[#1b6d24] hover:underline">compare data deals in South Africa</Link> homepage.
+            This table shows {topSummaryRows.length} source-checked once-off smartphone bundles from our recorded prices, sorted by cost per GB. It mixes validity periods, so it is not a like-for-like monthly ranking or a complete market comparison. Router, social and night products are excluded. For a broader starting point, use the <Link to="/" className="font-semibold text-[#1b6d24] hover:underline">compare data deals in South Africa</Link> homepage.
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-5">
+            Need data for a full month? Compare the dedicated{' '}
+            <Link to="/best-10gb-data-deals-south-africa/" className="font-semibold text-[#1b6d24] underline">10GB</Link>,{' '}
+            <Link to="/best-20gb-data-deals-south-africa/" className="font-semibold text-[#1b6d24] underline">20GB</Link> and{' '}
+            <Link to="/best-30gb-data-deals-south-africa/" className="font-semibold text-[#1b6d24] underline">30GB monthly offers</Link>. Those comparisons separate pooled anytime data from night and daily-release allocations and show provider eligibility.
           </p>
           <div className="overflow-x-auto rounded-3xl border border-slate-100">
             <table className="w-full min-w-[720px] text-left bg-white">
@@ -342,6 +348,8 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
                       <span className={`block mt-1 text-[10px] font-black uppercase tracking-wider ${isVerifiedBundleSource(bundle) ? 'text-emerald-700' : 'text-amber-700'}`}>
                         {isVerifiedBundleSource(bundle) ? 'Source checked' : 'Confirm live - excluded from leader claims'}
                       </span>
+                      {getBundleSourceSummary(bundle) && <span className="block mt-1 text-xs text-slate-600">{getBundleSourceSummary(bundle)}</span>}
+                      {bundle.sourceUrl && <a href={bundle.sourceUrl} className="inline-block mt-2 text-sm text-[#1b6d24] underline">{bundle.network} source and terms</a>}
                     </td>
                     <td className="px-5 py-4 text-slate-700">R{bundle.price}</td>
                     <td className="px-5 py-4 text-slate-700">{bundle.validity}</td>
@@ -365,7 +373,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
               <p className="text-slate-700 leading-relaxed mb-4">{section.helper}</p>
               {section.bundle ? (
                 <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
-                   <div className="text-[10px] font-black uppercase tracking-widest text-emerald-700 mb-1">Source-checked like-for-like leader</div>
+                   <div className="text-[10px] font-black uppercase tracking-widest text-emerald-700 mb-1">Source-checked pick within this page's selection</div>
                   <div className="font-black text-slate-900 text-lg">{section.bundle.network}: {section.bundle.name}</div>
                   <p className="text-slate-700 mt-2">
                     Price: <strong>R{section.bundle.price}</strong> | Validity: <strong>{section.bundle.validity}</strong> | Approx. value:{' '}
@@ -416,7 +424,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
             Methodology and pricing notes
           </h2>
           <p className="text-slate-700 leading-relaxed">
-            <strong>Verified leaders only:</strong> winner and schema claims use source-checked, dated rows from a comparable product family. Unverified rows can remain visible as context but are excluded from rankings and recommendations.
+            <strong>Comparison scope:</strong> cost per GB is bundle price divided by the recorded general-use allowance. Only source-checked, dated rows qualify for this table. The table ranks unit cost across different expiry periods; it does not establish the cheapest way to meet a particular monthly usage target. Row-level checked dates describe the pricing evidence, separately from the page's editorial update date.
           </p>
           <p className="text-slate-700 leading-relaxed mt-3">
             <strong>Public vs personalised pricing:</strong> operator-specific personalised, app and USSD campaign offers can differ by SIM, account history and campaign. They are not treated here as national baseline pricing or included in rankings unless publicly documented.

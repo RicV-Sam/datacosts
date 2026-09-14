@@ -203,6 +203,14 @@ function getWinners(mode: string, rows: ComparisonRow[]): WinnerCard[] {
   const bestValue = [...validRows].filter((bundle) => bundle.costPerGb > 0).sort((a, b) => a.costPerGb - b.costPerGb)[0];
   const heavyUse = [...validRows].sort((a, b) => volumeToGb(b.volume) - volumeToGb(a.volume))[0];
 
+  if (mode === 'best-monthly') {
+    return [
+      { label: 'Lowest upfront price in this table', text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}.` },
+      { label: 'Lowest cost per GB in this table', text: bestValue ? `${bestValue.network}: ${bestValue.name} (~R${bestValue.costPerGb.toFixed(2)}/GB).` : `${cheapest.network}: ${cheapest.name}.` },
+      { label: 'Need 10GB, 20GB or 30GB?', text: 'Use the larger monthly comparisons below. These table picks do not cover every plan or provider.' }
+    ];
+  }
+
   if (mode === 'cheapest-whatsapp') {
     return [
       { label: 'Cheapest social bundle', text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}.` },
@@ -471,6 +479,14 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
             Quick Verdict
           </div>
           <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-4">{definition.quickHeading}</h2>
+          {definition.mode === 'best-monthly' && (
+            <p className="text-slate-200 leading-relaxed mb-5">
+              The table selects one recorded once-off smartphone bundle per network, prioritising source-checked rows and then cost per GB. Its picks apply only to those rows. For a larger allowance, compare the{' '}
+              <Link to="/best-10gb-data-deals-south-africa/" className="text-[#a0f399] underline">10GB</Link>,{' '}
+              <Link to="/best-20gb-data-deals-south-africa/" className="text-[#a0f399] underline">20GB</Link> or{' '}
+              <Link to="/best-30gb-data-deals-south-africa/" className="text-[#a0f399] underline">30GB monthly offers</Link>, including plan-specific and bank-linked options with their eligibility conditions.
+            </p>
+          )}
           {winners.length > 0 ? (
             <div className="grid md:grid-cols-3 gap-4">
               {winners.map((winner) => (
@@ -515,6 +531,11 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
                           {getBundleSourceSummary(row.bundle) && (
                             <div className="mt-1 text-[10px] font-medium text-slate-500">{getBundleSourceSummary(row.bundle)}</div>
                           )}
+                          {definition.mode === 'best-monthly' && row.bundle.sourceUrl && (
+                            <a href={row.bundle.sourceUrl} className="inline-block mt-2 text-sm text-[#1b6d24] underline">
+                              {row.network} source and terms
+                            </a>
+                          )}
                         </>
                       ) : (
                         'No clear listed match for this intent'
@@ -531,6 +552,11 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
               </tbody>
             </table>
           </div>
+          {definition.mode === 'best-monthly' && (
+            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+              Cost per GB = bundle price divided by the listed general-use GB. Night, social and router products are excluded from this table; an empty network row means no matching recorded bundle, not that the operator sells no monthly data. The checked dates beside the rows describe the pricing evidence; the page update date describes the editorial changes.
+            </p>
+          )}
           {hasManualRequiredRows && (
             <p className="mt-3 text-[10px] text-slate-500 font-medium italic">{MANUAL_PRICE_CHECK_NOTE}</p>
           )}
@@ -637,7 +663,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
                 href={`/network/${slug}/`}
                 className="inline-flex items-center justify-between gap-2 px-5 py-3 bg-[#1b6d24] text-white rounded-xl font-black hover:bg-[#a0f399] hover:text-[#031636] transition-all"
               >
-                <span>{networkName} Official Context</span>
+                <span>{networkName} {definition.mode === 'best-monthly' ? 'DataCost guide' : 'Official Context'}</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
             );
