@@ -133,7 +133,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
 
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'best-monthly-data-deals-south-africa': '2026-09-14T00:00:00.000Z',
-  'best-prepaid-data-deals-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'best-prepaid-data-deals-south-africa': '2026-09-17',
   'cheap-night-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheapest-1gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheapest-2gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,

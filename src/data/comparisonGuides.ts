@@ -485,12 +485,12 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     slug: 'best-prepaid-data-deals-south-africa',
     mode: 'best-prepaid',
     canonicalPath: '/guides/best-prepaid-data-deals-south-africa/',
-    title: 'Prepaid Data Deals South Africa (2026)',
+    title: 'Prepaid Phone Plans: Data Deals South Africa (2026)',
     metaDescription:
-      'Compare the best prepaid data deals in South Africa. See value picks for budget users, regular users, and heavy users across major networks.',
+      'Compare prepaid data bundles for your phone in South Africa by price, validity and cost per GB. Check data allowances and what to confirm before buying.',
     h1: 'Best Prepaid Data Deals South Africa (2026)',
     intro:
-      'This page compares practical prepaid deals across major South African networks for users who buy data with airtime and need better value without contract lock-in. We separate value picks for budget, regular, and heavier usage profiles.',
+      'Choosing a prepaid phone plan starts with how much data you need and when you will use it. Compare the listed bundles below by total price, validity and cost per GB, then confirm coverage and usage restrictions with the operator. This guide focuses on data; check voice minutes, SMS and handset costs separately when comparing complete phone plans.',
     tableTitle: 'Best Prepaid Bundle Comparison Across Major Networks',
     quickHeading: 'Which prepaid deals currently offer the strongest value?',
     watchOuts: [
@@ -529,6 +529,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       { href: '/network/telkom/', label: 'Telkom network page', description: 'Telkom value-led prepaid context.' },
       { href: '/network/cell-c/', label: 'Cell C network page', description: 'Cell C promo-led prepaid context.' },
       { href: '/guides/prepaid-vs-contract-south-africa/', label: 'Prepaid vs contract guide', description: 'Understand model trade-offs.' },
+      { href: '/guides/cheap-night-data-south-africa/', label: 'Night-data hours and restrictions', description: 'Check when a night allowance can be used before counting it towards daytime needs.' },
       { href: '/guides/why-does-my-data-finish-so-fast-south-africa/', label: 'Why Data Finishes Fast', description: 'Fix hidden usage and reduce repeat top-ups.' }
     ]
   },
