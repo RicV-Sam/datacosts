@@ -1501,16 +1501,16 @@ export const guides: Guide[] = [
   },
   {
     slug: 'how-to-buy-data-mtn',
-    title: 'How to Buy Data on MTN - USSD Codes & MTN App Guide 2026',
-    metaDescription: 'Step-by-step guide on how to buy MTN data bundles using USSD codes like *136*2# and the MTN app. Check MTN personalised offers and standard bundle routes before you buy.',
+    title: 'How to Buy Data on MTN: *136*2# Code & App Guide',
+    metaDescription: 'Buy data on MTN using *136*2# or the MTN app. Follow the bundle steps and check price, expiry, data type and once-off or recurring options before paying.',
     h1: 'How to Buy Data on MTN: Easy USSD & App Methods',
-    intro: 'MTN offers standard, tariff-specific and personalised data options through USSD and digital channels. Availability can vary by prepaid profile, so this guide separates the main purchase menu from personalised offers and explains what to confirm before buying.',
+    intro: 'To buy data on MTN, dial *136*2# from your MTN SIM or use the MTN app. Choose from the bundles shown for your line, then check the price, expiry and data type before confirming. The steps below separate the purchase menu from personalised offers, which can vary by prepaid profile.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *136*2# from an MTN SIM for the direct data-bundle menu.',
       'Use *136# when you want the broader self-service path first.',
       'Check *142# for Made4U and other personalised offers; MyTownOffers may appear for eligible prepaid customers in selected areas.',
-      'Confirm validity, data type, and final price before accepting the transaction.'
+      'Confirm validity, data type, final price and whether the bundle is once-off or recurring before accepting the transaction.'
     ],
     jumpLinksTitle: 'On This Page',
     jumpLinks: [
@@ -1526,12 +1526,12 @@ export const guides: Guide[] = [
       {
         id: 'mtn-standard-ussd',
         title: 'Method 1: The Standard USSD Code',
-        description: 'Dial *136*2# on your phone. This will take you directly to the data bundle selection menu where you can choose between Daily, Weekly, and Monthly options.'
+        description: 'Dial *136*2# from your MTN SIM and follow the current data-bundle prompts. Compare the sizes and validity periods shown for your line. Check the final price and whether the option is once-off or recurring before confirming.'
       },
       {
         id: 'mtn-pulse',
-        title: 'Method 2: Check tariff-specific and app offers',
-        description: 'If your line is on a youth, promo, or campaign tariff, check the MyMTN app and your current self-service menus for tariff-specific bundle access. Eligibility and entry paths can change, so do not rely on one fixed code unless MTN shows it on your own line.'
+        title: 'Method 2: Buy through the MTN app',
+        description: 'Open the MTN app and review the data bundles available for your number. Compare the price, allocation and expiry before confirming your purchase. If your line is on a youth, promo or campaign tariff, check the eligibility shown for that offer.'
       },
       {
         id: 'mtn-boosta',
@@ -1570,7 +1570,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'How do I buy 1GB on MTN?',
-        answer: 'Dial *136*2#, select "Monthly", and choose the 1GB option. Alternatively, check *142# for a personalised deal that may price differently on your SIM.'
+        answer: 'Dial *136*2# or open the MTN app and look for a 1GB bundle among the options shown for your line. Check its price and expiry before confirming; do not assume a particular 1GB offer is available to every customer.'
       },
       {
         question: 'Can I use my airtime to buy MTN data?',
