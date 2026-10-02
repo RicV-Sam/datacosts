@@ -51,7 +51,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     howToBuySection: {
       title: 'How to buy Vodacom data bundles',
       paragraphs: [
-        'Most prepaid users buy data by dialling *135# and following the data-bundle prompts. You can also buy through the My Vodacom or VodaPay app, plus selected banking app channels.',
+        'Most prepaid users buy data by dialling *135# and following the data-bundle prompts. You can also buy through the VodaPay app, plus selected banking app channels.',
         'Check *123# for Just 4 You, then compare the allocation, validity and price shown on your line with the public menu. Offers can differ between customers and change over time.',
         'For a step-by-step walkthrough, use the How to buy Vodacom data guide: /guides/how-to-buy-data-vodacom/'
       ]
@@ -132,7 +132,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     faqs: [
       {
         question: 'How do I buy Vodacom data bundles?',
-        answer: 'You can buy Vodacom data by dialling *135# and following the prompts, in the My Vodacom or VodaPay app, and through selected banking apps. Check Just 4 You on *123# and compare the live terms on your own line.'
+        answer: 'You can buy Vodacom data by dialling *135# and following the prompts, in the VodaPay app, and through selected banking apps. Check Just 4 You on *123# and compare the live terms on your own line.'
       },
       {
         question: 'What is the cheapest Vodacom 1GB data bundle?',
@@ -144,7 +144,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'How do I check my Vodacom data balance?',
-        answer: 'Dial *135# for the main balance menu, then use the My Vodacom or VodaPay app when you want a fuller bundle breakdown.'
+        answer: 'Dial *135# for the main balance menu, then use the VodaPay app when you want a fuller bundle breakdown.'
       },
       {
         question: 'What is Vodacom Just 4 You?',
@@ -179,7 +179,7 @@ export const networkPages: Record<string, NetworkPageData> = {
     tips: [
       'Check *142# for Made4U and compare the live allocation, validity and price with standard prepaid bundles.',
       'Treat MyTownOffers as location- and eligibility-dependent rather than national public pricing.',
-      'Avoid out-of-bundle usage by keeping a live bundle active and watching balance before expiry.'
+      'Keep out-of-bundle billing disabled and monitor your bundle balance and expiry in MTN self-service channels.'
     ],
     extraSavingsTips: [
       'Small daily bundles can look cheap but become expensive when repeated all month.',
@@ -212,9 +212,9 @@ export const networkPages: Record<string, NetworkPageData> = {
       items: [
         { question: 'How does MTN pricing compare with Vodacom?', answer: 'There is no fixed winner. Compare the same allocation and validity, any restrictions, and the live price shown by each network.' },
         { question: 'Why does MTN data finish fast?', answer: 'Background updates and video-heavy apps are common causes, especially near bundle expiry.' },
-        { question: 'How do I stop MTN out-of-bundle usage?', answer: 'Keep a valid bundle active and manage data settings before balance reaches zero.' },
+        { question: 'How do I stop MTN out-of-bundle usage?', answer: 'Opt out of out-of-bundle data billing in MTN self-service channels. MTN says data stops after all active bundles are depleted if you have opted out or have not chosen to opt in.' },
         { question: 'Are MTN promos always available?', answer: 'No. Promo availability changes by campaign and customer profile.' },
-        { question: 'Does MTN have night bundles?', answer: 'Yes. Current MTN Night Express wording lists a 00:01-04:59 use window for Night Express data bundles.' }
+        { question: 'Does MTN have night bundles?', answer: 'Yes. The listed standalone MTN Night Express bundle uses 00:01-04:59 under its dedicated product terms. The general Internet Bundles table has different wording, so this row follows the dedicated Night Express terms. Other product families may have their own hours.' }
       ]
     },
     narrowSearchLinks: [
@@ -227,7 +227,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       'Assuming an app-only or personalised MTN offer is available to every customer.',
       'Buying small daily bundles repeatedly instead of moving to weekly or monthly options.',
       'Assuming every MTN promo is always active for every SIM.',
-      'Letting bundles expire and dropping into out-of-bundle charging.',
+      'Leaving out-of-bundle billing enabled when your bundle may expire or run out.',
       'Comparing headline bundle size without checking validity and cost per GB.'
     ],
     comparisonSummary: [
@@ -263,7 +263,7 @@ export const networkPages: Record<string, NetworkPageData> = {
       },
       {
         question: 'How do I avoid MTN out-of-bundle charges?',
-        answer: 'Keep an active bundle and monitor expiry to avoid defaulting to out-of-bundle rates.'
+        answer: 'Opt out of out-of-bundle data billing through MTN self-service channels and monitor your bundle balance and expiry. MTN says customers who opt out, or have not chosen to opt in, cannot use data after all active bundles are depleted.'
       },
       {
         question: 'Is MTN better than Vodacom for data?',

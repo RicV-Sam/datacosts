@@ -9,6 +9,7 @@ import {
 } from '../src/config/routeCatalog';
 import { getRedirectAliasRoutes } from '../src/config/redirectAliases';
 import { bundles } from '../src/data';
+import { withheldBundles } from '../src/data/withheldBundles';
 
 test('visiting /index.html redirects to /', async ({ page }) => {
   await page.goto('/index.html');
@@ -159,8 +160,8 @@ test('Vodacom night comparison exposes allocation, restrictions and truthful sou
   await expect(page.getByText('5GB night').first()).toBeVisible();
   await expect(page.getByText('00:00-05:00').first()).toBeVisible();
   await expect(page.getByText('Prepaid LTE / router').first()).toBeVisible();
-  await expect(page.getByText('Checked 1 September 2026').first()).toBeVisible();
-  await expect(page.getByText('Recheck before buying').first()).toBeVisible();
+  await expect(page.getByText('Checked 2 October 2026').first()).toBeVisible();
+  await expect(page.getByText(/The standalone 250MB Night Owl offer is withheld/)).toBeVisible();
   await expect(page.getByRole('link', { name: /Vodacom prepaid LTE data page/i }).first()).toHaveAttribute('href', /vodacom\.co\.za/);
 
   const rows = page.locator('tbody tr');
@@ -169,9 +170,7 @@ test('Vodacom night comparison exposes allocation, restrictions and truthful sou
   await expect(prepaidLteRow).toContainText('Restricted night data is excluded from this figure.');
 
   const nightOwlRow = rows.filter({ hasText: 'Vodacom Night Owl 250MB' });
-  await expect(nightOwlRow).toContainText('R56.00 / night GB');
-  await expect(nightOwlRow).toContainText('Checked 1 September 2026');
-  await expect(nightOwlRow).toContainText('Vodacom prepaid data page');
+  await expect(nightOwlRow).toHaveCount(0);
 
   const itemListText = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
     scripts.map((script) => script.textContent || '').find((text) => text.includes('"@type":"ItemList"')) || ''
@@ -183,7 +182,7 @@ test('Vodacom night comparison exposes allocation, restrictions and truthful sou
   const verifiedItem = itemList.itemListElement.find(
     (entry: { item: { name: string } }) => entry.item.name === 'Vodacom Prepaid LTE 5GB Anytime + 5GB Night Owl'
   );
-  expect(manualItem.item.offers.price).toBe('14.00');
+  expect(manualItem).toBeUndefined();
   expect(verifiedItem.item.offers.price).toBe('99.00');
 });
 
@@ -196,6 +195,49 @@ test('Vodacom night comparison contains horizontal table overflow without page o
   await tableRegion.focus();
   await expect(tableRegion).toBeFocused();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBeTruthy();
+});
+
+test('withheld Vodacom night row preserves history outside the active catalogue', async ({ page }) => {
+  const cases = [
+    { network: 'vodacom', id: 'voda-night-owl-250mb', name: 'Vodacom Night Owl 250MB', price: 14, warning: 'Confirm current availability and price' }
+  ];
+
+  for (const route of ['/', '/network/', '/network/vodacom/', '/network/vodacom/night-data/']) {
+    await page.goto(route);
+    for (const entry of cases) {
+      await expect(page.getByText(entry.name, { exact: true })).toHaveCount(0);
+    }
+    const featuredSchemas = await page.locator('script[type="application/ld+json"]').allTextContents();
+    for (const entry of cases) expect(featuredSchemas.join('')).not.toContain(entry.name);
+  }
+
+  for (const entry of cases) {
+    expect(bundles.some((bundle) => bundle.id === entry.id)).toBe(false);
+    const recorded = withheldBundles.find((bundle) => bundle.id === entry.id);
+    expect(recorded).toMatchObject({ sourceConfidence: 'manual_required', price: entry.price, lastVerified: '2026-09-01', withheldAt: '2026-10-02' });
+    await page.goto(`/network/${entry.network}/`);
+    const row = page.locator('tbody tr').filter({ hasText: entry.name }).first();
+    await expect(row).toHaveCount(0);
+    const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
+    expect(schemas.join('')).not.toContain(entry.name);
+  }
+
+});
+
+test('confirmed MTN Night Express uses dedicated terms while preserving the source caveat', async ({ page }) => {
+  const mtn = bundles.find((bundle) => bundle.id === 'mtn-night-250mb');
+  expect(mtn).toMatchObject({ sourceConfidence: 'verified', price: 5, lastVerified: '2026-10-02', nightWindow: '00:01-04:59' });
+  await page.goto('/network/mtn/night-data/');
+  const mtnNightRow = page.locator('tbody tr').filter({ hasText: 'MTN Night Express 250MB' });
+  await expect(mtnNightRow).toContainText('00:01-04:59');
+  await expect(mtnNightRow).toContainText('Checked 2 October 2026');
+  await expect(mtnNightRow).toContainText('R20.00 / night GB');
+  await expect(mtnNightRow).toContainText('general Internet Bundles table gives different hours');
+  await expect(mtnNightRow).not.toContainText('Confirm price first');
+  const texts = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const list = texts.map((text) => JSON.parse(text)).find((schema) => schema['@type'] === 'ItemList');
+  const item = list.itemListElement.find((entry: { item: { name: string } }) => entry.item.name === 'MTN Night Express 250MB');
+  expect(item.item.offers.price).toBe('5.00');
 });
 
 test('human sitemap links only the reviewed facet and canonical fibre page from this batch', async ({ page }) => {

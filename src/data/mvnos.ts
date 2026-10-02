@@ -63,8 +63,8 @@ export interface MvnoProviderProfile {
   sources: MvnoEditorialSource[];
 }
 
-function officialSource(title: string, url: string): MvnoEditorialSource {
-  return { title, url, checkedAt: MVNO_REVIEWED_AT, official: true };
+function officialSource(title: string, url: string, checkedAt = MVNO_REVIEWED_AT): MvnoEditorialSource {
+  return { title, url, checkedAt, official: true };
 }
 
 const airMobilePrepaid = officialSource(
@@ -90,7 +90,8 @@ const capitecBundles = officialSource(
 );
 const capitecFaq = officialSource(
   'Capitec Connect FAQs',
-  'https://www.capitecbank.co.za/were-here-to-help/faqs/'
+  'https://www.capitecbank.co.za/were-here-to-help/faqs/',
+  '2026-10-02'
 );
 
 const fnbConnect = officialSource(
@@ -103,7 +104,8 @@ const fnbShop = officialSource(
 );
 const fnbPricing = officialSource(
   'FNB Connect Retail Annual Pricing Guide 2026–2027',
-  'https://www.fnb.co.za/downloads/pricing-guides/FNB-Connect-Retail.pdf'
+  'https://www.fnb.co.za/downloads/pricing-guides/FNB-Connect-Retail.pdf',
+  '2026-10-02'
 );
 
 const melonWhy = officialSource(
@@ -195,7 +197,7 @@ export const mvnoProviderProfiles: MvnoProviderProfile[] = [
     fitTags: ['bank_rewards', 'flexible_topups', 'voice_heavy'],
     bestFor: 'Existing Capitec customers who prefer prepaid control and can link their Connect number to their banking profile.',
     whyItSaves: 'Linked numbers receive 20% extra data on listed recharges, while the catalogue also includes no-expiry and short-validity bundles for irregular use.',
-    extraPerks: 'Free Connect-to-Connect calls and, for qualifying credit-card customers, 1GB of monthly data.',
+    extraPerks: 'Free Connect-to-Connect calls and, for qualifying credit-card customers, 2GB of monthly data.',
     whatYouNeed: 'An active Capitec account and a Capitec Connect SIM obtained through a branch; extra linked-number benefits require the correct number on the banking profile.',
     watchOut: 'The extra data is conditional and does not count in DataCost’s base R/GB. The credit-card benefit also carries card eligibility, fees and good-standing requirements.',
     benefits: [
@@ -209,9 +211,9 @@ export const mvnoProviderProfiles: MvnoProviderProfile[] = [
       },
       {
         kind: 'bank_linked_reward',
-        title: '1GB monthly credit-card benefit',
-        detail: 'Qualifying customers can receive 1GB each month on a verified Connect number.',
-        eligibility: 'Requires an active Capitec credit card in good standing; card fees and credit terms still matter.',
+        title: '2GB monthly credit-card benefit',
+        detail: 'Qualifying customers can receive 2GB each month on a Connect number set as their verified banking cellphone number.',
+        eligibility: 'Requires an active Capitec credit card in good standing and a verified Connect SIM linked to the personal banking account; customers in debt review do not qualify. Card fees and credit terms still matter.',
         includeInBaseRanking: false,
         source: capitecFaq
       },
@@ -246,9 +248,9 @@ export const mvnoProviderProfiles: MvnoProviderProfile[] = [
     benefits: [
       {
         kind: 'bank_linked_reward',
-        title: 'Up to 15% back',
-        detail: 'The current guide advertises up to 15% back in data or eBucks on qualifying SIM-plan and prepaid bundle spend.',
-        eligibility: 'The reward form and rate depend on the qualifying account and eBucks rules.',
+        title: 'Up to 15% back in eBucks',
+        detail: 'The current guide advertises up to 15% back in eBucks on qualifying SIM-plan and prepaid bundle spend.',
+        eligibility: 'Available to qualifying Premier, Private Clients, Private Wealth and RMB Private Bank customers, subject to eBucks rules and earn limits.',
         includeInBaseRanking: false,
         source: fnbPricing
       },

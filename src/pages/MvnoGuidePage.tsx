@@ -419,9 +419,12 @@ export const MvnoGuidePage: React.FC<MvnoGuidePageProps> = ({ onNavigate, onScro
                                 <p className="mt-1 font-medium leading-6 text-slate-700">{benefit.detail}</p>
                                 {benefit.eligibility ? <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">Condition: {benefit.eligibility}</p> : null}
                               </div>
-                              <a href={benefit.source.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 shrink-0 items-center gap-1 font-black text-[#166534] underline decoration-[#a0f399] decoration-2 underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#166534]" aria-label={`Open official source for ${benefit.title} in a new tab`}>
-                                Source <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-                              </a>
+                              <div className="shrink-0">
+                                <a href={benefit.source.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1 font-black text-[#166534] underline decoration-[#a0f399] decoration-2 underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#166534]" aria-label={`Open official source for ${benefit.title} in a new tab`}>
+                                  Source <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                                </a>
+                                <p className="text-xs font-semibold text-slate-500">Checked {benefit.source.checkedAt}</p>
+                              </div>
                             </div>
                           </li>
                         ))}
@@ -438,7 +441,7 @@ export const MvnoGuidePage: React.FC<MvnoGuidePageProps> = ({ onNavigate, onScro
                           </a>
                         ) : null}
                       </div>
-                      <p className="mt-4 text-xs font-semibold text-slate-500">Benefits checked {MVNO_REVIEWED_AT}. Prices are maintained separately in the monthly tracker.</p>
+                      <p className="mt-4 text-xs font-semibold text-slate-500">Prices are maintained separately in the monthly tracker.</p>
                     </div>
                   </article>
                 );

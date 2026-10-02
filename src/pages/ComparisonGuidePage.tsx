@@ -221,9 +221,9 @@ function getWinners(mode: string, rows: ComparisonRow[]): WinnerCard[] {
 
   if (mode === 'cheap-night') {
     return [
-      { label: 'Cheapest night option', text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}.` },
-      { label: 'Best night value', text: bestValue ? `${bestValue.network}: ${bestValue.name} (~R${bestValue.costPerGb.toFixed(2)}/GB).` : `${cheapest.network}: ${cheapest.name}.` },
-      { label: 'Best for heavy overnight use', text: `${heavyUse.network}: ${heavyUse.name} (${heavyUse.volume}).` }
+      { label: 'Lowest upfront price among checked rows', text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}. This applies only to the checked rows in this table.` },
+      { label: 'Compare the night allocation separately', text: 'Both night-only and split anytime-and-night bundles are included. For split bundles, the listed cost per GB is not a price per night-only GB.' },
+      { label: 'Check the usable hours', text: 'MTN Night Express uses 00:01-04:59 under its dedicated terms. Check each bundle’s expiry before scheduling a download. The standalone Vodacom 250MB offer still needs confirmation.' }
     ];
   }
 
@@ -542,10 +542,12 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
                       )}
                     </td>
                     <td className="px-6 py-4 text-xs font-bold uppercase tracking-wide text-slate-600">{row.bundle ? getBundleType(row.bundle) : 'N/A'}</td>
-                    <td className="px-6 py-4 text-slate-700">{row.bundle ? `R${row.bundle.price}` : 'N/A'}</td>
+                    <td className="px-6 py-4 text-slate-700">
+                      {row.bundle ? isVerifiedBundleSource(row.bundle) ? `R${row.bundle.price}` : <><span>Confirm</span><span className="block text-xs text-slate-500">Recorded reference: R{row.bundle.price}</span></> : 'N/A'}
+                    </td>
                     <td className="px-6 py-4 text-slate-700">{row.bundle ? row.bundle.validity : 'N/A'}</td>
-                    <td className="px-6 py-4 text-slate-700">{row.bundle ? `R${row.bundle.costPerGb.toFixed(2)}/GB` : 'N/A'}</td>
-                    <td className="px-6 py-4 text-slate-700">{row.bundle ? row.bundle.bestFor || 'General prepaid use' : 'No listed candidate'}</td>
+                    <td className="px-6 py-4 text-slate-700">{row.bundle ? isVerifiedBundleSource(row.bundle) ? `R${row.bundle.costPerGb.toFixed(2)}/GB` : 'Confirm price and terms first' : 'N/A'}</td>
+                    <td className="px-6 py-4 text-slate-700">{row.bundle ? isVerifiedBundleSource(row.bundle) ? row.bundle.bestFor || 'General prepaid use' : 'Confirm current terms' : 'No listed candidate'}</td>
                     <td className="px-6 py-4 text-amber-700">{row.bundle ? getBundleWatchOut(row.bundle) : 'Check operator menu for current offer'}</td>
                   </tr>
                 ))}

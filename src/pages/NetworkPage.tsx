@@ -222,7 +222,7 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
       { href: '/guides/how-to-check-mtn-airtime-balance/', label: 'How to check MTN airtime balance', description: 'Confirm airtime before out-of-bundle use.' }
     ],
     vodacom: [
-      { href: '/data-problems/how-to-check-data-balance-vodacom-ussd/', label: 'How to check Vodacom data balance', description: 'USSD and MyVodacom steps for data checks.' },
+      { href: '/data-problems/how-to-check-data-balance-vodacom-ussd/', label: 'How to check Vodacom data balance', description: 'USSD and VodaPay steps for data checks.' },
       { href: '/guides/how-to-check-vodacom-airtime-balance/', label: 'How to check Vodacom airtime balance', description: 'Confirm airtime and troubleshoot deductions.' }
     ]
   };
@@ -581,15 +581,16 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                       </td>
                       <td className="px-6 py-4 text-xs font-bold text-slate-600 uppercase tracking-wide">{getNetworkBundleType(bundle)}</td>
                       <td className="px-6 py-4">
-                        <span className="text-lg font-black">{formatCurrency(bundle.price)}</span>
+                        <span className="text-lg font-black">{isVerifiedBundleSource(bundle) ? formatCurrency(bundle.price) : 'Confirm'}</span>
+                        {!isVerifiedBundleSource(bundle) && <span className="block text-xs text-slate-500">Recorded reference: {formatCurrency(bundle.price)}</span>}
                       </td>
                       <td className="px-6 py-4 text-xs font-medium text-slate-500 uppercase tracking-wide">{bundle.validity}</td>
                       <td className="px-6 py-4">
                         <span className="inline-flex items-center px-2 py-1 bg-blue-50 text-blue-700 rounded-lg text-[10px] font-black uppercase tracking-widest">
-                          {formatValue(bundle)}
+                          {isVerifiedBundleSource(bundle) ? formatValue(bundle) : 'Confirm price and terms first'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-sm font-medium text-slate-600">{bundle.bestFor || 'General prepaid use'}</td>
+                      <td className="px-6 py-4 text-sm font-medium text-slate-600">{isVerifiedBundleSource(bundle) ? bundle.bestFor || 'General prepaid use' : 'Confirm current terms'}</td>
                       <td className="px-6 py-4 text-sm font-medium text-amber-700">{getBundleWatchOut(bundle)}</td>
                     </tr>
                     );

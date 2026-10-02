@@ -49,19 +49,19 @@ export const guides: Guide[] = [
   {
     slug: 'cheap-night-data-south-africa',
     title: 'Night Data South Africa 2026: Hours and Bundle Checks',
-    metaDescription: 'Compare reviewed MTN Night Express and Vodacom Night Owl rows, usage windows, validity and the checks to make before buying night data.',
+    metaDescription: 'Compare MTN Night Express hours, night-only and split bundles, and the Vodacom Night Owl details to confirm before buying or scheduling downloads.',
     h1: 'Night Data South Africa: Hours, Validity and Bundle Checks',
-    intro: 'Night data can be useful for downloads, updates or streaming during a restricted off-peak window. The reviewed catalogue currently includes MTN Night Express and Vodacom Night Owl rows; other operator offers should only be compared after their current allocation, validity and night window are verified.',
+    intro: 'Night data can be useful for downloads, updates or streaming during a restricted off-peak window. The listed MTN Night Express 250MB bundle follows its dedicated terms: R5, usable from 00:01-04:59. The previously listed standalone Vodacom Night Owl 250MB offer is withheld from the comparison because its current price and availability could not be confirmed.',
     comparisonType: 'night',
     stepsTitle: 'How to Maximise Your Night Data',
     steps: [
       {
         title: 'Check Your Network\'s Specific Times',
-        description: 'Do not assume every network uses the same night window. Vodacom public Night Owl terms point to 00:00 to 05:00, MTN Night Express uses 00:01 to 04:59, and Telkom Night Surfer pages can extend later into the morning. Always verify before starting a big download.'
+        description: 'Do not assume every network or product uses the same night window. Use 00:01-04:59 for the listed MTN Night Express bundle under its dedicated terms. Vodacom once-off Night Owl terms give 00:00-05:00, but other product families have their own rules.'
       },
       {
         title: 'Schedule Your Downloads',
-        description: 'Use download managers or app settings (like in Netflix or YouTube) to schedule high-bandwidth tasks for after midnight to ensure they use your night balance.'
+        description: 'Schedule downloads only within the hours confirmed for your exact bundle, and set them to stop before that window ends. Check the remaining night allowance and which balance is being used; starting after midnight alone does not guarantee that a download uses night data.'
       },
       {
         title: 'Monitor Your Balance',
@@ -71,7 +71,7 @@ export const guides: Guide[] = [
     faq: [
       {
         question: 'When does night data start and end?',
-        answer: 'It depends on the network. Vodacom public Night Owl terms point to 00:00 to 05:00, MTN Night Express uses 00:01 to 04:59, and Telkom Night Surfer material can run to 07:00 on some offers.'
+        answer: 'It depends on the exact product. The listed MTN Night Express bundle uses 00:01-04:59 under its dedicated terms. Vodacom once-off Night Owl terms give 00:00-05:00; do not apply that window to every Vodacom offer.'
       },
       {
         question: 'Which network has the best night data?',
@@ -89,6 +89,13 @@ export const guides: Guide[] = [
         question: 'Can I use night data for YouTube or Netflix?',
         answer: 'General night-data bundles may support normal internet traffic during their usage window, but check the specific product terms and your remaining balance before streaming.'
       }
+    ],
+    sourceSummary: 'The MTN row follows the dedicated Night Express terms for 00:01-04:59 usage; its general Internet Bundles table has inconsistent wording. The standalone Vodacom Night Owl 250MB offer remains unconfirmed and is withheld from the active catalogue.',
+    officialSources: [
+      { label: 'MTN: Night Express data bundle terms', href: 'https://www.mtn.co.za/home/terms-and-conditions/content/mtn-night-express-data-bundles', note: 'Dedicated terms state 00:01-04:59 usage hours.' },
+      { label: 'MTN: Internet Bundles', href: 'https://www.mtn.co.za/home/terms-and-conditions/content/mtn-internet-bundles', note: 'Section 3.6 gives different hours; the listed standalone row follows the dedicated Night Express terms.' },
+      { label: 'Vodacom: prepaid data catalogue', href: 'https://www.vodacom.co.za/vodacom/shopping/data/prepaid-data', note: 'The reviewed public catalogue did not confirm the standalone Night Owl 250MB offer, which is withheld from the comparison.' },
+      { label: 'Vodacom: once-off data bundle terms', href: 'https://www.vodacom.co.za/vodacom/terms/once-off-data-bundles', note: 'Night Owl usage and validity rules apply to the specific product family.' }
     ]
   },
   {
@@ -1415,21 +1422,21 @@ export const guides: Guide[] = [
   {
     slug: 'how-to-buy-data-vodacom',
     title: 'How to Buy Data on Vodacom - USSD Codes & App Guide 2026',
-    metaDescription: 'Learn how to buy Vodacom data with USSD, MyVodacom and airtime conversion, then choose the fastest route for your bundle.',
+    metaDescription: 'Learn how to buy Vodacom data with USSD, VodaPay and airtime conversion, then check your bundle price, restrictions and expiry before paying.',
     h1: 'How to Buy Data on Vodacom: Step-by-Step Guide',
     intro: 'Vodacom offers several ways to purchase data bundles, whether you are looking for a quick daily fix or a large monthly allocation. The most common method is using USSD codes, which work even if you don\'t have an active data connection. This guide covers all the ways you can buy Vodacom data bundles in seconds.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *135# from a Vodacom SIM for the main buy-data route.',
       'Check *123# for Just4You and compare the live allocation, validity and price with the public menu.',
-      'Use My Vodacom or VodaPay to view account availability, payment options and bundle details.',
+      'Use VodaPay to view available bundles, payment options and bundle details.',
       'Always confirm validity, data type, and final price before accepting the purchase.'
     ],
     jumpLinksTitle: 'On This Page',
     jumpLinks: [
       { label: 'USSD method', anchor: 'vodacom-ussd-method' },
       { label: 'Just4You deals', anchor: 'vodacom-just4you' },
-      { label: 'MyVodacom app', anchor: 'vodacom-app-method' },
+      { label: 'VodaPay app', anchor: 'vodacom-app-method' },
       { label: 'Common mistakes', anchor: 'common-mistakes' },
       { label: 'FAQ', anchor: 'faq' }
     ],
@@ -1448,8 +1455,8 @@ export const guides: Guide[] = [
       },
       {
         id: 'vodacom-app-method',
-        title: 'Option 3: Using the MyVodacom App',
-        description: 'Open My Vodacom or VodaPay to view bundles available to your account. Compare the app with *135# and *123# because channel availability and offer terms can differ.'
+        title: 'Option 3: Using the VodaPay App',
+        description: 'Open VodaPay to view bundles available to your account. Vodacom recommends VodaPay for its balance and bundle features. Compare the app with *135# and *123# because channel availability and offer terms can differ.'
       }
     ],
     commonMistakesTitle: 'When This Advice May Not Apply',
@@ -1483,7 +1490,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'Can I buy Vodacom data for someone else?',
-        answer: 'Vodacom publishes *135*1002# as a data-bundle transfer and purchase route. Follow the current prompts; if the required option is not shown, use the My Vodacom app or contact support.'
+        answer: 'Vodacom publishes *135*1002# as a data-bundle transfer and purchase route. Follow the current prompts; if the required option is not shown, check the available options in VodaPay or contact support.'
       },
       {
         question: 'How do I check my Vodacom data balance?',
@@ -1491,12 +1498,19 @@ export const guides: Guide[] = [
       },
       {
         question: 'How long do Vodacom data bundles last?',
-        answer: 'Validity depends on the bundle: Hourly (1 hour), Daily (expires at midnight), Weekly (7 days), or Monthly (30 days).'
+        answer: 'Check the exact expiry shown before buying. Vodacom once-off terms describe validity of up to 1, 7 or 30 calendar days, while Night Owl and personalised offers have their own rules. Do not assume every daily bundle expires at midnight or every monthly bundle uses the same expiry calculation.'
       },
       {
         question: 'Is there a cheap 1GB bundle on Vodacom?',
         answer: 'Short-validity and 30-day 1GB options serve different usage patterns. Compare the current *135# public menu with any personalised offer shown on *123#, including allocation, validity and live price.'
       }
+    ],
+    sourceSummary: 'Reviewed against Vodacom balance help, VodaPay support, Just 4 You terms and once-off bundle terms. Check the live offer for the exact expiry and any product-specific restrictions.',
+    officialSources: [
+      { label: 'Vodacom: VodaPay app support', href: 'https://www.vodacom.co.za/vodacom/help/vodapay-app-support', note: 'Vodacom recommends VodaPay for account balance and bundle features.' },
+      { label: 'Vodacom: once-off data bundle terms', href: 'https://www.vodacom.co.za/vodacom/terms/once-off-data-bundles', note: 'Validity and Night Owl expiry rules depend on the bundle purchased.' },
+      { label: 'Vodacom: Just 4 You terms', href: 'https://www.vodacom.co.za/vodacom/terms/promotions/just4you', note: 'Personalised offers are available through *123# and use the validity shown at purchase.' },
+      { label: 'Vodacom: useful USSD codes', href: 'https://now.vodacom.co.za/do-it-yourself/the-most-useful-ussd-codes-for-vodacom-users/', note: 'Official main-menu and data-bundle transfer or purchase routes.' }
     ]
   },
   {
@@ -1890,20 +1904,20 @@ export const guides: Guide[] = [
   {
     slug: 'how-to-check-vodacom-airtime-balance',
     title: 'How to Check Balance on Vodacom: Dial *135# for Airtime and Data',
-    metaDescription: 'Check Vodacom balance by dialling *135# from your Vodacom SIM. Use MyVodacom for airtime, data bundle detail, expiry dates and recent account activity.',
+    metaDescription: 'Check Vodacom balance by dialling *135# from your Vodacom SIM. Use VodaPay for airtime and data balances, then check bundle detail before topping up.',
     h1: 'How to Check Balance on Vodacom: Dial *135#',
     intro: 'If you searched for how to check balance on Vodacom, how to check airtime on Vodacom, or the Vodacom balance check number, start with *135# from your Vodacom SIM. This is the safest first route for airtime, data bundle balance, and account options before buying another bundle.',
     quickSummaryTitle: 'Quick Answer',
     quickSummaryItems: [
       'Dial *135# from your Vodacom SIM to check balance through the main self-service menu.',
-      'Use MyVodacom as the second check for bundle detail, expiry dates, and recent activity.',
+      'Use VodaPay as the second check for airtime and data balances, then open the relevant balance for more detail.',
       'If your query is how to check airtime on Vodacom, use *135# first so you can confirm airtime, data, and account status from one menu path.',
       'Before buying another bundle, compare current Vodacom prepaid data prices on the Vodacom network page and use the Vodacom USSD page for the wider shortcut set.'
     ],
     jumpLinksTitle: 'On This Page',
     jumpLinks: [
       { label: 'USSD method', anchor: 'ussd-method' },
-      { label: 'MyVodacom method', anchor: 'app-method' },
+      { label: 'VodaPay method', anchor: 'app-method' },
       { label: 'Other methods', anchor: 'alternative-methods' },
       { label: 'Troubleshooting', anchor: 'troubleshooting' },
       { label: 'FAQ', anchor: 'faq' }
@@ -1918,13 +1932,13 @@ export const guides: Guide[] = [
       },
       {
         id: 'app-method',
-        title: 'App method: use the MyVodacom app',
-        description: 'Open the MyVodacom app and check your account or balances screen. This is useful when you want to compare airtime with remaining data bundles, validity dates, and recent activity before topping up.'
+        title: 'App method: use the VodaPay app',
+        description: 'Sign in to VodaPay to see balances on the home screen, then open the relevant balance for more detail before topping up. Vodacom recommends VodaPay for the balance and bundle features previously offered in My Vodacom.'
       },
       {
         id: 'alternative-methods',
         title: 'SMS or alternative method',
-        description: 'Vodacom menu options can vary, so USSD and MyVodacom are the safest balance routes. Avoid giving OTPs, PINs, or banking details to third-party services claiming to check airtime.'
+        description: 'Vodacom also lists TOBi on its official WhatsApp channel as a balance-check option. Use the contact link on Vodacom’s official support page. Avoid giving OTPs, PINs, or banking details to third-party services claiming to check airtime.'
       },
       {
         id: 'troubleshooting',
@@ -1946,7 +1960,7 @@ export const guides: Guide[] = [
     faq: [
       {
         question: 'How do I check my Vodacom balance?',
-        answer: 'Dial *135# from your Vodacom SIM and choose balances. Use MyVodacom as a second check when you need bundle expiry or recent usage detail.'
+        answer: 'Dial *135# from your Vodacom SIM and follow the balance prompts. Use VodaPay as a second check for airtime and data balances.'
       },
       {
         question: 'What is the Vodacom balance check number?',
@@ -1954,7 +1968,7 @@ export const guides: Guide[] = [
       },
       {
         question: 'How do I check Vodacom data balance?',
-        answer: 'Start with *135# and choose balances, then use MyVodacom if you need bundle validity, expiry, or recent usage detail in one view.'
+        answer: 'Start with *135# and follow the balance prompts, or sign in to VodaPay and open the relevant data balance for more detail.'
       },
       {
         question: 'How do I check airtime on Vodacom?',
@@ -1972,6 +1986,12 @@ export const guides: Guide[] = [
         question: 'What should I do if Vodacom airtime keeps disappearing?',
         answer: 'Check data balance, subscription or content-service status, and recent app usage. If deductions continue, contact Vodacom support with timestamps and screenshots.'
       }
+    ],
+    sourceSummary: 'Reviewed against Vodacom’s official balance help, VodaPay support and published direct-balance guidance. Private account balances and available menu options must still be checked on the customer’s line.',
+    officialSources: [
+      { label: 'Vodacom: balances, usage and billing help', href: 'https://www.vodacom.co.za/vodacom/help/balances-usage-and-billing', note: 'Confirms *135#, VodaPay and TOBi as balance-check routes.' },
+      { label: 'Vodacom: VodaPay app support', href: 'https://www.vodacom.co.za/vodacom/help/vodapay-app-support', note: 'Vodacom recommends VodaPay for its balance and bundle features.' },
+      { label: 'Vodacom: ways to check your balance', href: 'https://now.vodacom.co.za/do-it-yourself/the-three-easiest-ways-to-check-your-vodacom-balance/', note: 'Confirms *136# for detailed balances and the wider *135# services menu.' }
     ]
   }
 ];

@@ -19,7 +19,7 @@ import { buildBundleItemListSchema } from '../utils/structuredData';
 import { getBundleSourceNote } from '../utils/bundleSource';
 import {
   formatIsoForDisplay,
-  getBundleTypeModifiedIso,
+  getRouteModifiedIso,
   getDefaultPublishedIso
 } from '../seo/contentDates';
 import { AuthorReviewBlock } from './AuthorReviewBlock';
@@ -641,7 +641,7 @@ export const NetworkPageTemplate: React.FC<NetworkPageTemplateProps> = ({
   const shouldNoindex = isNoindexRoute(seoData.canonicalPath);
   const networkSlug = getNetworkSlug(network);
   const datePublishedIso = getDefaultPublishedIso();
-  const dateModifiedIso = getBundleTypeModifiedIso(networkSlug);
+  const dateModifiedIso = getRouteModifiedIso(seoData.canonicalPath);
   const lastReviewed = formatIsoForDisplay(dateModifiedIso);
 
   const preparedBundles = useMemo<PreparedBundle[]>(() => {

@@ -12,6 +12,7 @@ import { TowerControl, BookOpen, Smartphone, Info, Zap, Globe, ShieldCheck, Gaug
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { buildBundleItemListSchema, getNetworkPageUrl } from '../utils/structuredData';
+import { isVerifiedBundleSource } from '../utils/bundleSource';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
 import { DEFAULT_OG_IMAGE_URL, SITE_BRAND_NAME, SITE_LOGO_URL, SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstants';
 
@@ -115,7 +116,7 @@ export const NetworkHubPage: React.FC<NetworkHubPageProps> = ({ onNavigate, onSc
 
   const featuredBundles = Object.values(networkPages).flatMap((page) =>
     bundles
-      .filter((bundle) => bundle.network === page.networkName)
+      .filter((bundle) => bundle.network === page.networkName && isVerifiedBundleSource(bundle))
       .sort((a, b) => a.price - b.price)
       .slice(0, 2)
   );

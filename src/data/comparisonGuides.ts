@@ -590,28 +590,28 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
     canonicalPath: '/guides/cheap-night-data-south-africa/',
     title: 'Night Data South Africa 2026: Hours and Bundle Checks',
     metaDescription:
-      'Compare reviewed MTN Night Express and Vodacom Night Owl rows, usage windows, validity and the checks to make before buying night data.',
+      'Compare night-only and split-allocation bundles, MTN Night Express hours, validity and the Vodacom Night Owl offer details that still need confirmation.',
     h1: 'Night Data South Africa: Hours, Validity and Bundle Checks',
     intro:
-      'Night data can be useful for downloads, updates or streaming during a restricted off-peak window. The reviewed catalogue currently includes MTN Night Express and Vodacom Night Owl rows; other operator offers should only be compared after their current allocation, validity and night window are verified.',
-    tableTitle: 'Reviewed Night Data Bundle Comparison',
-    quickHeading: 'Which night-data rows are currently source checked?',
+      'This comparison includes night-only and split-allocation bundles. The MTN Night Express 250MB bundle is R5 and uses 00:01-04:59 under its dedicated terms. Split-bundle prices cover both allocations, so compare each allocation and any device restrictions separately. The standalone Vodacom Night Owl 250MB offer is withheld because its current price and availability could not be confirmed.',
+    tableTitle: 'Bundles with Night Data: Allocation Comparison',
+    quickHeading: 'How do the listed bundles with night data compare?',
     watchOuts: [
-      'Night bundle data is usually restricted to specific off-peak hours.',
+      'The listed MTN Night Express bundle follows its dedicated 00:01-04:59 terms. The general Internet Bundles table has different wording; other MTN product families may also have different hours.',
       'Night GB does not automatically replace daytime anytime data.',
-      'If you miss the usage window, even a cheap night bundle can deliver no practical value.'
+      'The standalone Vodacom Night Owl 250MB offer is withheld from the active catalogue pending confirmation; this does not establish that it has been discontinued.'
     ],
     savingsTips: [
       'Use night bundles for scheduled downloads and updates, not daytime browsing.',
-      'Pair night bundles with a small anytime bundle if you still need daytime connectivity.',
+      'For split bundles, check whether the included anytime allowance covers your daytime needs.',
       'Check network-specific night windows and terms before buying.'
     ],
     trustLine:
-      'We compare only source-checked night-data rows and keep their restricted usage windows separate from normal anytime data.',
+      'The table uses source-checked night-only and split-allocation rows. MTN Night Express follows its dedicated product terms. The unconfirmed standalone Vodacom Night Owl 250MB offer is withheld from the table and recommendations.',
     faqs: [
       {
         question: 'Which network has the cheapest night data in South Africa?',
-        answer: 'There is no permanent winner. Compare only current source-checked rows with the same validity, then check allocation, cost per usable GB and the exact night window.'
+        answer: 'The table compares its checked rows, not every offer in South Africa. Check whether a row is night-only or a split bundle: split-bundle prices include an anytime allocation. Compare allocations, validity, device restrictions and exact hours together. The unconfirmed standalone Vodacom Night Owl 250MB offer is withheld.'
       },
       {
         question: 'When are night bundles worth buying?',

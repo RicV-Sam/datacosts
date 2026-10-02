@@ -1,6 +1,6 @@
 import { Bundle, NetworkStats, NetworkMetadata, NetworkName } from './types';
 
-const PRICE_REVIEW_DATE = '2026-09-01';
+const PRICE_REVIEW_DATE = '2026-10-02';
 
 const SOURCES = {
   mtnInternetBundles: {
@@ -36,7 +36,7 @@ const SOURCES = {
     sourceLabel: 'Telkom WhatsApp bundles'
   },
   cellcDataBundles: {
-    sourceUrl: 'https://www.cellc.co.za/cellc/get-databundles',
+    sourceUrl: 'https://www.cellc.co.za/cellc/jsp/pinless-recharge/rechargeBundle_ajax.jsp?bundleCategory=DATAWEB&bundleType=DATAWEB',
     sourceLabel: 'Cell C data bundle catalogue'
   },
   cellcWhatsappBundles: {
@@ -238,9 +238,10 @@ export const bundles: Bundle[] = [
     nightData: '250MB',
     costPerGb: 20,
     bestFor: 'Late-night downloads',
-    watchOut: 'Night-only usage window (00:01-04:59)',
+    watchOut: 'Night-only usage from 00:01-04:59 under the dedicated Night Express terms. The general Internet Bundles table gives different hours; this row follows the product-specific terms.',
     ...SOURCES.mtnNightExpress,
     sourceConfidence: 'verified',
+    // Hours confirmed by the user on 2 October and matched to the dedicated terms.
     lastVerified: PRICE_REVIEW_DATE,
     productType: 'night_data',
     nightWindow: '00:01-04:59',
@@ -265,16 +266,17 @@ export const bundles: Bundle[] = [
     productType: 'promo_campaign_offer',
   },
   {
+    // Retain the existing identifier and slug when updating the published allocation.
     id: 'voda-hourly-50mb',
     slug: 'vodacom-hourly-50mb-data-price',
     network: 'Vodacom',
-    name: 'Vodacom Hourly 50MB',
+    name: 'Vodacom Hourly 250MB',
     price: 5,
-    volume: '50MB',
+    volume: '250MB',
     validity: '1 Hour',
     type: 'Hourly',
-    anytimeData: '50MB',
-    costPerGb: 100,
+    anytimeData: '250MB',
+    costPerGb: 20,
     bestFor: 'Emergency top-up for quick low-data tasks',
     watchOut: 'Very short validity (1 hour)',
     ...SOURCES.vodacomPrepaidData,
@@ -434,37 +436,18 @@ export const bundles: Bundle[] = [
     productType: 'prepaid_lte_router_data',
     nightWindow: '00:00-05:00',
   },
-  {
-    id: 'voda-night-owl-250mb',
-    slug: 'vodacom-night-owl-250mb-price',
-    network: 'Vodacom',
-    name: 'Vodacom Night Owl 250MB',
-    price: 14,
-    volume: '250MB',
-    validity: '24 Hours',
-    type: 'Daily',
-    anytimeData: '0MB',
-    nightData: '250MB',
-    costPerGb: 56,
-    bestFor: 'Late-night updates and overnight downloads',
-    watchOut: 'Night-only usage window',
-    ...SOURCES.vodacomPrepaidData,
-    sourceConfidence: 'verified',
-    lastVerified: PRICE_REVIEW_DATE,
-    productType: 'night_data',
-    nightWindow: '00:00-05:00',
-  },
+  // The unconfirmed standalone Night Owl row is preserved in data/withheldBundles.ts.
   {
     id: 'voda-whatsapp-daily-250mb',
     slug: 'vodacom-whatsapp-daily-250mb-price',
     network: 'Vodacom',
     name: 'Vodacom WhatsApp 250MB Daily',
-    price: 5,
+    price: 6,
     volume: '250MB',
     validity: '1 Day',
     type: 'Social',
     anytimeData: '250MB (WhatsApp)',
-    costPerGb: 20,
+    costPerGb: 24,
     bestFor: 'Chat-first users with low daily spend',
     note: 'App-specific bundle',
     watchOut: 'Social-only access, not full internet',
@@ -625,7 +608,7 @@ export const bundles: Bundle[] = [
     id: 'rain-unlimited-4g',
     slug: 'rain-unlimited-4g-data-price',
     network: 'Rain',
-    name: 'Rain unlimited home 30Mbps',
+    name: 'Rain unlimited home up to 30Mbps',
     price: 679,
     volume: 'Unlimited',
     validity: 'Month-to-month',
@@ -643,7 +626,7 @@ export const bundles: Bundle[] = [
     id: 'rain-unlimited-5g',
     slug: 'rain-unlimited-5g-data-price',
     network: 'Rain',
-    name: 'Rain unlimited home pro 60Mbps',
+    name: 'Rain unlimited home pro up to 60Mbps',
     price: 799,
     volume: 'Unlimited',
     validity: 'Month-to-month',

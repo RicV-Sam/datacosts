@@ -58,7 +58,7 @@ function getIntro(
   }
 
   if (network === 'Vodacom' && bundleType === 'night-data') {
-    return 'Compare Vodacom Night Owl and prepaid LTE bundles by price, anytime allocation, night allocation, validity and the hours in which night data can actually be used.';
+    return 'Compare the source-checked Vodacom prepaid LTE bundles below by price, anytime allocation, night allocation, validity and usage hours. The standalone 250MB Night Owl offer is withheld because its current price and availability could not be confirmed. This does not establish that Vodacom has discontinued it.';
   }
 
   if (bundleType === 'monthly-data') {
@@ -177,7 +177,9 @@ function buildFaqs(
       },
       {
         question: `Are all prices on this page verified?`,
-        answer: `No. Rows with a checked date were matched to an official source; rows marked “Recheck before buying” need confirmation on the ${network} app, website or self-service menu.`
+        answer: bundlesForPage.length > 0 && verifiedBundles.length === bundlesForPage.length
+          ? `The listed prices were matched to official sources on their recorded check dates. Confirm availability and the final terms on your ${network} line before buying.`
+          : `Rows with a checked date were matched to an official source; rows marked “Recheck before buying” need confirmation on the ${network} app, website or self-service menu.`
       }
     ];
   }

@@ -454,7 +454,7 @@ export const USSDPage: React.FC<USSDPageProps> = ({ onBack, onScrollTo, onNaviga
             </Link>
             <Link to="/data-problems/how-to-check-data-balance-vodacom-ussd/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
               <div className="font-black text-slate-900">Check Vodacom data balance</div>
-              <p className="text-sm text-slate-600 mt-1">Use Vodacom USSD and MyVodacom to confirm active bundles.</p>
+              <p className="text-sm text-slate-600 mt-1">Use Vodacom USSD and VodaPay to confirm active bundles.</p>
             </Link>
             <Link to="/guides/how-to-check-mtn-airtime-balance/" className="rounded-2xl border border-slate-100 bg-slate-50 p-5 hover:border-[#1b6d24] transition-colors">
               <div className="font-black text-slate-900">Check MTN airtime balance</div>

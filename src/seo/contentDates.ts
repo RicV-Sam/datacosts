@@ -4,10 +4,13 @@ const PUBLISHER_REVIEW_MODIFIED_ISO = '2026-05-24T00:00:00.000Z';
 const FIBRE_REVIEW_MODIFIED_ISO = '2026-08-06T00:00:00.000Z';
 const PRICING_AUDIT_MODIFIED_ISO = '2026-09-01T00:00:00.000Z';
 const EDITORIAL_AUDIT_MODIFIED_ISO = '2026-09-01T00:00:00.000Z';
-const MONTHLY_DEAL_REVIEW_MODIFIED_ISO = '2026-09-01T00:00:00.000Z';
+const MONTHLY_DEAL_REVIEW_MODIFIED_ISO = '2026-10-02T00:00:00.000Z';
+// Partial October audit: only changed or fully rechecked surfaces use this date.
+// Keep unresolved price-row source dates and USSD review dates intact.
+const OCTOBER_PRICING_REVIEW_MODIFIED_ISO = '2026-10-02T00:00:00.000Z';
 
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
-  '/': PRICING_AUDIT_MODIFIED_ISO,
+  '/': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   '/africa-expansion/': '2026-09-05T00:00:00.000Z',
   '/alerts/': '2026-05-10T00:00:00.000Z',
   '/about/': '2026-09-05T00:00:00.000Z',
@@ -32,7 +35,12 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/guides/': PRICING_AUDIT_MODIFIED_ISO,
   '/methodology/': '2026-08-01T00:00:00.000Z',
   '/mtn-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
-  '/network/': PRICING_AUDIT_MODIFIED_ISO,
+  '/network/': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  '/network/vodacom/social-data/': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  '/network/vodacom/night-data/': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  '/network/mtn/night-data/': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  // This protected empty monthly facet gained no newly verified Telkom offer.
+  '/network/telkom/monthly-data/': PRICING_AUDIT_MODIFIED_ISO,
   '/privacy-policy/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/promos/': '2026-06-18T00:00:00.000Z',
   '/save-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
@@ -42,7 +50,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/terms/': '2026-05-10T00:00:00.000Z',
   '/trust/': PUBLISHER_REVIEW_MODIFIED_ISO,
   '/travel-sims-south-africa/': EDITORIAL_AUDIT_MODIFIED_ISO,
-  '/ussd-codes-south-africa/': '2026-09-03T00:00:00.000Z',
+  '/ussd-codes-south-africa/': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   '/vodacom-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO
 };
 
@@ -89,8 +97,8 @@ const FIX_ROUTE_MODIFIED_ISO: Record<string, string> = {
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'airtime-data-saving-tips-south-africa': '2026-07-30T00:00:00.000Z',
   'best-data-deals-south-africa': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
-  'cheap-night-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
-  'cheapest-1gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheap-night-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  'cheapest-1gb-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   'convert-airtime-to-data-south-africa': '2026-08-02T00:00:00.000Z',
   'buy-data-with-bank-apps-south-africa': '2026-06-18T00:00:00.000Z',
   'check-router-sim-data-balance-and-recharge': '2026-07-12T00:00:00.000Z',
@@ -102,19 +110,19 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-buy-data-cell-c': '2026-09-13T00:00:00.000Z',
   'how-to-buy-data-mtn': '2026-09-24T00:00:00.000Z',
   'how-to-buy-data-telkom': '2026-08-02T00:00:00.000Z',
-  'how-to-buy-data-vodacom': PRICING_AUDIT_MODIFIED_ISO,
+  'how-to-buy-data-vodacom': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   'how-to-check-data-balance': '2026-08-01T00:00:00.000Z',
   'how-to-check-mtn-data-balance': '2026-08-13T00:00:00.000Z',
   'how-to-check-mtn-airtime-balance': '2026-07-30T00:00:00.000Z',
-  'how-to-check-vodacom-airtime-balance': '2026-07-09T00:00:00.000Z',
+  'how-to-check-vodacom-airtime-balance': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   'how-to-stop-wasp-vas-charges-south-africa': '2026-05-10T00:00:00.000Z',
   'stop-wasp-subscriptions-south-africa': '2026-08-02T00:00:00.000Z',
   'out-of-bundle-data-costs-south-africa': '2026-05-01T00:00:00.000Z',
   'prepaid-vs-contract-south-africa': '2026-08-27T00:00:00.000Z',
-  'cheapest-data-south-africa': '2026-09-14T00:00:00.000Z',
-  'cheapest-unlimited-data-south-africa': '2026-08-01T00:00:00.000Z',
-  'best-sim-only-deals-south-africa': '2026-09-01T00:00:00.000Z',
-  'mvnos-south-africa': '2026-09-01T00:00:00.000Z',
+  'cheapest-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  'cheapest-unlimited-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  'best-sim-only-deals-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  'mvnos-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   'vodacom-vs-mtn-data-prices': EDITORIAL_AUDIT_MODIFIED_ISO,
   'why-does-my-data-finish-so-fast-south-africa': '2026-05-10T00:00:00.000Z',
   'why-is-my-airtime-disappearing-south-africa': PRICING_AUDIT_MODIFIED_ISO,
@@ -133,32 +141,32 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
 
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'best-monthly-data-deals-south-africa': '2026-09-14T00:00:00.000Z',
-  'best-prepaid-data-deals-south-africa': '2026-09-17',
-  'cheap-night-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
-  'cheapest-1gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'best-prepaid-data-deals-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  'cheap-night-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  'cheapest-1gb-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   'cheapest-2gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheapest-5gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheapest-10gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheapest-15gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheapest-20gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheapest-50gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
-  'cheapest-whatsapp-bundles-south-africa': PRICING_AUDIT_MODIFIED_ISO
+  'cheapest-whatsapp-bundles-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO
 };
 
 const NETWORK_MODIFIED_BY_SLUG: Record<string, string> = {
-  'cell-c': PRICING_AUDIT_MODIFIED_ISO,
-  mtn: PRICING_AUDIT_MODIFIED_ISO,
-  rain: PRICING_AUDIT_MODIFIED_ISO,
-  telkom: PRICING_AUDIT_MODIFIED_ISO,
-  vodacom: PRICING_AUDIT_MODIFIED_ISO
+  'cell-c': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  mtn: OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  rain: OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  telkom: OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  vodacom: OCTOBER_PRICING_REVIEW_MODIFIED_ISO
 };
 
 const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
-  'cell-c': PRICING_AUDIT_MODIFIED_ISO,
-  mtn: PRICING_AUDIT_MODIFIED_ISO,
-  rain: PRICING_AUDIT_MODIFIED_ISO,
-  telkom: PRICING_AUDIT_MODIFIED_ISO,
-  vodacom: PRICING_AUDIT_MODIFIED_ISO
+  'cell-c': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  mtn: OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  rain: OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  telkom: OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  vodacom: OCTOBER_PRICING_REVIEW_MODIFIED_ISO
 };
 
 const NETWORK_USSD_MODIFIED_BY_SLUG: Record<string, string> = {

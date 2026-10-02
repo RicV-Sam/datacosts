@@ -13,7 +13,6 @@ import {
 import {
   MVNO_GUIDE_PATH,
   MVNO_PROVIDER_IDS,
-  MVNO_REVIEWED_AT,
   mvnoProviderProfiles
 } from '../src/data/mvnos';
 import { getIndexableRoutes, getNoindexRoutes, getSitemapRoutes } from '../src/config/routeCatalog';
@@ -43,11 +42,15 @@ test('MVNO editorial profiles cover the six tracked MVNO providers exactly once'
 test('MVNO editorial evidence and benefits retain source, eligibility and ranking guardrails', () => {
   for (const profile of mvnoProviderProfiles) {
     assert.ok(profile.sources.length > 0, `${profile.id} must cite at least one official source`);
-    const declaredSourceKeys = new Set(profile.sources.map((source) => `${source.title}\n${source.url}`));
+    const declaredSourceKeys = new Set(profile.sources.map((source) => `${source.title}\n${source.url}\n${source.checkedAt}`));
 
     for (const source of profile.sources) {
       assert.equal(source.official, true, `${profile.id} source must be official`);
-      assert.equal(source.checkedAt, MVNO_REVIEWED_AT, `${profile.id} source check date must match the guide review`);
+      assert.match(source.checkedAt, /^\d{4}-\d{2}-\d{2}$/, `${profile.id} source needs an ISO review date`);
+      const checkedAt = new Date(`${source.checkedAt}T00:00:00.000Z`);
+      assert.ok(Number.isFinite(checkedAt.getTime()), `${profile.id} source check date must be valid`);
+      assert.equal(checkedAt.toISOString().slice(0, 10), source.checkedAt, `${profile.id} source check date must be a real calendar date`);
+      assert.ok(checkedAt.getTime() <= Date.now(), `${profile.id} source check date cannot be in the future`);
       const parsed = new URL(source.url);
       assert.equal(parsed.protocol, 'https:', `${profile.id} source must use HTTPS`);
     }
@@ -59,11 +62,10 @@ test('MVNO editorial evidence and benefits retain source, eligibility and rankin
         `${profile.id} benefit "${benefit.title}" must remain outside base tariff rankings`
       );
       assert.equal(benefit.source.official, true, `${profile.id} benefit source must be official`);
-      assert.equal(benefit.source.checkedAt, MVNO_REVIEWED_AT, `${profile.id} benefit source must use the guide review date`);
       assert.equal(new URL(benefit.source.url).protocol, 'https:', `${profile.id} benefit source must use HTTPS`);
       assert.ok(
-        declaredSourceKeys.has(`${benefit.source.title}\n${benefit.source.url}`),
-        `${profile.id} benefit "${benefit.title}" must reference a declared profile source`
+        declaredSourceKeys.has(`${benefit.source.title}\n${benefit.source.url}\n${benefit.source.checkedAt}`),
+        `${profile.id} benefit "${benefit.title}" must match a declared profile source and its check date`
       );
 
       if (benefit.kind === 'temporary_promotion') {
@@ -88,10 +90,9 @@ test('MVNO editorial evidence and benefits retain source, eligibility and rankin
 
     if (profile.watchOutSource) {
       assert.equal(profile.watchOutSource.official, true, `${profile.id} watch-out source must be official`);
-      assert.equal(profile.watchOutSource.checkedAt, MVNO_REVIEWED_AT, `${profile.id} watch-out source must use the guide review date`);
       assert.ok(
-        declaredSourceKeys.has(`${profile.watchOutSource.title}\n${profile.watchOutSource.url}`),
-        `${profile.id} watch-out source must be declared in the profile source register`
+        declaredSourceKeys.has(`${profile.watchOutSource.title}\n${profile.watchOutSource.url}\n${profile.watchOutSource.checkedAt}`),
+        `${profile.id} watch-out source and check date must match the profile source register`
       );
     }
   }
@@ -104,10 +105,10 @@ test('current MVNO tracker rows keep billing, payment and commitment as separate
   const mvnoOffers = currentMonthlyDealSnapshot.offers.filter((offer) => isMvnoProviderId(offer.providerId));
 
   assert.equal(mvnoOffers.length, 19);
-  assert.equal(mvnoOffers.filter((offer) => offer.billing === 'once_off').length, 9);
-  assert.equal(mvnoOffers.filter((offer) => offer.billing === 'recurring_monthly').length, 10);
-  assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'once_off').length, 9);
-  assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'month_to_month').length, 8);
+  assert.equal(mvnoOffers.filter((offer) => offer.billing === 'once_off').length, 8);
+  assert.equal(mvnoOffers.filter((offer) => offer.billing === 'recurring_monthly').length, 11);
+  assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'once_off').length, 8);
+  assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'month_to_month').length, 9);
   assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'not_confirmed').length, 2);
   assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'fixed_term').length, 0);
 

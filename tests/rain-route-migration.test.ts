@@ -24,9 +24,9 @@ test('historical Rain evidence identity remains stable while its product evidenc
   const bundle = bundles.find((entry) => entry.id === 'rain-unlimited-4g');
   assert.ok(bundle, 'legacy Rain evidence record must remain available to the evidence registry');
   assert.equal(bundle.slug, 'rain-unlimited-4g-data-price');
-  assert.equal(bundle.name, 'Rain unlimited home 30Mbps');
+  assert.equal(bundle.name, 'Rain unlimited home up to 30Mbps');
   assert.equal(bundle.sourceUrl, 'https://www.rain.co.za/5Ghomewifi');
-  assert.equal(bundle.lastVerified, '2026-09-01');
+  assert.equal(bundle.lastVerified, '2026-10-02');
 
   assert.ok(!getPrerenderRoutes().includes('/network/rain/rain-unlimited-5g-data-price/'));
 });
