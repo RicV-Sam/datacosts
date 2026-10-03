@@ -1071,7 +1071,7 @@ export const guides: Guide[] = [
       },
       {
         title: 'Check Telkom Balance',
-        description: 'Dial *188# to receive an instant pop-up or SMS showing airtime, Anytime data and Night Surfer balances where applicable.'
+        description: 'Dial *188# from your Telkom SIM to check data and airtime balances. On a dual-SIM phone, choose the Telkom line. Use the Telkom balance and USSD guide below for alternatives and other shortcuts.'
       },
       {
         title: 'Check Cell C Balance',
@@ -1084,7 +1084,7 @@ export const guides: Guide[] = [
       { href: '/mtn-ussd-codes/', label: 'MTN USSD Codes', description: 'Open the broader MTN balance and self-service reference.', action: 'route' },
       { href: '/guides/how-to-check-vodacom-airtime-balance/', label: 'How to Check Balance on Vodacom', description: 'Use the dedicated Vodacom balance walkthrough.', action: 'guide', slug: 'how-to-check-vodacom-airtime-balance' },
       { href: '/vodacom-ussd-codes/', label: 'Vodacom USSD Codes', description: 'Open the wider Vodacom shortcut reference.', action: 'route' },
-      { href: '/telkom-ussd-codes/', label: 'Telkom USSD Codes', description: 'Open Telkom balance and self-service shortcuts.', action: 'route' },
+      { href: '/telkom-ussd-codes/', label: 'How to Check Data Balance on Telkom', description: 'Find the *188# balance code, alternatives and Telkom self-service shortcuts.', action: 'route' },
       { href: '/cell-c-ussd-codes/', label: 'Cell C Balance and USSD Codes', description: 'Use the Cell C-specific balance reference.', action: 'route' }
     ],
     faq: [

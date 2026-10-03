@@ -137,11 +137,11 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
     buyDataGuideHref: '/guides/how-to-buy-data-telkom/',
     balanceGuideHref: '/guides/how-to-check-data-balance/',
     metaDescription:
-      'Telkom USSD codes for South Africa: dial *188# to check balance, *180# to buy data or use self-service, *188*PIN# to recharge and *1# to check your number.',
+      'Check Telkom data and airtime balance with *188#. Find the *180# buy-data menu, recharge code and *1# number check in this Telkom USSD guide.',
     intro:
-      'Use this page when the intent is Telkom-specific. It is the best destination for Telkom USSD codes, balance checks, data bundle paths, airtime advance menu checks, number checks, and prepaid support shortcuts without relying on app data.',
+      'To check data balance on Telkom, dial *188# from your Telkom SIM. It also checks airtime balance. Use the codes below for buying bundles, recharging and checking your number, or the balance FAQ if you need an alternative to USSD.',
     quickAnswer:
-      'For Telkom balance checks, dial *188#. Use *180# for data bundles and self-service, *188*PIN# to recharge, and *1# to check your number. Use this page for Telkom-specific code intent, and use the all-network hub only when you want cross-network comparison.',
+      'Dial *188# from your Telkom SIM to check data and airtime balances. On a dual-SIM phone, choose the Telkom line. You can also check your balance in the MyTelkom App. To buy a bundle, use *180#; to recharge with a voucher, use *188*PIN#; to check your number, use *1#.',
     quickCodes: [
       { label: 'Telkom balance check', code: '*188#' },
       { label: 'Buy Telkom data', code: '*180#' },
@@ -152,8 +152,8 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
       'Use *180# for standard bundle and self-service actions, *123# for personalised Mo\'Nice offers, and *188# only to check airtime and data balances.',
     faq: [
       {
-        question: 'What is the Telkom USSD code to check data or airtime balance?',
-        answer: 'Dial *188# to check Telkom airtime and data balances.'
+        question: 'How do I check data balance on Telkom?',
+        answer: 'Dial *188# from your Telkom SIM to check data and airtime balances. If your phone has two SIMs, select the Telkom line. For an alternative balance view, use the MyTelkom App.'
       },
       {
         question: 'How do I buy Telkom data bundles via USSD?',
