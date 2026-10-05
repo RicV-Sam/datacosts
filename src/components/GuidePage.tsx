@@ -572,7 +572,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({
           </div>
         </section>
 
-        {['airtime-data-saving-tips-south-africa', 'night-data-south-africa', 'best-monthly-data-deals-south-africa'].includes(guide.slug) && (
+        {guide.slug === 'airtime-data-saving-tips-south-africa' && (
           <aside className="mb-16 rounded-3xl border border-slate-100 bg-white p-6" aria-labelledby="everyday-value-story-title">
             <h2 id="everyday-value-story-title" className="text-lg font-bold text-slate-900">Put the bundle price into perspective</h2>
             <p className="mt-2 text-sm leading-relaxed text-slate-600">An example from our Everyday Value SA blog shows how unused night data and expiry can change the cost of the data you actually use.</p>

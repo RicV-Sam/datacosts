@@ -642,6 +642,14 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
           </div>
         </section>
 
+        {['cheap-night-data-south-africa', 'best-monthly-data-deals-south-africa'].includes(definition.slug) && (
+          <aside className="mb-12 rounded-3xl border border-slate-100 bg-white p-6" aria-labelledby="everyday-value-story-title">
+            <h2 id="everyday-value-story-title" className="text-lg font-bold text-slate-900">Put the bundle price into perspective</h2>
+            <p className="mt-2 text-sm leading-relaxed text-slate-600">An example from our Everyday Value SA blog shows how unused night data and expiry can change the cost of the data you actually use.</p>
+            <a className="mt-3 inline-block font-bold text-[#1b6d24] hover:underline" href="https://everyday-value-sa.blogspot.com/2026/10/the-cheap-looking-data-bundle-that.html">Read the worked bundle-cost example</a>
+          </aside>
+        )}
+
         <AuthorReviewBlock lastReviewed={lastUpdated} className="mb-12" />
 
         <div className="bg-white border border-slate-100 rounded-2xl p-6 text-sm text-slate-500 flex items-start gap-3 shadow-sm">
