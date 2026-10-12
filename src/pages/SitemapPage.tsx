@@ -10,6 +10,8 @@ import { SITE_PRODUCT_NAME, SITE_URL, toCanonicalUrl } from '../seo/siteConstant
 import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 import { fixPages, fixClusterLabelById, getFixPath } from '../data/fixes';
 import { fibrePages } from '../data/fibre';
+import { discoveryGuides } from '../data/discoveryGuides';
+import { decisionTools } from '../data/decisionTools';
 
 interface SitemapPageProps {
   onNavigate: NavigateFunction;
@@ -22,10 +24,12 @@ type SitemapGroup = {
 };
 
 const sitemapGroups: SitemapGroup[] = [
+  { title: 'Switching, Expiry and Consumer Rights', links: discoveryGuides.map((guide) => ({ href: `/guides/${guide.slug}/`, label: guide.h1 })) },
   {
     title: 'Core Tools',
     links: [
       { href: '/', label: 'DataCost Home' },
+      ...Object.values(decisionTools).map((tool) => ({ href: tool.path, label: tool.title })),
       { href: '/tools/daily-vs-monthly-data-calculator/', label: 'Daily vs Monthly Data Bundle Calculator' },
       { href: '/network/', label: 'Network Comparison Hub' },
       { href: '/guides/', label: 'South Africa Mobile Data Guides' },

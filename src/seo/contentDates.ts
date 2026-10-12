@@ -10,7 +10,7 @@ const MONTHLY_DEAL_REVIEW_MODIFIED_ISO = '2026-10-02T00:00:00.000Z';
 const OCTOBER_PRICING_REVIEW_MODIFIED_ISO = '2026-10-02T00:00:00.000Z';
 
 const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
-  '/': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  '/': '2026-10-12T00:00:00.000Z',
   '/africa-expansion/': '2026-09-05T00:00:00.000Z',
   '/alerts/': '2026-05-10T00:00:00.000Z',
   '/about/': '2026-09-05T00:00:00.000Z',
@@ -33,6 +33,9 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/fibre/coverage-by-area/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fix/': '2026-07-24T00:00:00.000Z',
   '/guides/': '2026-10-12T00:00:00.000Z',
+  '/tools/usable-data-cost-calculator/': '2026-10-12T00:00:00.000Z',
+  '/tools/contract-vs-prepaid-phone-calculator/': '2026-10-12T00:00:00.000Z',
+  '/tools/data-bundle-selector/': '2026-10-12T00:00:00.000Z',
   '/tools/daily-vs-monthly-data-calculator/': '2026-10-12T00:00:00.000Z',
   '/methodology/': '2026-10-12T00:00:00.000Z',
   '/mtn-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
@@ -96,6 +99,13 @@ const FIX_ROUTE_MODIFIED_ISO: Record<string, string> = {
 };
 
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
+  'icasa-data-rollover-rules-south-africa': '2026-10-12T00:00:00.000Z',
+  'port-number-south-africa': '2026-10-12T00:00:00.000Z',
+  'vodacom-prepaid-esim-setup': '2026-10-12T00:00:00.000Z',
+  'vodacom-prepaid-lte-price-plan': '2026-10-12T00:00:00.000Z',
+  'data-expiry-rollover-south-africa': '2026-10-12T00:00:00.000Z',
+  'mobile-complaints-icasa-south-africa': '2026-10-12T00:00:00.000Z',
+  'mtn-bozzagigs-eligibility': '2026-10-12T00:00:00.000Z',
   'airtime-data-saving-tips-south-africa': '2026-07-30T00:00:00.000Z',
   'best-data-deals-south-africa': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
   'cheap-night-data-south-africa': '2026-10-12T00:00:00.000Z',
@@ -118,7 +128,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'how-to-check-vodacom-airtime-balance': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   'how-to-stop-wasp-vas-charges-south-africa': '2026-05-10T00:00:00.000Z',
   'stop-wasp-subscriptions-south-africa': '2026-08-02T00:00:00.000Z',
-  'out-of-bundle-data-costs-south-africa': '2026-05-01T00:00:00.000Z',
+  'out-of-bundle-data-costs-south-africa': '2026-10-12T00:00:00.000Z',
   'prepaid-vs-contract-south-africa': '2026-08-27T00:00:00.000Z',
   'cheapest-data-south-africa': '2026-10-12T00:00:00.000Z',
   'cheapest-unlimited-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,

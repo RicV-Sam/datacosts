@@ -52,6 +52,7 @@ const AirtimeOrDataGuidePage = lazy(() => import('./pages/AirtimeOrDataGuidePage
 const CellphoneContractCancellationGuidePage = lazy(() => import('./pages/CellphoneContractCancellationGuidePage').then((mod) => ({ default: mod.CellphoneContractCancellationGuidePage })));
 const ContractEndedOptionsGuidePage = lazy(() => import('./pages/ContractEndedOptionsGuidePage').then((mod) => ({ default: mod.ContractEndedOptionsGuidePage })));
 const RetentionOfferVsSwitchGuidePage = lazy(() => import('./pages/RetentionOfferVsSwitchGuidePage').then((mod) => ({ default: mod.RetentionOfferVsSwitchGuidePage })));
+const BundleDecisionToolsPage = lazy(() => import('./pages/BundleDecisionToolsPage').then((mod) => ({ default: mod.BundleDecisionToolsPage })));
 const DailyMonthlyCalculatorPage = lazy(() => import('./pages/DailyMonthlyCalculatorPage').then((mod) => ({ default: mod.DailyMonthlyCalculatorPage })));
 const PromosPage = lazy(() => import('./pages/PromosPage').then((mod) => ({ default: mod.PromosPage })));
 
@@ -282,6 +283,12 @@ function AppContent() {
         <Route path="/guides/what-to-do-when-cellphone-contract-ends-south-africa/" element={<ContractEndedOptionsGuidePage onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
         <Route path="/guides/what-to-do-when-cellphone-contract-ends-south-africa" element={<Navigate to="/guides/what-to-do-when-cellphone-contract-ends-south-africa/" replace />} />
         <Route path="/guides/cellphone-retention-offer-vs-switching-south-africa/" element={<RetentionOfferVsSwitchGuidePage onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
+        <Route path="/tools/usable-data-cost-calculator/" element={<BundleDecisionToolsPage mode="usage" onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
+        <Route path="/tools/usable-data-cost-calculator" element={<Navigate to="/tools/usable-data-cost-calculator/" replace />} />
+        <Route path="/tools/contract-vs-prepaid-phone-calculator/" element={<BundleDecisionToolsPage mode="phone" onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
+        <Route path="/tools/contract-vs-prepaid-phone-calculator" element={<Navigate to="/tools/contract-vs-prepaid-phone-calculator/" replace />} />
+        <Route path="/tools/data-bundle-selector/" element={<BundleDecisionToolsPage mode="selector" onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
+        <Route path="/tools/data-bundle-selector" element={<Navigate to="/tools/data-bundle-selector/" replace />} />
         <Route path="/tools/daily-vs-monthly-data-calculator/" element={<DailyMonthlyCalculatorPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
         <Route path="/tools/daily-vs-monthly-data-calculator" element={<Navigate to="/tools/daily-vs-monthly-data-calculator/" replace />} />
         <Route path="/guides/cellphone-retention-offer-vs-switching-south-africa" element={<Navigate to="/guides/cellphone-retention-offer-vs-switching-south-africa/" replace />} />

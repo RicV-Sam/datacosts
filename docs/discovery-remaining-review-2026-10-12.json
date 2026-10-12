@@ -1,0 +1,588 @@
+{
+  "reviewDate": "2026-10-12",
+  "baseCommit": "5a7d8d5",
+  "publicationState": "local implementation only; not committed, pushed or deployed in this scope",
+  "inputLimits": [
+    "Kimi/Gemini pasted full reports, GPT pasted summary/queue, Perplexity full Markdown and CSV were available. Original GPT 26-row Downloads exports were no longer present, so no claim of re-reading all 26 rows.",
+    "Customer account, live USSD, purchase, provider contact, all-provider fee and personalised-price checks were not performed.",
+    "Published ICASA commencement was verified, but a current court order or final litigation outcome was not."
+  ],
+  "sources": [
+    "https://www.icasa.org.za/uploads/files/End-user-and-subscriber-Service-Charter-Amendment-Regulations-2025.pdf",
+    "https://www.icasa.org.za/news/2019/amendments-to-the-end-user-and-subscriber-service-charter-regulations",
+    "https://www.icasa.org.za/pages/consumer-complaints-procedure",
+    "https://www.vodacom.co.za/vodacom/terms/home-prepaid-lte",
+    "https://www.vodacom.co.za/vodacom/terms/esim",
+    "https://www.vodacom.co.za/vodacom/shopping/esim",
+    "https://www.vodacom.co.za/vodacom/help/rica",
+    "https://www.mtn.co.za/home/terms-and-conditions/content/mtn-super-data",
+    "https://www.mtn.co.za/home/terms-and-conditions/content/mtn-bozzagigs-lte-terms-and-conditions",
+    "https://www.icasa.org.za/news/2026/icasa-clarifies-its-position-on-the-end-user-and-subscriber-service-charter-amendment-regulations",
+    "https://www.icasa.org.za/uploads/files/Mobile-Number-Portability-Consumer-Guide.pdf",
+    "https://www.vodacom.co.za/vodacom/help/switch-to-vodacom",
+    "https://www.icasa.org.za/uploads/files/The-Focus-Volume-4_-Issue-no.3.pdf",
+    "https://www.capitecbank.co.za/personal/connect/capitec-bundles/",
+    "https://www.afrihost.com/airmobile/monthly",
+    "https://www.vodacom.co.za/vodacom/terms/night-owl-bundles",
+    "https://www.cellc.co.za/cellc/static-content/PDF/30-day-bundle-tnc.pdf",
+    "https://www.cellc.co.za/cellc/static-content/PDF/Day-By-Day_Data_Bundles_FAQ_Web.pdf",
+    "https://waspa.org.za/consumer-support/",
+    "https://www.cellc.co.za/cellc/static-content/PDF/Daily-DailyNite-Bundles-TnC.pdf",
+    "https://www.vodacom.co.za/vodacom/help/content-services-and-subscriptions",
+    "https://help.afrihost.com/entry/afrihost-airmobile-explained/",
+    "https://help.afrihost.com/entry/how-to-top-up-your-airmobile-data-using-your-airtime/",
+    "https://www.capitecbank.co.za/personal/connect/",
+    "https://www.icasa.org.za/news/2018/announcement-of-final-end-user-and-service-subscriber-charter-regulations"
+  ],
+  "reports": {
+    "Kimi": [
+      {
+        "id": "DC01",
+        "decision": "already_covered",
+        "reason": "Exact 10GB table scope and broader comparisons addressed by the P1 release."
+      },
+      {
+        "id": "DC02",
+        "decision": "already_covered",
+        "reason": "MVNO hub exists and contains bank/public providers; TFG was added in P2."
+      },
+      {
+        "id": "DC03",
+        "decision": "implemented_locally",
+        "reason": "New product-specific expiry and rollover guide."
+      },
+      {
+        "id": "DC04",
+        "decision": "implemented_locally",
+        "reason": "Existing estimator now has editable rates, mobile/Wi-Fi share, sensitivity exercise and links to an eligibility selector."
+      },
+      {
+        "id": "DC05",
+        "decision": "implemented_locally",
+        "reason": "New porting checklist, with a verified Vodacom example. Rejected the claim that a port automatically cancels a contract."
+      },
+      {
+        "id": "DC06",
+        "decision": "partial_scope_implemented",
+        "reason": "Vodacom prepaid eSIM instructions verified and implemented; nationwide activation and fee matrix remains unsupported."
+      },
+      {
+        "id": "DC07",
+        "decision": "partial_scope_implemented",
+        "reason": "Existing OOB guide now explains prior consent; all-network rate table held for missing current tariff/unit evidence."
+      },
+      {
+        "id": "DC08",
+        "decision": "implemented_locally",
+        "reason": "New same-term contract versus handset outright and prepaid calculator."
+      },
+      {
+        "id": "DC09",
+        "decision": "held",
+        "reason": "Telkom daily classification already corrected. Full current monthly LTE catalogue was not independently captured; old PDF prices are insufficient."
+      },
+      {
+        "id": "DC10",
+        "decision": "already_covered",
+        "reason": "Rain network page already covers mobile/home families with sourced restrictions; homepage-only research missed this."
+      },
+      {
+        "id": "DC11",
+        "decision": "partial_scope_implemented",
+        "reason": "General APN fixes already exist; AirMobile profile now distinguishes newer MVNO APN from legacy MTN-SIM data product."
+      },
+      {
+        "id": "DC12",
+        "decision": "partial_scope_implemented",
+        "reason": "Expiry guide records verified transfer restrictions and Cell C conflicting clauses; a complete transfer eligibility/fee matrix is held."
+      },
+      {
+        "id": "DC13",
+        "decision": "partial_scope_implemented",
+        "reason": "Exact 1GB saved-table scope and validity differences now explained, including the missing Vodacom row. No current universal Vodacom 1GB quote was verified, so no price row was added; nearby sizes and personalised offers are separate."
+      },
+      {
+        "id": "DC14",
+        "decision": "held",
+        "reason": "Current UPS prices, model compatibility and runtime matrix not verified. Existing fibre comparisons mention power dependency; 2022 product recommendations are stale."
+      },
+      {
+        "id": "DC15",
+        "decision": "already_covered",
+        "reason": "Vodacom vs MTN page has existing comparisons; no independently justified blanket network award."
+      },
+      {
+        "id": "DC16",
+        "decision": "already_covered",
+        "reason": "FNB conflicting dates are already flagged and affected rows excluded from rankings; new selector also excludes them."
+      },
+      {
+        "id": "DC17",
+        "decision": "already_covered",
+        "reason": "Cell C network page already explains partner network model without inventing universal service priority."
+      },
+      {
+        "id": "DC18",
+        "decision": "held",
+        "reason": "No complete current national zero-rating directory, exclusions and fair-use evidence."
+      },
+      {
+        "id": "DC19",
+        "decision": "already_covered",
+        "reason": "Advance guide already addresses eligibility, fees and next-recharge repayment. Dynamic subscriber fees not independently verified."
+      },
+      {
+        "id": "DC20",
+        "decision": "partial_scope_implemented",
+        "reason": "P2 retention tool already accepts promotion/normal prices; new phone tool does too. No unsourced provider-wide future-price history added."
+      },
+      {
+        "id": "DC21",
+        "decision": "held",
+        "reason": "Current official long-validity Cell C prices not verified; secondary 2023 wiki not adequate."
+      },
+      {
+        "id": "DC22",
+        "decision": "already_covered",
+        "reason": "Existing Night Express page flags general-vs-dedicated wording. Dedicated terms could not be freshly fetched this run; Bozza product window separately verified."
+      },
+      {
+        "id": "DC23",
+        "decision": "partial_scope_implemented",
+        "reason": "Exact 1GB saved-table scope and validity differences now explained, including the missing Vodacom row. No current universal Vodacom 1GB quote was verified, so no price row was added; nearby sizes and personalised offers are separate."
+      },
+      {
+        "id": "DC24",
+        "decision": "held",
+        "reason": "Same Telkom catalogue gap as DC09; daily releases are not pooled monthly data."
+      },
+      {
+        "id": "DC25",
+        "decision": "held",
+        "reason": "Same zero-rating gap as DC18."
+      },
+      {
+        "id": "DC26",
+        "decision": "already_covered",
+        "reason": "Same Rain page duplicate as DC10."
+      },
+      {
+        "id": "DC27",
+        "decision": "held",
+        "reason": "Same OOB tariff/unit gap as DC07; current consent rights implemented."
+      },
+      {
+        "id": "DC28",
+        "decision": "already_covered",
+        "reason": "Existing best-prepaid-data-deals-south-africa comparison and prepaid-vs-contract guide cover the use case."
+      },
+      {
+        "id": "DC29",
+        "decision": "already_covered",
+        "reason": "Existing convert-airtime-to-data-south-africa guide; newer AirMobile purchase route now added to its MVNO profile."
+      }
+    ],
+    "Gemini": [
+      {
+        "id": "OPP01",
+        "decision": "already_covered",
+        "reason": "MVNO URL exists. Its claimed broken-page/new-hub gap is not reproduced; price-floor and percentage-saving claims not accepted."
+      },
+      {
+        "id": "OPP02",
+        "decision": "implemented_locally",
+        "reason": "Regulatory guide distinguishes earlier consent rights, exact gazetted exclusions and published future timetable; court status remains unverified."
+      },
+      {
+        "id": "OPP03",
+        "decision": "partial_scope_implemented",
+        "reason": "Capitec families already covered; expiry guide clarifies 30-day vs non-expiry. Main page and FAQ now both say conditional 2GB credit-card reward, rather than report’s 1GB."
+      },
+      {
+        "id": "OPP04",
+        "decision": "implemented_locally",
+        "reason": "Updated OOB guide: consent protection already exists, not first introduced in 2027."
+      },
+      {
+        "id": "OPP05",
+        "decision": "already_covered",
+        "reason": "Melon build-your-own/payment/commitment choices already covered in MVNO profile; no unverified R199 plan inserted."
+      },
+      {
+        "id": "OPP06",
+        "decision": "partial_scope_implemented",
+        "reason": "Vodacom prepaid eSIM guide; broad no-store/all-provider procedure and fees not verified."
+      },
+      {
+        "id": "OPP07",
+        "decision": "held",
+        "reason": "Knect R149/10GB current source unavailable. AirMobile calendar expiry cannot be described as a universal fixed 60-day validity."
+      },
+      {
+        "id": "OPP08",
+        "decision": "held",
+        "reason": "Sixty60 all-network/no-minimum voucher purchase claims not verified from current official documentation."
+      },
+      {
+        "id": "OPP09",
+        "decision": "implemented_locally",
+        "reason": "Consumed-data calculator separates night wallets, daily release, unmet demand, unused data and undefined zero-consumption value."
+      },
+      {
+        "id": "OPP10",
+        "decision": "already_covered",
+        "reason": "Advance guide already warns about fees/repayment; exact live subscriber fees remain unavailable."
+      }
+    ],
+    "GPT_supplied_queue": [
+      {
+        "id": "DC-01",
+        "decision": "already_covered",
+        "reason": "P1 clarified exact 10GB versus broader tracker scope."
+      },
+      {
+        "id": "DC-02",
+        "decision": "already_covered",
+        "reason": "P1 conservative comparison source/ranking corrections."
+      },
+      {
+        "id": "DC-03",
+        "decision": "already_covered",
+        "reason": "FNB date conflict already held."
+      },
+      {
+        "id": "DC-04",
+        "decision": "partial_scope_implemented",
+        "reason": "Exact 1GB saved-table scope and validity differences now explained, including the missing Vodacom row. No current universal Vodacom 1GB quote was verified, so no price row was added; nearby sizes and personalised offers are separate."
+      },
+      {
+        "id": "DC-05",
+        "decision": "already_covered",
+        "reason": "Telkom P1 daily classification corrected."
+      },
+      {
+        "id": "DC-06",
+        "decision": "already_covered",
+        "reason": "MTN P1 both migration forfeitures displayed."
+      },
+      {
+        "id": "DC-07",
+        "decision": "implemented_locally",
+        "reason": "Current consent rights added to OOB guide."
+      },
+      {
+        "id": "DC-08",
+        "decision": "implemented_locally",
+        "reason": "Vodacom cancellation/check SMS and WASPA/ICASA complaint destinations added."
+      },
+      {
+        "id": "DC-09",
+        "decision": "implemented_locally",
+        "reason": "Cell C product-specific night/daily rules added; P2 repeat-purchase simulator already released."
+      },
+      {
+        "id": "DC-10",
+        "decision": "implemented_locally",
+        "reason": "Eligibility-aware fixed-day pooled-anytime selector."
+      },
+      {
+        "id": "DC-11",
+        "decision": "implemented_locally",
+        "reason": "Consumed-data calculator."
+      },
+      {
+        "id": "DC-12",
+        "decision": "implemented_locally",
+        "reason": "Usage estimator assumptions/mobile share/sensitivity controls."
+      },
+      {
+        "id": "DC-13",
+        "decision": "already_covered",
+        "reason": "P2 retention promotion inputs already released."
+      },
+      {
+        "id": "DC-14",
+        "decision": "implemented_locally",
+        "reason": "AirMobile airtime-to-data USSD and new-vs-legacy APN distinction."
+      },
+      {
+        "id": "DC-15",
+        "decision": "already_covered",
+        "reason": "Conditional Capitec bonus excluded from base rankings already; current main page confirms conditional 2GB credit-card reward."
+      },
+      {
+        "id": "DC-16",
+        "decision": "implemented_locally",
+        "reason": "Non-expiry/product-expiry comparison guide."
+      },
+      {
+        "id": "DC-17",
+        "decision": "implemented_locally",
+        "reason": "Current vs future ICASA amendment guide."
+      },
+      {
+        "id": "DC-18",
+        "decision": "implemented_locally",
+        "reason": "Router product/tariff checklist with correctly scoped Vodacom incoming-SMS activation rule."
+      },
+      {
+        "id": "DC-19",
+        "decision": "already_covered",
+        "reason": "Existing WhatsApp/social guide already excludes general internet usage and advises combined-spend comparison."
+      }
+    ],
+    "Perplexity": [
+      {
+        "id": "DC-01",
+        "decision": "implemented_locally",
+        "reason": "ICASA future/current rules guide; no claim of verified final litigation outcome."
+      },
+      {
+        "id": "DC-02",
+        "decision": "already_covered",
+        "reason": "TFG profile implemented and released in P2."
+      },
+      {
+        "id": "DC-03",
+        "decision": "already_covered",
+        "reason": "Existing FNB taxonomy separates plans/bundles/commitment; affected price evidence remains excluded."
+      },
+      {
+        "id": "DC-04",
+        "decision": "already_covered",
+        "reason": "Retention staged pricing released in P2."
+      },
+      {
+        "id": "DC-05",
+        "decision": "already_covered",
+        "reason": "Daily-vs-monthly simulator released in P2."
+      },
+      {
+        "id": "DC-06",
+        "decision": "implemented_locally",
+        "reason": "Vodacom prepaid eSIM guide."
+      },
+      {
+        "id": "DC-07",
+        "decision": "implemented_locally",
+        "reason": "Cell C windows separated by family; conflicting transfer wording retained."
+      },
+      {
+        "id": "DC-08",
+        "decision": "already_covered",
+        "reason": "Current Super Data sources/source gaps addressed in P1; no expiry-brochure price substituted."
+      },
+      {
+        "id": "DC-09",
+        "decision": "implemented_locally",
+        "reason": "Vodacom Prepaid LTE eligibility/migration/extension guide."
+      },
+      {
+        "id": "DC-10",
+        "decision": "held",
+        "reason": "National zero-rating directory incomplete."
+      },
+      {
+        "id": "DC-11",
+        "decision": "partial_scope_implemented",
+        "reason": "Bozza Night Express window verified; fresh standalone Night Express terms inaccessible, existing conflicting-wording notice retained."
+      },
+      {
+        "id": "DC-12",
+        "decision": "already_covered",
+        "reason": "Vodacom verified price/product sources already used; no separate duplicate page needed."
+      },
+      {
+        "id": "DC-13",
+        "decision": "implemented_locally",
+        "reason": "Vodacom STATUS/STOP ALL quick reference and complaint route added."
+      },
+      {
+        "id": "DC-14",
+        "decision": "partial_scope_implemented",
+        "reason": "Vodacom RICA requirements included in eSIM guide; all-provider step-by-step matrix remains held."
+      },
+      {
+        "id": "DC-15",
+        "decision": "partial_scope_implemented",
+        "reason": "Verified sharing restrictions added to expiry guide; complete family-share fee matrix not verified."
+      },
+      {
+        "id": "DC-16",
+        "decision": "implemented_locally",
+        "reason": "BozzaGigs LTE terms accessible: qualified new-customer guide implemented, no unqualified headline prices in tracker."
+      },
+      {
+        "id": "DC-17",
+        "decision": "implemented_locally",
+        "reason": "Existing estimator gains usage assumptions/mobile share; separate consumed-data tool handles daily/night expiry."
+      },
+      {
+        "id": "DC-18",
+        "decision": "implemented_locally",
+        "reason": "Standalone Night Owl no-carry-over/transfer/roaming conditions in night and expiry guides; unverified 250MB offer remains withheld."
+      },
+      {
+        "id": "DC-19",
+        "decision": "implemented_locally",
+        "reason": "ICASA reference/14-working-day route verified and implemented; complaints sent nowhere."
+      },
+      {
+        "id": "DC-20",
+        "decision": "implemented_locally",
+        "reason": "R10 rule explained as new-SIM incoming calls/SMS condition, not general data activation minimum."
+      },
+      {
+        "id": "DC-21",
+        "decision": "already_covered",
+        "reason": "Vodacom *136# independently valid in P1; rejected unnecessary false correction."
+      }
+    ]
+  },
+  "gptSummaryHolds": {
+    "personalised_offers": "held: account-specific prices cannot be universal",
+    "telkom_daily_dose_R289": "held: complete current 30-day primary tariff not captured",
+    "national_zero_rating": "held",
+    "porting_esim_price_matrix": "partial: narrow verified guides only",
+    "unlimited_R_per_GB": "excluded: no finite justified denominator",
+    "general_APN_page": "excluded: duplicate",
+    "national_fastest_best_coverage": "excluded: no comparable independent dataset"
+  },
+  "sourceInterpretations": [
+    "Gazette excludes 7-day-or-shorter bundles from future automatic rollover. ICASA January explanatory wording differs; gazette used with explicit court-status limit.",
+    "Cell C Daily Nite 01:00–07:00 differs from 30-day/Day-by-Day 00:00–04:59:59; these are different products, not a contradiction.",
+    "Cell C 30-day main clause 16 and General clause 6 conflict on transfer; not silently resolved.",
+    "Capitec main Connect page re-opened and now shows conditional 2GB credit-card benefit, consistent with FAQ; no new 1GB claim published.",
+    "AirMobile calendar-month rollover/top-up expiry is not universally 60 days."
+  ],
+  "validation": {
+    "status": "passed locally; no release performed",
+    "typecheck": "npm run lint passed",
+    "editorialAndCalculationTests": "30 passed (including 11 new calculation, eligibility, evidence and route tests)",
+    "monthlyDealAndMvnoTests": "18 passed",
+    "productionBuild": "npm run build passed after final content changes",
+    "seo": "262 HTML files and 5 sitemap files checked",
+    "publisher": "3 tests and output check passed; 221 enabled, 41 excluded pages",
+    "browser": {
+      "responsiveChecks": 76,
+      "widths": [
+        320,
+        390,
+        768,
+        1280
+      ],
+      "functionalChecks": "consumption, zero use, reset, phone totals/confirmation, invalid term, bank eligibility, no match, invalid selector, estimator defaults/mobile share/invalid inputs, keyboard focus",
+      "uncaughtPageErrors": [],
+      "postCopyChecks": [
+        {
+          "route": "/guides/cheapest-1gb-data-south-africa/",
+          "width": 320,
+          "overflow": false,
+          "missingRowScope": "passed"
+        },
+        {
+          "route": "/guides/cheapest-1gb-data-south-africa/",
+          "width": 390,
+          "overflow": false,
+          "missingRowScope": "passed"
+        },
+        {
+          "route": "/guides/cheapest-1gb-data-south-africa/",
+          "width": 768,
+          "overflow": false,
+          "missingRowScope": "passed"
+        },
+        {
+          "route": "/guides/cheapest-1gb-data-south-africa/",
+          "width": 1280,
+          "overflow": false,
+          "missingRowScope": "passed"
+        },
+        {
+          "slug": "icasa-data-rollover-rules-south-africa",
+          "width": 320,
+          "overflow": false
+        },
+        {
+          "slug": "port-number-south-africa",
+          "width": 320,
+          "overflow": false
+        },
+        {
+          "slug": "vodacom-prepaid-esim-setup",
+          "width": 320,
+          "overflow": false
+        },
+        {
+          "slug": "vodacom-prepaid-lte-price-plan",
+          "width": 320,
+          "overflow": false
+        },
+        {
+          "slug": "data-expiry-rollover-south-africa",
+          "width": 320,
+          "overflow": false
+        },
+        {
+          "slug": "mobile-complaints-icasa-south-africa",
+          "width": 320,
+          "overflow": false
+        },
+        {
+          "slug": "mtn-bozzagigs-eligibility",
+          "width": 320,
+          "overflow": false
+        },
+        {
+          "slug": "usable-data-cost-calculator",
+          "cssViewport": 640,
+          "purpose": "200% layout equivalent for a 1280px window",
+          "overflow": false
+        },
+        {
+          "slug": "contract-vs-prepaid-phone-calculator",
+          "cssViewport": 640,
+          "purpose": "200% layout equivalent for a 1280px window",
+          "overflow": false
+        },
+        {
+          "slug": "data-bundle-selector",
+          "cssViewport": 640,
+          "purpose": "200% layout equivalent for a 1280px window",
+          "overflow": false
+        }
+      ]
+    },
+    "diffWhitespaceCheck": "git diff --check passed",
+    "reviewCorrection": "Browser check exposed bank declarations blocked by a redundant price-plan filter. Corrected and regression-tested using the real qualifying_price_plan access tier. Final inventory review also corrected an audit assumption: Vodacom has nearby-size listings, but no eligible exact 1GB saved row. The published comparison scope now makes this distinction.",
+    "limitations": [
+      "No live deployment or production verification for this new batch.",
+      "No on-device mobile, live USSD, account eligibility or provider checkout testing.",
+      "640 CSS-pixel viewport checks model the layout width of a 1280px window at 200% zoom; native browser zoom was not exercised."
+    ]
+  },
+  "newGuidePaths": [
+    "/guides/icasa-data-rollover-rules-south-africa/",
+    "/guides/port-number-south-africa/",
+    "/guides/vodacom-prepaid-esim-setup/",
+    "/guides/vodacom-prepaid-lte-price-plan/",
+    "/guides/data-expiry-rollover-south-africa/",
+    "/guides/mobile-complaints-icasa-south-africa/",
+    "/guides/mtn-bozzagigs-eligibility/"
+  ],
+  "newToolPaths": [
+    "/tools/usable-data-cost-calculator/",
+    "/tools/contract-vs-prepaid-phone-calculator/",
+    "/tools/data-bundle-selector/"
+  ],
+  "existingImprovements": [
+    "Homepage estimator: editable usage rates, mobile share, disclosed sensitivity exercise and next-step tools",
+    "OOB consent and complaint evidence",
+    "Vodacom STATUS/STOP ALL and WASPA escalation",
+    "Product-specific night windows, expiry and transfer conflict",
+    "AirMobile newer/legacy APN distinction and airtime-to-data purchase route",
+    "Router model/tariff/activation checklist",
+    "Guides index and human/XML sitemaps",
+    "1GB comparison: exact-size/validity scope, absence-of-evidence clarification and repeat-purchase link"
+  ]
+}

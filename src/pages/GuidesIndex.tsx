@@ -4,6 +4,8 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { MobileNav } from '../components/MobileNav';
 import { guides } from '../data/guides';
+import { discoveryGuides } from '../data/discoveryGuides';
+import { decisionTools } from '../data/decisionTools';
 import { BookOpen, ArrowRight, ChevronDown, Zap, Smartphone, HelpCircle, Info, Calculator } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { NavigateFunction } from '../types';
@@ -57,6 +59,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
   ];
 
   const hubSections = [
+    { title: "Switching, Expiry and Consumer Rights", snippet: "Check product conditions before buying, changing providers or escalating a complaint.", links: discoveryGuides.map((guide) => ({ slug: guide.slug })) },
     {
       title: "Cheapest Data & Best Value",
       snippet: "Use these guides to compare real prepaid value, short-term bundles, and where to find better per-GB pricing before you recharge.",
@@ -291,7 +294,8 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
 
       <Header onScrollTo={onScrollTo} activeSection="guides" />
 
-      <main className="max-w-7xl mx-auto px-4 py-8 md:py-12">        {/* HERO SECTION */}
+      <main className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+        {/* HERO SECTION */}
         <div className="mb-16 text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#a0f399]/20 text-[#1b6d24] text-sm font-bold mb-6">
             <BookOpen className="w-4 h-4" />
@@ -322,6 +326,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         {/* QUICK UTILITY LINKS */}
         <section className="mb-20">
           <h2 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-8 text-center italic">Essential Tools & Resources</h2>
+          {Object.values(decisionTools).map((tool) => <a key={tool.path} href={tool.path} className="mb-5 block rounded-2xl border border-slate-200 bg-white p-5 text-[#1b6d24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"><span className="font-bold">{tool.title}</span><p className="mt-2 text-sm text-slate-700">{tool.description}</p></a>)}
           <a href="/tools/daily-vs-monthly-data-calculator/" className="mb-5 flex min-h-11 items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-5 font-bold text-[#1b6d24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
             <span>Daily vs Monthly Data Bundle Calculator<span className="mt-1 block text-sm font-medium text-slate-600">Compare expiry and repeat purchases for the same usage demand.</span></span>
             <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" />
@@ -453,7 +458,8 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
                   </motion.a>
                 );
               })}
-            </div>          </section>
+            </div>
+          </section>
         ))}
 
         <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-12 shadow-sm mb-24">
@@ -526,6 +532,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
       </main>
 
       <Footer onScrollTo={onScrollTo} onNavigateTo={onNavigate} />
-      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />    </div>
+      <MobileNav onScrollTo={onScrollTo} activeSection="guides" />
+    </div>
   );
 };

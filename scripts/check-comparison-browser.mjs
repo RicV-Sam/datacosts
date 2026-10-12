@@ -119,7 +119,31 @@ try {
     assert.ok(/R[0-9]/.test(aged.text), `${size}GB references disappeared after publication`);
     assert.equal(aged.awardBadges, 0, `${size}GB stale evidence won an award`);
   }
-  await writeFile(path.join(artifactDir, 'browser-checks.json'), JSON.stringify({ results, textEnlargement: '200%', enlargedState, sourceLinkFocus: focus, hydrationErrors: errors, assetFailures, agedReferenceChecks: 7 }, null, 2));
+  // The integrated selector must use the reviewed catalogue and real eligibility controls.
+  const toolPage = await browser.newPage();
+  const toolErrors = []; toolPage.on('pageerror', error => toolErrors.push(error.message));
+  await toolPage.setViewport({ width:390, height:1000 });
+  await toolPage.goto(`${origin}/tools/data-bundle-selector/`, {waitUntil:'networkidle0'});
+  assert.equal(await toolPage.evaluate(() => [...document.querySelectorAll('article')].some(el => el.textContent.includes('FNB Connect'))), false);
+  await toolPage.evaluate(() => {
+    const label = [...document.querySelectorAll('label')].find(el => el.textContent.startsWith('FNB Connect:'));
+    if (!label) throw new Error('Missing FNB eligibility control');
+    label.querySelector('input').click();
+  });
+  await toolPage.waitForFunction(() => [...document.querySelectorAll('article')].some(el => el.textContent.includes('FNB Connect')));
+  await toolPage.evaluate(() => {
+    const label = [...document.querySelectorAll('label')].find(el => el.textContent.startsWith('Minimum pooled anytime data'));
+    const input = label.querySelector('input');
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
+    setter.call(input, '5'); input.dispatchEvent(new Event('input', {bubbles:true}));
+    const bank = [...document.querySelectorAll('label')].find(el => el.textContent.startsWith('Nedbank Connect:'));
+    bank.querySelector('input').click();
+  });
+  await toolPage.waitForFunction(() => [...document.querySelectorAll('article')].some(el => el.textContent.includes('Nedbank Connect') && el.textContent.includes('5GB') && /R100/.test(el.textContent)));
+  assert.deepEqual(toolErrors, [], 'Integrated selector errors');
+  assert.ok(await toolPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Selector mobile page overflows');
+  await toolPage.close();
+  await writeFile(path.join(artifactDir, 'browser-checks.json'), JSON.stringify({ results, textEnlargement: '200%', enlargedState, sourceLinkFocus: focus, hydrationErrors: errors, assetFailures, agedReferenceChecks: 7, integratedSelectorChecks: 'FNB bank gating and supplemented Nedbank 5GB passed' }, null, 2));
   console.log(`Comparison browser checks passed: ${results.length} page/viewport combinations without JavaScript, 200% comparison text, source-link focus and hydrated 10GB page.`);
 } finally {
   await browser.close();

@@ -1,6 +1,6 @@
 # DataCost comparison commit review
 
-The review of `34771e5` found four issues requiring correction and one inherited source wording error. The corrected comparison branch passes local validation, but publication should wait for integration with the other active DataCost sprint. No push, merge into main, deployment or indexing submission was performed by this review.
+The review of `34771e5` found four issues requiring correction and one inherited source wording error. Those fixes and the completed discovery sprint are now integrated and pass combined local validation. The integration update below supersedes the earlier pending-integration verdict. No push, merge into main, deployment or indexing submission was performed by this review.
 
 ## Findings and corrections
 
@@ -48,3 +48,13 @@ Passed locally: TypeScript lint; ten comparison regression tests; nineteen month
 The retained 200% text limitation is in the unchanged header: at a 390px viewport it expands page width to 488px. The comparison content stays within the viewport. No accessibility conformance, Linux CI success, field performance, indexing or traffic outcome is asserted.
 
 **Verdict:** the original commit needed fixes. The corrected branch is suitable for final release integration, with no remaining verified comparison-logic blocker identified in this review. Hold publication until the other active sprint's final changes have been integrated and the combined branch passes its final checks. Source freshness must be rechecked if release is delayed.
+
+## Completed sprint integration
+
+After the user confirmed the other sprint was done, its completed, uncommitted batch was copied into this isolated comparison worktree. The source worktree was preserved. The batch adds seven guides and three decision tools alongside estimator, night-data, OOB, WASP, router and 1GB clarifications. Its original decision record is retained in `docs/discovery-remaining-review-2026-10-12.json`; its own test receipts describe that source batch, not the final combined branch.
+
+The combined review corrected two inconsistencies: the new Vodacom LTE guide no longer claims the official terms require a compatible router, and the bundle selector now uses the shared, supplemented comparison catalogue and official-source freshness validator. FNB fixed-day once-off offers require the explicit bank-eligibility declaration. Calendar-month plans remain outside this selector's fixed-day scope, and the FNB pricing guide's conflicting date statements remain disclosed. This evidence-based treatment supersedes the source batch's blanket FNB selector hold; its other uncertainty and eligibility restrictions remain in place. The 1GB scope also clarifies that bonus night allocation does not count toward the exact 1GB anytime target.
+
+Final combined validation passed: TypeScript lint, ten comparison tests, nineteen monthly/MVNO/analytics tests, 31 editorial integrity tests, 120 WP1 contract tests, production build, SEO validation across 262 HTML files and five sitemap files, AdSense validation, all eleven comparison output modes, 21 no-JavaScript tier/viewport checks, application hydration and asset checks, seven future-ageing checks, and new browser checks for FNB bank gating and the supplemented Nedbank 5GB offer. The inherited header text-enlargement limitation above remains disclosed.
+
+**Final verdict:** ready for a scoped publication approval on this integrated branch, with no remaining verified comparison-logic or source-evidence blocker identified. This is a local readiness assessment, not a deployment or live verification. Recheck source freshness if publication is delayed. No GSC performance or traffic improvement is claimed.

@@ -70,6 +70,8 @@ function officialSource(title: string, url: string, checkedAt = MVNO_REVIEWED_AT
   return { title, url, checkedAt, official: true };
 }
 
+const airMobileSetup = officialSource('AirMobile new MVNO explained', 'https://help.afrihost.com/entry/afrihost-airmobile-explained/', '2026-10-12');
+const airMobileAirtimeTopup = officialSource('AirMobile airtime-to-data USSD', 'https://help.afrihost.com/entry/how-to-top-up-your-airmobile-data-using-your-airtime/', '2026-10-12');
 const airMobilePrepaid = officialSource(
   'AirMobile prepaid',
   'https://www.afrihost.com/airmobile/prepaid'
@@ -85,7 +87,8 @@ const airMobileTerms = officialSource(
 
 const capitecConnect = officialSource(
   'Capitec Connect',
-  'https://www.capitecbank.co.za/personal/connect/'
+  'https://www.capitecbank.co.za/personal/connect/',
+  '2026-10-12'
 );
 const capitecBundles = officialSource(
   'Capitec Connect bundles',
@@ -200,9 +203,10 @@ export const mvnoProviderProfiles: MvnoProviderProfile[] = [
     bestFor: 'People who want public prepaid top-ups, a data-only SIM, or predictable month-to-month data without opening a bank account.',
     whyItSaves: 'A hard cap is the default and out-of-bundle use is opt-in, so the service can suit users who value spend control as much as the headline price.',
     extraPerks: 'Paid data lasts until the end of the following month, paid airtime has long validity, and AirShare can move airtime or data between AirMobile users.',
-    whatYouNeed: 'An Afrihost profile, RICA, and an AirMobile SIM or eSIM. Some data-only setups can use a supported MTN SIM and Afrihost APN.',
+    whatYouNeed: 'An Afrihost profile, RICA, and an AirMobile SIM or eSIM. The newer AirMobile MVNO SIM uses ws.air.mvno; the legacy MTN-SIM Afrihost data product uses afrihost. Check which service you own before changing APN settings.',
     watchOut: 'A data-only APN setup is not the same as a full mobile voice plan. Check device and SIM-activity rules, and treat dated call promotions separately from normal value.',
     benefits: [
+      { kind: 'service_feature', title: 'Use airtime to buy data by USSD', detail: 'On the newer AirMobile service, dial *135*11#, choose the amount your airtime covers and confirm the purchase. Afrihost says no app, bank card or internet connection is required.', includeInBaseRanking: false, source: airMobileAirtimeTopup },
       {
         kind: 'service_feature',
         title: 'Hard-cap spend control',
@@ -226,7 +230,7 @@ export const mvnoProviderProfiles: MvnoProviderProfile[] = [
         source: airMobilePrepaid
       }
     ],
-    sources: [airMobilePrepaid, airMobileDataOnly, airMobileTerms]
+    sources: [airMobilePrepaid, airMobileDataOnly, airMobileTerms, airMobileSetup, airMobileAirtimeTopup]
   },
   {
     id: 'capitec-connect',

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://datacost.co.za/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-12</lastmod>
   </url>
   <url>
     <loc>https://datacost.co.za/ussd-codes-south-africa/</loc>
@@ -38,6 +38,18 @@
   </url>
   <url>
     <loc>https://datacost.co.za/tools/daily-vs-monthly-data-calculator/</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://datacost.co.za/tools/usable-data-cost-calculator/</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://datacost.co.za/tools/contract-vs-prepaid-phone-calculator/</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://datacost.co.za/tools/data-bundle-selector/</loc>
     <lastmod>2026-10-12</lastmod>
   </url>
   <url>

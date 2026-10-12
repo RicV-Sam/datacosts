@@ -134,7 +134,7 @@
   </url>
   <url>
     <loc>https://datacost.co.za/guides/out-of-bundle-data-costs-south-africa/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-10-12</lastmod>
   </url>
   <url>
     <loc>https://datacost.co.za/guides/prepaid-vs-contract-south-africa/</loc>
@@ -191,5 +191,33 @@
   <url>
     <loc>https://datacost.co.za/guides/how-to-check-vodacom-airtime-balance/</loc>
     <lastmod>2026-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://datacost.co.za/guides/icasa-data-rollover-rules-south-africa/</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://datacost.co.za/guides/port-number-south-africa/</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://datacost.co.za/guides/vodacom-prepaid-esim-setup/</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://datacost.co.za/guides/vodacom-prepaid-lte-price-plan/</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://datacost.co.za/guides/data-expiry-rollover-south-africa/</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://datacost.co.za/guides/mobile-complaints-icasa-south-africa/</loc>
+    <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://datacost.co.za/guides/mtn-bozzagigs-eligibility/</loc>
+    <lastmod>2026-10-12</lastmod>
   </url>
 </urlset>

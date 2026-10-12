@@ -1,4 +1,5 @@
 import { Guide } from '../types';
+import { discoveryGuides } from './discoveryGuides';
 
 export const guides: Guide[] = [
   {
@@ -152,10 +153,14 @@ export const guides: Guide[] = [
     title: 'Out-of-Bundle Data Costs South Africa (2026)',
     metaDescription: 'Understand out-of-bundle data costs in South Africa. Compare Vodacom, MTN, Telkom, and Cell C risks, and learn how to protect airtime.',
     h1: 'Out-of-Bundle Data Costs in South Africa (2026)',
-    intro: 'Out-of-bundle data is what your network may charge when you keep using mobile data after a bundle runs out, expires, or does not cover the type of traffic you are using. This guide explains the risk, where to check current rates, and how to protect airtime before a small browsing session becomes expensive.',
+    intro: 'Out-of-bundle charging needs your prior consent under ICASA’s existing rules. It is not a permission the operator gains simply because a bundle expires. Out-of-bundle data is what your network may charge when you keep using mobile data after a bundle runs out, expires, or does not cover the type of traffic you are using. This guide explains the risk, where to check current rates, and how to protect airtime before a small browsing session becomes expensive.',
     comparisonType: 'all',
     quickSummaryTitle: 'Quick Answer',
+    lastReviewedAt: '2026-10-12',
+    sourceSummary: 'Existing ICASA consent protections and complaint procedure checked 12 October 2026. No universal per-MB tariff is asserted.',
+    officialSources: [{ label: 'ICASA: earlier consumer protections', href: 'https://www.icasa.org.za/news/2018/announcement-of-final-end-user-and-service-subscriber-charter-regulations', note: 'Prior consent for out-of-bundle data; protections predate the 2027 amendments.' }, { label: 'ICASA: complaints procedure', href: 'https://www.icasa.org.za/pages/consumer-complaints-procedure', note: 'Provider reference and escalation conditions.' }],
     quickSummaryItems: [
+      'Ask the operator to show when and how you consented to out-of-bundle data. If you did not opt in, request blocking and challenge the charge.',
       'Out-of-bundle data usually means mobile usage charged from airtime instead of an active data bundle.',
       'The safest fix is to keep mobile data off when no valid bundle is active, then buy a bundle before browsing.',
       'Check current operator rules before relying on an old per-MB rate because pricing and spend limits can change.'
@@ -173,7 +178,7 @@ export const guides: Guide[] = [
       {
         id: 'what-oob-means',
         title: 'Confirm whether you have an active bundle',
-        description: 'Check your balance and expiry before streaming, downloading, tethering, or opening app updates. If no active bundle shows, assume mobile browsing may use airtime.'
+        description: 'Check your balance and expiry before streaming, downloading, tethering, or opening app updates. If no active bundle shows, pause browsing and check your consent and blocking settings; airtime should not be charged for out-of-bundle data without prior consent.'
       },
       {
         id: 'network-checks',
@@ -195,7 +200,7 @@ export const guides: Guide[] = [
     commonMistakes: [
       {
         title: 'Leaving mobile data on after a bundle expires',
-        description: 'A phone can continue syncing messages, backups, and feeds after the bundle ends, which can turn airtime into data spend.'
+        description: 'A phone can continue syncing messages, backups, and feeds after the bundle ends, which can turn airtime into data spend if out-of-bundle use was authorised.'
       },
       {
         title: 'Assuming night or social data covers everything',
@@ -203,11 +208,12 @@ export const guides: Guide[] = [
       },
       {
         title: 'Topping up airtime before buying data',
-        description: 'If mobile data is already on, fresh airtime may be used immediately before you finish buying the intended data bundle.'
+        description: 'If mobile data is already on, authorised out-of-bundle use may spend fresh airtime immediately before you finish buying the intended data bundle.'
       }
     ],
     nextStepsTitle: 'Useful Next Steps',
     nextSteps: [
+      { href: '/guides/mobile-complaints-icasa-south-africa/', label: 'Escalate an unresolved complaint', description: 'Provider reference, evidence and ICASA’s procedure.', action: 'route' },
       { href: '/guides/stop-wasp-subscriptions-south-africa/', label: 'Stop WASP Subscriptions', description: 'Rule out recurring paid services if airtime keeps dropping.', action: 'route' },
       { href: '/guides/how-to-stop-airtime-being-used-automatically/', label: 'Stop Airtime Being Used Automatically', description: 'Protect airtime from background usage and subscriptions.', action: 'guide', slug: 'how-to-stop-airtime-being-used-automatically' },
       { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Confirm active bundles before browsing.', action: 'guide', slug: 'how-to-check-data-balance' },
@@ -1993,6 +1999,7 @@ export const guides: Guide[] = [
       { label: 'Vodacom: VodaPay app support', href: 'https://www.vodacom.co.za/vodacom/help/vodapay-app-support', note: 'Vodacom recommends VodaPay for its balance and bundle features.' },
       { label: 'Vodacom: ways to check your balance', href: 'https://now.vodacom.co.za/do-it-yourself/the-three-easiest-ways-to-check-your-vodacom-balance/', note: 'Confirms *136# for detailed balances and the wider *135# services menu.' }
     ]
-  }
+  },
+  ...discoveryGuides
 ];
 

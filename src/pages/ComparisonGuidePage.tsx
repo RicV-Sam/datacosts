@@ -1,4 +1,5 @@
 import React from 'react';
+import { NightDataRules } from '../components/NightDataRules';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, BarChart3, CheckCircle2, ExternalLink, Info, ShieldCheck, Tag } from 'lucide-react';
@@ -399,6 +400,8 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
           )}
         </section>
 
+        {definition.mode === 'cheapest-1gb' && <aside className="mb-8 rounded-2xl border border-slate-300 bg-white p-5 sm:p-8"><h2 className="text-xl font-bold">What this 1GB comparison includes</h2><p className="mt-3 leading-7">This table requires exactly 1GB of pooled anytime data in a once-off smartphone bundle. Night-only and social-only products are excluded; a separately stated night bonus does not count toward the 1GB target. Daily, weekly and monthly expiry periods are different service lengths, so the lowest purchase price is not automatically the cheapest way to stay connected for a month.</p><p className="mt-3 leading-7">There is no eligible exact 1GB Vodacom row in the saved table. This does not establish that Vodacom has no 1GB offer. <Link className="underline" to="/network/vodacom/">Check the wider Vodacom catalogue</Link> and your line’s personalised menu; nearby sizes are separate offers. <Link className="underline" to="/tools/daily-vs-monthly-data-calculator/">Compare repeat purchases for the same demand</Link> before treating different validities as equivalent.</p></aside>}
+        {definition.mode === 'cheap-night' && <NightDataRules />}
         <section id="comparison-table" className="mb-12 scroll-mt-32">
           <h2 className="text-2xl font-black tracking-tighter mb-5">{definition.tableTitle}</h2>
           {tier && (

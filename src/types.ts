@@ -109,6 +109,8 @@ export interface GuideOfficialSource {
 }
 
 export interface Guide {
+  publishedAt?: string;
+  lastReviewedAt?: string;
   slug: string;
   title: string;
   metaDescription: string;
@@ -123,6 +125,7 @@ export interface Guide {
   commonMistakesTitle?: string;
   commonMistakes?: GuideStep[];
   nextStepsTitle?: string;
+  nextStepsIntro?: string;
   nextSteps?: GuideResourceLink[];
   faq: FAQ[];
   comparisonType?: '1gb' | 'night' | 'best-value' | 'all';

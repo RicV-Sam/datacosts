@@ -205,7 +205,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({
 }) => {
   const navigate = useNavigate();
   const dateModifiedIso = getGuideModifiedIso(guide.slug);
-  const datePublishedIso = getDefaultPublishedIso();
+  const datePublishedIso = guide.publishedAt ? `${guide.publishedAt}T00:00:00.000Z` : getDefaultPublishedIso();
   const lastUpdatedLabel = formatIsoForDisplay(dateModifiedIso);
   const reviewDueDateLabel = guide.reviewDueDate
     ? formatIsoForDisplay(`${guide.reviewDueDate}T00:00:00.000Z`)
@@ -378,7 +378,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({
         </header>
 
         <TrustPanel
-          lastReviewed={lastUpdatedLabel}
+          lastReviewed={guide.lastReviewedAt ? formatIsoForDisplay(`${guide.lastReviewedAt}T00:00:00.000Z`) : lastUpdatedLabel}
           reviewDueDate={reviewDueDateLabel}
           sources={guide.sourceSummary}
           className="mb-10"
@@ -493,7 +493,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({
           <section id="find-cheaper-options" className="mb-16 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm scroll-mt-32">
             <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-4">{guide.nextStepsTitle || 'Find Cheaper Options'}</h2>
             <p className="text-slate-600 font-medium leading-relaxed mb-8">
-              Use these pages to compare current South Africa prices and choose bundles based on your actual usage pattern.
+              {guide.nextStepsIntro || 'Use these pages to compare current South Africa prices and choose bundles based on your actual usage pattern.'}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {nextStepLinks.map((item) => (

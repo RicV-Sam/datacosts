@@ -259,6 +259,9 @@ export function getIndexableRoutes(): string[] {
   routes.add('/airtime-advance-codes/');
   routes.add('/sitemap/');
   routes.add('/tools/daily-vs-monthly-data-calculator/');
+  routes.add('/tools/usable-data-cost-calculator/');
+  routes.add('/tools/contract-vs-prepaid-phone-calculator/');
+  routes.add('/tools/data-bundle-selector/');
   routes.add('/fix/');
   for (const dataProblemRoute of getDataProblemRoutesByIndexingStatus(['index'])) {
     routes.add(dataProblemRoute);

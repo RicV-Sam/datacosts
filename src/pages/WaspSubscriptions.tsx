@@ -189,6 +189,12 @@ export const WaspSubscriptions: React.FC<WaspSubscriptionsProps> = ({ onNavigate
           <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">Reviewed {lastUpdated}</p>
         </header>
 
+        <section className="mb-10 rounded-3xl border border-slate-300 bg-white p-6 sm:p-8">
+          <h2 className="text-2xl font-bold">Vodacom quick reference: check, cancel, retain proof</h2>
+          <p className="mt-4 leading-7">Vodacom’s current help lists SMS <strong>STATUS to 31050</strong> to check active subscriptions, and <strong>STOP ALL to 31050</strong> to cancel them. It also lists *135*997# for individual cancellation or Unsubscribe All. Keep the confirmation SMS; cancellation and blocking future billing are separate checks.</p>
+          <p className="mt-4 text-sm leading-7"><a className="underline" href="https://www.vodacom.co.za/vodacom/help/content-services-and-subscriptions" target="_blank" rel="noreferrer">Vodacom content-service help</a> checked 12 October 2026. This update does not reverify the other networks’ menu paths.</p>
+          <p className="mt-4 leading-7">If unwanted content charges remain unresolved, <a className="underline" href="https://waspa.org.za/consumer-support/" target="_blank" rel="noreferrer">WASPA consumer support</a> offers unwanted-billing and formal member-complaint routes. Keep the provider reference and evidence; no refund is guaranteed. <Link className="underline" to="/guides/mobile-complaints-icasa-south-africa/">Choose the right complaint route</Link>.</p>
+        </section>
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Quick Answer</h2>
           <p className="text-slate-700 text-sm leading-relaxed">

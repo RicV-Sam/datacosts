@@ -4,7 +4,8 @@ import { Calculator, Youtube, Instagram, MessageCircle, Globe, Info, Zap, Trendi
 import { bundles } from '../data';
 import { Bundle } from '../types';
 import { trackAndRedirect } from '../utils/tracking';
-import { calculateMonthlyNeed, getDataRecommendations } from '../utils/dataCalculator';
+import { calculateUsageScenario } from '../utils/discoveryTools';
+import { USAGE_RATES, type UsageProfile, getDataRecommendations } from '../utils/dataCalculator';
 
 export const DataCalculator: React.FC = () => {
   const [usage, setUsage] = useState({
@@ -13,16 +14,17 @@ export const DataCalculator: React.FC = () => {
     chat: 1,
     web: 1,
   });
+  const [mobilePercent, setMobilePercent] = useState('100');
+  const [rates, setRates] = useState({ video: String(USAGE_RATES.video), social: String(USAGE_RATES.social), chat: String(USAGE_RATES.chat), web: String(USAGE_RATES.web) });
   const [currentSpend, setCurrentSpend] = useState<number | ''>('');
   const [showMethodology, setShowMethodology] = useState(false);
 
-  const totalDataNeeded = useMemo(() => {
-    return calculateMonthlyNeed(usage);
-  }, [usage]);
+  const scenario = useMemo(() => mobilePercent.trim() && (Object.values(rates) as string[]).every((v) => v.trim()) ? calculateUsageScenario(usage, Number(mobilePercent), Object.fromEntries(Object.entries(rates).map(([key, value]) => [key, Number(value)])) as UsageProfile) : null, [usage, mobilePercent, rates]);
+  const totalDataNeeded = scenario?.base ?? 0;
 
   const recommendations = useMemo(() => {
-    return getDataRecommendations(bundles, totalDataNeeded, currentSpend);
-  }, [totalDataNeeded, currentSpend]);
+    return scenario ? getDataRecommendations(bundles, totalDataNeeded, currentSpend) : null;
+  }, [totalDataNeeded, currentSpend, scenario]);
 
   return (
     <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-4 sm:p-8 border border-white shadow-xl hover:shadow-2xl transition-all duration-300" id="calculator">
@@ -71,6 +73,12 @@ export const DataCalculator: React.FC = () => {
             max={10}
           />
 
+          <fieldset className="space-y-4 border-t border-slate-200 pt-6">
+            <legend className="pt-4 font-bold">Adjust the planning assumptions</legend>
+            <label className="block text-sm font-semibold">Share of this usage on mobile data (%)<input type="number" min="0" max="100" step="any" value={mobilePercent} onChange={(event) => setMobilePercent(event.target.value)} className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#166534]" /></label>
+            <div className="grid grid-cols-2 gap-4">{([['video', 'Video'], ['social', 'Social'], ['chat', 'Chat'], ['web', 'Web']] as Array<[keyof UsageProfile, string]>).map(([key, label]) => <label key={key} className="text-sm font-semibold">{label} GB/hour<input type="number" min="0" max="100" step="0.01" value={rates[key]} onChange={(event) => setRates((old) => ({ ...old, [key]: event.target.value }))} className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#166534]" /></label>)}</div>
+            <p className="text-xs leading-6 text-slate-600">Starting rates are assumptions, not measurements of your apps. Replace them with your own usage observations. Usage on Wi-Fi is excluded using the percentage above; backups, downloads and tethering not entered here are additional.</p>
+          </fieldset>
           <div className="pt-6 border-t border-slate-100">
             <label htmlFor="calculator-spend" className="block text-sm font-bold text-slate-700 mb-2">
               I currently pay (R/month)
@@ -94,10 +102,11 @@ export const DataCalculator: React.FC = () => {
           <div className="text-center mb-8">
             <span className="text-[10px] font-bold text-slate-600 uppercase tracking-[0.2em] mb-2 block">Estimated Monthly Need</span>
             <div className="text-6xl font-black text-[#031636] tracking-tighter">
-              {totalDataNeeded.toFixed(1)}<span className="text-2xl ml-1">GB</span>
+              {scenario ? totalDataNeeded.toFixed(1) : '—'}<span className="text-2xl ml-1">GB</span>
             </div>
           </div>
 
+          {scenario ? <p className="mb-6 text-center text-sm leading-6 text-slate-700">Sensitivity exercise: {scenario.lower.toFixed(1)}–{scenario.higher.toFixed(1)}GB if the assumed rates are 25% lower or higher. This is not a measured range or a confidence interval.</p> : <p role="alert" className="mb-6 text-sm">Enter rates from 0 to 100GB/hour and a mobile share from 0 to 100%.</p>}
           <div className="space-y-4">
             <AnimatePresence mode="wait">
               {recommendations ? (
@@ -166,7 +175,7 @@ export const DataCalculator: React.FC = () => {
               ) : (
                 <div className="flex items-center gap-2 text-slate-600 text-sm justify-center py-8">
                   <Info className="w-4 h-4" />
-                  <span>No reviewed phone-data bundle covers this estimate for 30 days. <a href="/network/" className="underline text-blue-700">Compare network options</a> or check current operator offers.</span>
+                  <span>{scenario ? "No reviewed phone-data bundle covers this estimate for 30 days." : "Correct the planning inputs to see options."} <a href="/network/" className="underline text-blue-700">Compare network options</a> or check current operator offers.</span>
                 </div>
               )}
             </AnimatePresence>
@@ -174,6 +183,7 @@ export const DataCalculator: React.FC = () => {
         </div>
       </div>
 
+      <p className="mt-6 text-sm leading-7">For account and tariff restrictions, use the <a className="underline" href="/tools/data-bundle-selector/">data bundle selector</a>. For unused night or daily allocations, <a className="underline" href="/tools/usable-data-cost-calculator/">calculate usable data value</a>.</p>
       {/* Methodology Section */}
       <div className="mt-12 pt-8 border-t border-slate-100">
         <button
@@ -197,7 +207,7 @@ export const DataCalculator: React.FC = () => {
                 <div>
                   <h4 className="text-xs font-black text-[#031636] uppercase mb-2">Usage Estimation</h4>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    These are adjustable planning estimates, not measured usage: video 1.5GB/hr, social 0.2GB/hr, chat 0.05GB/hr and web 0.1GB/hr, multiplied by 30 days. Quality settings and apps change actual usage. We use 1GB = 1,000MB.
+                    These are adjustable planning estimates, not measured usage: the entered GB/hour rates × hours/day × 30 days × mobile-data percentage. Default rates are video 1.5, social 0.2, chat 0.05 and web 0.1GB/hour; you can change them above. Quality settings and apps change actual usage. We use 1GB = 1,000MB.
                   </p>
                 </div>
                 <div>
