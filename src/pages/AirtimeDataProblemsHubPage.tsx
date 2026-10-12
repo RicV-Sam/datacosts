@@ -76,6 +76,16 @@ const problemPages = [
     group: 'Data issues'
   },
   {
+    href: '/data-problems/how-to-stop-data-disappearing-cell-c/',
+    label: 'How to stop Cell C data disappearing',
+    group: 'Data issues'
+  },
+  {
+    href: '/data-problems/how-to-stop-data-disappearing-vodacom/',
+    label: 'How to stop Vodacom data disappearing',
+    group: 'Data issues'
+  },
+  {
     href: '/fix/mobile-data-on-but-not-working/',
     label: 'Mobile data is on but not working',
     group: 'Data issues'

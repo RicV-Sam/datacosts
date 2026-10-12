@@ -1,7 +1,7 @@
 {
   "reviewDate": "2026-10-12",
   "baseCommit": "5a7d8d5",
-  "publicationState": "local implementation only; not committed, pushed or deployed in this scope",
+  "publicationState": "Released in 8c6d79cc65ea0b3b6d865306e6142a672cf2a76c; original local validation below is historical. Daily-review follow-ups are pending publication.",
   "inputLimits": [
     "Kimi/Gemini pasted full reports, GPT pasted summary/queue, Perplexity full Markdown and CSV were available. Original GPT 26-row Downloads exports were no longer present, so no claim of re-reading all 26 rows.",
     "Customer account, live USSD, purchase, provider contact, all-provider fee and personalised-price checks were not performed.",
@@ -584,5 +584,13 @@
     "Router model/tariff/activation checklist",
     "Guides index and human/XML sitemaps",
     "1GB comparison: exact-size/validity scope, absence-of-evidence clarification and repeat-purchase link"
-  ]
+  ],
+  "releaseFollowup": {
+    "revision": "8c6d79cc65ea0b3b6d865306e6142a672cf2a76c",
+    "workflow": "https://github.com/RicV-Sam/datacosts/actions/runs/38252319229",
+    "conclusion": "success",
+    "workflowCompletedAt": "2026-10-12T13:00:10Z",
+    "receiptRechecked": "2026-10-12",
+    "note": "Deployment receipt and earlier live review are separate from historical pre-release validation; indexing/performance gains are not established."
+  }
 }

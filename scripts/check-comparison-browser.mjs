@@ -70,11 +70,15 @@ try {
   await page.setViewport({ width: 390, height: 1000 });
   await page.goto(`${origin}/guides/cheapest-10gb-data-south-africa/`, { waitUntil: 'networkidle0' });
   await page.addStyleTag({ content: 'html { font-size: 200% !important; }' });
+  await page.evaluate(() => document.fonts.ready);
+  // A screenshot completes a browser paint even with application JavaScript disabled.
+  await page.screenshot({path: path.join(artifactDir, '10gb-text-200-percent.png')});
   const enlargedState = await page.evaluate(() => ({ pageWidth: document.documentElement.scrollWidth,
     comparisonRight: document.querySelector('[data-tier-comparison]').getBoundingClientRect().right,
     viewportWidth: innerWidth }));
   assert.ok(enlargedState.comparisonRight <= enlargedState.viewportWidth + 1, '200% comparison text creates overflow');
-  if (enlargedState.pageWidth > enlargedState.viewportWidth + 1) console.log('Known limitation: unchanged site header overflows at 200% text; comparison content fits.');
+  if (enlargedState.pageWidth > enlargedState.viewportWidth + 1) console.log(JSON.stringify({enlargedState, elements: await page.evaluate(() => [...document.querySelectorAll('html, body, body *')].map(el => ({tag:el.tagName,cls:el.className,left:el.getBoundingClientRect().left,right:el.getBoundingClientRect().right,scrollWidth:el.scrollWidth,clientWidth:el.clientWidth,text:el.textContent?.slice(0,80)})).filter(el => el.right > innerWidth + 1 || el.scrollWidth > el.clientWidth + 1).slice(0,30))}, null, 2));
+  assert.ok(enlargedState.pageWidth <= enlargedState.viewportWidth + 1, '200% text creates page/header overflow');
   await page.focus('[data-tier-comparison] a[href^="https://"]');
   assert.ok(await page.evaluate(() => document.activeElement?.tagName === 'A'), 'Source link cannot receive keyboard focus');
   const focus = await page.evaluate(() => getComputedStyle(document.activeElement).outlineStyle);

@@ -7,6 +7,8 @@
   
   body {
     @apply antialiased text-slate-900 bg-slate-50 selection:bg-[#a0f399]/30;
+    /* Let long labels reflow when visitors enlarge text on narrow screens. */
+    overflow-wrap: anywhere;
   }
 }
 

@@ -1,0 +1,60 @@
+{
+  "siteUrl": "sc-domain:datacost.co.za",
+  "startDate": "2026-09-12",
+  "endDate": "2026-10-09",
+  "dimensions": [
+    "page"
+  ],
+  "searchType": "web",
+  "rowCount": 3,
+  "rows": [
+    {
+      "keys": [
+        "https://datacost.co.za/data-problems/how-to-stop-data-disappearing-cell-c/"
+      ],
+      "clicks": 1,
+      "impressions": 134,
+      "ctr": 0.7462686567164178,
+      "position": 6.798507462686567
+    },
+    {
+      "keys": [
+        "https://datacost.co.za/data-problems/how-to-stop-data-disappearing-vodacom/"
+      ],
+      "clicks": 1,
+      "impressions": 19,
+      "ctr": 5.263157894736842,
+      "position": 6.842105263157895
+    },
+    {
+      "keys": [
+        "https://datacost.co.za/data-problems/how-to-stop-data-disappearing-telkom/"
+      ],
+      "clicks": 0,
+      "impressions": 79,
+      "ctr": 0,
+      "position": 5.367088607594937
+    }
+  ],
+  "pagination": {
+    "limit": 20,
+    "offset": 0,
+    "returned": 3,
+    "hasMore": false,
+    "note": "Showing all 3 rows."
+  },
+  "dataSource": "api",
+  "settledThrough": "2026-10-10",
+  "dataMaturity": {
+    "firstIncompleteDate": "2026-10-11",
+    "settledThrough": "2026-10-10",
+    "dateBasis": "America/Los_Angeles",
+    "source": "gsc-api-metadata",
+    "probe": {
+      "searchType": "web",
+      "startDate": "2026-10-03",
+      "endDate": "2026-10-12",
+      "dataState": "all"
+    }
+  }
+}

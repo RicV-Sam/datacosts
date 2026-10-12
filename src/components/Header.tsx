@@ -102,11 +102,11 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
   return (
     <>
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-          <div className="flex items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 min-h-16 py-2 flex justify-between items-center gap-2">
+          <div className="flex min-w-0 items-center gap-2 md:gap-4">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 hover:bg-slate-50 rounded-xl transition-colors md:hidden"
+              className="shrink-0 p-2 hover:bg-slate-50 rounded-xl transition-colors md:hidden"
               aria-label="Toggle Menu"
               aria-expanded={isMenuOpen}
             >
@@ -115,7 +115,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
             <a
               href="/"
               onClick={(e) => { e.preventDefault(); onScrollTo('home'); }}
-              className="text-xl font-black tracking-tighter font-headline hover:opacity-80 transition-opacity"
+              className="min-w-0 [overflow-wrap:anywhere] text-xl font-black tracking-tighter font-headline hover:opacity-80 transition-opacity"
             >
               DataCost.co.za
             </a>
@@ -149,7 +149,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <button
               className="p-2 hover:bg-slate-50 rounded-xl transition-colors"
               aria-label="Search"

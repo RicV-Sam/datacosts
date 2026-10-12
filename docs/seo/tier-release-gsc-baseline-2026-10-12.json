@@ -1,0 +1,96 @@
+{
+  "siteUrl": "sc-domain:datacost.co.za",
+  "startDate": "2026-09-12",
+  "endDate": "2026-10-09",
+  "dimensions": [
+    "page"
+  ],
+  "searchType": "web",
+  "rowCount": 7,
+  "rows": [
+    {
+      "keys": [
+        "https://datacost.co.za/guides/cheapest-1gb-data-south-africa/"
+      ],
+      "clicks": 27,
+      "impressions": 1668,
+      "ctr": 1.618705035971223,
+      "position": 5.615707434052758
+    },
+    {
+      "keys": [
+        "https://datacost.co.za/guides/cheapest-5gb-data-south-africa/"
+      ],
+      "clicks": 4,
+      "impressions": 307,
+      "ctr": 1.3029315960912053,
+      "position": 7.260586319218241
+    },
+    {
+      "keys": [
+        "https://datacost.co.za/guides/cheapest-20gb-data-south-africa/"
+      ],
+      "clicks": 3,
+      "impressions": 344,
+      "ctr": 0.872093023255814,
+      "position": 6.008720930232558
+    },
+    {
+      "keys": [
+        "https://datacost.co.za/guides/cheapest-2gb-data-south-africa/"
+      ],
+      "clicks": 2,
+      "impressions": 255,
+      "ctr": 0.7843137254901961,
+      "position": 7.568627450980392
+    },
+    {
+      "keys": [
+        "https://datacost.co.za/guides/cheapest-10gb-data-south-africa/"
+      ],
+      "clicks": 1,
+      "impressions": 99,
+      "ctr": 1.0101010101010102,
+      "position": 7.1313131313131315
+    },
+    {
+      "keys": [
+        "https://datacost.co.za/guides/cheapest-15gb-data-south-africa/"
+      ],
+      "clicks": 0,
+      "impressions": 65,
+      "ctr": 0,
+      "position": 6.323076923076923
+    },
+    {
+      "keys": [
+        "https://datacost.co.za/guides/cheapest-50gb-data-south-africa/"
+      ],
+      "clicks": 0,
+      "impressions": 121,
+      "ctr": 0,
+      "position": 8.537190082644628
+    }
+  ],
+  "pagination": {
+    "limit": 20,
+    "offset": 0,
+    "returned": 7,
+    "hasMore": false,
+    "note": "Showing all 7 rows."
+  },
+  "dataSource": "api",
+  "settledThrough": "2026-10-10",
+  "dataMaturity": {
+    "firstIncompleteDate": "2026-10-11",
+    "settledThrough": "2026-10-10",
+    "dateBasis": "America/Los_Angeles",
+    "source": "gsc-api-metadata",
+    "probe": {
+      "searchType": "web",
+      "startDate": "2026-10-03",
+      "endDate": "2026-10-12",
+      "dataState": "all"
+    }
+  }
+}
