@@ -1,0 +1,58 @@
+{
+  "reviewDate": "2026-10-12",
+  "baseRevision": "7c7f6ab3257cb4676ca5b764c0afcf1488c36df8",
+  "status": "pre-release verification complete; user authorised commit and live publication on 12 October 2026; deployment and live checks are recorded separately",
+  "implemented": [
+    {
+      "opportunity": "Retention calculator introductory and subsequent monthly prices",
+      "route": "/guides/cellphone-retention-offer-vs-switching-south-africa/",
+      "evidence": "The original calculator multiplied a single monthly price by the whole term. Vodacom contract terms section 5.1 also distinguishes service discounts from the full subscription price.",
+      "officialSource": "https://www.vodacom.co.za/vodacom/terms/contract-terms-and-conditions",
+      "calculation": "introductory monthly price times introductory months, plus normal monthly price times remaining months, plus once-off costs; switching also includes old-account settlement",
+      "checks": "Flat pricing, free introductory months, full-term promotion, cents, invalid terms, finite amounts, settlement and browser comparison readiness.",
+      "dateBoundary": "Calculator/editorial modification is 12 October. Existing legal/contract overview source review stays 19 July; a note explains the partial update."
+    },
+    {
+      "opportunity": "Daily versus monthly repeat-purchase simulator",
+      "route": "/tools/daily-vs-monthly-data-calculator/",
+      "evidence": "A new mathematical tool using reader-entered prices and allowances. No operator prices are assumed.",
+      "calculation": "Both paths fulfil identical demand on identical active days. Each purchase keeps its own fixed-day expiry; balances are consumed in expiry order, and sufficient whole bundles are bought only when needed.",
+      "checks": "Small allowances, early depletion, expiry boundaries, sparse days, late first use, duplicate days, decimal GB boundaries, invalid input, reset, zero usage and repeat-purchase confirmation.",
+      "limits": "One-day daily bundles, fixed-day longer validity, constant usage per active day, no automatic renewals or expiry extensions. Reader confirms repeat purchases and concurrent bundles. Worked example is hypothetical.",
+      "example": { "days": 30, "usageGbPerDay": 0.5, "dailyGb": 1, "dailyPriceZar": 10, "longerGb": 10, "longerPriceZar": 100, "longerValidityDays": 30, "dailyPurchases": 30, "longerPurchases": 2, "dailyTotalZar": 300, "longerTotalZar": 200, "fulfilledGbPerPath": 15 }
+    },
+    {
+      "opportunity": "TFG Connect editorial profile",
+      "route": "/guides/mvnos-south-africa/",
+      "officialSources": [
+        "https://tfgconnect.co.za/",
+        "https://tfgconnect.co.za/terms",
+        "https://help.bash.com/support/solutions/articles/101000574516-bash-tfg-connect-voucher-terms-conditions"
+      ],
+      "sourceAccess": "TFG home and subscriber terms were read in a JavaScript-capable browser; Bash terms were opened through the research reader. All checked 12 October.",
+      "verifiedTerms": "Subscriber terms V7 dated 5 February 2025: 2.1.9 identifies MTN; 2.1.12 and 2.1.16 distinguish prepaid from monthly Top Up; 4 covers cancellation; 6.2 and 6.3 cover advance billing and possible account interest; 7.1 excludes MTN/other provider recharge vouchers; 13 preserves original expiry on transferred data.",
+      "scope": "Editorial profile and verified payment choices in the chooser. No tracker rows, host-network registry entries, tariff rankings or conditional reward values are added.",
+      "limits": "Prepaid prices, exact TymeBank discount, rollover and eSIM availability remain unverified. The homepage showed monthly subscription prices, but they have not been imported into the tracker."
+    }
+  ],
+  "held": [
+    {
+      "opportunity": "FNB Connect pricing-guide effective-date conflict",
+      "officialSource": "https://online.firstrand.co.za/downloads/pricing-guides/FNB-Connect-Retail.pdf",
+      "finding": "The 33-page published PDF has 1 July 2026 to 30 June 2027 on its cover, and 9 November 2025 to 30 June 2026 in the small print on printed page 32. The storefront text did not corroborate exact current plan prices. This does not establish which period governs those prices.",
+      "decision": "Keep the existing conflict disclosure and all saved prices/source dates. No factual correction is supported."
+    }
+  ],
+  "preserved": ["Monthly offer prices, allocations, rankings and immutable history", "Existing six tracked MVNO provider identities", "Existing source review dates outside the new TFG profile", "Existing routes and canonicals"],
+  "verification": {
+    "editorialTests": "19 passed, including 9 new P2 tests and existing P1 regressions",
+    "monthlyTrackerTests": "18 passed",
+    "typeCheck": "passed",
+    "build": "passed; publishing, monthly-price validation, sitemap, prerender, SEO and ad checks",
+    "generatedOutput": "173 sitemap URLs; 252 HTML files; 5 sitemap files",
+    "browser": "Three changed pages at 1280, 768, 390 and 320 pixels: no page-level overflow, one H1, expected canonicals, parseable structured data. Simulator and retention calculations, invalid input, keyboard focus, reset, TFG payment filters and guide-to-tool navigation passed. No page exceptions.",
+    "zoom": "Simulator checked at 200 percent CSS zoom with reduced motion and no page overflow. This does not establish site-wide accessibility conformance.",
+    "performance": "New calculator is lazy-loaded; initial build reported its chunk as 13.30 kB, 4.87 kB gzip. No field Core Web Vitals measurement was performed.",
+    "existingWarnings": "Fibre source-freshness warnings remain unrelated to this scoped change."
+  }
+}

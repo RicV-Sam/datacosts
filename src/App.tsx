@@ -52,6 +52,7 @@ const AirtimeOrDataGuidePage = lazy(() => import('./pages/AirtimeOrDataGuidePage
 const CellphoneContractCancellationGuidePage = lazy(() => import('./pages/CellphoneContractCancellationGuidePage').then((mod) => ({ default: mod.CellphoneContractCancellationGuidePage })));
 const ContractEndedOptionsGuidePage = lazy(() => import('./pages/ContractEndedOptionsGuidePage').then((mod) => ({ default: mod.ContractEndedOptionsGuidePage })));
 const RetentionOfferVsSwitchGuidePage = lazy(() => import('./pages/RetentionOfferVsSwitchGuidePage').then((mod) => ({ default: mod.RetentionOfferVsSwitchGuidePage })));
+const DailyMonthlyCalculatorPage = lazy(() => import('./pages/DailyMonthlyCalculatorPage').then((mod) => ({ default: mod.DailyMonthlyCalculatorPage })));
 const PromosPage = lazy(() => import('./pages/PromosPage').then((mod) => ({ default: mod.PromosPage })));
 
 function AppContent() {
@@ -281,6 +282,8 @@ function AppContent() {
         <Route path="/guides/what-to-do-when-cellphone-contract-ends-south-africa/" element={<ContractEndedOptionsGuidePage onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
         <Route path="/guides/what-to-do-when-cellphone-contract-ends-south-africa" element={<Navigate to="/guides/what-to-do-when-cellphone-contract-ends-south-africa/" replace />} />
         <Route path="/guides/cellphone-retention-offer-vs-switching-south-africa/" element={<RetentionOfferVsSwitchGuidePage onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
+        <Route path="/tools/daily-vs-monthly-data-calculator/" element={<DailyMonthlyCalculatorPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
+        <Route path="/tools/daily-vs-monthly-data-calculator" element={<Navigate to="/tools/daily-vs-monthly-data-calculator/" replace />} />
         <Route path="/guides/cellphone-retention-offer-vs-switching-south-africa" element={<Navigate to="/guides/cellphone-retention-offer-vs-switching-south-africa/" replace />} />
         <Route
           path="/guides/how-to-stop-wasp-vas-charges-south-africa/"

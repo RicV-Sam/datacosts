@@ -258,6 +258,7 @@ export function getIndexableRoutes(): string[] {
   routes.add('/save-ussd-codes/');
   routes.add('/airtime-advance-codes/');
   routes.add('/sitemap/');
+  routes.add('/tools/daily-vs-monthly-data-calculator/');
   routes.add('/fix/');
   for (const dataProblemRoute of getDataProblemRoutesByIndexingStatus(['index'])) {
     routes.add(dataProblemRoute);

@@ -26,6 +26,7 @@ const sitemapGroups: SitemapGroup[] = [
     title: 'Core Tools',
     links: [
       { href: '/', label: 'DataCost Home' },
+      { href: '/tools/daily-vs-monthly-data-calculator/', label: 'Daily vs Monthly Data Bundle Calculator' },
       { href: '/network/', label: 'Network Comparison Hub' },
       { href: '/guides/', label: 'South Africa Mobile Data Guides' },
       { href: '/ussd-codes-south-africa/', label: 'USSD Codes South Africa' },
