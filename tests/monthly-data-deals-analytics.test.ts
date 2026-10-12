@@ -89,3 +89,14 @@ test('deal events respect denied consent and reject uncontrolled identifiers', (
   }), /Invalid target_gb/);
   assert.equal(events.length, 0);
 });
+
+
+test('2GB offer clicks retain controlled target size and consent behaviour', () => {
+  const events = installBrowser();
+  trackDealOfferSourceClick({ providerId: 'mtn', offerId: 'mtn-monthly-2-plus-2-2026-10', targetGb: 2, placement: 'comparison_card' });
+  assert.equal(events[0][2].target_gb, 2);
+  const denied = installBrowser('denied');
+  trackDealOfferSourceClick({ providerId: 'mtn', offerId: 'mtn-monthly-2-plus-2-2026-10', targetGb: 2, placement: 'comparison_card' });
+  assert.equal(denied.length, 0);
+  assert.throws(() => trackDealOfferSourceClick({ providerId: 'mtn', offerId: 'valid-offer-id', targetGb: 3 as never, placement: 'comparison_card' }), /Invalid target_gb/);
+});

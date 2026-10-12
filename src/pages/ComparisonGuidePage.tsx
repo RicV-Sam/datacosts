@@ -2,7 +2,12 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, BarChart3, CheckCircle2, ExternalLink, Info, ShieldCheck, Tag } from 'lucide-react';
-import { bundles } from '../data';
+import { CORE_NETWORKS, filterBundlesByMode, pickBestRowBundleForMode, volumeToGb, isNightBundle, isMonthlyBundle, isSocialBundle } from '../utils/comparisonSelection';
+import { MonthlyDealComparison } from '../components/deals/MonthlyDealComparison';
+import { getTierComparison, getTierTargetGb } from '../utils/tierComparison';
+import { buildMonthlyDealItemListSchema } from '../utils/monthlyDealStructuredData';
+import { getDealOfferMetrics } from '../utils/monthlyDealRanking';
+import { parseDataAmountToGb } from '../utils/dataCalculator';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { MobileNav } from '../components/MobileNav';
@@ -40,143 +45,9 @@ interface WinnerCard {
   text: string;
 }
 
-const CORE_NETWORKS: NetworkName[] = ['Vodacom', 'MTN', 'Telkom', 'Cell C'];
-
-function volumeToGb(volume: string): number {
-  const normalized = volume.trim().toLowerCase();
-  if (normalized.includes('unlimited')) return Number.POSITIVE_INFINITY;
-
-  const mbMatch = normalized.match(/(\d+(?:\.\d+)?)\s*mb/);
-  if (mbMatch) return Number(mbMatch[1]) / 1000;
-
-  const gbMatch = normalized.match(/(\d+(?:\.\d+)?)\s*gb/);
-  if (gbMatch) return Number(gbMatch[1]);
-
-  return 0;
-}
-
-function isNightBundle(bundle: Bundle): boolean {
-  return bundle.name.toLowerCase().includes('night') || (bundle.nightData !== undefined && bundle.nightData !== '');
-}
-
-function isMonthlyBundle(bundle: Bundle): boolean {
-  const validity = bundle.validity.toLowerCase();
-  return bundle.type === 'Monthly' || validity.includes('30 day') || validity.includes('month');
-}
-
-function isSocialBundle(bundle: Bundle): boolean {
-  return bundle.type === 'Social' || bundle.name.toLowerCase().includes('whatsapp') || bundle.name.toLowerCase().includes('social');
-}
-
-function isSmartphoneOnceOffBundle(bundle: Bundle): boolean {
-  return bundle.productType === 'smartphone_once_off_data';
-}
-
-function getTargetSizeGb(mode: string): number | null {
-  const targetMap: Record<string, number> = {
-    'cheapest-2gb': 2,
-    'cheapest-5gb': 5,
-    'cheapest-10gb': 10,
-    'cheapest-15gb': 15,
-    'cheapest-20gb': 20,
-    'cheapest-50gb': 50
-  };
-
-  return targetMap[mode] ?? null;
-}
-
-function filterBundlesByMode(mode: string): Bundle[] {
-  const base = bundles.filter((bundle) => CORE_NETWORKS.includes(bundle.network));
-
-  if (mode === 'cheapest-1gb') {
-    return base.filter(
-      (bundle) =>
-        bundle.volume === '1GB' &&
-        isSmartphoneOnceOffBundle(bundle) &&
-        !isNightBundle(bundle) &&
-        !isSocialBundle(bundle)
-    );
-  }
-
-  if (mode === 'cheapest-10gb') {
-    return base.filter(
-      (bundle) =>
-        bundle.volume === '10GB' &&
-        isSmartphoneOnceOffBundle(bundle) &&
-        !isNightBundle(bundle) &&
-        !isSocialBundle(bundle)
-    );
-  }
-
-  if (
-    mode === 'cheapest-2gb' ||
-    mode === 'cheapest-5gb' ||
-    mode === 'cheapest-15gb' ||
-    mode === 'cheapest-20gb' ||
-    mode === 'cheapest-50gb'
-  ) {
-    return base.filter(
-      (bundle) => isSmartphoneOnceOffBundle(bundle) && !isNightBundle(bundle) && !isSocialBundle(bundle)
-    );
-  }
-
-  if (mode === 'best-monthly') {
-    return base.filter(
-      (bundle) =>
-        isSmartphoneOnceOffBundle(bundle) &&
-        isMonthlyBundle(bundle) &&
-        !isNightBundle(bundle) &&
-        !isSocialBundle(bundle)
-    );
-  }
-
-  if (mode === 'best-prepaid') {
-    return base.filter(
-      (bundle) =>
-        isSmartphoneOnceOffBundle(bundle) &&
-        !isNightBundle(bundle) &&
-        !isSocialBundle(bundle) &&
-        bundle.type !== 'Contract'
-    );
-  }
-
-  if (mode === 'cheapest-whatsapp') {
-    return base.filter((bundle) => isSocialBundle(bundle));
-  }
-
-  if (mode === 'cheap-night') {
-    return base.filter((bundle) => isNightBundle(bundle));
-  }
-
-  return base;
-}
-
-function preferVerifiedRows(rows: Bundle[]): Bundle[] {
-  const verifiedRows = rows.filter(isVerifiedBundleSource);
-  return verifiedRows.length > 0 ? verifiedRows : rows;
-}
-
-function pickBestRowBundleForMode(rows: Bundle[], mode: string): Bundle | null {
-  if (!rows.length) return null;
-
-  const targetGb = mode === 'cheapest-1gb' ? 1 : getTargetSizeGb(mode);
-  if (targetGb) {
-    const exactMatches = rows.filter((bundle) => volumeToGb(bundle.volume) === targetGb);
-    return [...preferVerifiedRows(exactMatches)].sort((a, b) => a.price - b.price)[0] || null;
-  }
-
-  if (mode === 'best-monthly' || mode === 'best-prepaid') {
-    const preferredRows = preferVerifiedRows(rows);
-    const byValue = preferredRows.filter((bundle) => bundle.costPerGb > 0).sort((a, b) => a.costPerGb - b.costPerGb)[0];
-    return byValue || [...preferredRows].sort((a, b) => a.price - b.price)[0];
-  }
-
-  return [...preferVerifiedRows(rows)].sort((a, b) => a.price - b.price)[0];
-}
-
 function getBundleType(bundle: Bundle): string {
   if (isSocialBundle(bundle)) return 'Social';
-  if (isNightBundle(bundle)) return 'Night';
+  if (isNightBundle(bundle)) return parseDataAmountToGb(bundle.anytimeData) > 0 ? 'Anytime + Night' : 'Night only';
   if (isMonthlyBundle(bundle) && bundle.validity.toLowerCase().includes('recurring')) return 'Monthly Recurring';
   if (isMonthlyBundle(bundle)) return 'Monthly';
   return bundle.type;
@@ -186,7 +57,7 @@ function getBundleWatchOut(bundle: Bundle): string {
   if (bundle.watchOut) return bundle.watchOut;
   if (bundle.note) return bundle.note;
   if (isSocialBundle(bundle)) return 'Social-only access';
-  if (isNightBundle(bundle)) return 'Night-only usage window';
+  if (isNightBundle(bundle)) return parseDataAmountToGb(bundle.anytimeData) > 0 ? 'Night allocation has restricted hours; confirm terms' : 'Night-only usage window';
   if (bundle.validity.toLowerCase().includes('1 day')) return 'Very short validity';
   return 'Check offer terms';
 }
@@ -235,7 +106,7 @@ function getWinners(mode: string, rows: ComparisonRow[]): WinnerCard[] {
     ];
   }
 
-  const targetGb = getTargetSizeGb(mode);
+  const targetGb = getTierTargetGb(mode);
   if (targetGb) {
     return [
       { label: `Cheapest verified ${targetGb}GB pick`, text: `${cheapest.network}: ${cheapest.name} at R${cheapest.price}.` },
@@ -283,7 +154,13 @@ function toIndexableNetworkBundleUrl(networkSlug: string, path: string): string 
 
 export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideSlug, onNavigate, onScrollTo }) => {
   const location = useLocation();
-  const definition = getComparisonGuideBySlug(guideSlug);
+  const storedDefinition = getComparisonGuideBySlug(guideSlug);
+  const tier = storedDefinition ? getTierComparison(storedDefinition.mode) : null;
+  const definition = storedDefinition && tier ? { ...storedDefinition,
+    intro: `Compare ${tier.targetGb}GB-class offers by pooled anytime data, restricted allocations, price, validity and eligibility. Exact once-off smartphone matches are identified separately; larger alternatives are labelled when this catalogue has no target-class match.`,
+    tableTitle: `${tier.targetGb}GB-class data comparison`,
+    metaDescription: `Compare ${tier.targetGb}GB-class data offers in South Africa with anytime and night allocations, price, validity, eligibility and official source check dates.`
+  } : storedDefinition;
 
   if (!definition) {
     return (
@@ -313,8 +190,12 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
     return { network, bundle: chosen };
   });
 
-  const winners = getWinners(definition.mode, rows);
-  const broaderDealSize = definition.mode === 'cheapest-10gb' ? 10 : definition.mode === 'cheapest-20gb' ? 20 : null;
+  const winners = tier ? [
+    ...(tier.awards.bestOverall ? [{ label: 'Lowest price for pooled anytime data in this class', text: `${tier.awards.bestOverall.providerName}: ${tier.awards.bestOverall.offerName} at R${tier.awards.bestOverall.priceZar}. Check the eligibility and payment terms below.` }] : []),
+    ...(tier.awards.bestAnytimeValue ? [{ label: 'Lowest R / anytime GB in this class', text: `${tier.awards.bestAnytimeValue.providerName}: R${getDealOfferMetrics(tier.awards.bestAnytimeValue).costPerAnytimeGb?.toFixed(2)} per pooled anytime GB. Restricted wallets are excluded.` }] : []),
+    { label: 'Advertised totals can include restrictions', text: 'Night, social, streaming and daily-release data do not count as pooled anytime data. Context-only offers do not win price awards.' }
+  ] : getWinners(definition.mode, rows);
+  const broaderDealSize = tier && [10, 20].includes(tier.targetGb) ? tier.targetGb : null;
   const listedRows = rows.filter((row) => row.bundle).map((row) => row.bundle as Bundle);
   const verifiedListedRows = listedRows.filter(isVerifiedBundleSource);
   const hasManualRequiredRows = listedRows.some((bundle) => bundle.sourceConfidence === 'manual_required');
@@ -325,7 +206,12 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
   const isAliasPath = location.pathname !== definition.canonicalPath;
   const shouldNoindex = isAliasPath || isNoindexRoute(definition.canonicalPath);
   const seenRelatedLinks = new Set<string>();
-  const relatedLinks = definition.links
+  const relatedLinks = [...definition.links,
+    ...(tier ? [1, 2, 5, 10, 15, 20, 50].filter(size => size !== tier.targetGb).map(size => ({
+      href: `/guides/cheapest-${size}gb-data-south-africa/`, label: `Compare ${size}GB data`, description: 'Compare a different allowance and its conditions.'
+    })) : []),
+    ...(tier ? [{ href: '/best-data-deals-south-africa/', label: 'Monthly data deal tracker', description: 'Compare all tracked providers and their eligibility.' }, { href: '/methodology/', label: 'How DataCost compares offers', description: 'Understand allocations, ranking limits and verification.' }] : [])
+  ]
     .map(getIndexableFallbackLink)
     .filter((link) => {
       if (seenRelatedLinks.has(link.href)) return false;
@@ -436,7 +322,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
+        {tier && tier.offers.length > 0 ? <script type="application/ld+json">{JSON.stringify(buildMonthlyDealItemListSchema(definition.tableTitle, canonicalUrl, tier.offers))}</script> : verifiedListedRows.length > 0 && <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>}
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
@@ -482,16 +368,16 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
           <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-4">{definition.quickHeading}</h2>
           {broaderDealSize && (
             <div className="text-slate-200 leading-relaxed mb-5">
-              <p>This table looks for an exact {broaderDealSize}GB once-off smartphone bundle from Vodacom, MTN, Telkom or Cell C. It excludes social bundles and bundles with a night allocation, and does not include MVNOs or recurring plans.</p>
+              <p>This comparison combines the monthly tracker with additional recorded operator bundles and uses the same allocation and price-award rules. MVNO, recurring and split offers retain their eligibility, payment and usage restrictions.</p>
               <Link to={`/best-${broaderDealSize}gb-data-deals-south-africa/`} className="inline-block min-h-[44px] py-2 text-[#a0f399] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
                 Compare {broaderDealSize}GB-class monthly data offers
               </Link>
-              <p className="text-sm">The broader tracker shows anytime data, restricted allocations and eligibility separately.</p>
+              <p className="text-sm">Open the dedicated tracker for further monthly comparison context.</p>
             </div>
           )}
           {definition.mode === 'best-monthly' && (
             <p className="text-slate-200 leading-relaxed mb-5">
-              The table selects one recorded once-off smartphone bundle per network, prioritising source-checked rows and then cost per GB. Its picks apply only to those rows. For a larger allowance, compare the{' '}
+              The table selects one recorded once-off smartphone bundle per network, prioritising source-checked rows and then cost per anytime GB. Its picks apply only to those rows. For a larger allowance, compare the{' '}
               <Link to="/best-10gb-data-deals-south-africa/" className="text-[#a0f399] underline">10GB</Link>,{' '}
               <Link to="/best-20gb-data-deals-south-africa/" className="text-[#a0f399] underline">20GB</Link> or{' '}
               <Link to="/best-30gb-data-deals-south-africa/" className="text-[#a0f399] underline">30GB monthly offers</Link>, including plan-specific and bank-linked options with their eligibility conditions.
@@ -515,6 +401,21 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
 
         <section id="comparison-table" className="mb-12 scroll-mt-32">
           <h2 className="text-2xl font-black tracking-tighter mb-5">{definition.tableTitle}</h2>
+          {tier && (
+            <div data-tier-comparison={tier.targetGb}>
+              <p className="mb-4 text-sm leading-relaxed text-slate-600">
+                {tier.fallback ? `No source-checked ${tier.targetGb}GB-class offer is recorded in this catalogue. These are larger ${tier.sizeGb}GB-class alternatives, not exact ${tier.targetGb}GB matches; no target-size winner is awarded.`
+                  : `This class runs from ${tier.targetGb}GB to below ${tier.upperGb}GB of pooled anytime data or advertised total. Restricted totals are labelled and cannot win pooled-anytime awards.`}
+                {' '}Only offers eligible under the tracker methodology can win awards; price-plan eligibility still applies. For mixed-validity 2GB offers and classes with only context rows, no pooled-anytime price award is made. R / anytime GB excludes night, social, streaming, conditional bonuses and daily-release wallets. Source dates describe the recorded pricing evidence, not today's editorial update. Confirm current checkout terms.
+              </p>
+              {tier.offers.length > 0 ? <MonthlyDealComparison sizeGb={tier.sizeGb} offers={tier.offers}
+                bestAnytimeValueId={tier.awards.bestAnytimeValue?.id}
+                lowestAdvertisedId={tier.awards.lowestAdvertisedPrice?.id} />
+                : <p>No current source-checked alternatives are available. See the <Link to="/best-data-deals-south-africa/" className="underline">monthly data tracker</Link> and confirm operator pricing.</p>}
+              {listedRows.length > 0 && <h3 className="mt-8 mb-3 text-xl font-black">Exact {tier.targetGb}GB once-off smartphone matches</h3>}
+            </div>
+          )}
+          {(!tier || listedRows.length > 0) ? (
           <div className="overflow-x-auto bg-white rounded-3xl border border-slate-100 shadow-xl">
             <table className="w-full text-left min-w-[780px]">
               <thead>
@@ -537,13 +438,14 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
                       {row.bundle ? (
                         <>
                           <div>{row.bundle.name}</div>
+                          <div className="mt-1 text-sm">Anytime: {row.bundle.anytimeData}; Night: {row.bundle.nightData || '0GB'}</div>
                           <div className={`mt-1 text-[10px] font-black uppercase tracking-wider ${isVerifiedBundleSource(row.bundle) ? 'text-emerald-700' : 'text-amber-700'}`}>
                             {isVerifiedBundleSource(row.bundle) ? 'Source checked' : 'Confirm live - excluded from leader claims'}
                           </div>
                           {getBundleSourceSummary(row.bundle) && (
                             <div className="mt-1 text-[10px] font-medium text-slate-500">{getBundleSourceSummary(row.bundle)}</div>
                           )}
-                          {definition.mode === 'best-monthly' && row.bundle.sourceUrl && (
+                          {row.bundle.sourceUrl && (
                             <a href={row.bundle.sourceUrl} className="inline-block mt-2 text-sm text-[#1b6d24] underline">
                               {row.network} source and terms
                             </a>
@@ -566,9 +468,10 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
               </tbody>
             </table>
           </div>
+          ) : null}
           {definition.mode === 'best-monthly' && (
             <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-              Cost per GB = bundle price divided by the listed general-use GB. Night, social and router products are excluded from this table; an empty network row means no matching recorded bundle, not that the operator sells no monthly data. The checked dates beside the rows describe the pricing evidence; the page update date describes the editorial changes.
+              Cost per GB = bundle price divided by the listed general-use GB. Social and router products are excluded; a night bonus is shown separately and does not remove the anytime allowance; an empty network row means no matching recorded bundle, not that the operator sells no monthly data. The checked dates beside the rows describe the pricing evidence; the page update date describes the editorial changes.
             </p>
           )}
           {hasManualRequiredRows && (

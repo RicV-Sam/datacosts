@@ -40,7 +40,7 @@ test('24-hour Telkom bundles remain daily and can appear in general-use summary 
   assert.match(html.slice(oneGbSummary, oneGbSummary + 1600), /Telkom Daily 1GB/);
 });
 
-test('empty exact-size guides explain their scope and link to the matching broader tracker', () => {
+test('tier guides render useful split comparisons and link to the matching broader tracker', () => {
   for (const size of [10, 20]) {
     const route = `/guides/cheapest-${size}gb-data-south-africa/`;
     const html = render(React.createElement(ComparisonGuidePage, {
@@ -48,9 +48,10 @@ test('empty exact-size guides explain their scope and link to the matching broad
     }), route);
     const quickAnswer = html.slice(html.indexOf('id="quick-answer"'), html.indexOf('id="comparison-table"'));
     assert.ok(quickAnswer.includes(`href="/best-${size}gb-data-deals-south-africa/"`));
-    assert.match(quickAnswer, /does not include MVNOs or recurring plans/);
-    assert.ok(quickAnswer.includes(`No source-checked exact ${size}GB bundle meets`));
-    assert.match(quickAnswer, /This does not mean no/);
+    assert.match(quickAnswer, /MVNO, recurring and split offers retain their eligibility/);
+    assert.ok(html.includes(`data-tier-comparison="${size}"`));
+    assert.match(html, /Prepaid LTE 10GB Anytime \+ 10GB Night Owl/);
+    assert.doesNotMatch(quickAnswer, /No source-checked exact/);
     assert.match(html, new RegExp(`rel="canonical" href="https://datacost.co.za${route}"`));
   }
 });

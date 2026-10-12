@@ -1,0 +1,76 @@
+{
+  "manifestPath": "C:\\Users\\ricca\\Desktop\\analytics-hub-starter\\reports\\sprints\\2026-10-12\\datacost\\runs\\20261012T105935.073728Z-3c82c0d9\\manifest.json",
+  "siteId": "datacost",
+  "property": "sc-domain:datacost.co.za",
+  "sourceRefreshCompletedAt": "2026-10-12T06:19:58.202026Z",
+  "requestedWindows": [
+    7,
+    28,
+    90
+  ],
+  "coverage": {
+    "avg_position": 7.241464876366966,
+    "clicks": 2634.0,
+    "collected_at": "2026-10-12T07:36:16.896087",
+    "coverage": "coverage_not_established",
+    "expected_days": 28,
+    "first_observation": "2026-09-13T00:00:00",
+    "impressions": 594016.0,
+    "last_observation": "2026-10-09T00:00:00",
+    "note": "Dates without returned observations are unconfirmed; do not fill them with zeros.",
+    "observed_days": 27,
+    "requested_end": "2026-10-10",
+    "requested_start": "2026-09-13"
+  },
+  "pages": [
+    {
+      "page": "https://datacost.co.za/guides/cheapest-10gb-data-south-africa/",
+      "clicks": 1.0,
+      "impressions": 95.0,
+      "averagePosition": 7.2105263157894735,
+      "collectedAt": "2026-10-12T07:36:17.174270"
+    },
+    {
+      "page": "https://datacost.co.za/guides/cheapest-15gb-data-south-africa/",
+      "clicks": 0.0,
+      "impressions": 63.0,
+      "averagePosition": 6.238095238095238,
+      "collectedAt": "2026-10-12T07:36:17.174270"
+    },
+    {
+      "page": "https://datacost.co.za/guides/cheapest-1gb-data-south-africa/",
+      "clicks": 27.0,
+      "impressions": 1622.0,
+      "averagePosition": 5.580764488286067,
+      "collectedAt": "2026-10-12T07:36:17.174270"
+    },
+    {
+      "page": "https://datacost.co.za/guides/cheapest-20gb-data-south-africa/",
+      "clicks": 2.0,
+      "impressions": 325.0,
+      "averagePosition": 5.993846153846154,
+      "collectedAt": "2026-10-12T07:36:17.174270"
+    },
+    {
+      "page": "https://datacost.co.za/guides/cheapest-2gb-data-south-africa/",
+      "clicks": 2.0,
+      "impressions": 249.0,
+      "averagePosition": 7.570281124497992,
+      "collectedAt": "2026-10-12T07:36:17.174270"
+    },
+    {
+      "page": "https://datacost.co.za/guides/cheapest-50gb-data-south-africa/",
+      "clicks": 0.0,
+      "impressions": 116.0,
+      "averagePosition": 8.53448275862069,
+      "collectedAt": "2026-10-12T07:36:17.174270"
+    },
+    {
+      "page": "https://datacost.co.za/guides/cheapest-5gb-data-south-africa/",
+      "clicks": 4.0,
+      "impressions": 304.0,
+      "averagePosition": 7.233552631578948,
+      "collectedAt": "2026-10-12T07:36:17.174270"
+    }
+  ]
+}

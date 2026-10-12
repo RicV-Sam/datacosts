@@ -1,0 +1,58 @@
+[
+  {
+    "sizeGb": 1,
+    "url": "https://datacost.co.za/guides/cheapest-1gb-data-south-africa/",
+    "status": 200,
+    "emptyNetworkRows": 1,
+    "sourceCheckedLabels": 3,
+    "hasComparisonHtml": true
+  },
+  {
+    "sizeGb": 2,
+    "url": "https://datacost.co.za/guides/cheapest-2gb-data-south-africa/",
+    "status": 200,
+    "emptyNetworkRows": 4,
+    "sourceCheckedLabels": 0,
+    "hasComparisonHtml": true
+  },
+  {
+    "sizeGb": 5,
+    "url": "https://datacost.co.za/guides/cheapest-5gb-data-south-africa/",
+    "status": 200,
+    "emptyNetworkRows": 4,
+    "sourceCheckedLabels": 0,
+    "hasComparisonHtml": true
+  },
+  {
+    "sizeGb": 10,
+    "url": "https://datacost.co.za/guides/cheapest-10gb-data-south-africa/",
+    "status": 200,
+    "emptyNetworkRows": 4,
+    "sourceCheckedLabels": 0,
+    "hasComparisonHtml": true
+  },
+  {
+    "sizeGb": 15,
+    "url": "https://datacost.co.za/guides/cheapest-15gb-data-south-africa/",
+    "status": 200,
+    "emptyNetworkRows": 4,
+    "sourceCheckedLabels": 0,
+    "hasComparisonHtml": true
+  },
+  {
+    "sizeGb": 20,
+    "url": "https://datacost.co.za/guides/cheapest-20gb-data-south-africa/",
+    "status": 200,
+    "emptyNetworkRows": 4,
+    "sourceCheckedLabels": 0,
+    "hasComparisonHtml": true
+  },
+  {
+    "sizeGb": 50,
+    "url": "https://datacost.co.za/guides/cheapest-50gb-data-south-africa/",
+    "status": 200,
+    "emptyNetworkRows": 4,
+    "sourceCheckedLabels": 0,
+    "hasComparisonHtml": true
+  }
+]

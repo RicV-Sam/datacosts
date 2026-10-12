@@ -33,7 +33,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/fibre/coverage-by-area/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fix/': '2026-07-24T00:00:00.000Z',
   '/guides/': PRICING_AUDIT_MODIFIED_ISO,
-  '/methodology/': '2026-08-01T00:00:00.000Z',
+  '/methodology/': '2026-10-12T00:00:00.000Z',
   '/mtn-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
   '/network/': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   '/network/vodacom/social-data/': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
@@ -97,8 +97,8 @@ const FIX_ROUTE_MODIFIED_ISO: Record<string, string> = {
 const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'airtime-data-saving-tips-south-africa': '2026-07-30T00:00:00.000Z',
   'best-data-deals-south-africa': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
-  'cheap-night-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
-  'cheapest-1gb-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  'cheap-night-data-south-africa': '2026-10-12T00:00:00.000Z',
+  'cheapest-1gb-data-south-africa': '2026-10-12T00:00:00.000Z',
   'convert-airtime-to-data-south-africa': '2026-08-02T00:00:00.000Z',
   'buy-data-with-bank-apps-south-africa': '2026-06-18T00:00:00.000Z',
   'check-router-sim-data-balance-and-recharge': '2026-07-12T00:00:00.000Z',
@@ -119,7 +119,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'stop-wasp-subscriptions-south-africa': '2026-08-02T00:00:00.000Z',
   'out-of-bundle-data-costs-south-africa': '2026-05-01T00:00:00.000Z',
   'prepaid-vs-contract-south-africa': '2026-08-27T00:00:00.000Z',
-  'cheapest-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  'cheapest-data-south-africa': '2026-10-12T00:00:00.000Z',
   'cheapest-unlimited-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   'best-sim-only-deals-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   'mvnos-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
@@ -140,16 +140,16 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
 };
 
 const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
-  'best-monthly-data-deals-south-africa': '2026-09-14T00:00:00.000Z',
-  'best-prepaid-data-deals-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
-  'cheap-night-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
-  'cheapest-1gb-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
-  'cheapest-2gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
-  'cheapest-5gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'best-monthly-data-deals-south-africa': '2026-10-12T00:00:00.000Z',
+  'best-prepaid-data-deals-south-africa': '2026-10-12T00:00:00.000Z',
+  'cheap-night-data-south-africa': '2026-10-12T00:00:00.000Z',
+  'cheapest-1gb-data-south-africa': '2026-10-12T00:00:00.000Z',
+  'cheapest-2gb-data-south-africa': '2026-10-12T00:00:00.000Z',
+  'cheapest-5gb-data-south-africa': '2026-10-12T00:00:00.000Z',
   'cheapest-10gb-data-south-africa': '2026-10-12T00:00:00.000Z',
-  'cheapest-15gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-15gb-data-south-africa': '2026-10-12T00:00:00.000Z',
   'cheapest-20gb-data-south-africa': '2026-10-12T00:00:00.000Z',
-  'cheapest-50gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-50gb-data-south-africa': '2026-10-12T00:00:00.000Z',
   'cheapest-whatsapp-bundles-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO
 };
 

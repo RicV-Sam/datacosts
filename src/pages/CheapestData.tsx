@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, BarChart3, ShieldCheck, TrendingUp } from 'lucide-react';
 import { bundles } from '../data';
+import { filterBundlesByMode } from '../utils/comparisonSelection';
+import { getTierComparison } from '../utils/tierComparison';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { MobileNav } from '../components/MobileNav';
@@ -46,12 +48,7 @@ const isMonthlyBundle = (bundle: Bundle) =>
   bundle.validity.toLowerCase().includes('30 day') ||
   bundle.validity.toLowerCase().includes('month');
 
-const regularBundles = bundles.filter(
-  (bundle) =>
-    bundle.productType === 'smartphone_once_off_data' &&
-    !isNightBundle(bundle) &&
-    !isSocialBundle(bundle)
-);
+const regularBundles = filterBundlesByMode('best-prepaid');
 const rankedVerifiedBundles = regularBundles
   .filter((bundle) => isVerifiedBundleSource(bundle) && bundle.costPerGb > 0)
   .sort((a, b) => a.costPerGb - b.costPerGb);
@@ -81,8 +78,8 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
   const cheapest2Gb = getCheapestByVolume('2GB');
   const cheapest5Gb = getCheapestByVolume('5GB');
   const cheapest10Gb = getCheapestByVolume('10GB');
-  const cheapestDaily = getBestValueByFilter((bundle) => isDailyBundle(bundle) && !isNightBundle(bundle));
-  const cheapestMonthly = getBestValueByFilter((bundle) => isMonthlyBundle(bundle) && !isNightBundle(bundle));
+  const cheapestDaily = getBestValueByFilter((bundle) => isDailyBundle(bundle));
+  const cheapestMonthly = getBestValueByFilter((bundle) => isMonthlyBundle(bundle));
   const cheapestNight = bundles
     .filter(
       (bundle) =>
@@ -105,6 +102,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
       id: 'cheapest-2gb',
       title: 'Cheapest 2GB data',
       bundle: cheapest2Gb,
+      comparison: getTierComparison('cheapest-2gb'),
       href: '/guides/cheapest-2gb-data-south-africa/',
       helper: 'Useful when 1GB is too small but you still need to keep spend tight.'
     },
@@ -112,6 +110,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
       id: 'cheapest-5gb',
       title: 'Cheapest 5GB data',
       bundle: cheapest5Gb,
+      comparison: getTierComparison('cheapest-5gb'),
       href: '/guides/cheapest-5gb-data-south-africa/',
       helper: 'A common mid-range benchmark for moderate prepaid usage.'
     },
@@ -119,6 +118,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
       id: 'cheapest-10gb',
       title: 'Cheapest 10GB data',
       bundle: cheapest10Gb,
+      comparison: getTierComparison('cheapest-10gb'),
       href: '/guides/cheapest-10gb-data-south-africa/',
       helper: 'A strong indicator of mainstream monthly value for regular users.'
     },
@@ -318,7 +318,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
         <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-4">Cheapest data quick comparison</h2>
           <p className="text-slate-700 leading-relaxed mb-5">
-            This table shows {topSummaryRows.length} source-checked once-off smartphone bundles from our recorded prices, sorted by cost per GB. It mixes validity periods, so it is not a like-for-like monthly ranking or a complete market comparison. Router, social and night products are excluded. For a broader starting point, use the <Link to="/" className="font-semibold text-[#1b6d24] hover:underline">compare data deals in South Africa</Link> homepage.
+            This table shows {topSummaryRows.length} source-checked once-off smartphone bundles from our recorded prices, sorted by cost per GB. It mixes validity periods, so it is not a like-for-like monthly ranking or a complete market comparison. Router, social and night-only products are excluded. A night bonus does not remove a separately stated anytime allowance; cost per GB here uses only anytime data. For a broader starting point, use the <Link to="/" className="font-semibold text-[#1b6d24] hover:underline">compare data deals in South Africa</Link> homepage.
           </p>
           <p className="text-slate-700 leading-relaxed mb-5">
             Need data for a full month? Compare the dedicated{' '}
@@ -345,6 +345,7 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
                     <td className="px-5 py-4 font-bold text-slate-900">{bundle.network}</td>
                     <td className="px-5 py-4 text-slate-700">
                       {bundle.name}
+                      <span className="block text-sm">Anytime: {bundle.anytimeData}; Night: {bundle.nightData || '0GB'}</span>
                       <span className={`block mt-1 text-[10px] font-black uppercase tracking-wider ${isVerifiedBundleSource(bundle) ? 'text-emerald-700' : 'text-amber-700'}`}>
                         {isVerifiedBundleSource(bundle) ? 'Source checked' : 'Confirm live - excluded from leader claims'}
                       </span>
@@ -366,12 +367,20 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
           <p className="text-slate-700 leading-relaxed">
             There is no single cheapest network for every South African user. The best answer changes by bundle size, validity, public price, and whether you need a once-off top-up or better monthly value. Start with cost per GB, then check the validity period and whether the bundle fits your real usage pattern.
           </p>
-        </section>        <section className="mb-10 space-y-5">
+        </section>
+        <section className="mb-10 space-y-5">
           {intentSections.map((section) => (
             <article key={section.id} id={section.id} className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
               <h2 className="text-2xl font-black tracking-tight mb-3">{section.title}</h2>
               <p className="text-slate-700 leading-relaxed mb-4">{section.helper}</p>
-              {section.bundle ? (
+              {section.comparison ? (
+                <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                  <p className="font-bold">{section.comparison.offers.length} source-checked {section.comparison.targetGb}GB-class offers in the full comparison.</p>
+                  <p className="mt-2 text-sm text-slate-700">{section.comparison.awards.bestOverall
+                    ? `Lowest pooled-anytime price in that class: ${section.comparison.awards.bestOverall.providerName}, R${section.comparison.awards.bestOverall.priceZar}. Product eligibility and payment terms apply.`
+                    : 'Compare the allocations, expiry and eligibility separately; no like-for-like pooled-anytime winner is awarded.'}</p>
+                </div>
+              ) : section.bundle ? (
                 <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
                    <div className="text-[10px] font-black uppercase tracking-widest text-emerald-700 mb-1">Source-checked pick within this page's selection</div>
                   <div className="font-black text-slate-900 text-lg">{section.bundle.network}: {section.bundle.name}</div>
@@ -392,7 +401,8 @@ export const CheapestData: React.FC<CheapestDataProps> = ({ onNavigate, onScroll
               ) : null}
             </article>
           ))}
-        </section>        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+        </section>
+        <section className="mb-10 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
           <h2 className="text-2xl font-black tracking-tight mb-6">Best for different user types</h2>
           <div className="space-y-4">
             <article className="rounded-2xl border border-slate-100 bg-slate-50 p-5">

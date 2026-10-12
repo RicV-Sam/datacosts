@@ -12,7 +12,7 @@ import { trackDealOfferSourceClick } from '../../utils/tracking';
 import { SuperDataMigrationNotice } from './SuperDataMigrationNotice';
 
 interface MonthlyDealComparisonProps {
-  sizeGb: TrackedDataSizeGb;
+  sizeGb: 2 | TrackedDataSizeGb;
   offers: MonthlyDataDealOffer[];
   bestOverallId?: string;
   bestAnytimeValueId?: string;
@@ -56,7 +56,7 @@ function getCommitmentLabel(commitment?: DealCommitment): string {
 
 function SourceLink({ offer, sizeGb, placement }: {
   offer: MonthlyDataDealOffer;
-  sizeGb: TrackedDataSizeGb;
+  sizeGb: 2 | TrackedDataSizeGb;
   placement: 'comparison_table' | 'comparison_card';
 }) {
   return (
@@ -130,7 +130,7 @@ export const MonthlyDealComparison: React.FC<MonthlyDealComparisonProps> = ({
           const metrics = getDealOfferMetrics(offer);
           const restricted = getRestrictedSummary(offer);
           return (
-            <article key={offer.id} className="border-t-4 border-[#031636] bg-white p-5 shadow-[0_12px_30px_rgba(3,22,54,0.08)]">
+            <article key={offer.id} data-comparison-offer={offer.id} className="border-t-4 border-[#031636] bg-white p-5 shadow-[0_12px_30px_rgba(3,22,54,0.08)]">
               <StatusBadges offer={offer} bestOverallId={bestOverallId} bestAnytimeValueId={bestAnytimeValueId} lowestAdvertisedId={lowestAdvertisedId} />
               <div className="mt-4 flex items-start justify-between gap-4">
                 <div>
@@ -218,7 +218,7 @@ export const MonthlyDealComparison: React.FC<MonthlyDealComparisonProps> = ({
               const metrics = getDealOfferMetrics(offer);
               const restricted = getRestrictedSummary(offer);
               return (
-                <tr key={offer.id} className="align-top hover:bg-[#f6fbf5]">
+                <tr key={offer.id} data-comparison-offer={offer.id} className="align-top hover:bg-[#f6fbf5]">
                   <th scope="row" className="max-w-[260px] px-4 py-5">
                     <StatusBadges offer={offer} bestOverallId={bestOverallId} bestAnytimeValueId={bestAnytimeValueId} lowestAdvertisedId={lowestAdvertisedId} />
                     <div className="mt-3 font-black text-[#031636]">{offer.providerName}</div>

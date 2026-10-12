@@ -113,7 +113,7 @@ export const MethodologyPage: React.FC<MethodologyPageProps> = ({ onNavigate, on
             When a bundle combines anytime data and night-only or app-specific data, we avoid treating all included data as identical unless the page clearly explains the split. If a bundle is social-only, night-only, promotional, or restricted to a device or location, it should be compared inside the correct category rather than against normal anytime bundles.
           </p>
           <p className="text-slate-600 leading-relaxed">
-            Prices are rounded for readability. Final operator checkout pages and in-app confirmations always take precedence over a DataCost estimate.
+            Tier guides distinguish exact smartphone matches from size classes. A size class can contain a pooled-anytime allowance or a headline total that includes restricted wallets; only pooled-anytime data qualifies for anytime awards. Larger alternatives are explicitly labelled and cannot become target-size winners. Current comparison evidence must have an official source and a check date within 30 days. The pricing check date stays separate from the page update date. Prices are rounded for readability. Final operator checkout pages and in-app confirmations always take precedence over a DataCost estimate.
           </p>
         </section>
 

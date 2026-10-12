@@ -58,7 +58,7 @@ export interface QuickAnswerActionEvent {
 export interface DealOfferSourceClickEvent {
   providerId: DealProviderId;
   offerId: string;
-  targetGb: TrackedDataSizeGb;
+  targetGb: 2 | TrackedDataSizeGb;
   placement: DealSourceClickPlacement;
   canonicalPath?: never;
 }
@@ -190,7 +190,7 @@ export function trackDealOfferSourceClick(event: DealOfferSourceClickEvent): voi
     canonical_path: canonicalPath(),
     provider_id: approvedValue(DEAL_PROVIDER_IDS, event.providerId, 'provider_id'),
     offer_id: approvedOfferId(event.offerId),
-    target_gb: approvedDealSize(event.targetGb),
+    target_gb: event.targetGb === 2 ? 2 : approvedDealSize(event.targetGb),
     placement: approvedValue(DEAL_SOURCE_CLICK_PLACEMENTS, event.placement, 'placement')
   });
 }

@@ -25,11 +25,15 @@
     "check:wp1-search-regression": "tsx scripts/check-wp1-search-regression.ts --compare docs/seo/wp1-release-a/search-output-baseline-v2.json",
     "generate:wp1-search-candidate": "tsx scripts/check-wp1-search-regression.ts --generate-candidate docs/seo/wp1-release-a/search-output-candidate.json",
     "review:wp1-search-candidate": "tsx scripts/check-wp1-search-regression.ts --review-candidate docs/seo/wp1-release-a/search-output-candidate.json --compare docs/seo/wp1-release-a/search-output-baseline-v2.json",
-    "build": "npm run check:data-problems && npm run check:fibre-prices && npm run check:monthly-deals && npm run check:editorial-integrity && npm run generate:sitemap && vite build && npm run check:seo && npm run check:adsense",
+    "build": "npm run test:comparisons && npm run check:comparisons && npm run check:data-problems && npm run check:fibre-prices && npm run check:monthly-deals && npm run check:editorial-integrity && npm run generate:sitemap && vite build && npm run check:seo && npm run check:adsense && npm run check:comparison-output && npm run check:comparison-browser",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:comparisons": "tsx --test tests/tier-comparison.test.ts",
+    "check:comparisons": "tsx scripts/check-tier-comparisons.ts",
+    "check:comparison-output": "tsx scripts/check-tier-comparisons.ts --output",
+    "check:comparison-browser": "node scripts/check-comparison-browser.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
@@ -53,7 +57,7 @@
     "autoprefixer": "^10.4.21",
     "puppeteer": "^24.40.0",
     "tailwindcss": "^4.1.14",
-    "tsx": "^4.21.0",
+    "tsx": "^4.23.15",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }
