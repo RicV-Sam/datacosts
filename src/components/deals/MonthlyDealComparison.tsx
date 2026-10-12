@@ -7,6 +7,7 @@ import {
   type MonthlyDataDealOffer,
   type TrackedDataSizeGb
 } from '../../data/monthlyDeals';
+import { hasCurrentOfferEvidence } from '../../utils/comparisonEvidence';
 import { getDealOfferMetrics } from '../../utils/monthlyDealRanking';
 import { trackDealOfferSourceClick } from '../../utils/tracking';
 import { SuperDataMigrationNotice } from './SuperDataMigrationNotice';
@@ -139,6 +140,7 @@ export const MonthlyDealComparison: React.FC<MonthlyDealComparisonProps> = ({
                   <p className="mt-1 text-xs font-bold leading-5 text-slate-500">Advertised: {offer.advertisedDataLabel}</p>
                 </div>
                 <p className="whitespace-nowrap text-2xl font-black tracking-tight text-[#031636]">{formatRand(offer.priceZar)}</p>
+                {!hasCurrentOfferEvidence(offer) && <p className="text-sm font-bold text-amber-800">Recorded reference - recheck before buying</p>}
               </div>
 
               <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 border-y border-slate-200 py-4 text-sm">
@@ -225,7 +227,7 @@ export const MonthlyDealComparison: React.FC<MonthlyDealComparisonProps> = ({
                     <div className="mt-1 text-sm font-semibold leading-5 text-slate-600">{offer.offerName}</div>
                     <div className="mt-1 text-xs font-bold leading-5 text-slate-500">Advertised: {offer.advertisedDataLabel}</div>
                   </th>
-                  <td className="px-4 py-5 text-xl font-black text-[#031636]">{formatRand(offer.priceZar)}</td>
+                  <td className="px-4 py-5 text-xl font-black text-[#031636]">{formatRand(offer.priceZar)}{!hasCurrentOfferEvidence(offer) && <span className="block text-xs text-amber-800">Recorded reference - recheck before buying</span>}</td>
                   <td className="px-4 py-5 font-black text-slate-900">{offer.allocation.anytimeGb}GB</td>
                   <td className="max-w-[190px] px-4 py-5 text-sm leading-6 text-slate-700">
                     {restricted.length > 0 ? (

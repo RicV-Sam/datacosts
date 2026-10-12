@@ -12,6 +12,7 @@ import {
   SITE_PRODUCT_NAME,
   SITE_URL
 } from '../seo/siteConstants';
+import { hasCurrentOfferEvidence } from './comparisonEvidence';
 import { getDealOfferMetrics } from './monthlyDealRanking';
 
 function paymentModelLabel(paymentModel?: DealPaymentModel): string {
@@ -106,8 +107,8 @@ export function buildMonthlyDealItemListSchema(
     '@type': 'ItemList',
     name,
     url: canonicalUrl,
-    numberOfItems: offers.length,
-    itemListElement: offers.map((offer, index) => ({
+    numberOfItems: offers.filter(offer => hasCurrentOfferEvidence(offer)).length,
+    itemListElement: offers.filter(offer => hasCurrentOfferEvidence(offer)).map((offer, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: buildOfferItem(offer)
@@ -125,8 +126,8 @@ export function buildMonthlyDealWinnerItemListSchema(
     '@type': 'ItemList',
     name,
     url: canonicalUrl,
-    numberOfItems: offers.length,
-    itemListElement: offers.map((offer, index) => {
+    numberOfItems: offers.filter(offer => hasCurrentOfferEvidence(offer)).length,
+    itemListElement: offers.filter(offer => hasCurrentOfferEvidence(offer)).map((offer, index) => {
       const metrics = getDealOfferMetrics(offer);
       return {
         '@type': 'ListItem',

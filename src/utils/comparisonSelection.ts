@@ -114,13 +114,19 @@ export function filterBundlesByMode(mode: string, input: Bundle[] = bundles): Bu
   return base;
 }
 
+export function hasCurrentBundleEvidence(bundle: Bundle, now = Date.now()): boolean {
+  const age = now - Date.parse(`${bundle.lastVerified}T00:00:00Z`);
+  return isVerifiedBundleSource(bundle) && Boolean(bundle.sourceUrl?.startsWith('https://')) &&
+    Number.isFinite(bundle.price) && bundle.price > 0 && Number.isFinite(age) && age >= 0 && age < 30 * 86400000;
+}
+
 function preferVerifiedRows(rows: Bundle[]): Bundle[] {
   const now = Date.now();
   const verifiedRows = rows.filter(bundle => {
     const age = now - Date.parse(`${bundle.lastVerified}T00:00:00Z`);
     return isVerifiedBundleSource(bundle) && Boolean(bundle.sourceUrl?.startsWith('https://')) &&
       Number.isFinite(bundle.price) && bundle.price > 0 &&
-      Number.isFinite(age) && age >= 0 && age < 30 * 86400000;
+      Number.isFinite(age) && age >= 0;
   });
   return verifiedRows;
 }

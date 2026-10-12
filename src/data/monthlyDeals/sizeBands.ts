@@ -2,12 +2,13 @@ import { TRACKED_DATA_SIZES_GB, type DealDataAllocation, type TrackedDataSizeGb 
 
 const TERMINAL_UPPER_BOUND_GB = 100;
 
-export function getDealSizeUpperBound(sizeGb: TrackedDataSizeGb): number {
+export function getDealSizeUpperBound(sizeGb: 2 | TrackedDataSizeGb): number {
+  if (sizeGb === 2) return 5;
   const index = TRACKED_DATA_SIZES_GB.indexOf(sizeGb);
   return TRACKED_DATA_SIZES_GB[index + 1] ?? TERMINAL_UPPER_BOUND_GB;
 }
 
-export function isAmountInDealSizeBand(amountGb: number, sizeGb: TrackedDataSizeGb): boolean {
+export function isAmountInDealSizeBand(amountGb: number, sizeGb: 2 | TrackedDataSizeGb): boolean {
   return amountGb >= sizeGb && amountGb < getDealSizeUpperBound(sizeGb);
 }
 

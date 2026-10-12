@@ -6,7 +6,7 @@ import { comparisonOfferUpdates } from '../data/comparisonOfferUpdates';
 
 /** Adapt recorded monthly bundles without changing historical snapshots or copying prices. */
 export function getComparisonOfferCatalog(): MonthlyDataDealOffer[] {
-  const offers = [...currentMonthlyDealSnapshot.offers, ...comparisonOfferUpdates];
+  const offers = [...new Map([...currentMonthlyDealSnapshot.offers, ...comparisonOfferUpdates].map(offer => [offer.id, offer])).values()];
   for (const bundle of bundles) {
     if (!isVerifiedBundleSource(bundle) || !bundle.sourceUrl || !bundle.sourceLabel || !bundle.lastVerified ||
       !['smartphone_once_off_data', 'prepaid_lte_router_data'].includes(bundle.productType ?? '') ||
@@ -28,14 +28,13 @@ export function getComparisonOfferCatalog(): MonthlyDataDealOffer[] {
       comparisonSizesGb: getExpectedComparisonSizes(allocation),
       advertisedDataLabel: `${anytimeGb}GB anytime${nightGb ? ` + ${nightGb}GB night` : ''}`,
       priceZar: bundle.price, allocation, validity: { kind: 'days', days: 30, label: bundle.validity },
-      billing: 'once_off', paymentModel: { kind: 'not_confirmed', note: 'Confirm payment requirements on the linked operator source.' },
+      billing: 'once_off', paymentModel: router ? { kind: 'prepaid', settlement: 'upfront' } : providerId === 'mtn' ? { kind: 'mixed', note: 'MTN Internet Bundles are available to PayAsYouGo and postpaid customers; confirm billing on your line.' } : { kind: 'not_confirmed', note: 'Confirm payment requirements on the linked operator source.' },
       commitment: { kind: 'once_off' }, productType,
       accessTier: router ? 'qualifying_price_plan' : 'provider_customer',
-      purchaseChannels: ['Confirm purchase channels with the operator'],
-      eligibility: router ? 'Prepaid LTE/router product; confirm the required SIM, price plan and device on the official source.' : 'Requires a compatible operator SIM; confirm qualifying price plans on the official source.',
+      purchaseChannels: router ? ['*123#', 'VodaPay app'] : ['Confirm purchase channels with the operator'],
+      eligibility: router ? 'Requires the Vodacom Prepaid LTE price plan. Community Service and CST Management SIMs are excluded. The reviewed terms do not impose a router-only device requirement.' : 'Requires a compatible operator SIM; confirm qualifying price plans on the official source.',
       importantNotes: [bundle.watchOut, bundle.note, bundle.nightWindow ? `Night window: ${bundle.nightWindow}` : nightGb ? 'Night hours are restricted; confirm the window on the official source.' : null].filter((note): note is string => Boolean(note)),
-      rankingStatus: router ? 'context_only' : 'eligible',
-      ...(router ? { rankingExclusionReason: 'LTE/router product shown for context; excluded from smartphone price awards.' } : {}),
+      rankingStatus: 'eligible',
       source: { url: bundle.sourceUrl, title: bundle.sourceLabel, checkedAt: bundle.lastVerified, official: true }
     });
   }

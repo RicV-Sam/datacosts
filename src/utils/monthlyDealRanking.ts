@@ -7,6 +7,8 @@ import {
   type TrackedDataSizeGb
 } from '../data/monthlyDeals';
 
+import { hasCurrentOfferEvidence } from './comparisonEvidence';
+
 export interface DealOfferMetrics {
   advertisedTotalGb: number;
   maximumEligibleTotalGb: number;
@@ -77,11 +79,12 @@ function tieBreak(left: MonthlyDataDealOffer, right: MonthlyDataDealOffer): numb
 }
 
 export function getDealAwards(
-  sizeGb: TrackedDataSizeGb,
-  offers: MonthlyDataDealOffer[]
+  sizeGb: 2 | TrackedDataSizeGb,
+  offers: MonthlyDataDealOffer[],
+  now = new Date()
 ): DealAwards {
   const awardEligible = offers.filter(
-    (offer) => offer.rankingStatus === 'eligible' && isMonthlyComparable(offer)
+    (offer) => offer.rankingStatus === 'eligible' && isMonthlyComparable(offer) && hasCurrentOfferEvidence(offer, now)
   );
 
   const anytimeEligible = awardEligible
@@ -108,7 +111,7 @@ export function getDealAwards(
 }
 
 export function sortDealsForDisplay(
-  sizeGb: TrackedDataSizeGb,
+  sizeGb: 2 | TrackedDataSizeGb,
   offers: MonthlyDataDealOffer[]
 ): MonthlyDataDealOffer[] {
   const awards = getDealAwards(sizeGb, offers);

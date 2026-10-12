@@ -1,4 +1,4 @@
-import type { MonthlyDataDealOffer } from './monthlyDeals';
+import { currentMonthlyDealSnapshot, getExpectedComparisonSizes, type MonthlyDataDealOffer } from './monthlyDeals';
 
 // Supplemental current evidence; historical monthly snapshots remain immutable.
 // Prices, allocations and validity checked on the official pages on 12 October 2026.
@@ -32,3 +32,54 @@ export const comparisonOfferUpdates: MonthlyDataDealOffer[] = [
     source: { url: 'https://www.vodacom.co.za/vodacom/shopping/plans/prepaid-plans', title: 'Vodacom prepaid plans and LTE pricing', checkedAt: '2026-10-12', official: true }
   }
 ];
+
+
+// Extend verified provider series without editing immutable historical snapshots.
+function checkedSeries(providerId: MonthlyDataDealOffer['providerId'], prices: Record<number, number>, templateId: string): MonthlyDataDealOffer[] {
+  const template = currentMonthlyDealSnapshot.offers.find(offer => offer.id === templateId);
+  if (!template) throw new Error(`Missing provider evidence template: ${templateId}`);
+  return Object.entries(prices).map(([amount, priceZar]) => {
+    const anytimeGb = Number(amount);
+    const allocation = { anytimeGb, nightGb: 0, streamingGb: 0, socialGb: 0, otherRestricted: [] };
+    return { ...template,
+      id: `${providerId}-reviewed-${anytimeGb}gb-2026-10-12`,
+      offerName: `${anytimeGb}GB ${template.billing === 'recurring_monthly' ? 'monthly plan' : '30-day data bundle'}`,
+      advertisedDataLabel: `${anytimeGb}GB anytime`, priceZar, allocation,
+      comparisonSizesGb: getExpectedComparisonSizes(allocation),
+      source: { ...template.source, checkedAt: '2026-10-12' }
+    };
+  });
+}
+comparisonOfferUpdates.push(
+  ...checkedSeries('airmobile', { 2: 60, 5: 100, 15: 220 }, 'airmobile-data-only-10gb-2026-10'),
+  ...checkedSeries('nedbank-connect', { 2: 60, 5: 100, 15: 220, 50: 450 }, 'nedbank-connect-prepaid-10gb-2026-10'),
+  ...checkedSeries('fnb-connect', { 6: 139, 50: 369 }, 'fnb-connect-data-plan-12gb-2026-10')
+);
+const capitecTemplate = currentMonthlyDealSnapshot.offers.find(offer => offer.id === 'capitec-connect-10gb-30-day-2026-10');
+if (!capitecTemplate) throw new Error('Missing Capitec evidence template');
+for (const [anytimeGb, priceZar, days] of [[2, 59, 30], [5, 100, 30], [50, 450, 60]]) {
+  const allocation = { anytimeGb, nightGb: 0, streamingGb: 0, socialGb: 0, otherRestricted: [], conditionalBonusGb: anytimeGb * 0.2,
+    conditionalBonusNote: 'The official linked-number column includes a 20% allocation bonus; rankings use only the guaranteed base allocation.' };
+  comparisonOfferUpdates.push({ ...capitecTemplate, id: `capitec-connect-reviewed-${anytimeGb}gb-2026-10-12`,
+    offerName: `${anytimeGb}GB ${days}-day data bundle`, advertisedDataLabel: `${anytimeGb}GB base allocation; linked-number bonus shown separately`,
+    priceZar, allocation, comparisonSizesGb: getExpectedComparisonSizes(allocation), validity: { kind: 'days', days, label: `${days} days` },
+    importantNotes: ['Rankings use the guaranteed base allocation; the linked-number bonus is conditional.'],
+    rankingStatus: days === 30 ? 'eligible' : 'context_only',
+    ...(days === 60 ? { rankingExclusionReason: '60-day validity; excluded from like-for-like monthly awards.' } : {}),
+    source: { ...capitecTemplate.source, checkedAt: '2026-10-12' }
+  });
+}
+
+
+for (const original of currentMonthlyDealSnapshot.offers.filter(offer =>
+  offer.providerId === 'standard-bank-connect' || offer.id === 'cell-c-10-plus-10-2026-10' ||
+  (offer.providerId === 'fnb-connect' && offer.billing === 'recurring_monthly'))) {
+  const notes = original.id === 'cell-c-10-plus-10-2026-10'
+    ? ['Only 10GB is pooled anytime data. The other 10GB is Nite data usable from 00:00 to 04:59:59; this window is not the 30-day bundle expiry.', 'General 30-day bundle terms confirm Prepaid, Hybrid and Postpaid eligibility.']
+    : original.importantNotes;
+  comparisonOfferUpdates.push({ ...original, importantNotes: notes, source: { ...original.source, checkedAt: '2026-10-12' } });
+}
+for (const offer of comparisonOfferUpdates.filter(offer => offer.providerId === 'fnb-connect' && offer.billing === 'recurring_monthly')) {
+  offer.commitment = { kind: 'month_to_month', cancellationNote: "Open-ended packages require one month's termination notice; fees remain payable through the notice period." };
+  offer.importantNotes = [...offer.importantNotes, "Open-ended package cancellation requires one month's notice; this is not immediate free cancellation."];
+}

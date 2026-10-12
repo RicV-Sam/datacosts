@@ -79,11 +79,47 @@ try {
   assert.notEqual(focus, 'none', 'Source link has no visible focus outline');
   await page.setJavaScriptEnabled(true);
   await page.setViewport({ width: 1440, height: 1000 });
-  const errors = []; page.on('pageerror', error => errors.push(error.message));
+  const errors = []; const assetFailures = [];
+  page.on('pageerror', error => errors.push(error.message));
+  page.on('requestfailed', request => {
+    if (request.url().startsWith(origin) && ['script', 'stylesheet'].includes(request.resourceType())) assetFailures.push(request.url());
+  });
+  page.on('response', response => {
+    if (response.url().startsWith(origin) && ['script', 'stylesheet'].includes(response.request().resourceType()) && response.status() >= 400) assetFailures.push(response.url());
+  });
+  await page.evaluateOnNewDocument(() => {
+    window.__comparisonAppRendered = false;
+    document.addEventListener('render-event', () => { window.__comparisonAppRendered = true; }, { once: true });
+  });
+  if (process.argv.includes('--block-application-scripts')) {
+    await page.setRequestInterception(true);
+    page.on('request', request => request.url().startsWith(origin) && request.resourceType() === 'script' ? request.abort() : request.continue());
+  }
   await page.goto(`${origin}/guides/cheapest-10gb-data-south-africa/`, { waitUntil: 'networkidle0' });
+  assert.deepEqual(assetFailures, [], 'Application assets failed to load');
+  await page.waitForFunction(() => window.__comparisonAppRendered === true, {timeout: 20000});
   assert.equal(await page.locator('[data-tier-comparison="10"]').wait().then(() => true), true);
   assert.deepEqual(errors, [], 'Hydrated page errors');
-  await writeFile(path.join(artifactDir, 'browser-checks.json'), JSON.stringify({ results, textEnlargement: '200%', enlargedState, sourceLinkFocus: focus, hydrationErrors: errors }, null, 2));
+  assert.deepEqual(assetFailures, [], 'Application assets failed to load');
+  // An already-published page must preserve dated comparisons rather than empty itself as evidence ages.
+  await page.evaluateOnNewDocument(() => {
+    const OriginalDate = Date;
+    const timestamp = OriginalDate.parse('2027-01-15T12:00:00Z');
+    window.Date = class extends OriginalDate {
+      constructor(...args) { super(...(args.length ? args : [timestamp])); }
+      static now() { return timestamp; }
+    };
+  });
+  for (const size of [1, 2, 5, 10, 15, 20, 50]) {
+    await page.goto(`${origin}/guides/cheapest-${size}gb-data-south-africa/`, {waitUntil:'networkidle0'});
+    await page.waitForFunction(() => window.__comparisonAppRendered === true, {timeout:20000});
+    const aged = await page.evaluate(() => ({ text: document.querySelector('#comparison-table').textContent,
+      awardBadges: [...document.querySelectorAll('[data-comparison-offer]')].filter(el => /Best R \/ anytime GB|Lowest advertised price|Best overall/.test(el.textContent)).length }));
+    assert.ok(aged.text.includes('Recorded reference') || aged.text.includes('recorded references'), `${size}GB aged evidence was not labelled`);
+    assert.ok(/R[0-9]/.test(aged.text), `${size}GB references disappeared after publication`);
+    assert.equal(aged.awardBadges, 0, `${size}GB stale evidence won an award`);
+  }
+  await writeFile(path.join(artifactDir, 'browser-checks.json'), JSON.stringify({ results, textEnlargement: '200%', enlargedState, sourceLinkFocus: focus, hydrationErrors: errors, assetFailures, agedReferenceChecks: 7 }, null, 2));
   console.log(`Comparison browser checks passed: ${results.length} page/viewport combinations without JavaScript, 200% comparison text, source-link focus and hydrated 10GB page.`);
 } finally {
   await browser.close();

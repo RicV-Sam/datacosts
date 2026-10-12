@@ -51,20 +51,22 @@ test('10GB display separates pooled anytime from restricted totals and shares tr
 test('catalogue adapter deduplicates existing products and preserves 50GB LTE conditions', () => {
   assert.equal(catalog.filter(offer => offer.providerId === 'vodacom' && offer.allocation.anytimeGb === 10 && offer.priceZar === 149).length, 1);
   const tier = getTierComparison('cheapest-50gb', catalog, NOW)!;
-  assert.equal(tier.offers[0].allocation.anytimeGb, 50);
-  assert.equal(tier.offers[0].allocation.nightGb, 50);
-  assert.equal(tier.offers[0].rankingStatus, 'context_only');
-  assert.equal(tier.awards.bestOverall, null);
+  const lte = tier.offers.find(offer => offer.id === 'recorded-voda-monthly-50gb')!;
+  assert.equal(lte.allocation.anytimeGb, 50);
+  assert.equal(lte.allocation.nightGb, 50);
+  assert.equal(lte.rankingStatus, 'eligible');
+  assert.equal(tier.awards.bestOverall?.id, lte.id);
 });
 
-test('new 2GB evidence retains 14 vs 30-day validity without awarding a mixed-validity winner', () => {
+test('new 2GB evidence retains 14 vs 30-day validity with awards restricted to eligible monthly pooled-anytime offers', () => {
   const tier = getTierComparison('cheapest-2gb', catalog, NOW)!;
   assert.equal(tier.fallback, false);
   assert.ok(tier.offers.some(offer => offer.id === 'mtn-monthly-2-plus-2-2026-10'));
   assert.ok(tier.offers.some(offer => offer.id === 'vodacom-prepaid-lte-2-plus-2-2026-10'));
   assert.equal(tier.offers.find(offer => offer.providerId === 'mtn')!.priceZar, 155);
   assert.equal(tier.offers.find(offer => offer.id === 'vodacom-prepaid-lte-2-plus-2-2026-10')!.validity.label, '14 days');
-  assert.equal(tier.awards.bestOverall, null);
+  assert.equal(tier.awards.bestOverall?.priceZar, 59);
+  assert.equal(tier.awards.bestOverall?.allocation.anytimeGb, 2);
 });
 
 test('missing target class can show larger alternatives but cannot manufacture a target winner', () => {
@@ -88,5 +90,38 @@ test('stale, future, unverified, malformed and non-official evidence fails close
     { ...offer, priceZar: NaN },
     { ...offer, allocation: { ...offer.allocation, anytimeGb: -1 } }
   ]) assert.equal(hasCurrentOfferEvidence(changed, NOW), false);
-  assert.equal(getTierComparison('cheapest-10gb', catalog, new Date('2026-11-12T12:00:00Z'))!.offers.length, 0);
+  const overdue = getTierComparison('cheapest-10gb', catalog, new Date('2027-01-15T12:00:00Z'))!;
+  assert.ok(overdue.offers.length > 0, 'dated reference comparisons must not silently disappear');
+  assert.equal(overdue.currentOffers.length, 0);
+  assert.equal(overdue.awards.bestOverall, null);
+  assert.equal(overdue.hasOverdueEvidence, true);
+});
+
+
+test('sparse tiers include newly checked offers and retain provider eligibility', () => {
+  const tier15 = getTierComparison('cheapest-15gb', catalog, NOW)!;
+  assert.equal(tier15.upperGb, 20);
+  assert.ok(tier15.offers.some(offer => offer.providerId === 'airmobile' && offer.priceZar === 220));
+  assert.ok(tier15.offers.some(offer => offer.providerId === 'nedbank-connect' && offer.priceZar === 220));
+  assert.equal(tier15.awards.bestOverall?.allocation.anytimeGb, 15);
+  const tier50 = getTierComparison('cheapest-50gb', catalog, NOW)!;
+  assert.ok(tier50.offers.some(offer => offer.providerId === 'nedbank-connect' && offer.priceZar === 450));
+  assert.ok(tier50.offers.some(offer => offer.providerId === 'fnb-connect' && offer.priceZar === 369));
+  const capitec = tier50.offers.find(offer => offer.providerId === 'capitec-connect')!;
+  assert.equal(capitec.rankingStatus, 'context_only');
+  assert.equal(capitec.validity.label, '60 days');
+});
+
+
+test('payment descriptions stay tied to the verified provider', () => {
+  const vodacom = catalog.find(offer => offer.id === 'recorded-voda-monthly-3gb')!;
+  assert.equal(vodacom.paymentModel?.kind, 'not_confirmed');
+  assert.ok(!JSON.stringify(vodacom.paymentModel).includes('MTN'));
+});
+
+test('monthly tracker awards also reject overdue price evidence', () => {
+  const awards = getDealAwards(10, catalog, new Date('2027-01-15T12:00:00Z'));
+  assert.equal(awards.bestOverall, null);
+  assert.equal(awards.bestAnytimeValue, null);
+  assert.equal(awards.lowestAdvertisedPrice, null);
 });

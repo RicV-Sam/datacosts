@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, BarChart3, CheckCircle2, ExternalLink, Info, ShieldCheck, Tag } from 'lucide-react';
-import { CORE_NETWORKS, filterBundlesByMode, pickBestRowBundleForMode, volumeToGb, isNightBundle, isMonthlyBundle, isSocialBundle } from '../utils/comparisonSelection';
+import { CORE_NETWORKS, filterBundlesByMode, pickBestRowBundleForMode, volumeToGb, isNightBundle, isMonthlyBundle, isSocialBundle, hasCurrentBundleEvidence } from '../utils/comparisonSelection';
 import { MonthlyDealComparison } from '../components/deals/MonthlyDealComparison';
 import { getTierComparison, getTierTargetGb } from '../utils/tierComparison';
 import { buildMonthlyDealItemListSchema } from '../utils/monthlyDealStructuredData';
@@ -64,7 +64,7 @@ function getBundleWatchOut(bundle: Bundle): string {
 
 function getWinners(mode: string, rows: ComparisonRow[]): WinnerCard[] {
   const validRows = rows
-    .filter((row) => row.bundle && isVerifiedBundleSource(row.bundle))
+    .filter((row) => row.bundle && hasCurrentBundleEvidence(row.bundle))
     .map((row) => row.bundle as Bundle);
   if (!validRows.length) {
     return [];
@@ -197,7 +197,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
   ] : getWinners(definition.mode, rows);
   const broaderDealSize = tier && [10, 20].includes(tier.targetGb) ? tier.targetGb : null;
   const listedRows = rows.filter((row) => row.bundle).map((row) => row.bundle as Bundle);
-  const verifiedListedRows = listedRows.filter(isVerifiedBundleSource);
+  const verifiedListedRows = listedRows.filter(bundle => hasCurrentBundleEvidence(bundle));
   const hasManualRequiredRows = listedRows.some((bundle) => bundle.sourceConfidence === 'manual_required');
   const dateModifiedIso = getComparisonGuideModifiedIso(definition.slug);
   const datePublishedIso = getDefaultPublishedIso();
@@ -322,7 +322,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
         <script type="application/ld+json">{JSON.stringify(webPageSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-        {tier && tier.offers.length > 0 ? <script type="application/ld+json">{JSON.stringify(buildMonthlyDealItemListSchema(definition.tableTitle, canonicalUrl, tier.offers))}</script> : verifiedListedRows.length > 0 && <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>}
+        {tier && tier.currentOffers.length > 0 ? <script type="application/ld+json">{JSON.stringify(buildMonthlyDealItemListSchema(definition.tableTitle, canonicalUrl, tier.currentOffers))}</script> : verifiedListedRows.length > 0 && <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>}
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
@@ -406,8 +406,9 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
               <p className="mb-4 text-sm leading-relaxed text-slate-600">
                 {tier.fallback ? `No source-checked ${tier.targetGb}GB-class offer is recorded in this catalogue. These are larger ${tier.sizeGb}GB-class alternatives, not exact ${tier.targetGb}GB matches; no target-size winner is awarded.`
                   : `This class runs from ${tier.targetGb}GB to below ${tier.upperGb}GB of pooled anytime data or advertised total. Restricted totals are labelled and cannot win pooled-anytime awards.`}
-                {' '}Only offers eligible under the tracker methodology can win awards; price-plan eligibility still applies. For mixed-validity 2GB offers and classes with only context rows, no pooled-anytime price award is made. R / anytime GB excludes night, social, streaming, conditional bonuses and daily-release wallets. Source dates describe the recorded pricing evidence, not today's editorial update. Confirm current checkout terms.
+                {' '}Only offers eligible under the tracker methodology can win awards; price-plan eligibility still applies. Awards compare only eligible monthly allowances; shorter-validity and context-only offers cannot win a monthly award. R / anytime GB excludes night, social, streaming, conditional bonuses and daily-release wallets. Source dates describe the recorded pricing evidence, not today's editorial update. Confirm current checkout terms.
               </p>
+              {tier.hasOverdueEvidence && <p className="mb-4 font-semibold text-amber-800">Some evidence is older than 30 days. Those rows remain dated recorded references for comparison, require a fresh operator price check and are excluded from current awards.</p>}
               {tier.offers.length > 0 ? <MonthlyDealComparison sizeGb={tier.sizeGb} offers={tier.offers}
                 bestAnytimeValueId={tier.awards.bestAnytimeValue?.id}
                 lowestAdvertisedId={tier.awards.lowestAdvertisedPrice?.id} />
@@ -439,8 +440,8 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
                         <>
                           <div>{row.bundle.name}</div>
                           <div className="mt-1 text-sm">Anytime: {row.bundle.anytimeData}; Night: {row.bundle.nightData || '0GB'}</div>
-                          <div className={`mt-1 text-[10px] font-black uppercase tracking-wider ${isVerifiedBundleSource(row.bundle) ? 'text-emerald-700' : 'text-amber-700'}`}>
-                            {isVerifiedBundleSource(row.bundle) ? 'Source checked' : 'Confirm live - excluded from leader claims'}
+                          <div className={`mt-1 text-[10px] font-black uppercase tracking-wider ${hasCurrentBundleEvidence(row.bundle) ? 'text-emerald-700' : 'text-amber-700'}`}>
+                            {hasCurrentBundleEvidence(row.bundle) ? 'Source checked' : 'Recorded reference - recheck before buying; excluded from current awards'}
                           </div>
                           {getBundleSourceSummary(row.bundle) && (
                             <div className="mt-1 text-[10px] font-medium text-slate-500">{getBundleSourceSummary(row.bundle)}</div>
@@ -457,11 +458,11 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
                     </td>
                     <td className="px-6 py-4 text-xs font-bold uppercase tracking-wide text-slate-600">{row.bundle ? getBundleType(row.bundle) : 'N/A'}</td>
                     <td className="px-6 py-4 text-slate-700">
-                      {row.bundle ? isVerifiedBundleSource(row.bundle) ? `R${row.bundle.price}` : <><span>Confirm</span><span className="block text-xs text-slate-500">Recorded reference: R{row.bundle.price}</span></> : 'N/A'}
+                      {row.bundle ? hasCurrentBundleEvidence(row.bundle) ? `R${row.bundle.price}` : <><span>Confirm</span><span className="block text-xs text-slate-500">Recorded reference: R{row.bundle.price}</span></> : 'N/A'}
                     </td>
                     <td className="px-6 py-4 text-slate-700">{row.bundle ? row.bundle.validity : 'N/A'}</td>
-                    <td className="px-6 py-4 text-slate-700">{row.bundle ? isVerifiedBundleSource(row.bundle) ? `R${row.bundle.costPerGb.toFixed(2)}/GB` : 'Confirm price and terms first' : 'N/A'}</td>
-                    <td className="px-6 py-4 text-slate-700">{row.bundle ? isVerifiedBundleSource(row.bundle) ? row.bundle.bestFor || 'General prepaid use' : 'Confirm current terms' : 'No listed candidate'}</td>
+                    <td className="px-6 py-4 text-slate-700">{row.bundle ? hasCurrentBundleEvidence(row.bundle) ? `R${row.bundle.costPerGb.toFixed(2)}/GB` : 'Confirm price and terms first' : 'N/A'}</td>
+                    <td className="px-6 py-4 text-slate-700">{row.bundle ? hasCurrentBundleEvidence(row.bundle) ? row.bundle.bestFor || 'General prepaid use' : 'Confirm current terms' : 'No listed candidate'}</td>
                     <td className="px-6 py-4 text-amber-700">{row.bundle ? getBundleWatchOut(row.bundle) : 'Check operator menu for current offer'}</td>
                   </tr>
                 ))}
