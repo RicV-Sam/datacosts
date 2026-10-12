@@ -27,7 +27,9 @@ try {
   for (const size of [1, 2, 5, 10, 15, 20, 50]) {
     for (const width of [390, 768, 1440]) {
       await page.setViewport({ width, height: 1000 });
-      const response = await page.goto(`${origin}/guides/cheapest-${size}gb-data-south-africa/`, { waitUntil: 'domcontentloaded' });
+      // With application JavaScript disabled, DOMContentLoaded can precede stylesheet
+      // completion. Measure only after assets settle, then await their font layout.
+      const response = await page.goto(`${origin}/guides/cheapest-${size}gb-data-south-africa/`, { waitUntil: 'networkidle0' });
       assert.equal(response.status(), 200);
       await page.evaluate(() => document.fonts.ready);
       const state = await page.evaluate(() => {
@@ -66,7 +68,7 @@ try {
   }
   // Text enlargement and visible focus on the source links remain useful without hydration.
   await page.setViewport({ width: 390, height: 1000 });
-  await page.goto(`${origin}/guides/cheapest-10gb-data-south-africa/`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`${origin}/guides/cheapest-10gb-data-south-africa/`, { waitUntil: 'networkidle0' });
   await page.addStyleTag({ content: 'html { font-size: 200% !important; }' });
   const enlargedState = await page.evaluate(() => ({ pageWidth: document.documentElement.scrollWidth,
     comparisonRight: document.querySelector('[data-tier-comparison]').getBoundingClientRect().right,
