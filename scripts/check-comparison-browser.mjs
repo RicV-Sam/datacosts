@@ -38,7 +38,7 @@ try {
         return { width: innerWidth, pageWidth: document.documentElement.scrollWidth, sourceLinks: comparison?.querySelectorAll('a[href^="https://"]').length ?? 0,
           hasAllocation: text.includes('Anytime') || text.includes('anytime'), hasPrice: /R\d/.test(text), text };
       });
-      if (state.pageWidth > width + 1) console.log(await page.evaluate(() => [...document.querySelectorAll('body *')].map(el=>({tag:el.tagName,cls:el.className,right:el.getBoundingClientRect().right,text:el.textContent?.slice(0,80)})).filter(el=>el.right > innerWidth+1).slice(0,8)));
+      if (state.pageWidth > width + 1) console.log(JSON.stringify(await page.evaluate(() => ({viewport:innerWidth,documentWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth,bodyWidth:document.body.scrollWidth,elements:[...document.querySelectorAll('html, body, body *')].map(el=>({tag:el.tagName,cls:el.className,left:el.getBoundingClientRect().left,right:el.getBoundingClientRect().right,scrollWidth:el.scrollWidth,clientWidth:el.clientWidth,overflow:getComputedStyle(el).overflowX,transform:getComputedStyle(el).transform,text:el.textContent?.slice(0,60)})).filter(el=>el.right > innerWidth+1 || (el.scrollWidth>el.clientWidth+1 && getComputedStyle(document.documentElement).display)).slice(0,25)})),null,2));
       assert.ok(state.pageWidth <= width + 1, `${size}GB overflows at ${width}px`);
       assert.ok(state.sourceLinks > 0 && state.hasAllocation && state.hasPrice, `${size}GB missing useful content without JavaScript`);
       if (size > 1) {
