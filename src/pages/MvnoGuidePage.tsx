@@ -134,7 +134,8 @@ function getProfileOffers(profile: MvnoProviderProfile) {
 }
 
 function hasCommitment(profile: MvnoProviderProfile, commitment: Exclude<CommitmentChoice, 'all'>): boolean {
-  return getProfileOffers(profile).some((offer) => offer.commitment?.kind === commitment);
+  return profile.editorialCommitments?.includes(commitment)
+    || getProfileOffers(profile).some((offer) => offer.commitment?.kind === commitment);
 }
 
 function buildArticleSchema(canonicalUrl: string, dateModified: string, sourceUrls: string[]) {
@@ -142,7 +143,7 @@ function buildArticleSchema(canonicalUrl: string, dateModified: string, sourceUr
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'MVNOs in South Africa: Prepaid and Monthly Options',
-    description: 'Compare six South African MVNOs by access, billing flexibility, bank rewards, standard benefits and user fit.',
+    description: 'Compare seven South African MVNOs by access, billing flexibility, bank rewards, recharge channels and user fit.',
     url: canonicalUrl,
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
     image: DEFAULT_OG_IMAGE_URL,
@@ -194,7 +195,7 @@ export const MvnoGuidePage: React.FC<MvnoGuidePageProps> = ({ onNavigate, onScro
   const [commitmentChoice, setCommitmentChoice] = React.useState<CommitmentChoice>('all');
 
   const pageTitle = 'MVNOs in South Africa: Prepaid & Monthly Options';
-  const metaDescription = 'Compare AirMobile, Capitec Connect, FNB Connect, Melon Mobile, Nedbank Connect and Standard Bank Connect by pricing model, rewards and user fit.';
+  const metaDescription = 'Compare AirMobile, Capitec, FNB, Melon, Nedbank, Standard Bank and TFG Connect by payment model, recharge channels, rewards and user fit.';
   const canonicalUrl = toCanonicalUrl(MVNO_GUIDE_PATH);
   const modifiedIso = getRouteModifiedIso(MVNO_GUIDE_PATH);
   const reviewedDisplay = formatIsoForDisplay(`${MVNO_REVIEWED_AT}T00:00:00.000Z`);
@@ -263,9 +264,9 @@ export const MvnoGuidePage: React.FC<MvnoGuidePageProps> = ({ onNavigate, onScro
           <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:py-16 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-end">
             <div>
               <div className="mb-5 flex flex-wrap items-center gap-3 text-sm font-bold text-[#dff9dc]">
-                <span className="inline-flex items-center gap-2"><CalendarClock className="h-4 w-4" aria-hidden="true" /> Reviewed {reviewedDisplay}</span>
+                <span className="inline-flex items-center gap-2"><CalendarClock className="h-4 w-4" aria-hidden="true" /> Core profiles reviewed {reviewedDisplay}</span>
                 <span aria-hidden="true">•</span>
-                <span>Six provider profiles</span>
+                <span>{mvnoProviderProfiles.length} provider profiles · TFG added 12 October 2026</span>
               </div>
               <h1 className="max-w-4xl text-4xl font-black tracking-[-0.04em] sm:text-5xl lg:text-6xl">
                 MVNOs in South Africa
@@ -385,13 +386,13 @@ export const MvnoGuidePage: React.FC<MvnoGuidePageProps> = ({ onNavigate, onScro
                       </div>
                       <div className="mt-5 border-l-4 border-[#a0f399] bg-[#f6fbf5] p-4">
                         <p className="text-xs font-black uppercase tracking-[0.14em] text-[#166534]">Current tracker sample</p>
-                        <p className="mt-2 text-sm font-bold leading-6 text-slate-800">
+                        {offers.length === 0 ? <p className="mt-2 text-sm font-bold leading-6 text-slate-800">Editorial profile only. No price rows in the current tracker; this provider is outside its price rankings.</p> : <><p className="mt-2 text-sm font-bold leading-6 text-slate-800">
                           {offers.length} row{offers.length === 1 ? '' : 's'}
                           {minPrice !== null && maxPrice !== null ? ` · ${formatRand(minPrice)}${maxPrice === minPrice ? '' : `–${formatRand(maxPrice)}`}` : ''}
                           {' · '}{profileOnceOff} once-off · {profileMonthly} month-to-month
                           {profileUnconfirmed > 0 ? ` · ${profileUnconfirmed} commitment not confirmed` : ''}
                         </p>
-                        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">Payment: {paymentLabels.join(' · ')}</p>
+                        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">Payment: {paymentLabels.join(' · ')}</p></>}
                       </div>
                     </div>
 
@@ -441,7 +442,7 @@ export const MvnoGuidePage: React.FC<MvnoGuidePageProps> = ({ onNavigate, onScro
                           </a>
                         ) : null}
                       </div>
-                      <p className="mt-4 text-xs font-semibold text-slate-500">Prices are maintained separately in the monthly tracker.</p>
+                      <p className="mt-4 text-xs font-semibold text-slate-500">{offers.length > 0 ? 'Prices are maintained separately in the monthly tracker.' : 'Verified payment choices are included in the chooser; they do not add price rows to the tracker.'}</p>
                     </div>
                   </article>
                 );

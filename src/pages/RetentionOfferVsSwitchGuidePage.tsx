@@ -24,6 +24,7 @@ import { TrustPanel } from '../components/TrustPanel';
 import { DataCostAnswerCta, DataCostAnswerIntro } from '../components/DataCostAnswer';
 import { NavigateFunction } from '../types';
 import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
+import { calculateStagedOfferCost, type StagedOfferValues } from '../utils/costCalculators';
 import {
   DEFAULT_OG_IMAGE_URL,
   SITE_BRAND_NAME,
@@ -38,11 +39,7 @@ interface Props {
   onScrollTo: (id: string) => void;
 }
 
-interface OfferValues {
-  monthly: number;
-  months: number;
-  onceOff: number;
-}
+type OfferValues = StagedOfferValues;
 
 const routePath = '/guides/cellphone-retention-offer-vs-switching-south-africa/';
 const published = '2026-07-19T00:00:00.000Z';
@@ -109,12 +106,31 @@ const relatedGuides = [
   ['/network/', 'Compare networks', 'Check current network pages and coverage context before switching.']
 ];
 
-const money = new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR', maximumFractionDigits: 0 });
-const safeNumber = (value: string) => Math.max(0, Number(value) || 0);
+const money = new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR', maximumFractionDigits: 2 });
+const safeNumber = (value: string) => Number.isFinite(Number(value)) ? Math.max(0, Number(value)) : 0;
+
+function OfferPriceFields({ label, offer, onChange, inputClass }: {
+  label: string; offer: OfferValues; onChange: (field: keyof OfferValues, value: string) => void; inputClass: string;
+}) {
+  const fields: Array<{ field: keyof OfferValues; title: string; min: number; max: number; step: string }> = [
+    { field: 'monthly', title: 'Normal monthly price (R)', min: 0, max: 1000000, step: '0.01' },
+    { field: 'months', title: 'Term (months)', min: 1, max: 1200, step: '1' },
+    { field: 'onceOff', title: 'Once-off costs (R)', min: 0, max: 1000000, step: '0.01' },
+    { field: 'introMonthly', title: 'Introductory monthly price (R)', min: 0, max: 1000000, step: '0.01' },
+    { field: 'introMonths', title: 'Introductory months (0 if none)', min: 0, max: offer.months, step: '1' }
+  ];
+  return <><div className="grid gap-4 sm:grid-cols-2">{fields.map(({ field, title, min, max, step }) =>
+    <label key={field} className="text-xs font-black uppercase tracking-wider text-slate-600">{title}
+      <input aria-label={`${label} ${title}`} type="number" min={min} max={max} step={step} inputMode={step === '1' ? 'numeric' : 'decimal'} value={offer[field]} onChange={(event) => onChange(field, event.target.value)} className={inputClass} />
+    </label>)}</div>
+    <p className="mt-3 text-xs font-medium leading-5 text-slate-600">The introductory price applies to the first entered months. The normal price applies afterwards. Use 0 introductory months for a flat price.</p>
+    {!calculateStagedOfferCost(offer) && <p role="status" className="mt-3 text-sm font-bold text-rose-800">Use a whole term of 1–1200 months, whole introductory months between 0 and the term, and prices from R0 to R1,000,000.</p>}
+  </>;
+}
 
 export const RetentionOfferVsSwitchGuidePage: React.FC<Props> = ({ onNavigate, onScrollTo }) => {
-  const [retention, setRetention] = React.useState<OfferValues>({ monthly: 0, months: 24, onceOff: 0 });
-  const [alternative, setAlternative] = React.useState<OfferValues>({ monthly: 0, months: 24, onceOff: 0 });
+  const [retention, setRetention] = React.useState<OfferValues>({ monthly: 0, months: 24, onceOff: 0, introMonthly: 0, introMonths: 0 });
+  const [alternative, setAlternative] = React.useState<OfferValues>({ monthly: 0, months: 24, onceOff: 0, introMonthly: 0, introMonths: 0 });
   const [settlement, setSettlement] = React.useState(0);
   const [sameDevice, setSameDevice] = React.useState(false);
   const [coverageWorks, setCoverageWorks] = React.useState(false);
@@ -124,16 +140,18 @@ export const RetentionOfferVsSwitchGuidePage: React.FC<Props> = ({ onNavigate, o
   const description = 'Compare a cellphone retention offer with switching networks in South Africa using full-term costs, device value, coverage, promotions and a practical calculator.';
   const canonicalUrl = toCanonicalUrl(routePath);
   const modified = getRouteModifiedIso(routePath);
-  const retentionTotal = (retention.monthly * retention.months) + retention.onceOff;
-  const alternativeTotal = (alternative.monthly * alternative.months) + alternative.onceOff + settlement;
-  const retentionEffective = retention.months ? retentionTotal / retention.months : 0;
-  const alternativeEffective = alternative.months ? alternativeTotal / alternative.months : 0;
+  const retentionCost = calculateStagedOfferCost(retention);
+  const alternativeCost = calculateStagedOfferCost({ ...alternative, onceOff: alternative.onceOff + settlement });
+  const retentionTotal = retentionCost?.total ?? 0;
+  const alternativeTotal = alternativeCost?.total ?? 0;
+  const retentionEffective = retentionCost?.effective ?? 0;
+  const alternativeEffective = alternativeCost?.effective ?? 0;
   const sameTerm = retention.months === alternative.months;
   const difference = Math.abs(retentionTotal - alternativeTotal);
   const lowerCost = retentionTotal === alternativeTotal ? 'The entered totals are equal.' : retentionTotal < alternativeTotal
     ? `The retention offer is ${money.format(difference)} lower over this period.`
     : `The alternative is ${money.format(difference)} lower over this period.`;
-  const comparisonReady = sameTerm && sameDevice && coverageWorks;
+  const comparisonReady = sameTerm && sameDevice && coverageWorks && !!retentionCost && !!alternativeCost;
 
   const breadcrumbs = [
     { label: 'Home', href: '/' },
@@ -169,7 +187,7 @@ export const RetentionOfferVsSwitchGuidePage: React.FC<Props> = ({ onNavigate, o
   };
 
   const updateOffer = (offer: 'retention' | 'alternative', field: keyof OfferValues, value: string) => {
-    const update = field === 'months' ? Math.max(1, Math.round(safeNumber(value))) : safeNumber(value);
+    const update = safeNumber(value);
     if (offer === 'retention') setRetention((current) => ({ ...current, [field]: update }));
     else setAlternative((current) => ({ ...current, [field]: update }));
   };
@@ -222,23 +240,15 @@ export const RetentionOfferVsSwitchGuidePage: React.FC<Props> = ({ onNavigate, o
         <div className="grid gap-5 lg:grid-cols-2">
           <fieldset className="rounded-3xl bg-[#f6fff4] p-5">
             <legend className="px-2 text-lg font-black text-[#1b6d24]">Retention offer</legend>
-            <div className="grid gap-4 sm:grid-cols-3">
-              <label className="text-xs font-black uppercase tracking-wider text-slate-500">Monthly price (R)<input aria-label="Retention monthly price" type="number" min="0" inputMode="decimal" value={retention.monthly} onChange={(event) => updateOffer('retention', 'monthly', event.target.value)} className={inputClass} /></label>
-              <label className="text-xs font-black uppercase tracking-wider text-slate-500">Term (months)<input aria-label="Retention term in months" type="number" min="1" inputMode="numeric" value={retention.months} onChange={(event) => updateOffer('retention', 'months', event.target.value)} className={inputClass} /></label>
-              <label className="text-xs font-black uppercase tracking-wider text-slate-500">Once-off costs (R)<input aria-label="Retention once-off costs" type="number" min="0" inputMode="decimal" value={retention.onceOff} onChange={(event) => updateOffer('retention', 'onceOff', event.target.value)} className={inputClass} /></label>
-            </div>
-            <div className="mt-5 rounded-2xl bg-white p-4"><p className="text-xs font-black uppercase tracking-wider text-slate-400">Full-term total</p><p className="text-3xl font-black text-slate-950">{money.format(retentionTotal)}</p><p className="text-xs font-bold text-slate-500">Effective {money.format(retentionEffective)} per month</p></div>
+            <OfferPriceFields label="Retention" offer={retention} onChange={(field, value) => updateOffer('retention', field, value)} inputClass={inputClass} />
+            <div className="mt-5 rounded-2xl bg-white p-4"><p className="text-xs font-black uppercase tracking-wider text-slate-400">Full-term total</p><p className="text-3xl font-black text-slate-950">{retentionCost ? money.format(retentionTotal) : 'Check inputs'}</p>{retentionCost && <p className="text-xs font-bold text-slate-500">Effective {money.format(retentionEffective)} per month</p>}</div>
           </fieldset>
 
           <fieldset className="rounded-3xl bg-sky-50 p-5">
             <legend className="px-2 text-lg font-black text-sky-800">Best realistic alternative</legend>
-            <div className="grid gap-4 sm:grid-cols-3">
-              <label className="text-xs font-black uppercase tracking-wider text-slate-500">Monthly price (R)<input aria-label="Alternative monthly price" type="number" min="0" inputMode="decimal" value={alternative.monthly} onChange={(event) => updateOffer('alternative', 'monthly', event.target.value)} className={inputClass} /></label>
-              <label className="text-xs font-black uppercase tracking-wider text-slate-500">Term (months)<input aria-label="Alternative term in months" type="number" min="1" inputMode="numeric" value={alternative.months} onChange={(event) => updateOffer('alternative', 'months', event.target.value)} className={inputClass} /></label>
-              <label className="text-xs font-black uppercase tracking-wider text-slate-500">Once-off costs (R)<input aria-label="Alternative once-off costs" type="number" min="0" inputMode="decimal" value={alternative.onceOff} onChange={(event) => updateOffer('alternative', 'onceOff', event.target.value)} className={inputClass} /></label>
-            </div>
-            <label className="mt-4 block text-xs font-black uppercase tracking-wider text-slate-500">Old-account settlement to switch (R)<input aria-label="Old account settlement" type="number" min="0" inputMode="decimal" value={settlement} onChange={(event) => setSettlement(safeNumber(event.target.value))} className={inputClass} /></label>
-            <div className="mt-5 rounded-2xl bg-white p-4"><p className="text-xs font-black uppercase tracking-wider text-slate-400">Full-term total</p><p className="text-3xl font-black text-slate-950">{money.format(alternativeTotal)}</p><p className="text-xs font-bold text-slate-500">Effective {money.format(alternativeEffective)} per month</p></div>
+            <OfferPriceFields label="Alternative" offer={alternative} onChange={(field, value) => updateOffer('alternative', field, value)} inputClass={inputClass} />
+            <label className="mt-4 block text-xs font-black uppercase tracking-wider text-slate-500">Old-account settlement to switch (R)<input aria-label="Old account settlement" type="number" min="0" max="1000000" step="0.01" inputMode="decimal" value={settlement} onChange={(event) => setSettlement(safeNumber(event.target.value))} className={inputClass} /></label>
+            <div className="mt-5 rounded-2xl bg-white p-4"><p className="text-xs font-black uppercase tracking-wider text-slate-400">Full-term total</p><p className="text-3xl font-black text-slate-950">{alternativeCost ? money.format(alternativeTotal) : 'Check inputs'}</p>{alternativeCost && <p className="text-xs font-bold text-slate-500">Effective {money.format(alternativeEffective)} per month</p>}{!alternativeCost && <p className="mt-2 text-xs font-bold text-rose-800">Check the alternative inputs and keep combined once-off costs and settlement at or below R1,000,000.</p>}</div>
           </fieldset>
         </div>
 
@@ -251,7 +261,8 @@ export const RetentionOfferVsSwitchGuidePage: React.FC<Props> = ({ onNavigate, o
           <p className="font-black">{comparisonReady ? lowerCost : 'The comparison is not ready yet.'}</p>
           <p className="mt-1 text-sm font-medium leading-relaxed opacity-80">{!sameTerm ? 'Set both offers to the same term before comparing their totals. ' : ''}{!sameDevice ? 'Confirm equivalent device value. ' : ''}{!coverageWorks ? 'Confirm usable alternative coverage. ' : ''}{comparisonReady ? 'Now compare flexibility, useful allocations, promotion rules and written terms before deciding.' : ''}</p>
         </div>
-        <p className="mt-3 text-xs font-bold leading-relaxed text-slate-500">Estimate only: it assumes the entered monthly amount applies throughout the stated term. Add any expected mandatory fees or phone cost. It does not predict future tariff increases, usage or trade-in assessments.</p>
+        <p className="mt-3 text-xs font-bold leading-relaxed text-slate-500">Estimate only: total = introductory price × introductory months + normal price × remaining months + once-off costs. The switching total also includes the old-account settlement. Prices are rounded to cents before multiplication. Add mandatory fees or an equivalent phone cost. This models one introductory period and does not predict future tariff increases, usage or trade-in assessments.</p>
+        <p className="mt-3 text-xs font-medium text-slate-600">Calculator updated 12 October 2026. The guide’s other source review dates are unchanged.</p>
       </section>
 
       <section className="mb-10">
@@ -332,7 +343,7 @@ export const RetentionOfferVsSwitchGuidePage: React.FC<Props> = ({ onNavigate, o
 
       <DataCostAnswerCta />
       <TrustPanel
-        lastReviewed={formatIsoForDisplay(modified)}
+        lastReviewed={formatIsoForDisplay(published)}
         sources="Consumer Protection Act section 14 and regulation 5, ICASA mobile number portability guidance, plus official Vodacom, MTN, Telkom and Cell C contract, upgrade, promotion and month-to-month terms."
       />
     </main>

@@ -12,8 +12,9 @@ export const MVNO_PROVIDER_IDS = [
   'fnb-connect',
   'melon-mobile',
   'nedbank-connect',
-  'standard-bank-connect'
-] as const satisfies readonly DealProviderId[];
+  'standard-bank-connect',
+  'tfg-connect'
+] as const satisfies readonly (DealProviderId | 'tfg-connect')[];
 
 export type MvnoProviderId = (typeof MVNO_PROVIDER_IDS)[number];
 export type MvnoBankId = 'capitec' | 'fnb' | 'nedbank' | 'standard-bank';
@@ -59,6 +60,8 @@ export interface MvnoProviderProfile {
   whatYouNeed: string;
   watchOut: string;
   watchOutSource?: MvnoEditorialSource;
+  // Editorial-only profiles can have verified payment choices without price rows.
+  editorialCommitments?: Array<'once_off' | 'month_to_month'>;
   benefits: MvnoBenefit[];
   sources: MvnoEditorialSource[];
 }
@@ -151,7 +154,43 @@ const standardBankProfessional = officialSource(
   'https://www.standardbank.co.za/static_file/South%20Africa/PDF/Brochures/Welcome-to-Professional-Banking-2026.pdf'
 );
 
+const tfgHome = officialSource('TFG Connect payment options and recharge channels', 'https://tfgconnect.co.za/', '2026-10-12');
+const tfgTerms = officialSource('TFG Connect subscriber terms, V7 (5 February 2025)', 'https://tfgconnect.co.za/terms', '2026-10-12');
+const tfgBash = officialSource('Bash TFG Connect voucher terms', 'https://help.bash.com/support/solutions/articles/101000574516-bash-tfg-connect-voucher-terms-conditions', '2026-10-12');
+
 export const mvnoProviderProfiles: MvnoProviderProfile[] = [
+  {
+    id: 'tfg-connect',
+    name: 'TFG Connect',
+    bankId: null,
+    accessLabel: 'Retailer MVNO · prepaid or TFG Money Top Up',
+    fitTags: ['flexible_topups', 'monthly_data'],
+    editorialCommitments: ['once_off', 'month_to_month'],
+    bestFor: 'Readers who want pay-as-you-go recharges through TFG stores or digital channels, or a monthly Top-Up subscription billed to an existing TFG Money Account.',
+    whyItSaves: 'Pay-as-you-go lets you choose when to recharge. Compare the usable allowance and expiry with your current bundle; this profile makes no cheapest-price claim.',
+    extraPerks: 'The official site lists recharge routes through TFG stores, *135# with a TFG Money Account, its website, Eezi Airtime at Flash shops, 1Voucher, TymeBank and Bash. TymeBank discounts are advertised, but no discount amount is assumed here.',
+    whatYouNeed: 'An active TFG Connect SIM. A monthly Top-Up subscription requires a qualifying TFG Money Account; pay-as-you-go is a separate option.',
+    watchOut: 'MTN and other networks’ recharge vouchers do not work on a TFG Connect SIM, although its subscriber terms name MTN as the host network. TFG Money billing may attract credit-account interest. Check your exact bundle validity and carry-over rules before buying; prepaid prices, rollover and eSIM availability are not verified in this profile.',
+    watchOutSource: tfgTerms,
+    benefits: [
+      {
+        kind: 'service_feature', title: 'Separate pay-as-you-go and monthly choices',
+        detail: 'Prepaid airtime is bought upfront. Top-Up subscriptions are billed monthly in advance to a TFG Money Account. The subscriber terms allow cancellation without a cancellation fee, but a used monthly allocation is charged in full.',
+        includeInBaseRanking: false, source: tfgTerms
+      },
+      {
+        kind: 'service_feature', title: 'Transfer purchased data within TFG Connect',
+        detail: 'Purchased data can be transferred to another TFG Connect customer through *135#. Its original validity still applies; transferring does not extend expiry.',
+        includeInBaseRanking: false, source: tfgTerms
+      },
+      {
+        kind: 'service_feature', title: 'Bash digital vouchers',
+        detail: 'Bash sells prepaid digital vouchers for an active TFG Connect SIM. Issued vouchers are non-refundable except where required by law, so check the SIM and voucher before paying.',
+        includeInBaseRanking: false, source: tfgBash
+      }
+    ],
+    sources: [tfgHome, tfgTerms, tfgBash]
+  },
   {
     id: 'airmobile',
     name: 'AirMobile by Afrihost',

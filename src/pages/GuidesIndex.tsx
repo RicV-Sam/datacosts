@@ -322,6 +322,10 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
         {/* QUICK UTILITY LINKS */}
         <section className="mb-20">
           <h2 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-8 text-center italic">Essential Tools & Resources</h2>
+          <a href="/tools/daily-vs-monthly-data-calculator/" className="mb-5 flex min-h-11 items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-5 font-bold text-[#1b6d24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+            <span>Daily vs Monthly Data Bundle Calculator<span className="mt-1 block text-sm font-medium text-slate-600">Compare expiry and repeat purchases for the same usage demand.</span></span>
+            <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" />
+          </a>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <button
               onClick={() => onNavigate('ussd')}

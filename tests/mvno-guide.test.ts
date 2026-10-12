@@ -23,10 +23,11 @@ const EXPECTED_MVNO_PROVIDER_IDS = [
   'fnb-connect',
   'melon-mobile',
   'nedbank-connect',
-  'standard-bank-connect'
+  'standard-bank-connect',
+  'tfg-connect'
 ] as const;
 
-test('MVNO editorial profiles cover the six tracked MVNO providers exactly once', () => {
+test('MVNO editorial profiles cover six tracked providers and the editorial-only TFG profile exactly once', () => {
   const profileIds = mvnoProviderProfiles.map((profile) => profile.id);
   const providerRegistryIds = dealProviders
     .filter((provider) => provider.kind === 'mvno')
@@ -36,7 +37,7 @@ test('MVNO editorial profiles cover the six tracked MVNO providers exactly once'
   assert.equal(new Set(profileIds).size, profileIds.length, 'MVNO editorial profile IDs must be unique');
   assert.deepEqual([...MVNO_PROVIDER_IDS].sort(), [...EXPECTED_MVNO_PROVIDER_IDS].sort());
   assert.deepEqual([...profileIds].sort(), [...EXPECTED_MVNO_PROVIDER_IDS].sort());
-  assert.deepEqual([...providerRegistryIds].sort(), [...EXPECTED_MVNO_PROVIDER_IDS].sort());
+  assert.deepEqual([...providerRegistryIds].sort(), [...EXPECTED_MVNO_PROVIDER_IDS].filter((id) => id !== 'tfg-connect').sort());
 });
 
 test('MVNO editorial evidence and benefits retain source, eligibility and ranking guardrails', () => {
