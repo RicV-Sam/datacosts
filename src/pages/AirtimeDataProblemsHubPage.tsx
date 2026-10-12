@@ -71,6 +71,11 @@ const problemPages = [
     group: 'Data issues'
   },
   {
+    href: '/data-problems/how-to-stop-data-disappearing-telkom/',
+    label: 'How to stop Telkom data disappearing',
+    group: 'Data issues'
+  },
+  {
     href: '/fix/mobile-data-on-but-not-working/',
     label: 'Mobile data is on but not working',
     group: 'Data issues'

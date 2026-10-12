@@ -9,23 +9,27 @@
     "telkom"
   ],
   "intentScore": 5,
-  "quickAnswer": "Telkom data usually disappears because background apps, auto-updates, hotspot sharing, or out-of-bundle access keep using the bundle after you stop watching it. Check usage first, then block the app or setting that is draining the line.",
+  "quickAnswer": "First check your Telkom data balance with *188# or MyTelkom, then compare the same period with your phone's app usage. Check the bundle name, expiry and whether it is Telkom-only, all-network or time-restricted. Pause mobile data if the drop is unexplained, then limit the app or hotspot using it. Airtime charged after a bundle ends is a separate billing issue.",
   "causes": [
     {
-      "cause": "Background apps keep syncing",
-      "explanation": "Video, cloud, and social apps can keep using mobile data after the screen is off."
+      "cause": "Apps, streaming or downloads used the bundle",
+      "explanation": "Background syncing, automatic media downloads and video can use mobile data. Identify the app in your phone's usage report before changing settings."
     },
     {
-      "cause": "Auto-updates run on mobile data",
-      "explanation": "Store updates and phone backups can finish a prepaid bundle much faster than normal browsing."
+      "cause": "The balance is for a restricted bundle",
+      "explanation": "A Telkom-only allowance cannot be used on a roaming partner network. Check the allowance category instead of treating every remaining megabyte as all-network data."
     },
     {
-      "cause": "Hotspot sharing stayed on",
-      "explanation": "Another device on the hotspot can quietly use the rest of the bundle."
+      "cause": "The bundle reached its expiry",
+      "explanation": "Check the validity shown for your exact purchase. A time-restricted or expired allowance is different from data consumed by an app; do not assume every bundle lasts a month."
     },
     {
-      "cause": "Out-of-bundle access is allowed",
-      "explanation": "Once the main bundle ends, the line can keep using airtime for data."
+      "cause": "A hotspot shared your mobile data",
+      "explanation": "Check whether another connected device was streaming, downloading or updating during the same period."
+    },
+    {
+      "cause": "Airtime or extra spend was used after data ran out",
+      "explanation": "Out-of-bundle billing can affect airtime or account charges. It does not explain why an unused data allowance fell, so record data and airtime balances separately."
     }
   ],
   "fixSteps": {
@@ -35,32 +39,42 @@
       "mtn": [],
       "cellc": [],
       "telkom": [
-        "Open your phone data-usage screen and find the app that used the most mobile data today.",
-        "Turn off background data for the heaviest app, especially video, cloud, and social apps.",
-        "Pause app updates, photo backup, and video autoplay until you are back on Wi-Fi.",
-        "Check whether hotspot sharing is still on and switch it off if nobody is using it.",
-        "Use the network app to block out-of-bundle data so airtime does not carry the line after the bundle ends."
+        "If the balance is falling unexpectedly, pause mobile data and hotspot sharing while you investigate. Internet access will then need Wi-Fi until you turn mobile data back on.",
+        "Dial *188# from the Telkom SIM or check MyTelkom. On a dual-SIM phone, select the Telkom line. Save the balance, time, bundle name and expiry shown before buying another bundle.",
+        "Check which allowance you can use now. Telkom-only data needs Telkom coverage; all-network data can also work on roaming partner networks. Check the terms for night, social or other restricted bundles separately.",
+        "Compare the same dates in your phone's app data report. On Pixel, use Settings > Network & internet > SIMs > App data usage. Other Android menus vary. On iPhone, open Settings > Cellular or Mobile Data and check per-app usage; record the current-period counter before resetting it.",
+        "Limit the app that actually used the data. On supported Android phones, turn on Data Saver; active or unrestricted apps can still use mobile data. On iPhone, turn off mobile data for an app you want to use only on Wi-Fi. Keep large downloads and backups on Wi-Fi, and turn off an unused hotspot.",
+        "Check airtime or account charges separately if the data bundle has ended. Review the options available to your line in MyTelkom or ask Telkom support about out-of-bundle controls. Prepaid and contract lines can have different controls; use the options shown for your service.",
+        "Record another balance and usage reading after the setting change. If you still cannot account for the loss, give Telkom the timestamps, allowance category, expiry, phone usage and any charge record, and keep the support reference."
       ]
     }
   },
   "preventionTips": [
-    "Set a data warning before the bundle reaches the last part of the month.",
-    "Keep app updates and backups on Wi-Fi only.",
-    "Turn hotspot off as soon as you finish sharing data.",
-    "Check usage before buying another bundle so you stop the real drain first."
+    "Check the bundle category and expiry before a top-up; use the applicable allowance rather than a combined total.",
+    "Use a phone data warning where available and compare it with the Telkom balance; handset and operator measurements may differ.",
+    "Keep large updates, backups and media downloads on Wi-Fi, and check Data Saver exceptions for apps that still need background access.",
+    "Turn off hotspot sharing when you finish and save a before-and-after record when investigating a repeated drop."
   ],
   "faqs": [
     {
-      "question": "Why does How to stop data disappearing Telkom happen overnight?",
-      "answer": "Overnight data loss often comes from backups, updates, or autoplay that kept running after you locked the phone."
+      "question": "How do I check my Telkom data balance?",
+      "answer": "Dial *188# from your Telkom SIM or use MyTelkom. On a dual-SIM phone, select the Telkom line. Note which allowance is shown and its expiry before comparing it with phone usage."
     },
     {
-      "question": "Can hotspot sharing make How to stop data disappearing Telkom worse?",
-      "answer": "Yes. A second device can use far more data than you expect, especially during updates or streaming."
+      "question": "Why can I have Telkom data left but no connection?",
+      "answer": "Telkom-only data is usable in Telkom coverage and does not work on roaming partner networks. Check whether your remaining allowance is Telkom-only, all-network or restricted to a particular time or service. A remaining balance does not establish that the allowance can be used for your current connection."
     },
     {
-      "question": "How do you stop out-of-bundle browsing on Telkom?",
-      "answer": "Use the network app or support channel to switch off out-of-bundle access before you load more airtime."
+      "question": "Why does my Telkom data drop overnight?",
+      "answer": "Compare the overnight balance change with downloads, app updates, backups and hotspot activity. Also check expiry and the allowance category. An overnight drop alone does not prove background use or a billing fault."
+    },
+    {
+      "question": "Why does my phone show different usage from Telkom?",
+      "answer": "Your phone measures its own data traffic, and its reporting period may differ from the bundle period. Compare the same dates and the correct SIM. Treat the handset report as a way to find likely app usage; ask Telkom to explain a disputed account balance."
+    },
+    {
+      "question": "Does stopping out-of-bundle data prevent the bundle from running out?",
+      "answer": "Out-of-bundle controls concern spending after the included allowance ends. They do not stop an app consuming the bundle while data is available. Check app usage for data loss, and airtime or account records for extra charges."
     }
   ],
   "internalLinks": [
@@ -93,6 +107,18 @@
       "url": "/data-problems/why-is-my-data-disappearing-mtn",
       "reason": "related topic, already in the registry",
       "status": "live"
+    },
+    {
+      "anchorText": "Telkom balance and data USSD codes",
+      "url": "/telkom-ussd-codes/",
+      "reason": "Verified balance-check route",
+      "status": "live"
+    },
+    {
+      "anchorText": "Stop Telkom airtime disappearing",
+      "url": "/data-problems/how-to-stop-airtime-disappearing-telkom/",
+      "reason": "Separate airtime deductions from bundle data usage",
+      "status": "live"
     }
   ],
   "verifyFlags": [],
@@ -105,21 +131,58 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-04-19",
-  "reviewDueDate": "2027-04-19",
+  "lastReviewed": "2026-10-12",
+  "reviewDueDate": "2027-04-12",
   "sourceNotes": [
-    "Telkom self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
-    "Operator-controlled context for unexpected data loss: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Telkom.",
-    "Device-side evidence for Telkom: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
+    "Telkom balance and coverage guidance checked on 12 October 2026: *188#, MyTelkom, and Telkom-only versus all-network allowances.",
+    "Telkom app-usage and billing guidance checked separately; contract spend-limit advice is not presented as a universal prepaid control.",
+    "Google Pixel and Apple device guidance checked for usage reports and data controls. Menu names vary by handset; no private account or handset flow was tested."
   ],
-  "uniqueValueSummary": "This guide is intentionally scoped to unexpected data loss for Telkom. It does not simply repeat a generic data-saving checklist: it separates account-side signals, device-side usage, and bundle-validity clues so a user can decide whether to change a phone setting, cancel a service, buy a different bundle, or escalate to Telkom support. The main check is Telkom bundle type, validity, hotspot state, background usage, out-of-bundle behaviour, and fallback browsing settings. The page remains conservative until more route-specific checks are available. That distinction matters because many South African prepaid problems look similar after the balance has already dropped, while the useful evidence is usually visible only in the first few minutes after the user notices the loss.",
-  "officialSupportContext": "DataCost can help users narrow unexpected data loss, but it cannot see a private Telkom account, reverse a charge, cancel a service on behalf of the user, or guarantee a personalised menu. For this route, the support question should be framed around Telkom bundle type, validity, hotspot state, background usage, out-of-bundle behaviour, and fallback browsing settings. If the evidence points to a billing fault, failed cancellation, SIM-specific offer, disputed deduction, or account-level block, the user should use the official Telkom app, USSD flow, store, or support channel and keep the reference number or confirmation SMS.",
+  "uniqueValueSummary": "Start with three separate records: the Telkom allowance available for this connection, the phone's app usage for the same dates, and any airtime or account charges. This workflow helps distinguish consumption from expiry, coverage restrictions and billing after the bundle ends. Record the before-and-after readings so a setting change can be checked or an unexplained deduction can be raised with Telkom.",
+  "officialSupportContext": "Telkom publishes *188# and MyTelkom as balance-check routes. Its usage guidance distinguishes Telkom-only from all-network data. MyTelkom billing options depend on your service; a contract spend limit is different from a prepaid setting. If balances remain unexplained, use official Telkom support with the evidence below. DataCost cannot inspect your private account or reverse a charge.",
   "evidenceToCollect": [
-    "A screenshot or note of the Telkom balance before and after the suspected loss, including date, approximate time, and the exact balance category shown.",
-    "The active bundle name, validity window, and whether the remaining balance is anytime, night, social, promo, app-specific, or airtime credit.",
-    "App or device usage for the same period, especially hotspot, video, app updates, cloud backups, streaming quality, and messaging media downloads.",
-    "Any SMS, in-app confirmation, USSD result, or support reference that proves a service was cancelled, bought, expired, blocked, or changed."
+    "Two timestamped Telkom balance readings for the same SIM, showing data allowance categories and airtime separately.",
+    "The purchase confirmation, bundle name, expiry and any network, time or app restriction shown for that purchase.",
+    "Phone app usage for the matching dates, including hotspot activity; save the report before resetting a usage counter.",
+    "The setting you changed, the next balance reading and any MyTelkom usage record or support reference."
   ],
-  "whenThisDoesNotApply": "This page should not be treated as proof that Telkom made an error on every line with unexpected data loss. It may not fit contract billing, business accounts, router-only SIMs, roaming, family-linked accounts, app-store purchases, or cases where another person controls the SIM. In those situations, account-specific support, live terms, and the latest official checkout or USSD wording matter more than a general troubleshooting guide.",
-  "indexingStatus": "index"
+  "whenThisDoesNotApply": "This workflow focuses on mobile data used by a phone. Fixed LTE/router plans, international roaming and contract billing can have different rules. It does not establish that Telkom made an error, that a particular bundle is available to your SIM, or that phone and operator counters must match exactly. The linked public guidance was checked; private account menus and individual handset flows were not tested.",
+  "indexingStatus": "index",
+  "officialSources": [
+    {
+      "label": "Telkom: balance checks",
+      "href": "https://www.telkom.co.za/welcome/personal/mobile-prepaid/how-to-buy-bundles",
+      "note": "Balance enquiry using *188# and MyTelkom."
+    },
+    {
+      "label": "Telkom: network and allowance restrictions",
+      "href": "https://www.telkom.co.za/welcome/personal/mobile-prepaid/usage-tips",
+      "note": "Explains where Telkom-only and all-network data can be used."
+    },
+    {
+      "label": "Telkom: apps and data usage",
+      "href": "https://intouch.telkom.co.za/blog/apps-that-eat-your-data-and-how-to-stop-them/669",
+      "note": "Background activity, streaming, downloads and checking usage."
+    },
+    {
+      "label": "Telkom: account usage and extra charges",
+      "href": "https://intouch.telkom.co.za/blog/take-the-mystery-out-of-your-monthly-bill/670",
+      "note": "MyTelkom account usage and contract spend limits; controls vary by service."
+    },
+    {
+      "label": "Google: Pixel data usage",
+      "href": "https://support.google.com/pixelphone/answer/2819524?hl=en",
+      "note": "App usage, reporting periods and differences from operator measurements."
+    },
+    {
+      "label": "Google: Data Saver",
+      "href": "https://support.google.com/pixelphone/answer/7055392?hl=en-GB",
+      "note": "Background mobile data restrictions and unrestricted-app exceptions."
+    },
+    {
+      "label": "Apple: iPhone mobile data controls",
+      "href": "https://support.apple.com/en-gb/109323",
+      "note": "Per-app usage statistics, mobile data toggles and the current-period counter."
+    }
+  ]
 }
