@@ -130,7 +130,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       'Find the cheapest 10GB data deals in South Africa. Compare 10GB bundles by network, cost per GB, and practical fit for heavier prepaid users.',
     h1: 'Cheapest 10GB Data Deals South Africa (2026)',
     intro:
-      '10GB bundles are often the entry point where prepaid users move from short top-ups to more stable monthly usage. This comparison focuses on currently listed 10GB options and whether the cheapest upfront option is also the best value per GB.',
+      'Compare exact 10GB once-off smartphone bundles from the four major networks. The broader 10GB-class monthly tracker also includes split allocations, MVNOs and recurring plans, with their conditions shown separately.',
     tableTitle: '10GB Comparison Across Major Networks',
     quickHeading: 'Who currently offers the best 10GB value?',
     watchOuts: [
@@ -336,7 +336,7 @@ export const comparisonGuideDefinitions: Record<ComparisonGuideSlug, ComparisonG
       'Compare the cheapest 20GB data bundles in South Africa. See current network value, validity differences, and who should buy 20GB plans.',
     h1: 'Cheapest 20GB Data in South Africa (2026)',
     intro:
-      '20GB is one of the strongest monthly value points for many South African prepaid users who stream regularly or share data with family. This page compares currently listed 20GB-style offers by network.',
+      'Compare exact 20GB once-off smartphone bundles from the four major networks. For nearby allowance sizes, split allocations, MVNOs and recurring plans, use the broader 20GB-class monthly tracker.',
     tableTitle: '20GB Comparison Across Major Networks',
     quickHeading: 'Is 20GB better value than 10GB or 15GB?',
     watchOuts: [

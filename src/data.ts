@@ -471,7 +471,7 @@ export const bundles: Bundle[] = [
     watchOut: 'Short 24-hour validity',
     ...SOURCES.telkomTimeBasedBundles,
     sourceConfidence: 'verified',
-    lastVerified: PRICE_REVIEW_DATE,
+    lastVerified: '2026-10-12',
     productType: 'smartphone_once_off_data',
   },
   {
@@ -489,7 +489,7 @@ export const bundles: Bundle[] = [
     watchOut: 'Short 24-hour validity',
     ...SOURCES.telkomTimeBasedBundles,
     sourceConfidence: 'verified',
-    lastVerified: PRICE_REVIEW_DATE,
+    lastVerified: '2026-10-12',
     productType: 'smartphone_once_off_data',
   },
   {

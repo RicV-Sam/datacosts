@@ -26,7 +26,7 @@ interface SummaryCard {
 const formatCurrency = (value: number) => `R${value}`;
 const formatValue = (bundle: Bundle) => `R${bundle.costPerGb.toFixed(2)}/GB`;
 
-const isHourlyBundle = (bundle: Bundle) => bundle.type === 'Hourly' || bundle.validity.toLowerCase().includes('hour');
+const isHourlyBundle = (bundle: Bundle) => bundle.type === 'Hourly' || (bundle.type !== 'Daily' && bundle.validity.toLowerCase().includes('hour'));
 const isDailyBundle = (bundle: Bundle) => bundle.type === 'Daily' || (bundle.validity.toLowerCase().includes('day') && !bundle.validity.toLowerCase().includes('7 day') && !bundle.validity.toLowerCase().includes('30 day'));
 const isWeeklyBundle = (bundle: Bundle) => bundle.type === 'Weekly' || bundle.validity.toLowerCase().includes('week') || bundle.validity.toLowerCase().includes('7 day');
 const isMonthlyBundle = (bundle: Bundle) => bundle.type === 'Monthly' || bundle.validity.toLowerCase().includes('30 day') || bundle.validity.toLowerCase().includes('month');
@@ -518,12 +518,17 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                 Best {network.name} bundles at a glance
               </div>
               <h2 className="text-3xl font-black tracking-tighter mb-8">{network.name} quick answers</h2>
+              {network.name === 'Telkom' && (
+                <p className="mb-6 text-slate-200 text-sm leading-relaxed">
+                  These picks compare only source-checked rows in the table below. Telkom’s full catalogue includes other bundle sizes, so check its current menu before buying.
+                </p>
+              )}
 
               <div className="grid md:grid-cols-2 gap-5">
                 {summaryCards.map((item) => (
                   <div key={item.label} className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-2xl">
                     <div className="text-[#a0f399] text-[10px] font-black uppercase tracking-widest mb-2 opacity-90">{item.label}</div>
-                    <div className="text-lg font-black mb-1 line-clamp-1">{item.bundle.name}</div>
+                    <div className={`text-lg font-black mb-1 ${network.name === 'Telkom' ? 'break-words' : 'line-clamp-1'}`}>{item.bundle.name}</div>
                     <div className="text-2xl font-black text-[#a0f399]">{formatCurrency(item.bundle.price)}</div>
                     <div className="text-xs text-slate-300 uppercase tracking-wider mt-2">{item.bundle.validity} | {formatValue(item.bundle)}</div>
                   </div>

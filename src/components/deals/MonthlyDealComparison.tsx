@@ -9,6 +9,7 @@ import {
 } from '../../data/monthlyDeals';
 import { getDealOfferMetrics } from '../../utils/monthlyDealRanking';
 import { trackDealOfferSourceClick } from '../../utils/tracking';
+import { SuperDataMigrationNotice } from './SuperDataMigrationNotice';
 
 interface MonthlyDealComparisonProps {
   sizeGb: TrackedDataSizeGb;
@@ -176,6 +177,7 @@ export const MonthlyDealComparison: React.FC<MonthlyDealComparisonProps> = ({
               </dl>
 
               <p className="mt-4 text-sm leading-6 text-slate-700">{offer.eligibility}</p>
+              <SuperDataMigrationNotice offer={offer} />
               <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">Buy via {offer.purchaseChannels.join(', ')}.</p>
               {offer.allocation.otherRestricted.length > 0 || offer.allocation.conditionalBonusNote || offer.importantNotes.length > 0 ? (
                 <ul className="mt-3 space-y-1.5 text-sm font-medium leading-6 text-slate-600">
@@ -246,6 +248,7 @@ export const MonthlyDealComparison: React.FC<MonthlyDealComparisonProps> = ({
                   </td>
                   <td className="max-w-[260px] px-4 py-5 text-sm leading-6 text-slate-700">
                     <p>{offer.eligibility}</p>
+                    <SuperDataMigrationNotice offer={offer} />
                     <p className="mt-2 font-semibold text-slate-600">Buy via {offer.purchaseChannels.join(', ')}.</p>
                     {offer.importantNotes.map((note) => <p key={`${offer.id}-${note}`} className="mt-2 text-xs font-medium leading-5 text-slate-500">{note}</p>)}
                     {offer.rankingExclusionReason ? <p className="mt-2 font-semibold text-slate-500">{offer.rankingExclusionReason}</p> : null}

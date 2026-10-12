@@ -146,9 +146,9 @@ const COMPARISON_GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'cheapest-1gb-data-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   'cheapest-2gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheapest-5gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
-  'cheapest-10gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-10gb-data-south-africa': '2026-10-12T00:00:00.000Z',
   'cheapest-15gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
-  'cheapest-20gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
+  'cheapest-20gb-data-south-africa': '2026-10-12T00:00:00.000Z',
   'cheapest-50gb-data-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'cheapest-whatsapp-bundles-south-africa': OCTOBER_PRICING_REVIEW_MODIFIED_ISO
 };
@@ -165,7 +165,7 @@ const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
   'cell-c': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   mtn: OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   rain: OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
-  telkom: OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  telkom: '2026-10-12T00:00:00.000Z',
   vodacom: OCTOBER_PRICING_REVIEW_MODIFIED_ISO
 };
 

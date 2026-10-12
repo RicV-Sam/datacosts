@@ -8,6 +8,7 @@ import { MobileNav } from '../components/MobileNav';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
 import { MonthlyDealComparison } from '../components/deals/MonthlyDealComparison';
+import { SuperDataMigrationNotice } from '../components/deals/SuperDataMigrationNotice';
 import {
   currentMonthlyDealSnapshot,
   getDealSizeUpperBound,
@@ -175,6 +176,7 @@ export const MonthlyDataDealSizePage: React.FC<MonthlyDataDealSizePageProps> = (
                   <span className="font-black text-[#031636]">Eligibility:</span> {winner.eligibility}
                 </p>
               ) : null}
+              {winner ? <SuperDataMigrationNotice offer={winner} /> : null}
               <p className="mt-4 text-sm font-semibold leading-6 text-slate-600">
                 This is a price-and-structure result, not a coverage or speed claim. Check signal where you live, work and travel before moving networks.
               </p>

@@ -19,6 +19,7 @@ import { buildMonthlyDealArticleSchema, buildMonthlyDealWinnerItemListSchema } f
 import { DEFAULT_OG_IMAGE_URL, toCanonicalUrl } from '../seo/siteConstants';
 import { formatIsoForDisplay, getRouteModifiedIso } from '../seo/contentDates';
 import { trackDealSizeNavigation } from '../utils/tracking';
+import { SuperDataMigrationNotice } from '../components/deals/SuperDataMigrationNotice';
 import type { NavigateFunction } from '../types';
 
 interface MonthlyDataDealsHubPageProps {
@@ -149,6 +150,7 @@ export const MonthlyDataDealsHubPage: React.FC<MonthlyDataDealsHubPageProps> = (
                     <p className="mt-2 text-xs font-bold uppercase tracking-wide text-slate-500">
                       {offers.length} official offers reviewed · {winner ? (winner.accessTier === 'public' ? 'Open public access' : 'Eligibility rules apply') : 'No eligible winner'}
                     </p>
+                    {winner ? <SuperDataMigrationNotice offer={winner} /> : null}
                   </div>
                   <div>
                     <div className="text-2xl font-black text-[#031636]">{winner ? formatRand(winner.priceZar) : '—'}</div>

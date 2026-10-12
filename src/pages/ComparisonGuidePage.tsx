@@ -314,6 +314,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
   });
 
   const winners = getWinners(definition.mode, rows);
+  const broaderDealSize = definition.mode === 'cheapest-10gb' ? 10 : definition.mode === 'cheapest-20gb' ? 20 : null;
   const listedRows = rows.filter((row) => row.bundle).map((row) => row.bundle as Bundle);
   const verifiedListedRows = listedRows.filter(isVerifiedBundleSource);
   const hasManualRequiredRows = listedRows.some((bundle) => bundle.sourceConfidence === 'manual_required');
@@ -479,6 +480,15 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
             Quick Verdict
           </div>
           <h2 className="text-2xl md:text-3xl font-black tracking-tighter mb-4">{definition.quickHeading}</h2>
+          {broaderDealSize && (
+            <div className="text-slate-200 leading-relaxed mb-5">
+              <p>This table looks for an exact {broaderDealSize}GB once-off smartphone bundle from Vodacom, MTN, Telkom or Cell C. It excludes social bundles and bundles with a night allocation, and does not include MVNOs or recurring plans.</p>
+              <Link to={`/best-${broaderDealSize}gb-data-deals-south-africa/`} className="inline-block min-h-[44px] py-2 text-[#a0f399] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+                Compare {broaderDealSize}GB-class monthly data offers
+              </Link>
+              <p className="text-sm">The broader tracker shows anytime data, restricted allocations and eligibility separately.</p>
+            </div>
+          )}
           {definition.mode === 'best-monthly' && (
             <p className="text-slate-200 leading-relaxed mb-5">
               The table selects one recorded once-off smartphone bundle per network, prioritising source-checked rows and then cost per GB. Its picks apply only to those rows. For a larger allowance, compare the{' '}
@@ -497,7 +507,9 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ guideS
               ))}
             </div>
           ) : (
-            <p className="text-slate-200">No clear listings are currently available for this comparison in the active dataset.</p>
+            <p className="text-slate-200">{broaderDealSize
+              ? `No source-checked exact ${broaderDealSize}GB bundle meets this table’s filters. This does not mean no ${broaderDealSize}GB-class offers are available; use the broader comparison above.`
+              : 'No clear listings are currently available for this comparison in the active dataset.'}</p>
           )}
         </section>
 
