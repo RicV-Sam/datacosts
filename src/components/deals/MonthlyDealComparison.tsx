@@ -131,7 +131,7 @@ export const MonthlyDealComparison: React.FC<MonthlyDealComparisonProps> = ({
           const metrics = getDealOfferMetrics(offer);
           const restricted = getRestrictedSummary(offer);
           return (
-            <article key={offer.id} data-comparison-offer={offer.id} className="border-t-4 border-[#031636] bg-white p-5 shadow-[0_12px_30px_rgba(3,22,54,0.08)]">
+            <article key={offer.id} data-comparison-offer={offer.id} className="border-t-4 border-[#031636] bg-white p-5 [overflow-wrap:anywhere] shadow-[0_12px_30px_rgba(3,22,54,0.08)]">
               <StatusBadges offer={offer} bestOverallId={bestOverallId} bestAnytimeValueId={bestAnytimeValueId} lowestAdvertisedId={lowestAdvertisedId} />
               <div className="mt-4 flex items-start justify-between gap-4">
                 <div>
