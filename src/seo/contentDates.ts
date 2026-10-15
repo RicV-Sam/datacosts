@@ -49,7 +49,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/promos/': '2026-06-18T00:00:00.000Z',
   '/save-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
   '/sitemap/': '2026-10-12T00:00:00.000Z',
-  '/cell-c-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
+  '/cell-c-ussd-codes/': '2026-10-15T00:00:00.000Z',
   '/telkom-ussd-codes/': '2026-10-03T00:00:00.000Z',
   '/terms/': '2026-05-10T00:00:00.000Z',
   '/trust/': PUBLISHER_REVIEW_MODIFIED_ISO,

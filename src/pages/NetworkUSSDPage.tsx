@@ -179,9 +179,9 @@ const NETWORK_CONFIG: Record<SupportedNetworkSlug, NetworkConfig> = {
     metaDescription:
       'Cell C USSD codes for South Africa: dial *101# to check balance, *147# for data bundles and self-service, *102*PIN# to recharge and *111*number# for Please Call Me.',
     intro:
-      'Use this page when the intent is Cell C-specific. If you searched for how to check balance on Cell C, how to check Cell C balance, or Cell C balance check, this is the best destination for the main balance code, data-bundle menus, and prepaid support shortcuts.',
+      'To check your Cell C balance, open the phone dialler and dial *101# from your Cell C SIM. For a detailed balance enquiry, use the balance option shown in the *147# menu or check the Cell C app. The shortcuts below also cover buying data, recharging and sending a Please Call Me.',
     quickAnswer:
-      'To check balance on Cell C, dial *101#. Use *147# for data bundles and broader self-service, *102*PIN# to recharge, and *111*number# for Please Call Me. Stay on this page for Cell C-specific code intent, then return to the hub only when you need a cross-network comparison.',
+      'Dial *101# from your Cell C SIM to check your balance. For more detail, dial *147# and follow the balance-enquiry prompts, or use the Cell C app. Use *102*PIN# to recharge and *111*number# for Please Call Me.',
     quickCodes: [
       { label: 'Cell C balance check', code: '*101#' },
       { label: 'Buy Cell C data', code: '*147#' },
