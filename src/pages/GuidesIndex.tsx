@@ -59,6 +59,14 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
   ];
 
   const hubSections = [
+    {
+      title: 'SIM and Account Security',
+      snippet: 'Find urgent help if your number or phone may be compromised.',
+      links: [
+        { slug: 'sim-swap-fraud-south-africa', title: 'Suspected SIM-swap Fraud: What to Do Now', description: 'Urgent bank and network actions, account recovery and reporting for suspected SIM-swap or porting fraud.', path: '/fix/sim-swap-fraud-south-africa/' },
+        ...popularGuides.filter((guide) => guide.slug === 'stolen-phone-south-africa')
+      ]
+    },
     { title: "Switching, Expiry and Consumer Rights", snippet: "Check product conditions before buying, changing providers or escalating a complaint.", links: discoveryGuides.map((guide) => ({ slug: guide.slug })) },
     {
       title: "Cheapest Data & Best Value",
@@ -440,7 +448,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
                   <motion.a
                     key={path}
                     href={path}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={section.title === 'SIM and Account Security' ? false : { opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.05 }}

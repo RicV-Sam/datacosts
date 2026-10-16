@@ -111,7 +111,7 @@ const DEEMPHASIZED_SITEMAP_ROUTES = new Set([
   '/guides/how-to-stop-wasp-services-south-africa/'
 ]);
 
-const SITEMAP_FIX_CLUSTERS = new Set(['mobile-data', 'ussd', 'lte-router']);
+const SITEMAP_FIX_CLUSTERS = new Set(['mobile-data', 'ussd', 'lte-router', 'sim-security']);
 
 const ORGANIC_PROTECTED_FACET_ROUTES = new Set([
   '/network/vodacom/cheapest-1gb/',

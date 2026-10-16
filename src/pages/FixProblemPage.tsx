@@ -44,6 +44,7 @@ const hubRelatedLinks = [
 ];
 
 const priorityFixPaths = [
+  { label: 'Suspected SIM-swap fraud', href: '/fix/sim-swap-fraud-south-africa/', note: 'Urgent steps to protect your number, bank and accounts.' },
   { label: '192.168.8.1 Huawei router login', href: '/fix/huawei-router-login-192-168-8-1/', note: 'Open the router admin page, find the correct password and fix login problems.' },
   { label: 'Cell C data not working', href: '/fix/cell-c-data-not-working/', note: 'Balance, APN, signal and account checks for Cell C mobile data.' },
   { label: 'Mobile data on but not working', href: '/fix/mobile-data-on-but-not-working/', note: 'Start here when the phone shows 4G/LTE/5G but pages will not load.' },
@@ -183,7 +184,7 @@ function BulletList({ items, ordered = false }: { items: string[]; ordered?: boo
 
 export const FixProblemPage: React.FC<FixProblemPageProps> = ({ onNavigate, onScrollTo }) => {
   const pageTitle = 'DataCost Fixes: South African Codes, Errors and Quick Help';
-  const metaDescription = 'Quick South African help for mobile data problems, APN settings, USSD codes, prepaid electricity errors, DStv/Openview decoder issues and LTE router fixes.';
+  const metaDescription = 'South African help for suspected SIM-swap fraud, mobile data, APN settings, USSD, prepaid electricity errors, TV decoder issues and LTE router problems.';
   const canonicalUrl = toCanonicalUrl('/fix/');
   const datePublishedIso = getDefaultPublishedIso();
   const dateModifiedIso = getRouteModifiedIso('/fix/');
@@ -366,7 +367,8 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
 
   const routePath = getFixPath(page.slug);
   const canonicalUrl = toCanonicalUrl(routePath);
-  const datePublishedIso = getDefaultPublishedIso();
+  const datePublishedIso = page.publishedIso || getDefaultPublishedIso();
+  const isSecurity = page.cluster === 'sim-security';
   const dateModifiedIso = getRouteModifiedIso(routePath);
   const lastReviewed = formatIsoForDisplay(dateModifiedIso);
   const shouldNoindex = isNoindexRoute(routePath);
@@ -448,8 +450,8 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
           <div className="grid gap-4 md:grid-cols-2">
             {[
               ['Meaning', page.quickAnswer.meaning],
-              ['Most likely cause', page.quickAnswer.likelyCause],
-              ['First thing to try', page.quickAnswer.firstThingToTry],
+              [isSecurity ? 'Check before assuming fraud' : 'Most likely cause', page.quickAnswer.likelyCause],
+              [isSecurity ? 'Act now' : 'First thing to try', page.quickAnswer.firstThingToTry],
               ['Contact', page.quickAnswer.contact]
             ].map(([label, value]) => (
               <div key={label} className="rounded-2xl bg-slate-50 p-4">
@@ -466,15 +468,15 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
           className="mb-10"
         />
 
-        <PageSection title="What It Usually Means">
+        <PageSection title={isSecurity ? 'What the warning signs mean' : 'What It Usually Means'}>
           <BulletList items={page.sections.meaning} />
         </PageSection>
 
-        <PageSection title="What to Try First">
+        <PageSection title={isSecurity ? 'Act immediately' : 'What to Try First'}>
           <BulletList items={page.sections.tryFirst} />
         </PageSection>
 
-        <PageSection title="Step-by-Step Fix" dark>
+        <PageSection title={isSecurity ? 'Recovery and follow-up' : 'Step-by-Step Fix'} dark>
           <ol className="space-y-3 pl-5 text-sm font-medium leading-relaxed text-slate-200 list-decimal">
             {page.sections.steps.map((step) => (
               <li key={step}>{step}</li>
@@ -482,11 +484,11 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
           </ol>
         </PageSection>
 
-        <PageSection title="When to Contact the Provider">
+        <PageSection title={isSecurity ? 'Reporting and complaints' : 'When to Contact the Provider'}>
           <BulletList items={page.sections.whenToContact} />
         </PageSection>
 
-        <PageSection title="What Not to Do">
+        <PageSection title={isSecurity ? 'Avoid scams and reduce future risk' : 'What Not to Do'}>
           <div className="mb-4 flex items-start gap-3 rounded-2xl bg-red-50 p-4 text-sm font-medium leading-relaxed text-red-900">
             <TriangleAlert className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-600" />
             <p>DataCost is not the provider. Do not share OTPs, banking passwords, card details, PINs or personal identity documents with unofficial support channels.</p>
@@ -555,7 +557,9 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
             Official Support Reminder
           </h2>
           <p className="text-sm font-medium leading-relaxed text-slate-600">
-            {isGlobalGuide
+            {isSecurity
+              ? 'DataCost cannot block a SIM, stop a number port, freeze banking access or recover an account. Contact your bank and mobile provider directly through their verified official channels.'
+              : isGlobalGuide
               ? 'This is an independent global troubleshooting guide. Router addresses, passwords and menus vary by model and carrier, so confirm device-specific details on the nameplate and through official Huawei or operator support.'
               : 'This is a general troubleshooting guide for South African consumers. Always confirm billing, payment, activation, meter, token, subscription and account-specific issues with the official provider.'}
           </p>
@@ -563,7 +567,9 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
 
         <AuthorReviewBlock
           lastReviewed={lastReviewed}
-          trustSummary={isGlobalGuide
+          trustSummary={isSecurity
+            ? 'Independent consumer guidance based on official ICASA, bank, government and account-security sources. Only your provider, bank or account service can perform recovery actions.'
+            : isGlobalGuide
             ? 'Written as independent router help using official Huawei global support guidance. Model-specific passwords, carrier customisation and account actions should be confirmed through the device label or official support.'
             : 'Written as independent consumer help for South African mobile, electricity, decoder and router problems. Provider-specific account actions should be confirmed through official support.'}
           className="mb-12"

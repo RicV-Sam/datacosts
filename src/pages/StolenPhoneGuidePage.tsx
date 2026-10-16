@@ -270,6 +270,7 @@ export const StolenPhoneGuidePage: React.FC<Props> = ({ onNavigate, onScrollTo }
 
       <section className="mb-10 rounded-3xl border border-amber-200 bg-amber-50 p-6 md:p-8">
         <div className="mb-3 flex items-center gap-2 text-amber-950"><ShieldAlert className="h-5 w-5" /><h2 className="text-2xl font-black">Watch for SIM-swap and account fraud</h2></div>
+        <p className="mb-4 text-sm font-bold"><Link to="/fix/sim-swap-fraud-south-africa/" className="text-amber-950 underline underline-offset-4">Suspected SIM-swap fraud? Follow the urgent bank, network and account-recovery steps.</Link></p>
         <p className="mb-4 text-sm font-medium leading-relaxed text-amber-950">Unexpected signal loss, an unrequested SIM or eSIM notice, missing OTPs, a number-port message, WhatsApp registration alerts or a newly linked bank device can indicate fraud.</p>
         <ul className="space-y-2 text-sm font-medium leading-relaxed text-amber-950"><li>• Contact both the mobile provider and bank through verified official channels.</li><li>• Never approve an unsolicited SIM-swap prompt or share an OTP, PIN, password or recovery code.</li><li>• Secure primary email first, then Apple or Google, password manager, WhatsApp, social media and shopping accounts.</li><li>• Warn trusted contacts if someone may impersonate you or ask them for money.</li></ul>
       </section>

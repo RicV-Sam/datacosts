@@ -1,4 +1,4 @@
-export type FixCluster = 'mobile-data' | 'ussd' | 'prepaid-electricity' | 'tv-decoder' | 'lte-router';
+export type FixCluster = 'mobile-data' | 'ussd' | 'prepaid-electricity' | 'tv-decoder' | 'lte-router' | 'sim-security';
 
 export type FixLink = {
   label: string;
@@ -36,6 +36,7 @@ export type FixPage = {
     answer: string;
   }>;
   adminUrl?: string;
+  publishedIso?: string;
   sourceSummary?: string;
   officialSources?: FixLink[];
   relatedFixSlugs: string[];
@@ -50,6 +51,12 @@ export type FixClusterInfo = {
 };
 
 export const fixClusters: FixClusterInfo[] = [
+  {
+    id: 'sim-security',
+    label: 'SIM and account security',
+    title: 'SIM and account security',
+    description: 'Suspected SIM-swap or number-porting fraud: protect your number, banking access and accounts through official support.'
+  },
   {
     id: 'mobile-data',
     label: 'Mobile data',
@@ -769,6 +776,78 @@ type FixPageOverride = Partial<Omit<FixPage, 'quickAnswer' | 'sections'>> & {
 };
 
 const pages: FixPage[] = [
+  basePage({
+    slug: 'sim-swap-fraud-south-africa',
+    cluster: 'sim-security',
+    scope: 'south-africa',
+    serviceType: 'SIM and account security',
+    title: 'Suspected SIM-swap fraud: what to do now',
+    seoTitle: 'SIM-swap Fraud South Africa: What to Do | DataCost',
+    metaDescription: 'Suspect SIM-swap or number-porting fraud? Contact your bank and network, secure affected accounts, and follow official recovery and reporting steps.',
+    h1: 'Suspected SIM-swap fraud: what to do now',
+    summary: 'An unexpected SIM-change notice, number-port request or sudden loss of calls and SMS needs attention, even if your phone is still with you. Contact your network and bank immediately if you suspect fraud. Do not wait for money to disappear.',
+    tags: ['SIM swap', 'SIM swop', 'Number porting', 'Fraud'],
+    publishedIso: '2026-10-16T00:00:00.000Z',
+    quickAnswer: {
+      meaning: 'Someone may be trying to take control of your mobile number and receive verification messages meant for you.',
+      likelyCause: 'Signal loss alone does not confirm fraud. Ask the network to check for an unauthorised SIM swap or number port.',
+      firstThingToTry: 'From another phone if necessary, contact your bank fraud team and network through independently verified official channels.',
+      contact: 'Use the bank app, your bank card or a website you open yourself. Do not trust a caller-provided number or an unexpected message link.'
+    },
+    sections: {
+      meaning: [
+        'A SIM swap replaces the SIM serving an existing number. Porting moves the number between providers. Either can be fraudulent if you did not authorise it.',
+        'You can still have your handset and original SIM when your number is taken over. Missing calls, SMS or requested OTPs, and unrequested swap or port notices are warning signs.',
+        'An intercepted SMS can expose account verification codes. Do not assume every account has been accessed, or that restoring signal alone secures your accounts.'
+      ],
+      tryFirst: [
+        'Tell your bank you suspect SIM-swap or porting fraud. Ask it to secure banking access and investigate unfamiliar activity. If money is moving or you shared banking details, prioritise that call.',
+        'Contact the mobile provider immediately. Ask whether a swap or port was requested or completed, report it as unauthorised, and ask it to stop the request or secure the line.',
+        'Do not approve a request you did not initiate or give an incoming caller an OTP, PIN, password or verification code. End the call and contact official support yourself.'
+      ],
+      steps: [
+        'Keep a record of alert messages, the time service stopped, unfamiliar transactions, and bank and provider reference numbers. Do not delay urgent calls to collect a perfect evidence file.',
+        'Ask the provider for its verified identity-check and number-recovery process. Requirements differ: follow its official instructions rather than a generic SIM-swap code or an unsolicited caller.',
+        'From a trusted device, secure affected accounts, starting with your primary email. Change compromised or reused passwords, review security events, remove unfamiliar sessions and check recovery details. Use official account recovery if you cannot sign in.',
+        'For Google accounts, also check Gmail forwarding rules and filters. Review other accounts that use your email or number for recovery through their own official security settings.',
+        'After number recovery, check that calls and messages work and follow up with the bank about restrictions and disputed transactions. Keep monitoring statements; no recovery time or refund is guaranteed.'
+      ],
+      whenToContact: [
+        'Act immediately on an unrequested swap or port notice, unexplained loss of calls or SMS, or unexpected banking verification activity. Do not spend hours changing APN settings when fraud is suspected.',
+        'If you are a victim of fraud, report the crime at your nearest SAPS station. Keep the case details with your bank and provider records; do not wait to open a police case before securing the bank and number.',
+        'For an unresolved network complaint, complain to the provider and obtain a reference. ICASA says you may escalate if its response is unsatisfactory or it has not resolved the complaint within 14 working days. This complaint period is not a reason to delay fraud reporting.',
+        'Keep a written timeline and the provider response for escalation. ICASA handles communications-provider complaints; keep the bank fraud investigation separate.'
+      ],
+      whatNotToDo: [
+        'Do not move money into a so-called safe account on an incoming caller’s instructions.',
+        'Do not use links in unsolicited messages or share identity documents with unofficial support.',
+        'For prevention, use a strong screen lock and protect personal information. Ask your bank about app-based transaction approval; Absa offers this, but availability and setup vary by bank.',
+        'Do not assume app approval removes every risk: reject unfamiliar transactions and protect account credentials.'
+      ]
+    },
+    faqs: [
+      { question: 'Does no signal always mean a fraudulent SIM swap?', answer: 'No. It is a warning sign, not a diagnosis. Contact the provider to check whether your number was swapped or ported, especially if you received an unrequested notice.' },
+      { question: 'Can this happen while I still have my phone?', answer: 'Yes. A fraudulent swap or port targets control of the number; your handset does not have to be stolen.' },
+      { question: 'Should I wait 14 working days before reporting fraud?', answer: 'No. Contact the network and bank immediately. The 14-working-day period belongs to ICASA’s later complaint-escalation process.' }
+    ],
+    sourceSummary: 'Official ICASA fraud and complaints guidance, Absa SIM-scam and fraud guidance, Google account-recovery guidance and South African Government crime-reporting guidance checked on 16 October 2026. Provider identity checks and bank controls vary; no universal recovery time or refund is promised.',
+    officialSources: [
+      { label: 'South African Government: report a crime to SAPS', href: 'https://www.gov.za/services/services-residents/dealing-law/report-crime/how-report-crime' },
+      { label: 'ICASA: SIM-card fraud and illegal porting warning', href: 'https://www.icasa.org.za/news/2022/awareness-on-sim-card-fraud-and-illegal-porting-of-numbers-during-the-festive-season' },
+      { label: 'Absa: SIM swap, porting and twinning scams', href: 'https://www.absa.co.za/self-service/safety-security/beware-of-sim-scams/' },
+      { label: 'Absa: suspicious calls, OTPs and urgent fraud reporting', href: 'https://www.absa.co.za/self-service/safety-security/vishing-scams/' },
+      { label: 'Absa: app-based SIM-swap fraud protection', href: 'https://www.absa.co.za/offers/sim-swap-fraud-protection/' },
+      { label: 'Google: secure a compromised account', href: 'https://support.google.com/accounts/answer/6294825?hl=en' },
+      { label: 'ICASA: consumer complaints procedure', href: 'https://www.icasa.org.za/pages/consumer-complaints-procedure' }
+    ],
+    relatedFixSlugs: [],
+    relatedDataCostLinks: [
+      { label: 'Stolen phone: urgent checklist', href: '/guides/stolen-phone-south-africa/' },
+      { label: 'Porting your number safely', href: '/guides/port-number-south-africa/' },
+      { label: 'Escalating a mobile-provider complaint', href: '/guides/mobile-complaints-icasa-south-africa/' }
+    ]
+  }),
+
   apnPage('Vodacom', 'vodacom-apn-settings'),
   apnPage('MTN', 'mtn-apn-settings'),
   apnPage('Telkom', 'telkom-apn-settings'),
@@ -1689,6 +1768,7 @@ function buildFixMetaDescription(page: FixPage): string {
 }
 
 function applySeoLengthDefaults(page: FixPage): FixPage {
+  if (page.cluster === 'sim-security') return page;
   return {
     ...page,
     seoTitle: buildFixSeoTitle(page),

@@ -31,8 +31,8 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/fibre/how-to-check-fibre-coverage-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/fibre-installation-costs-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/coverage-by-area/': FIBRE_REVIEW_MODIFIED_ISO,
-  '/fix/': '2026-07-24T00:00:00.000Z',
-  '/guides/': '2026-10-12T00:00:00.000Z',
+  '/fix/': '2026-10-16T00:00:00.000Z',
+  '/guides/': '2026-10-16T00:00:00.000Z',
   '/tools/usable-data-cost-calculator/': '2026-10-12T00:00:00.000Z',
   '/tools/contract-vs-prepaid-phone-calculator/': '2026-10-12T00:00:00.000Z',
   '/tools/data-bundle-selector/': '2026-10-12T00:00:00.000Z',
@@ -91,6 +91,7 @@ const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
 };
 
 const FIX_ROUTE_MODIFIED_ISO: Record<string, string> = {
+  '/fix/sim-swap-fraud-south-africa/': '2026-10-16T00:00:00.000Z',
   '/fix/cell-c-data-not-working/': '2026-07-30T00:00:00.000Z',
   '/fix/huawei-router-login-192-168-8-1/': '2026-07-24T00:00:00.000Z',
   '/fix/lte-router-red-light-no-internet/': '2026-07-30T00:00:00.000Z',
