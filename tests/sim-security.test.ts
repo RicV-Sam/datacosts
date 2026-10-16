@@ -8,7 +8,7 @@ import { FixDetailPage, FixProblemPage } from '../src/pages/FixProblemPage';
 import { GuidesIndex } from '../src/pages/GuidesIndex';
 import { StolenPhoneGuidePage } from '../src/pages/StolenPhoneGuidePage';
 import { getIndexableRoutes, getPrerenderRoutes, getSitemapRoutes } from '../src/config/routeCatalog';
-import { getFixPage, getFixPagesByCluster } from '../src/data/fixes';
+import { getFixPage, getFixPagesByCluster, simSwapWarningFixSlugs } from '../src/data/fixes';
 import { getRouteModifiedIso } from '../src/seo/contentDates';
 
 const route = '/fix/sim-swap-fraud-south-africa/';
@@ -35,4 +35,20 @@ test('fix hub, guides and stolen-phone guide link to the same security page', ()
   const pages = [React.createElement(FixProblemPage, nav), React.createElement(GuidesIndex, nav), React.createElement(StolenPhoneGuidePage, nav)];
   for (const page of pages) assert.ok(render(page).includes('href="' + route + '"'));
   assert.match(render(pages[0]), /id="sim-security"/);
+});
+
+test('phone and OTP troubleshooting exposes the fraud route before routine checks', () => {
+  for (const slug of simSwapWarningFixSlugs) {
+    assert.ok(getFixPage(slug), slug);
+    const html = render(React.createElement(FixDetailPage, { ...nav, slug }));
+    const warning = html.indexOf('id="sim-swap-warning"');
+    assert.ok(warning >= 0 && warning < html.indexOf('Quick Answer'), slug);
+    assert.ok(html.includes('href="' + route + '"'), slug);
+    assert.match(html, /Signal loss alone does not prove fraud/);
+    assert.match(html, /contact your bank too/);
+  }
+  for (const slug of ['rain-router-no-internet', 'mobile-hotspot-not-working-south-africa', 'dstv-e48-32-error', 'sim-swap-fraud-south-africa']) {
+    const html = render(React.createElement(FixDetailPage, { ...nav, slug }));
+    assert.doesNotMatch(html, /id="sim-swap-warning"/);
+  }
 });

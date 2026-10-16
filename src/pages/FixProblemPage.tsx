@@ -8,7 +8,7 @@ import { MobileNav } from '../components/MobileNav';
 import { Breadcrumbs, buildBreadcrumbSchema } from '../components/Breadcrumbs';
 import { TrustPanel } from '../components/TrustPanel';
 import { AuthorReviewBlock } from '../components/AuthorReviewBlock';
-import { FixPage, fixClusters, fixClusterLabelById, fixPages, getFixPage, getFixPagesByCluster, getFixPath } from '../data/fixes';
+import { FixPage, fixClusters, fixClusterLabelById, fixPages, getFixPage, getFixPagesByCluster, getFixPath, simSwapWarningFixSlugs } from '../data/fixes';
 import { isNoindexRoute } from '../config/routeCatalog';
 import { NavigateFunction } from '../types';
 import { formatIsoForDisplay, getDefaultPublishedIso, getRouteModifiedIso } from '../seo/contentDates';
@@ -423,6 +423,14 @@ export const FixDetailPage: React.FC<FixDetailPageProps> = ({ onNavigate, onScro
           <h1 className="mb-5 text-4xl font-black leading-[0.95] tracking-tighter md:text-6xl">{page.h1}</h1>
           <p className="text-lg font-medium leading-relaxed text-slate-600">{page.summary}</p>
         </header>
+
+        {simSwapWarningFixSlugs.includes(page.slug) && (
+          <aside aria-labelledby="sim-swap-warning" className="mb-10 rounded-2xl border border-amber-300 bg-amber-50 p-5 text-amber-950">
+            <h2 id="sim-swap-warning" className="mb-2 text-lg font-black">Suddenly lost calls or SMS?</h2>
+            <p className="mb-3 text-sm font-medium leading-relaxed">Signal loss alone does not prove fraud. If calls or SMS stop unexpectedly, or you receive a SIM-swap or number-port notice you did not request, contact your mobile provider immediately. If you suspect fraud, contact your bank too; do not delay those calls while changing APN settings or restarting the phone.</p>
+            <Link to="/fix/sim-swap-fraud-south-africa/" className="inline-flex min-h-[44px] items-center font-bold underline underline-offset-4">Suspected SIM-swap fraud: what to do now</Link>
+          </aside>
+        )}
 
         {page.adminUrl && (
           <section className="mb-10 border-y border-slate-200 bg-white py-6">

@@ -5,6 +5,21 @@ export type FixLink = {
   href: string;
 };
 
+// Phone and SMS symptoms where a fraud warning should precede routine checks.
+export const simSwapWarningFixSlugs = [
+  'vodacom-apn-settings',
+  'mtn-apn-settings',
+  'telkom-apn-settings',
+  'cell-c-apn-settings',
+  'vodacom-data-not-working',
+  'mtn-data-not-working',
+  'telkom-data-not-working',
+  'cell-c-data-not-working',
+  'mobile-data-on-but-not-working',
+  'phone-says-no-internet-south-africa',
+  'cannot-receive-otp-mobile-data'
+];
+
 export type FixPage = {
   id: string;
   slug: string;
