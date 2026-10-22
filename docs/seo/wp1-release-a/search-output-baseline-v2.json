@@ -2169,8 +2169,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/data-problems/how-to-stop-background-data-usage-android/",
       "h1": "How to Stop Background Data Usage on Android",
-      "visibleTextHash": "be2f48a136cbab69c9cfa6b611eb3ed1aaa01e9f5b344f1dad5360063c51a73f",
-      "internalLinksHash": "c55c92269bf19138b9bfd70211e9c245cf5b8b63307720801e79653c8d6e2014",
+      "visibleTextHash": "d92438c8babb9c0c9a24c7a94cb4dfb10546dccb92a8e28c22a3c42d4261a039",
+      "internalLinksHash": "725a6e645919ca7f4fb96b47d9707c9d3b303ab6a105f14c369e078ca573c960",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -2187,6 +2187,7 @@
         "/cookie-policy/|Cookie Policy",
         "/data-problems/how-to-check-data-balance-vodacom-ussd/|Fix How to check data balance Vodacom USSD",
         "/data-problems/how-to-stop-wasp-charges-vodacom/|Fix How to stop WASP charges Vodacom",
+        "/data-problems/why-is-my-data-disappearing-overnight-android/|Data falling overnight? Compare bedtime and morning readings",
         "/data-problems/why-is-my-data-disappearing-vodacom/|Fix Why is my data disappearing Vodacom",
         "/editorial-policy/|Editorial Policy",
         "/fibre/|Fibre",
@@ -2220,7 +2221,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "9823e07b8c70bf2f093bda6a4482548e4e868e78987b555416056eb1cb6a2493",
+      "structuredDataHash": "e472ea6989105349f309764ea7150d9cb4a0880f3f7cd87d60a1f713b06ccb16",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -2238,7 +2239,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-07-18T00:00:00.000Z"
+            "2026-10-22T00:00:00.000Z"
           ]
         },
         {

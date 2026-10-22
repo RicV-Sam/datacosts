@@ -24,6 +24,7 @@
   ],
   "fixSteps": {
     "general": [
+      "Match the SIM and time period first. If an app shows background mobile use, review that app’s restriction and Data Saver exception. If the use is from an app you were actively using, a backup or a hotspot, check that activity’s own controls. If the operator balance changed but the phone readings do not explain it, check bundle expiry and ask the operator for the relevant account record; a mismatch alone does not prove incorrect billing.",
       "Open Settings, search for Data usage or Mobile data usage, and set the date range to match the bundle period.",
       "Open the largest non-essential app in that list and switch off Background data or Mobile data in background. Menu names differ by Android brand and version.",
       "Turn on Data Saver, then review unrestricted-data access so essential messaging, security, and banking apps can still work when needed.",
@@ -72,9 +73,9 @@
       "status": "live"
     },
     {
-      "anchorText": "Fix Why is my Cell C data so slow",
-      "url": "/data-problems/why-is-my-cell-c-data-so-slow",
-      "reason": "related topic, already in the registry",
+      "anchorText": "Data falling overnight? Compare bedtime and morning readings",
+      "url": "/data-problems/why-is-my-data-disappearing-overnight-android/",
+      "reason": "Related Android diagnosis for a bedtime-to-morning balance change",
       "status": "live"
     },
     {

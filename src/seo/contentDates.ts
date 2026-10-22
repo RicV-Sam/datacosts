@@ -67,7 +67,7 @@ const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/data-problems/how-to-stop-airtime-disappearing-telkom/': '2026-07-18T00:00:00.000Z',
   '/data-problems/how-to-stop-airtime-disappearing-vodacom/': '2026-10-22T00:00:00.000Z',
   '/data-problems/how-to-stop-apps-using-data-in-background-samsung/': '2026-04-19T00:00:00.000Z',
-  '/data-problems/how-to-stop-background-data-usage-android/': '2026-07-18T00:00:00.000Z',
+  '/data-problems/how-to-stop-background-data-usage-android/': '2026-10-22T00:00:00.000Z',
   '/data-problems/how-to-stop-data-disappearing-cell-c/': '2026-10-12T00:00:00.000Z',
   '/data-problems/how-to-stop-data-disappearing-mtn/': '2026-04-19T00:00:00.000Z',
   '/data-problems/how-to-stop-data-disappearing-telkom/': '2026-10-12T00:00:00.000Z',
