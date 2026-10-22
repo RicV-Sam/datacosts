@@ -24,6 +24,15 @@ export interface PrivacyFinding {
 
 export const PRIVACY_ALLOWLIST: readonly PrivacyAllowlistEntry[] = [
   {
+    file: 'src/data/discoveryGuides.ts',
+    startLine: 58,
+    endLine: 58,
+    exactMatchSha256: ['fa1a2b5da1bfa8d3dd11b5ac1367afb9c65954e3e24bea16193ca203e19c266a'],
+    matchDescription: 'Exact published Vodacom prepaid-porting SMS destination in the switching guide.',
+    reason: 'Official public service destination, verified 22 October 2026 at https://www.vodacom.co.za/vodacom/help/switch-to-vodacom. This exception does not cover customer numbers, other lines or other files.',
+    approvedBy: 'user_authorized_official_contact_review_2026_10_22'
+  },
+  {
     file: 'src/pages/RouterSimBalanceGuidePage.tsx',
     startLine: 31,
     endLine: 32,

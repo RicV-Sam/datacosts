@@ -24,7 +24,9 @@ interface SummaryCard {
 }
 
 const formatCurrency = (value: number) => `R${value}`;
-const formatValue = (bundle: Bundle) => `R${bundle.costPerGb.toFixed(2)}/GB`;
+const formatValue = (bundle: Bundle) => bundle.volume.toLowerCase() === 'unlimited'
+  ? 'Not applicable — unlimited plan'
+  : `R${bundle.costPerGb.toFixed(2)}/GB`;
 
 const isHourlyBundle = (bundle: Bundle) => bundle.type === 'Hourly' || (bundle.type !== 'Daily' && bundle.validity.toLowerCase().includes('hour'));
 const isDailyBundle = (bundle: Bundle) => bundle.type === 'Daily' || (bundle.validity.toLowerCase().includes('day') && !bundle.validity.toLowerCase().includes('7 day') && !bundle.validity.toLowerCase().includes('30 day'));
@@ -40,6 +42,7 @@ const getNetworkBundleType = (bundle: Bundle): string => {
   if (isHourlyBundle(bundle)) return 'Hourly';
   if (isDailyBundle(bundle)) return 'Daily';
   if (isWeeklyBundle(bundle)) return 'Weekly';
+  if (bundle.network === 'Rain' && isMonthlyBundle(bundle)) return 'Monthly plan';
   if (isMonthlyBundle(bundle) && bundle.validity.toLowerCase().includes('recurring')) return 'Monthly Recurring';
   if (isMonthlyBundle(bundle)) return 'Monthly Once-off';
   return bundle.type;
@@ -118,6 +121,11 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
   const comparisonRows = pageData.comparisonSummary || [];
 
   const priorityNetworkMeta: Record<string, { title: string; description: string; heroHeading: string }> = {
+    rain: {
+      title: 'Rain Data Plans: Home Internet & Mobile Options',
+      description: 'Compare the Rain home-internet plans listed here, understand how they differ from Rain mobile products, and find coverage and account-help links.',
+      heroHeading: 'Rain Data Prices'
+    },
     mtn: {
       title: 'MTN Data Bundles, Deals & USSD Codes in South Africa',
       description: 'Compare MTN data bundles, prepaid options, USSD codes and ways to save on MTN data in South Africa.',
@@ -267,7 +275,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
     ...(fixGuideLinksBySlug[networkSlug] || []),
     { href: '/fibre/fibre-vs-lte-south-africa/', label: 'Fibre vs LTE home internet', description: 'Compare fixed fibre, LTE, 5G and mobile-data fallback before using a SIM as home internet.' },
     { href: '/fibre/fibre-prices-south-africa/', label: 'Fibre prices and FNOs', description: 'Check source-backed fibre price examples and learn who owns the line before choosing mobile fallback.' },
-    { href: '/airtime-advance-codes/', label: `${network.name} airtime advance codes`, description: 'Check borrow-airtime routes, eligibility, fees and repayment notes.' },
+    networkSlug === 'rain'
+      ? { href: 'https://www.rain.co.za/faqs', label: 'Official Rain account help', description: 'Find product-specific account help in Rain’s official FAQ.' }
+      : { href: '/airtime-advance-codes/', label: `${network.name} airtime advance codes`, description: 'Check borrow-airtime routes, eligibility, fees and repayment notes.' },
     { href: '/guides/how-to-check-data-balance/', label: 'How to Check Data Balance', description: 'Keep track of active bundles and expiry.' },
     { href: '/best-data-deals-south-africa/', label: 'Best Data Deals South Africa', description: 'Compare best-value prepaid bundle options.' },
     { href: '/guides/cheapest-data-south-africa/', label: 'Cheapest Data South Africa', description: 'Compare the lowest-cost bundle options by intent.' },
@@ -405,7 +415,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
 
         <TrustPanel
           lastReviewed={lastUpdated}
-          sources={`${network.name} public bundle pages, app or USSD self-service routes, listed prepaid bundles, and DataCost comparison tables.`}
+          sources={networkSlug === 'rain'
+            ? 'Rain official product pages, FAQ and legal terms. Listed plan prices retain their individual source-check dates.'
+            : `${network.name} public bundle pages, app or USSD self-service routes, listed prepaid bundles, and DataCost comparison tables.`}
           className="mb-12"
         />
 
@@ -547,14 +559,16 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         <section id={networkSlug === 'vodacom' ? 'vodacom-data-prices' : undefined} className="mb-16 scroll-mt-24">
           <h2 className="text-2xl font-black tracking-tighter mb-6 flex items-center gap-2">
             <Tag className="w-6 h-6 text-[#1b6d24]" />
-            {network.name} prepaid bundle prices ({sourceCheckedLabel})
+            {networkSlug === 'rain' ? 'Listed Rain home-internet plans' : `${network.name} prepaid bundle prices`} ({sourceCheckedLabel})
           </h2>
           <p className="text-slate-600 font-medium leading-relaxed mb-5">
-            We track publicly listed prepaid bundle pricing, USSD access routes and network-specific offer patterns in South Africa to compare real value, not just headline GB size.
+            {networkSlug === 'rain'
+              ? 'The table lists the Rain home-internet plans in our source-checked data. These are different from Rain mobile products; check coverage and product-specific terms on Rain’s official site before choosing.'
+              : 'We track publicly listed prepaid bundle pricing, USSD access routes and network-specific offer patterns in South Africa to compare real value, not just headline GB size.'}
           </p>
           <div className="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full text-left min-w-[760px]">
+              <table className={`w-full text-left ${networkSlug === 'rain' ? 'min-w-[1200px]' : 'min-w-[760px]'}`}>
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-100">
                     <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Bundle Name</th>
@@ -573,9 +587,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                     return (
                     <tr key={bundle.id} className="hover:bg-slate-50 transition-colors">
                       <td className="px-6 py-4 font-bold text-slate-900">
-                        <div className="flex items-center gap-2">
-                          <span>{bundle.name}</span>
-                          {isHighlight && <span className="inline-flex items-center px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-lg text-[10px] font-black uppercase tracking-widest">Best Value</span>}
+                        <div className={`flex items-center gap-2 ${networkSlug === 'rain' ? 'flex-wrap' : ''}`}>
+                          <span className={networkSlug === 'rain' ? 'min-w-[160px]' : undefined}>{bundle.name}</span>
+                          {isHighlight && <span className={`inline-flex items-center px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-lg text-[10px] font-black uppercase tracking-widest ${networkSlug === 'rain' ? 'whitespace-nowrap' : ''}`}>Best Value</span>}
                         </div>
                         <div className={`mt-1 text-[10px] font-black uppercase tracking-wider ${isVerifiedBundleSource(bundle) ? 'text-emerald-700' : 'text-amber-700'}`}>
                           {isVerifiedBundleSource(bundle) ? 'Source checked' : 'Confirm live - excluded from leader claims'}
@@ -584,19 +598,19 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
                           <div className="mt-1 text-[10px] font-medium text-slate-500">{sourceSummary}</div>
                         )}
                       </td>
-                      <td className="px-6 py-4 text-xs font-bold text-slate-600 uppercase tracking-wide">{getNetworkBundleType(bundle)}</td>
+                      <td className={`px-6 py-4 text-xs font-bold text-slate-600 uppercase tracking-wide ${networkSlug === 'rain' ? 'whitespace-nowrap' : ''}`}>{getNetworkBundleType(bundle)}</td>
                       <td className="px-6 py-4">
-                        <span className="text-lg font-black">{isVerifiedBundleSource(bundle) ? formatCurrency(bundle.price) : 'Confirm'}</span>
+                        <span className={`text-lg font-black ${networkSlug === 'rain' ? 'whitespace-nowrap' : ''}`}>{isVerifiedBundleSource(bundle) ? formatCurrency(bundle.price) : 'Confirm'}</span>
                         {!isVerifiedBundleSource(bundle) && <span className="block text-xs text-slate-500">Recorded reference: {formatCurrency(bundle.price)}</span>}
                       </td>
-                      <td className="px-6 py-4 text-xs font-medium text-slate-500 uppercase tracking-wide">{bundle.validity}</td>
+                      <td className={`px-6 py-4 text-xs font-medium text-slate-500 uppercase tracking-wide ${networkSlug === 'rain' ? 'whitespace-nowrap' : ''}`}>{bundle.validity}</td>
                       <td className="px-6 py-4">
-                        <span className="inline-flex items-center px-2 py-1 bg-blue-50 text-blue-700 rounded-lg text-[10px] font-black uppercase tracking-widest">
+                        <span className={`inline-flex items-center px-2 py-1 bg-blue-50 text-blue-700 rounded-lg ${networkSlug === 'rain' ? 'min-w-[140px] text-xs font-medium' : 'text-[10px] font-black uppercase tracking-widest'}`}>
                           {isVerifiedBundleSource(bundle) ? formatValue(bundle) : 'Confirm price and terms first'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-sm font-medium text-slate-600">{isVerifiedBundleSource(bundle) ? bundle.bestFor || 'General prepaid use' : 'Confirm current terms'}</td>
-                      <td className="px-6 py-4 text-sm font-medium text-amber-700">{getBundleWatchOut(bundle)}</td>
+                      <td className={`px-6 py-4 text-sm font-medium text-slate-600 ${networkSlug === 'rain' ? 'min-w-[160px]' : ''}`}>{isVerifiedBundleSource(bundle) ? bundle.bestFor || 'General prepaid use' : 'Confirm current terms'}</td>
+                      <td className={`px-6 py-4 text-sm font-medium text-amber-700 ${networkSlug === 'rain' ? 'min-w-[200px]' : ''}`}>{getBundleWatchOut(bundle)}</td>
                     </tr>
                     );
                   })}
@@ -605,7 +619,9 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             </div>
             <div className="p-4 bg-slate-50 border-t border-slate-100">
               <p className="text-[10px] text-slate-500 font-medium italic">
-                Prices and offer availability can change. Personalised deals such as Just 4 You vary by user and are not identical across all SIMs.
+                {networkSlug === 'mtn' || networkSlug === 'rain'
+                  ? 'Prices and availability can change. Personalised offers vary by SIM, tariff and campaign. Confirm the price, allowance, validity and restrictions shown on your own line before buying.'
+                  : 'Prices and offer availability can change. Personalised deals such as Just 4 You vary by user and are not identical across all SIMs.'}
                 {hasManualRequiredRows && ` ${MANUAL_PRICE_CHECK_NOTE}`}
               </p>
             </div>
@@ -681,8 +697,18 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
         <section className="mb-16">
           <h2 className="text-2xl font-black tracking-tighter mb-4 flex items-center gap-2">
             <Smartphone className="w-6 h-6 text-[#1b6d24]" />
-            {network.name} USSD codes
+            {networkSlug === 'rain' ? 'Rain account and balance help' : `${network.name} USSD codes`}
           </h2>
+          {networkSlug === 'rain' ? (
+            <p className="text-slate-600 font-medium leading-relaxed">
+              Use the Rain app or your online account for the actions available to your plan. Rain's{' '}
+              <a href="https://www.rain.co.za/legal" className="text-[#1b6d24] font-semibold hover:underline">legacy 4G Mobile Services terms</a>
+              {' '}say USSD is unavailable. Open{' '}
+              <a href="https://www.rain.co.za/faqs" className="text-[#1b6d24] font-semibold hover:underline">Rain's official FAQ</a>
+              {' '}for product-specific account help.
+            </p>
+          ) : (
+          <>
           <p className="text-slate-600 font-medium leading-relaxed mb-6">
             These are commonly used {network.name} USSD shortcuts for balance checks, data purchases and account actions.
             Some options can vary by tariff plan or menu flow.
@@ -735,6 +761,8 @@ export const NetworkPage: React.FC<NetworkPageProps> = ({ networkSlug, onNavigat
             {' '}
             <a href="/ussd-codes-south-africa/" className="text-[#1b6d24] font-semibold hover:underline">View full South Africa USSD directory</a>.
           </div>
+          </>
+          )}
         </section>
 
         {pageData.commonMistakes && pageData.commonMistakes.length > 0 && (

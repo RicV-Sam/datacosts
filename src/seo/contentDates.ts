@@ -62,10 +62,10 @@ const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/data-problems/how-to-check-data-balance-vodacom-ussd/': '2026-07-30T00:00:00.000Z',
   '/data-problems/how-to-check-wasp-subscriptions-mtn/': '2026-04-19T00:00:00.000Z',
   '/data-problems/how-to-check-wasp-subscriptions-vodacom/': '2026-04-19T00:00:00.000Z',
-  '/data-problems/how-to-stop-airtime-disappearing-cell-c/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-airtime-disappearing-cell-c/': '2026-10-22T00:00:00.000Z',
   '/data-problems/how-to-stop-airtime-disappearing-mtn/': '2026-04-18T00:00:00.000Z',
   '/data-problems/how-to-stop-airtime-disappearing-telkom/': '2026-07-18T00:00:00.000Z',
-  '/data-problems/how-to-stop-airtime-disappearing-vodacom/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/how-to-stop-airtime-disappearing-vodacom/': '2026-10-22T00:00:00.000Z',
   '/data-problems/how-to-stop-apps-using-data-in-background-samsung/': '2026-04-19T00:00:00.000Z',
   '/data-problems/how-to-stop-background-data-usage-android/': '2026-07-18T00:00:00.000Z',
   '/data-problems/how-to-stop-data-disappearing-cell-c/': '2026-10-12T00:00:00.000Z',
@@ -76,16 +76,16 @@ const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/data-problems/how-to-stop-wasp-charges-mtn/': '2026-04-18T00:00:00.000Z',
   '/data-problems/how-to-stop-wasp-charges-telkom/': '2026-04-19T00:00:00.000Z',
   '/data-problems/how-to-stop-wasp-charges-vodacom/': '2026-04-18T00:00:00.000Z',
-  '/data-problems/why-does-my-data-run-out-so-fast-cell-c/': '2026-04-19T00:00:00.000Z',
-  '/data-problems/why-does-my-data-run-out-so-fast-mtn/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/why-does-my-data-run-out-so-fast-cell-c/': '2026-10-22T00:00:00.000Z',
+  '/data-problems/why-does-my-data-run-out-so-fast-mtn/': '2026-10-22T00:00:00.000Z',
   '/data-problems/why-does-my-data-run-out-so-fast-telkom/': '2026-07-18T00:00:00.000Z',
   '/data-problems/why-is-my-airtime-disappearing-cell-c/': '2026-05-02T00:00:00.000Z',
-  '/data-problems/why-is-my-airtime-disappearing-mtn-prepaid/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/why-is-my-airtime-disappearing-mtn-prepaid/': '2026-10-22T00:00:00.000Z',
   '/data-problems/why-is-my-airtime-disappearing-telkom/': '2026-05-02T00:00:00.000Z',
-  '/data-problems/why-is-my-airtime-disappearing-vodacom-prepaid/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/why-is-my-airtime-disappearing-vodacom-prepaid/': '2026-10-22T00:00:00.000Z',
   '/data-problems/why-is-my-data-disappearing-cell-c/': '2026-05-02T00:00:00.000Z',
   '/data-problems/why-is-my-data-disappearing-mtn/': '2026-04-18T00:00:00.000Z',
-  '/data-problems/why-is-my-data-disappearing-overnight-android/': '2026-04-19T00:00:00.000Z',
+  '/data-problems/why-is-my-data-disappearing-overnight-android/': '2026-10-22T00:00:00.000Z',
   '/data-problems/why-is-my-data-disappearing-telkom/': '2026-05-02T00:00:00.000Z',
   '/data-problems/why-is-my-data-disappearing-vodacom/': '2026-08-01T00:00:00.000Z'
 };
@@ -175,8 +175,9 @@ const NETWORK_MODIFIED_BY_SLUG: Record<string, string> = {
 
 const NETWORK_PAGE_MODIFIED_BY_SLUG: Record<string, string> = {
   'cell-c': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
-  mtn: OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
-  rain: OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
+  // Scoped page-copy corrections; pricing and USSD audit dates remain separate.
+  mtn: '2026-10-22T00:00:00.000Z',
+  rain: '2026-10-22T00:00:00.000Z',
   telkom: '2026-10-12T00:00:00.000Z',
   vodacom: OCTOBER_PRICING_REVIEW_MODIFIED_ISO
 };

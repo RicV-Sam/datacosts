@@ -170,6 +170,11 @@ function validateIndexableMarkup(
 ): void {
   if (!indexableRoutes.has(route)) return;
 
+  const titles = [...html.matchAll(/<title\b[^>]*>([\s\S]*?)<\/title>/gi)];
+  if (titles.length !== 1 || !titles[0][1].trim()) {
+    pushError(errors, filePath, `${route} must render exactly one nonempty title`);
+  }
+
   const h1Count = (html.match(/<h1\b/gi) ?? []).length;
   if (h1Count !== 1) {
     pushError(errors, filePath, `${route} must render exactly one H1 but rendered ${h1Count}`);

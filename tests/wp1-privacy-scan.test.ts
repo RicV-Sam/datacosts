@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { PRIVACY_ALLOWLIST, privacyMatchFingerprint, scanPrivacyText } from '../scripts/check-wp1-privacy';
@@ -41,4 +42,24 @@ test('a documented line does not allow an arbitrary replacement phone value', ()
   const findings = scanPrivacyText('src/pages/RouterSimBalanceGuidePage.tsx', text, PRIVACY_ALLOWLIST);
   assert.equal(findings.length, 1);
   assert.equal(findings[0].line, 31);
+});
+
+
+test('verified Vodacom public destination is allowed only at its exact source location and value', async () => {
+  const file = 'src/data/discoveryGuides.ts';
+  const source = await readFile(file, 'utf8');
+  const entry = PRIVACY_ALLOWLIST.find(item => item.file === file);
+  assert.ok(entry);
+  assert.equal(entry.startLine, entry.endLine);
+  const line = source.split(/\r?\n/)[entry.startLine - 1];
+  const destination = line.match(/to (0\d{9}),/)?.[1];
+  assert.ok(destination, 'The reviewed public destination must still exist at the reviewed line');
+  assert.deepEqual(entry.exactMatchSha256, [privacyMatchFingerprint(destination)]);
+  assert.equal(scanPrivacyText(file, source, []).length, 1, 'The detector still recognises this phone shape');
+  assert.deepEqual(scanPrivacyText(file, source), []);
+  assert.equal(scanPrivacyText('src/data/other.ts', source).length, 1, 'No cross-file exemption');
+  assert.equal(scanPrivacyText(file, '\n' + source).length, 1, 'No exemption after a line move');
+  const replacement = ['0', '82', '999', '0000'].join('');
+  assert.equal(scanPrivacyText(file, source.replace(destination, replacement)).length, 1, 'No replacement-number exemption');
+  assert.equal(scanPrivacyText(file, source.replace(destination, destination + ' ' + replacement)).length, 1, 'Other numbers on the same line remain detectable');
 });

@@ -9,34 +9,37 @@
     "vodacom"
   ],
   "intentScore": 5,
-  "quickAnswer": "Vodacom airtime usually disappears because premium billing, out-of-bundle data, app purchases, or normal call and SMS spend are still active on the line. Check the deduction pattern first, then stop the service that keeps charging.",
+  "quickAnswer": "First match the Vodacom airtime drop to the time and type of account activity. Calls, messages, confirmed services and out-of-bundle data where permitted need separate checks. Mobile data being switched on does not by itself prove that airtime was charged. Record the balance before changing the relevant account setting.",
   "causes": [
     {
-      "cause": "WASP or premium billing is active",
-      "explanation": "Small daily deductions often point to a content service on the line."
+      "cause": "Out-of-bundle data may be permitted",
+      "explanation": "Check the account’s data consent or spend-control setting. Airtime does not automatically become data credit on every line when an eligible bundle runs out."
     },
     {
-      "cause": "Out-of-bundle data is using airtime",
-      "explanation": "When the bundle ends, airtime can take over if mobile data stays open."
+      "cause": "A confirmed service or purchase may be billed",
+      "explanation": "A repeated amount is a clue, not proof of a subscription. Match it to a named service, confirmation message or operator record before cancelling anything."
     },
     {
-      "cause": "Carrier-billed app purchases are linked",
-      "explanation": "In-app purchases or digital store charges can keep using airtime."
+      "cause": "Ordinary calls or messages used chargeable credit",
+      "explanation": "Compare the timing with your recent activity and available voice/SMS allowances. Ask the operator to identify a charge that you cannot reconcile."
     },
     {
-      "cause": "Call or SMS spend is higher than expected",
-      "explanation": "Long calls, voicemail, or premium numbers can drain airtime quickly."
+      "cause": "An outstanding advance may be recovered",
+      "explanation": "Vodacom’s Airtime Advance terms provide for repayment of outstanding advances and applicable fees from later recharges. Check your own outstanding amount if the drop occurs when you top up."
     }
   ],
   "fixSteps": {
     "general": [],
     "byNetwork": {
       "vodacom": [
-        "Open your network app and review the last airtime deductions on the line.",
-        "Look for a repeating amount that suggests a subscription or premium content charge.",
-        "Switch off out-of-bundle data so airtime does not carry mobile data after the bundle ends.",
-        "Check whether app purchases or carrier billing are turned on for your number.",
-        "Contact support if you still cannot match the deduction to a call, SMS, data session, or subscription."
+        "Record the Vodacom airtime balance and the time of the drop. Keep the recharge receipt, relevant messages and separate data/voice balances before testing again.",
+        "Check Out-of-Bundle Limit Lock through Vodacom’s *135# Services menu. Its published guide describes an R0 data limit; follow the current wording and confirm the setting on your line rather than assuming that mobile data always uses airtime.",
+        "To review content services, use Vodacom’s *135*997# menu or VodaPay content-service controls. Choose the named service or the all-services option only after reviewing what will be cancelled; menu wording may change.",
+        "Treat cancellation of existing subscriptions and blocking future content additions as separate actions. Keep the confirmation SMS and do not assume that deleting an app cancels a network-billed service.",
+        "If the drop followed a recharge and you used Airtime Advance, check the outstanding advance and applicable fee against the recovery message. Buying data or changing phone settings does not erase an existing repayment.",
+        "Check relevant app-store receipts and subscriptions in the account that made the purchase. A network content-service cancellation should not be assumed to cancel a separately billed store subscription.",
+        "While investigating data-related charges, switch mobile data off temporarily if you can rely on trusted Wi-Fi. Compare another recorded interval; stopping mobile traffic will not necessarily stop calls, service charges or recovery of an earlier advance.",
+        "Give Vodacom the starting/ending airtime, timestamps and any service or recharge messages. Ask which entry caused the change, what any block covers and when it takes effect. Keep the reference and cancellation confirmation; do not assume a refund is guaranteed."
       ],
       "mtn": [],
       "cellc": [],
@@ -44,23 +47,23 @@
     }
   },
   "preventionTips": [
-    "Keep a bundle active so airtime does not become fallback data.",
-    "Review recent deductions after every unexpected airtime drop.",
-    "Turn off carrier billing if you do not use app store purchases.",
-    "Check active subscriptions before you top up again."
+    "Keep the confirmation of any cancellation or spend-control change, including its scope and effective date.",
+    "Review confirmed services separately from app-store purchases and ordinary call/SMS spending.",
+    "Check out-of-bundle data consent before relying on airtime as a reserve; an active bundle does not cancel existing services.",
+    "If the balance drops again, record the timing and named account event before applying another unrelated phone setting."
   ],
   "faqs": [
     {
-      "question": "Why does How to stop airtime disappearing Vodacom keep happening every day?",
-      "answer": "A daily pattern usually points to a recurring content charge or scheduled out-of-bundle usage."
+      "question": "Does turning mobile data off stop every Vodacom airtime deduction?",
+      "answer": "No. It stops mobile-data transfers while off, but does not cancel a service or other charge already due. Match the deduction to the operator record."
     },
     {
-      "question": "Can a data bundle stop airtime from disappearing?",
-      "answer": "It helps when the real issue is out-of-bundle data, but it will not fix a premium subscription charge on its own."
+      "question": "Does a repeating amount prove that I have a subscription?",
+      "answer": "No. Check the service name, messages and account record. A pattern helps frame the support question but does not identify the charge by itself."
     },
     {
-      "question": "Should you check subscriptions when How to stop airtime disappearing Vodacom starts?",
-      "answer": "Yes. Subscription checks are one of the fastest ways to explain repeated airtime loss on a prepaid line."
+      "question": "Will buying another data bundle cancel a content service?",
+      "answer": "No. A data purchase and a content-service cancellation are different actions. Review the service and keep its cancellation confirmation separately."
     }
   ],
   "internalLinks": [
@@ -105,12 +108,12 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-04-19",
-  "reviewDueDate": "2026-10-19",
+  "lastReviewed": "2026-10-22",
+  "reviewDueDate": "2026-11-21",
   "sourceNotes": [
-    "Vodacom self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
-    "Operator-controlled context for airtime deductions and fallback billing: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Vodacom.",
-    "Device-side evidence for Vodacom: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
+    "Reviewed against the official sources linked below on 22 October 2026. Their scope is explained beside each link; publicly available guidance does not establish the state of a private account.",
+    "Balance screenshots, phone counters and operator records answer different questions. Match the SIM, time period and balance category, and retain purchase, expiry or cancellation confirmations before drawing a conclusion.",
+    "App menus, manufacturer settings and operator product rules may change. No authenticated account, live SIM, personalised tariff, refund eligibility or complete transaction history was verified in this review."
   ],
   "uniqueValueSummary": "This guide is intentionally scoped to airtime deductions and fallback billing for Vodacom. It does not simply repeat a generic data-saving checklist: it separates account-side signals, device-side usage, and bundle-validity clues so a user can decide whether to change a phone setting, cancel a service, buy a different bundle, or escalate to Vodacom support. The main check is Vodacom airtime balance, out-of-bundle data use, carrier billing, and any recurring value-added-service charges. The page remains conservative until more route-specific checks are available. That distinction matters because many South African prepaid problems look similar after the balance has already dropped, while the useful evidence is usually visible only in the first few minutes after the user notices the loss.",
   "officialSupportContext": "DataCost can help users narrow airtime deductions and fallback billing, but it cannot see a private Vodacom account, reverse a charge, cancel a service on behalf of the user, or guarantee a personalised menu. For this route, the support question should be framed around Vodacom airtime balance, out-of-bundle data use, carrier billing, and any recurring value-added-service charges. If the evidence points to a billing fault, failed cancellation, SIM-specific offer, disputed deduction, or account-level block, the user should use the official Vodacom app, USSD flow, store, or support channel and keep the reference number or confirmation SMS.",
@@ -121,5 +124,37 @@
     "Any SMS, in-app confirmation, USSD result, or support reference that proves a service was cancelled, bought, expired, blocked, or changed."
   ],
   "whenThisDoesNotApply": "This page should not be treated as proof that Vodacom made an error on every line with airtime deductions and fallback billing. It may not fit contract billing, business accounts, router-only SIMs, roaming, family-linked accounts, app-store purchases, or cases where another person controls the SIM. In those situations, account-specific support, live terms, and the latest official checkout or USSD wording matter more than a general troubleshooting guide.",
-  "indexingStatus": "index"
+  "indexingStatus": "index",
+  "officialSources": [
+    {
+      "href": "https://www.vodacom.co.za/vodacom/help/content-services-and-subscriptions",
+      "label": "Vodacom content-service help",
+      "note": "Explains checking, cancelling and blocking content subscriptions; follow the live menu and retain confirmation."
+    },
+    {
+      "href": "https://www.vodacom.co.za/vodacom/services/internet/about-add-to-bill",
+      "label": "Vodacom Add to Bill FAQ",
+      "note": "Explains prepaid airtime billing and the difference between cancelling existing content services and blocking future additions."
+    },
+    {
+      "href": "https://now.vodacom.co.za/be-datawyze/how-to-activate-data-limit-locks/",
+      "label": "Vodacom Data Limit Lock",
+      "note": "Describes the R0 out-of-bundle data limit through the *135# Services menu; confirm the active setting on your line."
+    },
+    {
+      "href": "https://www.vodacom.co.za/vodacom/terms/airtime-advance-terms-and-conditions",
+      "label": "Vodacom Airtime Advance terms",
+      "note": "Explains recovery of outstanding advances and applicable access fees from later recharges; check your own outstanding amount."
+    },
+    {
+      "href": "https://support.google.com/pixelphone/answer/2819524?hl=en",
+      "label": "Google: mobile data usage",
+      "note": "Explains app counters, date ranges and warnings, and notes that operator measurements can differ. Pixel menu paths are not universal Android paths."
+    },
+    {
+      "href": "https://support.google.com/googleplay/answer/7018481?co=GENIE.Platform%3DAndroid&hl=en",
+      "label": "Google Play: subscription cancellation",
+      "note": "Explains cancelling in the account that owns the subscription; uninstalling an app does not cancel its subscription."
+    }
+  ]
 }
