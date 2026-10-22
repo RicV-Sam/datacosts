@@ -85,13 +85,13 @@ const assertRejected = (
   return result.diagnostic;
 };
 
-test('the private authority remains lookup-only and reconciles all 163 published subjects', () => {
+test('the private authority remains lookup-only and reconciles all 164 published subjects', () => {
   assert.deepEqual(Object.keys(subjectAuthority), ['resolveWp1EvidenceSubjectKind']);
   assert.equal(subjectAuthority.resolveWp1EvidenceSubjectKind('price.mtn-5gb-data-price'), 'price');
   assert.equal(subjectAuthority.resolveWp1EvidenceSubjectKind('uncommitted.subject'), null);
   assert.equal(subjectAuthority.resolveWp1EvidenceSubjectKind('price.vodacom-night-owl-250mb-price'), null);
   const source = readFileSync(new URL('../src/data/wp1EvidenceSubjects.ts', import.meta.url), 'utf8');
-  assert.equal([...source.matchAll(/Object\.freeze\(\{"contentId":/g)].length, 163);
+  assert.equal([...source.matchAll(/Object\.freeze\(\{"contentId":/g)].length, 164);
   assert.equal(WP1_EVIDENCE_FINGERPRINT_PROJECTION_VERSION, 'wp1-release-a.6-projection-v1');
   assert.match(source, /CANONICAL_EVIDENCE_FINGERPRINT_PROJECTION_VERSION/);
 });
@@ -262,11 +262,25 @@ test('claim-defining operator, code, type, currency and device fields fail autho
     [`import { ussdRepository } from './src/data/ussd.ts'; ussdRepository[0].code = '*000#';`, 'ussd.vodacom.balance_detailed', 'ussd_repository', 'ussd_code'],
     [`import { ussdRepository } from './src/data/ussd.ts'; ussdRepository[0].category = 'Other';`, 'ussd.vodacom.balance_detailed', 'ussd_repository', 'ussd_code'],
     [`import { ussdRepository } from './src/data/ussd.ts'; ussdRepository[0].network = 'MTN';`, 'ussd.vodacom.balance_detailed', 'ussd_repository', 'ussd_code'],
-    [`import { fixPages } from './src/data/fixes.ts'; fixPages[0].cluster = 'ussd';`, 'device_step.vodacom-apn-settings', 'device_collection', 'device_step'],
-    [`import { fixPages } from './src/data/fixes.ts'; fixPages[0].provider = 'Other';`, 'device_step.vodacom-apn-settings', 'device_collection', 'device_step'],
-    [`import { fixPages } from './src/data/fixes.ts'; fixPages[0].serviceType = 'other-service';`, 'device_step.vodacom-apn-settings', 'device_collection', 'device_step']
+    [`import { fixPages } from './src/data/fixes.ts'; fixPages.find(p => p.id === 'vodacom-apn-settings').cluster = 'ussd';`, 'device_step.vodacom-apn-settings', 'device_collection', 'device_step'],
+    [`import { fixPages } from './src/data/fixes.ts'; fixPages.find(p => p.id === 'vodacom-apn-settings').provider = 'Other';`, 'device_step.vodacom-apn-settings', 'device_collection', 'device_step'],
+    [`import { fixPages } from './src/data/fixes.ts'; fixPages.find(p => p.id === 'vodacom-apn-settings').serviceType = 'other-service';`, 'device_step.vodacom-apn-settings', 'device_collection', 'device_step']
   ] as const;
   for (const [setup, id, owner, kind] of attacks) {
     assertRejected(setup, id, { code: 'semantic_fingerprint_mismatch', recordId: id, runtimeOwner: owner, expectedOwner: owner, expectedKind: kind });
   }
+});
+
+
+test('released SIM-security subject is explicitly registered and rejects malformed publication dates or altered identity', () => {
+  const id = 'device_step.sim-swap-fraud-south-africa';
+  assert.equal(runFreshAuthority('', id).lookupKind, 'device_step');
+  for (const value of [42, 'not-a-date', '2026-02-30T00:00:00.000Z']) {
+    const result = runFreshAuthority(`import { fixPages } from './src/data/fixes.ts'; fixPages.find(p => p.id === 'sim-swap-fraud-south-africa').publishedIso = ${JSON.stringify(value)};`, id);
+    assert.equal(result.accepted, false);
+    assert.equal(result.diagnostic?.code, 'invalid_field_type');
+  }
+  const altered = runFreshAuthority(`import { fixPages } from './src/data/fixes.ts'; fixPages.find(p => p.id === 'sim-swap-fraud-south-africa').serviceType = 'other-service';`, id);
+  assert.equal(altered.accepted, false);
+  assert.equal(altered.diagnostic?.code, 'semantic_fingerprint_mismatch');
 });

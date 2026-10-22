@@ -1,12 +1,12 @@
 {
   "version": 2,
   "baselineCommit": "d35bb614fca0c280bd86bbc2418a2c0dbe042a5a",
-  "htmlCount": 262,
-  "routeCount": 262,
-  "titleCount": 262,
-  "sitemapUrlCount": 183,
-  "sitemapMembershipHash": "53fe7c52f41e53cbc221617feb520af8981a8c3cfcfc99f7a631c094fc0276c1",
-  "structuredDataBlockCount": 894,
+  "htmlCount": 263,
+  "routeCount": 263,
+  "titleCount": 263,
+  "sitemapUrlCount": 184,
+  "sitemapMembershipHash": "c83c99263780672de11767584fbed1d839aa386e4cd13f6f79223cdf5ea87c5d",
+  "structuredDataBlockCount": 898,
   "routes": [
     {
       "route": "/",
@@ -6466,12 +6466,12 @@
     {
       "route": "/fix/",
       "title": "DataCost Fixes: South African Codes, Errors and Quick Help",
-      "description": "Quick South African help for mobile data problems, APN settings, USSD codes, prepaid electricity errors, DStv/Openview decoder issues and LTE router fixes.",
+      "description": "South African help for suspected SIM-swap fraud, mobile data, APN settings, USSD, prepaid electricity errors, TV decoder issues and LTE router problems.",
       "robots": "",
       "canonical": "https://datacost.co.za/fix/",
       "h1": "DataCost Fixes",
-      "visibleTextHash": "9d8b7b49ce8f46bc9893bd58e63f605f3736c7928bb3a996195b17e715475910",
-      "internalLinksHash": "305e44d35195865fb4c0d9b808f6f02f2e3914c4fe228b2dfbac4d454beddff6",
+      "visibleTextHash": "f5fe8ba537f1ed3321ee268fc43c900037f3b319db92d8328ccd805a744e8899",
+      "internalLinksHash": "68a5ef27c43fad634b890d3bf4416b1e3a2f4a3b76fa7bd1b4c2fb38f9dceaf9",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -6564,6 +6564,8 @@
         "/fix/rain-balance-check/|USSD USSD Data balance Rain data balance check Use this page when you need to confirm your Rain data balance before buying bundles, troubleshooting disappearing airtime or contacting support. Open fix",
         "/fix/rain-router-no-internet/|Mobile data Mobile data Rain Rain router no internet Use this when your Rain router Wi-Fi is visible but the internet does not work. Rain issues are often about account status, indoor signal, router placement or the router falling back from 5G to a weak connection. Open fix",
         "/fix/router-wifi-working-but-no-internet/|LTE router LTE router Wi-Fi Router Wi-Fi working but no internet Use this LTE router guide for common South African home internet problems, including APN profiles, SIM detection, red lights and connected-but-no-internet symptoms. Open fix",
+        "/fix/sim-swap-fraud-south-africa/|SIM and account security SIM swap SIM swop Suspected SIM-swap fraud: what to do now An unexpected SIM-change notice, number-port request or sudden loss of calls and SMS needs attention, even if your phone is still with you. Contact your network and bank immediately if you suspect fraud. Do not wait for money to disappear. Open fix",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud Urgent steps to protect your number, bank and accounts.",
         "/fix/stop-wasp-services-cell-c/|USSD WASP services USSD Stop WASP services on Cell C Use this guide if airtime keeps disappearing and you suspect paid content, premium services or subscription billing on a Cell C prepaid line. Open fix",
         "/fix/stop-wasp-services-mtn/|USSD WASP services USSD Stop WASP services on MTN Use this if MTN airtime keeps dropping and you suspect paid content, VAS or WASP services. Check subscriptions through official MTN channels and keep evidence before escalating billing questions. Open fix",
         "/fix/stop-wasp-services-telkom/|USSD WASP services USSD Stop WASP services on Telkom Use this guide if airtime keeps disappearing and you suspect paid content, premium services or subscription billing on a Telkom prepaid line. Open fix",
@@ -6615,7 +6617,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "e3fcc95112ede504f6dc15881bc316b1e43fe10cb26d1973d3060892d256f8cb",
+      "structuredDataHash": "ee351a19df64dcdc08a3dd2d34b1bd3c00984efcffdf38a76a07130582fbed38",
       "structuredDataBlockCount": 3,
       "structuredDataSummary": [
         {
@@ -6642,7 +6644,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-07-24T00:00:00.000Z"
+            "2026-10-16T00:00:00.000Z"
           ]
         },
         {
@@ -6721,6 +6723,7 @@
             "https://datacost.co.za/fix/rain-balance-check/",
             "https://datacost.co.za/fix/rain-router-no-internet/",
             "https://datacost.co.za/fix/router-wifi-working-but-no-internet/",
+            "https://datacost.co.za/fix/sim-swap-fraud-south-africa/",
             "https://datacost.co.za/fix/stop-wasp-services-cell-c/",
             "https://datacost.co.za/fix/stop-wasp-services-mtn/",
             "https://datacost.co.za/fix/stop-wasp-services-telkom/",
@@ -6874,8 +6877,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fix/cannot-receive-otp-mobile-data/",
       "h1": "Cannot receive OTP on mobile data",
-      "visibleTextHash": "5ed32b8354ccb823ecdeab841da9a1c761f1e8d74074e14d54d6326d7e93ecce",
-      "internalLinksHash": "b59a8df3a5349511bbbb66e0994b3d4d5fc1b4e159f700bcb73e8bb5460e5f8b",
+      "visibleTextHash": "3e427443bd5582d90c7d0f5e067b81f664e6e48081e87f2eeabbd58bd1842840",
+      "internalLinksHash": "b5f65a52dfabaaf8536364a1d92ae624426f37b42d89edfa61a05c9697b85e30",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -6896,6 +6899,7 @@
         "/fix/mobile-data-on-but-not-working/|Mobile data Mobile data on but not working",
         "/fix/mtn-data-not-working/|Mobile data MTN data not working",
         "/fix/phone-says-no-internet-south-africa/|Mobile data Phone says no internet in South Africa",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now",
         "/fix/vodacom-data-not-working/|Mobile data Vodacom data not working",
         "/fix/|Back to DataCost Fixes",
         "/fix/|DataCost Fixes hub",
@@ -7117,8 +7121,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fix/cell-c-apn-settings/",
       "h1": "Cell C APN settings in South Africa",
-      "visibleTextHash": "8c318cf67e95aa64895f1434a72795f6bae559f730d62ae0ee6f20b037d59321",
-      "internalLinksHash": "719f97888bea7c6e330e4f763394395ffba7de8a76366d5fede119b690dd09de",
+      "visibleTextHash": "b2d16f5b874ddbf5837c7718aed82a0e09e6768eec6a0e8bf9b5a6e4ed4885c3",
+      "internalLinksHash": "91c44ec706106102ba8fc8369d7a85eb864bc22838721162b17edb4b09e65361",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -7141,6 +7145,7 @@
         "/fix/cell-c-lte-router-no-internet/|Mobile data Cell C LTE router no internet",
         "/fix/lte-router-apn-settings-south-africa/|LTE router LTE router APN settings South Africa",
         "/fix/mobile-data-on-but-not-working/|Mobile data Mobile data on but not working",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now",
         "/fix/|Back to DataCost Fixes",
         "/fix/|DataCost Fixes hub",
         "/fix/|Fix a Problem",
@@ -7363,8 +7368,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fix/cell-c-data-not-working/",
       "h1": "Cell C data not working",
-      "visibleTextHash": "d9155bf46098b244bf9b669126c6923e8b33c32c33632193468196a65dc52a95",
-      "internalLinksHash": "bfe1da591af3bfe523c6a1045e4fa716bf97a3029ca5248f6593c4861cc74f25",
+      "visibleTextHash": "e98f5b98cf823f98d633ef4880d913551846adf5d5d48ea36ab1a4ec211b11a5",
+      "internalLinksHash": "c0633564a358a61f2d710e38e03525b0e110361ce9e606ea0fcb4857466c9fac",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -7387,6 +7392,7 @@
         "/fix/cell-c-lte-router-no-internet/|Mobile data Cell C LTE router no internet",
         "/fix/lte-router-connected-no-internet/|LTE router LTE router connected but no internet",
         "/fix/mobile-data-on-but-not-working/|Mobile data Mobile data on but not working",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now",
         "/fix/|Back to DataCost Fixes",
         "/fix/|DataCost Fixes hub",
         "/fix/|Fix a Problem",
@@ -10493,8 +10499,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fix/mobile-data-on-but-not-working/",
       "h1": "Mobile data on but not working",
-      "visibleTextHash": "1a8d428e2cb5c4cf0ca3635068720ff6ffb6d94086b2a077a43ba80102a8dd20",
-      "internalLinksHash": "cfea90580c16ea67f85f34660fd39a66c01d4f66558503088bbae68b5d3e548d",
+      "visibleTextHash": "b293a784b3b58e09254be31fcb8f4128808511ac00f61f0a3842743a8579fa6d",
+      "internalLinksHash": "aeb7ca3a74986d3b53e5a38b9a0a5444f38c0595f9233fadbd6e7d0831b855cb",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -10515,6 +10521,7 @@
         "/fix/lte-router-connected-no-internet/|LTE router LTE router connected but no internet",
         "/fix/mtn-data-not-working/|Mobile data MTN data not working",
         "/fix/rain-5g-not-working/|Mobile data Rain 5G not working",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now",
         "/fix/vodacom-data-not-working/|Mobile data Vodacom data not working",
         "/fix/|Back to DataCost Fixes",
         "/fix/|DataCost Fixes hub",
@@ -10858,8 +10865,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fix/mtn-apn-settings/",
       "h1": "MTN APN settings in South Africa",
-      "visibleTextHash": "2890b099e191e49d506a456633308476f1c63c6ed18680fcd27d6d752e9fad6f",
-      "internalLinksHash": "bf72ae007f41f0ff896ff3120beba0aa87f868f4a30277a6bf7d3a97b0cee855",
+      "visibleTextHash": "977b2ba69506a14b0cbddc5d5f9d93b6a74f13f487c4909e2f14040c47b711be",
+      "internalLinksHash": "c6f8aacf0abfb73c3d8da78762d82cfcf8a250fa0bfe7d804fa0c10d394cd12f",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -10881,6 +10888,7 @@
         "/fix/mtn-data-balance-check/|USSD MTN Data Balance Not Showing?",
         "/fix/mtn-data-not-working/|Mobile data MTN data not working",
         "/fix/mtn-lte-router-no-internet/|Mobile data MTN LTE router no internet",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now",
         "/fix/|Back to DataCost Fixes",
         "/fix/|DataCost Fixes hub",
         "/fix/|Fix a Problem",
@@ -11106,8 +11114,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fix/mtn-data-not-working/",
       "h1": "MTN data not working",
-      "visibleTextHash": "7db7571627e79b0343cfb2c3b846dd7dd03de494a9dfd0b506c332fc031afc7b",
-      "internalLinksHash": "bbbb2ef8889654eeceb485a0639f541ddaa63451a319c6e1ec3745aa5b79bdb2",
+      "visibleTextHash": "5056b165831cf5e45060d78138e5fc3602e3341d45ae72b0d2cae4021ea3b4fb",
+      "internalLinksHash": "da88700b8ce7168c2cfee40522dff13c4dd0064d51c98a64f7969b5a8211d715",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -11129,6 +11137,7 @@
         "/fix/mtn-apn-settings/|Mobile data MTN APN settings",
         "/fix/mtn-data-balance-check/|USSD MTN Data Balance Not Showing?",
         "/fix/mtn-lte-router-no-internet/|Mobile data MTN LTE router no internet",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now",
         "/fix/|Back to DataCost Fixes",
         "/fix/|DataCost Fixes hub",
         "/fix/|Fix a Problem",
@@ -11945,8 +11954,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fix/phone-says-no-internet-south-africa/",
       "h1": "Phone says no internet in South Africa",
-      "visibleTextHash": "de10d10c2918b18276ba7d8785b4ef366463d43d544eb44fce5840fb1aad65f6",
-      "internalLinksHash": "fc479163ecb0b45defc3295ccc06cc2e506dd6b5ba1ac5c466d2df1ab78e1652",
+      "visibleTextHash": "30a544499a3fe477f9e9bd8c72d027df5cf9300ade5de7bc0569bc82b7320cb1",
+      "internalLinksHash": "849bcc06a38b4f5481c7de7faeb4ceab2cbf05fbb96a9466c605218e1d9de53f",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -11967,6 +11976,7 @@
         "/fix/mobile-data-on-but-not-working/|Mobile data Mobile data on but not working",
         "/fix/mtn-data-not-working/|Mobile data MTN data not working",
         "/fix/router-wifi-working-but-no-internet/|LTE router Router Wi-Fi working but no internet",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now",
         "/fix/vodacom-data-not-working/|Mobile data Vodacom data not working",
         "/fix/|Back to DataCost Fixes",
         "/fix/|DataCost Fixes hub",
@@ -15057,6 +15067,122 @@
       ]
     },
     {
+      "route": "/fix/sim-swap-fraud-south-africa/",
+      "title": "SIM-swap Fraud South Africa: What to Do | DataCost",
+      "description": "Suspect SIM-swap or number-porting fraud? Contact your bank and network, secure affected accounts, and follow official recovery and reporting steps.",
+      "robots": "",
+      "canonical": "https://datacost.co.za/fix/sim-swap-fraud-south-africa/",
+      "h1": "Suspected SIM-swap fraud: what to do now",
+      "visibleTextHash": "93caaf62e7c3f85244c2b9a0eb23a10b83403dcc66da51a0b5b85a4d25028541",
+      "internalLinksHash": "97cbc0236a97344dff9d7abd820a404def2a3cb4760e1b7bb5081821aee36a54",
+      "internalLinks": [
+        "/about/|About",
+        "/africa-expansion/|Our Africa Expansion",
+        "/airtime-advance-codes/|Airtime Advance Codes",
+        "/alerts/|Alerts",
+        "/best-10gb-data-deals-south-africa/|Best 10GB Data Deals",
+        "/best-20gb-data-deals-south-africa/|Best 20GB Data Deals",
+        "/best-30gb-data-deals-south-africa/|Best 30GB Data Deals",
+        "/best-data-deals-south-africa/|Monthly Data Deal Tracker",
+        "/cell-c-ussd-codes/|Cell C USSD Codes",
+        "/contact/#corrections|Send a correction",
+        "/contact/|Contact",
+        "/contact/|Send a correction",
+        "/cookie-policy/|Cookie Policy",
+        "/editorial-policy/|Editorial Policy",
+        "/fibre/|Fibre",
+        "/fix/|Back to DataCost Fixes",
+        "/fix/|DataCost Fixes hub",
+        "/fix/|Fix a Problem",
+        "/fix/|Fix a Problem",
+        "/fix/|Fixes",
+        "/guides/airtime-data-saving-tips-south-africa/|Airtime &amp; Data Saving Tips",
+        "/guides/best-monthly-data-deals-south-africa/|Best Monthly Data Deals",
+        "/guides/cheapest-data-south-africa/|Cheapest Data South Africa",
+        "/guides/mobile-complaints-icasa-south-africa/|Escalating a mobile-provider complaint",
+        "/guides/mvnos-south-africa/|MVNOs in South Africa",
+        "/guides/port-number-south-africa/|Porting your number safely",
+        "/guides/stolen-phone-south-africa/|Stolen phone: urgent checklist",
+        "/guides/vodacom-vs-mtn-data-prices/|Vodacom vs MTN Data Prices",
+        "/guides/|Guides",
+        "/guides/|Guides",
+        "/methodology/|Methodology",
+        "/mtn-ussd-codes/|MTN USSD Codes",
+        "/network/|Compare Data",
+        "/network/|Network Comparison",
+        "/network/|Networks",
+        "/privacy-policy/|Privacy Policy",
+        "/sitemap/|Sitemap",
+        "/telkom-ussd-codes/|Telkom USSD Codes",
+        "/terms/|Terms &amp; Conditions",
+        "/travel-sims-south-africa/|Travel SIMs &amp; eSIMs",
+        "/trust/|Trust",
+        "/trust/|Trust Center",
+        "/ussd-codes-south-africa/|USSD Codes",
+        "/ussd-codes-south-africa/|USSD Codes Directory",
+        "/vodacom-ussd-codes/|Vodacom USSD Codes",
+        "/|DataCost.co.za",
+        "/|Home",
+        "/|Home",
+        "/|Home"
+      ],
+      "structuredDataHash": "4562f981294ba750732dffa3b7c536d189ab05184b7ab52ffa448204e6bf9907",
+      "structuredDataBlockCount": 4,
+      "structuredDataSummary": [
+        {
+          "types": [
+            "Article",
+            "Organization",
+            "Person"
+          ],
+          "ids": [],
+          "urls": [
+            "https://datacost.co.za/",
+            "https://datacost.co.za/fix/sim-swap-fraud-south-africa/"
+          ],
+          "datePublished": [
+            "2026-10-16T00:00:00.000Z"
+          ],
+          "dateModified": [
+            "2026-10-16T00:00:00.000Z"
+          ]
+        },
+        {
+          "types": [
+            "BreadcrumbList",
+            "ListItem"
+          ],
+          "ids": [],
+          "urls": [],
+          "datePublished": [],
+          "dateModified": []
+        },
+        {
+          "types": [
+            "Answer",
+            "FAQPage",
+            "Question"
+          ],
+          "ids": [],
+          "urls": [],
+          "datePublished": [],
+          "dateModified": []
+        },
+        {
+          "types": [
+            "HowTo",
+            "HowToStep"
+          ],
+          "ids": [],
+          "urls": [
+            "https://datacost.co.za/fix/sim-swap-fraud-south-africa/"
+          ],
+          "datePublished": [],
+          "dateModified": []
+        }
+      ]
+    },
+    {
       "route": "/fix/stop-wasp-services-cell-c/",
       "title": "Stop WASP services on Cell C Guide | DataCost",
       "description": "Stop WASP services on Cell C: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
@@ -15677,8 +15803,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fix/telkom-apn-settings/",
       "h1": "Telkom APN settings in South Africa",
-      "visibleTextHash": "eefa27c8067ab4a5db0521cbd0d5121dc97c3e7ccb278382b3a8cda16f777e18",
-      "internalLinksHash": "3c004ec56236fd1f53126db63fd3f17e5aa70ebf384c43dfbe09b0b24231f025",
+      "visibleTextHash": "a264a2f9fb312e673be092a3c7219a814e5544b92eea4ce482d0c18fe33613ed",
+      "internalLinksHash": "3bc82b81c838eaf2f114495e8f88657a0eb4db409af70c8f8d52e48f3d0af653",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -15697,6 +15823,7 @@
         "/fibre/|Fibre",
         "/fix/lte-router-apn-settings-south-africa/|LTE router LTE router APN settings South Africa",
         "/fix/lte-router-connected-no-internet/|LTE router LTE router connected but no internet",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now",
         "/fix/telkom-data-balance-check/|USSD Telkom Data Balance Not Showing?",
         "/fix/telkom-data-not-working/|Mobile data Telkom data not working",
         "/fix/telkom-lte-router-no-internet/|Mobile data Telkom LTE router no internet",
@@ -15925,8 +16052,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fix/telkom-data-not-working/",
       "h1": "Telkom data not working",
-      "visibleTextHash": "76c44686e187bce504678f69fcf507aac5fe29eaf374c93182cd0d168ba39cae",
-      "internalLinksHash": "19eb7789b264c6806b1f202a4d4e502fbf043303d48b5d8328df1ca960b58fe0",
+      "visibleTextHash": "f21215b6f34b420023b806cfd58e6aff6b6ac6e0de384661e22a89e23f967c96",
+      "internalLinksHash": "81131ed110fe6ca710f2604adce25cccbd2d0dfb0fd867ea6c32c7fdb393a2f6",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -15945,6 +16072,7 @@
         "/fibre/|Fibre",
         "/fix/lte-router-connected-no-internet/|LTE router LTE router connected but no internet",
         "/fix/mobile-data-on-but-not-working/|Mobile data Mobile data on but not working",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now",
         "/fix/telkom-apn-settings/|Mobile data Telkom APN settings",
         "/fix/telkom-data-balance-check/|USSD Telkom Data Balance Not Showing?",
         "/fix/telkom-lte-router-no-internet/|Mobile data Telkom LTE router no internet",
@@ -16294,8 +16422,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fix/vodacom-apn-settings/",
       "h1": "Vodacom APN settings in South Africa",
-      "visibleTextHash": "04bb81ddd6ee85c2e0efd8c462165bc8f3e3da88dff30b8c17378f8d3ecc8bfc",
-      "internalLinksHash": "74b846c62f82109cc89a3dd4c24c15d7c2fa2af2cb238209bae823d45ca9de8a",
+      "visibleTextHash": "44db87f2543acd3e1be30d6b20c685d8fb4f22c037646415a66b020a881335f2",
+      "internalLinksHash": "23e1d8fc50ae54bf567481e5c2f8d9a25363148087f07393fb357d958321b3fa",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -16314,6 +16442,7 @@
         "/fibre/|Fibre",
         "/fix/lte-router-apn-settings-south-africa/|LTE router LTE router APN settings South Africa",
         "/fix/mobile-data-on-but-not-working/|Mobile data Mobile data on but not working",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now",
         "/fix/vodacom-data-balance-check/|USSD Vodacom data balance check",
         "/fix/vodacom-data-not-working/|Mobile data Vodacom data not working",
         "/fix/vodacom-lte-router-no-internet/|Mobile data Vodacom LTE router no internet",
@@ -16542,8 +16671,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/fix/vodacom-data-not-working/",
       "h1": "Vodacom data not working",
-      "visibleTextHash": "a74cb83c15c95169450ec552ee54a80548de8b8af904dcf8f8135982f261e0e4",
-      "internalLinksHash": "6a572a8cb57f298b74e1364eefc6004cf59e1cf1646fd0d341d1042c3e9aee5b",
+      "visibleTextHash": "e66250aeb9ec43ba8cb91e28b7e2c6a2d6400c03c01aa1d0ff3e764028d375be",
+      "internalLinksHash": "3f4a42c7b7b9c883656a153cfc1a35c2bbac5a2e3d0e4d68d2dcbc78a0dea1a9",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -16562,6 +16691,7 @@
         "/fibre/|Fibre",
         "/fix/lte-router-connected-no-internet/|LTE router LTE router connected but no internet",
         "/fix/mobile-data-on-but-not-working/|Mobile data Mobile data on but not working",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now",
         "/fix/vodacom-apn-settings/|Mobile data Vodacom APN settings",
         "/fix/vodacom-data-balance-check/|USSD Vodacom data balance check",
         "/fix/vodacom-lte-router-no-internet/|Mobile data Vodacom LTE router no internet",
@@ -17030,8 +17160,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/",
       "h1": "South Africa Telecom Guides Hub",
-      "visibleTextHash": "73b90017098322688b95b65b4cca1335d6c02eb7fa74d41fe83685397d78b18b",
-      "internalLinksHash": "36d0abc1f931eda016576f8883ae92cf80d13e31d1187621448cdbde006e8f7d",
+      "visibleTextHash": "0719941d32f44de11df73754a1c90e8d69ebf299e526476d02b0ab7c2992c901",
+      "internalLinksHash": "becb77811c6c078d11eba9594a614b4b6477906d205c2abefe76d8b97a264d48",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -17056,6 +17186,7 @@
         "/fix/lte-router-connected-no-internet/|LTE Router Connected but No Internet Troubleshoot Wi-Fi, SIM, APN, and router dashboard clues. Read Guide",
         "/fix/mobile-data-on-but-not-working/|Mobile Data On But Not Working Use this when signal shows but apps, browsing, or WhatsApp will not load. Read Guide",
         "/fix/prepaid-electricity-token-not-loading/|Prepaid Electricity Token Not Loading Safe receipt and meter checks before buying another token. Read Guide",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap Fraud: What to Do Now Urgent bank and network actions, account recovery and reporting for suspected SIM-swap or porting fraud. Read Guide",
         "/fix/|DataCost Fixes Browse quick fixes for mobile data, USSD, routers, prepaid electricity, and decoder errors. Read Guide",
         "/fix/|Fix a Problem",
         "/fix/|Fix a Problem",
@@ -17117,6 +17248,7 @@
         "/guides/port-number-south-africa/|Port Your Mobile Number in South Africa: A Switching Checklist Keep your number when switching networks. Check contract settlement, new-SIM registration, lost balances, approval and failed-port recovery. Read Guide",
         "/guides/prepaid-vs-contract-south-africa/|Prepaid vs Contract Phone Pricing in South Africa (2026) Compare prepaid vs contract phone pricing in South Africa by total cost, device payments, flexibility, monthly inclusions and extra usage charges. Read Guide",
         "/guides/stolen-phone-south-africa/|Stolen Phone in South Africa: What to Do Immediately Emergency steps to protect your bank, lock the phone, block the SIM, request IMEI blacklisting and report it to SAPS. Read Guide",
+        "/guides/stolen-phone-south-africa/|Stolen Phone in South Africa: What to Do Immediately Emergency steps to protect your bank, lock the phone, block the SIM, request IMEI blacklisting and report it to SAPS. Read Guide",
         "/guides/stolen-phone-south-africa/|Stolen Phone in South Africa: What to Do Immediately Safety-first help for banking, remote locking, SIM blocking, IMEI blacklisting and SAPS reporting. Read Guide",
         "/guides/stop-wasp-subscriptions-south-africa/|Stop WASP Subscriptions in South Africa How to stop unwanted premium billing and protect your airtime. Read Guide",
         "/guides/stop-wasp-subscriptions-south-africa/|Stop WASP Subscriptions in South Africa Stop premium-service airtime deductions. Read Guide",
@@ -17165,7 +17297,7 @@
         "/|Home",
         "/|Home"
       ],
-      "structuredDataHash": "1e26c88bbab6715387b0801b1ba33f5684ac8beca39ce3935d679fa1bad5ac36",
+      "structuredDataHash": "ebcfe0afc7443b952db3709fee25d750d375794ae7128c97a9a16faaac38c580",
       "structuredDataBlockCount": 4,
       "structuredDataSummary": [
         {
@@ -17189,7 +17321,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-10-12T00:00:00.000Z"
+            "2026-10-16T00:00:00.000Z"
           ]
         },
         {
@@ -17260,7 +17392,7 @@
             "2025-01-15T00:00:00.000Z"
           ],
           "dateModified": [
-            "2026-10-12T00:00:00.000Z"
+            "2026-10-16T00:00:00.000Z"
           ]
         }
       ]
@@ -22521,8 +22653,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/guides/stolen-phone-south-africa/",
       "h1": "Stolen Phone in South Africa: What to Do Immediately",
-      "visibleTextHash": "fe6f71988ae7f4664cb8f45e1f67ebf168b499a466644f688b51d439815dad95",
-      "internalLinksHash": "3105a008ba6f48782e8124c095a45e5b7ba6c359f1c87bda8845b2ad1add6cbb",
+      "visibleTextHash": "18cd75796c0c5f686df225b2d6150c711e18f336d1fadb4b2d825f75cb8f90d4",
+      "internalLinksHash": "39fc84cf02551c75f2274d4c7eb1a9c13aab41dc3074be75a7646270705f37d2",
       "internalLinks": [
         "/about/|About",
         "/africa-expansion/|Our Africa Expansion",
@@ -22539,6 +22671,7 @@
         "/cookie-policy/|Cookie Policy",
         "/editorial-policy/|Editorial Policy",
         "/fibre/|Fibre",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud? Follow the urgent bank, network and account-recovery steps.",
         "/fix/|Fix a Problem",
         "/fix/|Fix a Problem",
         "/guides/airtime-data-saving-tips-south-africa/|Airtime &amp; Data Saving Tips",
@@ -28024,8 +28157,8 @@
       "robots": "",
       "canonical": "https://datacost.co.za/sitemap/",
       "h1": "DataCost Sitemap",
-      "visibleTextHash": "1a76d62756c23aef0a6ae5813b8ed3e8106f9a64a68cce730aa5b17c736a3ff0",
-      "internalLinksHash": "d726b66dd208e8905280a2c1fb320873dc4a7c14fc5d87b630cbda5ccd44658b",
+      "visibleTextHash": "7b514adff2c16d6d28f2087e5f2423610175800cd20746295b6830dd37fb7abb",
+      "internalLinksHash": "b20a68337dcfbed6862229ea3ca102d5fddf32c3503454fc50292251be162351",
       "internalLinks": [
         "/about/|About",
         "/about/|About DataCost",
@@ -28145,6 +28278,7 @@
         "/fix/rain-balance-check/|Rain data balance check (USSD)",
         "/fix/rain-router-no-internet/|Rain router no internet (Mobile data)",
         "/fix/router-wifi-working-but-no-internet/|Router Wi-Fi working but no internet (LTE router)",
+        "/fix/sim-swap-fraud-south-africa/|Suspected SIM-swap fraud: what to do now (SIM and account security)",
         "/fix/stop-wasp-services-cell-c/|Stop WASP services on Cell C (USSD)",
         "/fix/stop-wasp-services-mtn/|Stop WASP services on MTN (USSD)",
         "/fix/stop-wasp-services-telkom/|Stop WASP services on Telkom (USSD)",
@@ -29395,6 +29529,7 @@
     "https://datacost.co.za/fix/rain-balance-check/",
     "https://datacost.co.za/fix/rain-router-no-internet/",
     "https://datacost.co.za/fix/router-wifi-working-but-no-internet/",
+    "https://datacost.co.za/fix/sim-swap-fraud-south-africa/",
     "https://datacost.co.za/fix/stop-wasp-services-cell-c/",
     "https://datacost.co.za/fix/stop-wasp-services-mtn/",
     "https://datacost.co.za/fix/stop-wasp-services-telkom/",

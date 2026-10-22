@@ -40,6 +40,7 @@ const OPERATOR_SUBJECTS = Object.freeze([
 // Committed production authority. It is intentionally independent of the mutable
 // application collections below; those collections are only checked against it.
 const CANONICAL_EVIDENCE_SUBJECT_MANIFEST: readonly Readonly<CanonicalEvidenceSubject>[] = Object.freeze([
+  Object.freeze({"contentId":"device_step.sim-swap-fraud-south-africa","kind":"device_step","owner":"device_collection","semanticFingerprint":"5368c80e9a2d8fa0c73e20be48296ac2b4709ff1b70558b113e99224a63b985a"}),
   Object.freeze({"contentId":"ussd.vodacom.balance_main","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"5bdf0cf82a697e3dc083054a20d28d8c6d39c338ad8e074c8d4050517594e91d"}),
   Object.freeze({"contentId":"ussd.vodacom.balance_detailed","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"6e7b101e8cfa898246b79baf453ebb601a887d1ce74e5985ff5ec66570731790"}),
   Object.freeze({"contentId":"ussd.vodacom.recharge_voucher","kind":"ussd_code","owner":"ussd_repository","semanticFingerprint":"43aa196aa53252e49681a153d4c2ceb6377caadd6bed1d38f04eaaf43b06a32f"}),
@@ -261,7 +262,7 @@ const ALLOWED_FIELDS: Readonly<Record<EvidenceSubjectOwner, readonly string[]>> 
   ussd_repository: Object.freeze(['id', 'network', 'category', 'action', 'code', 'explanation', 'status', 'dialable', 'note']),
   price_collection: Object.freeze(['id', 'slug', 'network', 'name', 'price', 'currency', 'volume', 'validity', 'type', 'anytimeData', 'nightData', 'costPerGb', 'isBestValue', 'isSpeedKing', 'bestFor', 'note', 'watchOut', 'sourceUrl', 'sourceLabel', 'sourceConfidence', 'lastVerified', 'productType', 'nightWindow']),
   promotion_collection: Object.freeze(['id', 'title', 'provider', 'promoType', 'category', 'summary', 'verificationStatus', 'sourceUrl', 'termsUrl', 'startDate', 'endDate', 'lastChecked', 'notes', 'isSponsored', 'displayPriority']),
-  device_collection: Object.freeze(['id', 'slug', 'cluster', 'scope', 'title', 'seoTitle', 'metaDescription', 'h1', 'summary', 'tags', 'provider', 'serviceType', 'quickAnswer', 'sections', 'faqs', 'adminUrl', 'sourceSummary', 'officialSources', 'relatedFixSlugs', 'relatedDataCostLinks']),
+  device_collection: Object.freeze(['id', 'slug', 'cluster', 'scope', 'title', 'seoTitle', 'metaDescription', 'h1', 'summary', 'tags', 'provider', 'serviceType', 'quickAnswer', 'sections', 'faqs', 'adminUrl', 'publishedIso', 'sourceSummary', 'officialSources', 'relatedFixSlugs', 'relatedDataCostLinks']),
   problem_guides: Object.freeze(['slug', 'titleTag', 'metaDescription', 'h1', 'intro', 'quickAnswer', 'causes', 'fixSteps', 'networkFixes', 'ussdSummary', 'preventionTips', 'faq', 'internalLinks', 'whenToEscalate', 'reviewDueDate', 'sourceSummary', 'officialSources', 'operator', 'claimScope'])
 });
 
@@ -377,6 +378,7 @@ function validateRecordStructure(owner: EvidenceSubjectOwner, value: unknown): S
         }
       }
     }
+    validateOptional('publishedIso', (candidate) => typeof candidate === 'string' && /^\d{4}-\d{2}-\d{2}T00:00:00\.000Z$/.test(candidate) && Number.isFinite(Date.parse(candidate)) && new Date(candidate).toISOString() === candidate, 'canonical_iso_date');
     for (const field of ['scope', 'provider', 'adminUrl', 'sourceSummary']) {
       validateOptional(field, (candidate) => typeof candidate === 'string', 'string');
     }
