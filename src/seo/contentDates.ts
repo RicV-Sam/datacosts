@@ -142,7 +142,7 @@ const GUIDE_MODIFIED_BY_SLUG: Record<string, string> = {
   'why-is-my-data-disappearing-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'how-to-stop-airtime-being-used-automatically': PRICING_AUDIT_MODIFIED_ISO,
   'how-to-cancel-subscriptions-mtn-vodacom-telkom': PRICING_AUDIT_MODIFIED_ISO,
-  'how-to-check-subscriptions-on-mtn': PRICING_AUDIT_MODIFIED_ISO,
+  'how-to-check-subscriptions-on-mtn': '2026-10-29T00:00:00.000Z',
   'how-to-check-subscriptions-on-vodacom': PRICING_AUDIT_MODIFIED_ISO,
   'how-to-stop-wasp-services-south-africa': PRICING_AUDIT_MODIFIED_ISO,
   'how-to-protect-airtime-from-being-used': PRICING_AUDIT_MODIFIED_ISO,

@@ -467,12 +467,12 @@ export const problemGuides: Record<ProblemGuideKey, ProblemGuideContent> = {
       {
         question: 'How can I tell if MTN deductions are subscription-related?',
         answer:
-          'Repeated small deductions at similar times usually indicate recurring subscription billing.'
+          'Compare the charge with the active subscription list and the service\'s confirmation messages. Repeated deductions alone do not identify the cause. If no matching service is listed, check other recurring products and out-of-bundle usage, or ask MTN to identify the charge.'
       },
       {
         question: 'Can deductions continue after one cancellation?',
         answer:
-          'Yes. Multiple active services are common, so verify each one is inactive.'
+          'Cancelling one service may leave a separate subscription active. Check each service you want to stop and keep its cancellation confirmation. Contact MTN if deductions continue after the relevant services show as inactive.'
       },
       {
         question: 'Do I need MTN support to check subscriptions?',
