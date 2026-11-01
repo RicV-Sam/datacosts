@@ -1,0 +1,1208 @@
+[
+  {
+    "path": "/best-data-deals-south-africa/",
+    "title": "Monthly data deal comparisons",
+    "description": "Compare reviewed offers, eligibility, validity and usable data."
+  },
+  {
+    "path": "/tools/data-bundle-selector/",
+    "title": "Data Bundle Selector",
+    "description": "Filter DataCost’s listed offers by pooled anytime data, fixed-day validity, bank eligibility, tariff and commitment before comparing prices."
+  },
+  {
+    "path": "/fibre/",
+    "title": "Fibre Internet in South Africa: Prices, Coverage, FNOs and ISPs Explained",
+    "description": "Understand fibre internet in South Africa: FNOs, ISPs, coverage checks, installation, ONTs, routers, prepaid fibre, LTE alternatives and checked price examples."
+  },
+  {
+    "path": "/fix/",
+    "title": "Fix a problem",
+    "description": "Find mobile data, airtime, USSD, SIM and router troubleshooting."
+  },
+  {
+    "path": "/buy-data-airtime-south-africa/",
+    "title": "How to Buy Data and Airtime in South Africa",
+    "description": "Compare top-up routes and check the network, allowance, expiry and full amount before paying."
+  },
+  {
+    "path": "/ussd-codes-south-africa/",
+    "title": "USSD codes for South Africa",
+    "description": "Find network balance, recharge and self-service instructions."
+  },
+  {
+    "path": "/guides/",
+    "title": "DataCost guides",
+    "description": "Browse mobile data, airtime and connectivity guides."
+  },
+  {
+    "path": "/network/",
+    "title": "Mobile networks",
+    "description": "Browse operator data bundles and network guides."
+  },
+  {
+    "path": "/",
+    "title": "DataCost home",
+    "description": "South African mobile data, airtime and fibre comparisons and help."
+  },
+  {
+    "path": "/mtn-ussd-codes/",
+    "title": "MTN USSD codes",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/vodacom-ussd-codes/",
+    "title": "Vodacom USSD codes",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/telkom-ussd-codes/",
+    "title": "Telkom USSD codes",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/cell-c-ussd-codes/",
+    "title": "Cell c USSD codes",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/save-ussd-codes/",
+    "title": "Save USSD codes",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/airtime-advance-codes/",
+    "title": "Airtime advance codes",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/sitemap/",
+    "title": "Sitemap",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/tools/daily-vs-monthly-data-calculator/",
+    "title": "Daily vs monthly data calculator",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/tools/usable-data-cost-calculator/",
+    "title": "Usable Data Cost Calculator",
+    "description": "Calculate cost per GB actually used from a pooled or daily-release bundle, keeping anytime and night data separate."
+  },
+  {
+    "path": "/tools/contract-vs-prepaid-phone-calculator/",
+    "title": "Contract vs Buying a Phone Outright",
+    "description": "Compare a phone contract with buying the same handset outright and paying for prepaid service over the same term."
+  },
+  {
+    "path": "/data-problems/why-is-my-data-disappearing-vodacom/",
+    "title": "Why is my data disappearing Vodacom",
+    "description": "Find why your Vodacom data is disappearing, check apps, hotspot, bundle expiry, and fallback settings, then stop hidden usage before buying more data."
+  },
+  {
+    "path": "/data-problems/how-to-stop-wasp-charges-vodacom/",
+    "title": "How to stop WASP charges on Vodacom",
+    "description": "Stop Vodacom WASP charges by finding active subscriptions, cancelling premium services, and blocking repeat billing before airtime disappears again today."
+  },
+  {
+    "path": "/data-problems/how-to-check-data-balance-vodacom-ussd/",
+    "title": "How to Check Vodacom Data Balance",
+    "description": "Check Vodacom data balance directly with *136#, use the *135# self-service menu, or compare VodaPay and TOBi before buying another bundle."
+  },
+  {
+    "path": "/data-problems/why-does-my-data-run-out-so-fast-mtn/",
+    "title": "Why does my data run out so fast MTN",
+    "description": "Find why your MTN data runs out fast, check the biggest usage drains, and stop background apps or fallback settings wasting your bundle."
+  },
+  {
+    "path": "/data-problems/why-does-my-data-run-out-so-fast-cell-c/",
+    "title": "Why does my data run out so fast Cell C",
+    "description": "Find why your Cell C data runs out so fast, check the biggest usage drains, and stop background apps or fallback settings wasting your bundle each day."
+  },
+  {
+    "path": "/data-problems/why-does-my-data-run-out-so-fast-telkom/",
+    "title": "Why Does My Telkom Data Run Out So Fast?",
+    "description": "Find why your Telkom data runs out so fast, check the biggest usage drains, and stop background apps or fallback settings wasting your bundle each day."
+  },
+  {
+    "path": "/data-problems/how-to-stop-data-disappearing-vodacom/",
+    "title": "How to stop data disappearing Vodacom",
+    "description": "Stop Vodacom data disappearing by checking app usage, hotspot, bundle expiry, and fallback settings so your balance lasts longer between top-ups today."
+  },
+  {
+    "path": "/data-problems/how-to-stop-data-disappearing-mtn/",
+    "title": "How to stop data disappearing MTN",
+    "description": "Stop MTN data disappearing by checking app usage, hotspot, bundle expiry, and fallback settings so your balance lasts longer between top-ups and renewals."
+  },
+  {
+    "path": "/data-problems/how-to-stop-data-disappearing-cell-c/",
+    "title": "How to stop data disappearing Cell C",
+    "description": "Stop Cell C data disappearing by checking app usage, hotspot, bundle expiry, and fallback settings so your balance lasts longer between top-ups today."
+  },
+  {
+    "path": "/data-problems/how-to-stop-data-disappearing-telkom/",
+    "title": "How to stop data disappearing Telkom",
+    "description": "Stop Telkom data disappearing by checking app usage, hotspot, bundle expiry, and fallback settings so your balance lasts longer between top-ups today."
+  },
+  {
+    "path": "/data-problems/why-is-my-airtime-disappearing-vodacom-prepaid/",
+    "title": "Why is my airtime disappearing Vodacom prepaid",
+    "description": "Find why your Vodacom prepaid airtime is disappearing, check subscriptions and fallback data, then block repeat charges before your next top-up today."
+  },
+  {
+    "path": "/data-problems/why-is-my-airtime-disappearing-mtn-prepaid/",
+    "title": "Why is my airtime disappearing MTN prepaid",
+    "description": "Find why your MTN prepaid airtime is disappearing, check subscriptions and fallback data, then block repeat charges before your next top-up loses value."
+  },
+  {
+    "path": "/data-problems/how-to-stop-airtime-disappearing-vodacom/",
+    "title": "How to stop airtime disappearing Vodacom",
+    "description": "Stop Vodacom airtime disappearing by checking subscriptions, fallback data, and recent deductions so you can block repeat charges before topping up again."
+  },
+  {
+    "path": "/data-problems/how-to-stop-airtime-disappearing-cell-c/",
+    "title": "How to stop airtime disappearing Cell C",
+    "description": "Stop Cell C airtime disappearing by checking subscriptions, fallback data, and recent deductions so you can block repeat charges before topping up again."
+  },
+  {
+    "path": "/data-problems/how-to-stop-airtime-disappearing-telkom/",
+    "title": "How to Stop Telkom Airtime Disappearing",
+    "description": "Stop Telkom airtime disappearing by checking subscriptions, fallback data, and recent deductions so you can block repeat charges before topping up again."
+  },
+  {
+    "path": "/data-problems/why-is-my-data-disappearing-overnight-android/",
+    "title": "Why is my data disappearing overnight android",
+    "description": "Find why Android data disappears overnight, check background apps, sync, and updates, then stop hidden usage before another bundle drains by morning again."
+  },
+  {
+    "path": "/data-problems/how-to-stop-wasp-charges-cell-c/",
+    "title": "How to stop WASP charges Cell C",
+    "description": "Stop Cell C WASP charges by finding active subscriptions, cancelling premium services, and blocking repeat billing before airtime disappears again today."
+  },
+  {
+    "path": "/data-problems/how-to-stop-wasp-charges-mtn/",
+    "title": "How to stop WASP charges MTN",
+    "description": "Stop MTN WASP charges by finding active subscriptions, cancelling premium services, and blocking repeat billing before airtime disappears again today."
+  },
+  {
+    "path": "/data-problems/how-to-stop-wasp-charges-telkom/",
+    "title": "How to stop WASP charges Telkom",
+    "description": "Stop Telkom WASP charges by finding active subscriptions, cancelling premium services, and blocking repeat billing before airtime disappears again today."
+  },
+  {
+    "path": "/data-problems/how-to-check-wasp-subscriptions-vodacom/",
+    "title": "How to check WASP subscriptions Vodacom",
+    "description": "Check Vodacom WASP subscriptions, find active premium services, and cancel unwanted billing before repeat charges take airtime from your next top-up."
+  },
+  {
+    "path": "/data-problems/how-to-check-wasp-subscriptions-mtn/",
+    "title": "How to check WASP subscriptions MTN",
+    "description": "Check MTN WASP subscriptions, find active premium services, and cancel unwanted billing before repeat charges keep taking airtime from your next top-up."
+  },
+  {
+    "path": "/data-problems/how-to-stop-background-data-usage-android/",
+    "title": "How to Stop Background Data Usage on Android",
+    "description": "Stop Android background data usage by checking app sync, mobile data permissions, and warnings so hidden usage does not drain your next bundle."
+  },
+  {
+    "path": "/data-problems/how-to-stop-apps-using-data-in-background-samsung/",
+    "title": "How to stop apps using data in background samsung",
+    "description": "Stop Samsung apps using data in background by limiting mobile data, sync, and app permissions so your bundle lasts longer between top-ups and renewals."
+  },
+  {
+    "path": "/privacy-policy/",
+    "title": "Privacy policy",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/terms/",
+    "title": "Terms",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/cookie-policy/",
+    "title": "Cookie policy",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/trust/",
+    "title": "Trust",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/about/",
+    "title": "About",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/africa-expansion/",
+    "title": "Africa expansion",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/methodology/",
+    "title": "Methodology",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/editorial-policy/",
+    "title": "Editorial policy",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/contact/",
+    "title": "Contact",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cheapest-data-south-africa/",
+    "title": "Cheapest data south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cheapest-1gb-data-south-africa/",
+    "title": "Cheapest 1GB Data South Africa 2026 - Prices Compared",
+    "description": "Compare source-checked 1GB data rows in South Africa and see which Vodacom, MTN, Telkom, or Cell C prices still need live confirmation."
+  },
+  {
+    "path": "/best-10gb-data-deals-south-africa/",
+    "title": "Best 10GB data deals south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/best-20gb-data-deals-south-africa/",
+    "title": "Best 20GB data deals south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/best-30gb-data-deals-south-africa/",
+    "title": "Best 30GB data deals south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/best-prepaid-data-deals-south-africa/",
+    "title": "Best prepaid data deals south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/best-monthly-data-deals-south-africa/",
+    "title": "Best monthly data deals south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cheapest-2gb-data-south-africa/",
+    "title": "Cheapest 2GB data south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cheapest-5gb-data-south-africa/",
+    "title": "Cheapest 5GB data south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cheapest-10gb-data-south-africa/",
+    "title": "Cheapest 10GB data south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cheapest-15gb-data-south-africa/",
+    "title": "Cheapest 15GB data south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cheapest-20gb-data-south-africa/",
+    "title": "Cheapest 20GB data south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cheapest-50gb-data-south-africa/",
+    "title": "Cheapest 50GB data south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cheapest-unlimited-data-south-africa/",
+    "title": "Cheapest unlimited data south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/best-sim-only-deals-south-africa/",
+    "title": "Best SIM only deals south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/mvnos-south-africa/",
+    "title": "Mvnos south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cheapest-whatsapp-bundles-south-africa/",
+    "title": "Cheapest whatsapp bundles south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cheap-night-data-south-africa/",
+    "title": "Night Data South Africa 2026: Hours and Bundle Checks",
+    "description": "Compare MTN Night Express hours, night-only and split bundles, and the Vodacom Night Owl details to confirm before buying or scheduling downloads."
+  },
+  {
+    "path": "/guides/vodacom-vs-mtn-data-prices/",
+    "title": "Vodacom vs MTN data prices",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/stop-wasp-subscriptions-south-africa/",
+    "title": "Stop WASP subscriptions south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/why-is-my-data-disappearing-south-africa/",
+    "title": "Why Is My Data Disappearing in South Africa?",
+    "description": "Find out why data disappears on Vodacom, MTN, Telkom, or Cell C. Check bundle expiry, app usage, and balance history before buying more data."
+  },
+  {
+    "path": "/guides/how-to-stop-airtime-being-used-automatically/",
+    "title": "How to stop airtime being used automatically",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/how-to-cancel-subscriptions-mtn-vodacom-telkom/",
+    "title": "How to cancel subscriptions MTN vodacom telkom",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/how-to-check-subscriptions-on-mtn/",
+    "title": "How to check subscriptions on MTN",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/how-to-check-subscriptions-on-vodacom/",
+    "title": "How to check subscriptions on vodacom",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/why-is-my-data-finishing-so-fast/",
+    "title": "Why is My Data Finishing So Fast? 5 Tips to Save Data in SA",
+    "description": "Is your data disappearing too quickly? Discover why your data is finishing so fast and learn 5 simple ways to reduce usage on Vodacom, MTN, and Telkom."
+  },
+  {
+    "path": "/guides/how-to-protect-airtime-from-being-used/",
+    "title": "How to protect airtime from being used",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/airtime-data-problems-south-africa/",
+    "title": "Airtime & Data Problems South Africa (2026)",
+    "description": "Fix airtime and data problems in South Africa with this hub: disappearing data, out-of-bundle billing, WASP charges, and USSD troubleshooting links."
+  },
+  {
+    "path": "/travel-sims-south-africa/",
+    "title": "Travel sims south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/buy-data-with-bank-apps-south-africa/",
+    "title": "Buy data with bank apps south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/check-router-sim-data-balance-and-recharge/",
+    "title": "Check router SIM data balance and recharge",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/stolen-phone-south-africa/",
+    "title": "Stolen phone south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/airtime-or-data-south-africa/",
+    "title": "Airtime or data south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/how-to-cancel-cellphone-contract-south-africa/",
+    "title": "How to cancel cellphone contract south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/what-to-do-when-cellphone-contract-ends-south-africa/",
+    "title": "What to do when cellphone contract ends south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/guides/cellphone-retention-offer-vs-switching-south-africa/",
+    "title": "Cellphone retention offer vs switching south africa",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/fibre/how-fibre-internet-works-south-africa/",
+    "title": "How Fibre Internet Works in South Africa",
+    "description": "Learn how fibre internet works in South Africa, including FNOs, ISPs, fibre cables, ONTs, routers, installation and support responsibilities."
+  },
+  {
+    "path": "/fibre/fno-vs-isp-south-africa/",
+    "title": "FNO vs ISP in South Africa: Who Owns the Fibre Line and Who Bills You?",
+    "description": "Understand the difference between fibre network operators and ISPs in South Africa, including installation, billing, faults, coverage and switching."
+  },
+  {
+    "path": "/fibre/fibre-network-operators-south-africa/",
+    "title": "Fibre Network Operators in South Africa",
+    "description": "Compare major South African fibre network operators including Openserve, Vumatel, MetroFibre, Frogfoot, Octotel, Zoom Fibre, Evotel and Vuma Reach."
+  },
+  {
+    "path": "/fibre/fibre-prices-south-africa/",
+    "title": "Fibre Prices in South Africa: Checked Examples and What They Really Mean",
+    "description": "Compare checked public fibre price examples in South Africa with speed, ISP, FNO, setup notes, source links and checked dates."
+  },
+  {
+    "path": "/fibre/cheapest-fibre-packages-south-africa/",
+    "title": "Cheapest Fibre Packages in South Africa: Checked Examples",
+    "description": "Review low-cost fibre package examples in South Africa with price, speed, ISP, FNO, setup notes and address-specific warnings."
+  },
+  {
+    "path": "/fibre/how-to-check-fibre-coverage-south-africa/",
+    "title": "How to Check Fibre Coverage in South Africa",
+    "description": "Learn how to check fibre coverage in South Africa by exact address, FNO, ISP, complex, estate, rental and building status."
+  },
+  {
+    "path": "/fibre/fibre-installation-costs-south-africa/",
+    "title": "Fibre Installation Costs in South Africa: Setup, Router and Cancellation Fees Explained",
+    "description": "Understand fibre installation costs in South Africa, including setup fees, router rules, delivery, cancellation, clawbacks and moving-house risks."
+  },
+  {
+    "path": "/fibre/fibre-installation-process-south-africa/",
+    "title": "Fibre Installation Process in South Africa",
+    "description": "See the typical fibre installation process in South Africa from coverage check and ISP order to FNO installation, ONT, router and activation."
+  },
+  {
+    "path": "/fibre/ont-router-explained-south-africa/",
+    "title": "Fibre ONT and Router Explained in South Africa",
+    "description": "Understand the difference between a fibre ONT and Wi-Fi router in South Africa, including ownership, power, troubleshooting and replacement rules."
+  },
+  {
+    "path": "/fibre/prepaid-fibre-south-africa/",
+    "title": "Prepaid Fibre in South Africa: How It Works, Who It Suits and What to Check",
+    "description": "Understand prepaid fibre in South Africa, including Vuma Reach, Zoom Flex, top-ups, vouchers, coverage, expiry, installation and LTE alternatives."
+  },
+  {
+    "path": "/fibre/prepaid-fibre-vs-month-to-month-fibre/",
+    "title": "Prepaid Fibre vs Month-to-Month Fibre in South Africa",
+    "description": "Compare prepaid fibre and month-to-month fibre in South Africa by coverage, top-ups, contracts, installation, cancellation and household fit."
+  },
+  {
+    "path": "/fibre/fibre-vs-lte-south-africa/",
+    "title": "Fibre vs LTE/5G in South Africa: Which Is Better for Home Internet?",
+    "description": "Compare fibre, LTE and 5G home internet in South Africa by speed stability, latency, setup, portability, coverage, gaming, streaming and work use."
+  },
+  {
+    "path": "/fibre/fibre-vs-rain-5g-south-africa/",
+    "title": "Fibre vs Rain 5G in South Africa",
+    "description": "Compare fibre and Rain 5G-style home internet in South Africa by coverage, installation, signal, latency, stability, router placement and household use."
+  },
+  {
+    "path": "/fibre/openserve-fibre-south-africa/",
+    "title": "Openserve Fibre in South Africa",
+    "description": "Understand Openserve fibre in South Africa, including FNO role, ISP ordering, coverage, installation, support paths and checked price examples."
+  },
+  {
+    "path": "/fibre/vumatel-fibre-south-africa/",
+    "title": "Vumatel Fibre in South Africa",
+    "description": "Understand Vumatel fibre in South Africa, including Vuma Core, Vuma Reach, ISP choice, coverage, prepaid options and checked price examples."
+  },
+  {
+    "path": "/fibre/metrofibre-fibre-south-africa/",
+    "title": "MetroFibre in South Africa",
+    "description": "Understand MetroFibre in South Africa, including open-access fibre, direct service, ISP partners, infrastructure role and consumer support path."
+  },
+  {
+    "path": "/fibre/frogfoot-fibre-south-africa/",
+    "title": "Frogfoot Fibre in South Africa",
+    "description": "Understand Frogfoot fibre in South Africa, including FTTH, Frogfoot Air, ISP ordering, coverage, installation and checked package examples."
+  },
+  {
+    "path": "/fibre/octotel-fibre-south-africa/",
+    "title": "Octotel Fibre in South Africa",
+    "description": "Understand Octotel fibre in South Africa, including Western Cape coverage, open-access ISP choice, installation and checked package examples."
+  },
+  {
+    "path": "/fibre/vuma-reach-prepaid-fibre-south-africa/",
+    "title": "Vuma Reach Prepaid Fibre in South Africa",
+    "description": "Understand Vuma Reach prepaid fibre in South Africa, including low-cost examples, top-ups, coverage limits, ISP ordering and alternatives."
+  },
+  {
+    "path": "/guides/convert-airtime-to-data-south-africa/",
+    "title": "How to Convert Airtime to Data South Africa (All Networks)",
+    "description": "Learn how to convert airtime to data on Vodacom, MTN, Telkom, and Cell C. Save money by avoiding expensive out-of-bundle data rates."
+  },
+  {
+    "path": "/guides/out-of-bundle-data-costs-south-africa/",
+    "title": "Out-of-Bundle Data Costs South Africa (2026)",
+    "description": "Understand out-of-bundle data costs in South Africa. Compare Vodacom, MTN, Telkom, and Cell C risks, and learn how to protect airtime."
+  },
+  {
+    "path": "/guides/prepaid-vs-contract-south-africa/",
+    "title": "Prepaid vs Contract Phone Pricing in South Africa (2026)",
+    "description": "Compare prepaid vs contract phone pricing in South Africa by total cost, device payments, flexibility, monthly inclusions and extra usage charges."
+  },
+  {
+    "path": "/guides/why-does-my-data-finish-so-fast-south-africa/",
+    "title": "Why Does My Data Finish So Fast? (SA 2026)",
+    "description": "Find out why mobile data finishes fast in South Africa and how to make it last longer. Learn the main causes, quick fixes, and better bundle choices."
+  },
+  {
+    "path": "/guides/why-is-my-airtime-disappearing-south-africa/",
+    "title": "Why Is My Airtime Disappearing? Stop WASP & Data Charges",
+    "description": "Find out why airtime disappears on MTN, Vodacom, Telkom or Cell C. Check WASP subscriptions, out-of-bundle data and premium SMS charges."
+  },
+  {
+    "path": "/guides/airtime-data-saving-tips-south-africa/",
+    "title": "How to Save Airtime & Mobile Data in South Africa (2026)",
+    "description": "Make airtime and mobile data last longer with a South African checklist for bundle expiry, Android Data Saver, iPhone Low Data Mode and app usage."
+  },
+  {
+    "path": "/guides/how-to-check-data-balance/",
+    "title": "How to Check Data Balance: MTN, Vodacom, Telkom and Cell C",
+    "description": "Check data balance on MTN, Vodacom, Telkom or Cell C. Compare the main USSD routes, then open the network-specific guide for detailed steps."
+  },
+  {
+    "path": "/guides/why-is-my-data-disappearing-vodacom/",
+    "title": "Why Your Data Disappears on Vodacom (Fix Guide 2026)",
+    "description": "Vodacom data disappearing in South Africa? Learn how to check usage, stop out-of-bundle charges, and fix MyVodacom + USSD settings fast."
+  },
+  {
+    "path": "/guides/why-is-my-data-disappearing-mtn/",
+    "title": "Why Your Data Disappears on MTN (Fix Guide 2026)",
+    "description": "MTN data disappearing in South Africa? Check MTN app usage, stop out-of-bundle fallback, and fix auto-updates and subscription drains quickly."
+  },
+  {
+    "path": "/guides/how-to-buy-data-vodacom/",
+    "title": "How to Buy Data on Vodacom - USSD Codes & App Guide 2026",
+    "description": "Learn how to buy Vodacom data with USSD, VodaPay and airtime conversion, then check your bundle price, restrictions and expiry before paying."
+  },
+  {
+    "path": "/guides/how-to-buy-data-mtn/",
+    "title": "How to Buy Data on MTN: *136*2# Code & App Guide",
+    "description": "Buy data on MTN using *136*2# or the MTN app. Follow the bundle steps and check price, expiry, data type and once-off or recurring options before paying."
+  },
+  {
+    "path": "/guides/how-to-buy-data-telkom/",
+    "title": "How to Buy Telkom Data: USSD, App, Voucher & Bank Options",
+    "description": "Step-by-step ways to buy Telkom data in South Africa using USSD, the Telkom app, vouchers, banking apps and airtime."
+  },
+  {
+    "path": "/guides/how-to-buy-data-cell-c/",
+    "title": "How to Buy Data on Cell C - USSD Codes & App Guide 2026",
+    "description": "How to buy data on Cell C: dial *147# or use the Cell C app. Check the bundle price, validity and restrictions before confirming your purchase."
+  },
+  {
+    "path": "/guides/how-to-check-mtn-data-balance/",
+    "title": "How to Check MTN Data Balance in South Africa",
+    "description": "How to check MTN data balance in South Africa: start with *136# or *136*1#, then use the MTN app for bundle validity and usage details."
+  },
+  {
+    "path": "/guides/how-to-check-mtn-airtime-balance/",
+    "title": "Check MTN Airtime Balance in South Africa",
+    "description": "Check your MTN airtime balance with *136# and the MTN app, then confirm whether data or subscriptions are causing deductions."
+  },
+  {
+    "path": "/guides/how-to-check-vodacom-airtime-balance/",
+    "title": "How to Check Balance on Vodacom: Dial *135# for Airtime and Data",
+    "description": "Check Vodacom balance by dialling *135# from your Vodacom SIM. Use VodaPay for airtime and data balances, then check bundle detail before topping up."
+  },
+  {
+    "path": "/guides/icasa-data-rollover-rules-south-africa/",
+    "title": "ICASA Data Rollover Rules: Current Rights and the 2027 Amendments",
+    "description": "Separate existing out-of-bundle rights from ICASA’s gazetted January 2027 rollover changes, exclusions and unresolved legal-status checks."
+  },
+  {
+    "path": "/guides/port-number-south-africa/",
+    "title": "Port Your Mobile Number in South Africa: A Switching Checklist",
+    "description": "Keep your number when switching networks. Check contract settlement, new-SIM registration, lost balances, approval and failed-port recovery."
+  },
+  {
+    "path": "/guides/vodacom-prepaid-esim-setup/",
+    "title": "Vodacom Prepaid eSIM Setup and SIM Swap: What to Check",
+    "description": "Set up a Vodacom prepaid eSIM: check compatibility, RICA, the till-slip QR code, swap approval, device changes and lost-code recovery."
+  },
+  {
+    "path": "/guides/vodacom-prepaid-lte-price-plan/",
+    "title": "Vodacom Prepaid LTE Price Plan: Eligibility and Activation Checks",
+    "description": "Understand Vodacom Prepaid LTE eligibility, migration, bundle extension and the R10 new-SIM incoming-call and SMS activation condition."
+  },
+  {
+    "path": "/guides/data-expiry-rollover-south-africa/",
+    "title": "Data Expiry and Rollover South Africa: Compare Product Rules",
+    "description": "Compare Capitec non-expiry choices, AirMobile calendar rollover, Vodacom repurchase extensions and daily-release forfeiture by exact product."
+  },
+  {
+    "path": "/guides/mobile-complaints-icasa-south-africa/",
+    "title": "Mobile Complaints South Africa: Provider, ICASA or WASPA?",
+    "description": "Get a provider reference, build a billing or porting evidence pack and check ICASA’s 14-working-day procedure and WASPA’s separate role."
+  },
+  {
+    "path": "/guides/mtn-bozzagigs-eligibility/",
+    "title": "MTN BozzaGigs LTE: Eligibility, Split Data and Purchase Channels",
+    "description": "Check BozzaGigs LTE’s new-customer restriction, 30-day migration window, night data, selected-channel offer and lost tariff benefits."
+  },
+  {
+    "path": "/fix/sim-swap-fraud-south-africa/",
+    "title": "Suspected SIM-swap fraud: what to do now",
+    "description": "Suspect SIM-swap or number-porting fraud? Contact your bank and network, secure affected accounts, and follow official recovery and reporting steps.",
+    "keywords": "SIM swap SIM swop Number porting Fraud"
+  },
+  {
+    "path": "/fix/vodacom-apn-settings/",
+    "title": "Vodacom APN settings",
+    "description": "Vodacom APN settings: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data APN settings Vodacom South Africa"
+  },
+  {
+    "path": "/fix/mtn-apn-settings/",
+    "title": "MTN APN settings",
+    "description": "MTN APN settings: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data APN settings MTN South Africa"
+  },
+  {
+    "path": "/fix/telkom-apn-settings/",
+    "title": "Telkom APN settings",
+    "description": "Telkom APN settings: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data APN settings Telkom South Africa"
+  },
+  {
+    "path": "/fix/cell-c-apn-settings/",
+    "title": "Cell C APN settings",
+    "description": "Cell C APN settings: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data APN settings Cell C South Africa"
+  },
+  {
+    "path": "/fix/rain-apn-settings/",
+    "title": "Rain APN settings",
+    "description": "Rain APN settings: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data APN settings Rain South Africa"
+  },
+  {
+    "path": "/fix/vodacom-data-not-working/",
+    "title": "Vodacom data not working",
+    "description": "Vodacom data not working: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data Vodacom LTE South Africa"
+  },
+  {
+    "path": "/fix/mtn-data-not-working/",
+    "title": "MTN data not working",
+    "description": "MTN data not working: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data MTN LTE South Africa"
+  },
+  {
+    "path": "/fix/telkom-data-not-working/",
+    "title": "Telkom data not working",
+    "description": "Telkom data not working: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data Telkom LTE South Africa"
+  },
+  {
+    "path": "/fix/cell-c-data-not-working/",
+    "title": "Cell C data not working",
+    "description": "Cell C data not working: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data Cell C LTE South Africa"
+  },
+  {
+    "path": "/fix/rain-5g-not-working/",
+    "title": "Rain 5G not working",
+    "description": "Rain 5G not working: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data Rain 5G South Africa"
+  },
+  {
+    "path": "/fix/vodacom-lte-router-no-internet/",
+    "title": "Vodacom LTE router no internet",
+    "description": "Vodacom LTE router no internet: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data Vodacom LTE South Africa"
+  },
+  {
+    "path": "/fix/mtn-lte-router-no-internet/",
+    "title": "MTN LTE router no internet",
+    "description": "MTN LTE router no internet: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data MTN LTE South Africa"
+  },
+  {
+    "path": "/fix/telkom-lte-router-no-internet/",
+    "title": "Telkom LTE router no internet",
+    "description": "Telkom LTE router no internet: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data Telkom LTE South Africa"
+  },
+  {
+    "path": "/fix/cell-c-lte-router-no-internet/",
+    "title": "Cell C LTE router no internet",
+    "description": "Cell C LTE router no internet: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data Cell C LTE South Africa"
+  },
+  {
+    "path": "/fix/rain-router-no-internet/",
+    "title": "Rain router no internet",
+    "description": "Rain router no internet: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data Rain LTE South Africa"
+  },
+  {
+    "path": "/fix/mobile-data-on-but-not-working/",
+    "title": "Mobile data on but not working",
+    "description": "Mobile data on but not working: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data APN settings South Africa"
+  },
+  {
+    "path": "/fix/phone-says-no-internet-south-africa/",
+    "title": "Phone says no internet in South Africa",
+    "description": "Phone says no internet in South Africa: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data APN settings South Africa"
+  },
+  {
+    "path": "/fix/mobile-hotspot-not-working-south-africa/",
+    "title": "Mobile hotspot not working in South Africa",
+    "description": "Mobile hotspot not working in South Africa: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data APN settings South Africa"
+  },
+  {
+    "path": "/fix/whatsapp-not-working-on-mobile-data/",
+    "title": "WhatsApp not working on mobile data",
+    "description": "WhatsApp not working on mobile data: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data APN settings South Africa"
+  },
+  {
+    "path": "/fix/cannot-receive-otp-mobile-data/",
+    "title": "Cannot receive OTP on mobile data",
+    "description": "Cannot receive OTP on mobile data: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Mobile data APN settings South Africa"
+  },
+  {
+    "path": "/fix/vodacom-airtime-balance-check/",
+    "title": "Vodacom airtime balance check",
+    "description": "Vodacom airtime balance check: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "USSD Airtime balance Vodacom South Africa"
+  },
+  {
+    "path": "/fix/mtn-airtime-balance-check/",
+    "title": "MTN airtime balance check",
+    "description": "MTN airtime balance check: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "USSD Airtime balance MTN South Africa"
+  },
+  {
+    "path": "/fix/telkom-airtime-balance-check/",
+    "title": "Telkom airtime balance check",
+    "description": "Telkom airtime balance check: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "USSD Airtime balance Telkom South Africa"
+  },
+  {
+    "path": "/fix/cell-c-airtime-balance-check/",
+    "title": "Cell C airtime balance check",
+    "description": "Cell C airtime balance check: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "USSD Airtime balance Cell C South Africa"
+  },
+  {
+    "path": "/fix/rain-balance-check/",
+    "title": "Rain data balance check",
+    "description": "Rain data balance check: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "USSD Data balance Rain South Africa"
+  },
+  {
+    "path": "/fix/vodacom-data-balance-check/",
+    "title": "Vodacom data balance check",
+    "description": "Vodacom data balance check: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "USSD Data balance Vodacom South Africa"
+  },
+  {
+    "path": "/fix/mtn-data-balance-check/",
+    "title": "MTN Data Balance Not Showing?",
+    "description": "MTN Data Balance Not Showing?: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "USSD Data balance MTN South Africa"
+  },
+  {
+    "path": "/fix/telkom-data-balance-check/",
+    "title": "Telkom Data Balance Not Showing?",
+    "description": "Telkom Data Balance Not Showing?: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "USSD Data balance Telkom South Africa"
+  },
+  {
+    "path": "/fix/cell-c-data-balance-check/",
+    "title": "Cell C data balance check",
+    "description": "Cell C data balance check: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "USSD Data balance Cell C South Africa"
+  },
+  {
+    "path": "/fix/how-to-check-your-own-number-south-africa/",
+    "title": "How to check your own number in South Africa",
+    "description": "How to check your own number in South Africa: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "USSD South Africa Mobile data"
+  },
+  {
+    "path": "/fix/stop-wasp-services-vodacom/",
+    "title": "Stop WASP services on Vodacom",
+    "description": "Stop WASP services on Vodacom: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "WASP services USSD Vodacom Airtime balance"
+  },
+  {
+    "path": "/fix/stop-wasp-services-mtn/",
+    "title": "Stop WASP services on MTN",
+    "description": "Stop WASP services on MTN: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "WASP services USSD MTN Airtime balance"
+  },
+  {
+    "path": "/fix/stop-wasp-services-telkom/",
+    "title": "Stop WASP services on Telkom",
+    "description": "Stop WASP services on Telkom: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "WASP services USSD Telkom Airtime balance"
+  },
+  {
+    "path": "/fix/stop-wasp-services-cell-c/",
+    "title": "Stop WASP services on Cell C",
+    "description": "Stop WASP services on Cell C: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "WASP services USSD Cell C Airtime balance"
+  },
+  {
+    "path": "/fix/airtime-disappearing-south-africa/",
+    "title": "Airtime disappearing in South Africa",
+    "description": "Airtime disappearing in South Africa: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Airtime balance WASP services USSD South Africa"
+  },
+  {
+    "path": "/fix/prepaid-electricity-token-not-loading/",
+    "title": "Prepaid electricity token not loading",
+    "description": "Prepaid electricity token not loading: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-token-rejected/",
+    "title": "Prepaid meter token rejected",
+    "description": "Prepaid meter token rejected: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-says-used/",
+    "title": "Prepaid meter says used",
+    "description": "Prepaid meter says used: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-says-connect/",
+    "title": "Prepaid meter says connect",
+    "description": "Prepaid meter says connect: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-e01-error/",
+    "title": "Prepaid meter E01 error",
+    "description": "Prepaid meter E01 error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-not-act-error/",
+    "title": "Prepaid meter not act error",
+    "description": "Prepaid meter not act error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-over-power-error/",
+    "title": "Prepaid meter over power error",
+    "description": "Prepaid meter over power error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-low-battery/",
+    "title": "Prepaid meter low battery",
+    "description": "Prepaid meter low battery: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-ciu-not-paired/",
+    "title": "Prepaid meter CIU not paired",
+    "description": "Prepaid meter CIU not paired: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-keypad-not-working/",
+    "title": "Prepaid meter keypad not working",
+    "description": "Prepaid meter keypad not working: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-error-30/",
+    "title": "Prepaid meter error 30",
+    "description": "Prepaid meter error 30: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-error-77/",
+    "title": "Prepaid meter error 77",
+    "description": "Prepaid meter error 77: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-krn1-krn2-check/",
+    "title": "Prepaid meter KRN1/KRN2 check",
+    "description": "Prepaid meter KRN1/KRN2 check: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-tid-rollover-explained/",
+    "title": "Prepaid meter TID rollover explained",
+    "description": "Prepaid meter TID rollover explained: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-token-loaded-but-no-electricity/",
+    "title": "Prepaid meter token loaded but no electricity",
+    "description": "Prepaid meter token loaded but no electricity: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-blank-screen/",
+    "title": "Prepaid meter blank screen",
+    "description": "Prepaid meter blank screen: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-communication-error/",
+    "title": "Prepaid meter communication error",
+    "description": "Prepaid meter communication error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-electricity-bought-but-no-token/",
+    "title": "Prepaid electricity bought but no token",
+    "description": "Prepaid electricity bought but no token: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-token-wrong-meter-number/",
+    "title": "Prepaid token wrong meter number",
+    "description": "Prepaid token wrong meter number: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/prepaid-meter-tamper-error/",
+    "title": "Prepaid meter tamper error",
+    "description": "Prepaid meter tamper error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "Prepaid electricity Prepaid meter Token error South Africa"
+  },
+  {
+    "path": "/fix/dstv-e16-error/",
+    "title": "DStv E16 error",
+    "description": "DStv E16 error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-e17-error/",
+    "title": "DStv E17 error",
+    "description": "DStv E17 error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-e19-error/",
+    "title": "DStv E19 error",
+    "description": "DStv E19 error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-e30-error/",
+    "title": "DStv E30 error",
+    "description": "DStv E30 error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-e32-error/",
+    "title": "DStv E32 error",
+    "description": "DStv E32 error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-e48-32-error/",
+    "title": "DStv E48-32 error",
+    "description": "DStv E48-32 error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-e50-error/",
+    "title": "DStv E50 error",
+    "description": "DStv E50 error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-e72-error/",
+    "title": "DStv E72 error",
+    "description": "DStv E72 error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-e73-error/",
+    "title": "DStv E73 error",
+    "description": "DStv E73 error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-e74-error/",
+    "title": "DStv E74 error",
+    "description": "DStv E74 error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-no-signal-after-rain/",
+    "title": "DStv no signal after rain",
+    "description": "DStv no signal after rain: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-smartcard-error/",
+    "title": "DStv smartcard error",
+    "description": "DStv smartcard error: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-decoder-not-booting/",
+    "title": "DStv decoder not booting",
+    "description": "DStv decoder not booting: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-channels-missing-after-payment/",
+    "title": "DStv channels missing after payment",
+    "description": "DStv channels missing after payment: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/dstv-payment-made-still-not-working/",
+    "title": "DStv payment made still not working",
+    "description": "DStv payment made still not working: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder DStv Decoder error South Africa"
+  },
+  {
+    "path": "/fix/openview-e52-searching-for-signal/",
+    "title": "Openview E52 searching for signal",
+    "description": "Openview E52 searching for signal: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder Openview Decoder error South Africa"
+  },
+  {
+    "path": "/fix/openview-error-200/",
+    "title": "Openview error 200",
+    "description": "Openview error 200: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder Openview Decoder error South Africa"
+  },
+  {
+    "path": "/fix/openview-no-channels/",
+    "title": "Openview no channels",
+    "description": "Openview no channels: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder Openview Decoder error South Africa"
+  },
+  {
+    "path": "/fix/openview-only-channel-100/",
+    "title": "Openview only channel 100",
+    "description": "Openview only channel 100: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder Openview Decoder error South Africa"
+  },
+  {
+    "path": "/fix/openview-activation-not-working/",
+    "title": "Openview activation not working",
+    "description": "Openview activation not working: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "TV decoder Openview Decoder error South Africa"
+  },
+  {
+    "path": "/fix/huawei-router-login-192-168-8-1/",
+    "title": "192.168.8.1 Huawei router login",
+    "description": "Open the 192.168.8.1 Huawei router login page, find the correct admin password, change Wi-Fi settings, and fix connection or login problems safely.",
+    "keywords": "192.168.8.1 Huawei router Router login 4G and 5G"
+  },
+  {
+    "path": "/fix/huawei-router-reset-south-africa/",
+    "title": "Huawei router reset in South Africa",
+    "description": "Huawei router reset in South Africa: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "LTE router Wi-Fi APN settings South Africa"
+  },
+  {
+    "path": "/fix/zte-router-login-south-africa/",
+    "title": "ZTE router login in South Africa",
+    "description": "ZTE router login in South Africa: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "LTE router Wi-Fi APN settings South Africa"
+  },
+  {
+    "path": "/fix/lte-router-sim-not-detected/",
+    "title": "LTE router SIM not detected",
+    "description": "LTE router SIM not detected: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "LTE router Wi-Fi APN settings South Africa"
+  },
+  {
+    "path": "/fix/lte-router-red-light-no-internet/",
+    "title": "LTE router red light no internet",
+    "description": "LTE router red light no internet: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "LTE router Wi-Fi APN settings South Africa"
+  },
+  {
+    "path": "/fix/lte-router-connected-no-internet/",
+    "title": "LTE router connected but no internet",
+    "description": "LTE router connected but no internet: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "LTE router Wi-Fi APN settings South Africa"
+  },
+  {
+    "path": "/fix/lte-router-apn-settings-south-africa/",
+    "title": "LTE router APN settings South Africa",
+    "description": "LTE router APN settings South Africa: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "LTE router Wi-Fi APN settings South Africa"
+  },
+  {
+    "path": "/fix/lte-router-slow-internet/",
+    "title": "LTE router slow internet",
+    "description": "LTE router slow internet: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "LTE router Wi-Fi APN settings South Africa"
+  },
+  {
+    "path": "/fix/router-wifi-working-but-no-internet/",
+    "title": "Router Wi-Fi working but no internet",
+    "description": "Router Wi-Fi working but no internet: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "LTE router Wi-Fi APN settings South Africa"
+  },
+  {
+    "path": "/fix/how-to-change-router-apn/",
+    "title": "How to change router APN",
+    "description": "How to change router APN: check likely causes, safe first steps, what to avoid, and when to contact official support in South Africa.",
+    "keywords": "LTE router Wi-Fi APN settings South Africa"
+  },
+  {
+    "path": "/network/vodacom/",
+    "title": "Vodacom data bundles and network guide",
+    "description": "Compare Vodacom data bundles, prepaid deals, USSD codes, price, validity, and use case before you buy. Check coverage in the places that matter to you, and verify personalised offers live on your own line."
+  },
+  {
+    "path": "/network/mtn/",
+    "title": "MTN data bundles and network guide",
+    "description": "Compare MTN data bundles, prepaid deals, USSD codes, price, validity, and use case before you buy. Made4U and other personalised offers can differ by SIM, tariff, location and campaign."
+  },
+  {
+    "path": "/network/telkom/",
+    "title": "Telkom data bundles and network guide",
+    "description": "Compare Telkom public data bundles and any Mo'Nice offer shown on your line before you buy. Price, allocation and validity differ by product, while network experience can vary by area."
+  },
+  {
+    "path": "/network/cell-c/",
+    "title": "Cell C data bundles and network guide",
+    "description": "Compare Cell C data deals, Cell C data bundles, prepaid data, promo-led offers, price, validity, and value before you buy. Use the Cell C USSD help below to check bundle and account routes, then match the offer to your real use case."
+  },
+  {
+    "path": "/network/rain/",
+    "title": "Rain data bundles and network guide",
+    "description": "Rain is different from the prepaid mobile networks in this comparison because it focuses on app- and web-managed monthly products instead of large prepaid USSD bundle menus. Current public families include unlimited home, rainOne Unlimited, unlimited mobile with LoopPhone, and the loop portable router, so compare the product family before treating a Rain price as a normal mobile-data bundle."
+  },
+  {
+    "path": "/network/vodacom/cheapest-1gb/",
+    "title": "Cheapest 1GB",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/network/vodacom/monthly-data/",
+    "title": "Monthly data",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/network/vodacom/night-data/",
+    "title": "Night data",
+    "description": "Open this DataCost guide."
+  },
+  {
+    "path": "/network/telkom/monthly-data/",
+    "title": "Monthly data",
+    "description": "Open this DataCost guide."
+  }
+]

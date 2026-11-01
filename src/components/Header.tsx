@@ -1,8 +1,21 @@
 import React from 'react';
 import { Menu, Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { useNavigate } from 'react-router-dom';
-import { guides } from '../data/guides';
+const SiteSearchDialog = React.lazy(() => import('./SiteSearchDialog'));
+
+class SearchBoundary extends React.Component<{ children: React.ReactNode; onClose: () => void }, { failed: boolean }> {
+  declare props: { children: React.ReactNode; onClose: () => void };
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  render() {
+    if (!this.state.failed) return this.props.children;
+    return <div role="alert" className="fixed right-4 top-20 z-[60] max-w-sm rounded-lg border border-slate-300 bg-white p-4 shadow-lg">
+      <p className="font-semibold">Search could not load.</p>
+      <p className="mt-2 text-sm leading-6">Reload the page to try again, or <a className="underline" href="/sitemap/">browse all pages</a>.</p>
+      <button type="button" onClick={this.props.onClose} className="mt-2 min-h-11 rounded-lg border border-slate-400 px-4">Close</button>
+    </div>;
+  }
+}
 
 interface HeaderProps {
   onScrollTo: (id: string) => void;
@@ -12,9 +25,6 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const navigate = useNavigate();
-  const searchInputRef = React.useRef<HTMLInputElement>(null);
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -26,78 +36,6 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
     { id: 'guides', label: 'Guides' },
     { id: 'trust', label: 'Trust' }
   ];
-
-  const searchItems = React.useMemo(() => [
-    { id: 'home', title: 'Home', subtitle: 'Back to homepage', type: 'scroll' as const, value: 'home' },
-    { id: 'compare-data', title: 'Compare Data', subtitle: 'See current network data prices', type: 'scroll' as const, value: 'compare-data' },
-    { id: 'fix-problem', title: 'DataCost Fixes', subtitle: 'Troubleshoot mobile, USSD, electricity, decoder, and router issues', type: 'route' as const, value: '/fix/' },
-    { id: 'calculator', title: 'Calculator', subtitle: 'Estimate your data usage', type: 'scroll' as const, value: 'calculator' },
-    { id: 'networks', title: 'Networks', subtitle: 'Compare all mobile networks', type: 'scroll' as const, value: 'networks' },
-    { id: 'fibre', title: 'Fibre and Home Internet', subtitle: 'Prices, FNOs, ISPs, coverage, installation and LTE fallback', type: 'route' as const, value: '/fibre/' },
-    { id: 'fibre-how-it-works', title: 'How Fibre Works South Africa', subtitle: 'Line, ONT, router, FNO and ISP roles explained', type: 'route' as const, value: '/fibre/how-fibre-internet-works-south-africa/' },
-    { id: 'fno-vs-isp', title: 'FNO vs ISP South Africa', subtitle: 'Who owns the line, who bills you and who fixes faults', type: 'route' as const, value: '/fibre/fno-vs-isp-south-africa/' },
-    { id: 'fibre-prices', title: 'Fibre Prices South Africa', subtitle: 'Checked public price examples with source dates', type: 'route' as const, value: '/fibre/fibre-prices-south-africa/' },
-    { id: 'cheap-fibre', title: 'Cheapest Fibre Packages South Africa', subtitle: 'Compare checked prices, speed, setup, router and cancellation terms', type: 'route' as const, value: '/fibre/cheapest-fibre-packages-south-africa/' },
-    { id: 'prepaid-fibre', title: 'Prepaid Fibre South Africa', subtitle: 'Understand vouchers, top-ups, expiry and coverage limits', type: 'route' as const, value: '/fibre/prepaid-fibre-south-africa/' },
-    { id: 'fibre-vs-lte', title: 'Fibre vs LTE/5G South Africa', subtitle: 'Choose between fixed fibre, LTE, 5G and mobile data for home use', type: 'route' as const, value: '/fibre/fibre-vs-lte-south-africa/' },
-    { id: 'buy-data-airtime', title: 'How to Buy Data and Airtime', subtitle: 'Compare safe USSD, app, bank-app, retailer and provider top-up routes', type: 'route' as const, value: '/buy-data-airtime-south-africa/' },
-    { id: 'bank-apps-data', title: 'Buy Data with Bank Apps', subtitle: 'Safer checks for South African bank-app data and airtime purchases', type: 'route' as const, value: '/guides/buy-data-with-bank-apps-south-africa/' },
-    { id: 'mvno-guide', title: 'MVNOs in South Africa', subtitle: 'Compare prepaid and monthly providers, bank rewards, flexibility and eligibility', type: 'route' as const, value: '/guides/mvnos-south-africa/' },
-    { id: 'promos', title: 'Airtime, Data and Fibre Promos', subtitle: 'Verified promo listings only after source checks', type: 'route' as const, value: '/promos/' },
-    { id: 'guides', title: 'Guides', subtitle: 'Browse all guides', type: 'scroll' as const, value: 'guides' },
-    { id: 'trust', title: 'Trust Center', subtitle: 'Editorial standards, methodology, corrections, and privacy', type: 'route' as const, value: '/trust/' },
-    { id: 'ussd', title: 'USSD Codes', subtitle: 'Find shortcode commands', type: 'scroll' as const, value: 'ussd' },
-    { id: 'airtime-advance-codes', title: 'Airtime Advance Codes', subtitle: 'Borrow-airtime routes for MTN, Vodacom, Telkom, and Cell C', type: 'route' as const, value: '/airtime-advance-codes/' },
-    { id: 'alerts', title: 'Alerts', subtitle: 'Get telecom alerts and updates', type: 'route' as const, value: '/alerts/' },
-    { id: 'travel-sims', title: 'Best Travel SIMs & eSIMs for South Africa', subtitle: 'Tourist connectivity guide', type: 'route' as const, value: '/travel-sims-south-africa/' },
-    ...guides.slice(0, 8).map((guide) => ({
-      id: guide.slug,
-      title: guide.title,
-      subtitle: guide.metaDescription,
-      type: 'route' as const,
-      value: guide.slug === 'best-data-deals-south-africa'
-        ? '/best-data-deals-south-africa/'
-        : `/guides/${guide.slug}/`
-    }))
-  ], []);
-
-  const filteredSearchItems = React.useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
-    if (!query) {
-      return searchItems.slice(0, 8);
-    }
-    return searchItems
-      .filter((item) => `${item.title} ${item.subtitle}`.toLowerCase().includes(query))
-      .slice(0, 10);
-  }, [searchItems, searchQuery]);
-
-  React.useEffect(() => {
-    if (!isSearchOpen) return;
-    const timer = setTimeout(() => searchInputRef.current?.focus(), 0);
-    return () => clearTimeout(timer);
-  }, [isSearchOpen]);
-
-  React.useEffect(() => {
-    if (!isSearchOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsSearchOpen(false);
-      }
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isSearchOpen]);
-
-  const handleSearchItemClick = (item: { type: 'scroll' | 'route'; value: string }) => {
-    setIsSearchOpen(false);
-    setSearchQuery('');
-    if (item.type === 'scroll') {
-      onScrollTo(item.value);
-      return;
-    }
-    navigate(item.value);
-    window.scrollTo(0, 0);
-  };
 
   return (
     <>
@@ -153,6 +91,8 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
             <button
               className="p-2 hover:bg-slate-50 rounded-xl transition-colors"
               aria-label="Search"
+              aria-haspopup="dialog"
+              aria-expanded={isSearchOpen}
               onClick={() => setIsSearchOpen(true)}
             >
               <Search className="w-6 h-6" />
@@ -202,58 +142,9 @@ export const Header: React.FC<HeaderProps> = ({ onScrollTo, activeSection }) => 
       </AnimatePresence>
       </header>
 
-      <AnimatePresence>
-        {isSearchOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-black/30 p-4"
-            onClick={() => {
-              setIsSearchOpen(false);
-              setSearchQuery('');
-            }}
-          >
-            <motion.div
-              initial={{ y: -12, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -12, opacity: 0 }}
-              className="max-w-2xl mx-auto mt-14 bg-white rounded-3xl border border-slate-100 shadow-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="p-4 border-b border-slate-100">
-                <div className="relative">
-                  <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                  <input
-                    ref={searchInputRef}
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search guides, tools, and pages..."
-                    className="w-full h-12 rounded-2xl border border-slate-200 pl-11 pr-4 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#a0f399]/50 focus:border-[#1b6d24]"
-                  />
-                </div>
-              </div>
-              <div className="max-h-[60vh] overflow-auto p-2">
-                {filteredSearchItems.length === 0 ? (
-                  <div className="p-4 text-sm text-slate-500">No results found.</div>
-                ) : (
-                  filteredSearchItems.map((item) => (
-                    <button
-                      key={item.id}
-                      onClick={() => handleSearchItemClick(item)}
-                      className="w-full text-left p-4 rounded-2xl hover:bg-slate-50 transition-colors"
-                    >
-                      <div className="font-bold text-slate-900 text-sm line-clamp-1">{item.title}</div>
-                      <div className="text-xs text-slate-500 mt-1 line-clamp-1">{item.subtitle}</div>
-                    </button>
-                  ))
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isSearchOpen && <SearchBoundary onClose={() => setIsSearchOpen(false)}><React.Suspense fallback={<p role="status" className="fixed right-4 top-20 z-[60] rounded-lg bg-white p-4 shadow">Loading search…</p>}>
+        <SiteSearchDialog onClose={() => setIsSearchOpen(false)} />
+      </React.Suspense></SearchBoundary>}
     </>
   );
 };

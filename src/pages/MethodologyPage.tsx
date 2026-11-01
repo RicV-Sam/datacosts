@@ -88,6 +88,28 @@ export const MethodologyPage: React.FC<MethodologyPageProps> = ({ onNavigate, on
           </p>
         </section>
 
+        <section id="comparison-coverage" className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
+          <h2 className="text-2xl font-black tracking-tight">What our comparisons cover</h2>
+          <p className="text-slate-600 leading-relaxed">
+            Our tables compare selected, documented offers. They are not a complete list of every South African tariff, app offer or provider. An award applies to the eligible offers in that comparison, with its stated allowance, validity and review date. It does not establish the cheapest service for every person or address.
+          </p>
+          <ul className="text-slate-600 leading-relaxed list-disc pl-5 space-y-2">
+            <li><strong>Mobile data:</strong> the <a href="/best-data-deals-south-africa/" className="font-bold text-[#1b6d24] underline underline-offset-2">monthly comparisons</a> and <a href="/tools/data-bundle-selector/" className="font-bold text-[#1b6d24] underline underline-offset-2">bundle selector</a> show reviewed offers and their access conditions. Smartphone, prepaid LTE, recurring, daily-release and longer-validity products retain their distinctions.</li>
+            <li><strong>Airtime and calls:</strong> our buying and troubleshooting guides help with recharges, balances and deductions. A data-only ranking does not compare the full cost of voice minutes, SMS, advances or handset finance.</li>
+            <li><strong>Fibre and home internet:</strong> <a href="/fibre/fibre-prices-south-africa/" className="font-bold text-[#1b6d24] underline underline-offset-2">fibre price examples</a> depend on the network serving an address, speed, payment period, setup costs and promotion conditions. A low advertised price is not confirmation of local coverage.</li>
+          </ul>
+          <p className="text-slate-600 leading-relaxed">
+            Provider names, an accessible price page or an offer found during research are leads until the exact variant and relevant terms have been checked. Unreviewed candidates do not enter current awards. Coverage gaps include additional app-only and retailer offers, voice tariffs and home-internet variants; we do not assume that an unlisted product is unavailable or poor value.
+          </p>
+          <h3 className="text-lg font-black tracking-tight">November review exclusions</h3>
+          <p className="text-slate-600 leading-relaxed">
+            In the 1 November 2026 review, the <a href="https://www.fnb.co.za/downloads/pricing-guides/FNB-Connect-Retail.pdf" target="_blank" rel="noopener noreferrer" className="font-bold text-[#1b6d24] underline underline-offset-2">FNB Connect price guide</a> contained conflicting effective periods. The six FNB price references are shown for context only and excluded from awards and selector results. A checked source date does not resolve contradictory terms.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            Four older references remain withheld from the current reviewed comparisons: MTN Entertainment Streaming 20GB, MTN Home Wi-Fi 15GB plus 15GB, and Vodacom standalone monthly 1.5GB and 3GB bundles. Their exact current purchase availability was not independently reconfirmed. Historical references retain their original dates; withholding is not a claim that the operator withdrew an offer.
+          </p>
+        </section>
+
         <section className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm space-y-4">
           <h2 className="text-2xl font-black tracking-tight">Data Sources and Source Hierarchy</h2>
           <p className="text-slate-600 leading-relaxed">

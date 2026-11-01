@@ -22,7 +22,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/best-10gb-data-deals-south-africa/': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
   '/best-20gb-data-deals-south-africa/': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
   '/best-30gb-data-deals-south-africa/': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
-  '/buy-data-airtime-south-africa/': '2026-06-18T00:00:00.000Z',
+  '/buy-data-airtime-south-africa/': '2026-11-01T00:00:00.000Z',
   // Material price/identity corrections and individual source dates in price tables.
   // Other fibre guides retain their existing dates; this is not a full source refresh.
   '/fibre/': '2026-11-01T00:00:00.000Z',
@@ -46,7 +46,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/tools/contract-vs-prepaid-phone-calculator/': '2026-10-12T00:00:00.000Z',
   '/tools/data-bundle-selector/': '2026-11-01T00:00:00.000Z',
   '/tools/daily-vs-monthly-data-calculator/': '2026-10-12T00:00:00.000Z',
-  '/methodology/': '2026-10-12T00:00:00.000Z',
+  '/methodology/': '2026-11-01T00:00:00.000Z',
   '/mtn-ussd-codes/': PRICING_AUDIT_MODIFIED_ISO,
   '/network/': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,
   '/network/vodacom/social-data/': OCTOBER_PRICING_REVIEW_MODIFIED_ISO,

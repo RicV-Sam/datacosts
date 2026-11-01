@@ -42,19 +42,16 @@ export const FIBRE_PRICE_STALE_DAYS = 45;
 
 const snapshot = fibrePriceSnapshot as FibrePriceSnapshot;
 
-function daysBetween(a: Date, b: Date): number {
-  const millisecondsPerDay = 24 * 60 * 60 * 1000;
-  return Math.floor(Math.abs(a.getTime() - b.getTime()) / millisecondsPerDay);
-}
-
 export function getFibrePriceSnapshot(): FibrePriceSnapshot {
   return snapshot;
 }
 
 export function isFibrePriceFresh(checkedAt: string, now: Date = new Date()): boolean {
   const checkedDate = new Date(`${checkedAt}T00:00:00.000Z`);
-  if (Number.isNaN(checkedDate.getTime())) return false;
-  return daysBetween(now, checkedDate) <= FIBRE_PRICE_STALE_DAYS;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(checkedAt) || Number.isNaN(checkedDate.getTime()) || Number.isNaN(now.getTime())) return false;
+  if (checkedDate.toISOString().slice(0, 10) !== checkedAt) return false;
+  const age = now.getTime() - checkedDate.getTime();
+  return age >= 0 && age <= FIBRE_PRICE_STALE_DAYS * 24 * 60 * 60 * 1000;
 }
 
 export function getFibrePriceSnapshotStatus(now: Date = new Date()): {
@@ -81,8 +78,8 @@ export function getFibrePrices(filter: FibrePriceFilter = {}): FibrePricePackage
       if (ispSet && !ispSet.has(price.ispId)) return false;
       if (fnoSet && !fnoSet.has(price.fnoId)) return false;
       if (tagSet && !price.tags.some((tag) => tagSet.has(tag))) return false;
-      if (filter.maxMonthlyPrice && price.monthlyPrice > filter.maxMonthlyPrice) return false;
-      if (filter.minDownloadMbps && price.downloadMbps < filter.minDownloadMbps) return false;
+      if (filter.maxMonthlyPrice !== undefined && price.monthlyPrice > filter.maxMonthlyPrice) return false;
+      if (filter.minDownloadMbps !== undefined && price.downloadMbps < filter.minDownloadMbps) return false;
       return true;
     })
     .sort((a, b) => {
@@ -94,8 +91,10 @@ export function getFibrePrices(filter: FibrePriceFilter = {}): FibrePricePackage
   return typeof filter.limit === 'number' ? filtered.slice(0, filter.limit) : filtered;
 }
 
-export function getFreshFibrePrices(filter: FibrePriceFilter = {}): FibrePricePackage[] {
-  return getFibrePrices(filter).filter((price) => isFibrePriceFresh(price.checkedAt));
+export function getFreshFibrePrices(filter: FibrePriceFilter = {}, now: Date = new Date()): FibrePricePackage[] {
+  const prices = getFibrePrices({ ...filter, limit: undefined })
+    .filter((price) => isFibrePriceFresh(price.checkedAt, now) && price.confidence !== 'low' && price.fnoId !== 'multi-network');
+  return typeof filter.limit === 'number' ? prices.slice(0, Math.max(0, filter.limit)) : prices;
 }
 
 export function getCheapestFibrePrices(limit = 8): FibrePricePackage[] {

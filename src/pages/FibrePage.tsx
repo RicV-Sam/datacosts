@@ -32,6 +32,7 @@ import {
   getFibrePriceSnapshotStatus,
   getFibreSourcesById,
   isFibrePriceFresh,
+  getFreshFibrePrices,
   noindexFibreRoutes
 } from '../data/fibre';
 import { NavigateFunction } from '../types';
@@ -214,12 +215,14 @@ const PriceProvider: React.FC<{ price: FibrePricePackage }> = ({ price }) => (
 );
 
 const PriceAmount: React.FC<{ price: FibrePricePackage }> = ({ price }) => {
-  const fresh = isFibrePriceFresh(price.checkedAt);
+  const unresolved = price.confidence === 'low';
+  const fresh = !unresolved && isFibrePriceFresh(price.checkedAt);
   return <>
+    <p className="text-xs font-semibold text-slate-600">{unresolved ? 'Historical reference' : price.tags.includes('prepaid') ? 'Prepaid top-up' : 'Monthly example'}</p>
     <p className="font-black text-slate-900">{formatRand(price.monthlyPrice)}</p>
     {price.promoPrice !== null && <p className="mt-1 text-xs font-bold text-emerald-700">Promo example {formatRand(price.promoPrice)}</p>}
     <p className={`mt-2 inline-flex whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-widest ${fresh ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
-      {fresh ? 'Checked' : 'Needs recheck'}
+      {unresolved ? 'Price unresolved' : fresh ? 'Checked' : 'Needs recheck'}
     </p>
     <p className="mt-1 text-xs text-slate-500">Price checked {formatIsoForDisplay(`${price.checkedAt}T00:00:00.000Z`)}</p>
   </>;
@@ -234,7 +237,12 @@ const PriceNotes: React.FC<{ price: FibrePricePackage }> = ({ price }) => (
 );
 
 const PriceTable: React.FC<{ block: Extract<FibreContentBlock, { type: 'price-table' }> }> = ({ block }) => {
-  const prices = getFibrePrices({ ...(block.filter ?? {}), limit: block.limit });
+  const filter = { ...(block.filter ?? {}), limit: undefined };
+  const current = getFreshFibrePrices(filter);
+  const currentIds = new Set(current.map((price) => price.id));
+  const references = getFibrePrices(filter).filter((price) => !currentIds.has(price.id));
+  const ordered = [...current, ...references];
+  const prices = typeof block.limit === 'number' ? ordered.slice(0, block.limit) : ordered;
   const status = getFibrePriceSnapshotStatus();
   const checkedLabel = formatIsoForDisplay(`${status.checkedAt}T00:00:00.000Z`);
 
@@ -249,7 +257,7 @@ const PriceTable: React.FC<{ block: Extract<FibreContentBlock, { type: 'price-ta
   return (
     <div className="space-y-4">
       <div className={`rounded-2xl border p-4 text-sm font-medium leading-relaxed ${status.fresh ? 'border-emerald-100 bg-emerald-50 text-emerald-900' : 'border-amber-200 bg-amber-50 text-amber-900'}`}>
-        These dated price examples are not live quotes. Each row shows its own price-check date; the oldest check is {checkedLabel}. Confirm the final price and terms for your exact address.
+        These dated price examples are not live quotes. Each row shows its own price-check date; the oldest check is {checkedLabel}. Current source-checked examples appear first. Unresolved or older references follow and do not enter current-price rankings. Confirm the final price and terms for your exact address.
       </div>
       <div className="space-y-4 md:hidden">
         {prices.map(price => (
@@ -272,7 +280,7 @@ const PriceTable: React.FC<{ block: Extract<FibreContentBlock, { type: 'price-ta
               <th className="w-[14%] px-4 py-3">Provider</th>
               <th className="w-[14%] px-4 py-3">Network</th>
               <th className="w-[14%] px-4 py-3">Speed</th>
-              <th className="w-[17%] px-4 py-3">Monthly</th>
+              <th className="w-[17%] px-4 py-3">Price / period</th>
               <th className="w-[41%] px-4 py-3">Notes</th>
             </tr>
           </thead>

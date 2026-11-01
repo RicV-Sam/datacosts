@@ -12,13 +12,17 @@
       "uploadMbps": 20,
       "monthlyPrice": 439,
       "promoPrice": null,
-      "setupNotes": "Free setup worth R2000 and free wireless router shown on the public Webafrica fibre page.",
+      "setupNotes": "The current public Web Connect 40/20 Mbps product lists R439 per month and installation/setup included. WiFi is built into the installed ONT rather than supplied as a separate router. The first month must be paid before the order is processed. Openserve may apply fair-use speed restrictions; confirm exact address availability and final fees.",
       "sourceUrl": "https://www.webafrica.co.za/fibre/",
       "sourceLabel": "Webafrica fibre page",
-      "checkedAt": "2026-08-06",
+      "checkedAt": "2026-11-01",
       "confidence": "high",
       "requiresAddressCheck": true,
-      "tags": ["entry", "openserve", "monthly"]
+      "tags": [
+        "entry",
+        "openserve",
+        "monthly"
+      ]
     },
     {
       "id": "webafrica-vumatel-1000-250",
@@ -29,13 +33,17 @@
       "uploadMbps": 250,
       "monthlyPrice": 1309,
       "promoPrice": null,
-      "setupNotes": "Public Webafrica page lists free setup subject to provider terms.",
+      "setupNotes": "The exact Vumatel 1000/250 Mbps product lists R1309 per month. The provider advertises included setup and a free-to-use router, plus a R249 once-off processing fee. Its Vumatel section also discloses a R999 termination fee on cancellation or cancellation for non-payment. Confirm the address-specific quote and current terms.",
       "sourceUrl": "https://www.webafrica.co.za/fibre/",
       "sourceLabel": "Webafrica fibre page",
-      "checkedAt": "2026-08-06",
+      "checkedAt": "2026-11-01",
       "confidence": "high",
       "requiresAddressCheck": true,
-      "tags": ["gigabit", "vumatel", "monthly"]
+      "tags": [
+        "gigabit",
+        "vumatel",
+        "monthly"
+      ]
     },
     {
       "id": "webafrica-octotel-500-200",
@@ -46,13 +54,17 @@
       "uploadMbps": 200,
       "monthlyPrice": 1229,
       "promoPrice": null,
-      "setupNotes": "Public Webafrica page lists free setup subject to provider terms.",
+      "setupNotes": "The exact Octotel 500/200 Mbps product lists R1229 per month. The provider advertises included setup and a free-to-use router, plus a R249 once-off processing fee. Its Octotel section also discloses a R999 termination fee on cancellation or cancellation for non-payment. Confirm the address-specific quote and current terms.",
       "sourceUrl": "https://www.webafrica.co.za/fibre/",
       "sourceLabel": "Webafrica fibre page",
-      "checkedAt": "2026-08-06",
+      "checkedAt": "2026-11-01",
       "confidence": "high",
       "requiresAddressCheck": true,
-      "tags": ["fast", "octotel", "monthly"]
+      "tags": [
+        "fast",
+        "octotel",
+        "monthly"
+      ]
     },
     {
       "id": "webafrica-frogfoot-air-25-10",
@@ -63,13 +75,17 @@
       "uploadMbps": 10,
       "monthlyPrice": 549,
       "promoPrice": null,
-      "setupNotes": "Frogfoot Air is area-specific and uses the Frogfoot network.",
+      "setupNotes": "Frogfoot Air 25/10 Mbps is area-specific and advertised at R549 per month. WiFi is built into the ONT; setup is included. The page specifies month-to-month service, one calendar month cancellation notice, a R249 processing fee and a R999 termination fee on cancellation or cancellation for non-payment. This product is advertised without a fair-use threshold; confirm address-specific terms.",
       "sourceUrl": "https://www.webafrica.co.za/fibre/",
       "sourceLabel": "Webafrica fibre page",
-      "checkedAt": "2026-08-06",
+      "checkedAt": "2026-11-01",
       "confidence": "medium",
       "requiresAddressCheck": true,
-      "tags": ["entry", "frogfoot", "monthly"]
+      "tags": [
+        "entry",
+        "frogfoot",
+        "monthly"
+      ]
     },
     {
       "id": "axxess-monthly-30-30-example",
@@ -80,13 +96,16 @@
       "uploadMbps": 30,
       "monthlyPrice": 499,
       "promoPrice": null,
-      "setupNotes": "Axxess lists multiple FNO-backed packages; exact network depends on address.",
+      "setupNotes": "Historical R499 speed example; not a confirmed current quote. The 1 November 2026 catalogue contains several 30/30 Mbps products with different FNOs, introductory prices and eligibility. This older row does not identify a unique FNO/product, so it cannot be matched safely. Choose the exact network and address before comparing costs.",
       "sourceUrl": "https://www.axxess.co.za/fibre/uncapped",
       "sourceLabel": "Axxess uncapped fibre page",
       "checkedAt": "2026-08-06",
-      "confidence": "medium",
+      "confidence": "low",
       "requiresAddressCheck": true,
-      "tags": ["entry", "monthly"]
+      "tags": [
+        "entry",
+        "monthly"
+      ]
     },
     {
       "id": "axxess-evotel-10-10-example",
@@ -97,13 +116,17 @@
       "uploadMbps": 10,
       "monthlyPrice": 335,
       "promoPrice": null,
-      "setupNotes": "Public Axxess package table shows free once-off installation and connection on selected rows.",
+      "setupNotes": "Historical R335 Evotel 10/10 Mbps reference; current availability and price are unconfirmed. The Evotel product panel checked on 1 November 2026 did not list this exact speed variant. Do not substitute a differently named or faster package. Confirm current packages and all installation/connection terms directly by address.",
       "sourceUrl": "https://www.axxess.co.za/fibre/uncapped",
       "sourceLabel": "Axxess uncapped fibre page",
       "checkedAt": "2026-08-06",
-      "confidence": "medium",
+      "confidence": "low",
       "requiresAddressCheck": true,
-      "tags": ["low-cost", "evotel", "monthly"]
+      "tags": [
+        "low-cost",
+        "evotel",
+        "monthly"
+      ]
     },
     {
       "id": "rsaweb-openserve-webconnect-40-20",
@@ -114,13 +137,17 @@
       "uploadMbps": 20,
       "monthlyPrice": 435,
       "promoPrice": null,
-      "setupNotes": "Price needs confirmation: on 1 November 2026 the public catalogue advertised R425 ongoing with R395 for up to two months and a R250 processing fee, while the linked product page showed R435. The retained R435 is an older reference, not a confirmed current quote. The product uses a WiFi-enabled ONT rather than a supplied router; selected areas and Openserve fair-use rules apply.",
+      "setupNotes": "Price remains unresolved. On 1 November 2026 the freshly retrieved catalogue and linked product page displayed R425 ongoing; the catalogue advertises R395 for up to two months and a R250 processing fee, but its machine-readable price is R425.01. The earlier R435 remains a dated historical reference, not a current quote. Selected areas, a WiFi-enabled ONT (2.4GHz, no Ethernet port) and Openserve fair-use rules apply; confirm the final payable amount.",
       "sourceUrl": "https://shop.rsaweb.co.za/product-category/fibre/ftth/",
       "sourceLabel": "RSAWEB FTTH shop page",
       "checkedAt": "2026-08-06",
       "confidence": "low",
       "requiresAddressCheck": true,
-      "tags": ["entry", "openserve", "monthly"]
+      "tags": [
+        "entry",
+        "openserve",
+        "monthly"
+      ]
     },
     {
       "id": "rsaweb-vumatel-30-30",
@@ -137,7 +164,12 @@
       "checkedAt": "2026-11-01",
       "confidence": "medium",
       "requiresAddressCheck": true,
-      "tags": ["entry", "vumatel", "monthly", "promo"],
+      "tags": [
+        "entry",
+        "vumatel",
+        "monthly",
+        "promo"
+      ],
       "promoTerms": "The public catalogue advertises R399 per month for up to two months, then R495 per month from month three. Limited offer; confirm eligibility and the final amount at your address."
     },
     {
@@ -148,14 +180,19 @@
       "downloadMbps": 10,
       "uploadMbps": 10,
       "monthlyPrice": 275,
-      "promoPrice": null,
-      "setupNotes": "RSAWEB page lists no contract, top up as needed, and no cancellation fee for this prepaid row.",
+      "promoPrice": 199,
+      "setupNotes": "The current catalogue lists the regular Vuma Reach 10/10 Mbps prepaid price as R275. The product page specifies top-ups every 30 days as needed, no contract, no cancellation fee and an included WiFi-enabled router. Check coverage and the final payable amount for your address.",
       "sourceUrl": "https://shop.rsaweb.co.za/product-category/fibre/ftth/",
       "sourceLabel": "RSAWEB FTTH shop page",
-      "checkedAt": "2026-08-06",
-      "confidence": "high",
+      "checkedAt": "2026-11-01",
+      "confidence": "medium",
       "requiresAddressCheck": true,
-      "tags": ["prepaid", "low-cost", "vuma-reach"]
+      "tags": [
+        "prepaid",
+        "low-cost",
+        "vuma-reach"
+      ],
+      "promoTerms": "The catalogue advertises a limited first-month coupon price of R199 against the regular R275. Confirm coupon eligibility, redemption requirements and the amount at checkout; later top-ups use the regular price."
     },
     {
       "id": "vox-25-10-featured",
@@ -166,13 +203,16 @@
       "uploadMbps": 10,
       "monthlyPrice": 435,
       "promoPrice": null,
-      "setupNotes": "Vox public page says deals are address-specific and selected packages include a free-to-use Wi-Fi router.",
+      "setupNotes": "The public page checked on 1 November 2026 advertises 25/10 Mbps from R435 per month with no long-term contract. It does not bind this advertised starting price to one FNO/address; this row is context only, not an exact available quote. A free-to-use router is offered on selected packages. Confirm the network, setup charges, cancellation terms and final price through the provider coverage check.",
       "sourceUrl": "https://www.vox.co.za/fibre-to-the-home/",
       "sourceLabel": "Vox fibre to the home page",
       "checkedAt": "2026-08-06",
-      "confidence": "high",
+      "confidence": "low",
       "requiresAddressCheck": true,
-      "tags": ["entry", "monthly"]
+      "tags": [
+        "entry",
+        "monthly"
+      ]
     },
     {
       "id": "mweb-openserve-30-30",
@@ -183,13 +223,16 @@
       "uploadMbps": 30,
       "monthlyPrice": 709,
       "promoPrice": null,
-      "setupNotes": "Mweb public Openserve page shows once-off processing, setup and termination fee notes; confirm exact terms by address.",
+      "setupNotes": "Historical R709 reference; not a confirmed current quote. On 1 November 2026 the public Openserve page instead displayed a first-time-installation-only 30/30 Mbps offer at R439 introductory and R539 regular, plus a R249 processing fee. The old R709 variant has not been matched to that offer. Confirm installation eligibility, promotion duration, cancellation charges and the final address-specific quote.",
       "sourceUrl": "https://www.mweb.co.za/fibre-provider/openserve",
       "sourceLabel": "Mweb Openserve fibre page",
       "checkedAt": "2026-08-06",
-      "confidence": "high",
+      "confidence": "low",
       "requiresAddressCheck": true,
-      "tags": ["openserve", "monthly"]
+      "tags": [
+        "openserve",
+        "monthly"
+      ]
     },
     {
       "id": "afrihost-prepaid-20-10",
@@ -206,7 +249,10 @@
       "checkedAt": "2026-11-01",
       "confidence": "medium",
       "requiresAddressCheck": true,
-      "tags": ["prepaid", "entry"]
+      "tags": [
+        "prepaid",
+        "entry"
+      ]
     },
     {
       "id": "afrihost-prepaid-100-50",
@@ -223,7 +269,10 @@
       "checkedAt": "2026-11-01",
       "confidence": "medium",
       "requiresAddressCheck": true,
-      "tags": ["prepaid", "mid-speed"]
+      "tags": [
+        "prepaid",
+        "mid-speed"
+      ]
     }
   ]
 }

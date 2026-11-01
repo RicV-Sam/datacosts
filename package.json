@@ -9,7 +9,7 @@
     "generate:facebook-launch": "node scripts/generate-facebook-launch-assets.mjs",
     "update:fibre-prices": "tsx scripts/update-fibre-prices.ts",
     "check:fibre-prices": "npm run test:fibre-prices && tsx scripts/check-fibre-prices.ts",
-    "test:fibre-prices": "tsx --test tests/fibre-price-updater.test.ts",
+    "test:fibre-prices": "tsx --test tests/fibre-price-updater.test.ts tests/fibre-price-selection.test.ts",
     "submit:bing": "node scripts/submit-bing.mjs",
     "submit:indexnow": "node scripts/submit-indexnow.mjs",
     "check:data-problems": "tsx scripts/check-data-problems-publishing.ts",
@@ -26,7 +26,7 @@
     "check:wp1-search-regression": "tsx scripts/check-wp1-search-regression.ts --compare docs/seo/wp1-release-a/search-output-baseline-v2.json",
     "generate:wp1-search-candidate": "tsx scripts/check-wp1-search-regression.ts --generate-candidate docs/seo/wp1-release-a/search-output-candidate.json",
     "review:wp1-search-candidate": "tsx scripts/check-wp1-search-regression.ts --review-candidate docs/seo/wp1-release-a/search-output-candidate.json --compare docs/seo/wp1-release-a/search-output-baseline-v2.json",
-    "build": "npm run test:comparisons && npm run check:comparisons && npm run check:data-problems && npm run check:fibre-prices && npm run check:monthly-deals && npm run check:editorial-integrity && npm run generate:sitemap && vite build && npm run check:seo && npm run check:adsense && npm run check:comparison-output && npm run check:comparison-browser",
+    "build": "npm run generate:site-search && npm run test:site-search && npm run test:comparisons && npm run check:comparisons && npm run check:data-problems && npm run check:fibre-prices && npm run check:monthly-deals && npm run check:editorial-integrity && npm run generate:sitemap && vite build && npm run check:seo && npm run check:adsense && npm run check:comparison-output && npm run check:comparison-browser",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
@@ -35,7 +35,10 @@
     "test:pricing-candidates": "tsx --test tests/pricing-candidates.test.ts",
     "check:comparisons": "tsx scripts/check-tier-comparisons.ts",
     "check:comparison-output": "tsx scripts/check-tier-comparisons.ts --output",
-    "check:comparison-browser": "node scripts/check-comparison-browser.mjs"
+    "check:comparison-browser": "node scripts/check-comparison-browser.mjs",
+    "generate:site-search": "tsx scripts/generate-site-search.ts",
+    "test:site-search": "tsx --test tests/site-search.test.ts",
+    "predev": "npm run generate:site-search"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",

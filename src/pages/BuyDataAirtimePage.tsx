@@ -46,6 +46,13 @@ const buyingOptions = [
   { label: 'Provider website', text: 'Useful for account-managed services, but confirm the domain is official before paying.' }
 ];
 
+const operatorBuyingGuides = [
+  { href: '/guides/how-to-buy-data-vodacom/', label: 'Buy Vodacom data' },
+  { href: '/guides/how-to-buy-data-mtn/', label: 'Buy MTN data' },
+  { href: '/guides/how-to-buy-data-telkom/', label: 'Buy Telkom data' },
+  { href: '/guides/how-to-buy-data-cell-c/', label: 'Buy Cell C data' }
+];
+
 const relatedLinks = [
   { href: '/guides/buy-data-with-bank-apps-south-africa/', label: 'Buy data with bank apps', description: 'Use safer bank-app checks before sending airtime or data.' },
   { href: '/promos/', label: 'Airtime, data and fibre promos', description: 'Check whether any promos have enough official detail to list.' },
@@ -148,6 +155,40 @@ export const BuyDataAirtimePage: React.FC<BuyDataAirtimePageProps> = ({ onNaviga
         </section>
 
         <section className="mb-10 rounded-3xl border border-slate-100 bg-white p-6 shadow-sm md:p-8">
+          <h2 className="mb-4 text-2xl font-black tracking-tight">Choose your bundle, then buy</h2>
+          <p className="mb-4 text-sm font-medium leading-relaxed text-slate-600">
+            Start with the <Link to="/best-data-deals-south-africa/" className="font-bold text-[#1b6d24] underline underline-offset-2">reviewed data comparisons</Link>, or use the <Link to="/tools/data-bundle-selector/" className="font-bold text-[#1b6d24] underline underline-offset-2">data bundle selector</Link> to narrow the listed offers by your requirements. Check the provider, qualifying tariff and purchase channel before paying.
+          </p>
+          <p className="mb-5 text-sm font-medium leading-relaxed text-slate-600">
+            Comparing an offer shown on your own SIM? Enter its price and usable allowance in the <Link to="/tools/usable-data-cost-calculator/" className="font-bold text-[#1b6d24] underline underline-offset-2">usable data cost calculator</Link>. Keep night, social and daily-release data separate. A result helps compare your offer; it does not confirm that another customer can buy it.
+          </p>
+          <h3 className="mb-2 font-black text-slate-900">Buying steps for your network</h3>
+          <ul className="grid gap-x-6 sm:grid-cols-2">
+            {operatorBuyingGuides.map((guide) => (
+              <li key={guide.href}>
+                <Link to={guide.href} className="inline-flex min-h-11 items-center gap-2 py-2 text-sm font-bold text-[#1b6d24] underline underline-offset-2">
+                  {guide.label}<ArrowRight aria-hidden="true" className="h-4 w-4" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section id="voice-costs" className="mb-10 rounded-3xl border border-slate-100 bg-white p-6 shadow-sm md:p-8">
+          <h2 className="mb-4 text-2xl font-black tracking-tight">Buying airtime for calls?</h2>
+          <p className="mb-4 text-sm leading-relaxed text-slate-600">Compare the cash you pay with the calls you can actually make. Check your active tariff, billing increment, permitted networks and expiry. Airtime credit, a minute bundle and a conditional recharge bonus are different products. A larger minute allowance only helps if you use it before it expires.</p>
+          <h3 className="mb-2 font-black">A specific example: Vodacom Prepaid LTE voice bundles</h3>
+          <p className="mb-4 text-sm leading-relaxed text-slate-600">These two examples require the qualifying Prepaid MBB plan in Vodacom’s terms. They are not an offer for every Vodacom SIM or a cheapest-network ranking. Prices and conditions below were checked on 1 November 2026.</p>
+          <table className="mb-4 w-full text-left text-sm">
+            <caption className="sr-only">Vodacom Prepaid LTE once-off voice examples, checked 1 November 2026</caption>
+            <thead><tr className="border-b border-slate-300"><th scope="col" className="py-3 pr-3">Minutes</th><th scope="col" className="py-3">Price including VAT</th></tr></thead>
+            <tbody><tr className="border-b border-slate-200"><th scope="row" className="py-3 pr-3 font-semibold">100 minutes</th><td className="py-3">R99</td></tr><tr><th scope="row" className="py-3 pr-3 font-semibold">250 minutes</th><td className="py-3">R199</td></tr></tbody>
+          </table>
+          <p className="mb-3 text-sm leading-relaxed text-slate-600">Both are once-off bundles valid for 30 days including the purchase day, with per-second deduction for calls to networks within South Africa. International calls and international roaming are excluded. Vodacom lists *135#, My Vodacom and VodaPay as purchase channels; confirm the qualifying plan and final offer on your line.</p>
+          <p className="text-sm leading-relaxed text-slate-600">Check the <a href="https://www.vodacom.co.za/vodacom/shopping/plans/prepaid-plans" target="_blank" rel="noopener noreferrer" className="font-bold text-[#1b6d24] underline underline-offset-2">official prices</a> and <a href="https://www.vodacom.co.za/vodacom/terms/home-prepaid-lte" target="_blank" rel="noopener noreferrer" className="font-bold text-[#1b6d24] underline underline-offset-2">plan and voice-bundle terms</a> before buying. We have not established a complete like-for-like voice comparison across all networks.</p>
+        </section>
+
+        <section className="mb-10 rounded-3xl border border-slate-100 bg-white p-6 shadow-sm md:p-8">
           <h2 className="mb-5 text-2xl font-black tracking-tight">Main ways to buy data or airtime</h2>
           <div className="grid gap-4 md:grid-cols-2">
             {buyingOptions.map((option) => (
@@ -163,9 +204,11 @@ export const BuyDataAirtimePage: React.FC<BuyDataAirtimePageProps> = ({ onNaviga
           <h2 className="mb-4 text-2xl font-black tracking-tight">Before you pay</h2>
           <ul className="space-y-3 text-sm font-medium leading-relaxed text-slate-600">
             {[
-              'Confirm the cellphone number before submitting.',
-              'Check whether you are buying airtime, data, SMS, social data, night data, or a promotional bundle.',
-              'Check validity and expiry before buying.',
+              'Confirm the cellphone number and its current network, especially if the number has been ported.',
+              'Confirm the full amount payable and whether the purchase is once-off or renews automatically. Check how to stop future renewals.',
+              'Check whether the offer requires a particular tariff, app, bank account or personalised invitation.',
+              'Read each allowance separately: airtime, anytime data, night data, social data, minutes and conditional bonuses.',
+              'Check each allowance’s expiry and whether data is available immediately or released in daily portions.',
               'Keep your receipt, SMS, or app confirmation until the top-up appears.',
               'Never share OTPs, card PINs, app passwords, or banking credentials with a support account or reseller.'
             ].map((item) => (
