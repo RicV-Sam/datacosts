@@ -127,6 +127,16 @@ try {
   }
   // The integrated selector must use the reviewed catalogue and real eligibility controls.
   const toolPage = await browser.newPage();
+  // Eligibility interactions use the immutable October source review. Separate
+  // future-date checks above still enforce that aged evidence cannot win awards.
+  await toolPage.evaluateOnNewDocument(() => {
+    const OriginalDate = Date;
+    const timestamp = OriginalDate.parse('2026-10-12T12:00:00Z');
+    window.Date = class extends OriginalDate {
+      constructor(...args) { super(...(args.length ? args : [timestamp])); }
+      static now() { return timestamp; }
+    };
+  });
   const toolErrors = []; toolPage.on('pageerror', error => toolErrors.push(error.message));
   await toolPage.setViewport({ width:390, height:1000 });
   await toolPage.goto(`${origin}/tools/data-bundle-selector/`, {waitUntil:'networkidle0'});

@@ -41,7 +41,7 @@ test('10GB display separates pooled anytime from restricted totals and shares tr
   assert.equal(split.allocation.nightGb, 10);
   assert.equal(split.priceZar, 149);
   assert.equal(getDealOfferMetrics(split).costPerAnytimeGb, 14.9);
-  assert.deepEqual(tier.awards, getDealAwards(10, tier.offers));
+  assert.deepEqual(tier.awards, getDealAwards(10, tier.offers, NOW));
   assert.ok(tier.awards.bestOverall!.allocation.anytimeGb >= 10);
   const advertisedOnly = tier.offers.find(offer => offer.id === 'vodacom-prepaid-lte-5-plus-5-2026-10')!;
   assert.equal(advertisedOnly.allocation.anytimeGb, 5);

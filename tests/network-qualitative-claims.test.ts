@@ -80,8 +80,8 @@ test('fibre comparisons cite current Rain evidence without declaring a universal
 });
 
 test('materially revised comparison surfaces expose the current editorial review date', () => {
+  assert.equal(getRouteModifiedIso('/fibre/'), '2026-11-01T00:00:00.000Z');
   for (const route of [
-    '/fibre/',
     '/fibre/fibre-vs-lte-south-africa/',
     '/fibre/fibre-vs-rain-5g-south-africa/',
     '/guides/vodacom-vs-mtn-data-prices/',

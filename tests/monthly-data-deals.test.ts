@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { after, mock } from 'node:test';
 import {
   currentMonthlyDealSnapshot,
   dealProviders,
@@ -11,6 +11,11 @@ import {
 } from '../src/data/monthlyDeals';
 import { getDealAwards, getDealOfferMetrics, sortDealsForDisplay } from '../src/utils/monthlyDealRanking';
 import { buildMonthlyDealItemListSchema, buildMonthlyDealWinnerItemListSchema } from '../src/utils/monthlyDealStructuredData';
+
+// These assertions describe the immutable October review. Runtime freshness and
+// overdue-evidence rejection are tested separately at explicit future dates.
+mock.timers.enable({ apis: ['Date'], now: new Date('2026-10-12T12:00:00Z') });
+after(() => mock.timers.reset());
 
 test('tracker supports future sizes while preserving immutable monthly history', () => {
   assert.deepEqual(TRACKED_DATA_SIZES_GB, [5, 10, 15, 20, 30, 50]);

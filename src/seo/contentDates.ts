@@ -23,9 +23,18 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/best-20gb-data-deals-south-africa/': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
   '/best-30gb-data-deals-south-africa/': MONTHLY_DEAL_REVIEW_MODIFIED_ISO,
   '/buy-data-airtime-south-africa/': '2026-06-18T00:00:00.000Z',
-  '/fibre/': EDITORIAL_AUDIT_MODIFIED_ISO,
-  '/fibre/cheapest-fibre-packages-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
-  '/fibre/prepaid-fibre-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
+  // Material price/identity corrections and individual source dates in price tables.
+  // Other fibre guides retain their existing dates; this is not a full source refresh.
+  '/fibre/': '2026-11-01T00:00:00.000Z',
+  '/fibre/fibre-prices-south-africa/': '2026-11-01T00:00:00.000Z',
+  '/fibre/cheapest-fibre-packages-south-africa/': '2026-11-01T00:00:00.000Z',
+  '/fibre/prepaid-fibre-south-africa/': '2026-11-01T00:00:00.000Z',
+  '/fibre/prepaid-fibre-vs-month-to-month-fibre/': '2026-11-01T00:00:00.000Z',
+  '/fibre/openserve-fibre-south-africa/': '2026-11-01T00:00:00.000Z',
+  '/fibre/vumatel-fibre-south-africa/': '2026-11-01T00:00:00.000Z',
+  '/fibre/frogfoot-fibre-south-africa/': '2026-11-01T00:00:00.000Z',
+  '/fibre/octotel-fibre-south-africa/': '2026-11-01T00:00:00.000Z',
+  '/fibre/vuma-reach-prepaid-fibre-south-africa/': '2026-11-01T00:00:00.000Z',
   '/fibre/fibre-vs-lte-south-africa/': EDITORIAL_AUDIT_MODIFIED_ISO,
   '/fibre/fibre-vs-rain-5g-south-africa/': EDITORIAL_AUDIT_MODIFIED_ISO,
   '/fibre/how-to-check-fibre-coverage-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
@@ -59,7 +68,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
 };
 
 const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
-  '/data-problems/how-to-check-data-balance-vodacom-ussd/': '2026-07-30T00:00:00.000Z',
+  '/data-problems/how-to-check-data-balance-vodacom-ussd/': '2026-11-01T00:00:00.000Z',
   '/data-problems/how-to-check-wasp-subscriptions-mtn/': '2026-04-19T00:00:00.000Z',
   '/data-problems/how-to-check-wasp-subscriptions-vodacom/': '2026-04-19T00:00:00.000Z',
   '/data-problems/how-to-stop-airtime-disappearing-cell-c/': '2026-10-22T00:00:00.000Z',

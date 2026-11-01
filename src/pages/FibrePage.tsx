@@ -22,6 +22,7 @@ import {
   fibrePages,
   FibreContentBlock,
   FibrePageDefinition,
+  FibrePricePackage,
   FibreTableRow,
   formatRand,
   formatSpeed,
@@ -203,6 +204,35 @@ const CompanyGrid: React.FC<{ companyIds: string[] }> = ({ companyIds }) => {
   );
 };
 
+const PriceProvider: React.FC<{ price: FibrePricePackage }> = ({ price }) => (
+  <>
+    <p className="font-black text-slate-900">{getFibrePriceCompanyName(price.ispId)}</p>
+    <a href={price.sourceUrl} target="_blank" rel="noreferrer" className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-[#1b6d24] hover:underline">
+      {price.sourceLabel}<ExternalLink className="h-3 w-3 shrink-0" />
+    </a>
+  </>
+);
+
+const PriceAmount: React.FC<{ price: FibrePricePackage }> = ({ price }) => {
+  const fresh = isFibrePriceFresh(price.checkedAt);
+  return <>
+    <p className="font-black text-slate-900">{formatRand(price.monthlyPrice)}</p>
+    {price.promoPrice !== null && <p className="mt-1 text-xs font-bold text-emerald-700">Promo example {formatRand(price.promoPrice)}</p>}
+    <p className={`mt-2 inline-flex whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-widest ${fresh ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
+      {fresh ? 'Checked' : 'Needs recheck'}
+    </p>
+    <p className="mt-1 text-xs text-slate-500">Price checked {formatIsoForDisplay(`${price.checkedAt}T00:00:00.000Z`)}</p>
+  </>;
+};
+
+const PriceNotes: React.FC<{ price: FibrePricePackage }> = ({ price }) => (
+  <>
+    {price.setupNotes}
+    {price.promoTerms && <p className="mt-2 font-semibold">Introductory conditions: {price.promoTerms}</p>}
+    {price.requiresAddressCheck && <p className="mt-2 font-bold text-slate-800">Address check required.</p>}
+  </>
+);
+
 const PriceTable: React.FC<{ block: Extract<FibreContentBlock, { type: 'price-table' }> }> = ({ block }) => {
   const prices = getFibrePrices({ ...(block.filter ?? {}), limit: block.limit });
   const status = getFibrePriceSnapshotStatus();
@@ -219,47 +249,43 @@ const PriceTable: React.FC<{ block: Extract<FibreContentBlock, { type: 'price-ta
   return (
     <div className="space-y-4">
       <div className={`rounded-2xl border p-4 text-sm font-medium leading-relaxed ${status.fresh ? 'border-emerald-100 bg-emerald-50 text-emerald-900' : 'border-amber-200 bg-amber-50 text-amber-900'}`}>
-        Price examples checked on {checkedLabel}. They are not live quotes and must be confirmed by exact address.
+        These dated price examples are not live quotes. Each row shows its own price-check date; the oldest check is {checkedLabel}. Confirm the final price and terms for your exact address.
       </div>
-      <div className="overflow-hidden rounded-2xl border border-slate-100">
-        <table className="w-full text-left text-sm">
+      <div className="space-y-4 md:hidden">
+        {prices.map(price => (
+          <article key={price.id} data-fibre-price={price.id} className="rounded-2xl border border-slate-200 bg-white p-5">
+            <PriceProvider price={price} />
+            <p className="mt-3 text-sm font-bold leading-relaxed text-slate-700">{price.planName}</p>
+            <dl className="my-4 grid grid-cols-2 gap-4 text-sm">
+              <div><dt className="text-xs text-slate-500">Network</dt><dd className="mt-1 font-bold">{getFibrePriceCompanyName(price.fnoId)}</dd></div>
+              <div><dt className="text-xs text-slate-500">Speed</dt><dd className="mt-1 font-bold">{formatSpeed(price.downloadMbps, price.uploadMbps)}</dd></div>
+            </dl>
+            <PriceAmount price={price} />
+            <div className="mt-4 border-t border-slate-100 pt-4 text-sm leading-relaxed text-slate-600"><PriceNotes price={price} /></div>
+          </article>
+        ))}
+      </div>
+      <div className="hidden overflow-x-auto rounded-2xl border border-slate-100 md:block">
+        <table className="w-full min-w-[960px] table-fixed text-left text-sm">
           <thead className="bg-slate-50 text-[10px] font-black uppercase tracking-widest text-slate-400">
             <tr>
-              <th className="px-4 py-3">Provider</th>
-              <th className="px-4 py-3">Network</th>
-              <th className="px-4 py-3">Speed</th>
-              <th className="px-4 py-3">Monthly</th>
-              <th className="px-4 py-3">Notes</th>
+              <th className="w-[14%] px-4 py-3">Provider</th>
+              <th className="w-[14%] px-4 py-3">Network</th>
+              <th className="w-[14%] px-4 py-3">Speed</th>
+              <th className="w-[17%] px-4 py-3">Monthly</th>
+              <th className="w-[41%] px-4 py-3">Notes</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100 bg-white">
-            {prices.map((price) => {
-              const fresh = isFibrePriceFresh(price.checkedAt);
-              return (
+            {prices.map((price) => (
                 <tr key={price.id}>
-                  <td className="px-4 py-4 align-top">
-                    <p className="font-black text-slate-900">{getFibrePriceCompanyName(price.ispId)}</p>
-                    <a href={price.sourceUrl} target="_blank" rel="noreferrer" className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-[#1b6d24] hover:underline">
-                      {price.sourceLabel}
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </td>
+                  <td className="px-4 py-4 align-top"><PriceProvider price={price} /></td>
                   <td className="px-4 py-4 align-top font-medium text-slate-700">{getFibrePriceCompanyName(price.fnoId)}</td>
-                  <td className="px-4 py-4 align-top font-black text-slate-900">{formatSpeed(price.downloadMbps, price.uploadMbps)}</td>
-                  <td className="px-4 py-4 align-top">
-                    <p className="font-black text-slate-900">{formatRand(price.monthlyPrice)}</p>
-                    {price.promoPrice !== null && <p className="mt-1 text-xs font-bold text-emerald-700">Promo example {formatRand(price.promoPrice)}</p>}
-                    <p className={`mt-2 inline-flex rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-widest ${fresh ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
-                      {fresh ? 'Checked' : 'Needs recheck'}
-                    </p>
-                  </td>
-                  <td className="px-4 py-4 align-top text-xs font-medium leading-relaxed text-slate-600">
-                    {price.setupNotes}
-                    {price.requiresAddressCheck && <p className="mt-2 font-bold text-slate-800">Address check required.</p>}
-                  </td>
+                  <td className="whitespace-nowrap px-4 py-4 align-top font-black text-slate-900">{formatSpeed(price.downloadMbps, price.uploadMbps)}</td>
+                  <td className="px-4 py-4 align-top"><PriceAmount price={price} /></td>
+                  <td className="px-4 py-4 align-top text-xs font-medium leading-relaxed text-slate-600"><PriceNotes price={price} /></td>
                 </tr>
-              );
-            })}
+            ))}
           </tbody>
         </table>
       </div>

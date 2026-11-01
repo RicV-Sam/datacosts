@@ -3,11 +3,23 @@ import { currentMonthlyDealSnapshot, getExpectedComparisonSizes, type MonthlyDat
 import { parseDataAmountToGb } from './dataCalculator';
 import { isVerifiedBundleSource } from './bundleSource';
 import { comparisonOfferUpdates } from '../data/comparisonOfferUpdates';
+import type { Bundle } from '../types';
 
-/** Adapt recorded monthly bundles without changing historical snapshots or copying prices. */
-export function getComparisonOfferCatalog(): MonthlyDataDealOffer[] {
-  const offers = [...new Map([...currentMonthlyDealSnapshot.offers, ...comparisonOfferUpdates].map(offer => [offer.id, offer])).values()];
-  for (const bundle of bundles) {
+export interface ComparisonCatalogInputs {
+  monthlyOffers: readonly MonthlyDataDealOffer[];
+  supplementalOffers: readonly MonthlyDataDealOffer[];
+  recordedBundles?: readonly Bundle[];
+  excludedRecordedBundleIds?: readonly string[];
+}
+
+/** Compose an explicit review without registering it as the active release. */
+export function buildComparisonOfferCatalog({ monthlyOffers, supplementalOffers, recordedBundles = bundles, excludedRecordedBundleIds = [] }: ComparisonCatalogInputs): MonthlyDataDealOffer[] {
+  const offers = [...new Map([...monthlyOffers, ...supplementalOffers].map(offer => [offer.id, offer])).values()];
+  const excluded = new Set(excludedRecordedBundleIds);
+  for (const bundle of recordedBundles) {
+    // A reviewed override or an explicit exclusion must not be reintroduced
+    // from the older base catalogue, including when its price has changed.
+    if (excluded.has(bundle.id) || offers.some(offer => offer.id === `recorded-${bundle.id}`)) continue;
     if (!isVerifiedBundleSource(bundle) || !bundle.sourceUrl || !bundle.sourceLabel || !bundle.lastVerified ||
       !['smartphone_once_off_data', 'prepaid_lte_router_data'].includes(bundle.productType ?? '') ||
       !/^30 days$/i.test(bundle.validity)) continue;
@@ -39,4 +51,9 @@ export function getComparisonOfferCatalog(): MonthlyDataDealOffer[] {
     });
   }
   return offers;
+}
+
+/** Active inputs remain explicit; later candidates do not activate by import. */
+export function getComparisonOfferCatalog(): MonthlyDataDealOffer[] {
+  return buildComparisonOfferCatalog({ monthlyOffers: currentMonthlyDealSnapshot.offers, supplementalOffers: comparisonOfferUpdates });
 }

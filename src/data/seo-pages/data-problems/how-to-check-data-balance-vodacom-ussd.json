@@ -3,37 +3,37 @@
   "keyword": "how to check data balance vodacom ussd",
   "slug": "data-problems/how-to-check-data-balance-vodacom-ussd",
   "pageTitle": "How to Check Vodacom Data Balance by USSD",
-  "metaDescription": "Check your Vodacom data balance with *135#, VodaPay or TOBi, confirm the active bundle, and spot fallback charges before you buy more data.",
+  "metaDescription": "Check Vodacom data balance directly with *136#, use the *135# self-service menu, or compare VodaPay and TOBi before buying another bundle.",
   "h1": "How to Check Vodacom Data Balance",
   "networks": [
     "vodacom"
   ],
   "intentScore": 3,
-  "quickAnswer": "To check Vodacom data balance, dial *135# from your Vodacom SIM and follow the balance prompts. You can also use the VodaPay app or message “Balance” to TOBi on Vodacom’s official WhatsApp channel. Compare the displayed bundle category and expiry before buying more data.",
+  "quickAnswer": "Dial *136# from your Vodacom SIM for detailed balances. For the full self-service menu, dial *135# and follow the balance prompts. You can also view balances in VodaPay after login or message “Balance” to TOBi through Vodacom’s official WhatsApp channel. Check the bundle name, remaining allowance and expiry before buying more data.",
   "causes": [
     {
-      "cause": "Vodacom shows different bundle views in app and USSD",
-      "explanation": "Most users check only one screen, then think the bundle vanished when the latest Vodacom balance has not refreshed yet. Vodacom balance views often separate bundle categories, so users can miss the active one. Users usually notice it after a morning check or a recent top-up."
+      "cause": "The self-service menu is being mistaken for the direct balance shortcut",
+      "explanation": "Vodacom distinguishes *135# for its full self-service menu from *136# for detailed balances. Follow the current prompts on your own line; menu positions are not guaranteed."
     },
     {
-      "cause": "A recent top-up has not fully reflected",
-      "explanation": "A new recharge can take a moment to align across app, USSD, and account history."
+      "cause": "A recent recharge needs checking",
+      "explanation": "Vodacom lists a delay or a recharge applied to the wrong number as possible explanations for a missing top-up. Compare the receipt, receiving number and confirmation before paying again."
     },
     {
-      "cause": "The wrong bundle type is being checked",
-      "explanation": "Social, night, and anytime bundles can sit in different balance views."
+      "cause": "A total balance does not answer which allowance you can use",
+      "explanation": "Open the detailed balance view and compare the named allowance with its purchase confirmation and expiry. Do not assume a night, social or promotional allocation is unrestricted anytime data."
     }
   ],
   "fixSteps": {
     "general": [],
     "byNetwork": {
       "vodacom": [
-        "Dial *135# and choose the balance option.",
-        "If the first menu looks incomplete, retry from the main *135# self-service flow.",
-        "Open the VodaPay app for a fuller bundle breakdown.",
-        "Check the right bundle type, such as anytime, night, promotional, or social data.",
-        "Refresh the account after any recent top-up or transfer.",
-        "Compare USSD with VodaPay before assuming the bundle is gone."
+        "Dial *136# for detailed balances on your Vodacom SIM.",
+        "For the full self-service menu, dial *135# and follow the current balance prompts.",
+        "After logging into VodaPay, open your balances and tap the relevant balance for detail.",
+        "Alternatively, message “Balance” to TOBi through the WhatsApp channel linked by Vodacom’s official support page.",
+        "Compare the named allowance and expiry with the receipt and confirmation for the receiving number.",
+        "Keep the response and ask Vodacom to investigate an unexplained difference before buying the same bundle again."
       ],
       "mtn": [],
       "cellc": [],
@@ -41,23 +41,23 @@
     }
   },
   "preventionTips": [
-    "Check balance before you load more airtime or buy another bundle.",
-    "Use the USSD route when the app is slow or data is weak.",
-    "Compare the balance view with recent usage if numbers look wrong.",
-    "If airtime starts dropping after data ends, check out-of-bundle settings and subscriptions."
+    "Check the named allowance and expiry before buying another bundle.",
+    "Keep the purchase confirmation and the receiving number shown on the receipt.",
+    "Use the official detailed-balance route or VodaPay; do not send an OTP, PIN or account credentials to anyone helping you.",
+    "If a difference remains unexplained, use Vodacom’s official support channel and keep the reference."
   ],
   "faqs": [
     {
       "question": "How do I check my Vodacom data balance?",
-      "answer": "Use *135# and follow the balance prompts, or use VodaPay to view the latest balance. If one screen looks delayed, check both before buying more data."
+      "answer": "Use *136# for detailed balances, or *135# for the full self-service menu. VodaPay also shows balances after login, and Vodacom says you can message “Balance” to TOBi on its official WhatsApp channel."
     },
     {
-      "question": "Can I check Vodacom airtime and data in the same place?",
-      "answer": "Yes. VodaPay shows your account balances, while *135# gives a live self-service menu on the line."
+      "question": "Are *135# and *136# the same balance code?",
+      "answer": "Vodacom publishes different roles: *135# opens its self-service options, while *136# is the detailed-balance shortcut. Follow the live prompts; this guide does not promise fixed menu numbers."
     },
     {
-      "question": "Why does my Vodacom balance look different in the morning?",
-      "answer": "A recent top-up, rollover, or delayed refresh can make the first morning check look different from the previous night."
+      "question": "What should I do if the displayed balance does not match a recent purchase?",
+      "answer": "Keep the receipt and confirmation, check the receiving number and bundle expiry, and compare the detailed balance with VodaPay. Ask Vodacom to investigate an unexplained difference. DataCost cannot inspect your private account or establish the cause from the balance alone."
     }
   ],
   "internalLinks": [
@@ -92,12 +92,7 @@
       "status": "live"
     }
   ],
-  "verifyFlags": [
-    "quickAnswer",
-    "fixSteps.byNetwork.vodacom[1]",
-    "faqs[0].answer",
-    "faqs[1].answer"
-  ],
+  "verifyFlags": [],
   "monetisation": {
     "adPlacement1": "after-quick-answer",
     "adPlacement2": "after-fix-steps",
@@ -107,32 +102,37 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-07-30",
-  "reviewDueDate": "2026-10-30",
+  "lastReviewed": "2026-11-01",
+  "reviewDueDate": "2027-01-30",
   "sourceNotes": [
-    "Vodacom self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
-    "Operator-controlled context for balance checks and bundle confirmation: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Vodacom.",
-    "Device-side evidence for Vodacom: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
+    "Official balance, billing and VodaPay pages reviewed on 1 November 2026. The operator article distinguishes direct *136# balances from the *135# self-service menu.",
+    "The current billing FAQ supports VodaPay after login and the “Balance” message to TOBi through the official WhatsApp channel; it also lists possible recharge delays or wrong receiving numbers. These are possible causes, not a diagnosis of an individual account.",
+    "Documentary review only: no live-SIM USSD test or private account access. Check the current prompts and exact product confirmation."
   ],
   "officialSources": [
     {
+      "label": "Vodacom: detailed balances and self-service codes",
+      "href": "https://now.vodacom.co.za/do-it-yourself/the-three-easiest-ways-to-check-your-vodacom-balance/",
+      "note": "Operator article distinguishes *136# detailed balances from *135# self-service and explains VodaPay detailed balances."
+    },
+    {
       "label": "Vodacom: balances, usage and billing help",
       "href": "https://www.vodacom.co.za/vodacom/help/balances-usage-and-billing",
-      "note": "Vodacom confirms *135#, VodaPay and TOBi as current balance-check routes."
+      "note": "Current FAQ supports *135#, VodaPay after login, and messaging Balance to TOBi; lists possible missing-top-up explanations."
     },
     {
       "label": "Vodacom: VodaPay app support",
       "href": "https://www.vodacom.co.za/vodacom/help/vodapay-app-support",
-      "note": "Official VodaPay guidance for checking balances and managing a Vodacom account."
+      "note": "Provider recommends VodaPay for balance and bundle functions; consult current support if the app cannot load."
     }
   ],
-  "uniqueValueSummary": "This guide is intentionally scoped to balance checks and bundle confirmation for Vodacom. It does not simply repeat a generic data-saving checklist: it separates account-side signals, device-side usage, and bundle-validity clues so a user can decide whether to change a phone setting, cancel a service, buy a different bundle, or escalate to Vodacom support. The main check is Vodacom balance, bundle validity, USSD response wording, and the difference between airtime, data, social, night, and promo balances. The balance-check page is kept indexable because it anchors several troubleshooting flows and helps users avoid buying another bundle before confirming the actual remaining balance. That distinction matters because many South African prepaid problems look similar after the balance has already dropped, while the useful evidence is usually visible only in the first few minutes after the user notices the loss.",
+  "uniqueValueSummary": "This guide distinguishes the direct detailed-balance shortcut from the full Vodacom self-service menu, then gives a second official route through VodaPay or TOBi. Its purpose is to help you identify the allowance you actually bought and the balance being displayed before paying for another bundle. Save the confirmation, receiving number, bundle name and expiry. A restricted night, social or promotional allowance should not be read as unrestricted anytime data. If a recent purchase is missing, compare the receipt and current account view; Vodacom lists delays and wrong receiving numbers as possible causes, but neither is a diagnosis for your line. Keep a dated record of an unexplained difference for official support. This page does not attribute a balance change to an operator fault, promise a refund, or claim that checking a second screen restores data.",
   "officialSupportContext": "DataCost can help users narrow balance checks and bundle confirmation, but it cannot see a private Vodacom account, reverse a charge, cancel a service on behalf of the user, or guarantee a personalised menu. For this route, the support question should be framed around Vodacom balance, bundle validity, USSD response wording, and the difference between airtime, data, social, night, and promo balances. If the evidence points to a billing fault, failed cancellation, SIM-specific offer, disputed deduction, or account-level block, the user should use the official Vodacom app, USSD flow, store, or support channel and keep the reference number or confirmation SMS.",
   "evidenceToCollect": [
-    "A screenshot or note of the Vodacom balance before and after the suspected loss, including date, approximate time, and the exact balance category shown.",
-    "The active bundle name, validity window, and whether the remaining balance is anytime, night, social, promo, app-specific, or airtime credit.",
-    "App or device usage for the same period, especially hotspot, video, app updates, cloud backups, streaming quality, and messaging media downloads.",
-    "Any SMS, in-app confirmation, USSD result, or support reference that proves a service was cancelled, bought, expired, blocked, or changed."
+    "The purchase receipt, receiving number and operator confirmation, with date and approximate time.",
+    "The exact named allowance, remaining amount and expiry in the detailed balance view.",
+    "The USSD response wording and a comparable VodaPay view; keep account credentials and OTPs private.",
+    "A Vodacom support reference if the purchase and displayed balance still do not reconcile."
   ],
   "whenThisDoesNotApply": "This page should not be treated as proof that Vodacom made an error on every line with balance checks and bundle confirmation. It may not fit contract billing, business accounts, router-only SIMs, roaming, family-linked accounts, app-store purchases, or cases where another person controls the SIM. In those situations, account-specific support, live terms, and the latest official checkout or USSD wording matter more than a general troubleshooting guide.",
   "indexingStatus": "index"

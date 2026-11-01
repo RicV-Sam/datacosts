@@ -12,6 +12,7 @@ export type FibrePricePackage = {
   uploadMbps: number;
   monthlyPrice: number;
   promoPrice: number | null;
+  promoTerms?: string;
   setupNotes: string;
   sourceUrl: string;
   sourceLabel: string;

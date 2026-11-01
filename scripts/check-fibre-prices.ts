@@ -10,6 +10,7 @@ type FibrePricePackage = {
   uploadMbps: number;
   monthlyPrice: number;
   promoPrice: number | null;
+  promoTerms?: string;
   setupNotes: string;
   sourceUrl: string;
   sourceLabel: string;
@@ -49,6 +50,7 @@ function validatePackage(price: FibrePricePackage, index: number, errors: string
   assert(Number.isFinite(price.uploadMbps) && price.uploadMbps > 0, `${prefix}: invalid uploadMbps`, errors);
   assert(Number.isFinite(price.monthlyPrice) && price.monthlyPrice >= 100 && price.monthlyPrice <= 5000, `${prefix}: monthlyPrice outside expected range`, errors);
   assert(price.promoPrice === null || (Number.isFinite(price.promoPrice) && price.promoPrice >= 0), `${prefix}: invalid promoPrice`, errors);
+  assert(price.promoPrice === null || Boolean(price.promoTerms?.trim()), `${prefix}: promotional price needs duration and conditions`, errors);
   assert(Boolean(price.setupNotes), `${prefix}: missing setupNotes`, errors);
   assert(/^https:\/\//.test(price.sourceUrl), `${prefix}: sourceUrl must be https`, errors);
   assert(Boolean(price.sourceLabel), `${prefix}: missing sourceLabel`, errors);

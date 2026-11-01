@@ -14,3 +14,7 @@ playwright-report/
 test-results/
 .indexnow-status.json
 .indexnow-status.json.tmp
+
+# Review-only fibre updater outputs; the active snapshot is tracked separately.
+src/data/generated/fibrePriceSnapshot.draft.json
+src/data/generated/fibrePriceSnapshot.review.json
