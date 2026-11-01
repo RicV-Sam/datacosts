@@ -16,7 +16,6 @@ test('the October supplement retains its reviewed inputs when the current monthl
     mkdirSync(path.join(directory, 'comparisonOfferUpdates'));
     mkdirSync(path.join(directory, 'monthlyDeals/history'), { recursive: true });
     writeFileSync(path.join(directory, 'package.json'), '{"type":"module"}');
-    writeFileSync(path.join(directory, 'comparisonOfferUpdates.ts'), readFileSync(new URL('../src/data/comparisonOfferUpdates.ts', import.meta.url)));
     writeFileSync(path.join(directory, 'comparisonOfferUpdates/2026-10-12.ts'), readFileSync(new URL('../src/data/comparisonOfferUpdates/2026-10-12.ts', import.meta.url)));
     const historyModule = new URL('../src/data/monthlyDeals/history/2026-10.ts', import.meta.url).href;
     const sizesModule = new URL('../src/data/monthlyDeals/sizeBands.ts', import.meta.url).href;
@@ -26,8 +25,8 @@ test('the October supplement retains its reviewed inputs when the current monthl
       export { getExpectedComparisonSizes } from ${JSON.stringify(sizesModule)};
       export const currentMonthlyDealSnapshot = { month: '2026-11', offers: [] };
     `);
-    const activeModule = pathToFileURL(path.join(directory, 'comparisonOfferUpdates.ts')).href;
-    const code = `const { comparisonOfferUpdates } = await import(${JSON.stringify(activeModule)}); process.stdout.write(JSON.stringify(comparisonOfferUpdates));`;
+    const historicalModule = pathToFileURL(path.join(directory, 'comparisonOfferUpdates/2026-10-12.ts')).href;
+    const code = `const { october2026ComparisonOffers } = await import(${JSON.stringify(historicalModule)}); process.stdout.write(JSON.stringify(october2026ComparisonOffers));`;
     offers = JSON.parse(execFileSync(process.execPath, ['--import', 'tsx', '--input-type=module', '-e', code], { encoding: 'utf8' }));
   } finally {
     assert.equal(path.dirname(path.resolve(directory)), path.resolve(os.tmpdir()));

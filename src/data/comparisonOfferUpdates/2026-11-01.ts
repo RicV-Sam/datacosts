@@ -1,6 +1,7 @@
 import type { MonthlyDataDealOffer } from '../monthlyDeals/types';
 
-// INACTIVE candidate. The six October shadow overrides are incorporated into the
+// November review, activated by explicit user authorization on 1 November 2026.
+// The six October shadow overrides are incorporated into the
 // November snapshot; this module holds fourteen additional offers and four
 // independently checked base-catalogue references. Never activate via a date glob.
 export const november2026ComparisonOffers: MonthlyDataDealOffer[] = [
@@ -905,5 +906,5 @@ export const november2026ComparisonOffers: MonthlyDataDealOffer[] = [
 ];
 
 // Historical tariff notices did not re-confirm current purchase availability.
-// Apply these exclusions to the recorded-bundle adapter only in a permitted release.
+// These scoped exclusions are supplied to the recorded-bundle adapter with this review.
 export const november2026ExcludedRecordedBundleIds = ["voda-monthly-1-5gb","voda-monthly-3gb"] as const;

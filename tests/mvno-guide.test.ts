@@ -109,8 +109,8 @@ test('current MVNO tracker rows keep billing, payment and commitment as separate
   assert.equal(mvnoOffers.filter((offer) => offer.billing === 'once_off').length, 8);
   assert.equal(mvnoOffers.filter((offer) => offer.billing === 'recurring_monthly').length, 11);
   assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'once_off').length, 8);
-  assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'month_to_month').length, 9);
-  assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'not_confirmed').length, 2);
+  assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'month_to_month').length, 7);
+  assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'not_confirmed').length, 4);
   assert.equal(mvnoOffers.filter((offer) => offer.commitment?.kind === 'fixed_term').length, 0);
 
   for (const offer of mvnoOffers) {

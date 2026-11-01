@@ -1,3 +1,6 @@
-// Active review selection is explicit. Preparing a later module must not activate it.
-// October remains active while the existing observation holds are in place.
-export { october2026ComparisonOffers as comparisonOfferUpdates } from './comparisonOfferUpdates/2026-10-12';
+// Explicit November selection authorized on 1 November 2026 as a pricing-only
+// exception to affected holds. The base catalogue and other holds stay unchanged.
+export {
+  november2026ComparisonOffers as comparisonOfferUpdates,
+  november2026ExcludedRecordedBundleIds as comparisonExcludedRecordedBundleIds
+} from './comparisonOfferUpdates/2026-11-01';

@@ -1,15 +1,15 @@
-# November 2026 pricing candidate — inactive
+# November 2026 pricing review
 
-The 1 November source review prepares a later data release without activating it. Existing observation holds and the instruction to keep the November data inactive remain in force. Committing or publishing the preparation code does not authorize activation of these records.
+The user authorized activation on 1 November 2026 and deployment after the full production build passes. This is a narrow exception to affected pricing holds. Homepage/MTN base rows, other editorial holds and existing review dates remain unchanged.
 
 ## Explicit selection
 
-- `src/data/monthlyDeals/index.ts` still selects the October snapshot from the existing three registered history entries.
-- `src/data/comparisonOfferUpdates.ts` explicitly selects `2026-10-12.ts`. That module reads its original immutable October snapshot, not whichever monthly snapshot becomes current.
-- `src/data/monthlyDeals/history/2026-11.ts` contains 26 candidate monthly records and is **not registered**.
-- `src/data/comparisonOfferUpdates/2026-11-01.ts` contains 18 candidate supplemental records and is **not selected**. Six October shadow overrides are incorporated into the reviewed November monthly records rather than duplicated here. The supplement contains fourteen additional offers and four independently checked base-catalogue references.
+- `src/data/monthlyDeals/index.ts` selects November alongside the three immutable older snapshots.
+- `src/data/comparisonOfferUpdates.ts` explicitly selects `2026-11-01.ts` and its recorded-bundle exclusions. The versioned October module retains its original immutable October inputs.
+- `src/data/monthlyDeals/history/2026-11.ts` contains 26 monthly records reviewed on 1 November.
+- `src/data/comparisonOfferUpdates/2026-11-01.ts` contains 18 supplemental records. Six October shadow overrides are incorporated into the November monthly records rather than duplicated. The supplement contains fourteen additional offers and four independently checked base-catalogue references.
 
-No filename glob, date comparison or automatic latest-module selection activates the supplement. Do not add the November snapshot to the registry or change the active supplement selection during the holds.
+The active catalogue has 44 records. No filename glob or automatic latest-module selection activates a supplement. Future reviews and their exclusions must be explicitly selected.
 
 ## Scope and uncertainty
 
@@ -30,9 +30,9 @@ Material documentary changes include Melon's current 30-day plan expiry, Capitec
 
 The detailed per-record source ledger, response files/hashes, rendered selector/FAQ evidence and unresolved items are in the existing private monthly audit folder under `2026-11-01/november-preparation/`. Each retained record also stores its primary official URL and actual 1 November check date. No account, checkout or live SIM access was used.
 
-## Preview composition and later activation
+## Review composition and base-data boundary
 
-`buildComparisonOfferCatalog()` accepts explicit inputs so the candidate can be checked without changing the active registry:
+`buildComparisonOfferCatalog()` composes the selected review with its recorded-bundle exclusions:
 
 ```ts
 buildComparisonOfferCatalog({
@@ -42,16 +42,16 @@ buildComparisonOfferCatalog({
 });
 ```
 
-The two recorded-bundle exclusions are required for this candidate. Omitting them would allow the adapter to reintroduce the older Vodacom references. A reviewed `recorded-...` override takes precedence over its base record even when its price changes. The active catalogue supplies no exclusions and remains unchanged.
+The two recorded-bundle exclusions prevent the adapter from reintroducing older Vodacom references. A reviewed `recorded-...` override takes precedence over its base record even when its price changes. The active catalogue supplies these exclusions; `src/data.ts` remains unchanged.
 
-Keeping review-bound overrides separate from `src/data.ts` allows a future authorized comparison revision to be scoped without automatically changing the held homepage or MTN network base rows. It does not release the comparison, pilot, MVNO or other holds. Review dates are not automatic edit permission.
+Keeping review-bound overrides separate from `src/data.ts` preserves the held homepage and MTN base rows. The authorized pricing exception does not release other content holds. Record the actual release and affected observation cohorts so later reviews do not assume unchanged comparison content.
 
-Before any permitted activation, recheck source freshness and unresolved offers, review the exact affected pages/metadata, and select the monthly snapshot, supplement and recorded-bundle exclusions together. Do not re-date October history or change global base-bundle dates. A future activation needs the normal complete production checks and explicit publication authorization.
+The snapshot, supplement and exclusions are selected together. Older history and global base-bundle dates are not re-dated. Source freshness, affected metadata and the complete production build must pass before publication. Recheck sources before their freshness window ends or sooner if an offer materially changes.
 
 ## Validation
 
 - `npm run test:comparisons` includes a real module-resolution rollover regression against a temporary registry with November selected.
-- `npm run test:pricing-candidates` checks inactivity, composition, four withheld references, override precedence, source/size contracts and award exclusions at the documented review date. Its fixed review clock is test-only.
+- `npm run test:pricing-candidates` checks authorized selection, composition, four withheld references, override precedence, source/size contracts and award exclusions at the documented review date. Its fixed review clock is test-only.
 - Run lint, monthly/editorial checks, privacy/contracts and the full production build after changes.
 
-The normal production build still rejects the active October evidence for age. The inactive candidate does not clear or bypass that gate. A diagnostic rendering build can check unchanged active output separately and is not release approval.
+Production freshness gates remain unchanged. Publication requires the full production command, not only a diagnostic rendering build. Fixed historical test clocks do not alter production clocks or source-age rules.

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { bundles } from '../src/data';
-import { currentMonthlyDealSnapshot, getExpectedComparisonSizes, monthlyDealHistory } from '../src/data/monthlyDeals';
+import { currentMonthlyDealSnapshot, getExpectedComparisonSizes, getCurrentOffersForSize, monthlyDealHistory } from '../src/data/monthlyDeals';
 import { november2026DealSnapshot } from '../src/data/monthlyDeals/history/2026-11';
 import { november2026ComparisonOffers, november2026ExcludedRecordedBundleIds } from '../src/data/comparisonOfferUpdates/2026-11-01';
 import { buildComparisonOfferCatalog, getComparisonOfferCatalog } from '../src/utils/comparisonOfferCatalog';
@@ -15,10 +15,14 @@ const candidate = buildComparisonOfferCatalog({
   excludedRecordedBundleIds: november2026ExcludedRecordedBundleIds
 });
 
-test('the November review stays outside the active monthly and comparison registries', () => {
-  assert.equal(currentMonthlyDealSnapshot.month, '2026-10');
-  assert.ok(!monthlyDealHistory.includes(november2026DealSnapshot));
-  assert.ok(getComparisonOfferCatalog().every(offer => offer.source.checkedAt !== '2026-11-01'));
+test('the authorized November snapshot, supplement and exclusions are selected together', () => {
+  assert.equal(currentMonthlyDealSnapshot, november2026DealSnapshot);
+  assert.ok(monthlyDealHistory.includes(november2026DealSnapshot));
+  assert.deepEqual(getComparisonOfferCatalog(), candidate);
+  assert.ok(getComparisonOfferCatalog().every(offer => offer.source.checkedAt === '2026-11-01'));
+  for (const size of [10, 20, 30] as const) {
+    assert.deepEqual(getCurrentOffersForSize(size), november2026DealSnapshot.offers.filter(offer => offer.comparisonSizesGb.includes(size)));
+  }
 });
 
 test('the candidate composes 44 reviewed records without reviving four withheld references', () => {

@@ -1,6 +1,7 @@
 import { august2026DealSnapshot } from './history/2026-08';
 import { september2026DealSnapshot } from './history/2026-09';
 import { october2026DealSnapshot } from './history/2026-10';
+import { november2026DealSnapshot } from './history/2026-11';
 import type { MonthlyDataDealSnapshot, MonthlyDataDealOffer, TrackedDataSizeGb } from './types';
 
 export * from './types';
@@ -11,7 +12,7 @@ export const LAUNCHED_DEAL_SIZES_GB: TrackedDataSizeGb[] = [10, 20, 30];
 
 // Append new immutable snapshots here. Keeping older entries makes month-over-month
 // editorial review possible without creating new public URLs.
-export const monthlyDealHistory: MonthlyDataDealSnapshot[] = [august2026DealSnapshot, september2026DealSnapshot, october2026DealSnapshot];
+export const monthlyDealHistory: MonthlyDataDealSnapshot[] = [august2026DealSnapshot, september2026DealSnapshot, october2026DealSnapshot, november2026DealSnapshot];
 
 export const currentMonthlyDealSnapshot = [...monthlyDealHistory]
   .sort((left, right) => right.month.localeCompare(left.month))[0];

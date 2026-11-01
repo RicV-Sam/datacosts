@@ -31,7 +31,7 @@
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
-    "test:comparisons": "tsx --test tests/tier-comparison.test.ts tests/comparison-offer-rollover.test.ts",
+    "test:comparisons": "tsx --test tests/tier-comparison.test.ts tests/comparison-offer-rollover.test.ts tests/comparison-output.test.ts",
     "test:pricing-candidates": "tsx --test tests/pricing-candidates.test.ts",
     "check:comparisons": "tsx scripts/check-tier-comparisons.ts",
     "check:comparison-output": "tsx scripts/check-tier-comparisons.ts --output",

@@ -1,8 +1,8 @@
 import type { MonthlyDataDealSnapshot } from '../types';
 
-// INACTIVE candidate: not registered in monthlyDealHistory. Source review: 1 November 2026.
-// Existing holds and publication approval still apply. Four unresolved historical offers
-// are recorded in the private review ledger, not re-dated as current offers.
+// Source review and scoped activation authorized on 1 November 2026.
+// Four unresolved historical offers are recorded in the private review ledger,
+// not re-dated as current offers. Base data and other observation holds are unchanged.
 export const november2026DealSnapshot: MonthlyDataDealSnapshot = {
   "month": "2026-11",
   "label": "November 2026",

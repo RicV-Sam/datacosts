@@ -1,14 +1,14 @@
 import assert from 'node:assert/strict';
 import test, { after, mock } from 'node:test';
 import {
-  currentMonthlyDealSnapshot,
+  currentMonthlyDealSnapshot as activeMonthlyDealSnapshot,
   dealProviders,
   getExpectedComparisonSizes,
-  getCurrentOffersForSize,
   isMvnoProviderId,
   monthlyDealHistory,
   TRACKED_DATA_SIZES_GB
 } from '../src/data/monthlyDeals';
+import { october2026DealSnapshot as reviewedSnapshot } from '../src/data/monthlyDeals/history/2026-10';
 import { getDealAwards, getDealOfferMetrics, sortDealsForDisplay } from '../src/utils/monthlyDealRanking';
 import { buildMonthlyDealItemListSchema, buildMonthlyDealWinnerItemListSchema } from '../src/utils/monthlyDealStructuredData';
 
@@ -16,24 +16,27 @@ import { buildMonthlyDealItemListSchema, buildMonthlyDealWinnerItemListSchema } 
 // overdue-evidence rejection are tested separately at explicit future dates.
 mock.timers.enable({ apis: ['Date'], now: new Date('2026-10-12T12:00:00Z') });
 after(() => mock.timers.reset());
+const getReviewedOffersForSize = (size: (typeof TRACKED_DATA_SIZES_GB)[number]) => reviewedSnapshot.offers.filter(offer => offer.comparisonSizesGb.includes(size));
 
 test('tracker supports future sizes while preserving immutable monthly history', () => {
   assert.deepEqual(TRACKED_DATA_SIZES_GB, [5, 10, 15, 20, 30, 50]);
-  assert.equal(monthlyDealHistory.length, 3);
-  assert.deepEqual(monthlyDealHistory.map((snapshot) => snapshot.month), ['2026-08', '2026-09', '2026-10']);
+  assert.equal(monthlyDealHistory.length, 4);
+  assert.deepEqual(monthlyDealHistory.map((snapshot) => snapshot.month), ['2026-08', '2026-09', '2026-10', '2026-11']);
   assert.equal(monthlyDealHistory[0].checkedAt, '2026-08-04');
   assert.equal(monthlyDealHistory[0].offers.length, 28);
   assert.ok(monthlyDealHistory[0].offers.every((offer) => !offer.paymentModel && !offer.commitment));
   assert.equal(monthlyDealHistory[1].checkedAt, '2026-09-01');
   assert.equal(monthlyDealHistory[1].offers.find((offer) => offer.id === 'standard-bank-connect-10gb-bundle-2026-09')?.priceZar, 399);
   assert.equal(monthlyDealHistory[1].offers.find((offer) => offer.id === 'melon-gigaday-30gb-2026-09')?.billing, 'once_off');
-  assert.equal(currentMonthlyDealSnapshot.month, '2026-10');
-  assert.equal(currentMonthlyDealSnapshot.checkedAt, '2026-10-02');
-  assert.equal(currentMonthlyDealSnapshot.offers.length, 28);
+  assert.equal(activeMonthlyDealSnapshot.month, '2026-11');
+  assert.equal(activeMonthlyDealSnapshot.offers.length, 26);
+  assert.equal(reviewedSnapshot.month, '2026-10');
+  assert.equal(reviewedSnapshot.checkedAt, '2026-10-02');
+  assert.equal(reviewedSnapshot.offers.length, 28);
 });
 
 test('derived calculations keep anytime and advertised totals separate', () => {
-  const offer = currentMonthlyDealSnapshot.offers.find((row) => row.id === 'vodacom-prepaid-lte-10-plus-10-2026-10');
+  const offer = reviewedSnapshot.offers.find((row) => row.id === 'vodacom-prepaid-lte-10-plus-10-2026-10');
   assert.ok(offer);
   const metrics = getDealOfferMetrics(offer);
   assert.equal(metrics.advertisedTotalGb, 20);
@@ -41,7 +44,7 @@ test('derived calculations keep anytime and advertised totals separate', () => {
   assert.equal(metrics.costPerAnytimeGb, 14.9);
   assert.equal(metrics.costPerAdvertisedGb, 7.45);
 
-  const conditional = currentMonthlyDealSnapshot.offers.find((row) => row.id === 'capitec-connect-10gb-30-day-2026-10');
+  const conditional = reviewedSnapshot.offers.find((row) => row.id === 'capitec-connect-10gb-30-day-2026-10');
   assert.ok(conditional);
   const conditionalMetrics = getDealOfferMetrics(conditional);
   assert.equal(conditionalMetrics.advertisedTotalGb, 10);
@@ -52,8 +55,8 @@ test('derived calculations keep anytime and advertised totals separate', () => {
 });
 
 test('daily-release and streaming data never become anytime data', () => {
-  const daily = currentMonthlyDealSnapshot.offers.find((row) => row.id === 'telkom-daily-dose-30gb-2026-10');
-  const streaming = currentMonthlyDealSnapshot.offers.find((row) => row.id === 'mtn-entertainment-streaming-20gb-2026-10');
+  const daily = reviewedSnapshot.offers.find((row) => row.id === 'telkom-daily-dose-30gb-2026-10');
+  const streaming = reviewedSnapshot.offers.find((row) => row.id === 'mtn-entertainment-streaming-20gb-2026-10');
   assert.ok(daily);
   assert.ok(streaming);
   assert.equal(getDealOfferMetrics(daily).costPerAnytimeGb, null);
@@ -62,10 +65,10 @@ test('daily-release and streaming data never become anytime data', () => {
 });
 
 test('size bands deterministically include pooled-anytime and advertised-total classes', () => {
-  const vodacom20Advertised = currentMonthlyDealSnapshot.offers.find((row) => row.id === 'vodacom-prepaid-lte-10-plus-10-2026-10');
-  const vodacom40Advertised = currentMonthlyDealSnapshot.offers.find((row) => row.id === 'vodacom-prepaid-lte-20-plus-20-2026-10');
-  const fnb25 = currentMonthlyDealSnapshot.offers.find((row) => row.id === 'fnb-connect-data-plan-25gb-2026-10');
-  const standardBank35 = currentMonthlyDealSnapshot.offers.find((row) => row.id === 'standard-bank-connect-connected-gigs-pro-35gb-2026-10');
+  const vodacom20Advertised = reviewedSnapshot.offers.find((row) => row.id === 'vodacom-prepaid-lte-10-plus-10-2026-10');
+  const vodacom40Advertised = reviewedSnapshot.offers.find((row) => row.id === 'vodacom-prepaid-lte-20-plus-20-2026-10');
+  const fnb25 = reviewedSnapshot.offers.find((row) => row.id === 'fnb-connect-data-plan-25gb-2026-10');
+  const standardBank35 = reviewedSnapshot.offers.find((row) => row.id === 'standard-bank-connect-connected-gigs-pro-35gb-2026-10');
   assert.ok(vodacom20Advertised);
   assert.ok(vodacom40Advertised);
   assert.ok(fnb25);
@@ -86,7 +89,7 @@ test('size bands deterministically include pooled-anytime and advertised-total c
   }), [5]);
 });
 
-test('current offers separate provider type, payment model, commitment and price cadence', () => {
+test('reviewed October offers separate provider type, payment model, commitment and price cadence', () => {
   assert.equal(dealProviders.length, 10);
   assert.deepEqual(
     dealProviders.filter((provider) => provider.kind === 'mvno').map((provider) => provider.id),
@@ -94,15 +97,15 @@ test('current offers separate provider type, payment model, commitment and price
   );
   assert.ok(isMvnoProviderId('airmobile'));
   assert.ok(!isMvnoProviderId('mtn'));
-  assert.ok(currentMonthlyDealSnapshot.offers.every((offer) => offer.paymentModel && offer.commitment));
+  assert.ok(reviewedSnapshot.offers.every((offer) => offer.paymentModel && offer.commitment));
 
-  const airmobile = currentMonthlyDealSnapshot.offers.find((offer) => offer.id === 'airmobile-data-only-10gb-2026-10');
+  const airmobile = reviewedSnapshot.offers.find((offer) => offer.id === 'airmobile-data-only-10gb-2026-10');
   assert.ok(airmobile);
   assert.equal(airmobile.billing, 'recurring_monthly');
   assert.equal(airmobile.paymentModel?.kind, 'not_confirmed');
   assert.equal(airmobile.commitment?.kind, 'month_to_month');
 
-  const standardBank = currentMonthlyDealSnapshot.offers.find((offer) => offer.id === 'standard-bank-connect-connected-gigs-plus-20gb-2026-10');
+  const standardBank = reviewedSnapshot.offers.find((offer) => offer.id === 'standard-bank-connect-connected-gigs-plus-20gb-2026-10');
   assert.ok(standardBank);
   assert.equal(standardBank.billing, 'recurring_monthly');
   assert.equal(standardBank.paymentModel?.kind, 'not_confirmed');
@@ -110,9 +113,9 @@ test('current offers separate provider type, payment model, commitment and price
 });
 
 test('ranking keeps cheapest genuine anytime, unit value and advertised price separate', () => {
-  const ten = getDealAwards(10, getCurrentOffersForSize(10));
-  const twenty = getDealAwards(20, getCurrentOffersForSize(20));
-  const thirty = getDealAwards(30, getCurrentOffersForSize(30));
+  const ten = getDealAwards(10, getReviewedOffersForSize(10));
+  const twenty = getDealAwards(20, getReviewedOffersForSize(20));
+  const thirty = getDealAwards(30, getReviewedOffersForSize(30));
 
   assert.equal(ten.bestOverall?.id, 'vodacom-prepaid-lte-10-plus-10-2026-10');
   assert.equal(twenty.bestOverall?.id, 'standard-bank-connect-connected-gigs-plus-20gb-2026-10');
@@ -126,7 +129,7 @@ test('ranking keeps cheapest genuine anytime, unit value and advertised price se
 });
 
 test('context-only offers cannot lead even when their nominal value looks strong', () => {
-  const offers = getCurrentOffersForSize(20);
+  const offers = getReviewedOffersForSize(20);
   const contextOnly = offers.filter((offer) => offer.rankingStatus === 'context_only');
   assert.ok(contextOnly.length >= 2);
   const awards = getDealAwards(20, offers);
@@ -135,7 +138,7 @@ test('context-only offers cannot lead even when their nominal value looks strong
 });
 
 test('October Melon plans keep included SMS and recurring daily data outside misleading comparisons', () => {
-  const melonByop = currentMonthlyDealSnapshot.offers.filter((offer) => offer.id.startsWith('melon-byop-data-only-'));
+  const melonByop = reviewedSnapshot.offers.filter((offer) => offer.id.startsWith('melon-byop-data-only-'));
   assert.equal(melonByop.length, 3);
   for (const offer of melonByop) {
     assert.match(offer.advertisedDataLabel, /50 SMS/);
@@ -143,13 +146,13 @@ test('October Melon plans keep included SMS and recurring daily data outside mis
     assert.match(offer.rankingExclusionReason ?? '', /SMS/);
     const size = offer.comparisonSizesGb[0];
     const cheapOffer = { ...offer, priceZar: 1 };
-    const awards = getDealAwards(size, [...getCurrentOffersForSize(size), cheapOffer]);
+    const awards = getDealAwards(size, [...getReviewedOffersForSize(size), cheapOffer]);
     assert.notEqual(awards.bestOverall?.id, offer.id);
     assert.notEqual(awards.bestAnytimeValue?.id, offer.id);
     assert.notEqual(awards.lowestAdvertisedPrice?.id, offer.id);
   }
 
-  const daily = currentMonthlyDealSnapshot.offers.find((offer) => offer.id === 'melon-gigaday-30gb-2026-10');
+  const daily = reviewedSnapshot.offers.find((offer) => offer.id === 'melon-gigaday-30gb-2026-10');
   assert.ok(daily);
   assert.equal(daily.billing, 'recurring_monthly');
   assert.equal(daily.commitment?.kind, 'month_to_month');
@@ -159,7 +162,7 @@ test('October Melon plans keep included SMS and recurring daily data outside mis
 });
 
 test('structured ItemList mirrors visible source-checked rows without speculative availability', () => {
-  const offers = sortDealsForDisplay(20, getCurrentOffersForSize(20));
+  const offers = sortDealsForDisplay(20, getReviewedOffersForSize(20));
   const schema = buildMonthlyDealItemListSchema('20GB comparison', 'https://datacost.co.za/best-20gb-data-deals-south-africa/', offers);
   assert.equal(schema.numberOfItems, offers.length);
   assert.equal(schema.itemListElement[0].position, 1);
@@ -181,7 +184,7 @@ test('structured ItemList mirrors visible source-checked rows without speculativ
 
 test('hub winner schema stays limited to facts displayed in winner summaries', () => {
   const winners = ([10, 20, 30] as const)
-    .map((size) => getDealAwards(size, getCurrentOffersForSize(size)).bestOverall)
+    .map((size) => getDealAwards(size, getReviewedOffersForSize(size)).bestOverall)
     .filter((offer): offer is NonNullable<typeof offer> => Boolean(offer));
   const schema = buildMonthlyDealWinnerItemListSchema(
     'Monthly deal winners',

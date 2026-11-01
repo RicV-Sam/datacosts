@@ -2,7 +2,7 @@ import { bundles } from '../data';
 import { currentMonthlyDealSnapshot, getExpectedComparisonSizes, type MonthlyDataDealOffer } from '../data/monthlyDeals';
 import { parseDataAmountToGb } from './dataCalculator';
 import { isVerifiedBundleSource } from './bundleSource';
-import { comparisonOfferUpdates } from '../data/comparisonOfferUpdates';
+import { comparisonOfferUpdates, comparisonExcludedRecordedBundleIds } from '../data/comparisonOfferUpdates';
 import type { Bundle } from '../types';
 
 export interface ComparisonCatalogInputs {
@@ -55,5 +55,5 @@ export function buildComparisonOfferCatalog({ monthlyOffers, supplementalOffers,
 
 /** Active inputs remain explicit; later candidates do not activate by import. */
 export function getComparisonOfferCatalog(): MonthlyDataDealOffer[] {
-  return buildComparisonOfferCatalog({ monthlyOffers: currentMonthlyDealSnapshot.offers, supplementalOffers: comparisonOfferUpdates });
+  return buildComparisonOfferCatalog({ monthlyOffers: currentMonthlyDealSnapshot.offers, supplementalOffers: comparisonOfferUpdates, excludedRecordedBundleIds: comparisonExcludedRecordedBundleIds });
 }

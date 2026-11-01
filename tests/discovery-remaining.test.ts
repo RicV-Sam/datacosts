@@ -88,10 +88,17 @@ test('new guides have reachable catalogue routes and truthful publication chrono
 });
 
 
-test('FNB fixed-day bundles share the reviewed evidence policy and require bank eligibility', () => {
-  const fnb = currentMonthlyDealSnapshot.offers.find(row => row.id === 'fnb-connect-standard-bundle-20gb-2026-10')!;
-  assert.equal(selectListedBundles([fnb], prefs, now)?.length, 0);
-  assert.equal(selectListedBundles([fnb], { ...prefs, banks: ['fnb-connect'] }, now)?.length, 1);
-  const unsafe = { ...fnb, source: { ...fnb.source, url: 'https://example.com/unverified' } };
-  assert.equal(selectListedBundles([unsafe], { ...prefs, banks: ['fnb-connect'] }, now)?.length, 0);
+test('current conflicted FNB bundles are excluded while bank and official-source requirements remain enforced', () => {
+  const fnb = currentMonthlyDealSnapshot.offers.find(row => row.id === 'fnb-connect-standard-bundle-20gb-2026-11');
+  assert.ok(fnb);
+  const reviewedNow = new Date('2026-11-01T23:00:00Z');
+  const bankPrefs: SelectorPreferences = { ...prefs, banks: ['fnb-connect'] };
+  assert.equal(fnb.rankingStatus, 'context_only');
+  assert.equal(selectListedBundles([fnb], bankPrefs, reviewedNow)?.length, 0);
+  // A synthetic eligible variant isolates the other gates from the source conflict.
+  const eligible = { ...fnb, rankingStatus: 'eligible' as const };
+  assert.equal(selectListedBundles([eligible], prefs, reviewedNow)?.length, 0);
+  assert.equal(selectListedBundles([eligible], bankPrefs, reviewedNow)?.length, 1);
+  const unsafe = { ...eligible, source: { ...eligible.source, url: 'https://example.com/unverified' } };
+  assert.equal(selectListedBundles([unsafe], bankPrefs, reviewedNow)?.length, 0);
 });

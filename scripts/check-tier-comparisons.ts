@@ -3,8 +3,9 @@ import { readFileSync } from 'node:fs';
 import { comparisonGuideDefinitions } from '../src/data/comparisonGuides';
 import { getTierComparison, getTierTargetGb, hasCurrentOfferEvidence } from '../src/utils/tierComparison';
 import { getComparisonOfferCatalog } from '../src/utils/comparisonOfferCatalog';
-import { filterBundlesByMode, pickBestRowBundleForMode, CORE_NETWORKS } from '../src/utils/comparisonSelection';
+import { filterBundlesByMode, pickBestRowBundleForMode, CORE_NETWORKS, hasCurrentBundleEvidence } from '../src/utils/comparisonSelection';
 import { getExpectedComparisonSizes } from '../src/data/monthlyDeals';
+import { assertSourceBackedItemList } from './lib/comparison-output';
 
 const checkOutput = process.argv.includes('--output');
 const catalog = getComparisonOfferCatalog();
@@ -24,7 +25,11 @@ for (const definition of Object.values(comparisonGuideDefinitions)) {
     assert.ok(html.includes(`href="https://datacost.co.za${definition.canonicalPath}"`), `Missing canonical: ${definition.slug}`);
     const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
     const itemList = schemas.find(schema => schema['@type'] === 'ItemList');
-    assert.ok(itemList?.itemListElement.length > 0, `Empty/missing ItemList: ${definition.slug}`);
+    const currentRows = tier ? tier.currentOffers.length : selected.filter(bundle => bundle && hasCurrentBundleEvidence(bundle)).length;
+    assertSourceBackedItemList(itemList, currentRows, definition.slug);
+    if (!tier && currentRows === 0) {
+      assert.ok(html.includes('Recorded reference - recheck before buying; excluded from current awards'), `Missing dated-reference disclosure: ${definition.slug}`);
+    }
     if (tier) {
       assert.ok(html.includes(`data-tier-comparison="${target}"`), `Missing server-delivered comparison: ${definition.slug}`);
       assert.equal(itemList.itemListElement.length, tier.offers.length, `Schema/visible offers diverged: ${definition.slug}`);

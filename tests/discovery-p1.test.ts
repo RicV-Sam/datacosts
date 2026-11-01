@@ -9,6 +9,7 @@ import { ComparisonGuidePage } from '../src/pages/ComparisonGuidePage';
 import { MonthlyDealComparison } from '../src/components/deals/MonthlyDealComparison';
 import { SuperDataMigrationNotice } from '../src/components/deals/SuperDataMigrationNotice';
 import { currentMonthlyDealSnapshot, getCurrentOffersForSize } from '../src/data/monthlyDeals';
+import { october2026DealSnapshot } from '../src/data/monthlyDeals/history/2026-10';
 import { getNetworkPageModifiedIso, getNetworkUssdModifiedIso, getRouteModifiedIso } from '../src/seo/contentDates';
 
 const navigation = { onNavigate: () => {}, onScrollTo: () => {} };
@@ -66,17 +67,18 @@ test('both mobile and desktop MTN comparison views show both migration losses wi
   const other = offers.find((offer) => offer.providerId !== 'mtn');
   assert.ok(other);
   assert.equal(render(React.createElement(SuperDataMigrationNotice, { offer: other })), '');
-  assert.equal(currentMonthlyDealSnapshot.checkedAt, '2026-10-02');
-  assert.ok(currentMonthlyDealSnapshot.offers.every((offer) => offer.source.checkedAt === '2026-10-02'));
+  assert.equal(currentMonthlyDealSnapshot.checkedAt, '2026-11-01');
+  assert.ok(currentMonthlyDealSnapshot.offers.every((offer) => offer.source.checkedAt === '2026-11-01'));
+  assert.ok(october2026DealSnapshot.offers.every((offer) => offer.source.checkedAt === '2026-10-02'));
 });
 
 test('editorial dates advance only for changed pages, preserving price and USSD review dates', () => {
   for (const route of ['/guides/cheapest-10gb-data-south-africa/', '/guides/cheapest-20gb-data-south-africa/']) {
-    assert.equal(getRouteModifiedIso(route), '2026-10-12T00:00:00.000Z');
+    assert.equal(getRouteModifiedIso(route), '2026-11-01T00:00:00.000Z');
   }
   assert.equal(getNetworkPageModifiedIso('telkom'), '2026-10-12T00:00:00.000Z');
   assert.equal(getNetworkUssdModifiedIso('telkom'), '2026-09-01T00:00:00.000Z');
-  assert.equal(getRouteModifiedIso('/best-10gb-data-deals-south-africa/'), '2026-10-02T00:00:00.000Z');
-  assert.equal(getRouteModifiedIso('/best-30gb-data-deals-south-africa/'), '2026-10-02T00:00:00.000Z');
-  assert.equal(getRouteModifiedIso('/best-data-deals-south-africa/'), '2026-10-02T00:00:00.000Z');
+  assert.equal(getRouteModifiedIso('/best-10gb-data-deals-south-africa/'), '2026-11-01T00:00:00.000Z');
+  assert.equal(getRouteModifiedIso('/best-30gb-data-deals-south-africa/'), '2026-11-01T00:00:00.000Z');
+  assert.equal(getRouteModifiedIso('/best-data-deals-south-africa/'), '2026-11-01T00:00:00.000Z');
 });

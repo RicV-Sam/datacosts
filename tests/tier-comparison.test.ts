@@ -2,13 +2,17 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { bundles } from '../src/data';
 import { comparisonGuideDefinitions } from '../src/data/comparisonGuides';
-import { getComparisonOfferCatalog } from '../src/utils/comparisonOfferCatalog';
+import { buildComparisonOfferCatalog } from '../src/utils/comparisonOfferCatalog';
 import { getTierComparison, hasCurrentOfferEvidence, getTierTargetGb } from '../src/utils/tierComparison';
 import { filterBundlesByMode, pickBestRowBundleForMode } from '../src/utils/comparisonSelection';
 import { getDealAwards, getDealOfferMetrics } from '../src/utils/monthlyDealRanking';
 
+import { october2026DealSnapshot } from '../src/data/monthlyDeals/history/2026-10';
+import { october2026ComparisonOffers } from '../src/data/comparisonOfferUpdates/2026-10-12';
+
+// Historical October regressions remain tied to their actual review inputs.
 const NOW = new Date('2026-10-12T12:00:00Z');
-const catalog = getComparisonOfferCatalog();
+const catalog = buildComparisonOfferCatalog({ monthlyOffers: october2026DealSnapshot.offers, supplementalOffers: october2026ComparisonOffers });
 
 test('every configured tier has a real comparison and all non-tier modes retain results', () => {
   for (const definition of Object.values(comparisonGuideDefinitions)) {
