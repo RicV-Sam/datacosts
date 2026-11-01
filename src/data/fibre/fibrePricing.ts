@@ -16,6 +16,9 @@ export type FibrePricePackage = {
   setupNotes: string;
   sourceUrl: string;
   sourceLabel: string;
+  sourceProductId?: string;
+  termsUrl?: string;
+  priceBasis?: 'historical' | 'advertised' | 'advertised_from';
   checkedAt: string;
   confidence: FibrePriceConfidence;
   requiresAddressCheck: boolean;

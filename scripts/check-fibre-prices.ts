@@ -14,6 +14,9 @@ type FibrePricePackage = {
   setupNotes: string;
   sourceUrl: string;
   sourceLabel: string;
+  sourceProductId?: string;
+  termsUrl?: string;
+  priceBasis?: 'historical' | 'advertised' | 'advertised_from';
   checkedAt: string;
   confidence: 'high' | 'medium' | 'low';
   requiresAddressCheck: boolean;
@@ -54,6 +57,10 @@ function validatePackage(price: FibrePricePackage, index: number, errors: string
   assert(Boolean(price.setupNotes), `${prefix}: missing setupNotes`, errors);
   assert(/^https:\/\//.test(price.sourceUrl), `${prefix}: sourceUrl must be https`, errors);
   assert(Boolean(price.sourceLabel), `${prefix}: missing sourceLabel`, errors);
+  assert(price.sourceProductId === undefined || Boolean(price.sourceProductId.trim()), `${prefix}: invalid sourceProductId`, errors);
+  assert(price.termsUrl === undefined || /^https:\/\//.test(price.termsUrl), `${prefix}: termsUrl must be https`, errors);
+  assert(price.priceBasis === undefined || ['historical', 'advertised', 'advertised_from'].includes(price.priceBasis), `${prefix}: invalid priceBasis`, errors);
+  assert(price.priceBasis === undefined || price.confidence === 'low', `${prefix}: unresolved price basis must stay low confidence`, errors);
   assert(/^\d{4}-\d{2}-\d{2}$/.test(price.checkedAt), `${prefix}: checkedAt must be YYYY-MM-DD`, errors);
   assert(['high', 'medium', 'low'].includes(price.confidence), `${prefix}: invalid confidence`, errors);
   assert(typeof price.requiresAddressCheck === 'boolean', `${prefix}: requiresAddressCheck must be boolean`, errors);

@@ -3,7 +3,7 @@ import test from 'node:test';
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import type { FibrePricePackage, FibrePriceSnapshot } from '../src/data/fibre/fibrePricing';
-import { parseRand, extractRsawebPrice, extractAxxessPrice, extractAfrihostPrepaidPrice, isApprovedFibreSource, prepareFibrePriceDraft, requireCompleteFibreRefresh } from '../scripts/lib/fibre-price-extraction';
+import { parseRand, extractFibrePrice, extractRsawebPrice, extractAxxessPrice, extractAfrihostPrepaidPrice, isApprovedFibreSource, prepareFibrePriceDraft, requireCompleteFibreRefresh } from '../scripts/lib/fibre-price-extraction';
 
 const row: FibrePricePackage = {
   id: 'rsaweb-openserve-webconnect-40-20', ispId: 'rsaweb', fnoId: 'openserve', planName: 'Openserve 40/20',
@@ -86,4 +86,21 @@ test('CLI refuses fixture-driven application before reading or replacing the act
   const file='src/data/generated/fibrePriceSnapshot.json';const before=readFileSync(file);
   assert.throws(()=>execFileSync(process.execPath,['--import','tsx','scripts/update-fibre-prices.ts','--fixture=synthetic.html','--commit'],{stdio:'pipe'}),/Command failed/);
   assert.deepEqual(readFileSync(file),before);
+});
+
+test('a pinned Axxess product cannot drift into a same-speed installation variant', () => {
+  const html = panel('evotel-up1', option('335') + option('435').replace('data-pid="p1"', 'data-pid="p2"'));
+  assert.equal(extractAxxessPrice(axxess, html).status, 'unresolved');
+  assert.deepEqual(extractAxxessPrice({ ...axxess, sourceProductId: 'p1' }, html), { status: 'matched', monthlyPrice: 335, promoPrice: null });
+  assert.deepEqual(extractAxxessPrice({ ...axxess, sourceProductId: 'p2' }, html), { status: 'matched', monthlyPrice: 435, promoPrice: null });
+  assert.equal(extractAxxessPrice({ ...axxess, sourceProductId: 'missing' }, html).status, 'unresolved');
+});
+
+test('Mweb displayed prices cannot replace an exact installation variant without its full terms review', () => {
+  const mweb = { ...row, ispId: 'mweb', sourceProductId: 'FTTH-OPEN-3030MB-UNCAPPED', downloadMbps: 30, uploadMbps: 30 };
+  for (const html of [
+    '<main>Openserve R599pm 30Mbps 30Mbps</main>',
+    '<main>Openserve <div data-product-code="OTHER-SKU">R599pm 30Mbps 30Mbps</div></main>',
+    '<main>Openserve <div data-product-code="FTTH-OPEN-3030MB-UNCAPPED">R539pm 30Mbps 30Mbps</div></main>',
+  ]) assert.equal(extractFibrePrice(mweb, html).status, 'unresolved');
 });

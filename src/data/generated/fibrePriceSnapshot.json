@@ -135,19 +135,22 @@
       "planName": "Openserve Web Connect 40/20 Mbps Fibre Uncapped",
       "downloadMbps": 40,
       "uploadMbps": 20,
-      "monthlyPrice": 435,
-      "promoPrice": null,
-      "setupNotes": "Price remains unresolved. On 1 November 2026 the freshly retrieved catalogue and linked product page displayed R425 ongoing; the catalogue advertises R395 for up to two months and a R250 processing fee, but its machine-readable price is R425.01. The earlier R435 remains a dated historical reference, not a current quote. Selected areas, a WiFi-enabled ONT (2.4GHz, no Ethernet port) and Openserve fair-use rules apply; confirm the final payable amount.",
+      "monthlyPrice": 425,
+      "promoPrice": 395,
+      "setupNotes": "Advertised ongoing price for eligible new promotion activations: R425 per month, plus R250 processing. The provider's stored price is R425.01; the final payable amount remains unconfirmed, so this offer is excluded from lowest-price rankings. Selected areas only; the WiFi-enabled ONT uses 2.4GHz and has no Ethernet port. Openserve fair-use rules apply. Monthly fees are paid in advance. Cancellation within 12 months can trigger recovery of discounts, installation/connection costs and cancellation charges.",
       "sourceUrl": "https://shop.rsaweb.co.za/product-category/fibre/ftth/",
       "sourceLabel": "RSAWEB FTTH shop page",
-      "checkedAt": "2026-08-06",
+      "checkedAt": "2026-11-01",
       "confidence": "low",
       "requiresAddressCheck": true,
       "tags": [
         "entry",
         "openserve",
         "monthly"
-      ]
+      ],
+      "priceBasis": "advertised",
+      "termsUrl": "https://shop.rsaweb.co.za/terms-and-conditions/promotions-legal-terms/",
+      "promoTerms": "R395 per month, pro-rated for the activation month plus one full month; the advertised regular R425 applies thereafter. Openserve must accept the order by 31 January 2027. Selected packages for new-to-network customers including migrations; existing RSAWEB customers cannot regrade or cancel/rejoin to obtain this pricing. Confirm coverage, eligibility and the final payable amount."
     },
     {
       "id": "rsaweb-vumatel-30-30",
@@ -203,16 +206,17 @@
       "uploadMbps": 10,
       "monthlyPrice": 435,
       "promoPrice": null,
-      "setupNotes": "The public page checked on 1 November 2026 advertises 25/10 Mbps from R435 per month with no long-term contract. It does not bind this advertised starting price to one FNO/address; this row is context only, not an exact available quote. A free-to-use router is offered on selected packages. Confirm the network, setup charges, cancellation terms and final price through the provider coverage check.",
+      "setupNotes": "The public page advertises 25/10 Mbps from R435 per month without identifying the exact FNO/product. This is an advertised starting price, not a confirmed available quote, and remains outside current-price rankings. One clear calendar month's cancellation notice applies; subsidised setup can be recovered in full if cancelled within 12 months. The exact package's setup/cancellation amounts, payment timing, tax treatment and loan-router eligibility remain unconfirmed. Use the provider's coverage check for an address-specific quote.",
       "sourceUrl": "https://www.vox.co.za/fibre-to-the-home/",
       "sourceLabel": "Vox fibre to the home page",
-      "checkedAt": "2026-08-06",
+      "checkedAt": "2026-11-01",
       "confidence": "low",
       "requiresAddressCheck": true,
       "tags": [
         "entry",
         "monthly"
-      ]
+      ],
+      "priceBasis": "advertised_from"
     },
     {
       "id": "mweb-openserve-30-30",
@@ -273,6 +277,83 @@
         "prepaid",
         "mid-speed"
       ]
+    },
+    {
+      "ispId": "axxess",
+      "downloadMbps": 30,
+      "uploadMbps": 30,
+      "checkedAt": "2026-11-01",
+      "confidence": "medium",
+      "requiresAddressCheck": true,
+      "termsUrl": "https://www.axxess.co.za/docs?tab=terms",
+      "id": "axxess-evotel-30-30-107668",
+      "fnoId": "evotel",
+      "sourceProductId": "107668",
+      "planName": "Evotel 30/30 Mbps Uncapped Combo — new service",
+      "monthlyPrice": 549,
+      "promoPrice": 499,
+      "setupNotes": "New Evotel service purchase; existing services, migrations, service changes and pre-orders are excluded. Monthly fees are VAT-inclusive, billed by calendar month and paid in advance. Standard installation/activation is subsidised up to R3,000; extra work costs more. A free-to-use router has R249 delivery. Cancellation or transfer within six months costs R499 plus one calendar month's notice; no downgrades during those six months. Return the loan router within 21 days or pay R899; ownership transfers after 36 months. Confirm any collection or non-standard setup fees and address coverage. Acceptable-use rules apply.",
+      "promoTerms": "R499 for the activation month, pro-rated, and the following calendar month; then R549 per calendar month. New Evotel service purchase; existing services, migrations, service changes and pre-orders are excluded. Confirm promotion availability before ordering.",
+      "sourceUrl": "https://www.axxess.co.za/fibre/provider/evotel",
+      "sourceLabel": "Axxess Evotel offer",
+      "tags": [
+        "entry",
+        "evotel",
+        "monthly",
+        "promo",
+        "new-service"
+      ]
+    },
+    {
+      "ispId": "axxess",
+      "downloadMbps": 30,
+      "uploadMbps": 30,
+      "checkedAt": "2026-11-01",
+      "confidence": "medium",
+      "requiresAddressCheck": true,
+      "termsUrl": "https://www.axxess.co.za/docs?tab=terms",
+      "id": "axxess-metrofibre-30-30-108267",
+      "fnoId": "metrofibre",
+      "sourceProductId": "108267",
+      "planName": "MetroFibre Nexus 30/30 Mbps Uncapped Combo — new installation",
+      "monthlyPrice": 499,
+      "promoPrice": 435,
+      "setupNotes": "New MetroFibre Nexus installations only; existing services, migrations, service changes and pre-orders are excluded. Monthly fees are VAT-inclusive, billed by calendar month and paid in advance. Standard installation/activation is subsidised up to R3,000; extra work costs more. A free-to-use router has R249 delivery. Cancellation or transfer within six months costs R499 plus one calendar month's notice; no downgrades during those six months. Return the loan router within 21 days or pay R899; ownership transfers after 36 months. Confirm any collection or non-standard setup fees and address coverage. Acceptable-use rules apply.",
+      "promoTerms": "R435 for the activation month, pro-rated, and the following calendar month; then R499 per calendar month. New MetroFibre Nexus installations only; existing services, migrations, service changes and pre-orders are excluded. Confirm promotion availability before ordering.",
+      "sourceUrl": "https://www.axxess.co.za/fibre/provider/metrofibre",
+      "sourceLabel": "Axxess MetroFibre offer",
+      "tags": [
+        "entry",
+        "metrofibre",
+        "monthly",
+        "promo",
+        "new-install"
+      ]
+    },
+    {
+      "id": "mweb-openserve-30-30-new-install-2026-11",
+      "ispId": "mweb",
+      "fnoId": "openserve",
+      "planName": "Openserve 30/30 Mbps — new Mweb customer / new installation",
+      "sourceProductId": "FTTH-OPEN-3030MB-UNCAPPED",
+      "downloadMbps": 30,
+      "uploadMbps": 30,
+      "monthlyPrice": 539,
+      "promoPrice": 439,
+      "checkedAt": "2026-11-01",
+      "confidence": "medium",
+      "requiresAddressCheck": true,
+      "sourceUrl": "https://www.mweb.co.za/fibre-provider/openserve",
+      "sourceLabel": "Mweb Openserve 30/30 Mbps offer",
+      "termsUrl": "https://www.mweb.co.za/legal-notices/terms/broadband-fibre-to-the-home",
+      "tags": [
+        "openserve",
+        "monthly",
+        "new-install",
+        "promo"
+      ],
+      "setupNotes": "This record covers new Mweb customers with a new installation; existing customers cannot downgrade to it. The provider also mentions ISP switches, whose eligibility needs confirmation. R249 processing is payable upfront. Setup is included subject to recovery/cancellation costs within 12 months; the exact recovery amount is unconfirmed. Monthly fees are paid in advance, normally by debit order; the first bill depends on activation date. One calendar month's cancellation notice applies. Return the optional loan router within 20 days, at your courier cost and in original condition/packaging, or pay its retail value. Uncapped and unthrottled; shaping applies.",
+      "promoTerms": "R439 monthly, pro-rated for the activation month plus two full discounted months. The current regular R539 applies from month four. Prices may change; confirm the final address-specific quote and eligibility."
     }
   ]
 }

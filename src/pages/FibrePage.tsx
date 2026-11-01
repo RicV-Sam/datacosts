@@ -217,14 +217,15 @@ const PriceProvider: React.FC<{ price: FibrePricePackage }> = ({ price }) => (
 const PriceAmount: React.FC<{ price: FibrePricePackage }> = ({ price }) => {
   const unresolved = price.confidence === 'low';
   const fresh = !unresolved && isFibrePriceFresh(price.checkedAt);
+  const advertisement = price.priceBasis === 'advertised' || price.priceBasis === 'advertised_from';
   return <>
-    <p className="text-xs font-semibold text-slate-600">{unresolved ? 'Historical reference' : price.tags.includes('prepaid') ? 'Prepaid top-up' : 'Monthly example'}</p>
-    <p className="font-black text-slate-900">{formatRand(price.monthlyPrice)}</p>
+    <p className="text-xs font-semibold text-slate-600">{unresolved ? advertisement ? 'Advertised monthly price' : 'Historical reference' : price.tags.includes('prepaid') ? 'Prepaid top-up' : 'Monthly example'}</p>
+    <p className="font-black text-slate-900">{price.priceBasis === 'advertised_from' && 'From '}{formatRand(price.monthlyPrice)}</p>
     {price.promoPrice !== null && <p className="mt-1 text-xs font-bold text-emerald-700">Promo example {formatRand(price.promoPrice)}</p>}
     <p className={`mt-2 inline-flex whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-widest ${fresh ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
       {unresolved ? 'Price unresolved' : fresh ? 'Checked' : 'Needs recheck'}
     </p>
-    <p className="mt-1 text-xs text-slate-500">Price checked {formatIsoForDisplay(`${price.checkedAt}T00:00:00.000Z`)}</p>
+    <p className="mt-1 text-xs text-slate-500">{advertisement ? 'Advertisement checked' : 'Price checked'} {formatIsoForDisplay(`${price.checkedAt}T00:00:00.000Z`)}</p>
   </>;
 };
 
@@ -232,6 +233,7 @@ const PriceNotes: React.FC<{ price: FibrePricePackage }> = ({ price }) => (
   <>
     {price.setupNotes}
     {price.promoTerms && <p className="mt-2 font-semibold">Introductory conditions: {price.promoTerms}</p>}
+    {price.termsUrl && <p className="mt-2"><a href={price.termsUrl} target="_blank" rel="noreferrer" className="font-bold text-[#1b6d24] underline underline-offset-2">Provider terms</a></p>}
     {price.requiresAddressCheck && <p className="mt-2 font-bold text-slate-800">Address check required.</p>}
   </>
 );
@@ -240,11 +242,15 @@ const PriceTable: React.FC<{ block: Extract<FibreContentBlock, { type: 'price-ta
   const filter = { ...(block.filter ?? {}), limit: undefined };
   const current = getFreshFibrePrices(filter);
   const currentIds = new Set(current.map((price) => price.id));
-  const references = getFibrePrices(filter).filter((price) => !currentIds.has(price.id));
+  const references = block.currentOnly ? [] : getFibrePrices(filter).filter((price) => !currentIds.has(price.id));
   const ordered = [...current, ...references];
   const prices = typeof block.limit === 'number' ? ordered.slice(0, block.limit) : ordered;
   const status = getFibrePriceSnapshotStatus();
-  const checkedLabel = formatIsoForDisplay(`${status.checkedAt}T00:00:00.000Z`);
+  const tableCheckedAt = block.currentOnly && prices.length > 0
+    ? prices.reduce((oldest, price) => price.checkedAt < oldest ? price.checkedAt : oldest, prices[0].checkedAt)
+    : status.checkedAt;
+  const tableFresh = isFibrePriceFresh(tableCheckedAt);
+  const checkedLabel = formatIsoForDisplay(`${tableCheckedAt}T00:00:00.000Z`);
 
   if (prices.length === 0) {
     return (
@@ -256,8 +262,8 @@ const PriceTable: React.FC<{ block: Extract<FibreContentBlock, { type: 'price-ta
 
   return (
     <div className="space-y-4">
-      <div className={`rounded-2xl border p-4 text-sm font-medium leading-relaxed ${status.fresh ? 'border-emerald-100 bg-emerald-50 text-emerald-900' : 'border-amber-200 bg-amber-50 text-amber-900'}`}>
-        These dated price examples are not live quotes. Each row shows its own price-check date; the oldest check is {checkedLabel}. Current source-checked examples appear first. Unresolved or older references follow and do not enter current-price rankings. Confirm the final price and terms for your exact address.
+      <div className={`rounded-2xl border p-4 text-sm font-medium leading-relaxed ${tableFresh ? 'border-emerald-100 bg-emerald-50 text-emerald-900' : 'border-amber-200 bg-amber-50 text-amber-900'}`}>
+        These dated price examples are not live quotes. Each row shows its own price-check date; the oldest check is {checkedLabel}. {block.currentOnly ? 'Only current source-checked examples with an identified network appear in this price comparison. Unresolved and older references are excluded.' : 'Current source-checked examples appear first. Unresolved or older references follow and do not enter current-price rankings.'} Confirm the final price and terms for your exact address.
       </div>
       <div className="space-y-4 md:hidden">
         {prices.map(price => (

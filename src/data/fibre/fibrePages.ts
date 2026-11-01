@@ -56,6 +56,7 @@ export type FibreContentBlock =
       title: string;
       intro?: string;
       filter?: FibrePriceFilter;
+      currentOnly?: boolean;
       limit?: number;
     }
   | {
@@ -514,7 +515,7 @@ export const fibrePages: FibrePageDefinition[] = [
     ],
     sourceIds: ['rsaweb-ftth', 'axxess-fibre', 'webafrica-fibre', 'vox-fibre', 'afrihost-prepaid'],
     blocks: [
-      { type: 'price-table', id: 'cheap-prices', title: 'Lowest checked public examples', filter: { maxMonthlyPrice: 550 }, limit: 12 },
+      { type: 'price-table', id: 'cheap-prices', title: 'Lowest checked public examples', filter: { maxMonthlyPrice: 550 }, currentOnly: true, limit: 12 },
       { type: 'table', id: 'real-cost', title: 'Real cost checklist', rows: costRows },
       {
         type: 'callout',

@@ -70,7 +70,8 @@ export function extractAxxessPrice(row: FibrePricePackage, html: string): PriceE
     doc(el).find('img').toArray().some(img => doc(img).attr('src')?.match(new RegExp(`/fibrelogo-${row.fnoId}(?:[-.]|$)`, 'i'))));
   if (panels.length !== 1) return unresolved(`Expected one ${row.fnoId} product panel; found ${panels.length}`);
   const options = doc(panels[0]).find('option[data-pid]').toArray().filter(el =>
-    doc(el).attr('data-downloadspeed') === `${row.downloadMbps}Mbps` && doc(el).attr('data-uploadspeed') === `${row.uploadMbps}Mbps`);
+    doc(el).attr('data-downloadspeed') === `${row.downloadMbps}Mbps` && doc(el).attr('data-uploadspeed') === `${row.uploadMbps}Mbps` &&
+    (!row.sourceProductId || doc(el).attr('data-pid') === row.sourceProductId));
   if (options.length !== 1) return unresolved(`Expected one exact ${row.fnoId} speed variant; found ${options.length}`);
   const option = doc(options[0]);
   const current = parseRand(option.attr('data-price'));
@@ -138,12 +139,7 @@ export function extractFibrePrice(row: FibrePricePackage, html: string): PriceEx
       const prices = [...(block?.[1] ?? '').matchAll(/R\s*([\d\s.,]+)\s*pm/gi)];
       return prices.length === 1 ? matched(parseRand(prices[0][1])) : unresolved('No unique featured Vox 25/10 price');
     }
-    case 'mweb': {
-      const text = textOnly(html);
-      if (!/Openserve/i.test(text) || /3.MONTH PROMO|How our promotion works/i.test(text)) return unresolved('Mweb promotional or installation variant needs review');
-      const matches = [...text.matchAll(/R\s*([\d\s.,]+)\s*pm\s*30\s*Mbps\s*30\s*Mbps/gi)];
-      return matches.length === 1 ? matched(parseRand(matches[0][1])) : unresolved('No unique Openserve 30/30 price');
-    }
+    case 'mweb': return unresolved('Mweb exact product, installation eligibility and promotion terms require manual review');
     default: return unresolved(`No extractor for provider ${row.ispId}`);
   }
 }
