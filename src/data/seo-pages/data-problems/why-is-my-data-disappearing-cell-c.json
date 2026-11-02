@@ -3,29 +3,29 @@
   "keyword": "why is my data disappearing cell c",
   "slug": "data-problems/why-is-my-data-disappearing-cell-c",
   "pageTitle": "Why Cell C data is disappearing",
-  "metaDescription": "Find why your Cell C data is disappearing, check apps, hotspot, bundle expiry, and fallback settings, then stop hidden usage before buying more data today.",
+  "metaDescription": "Check Cell C data use, expiry and restricted balances. Compare app records with the account and investigate airtime charges separately.",
   "h1": "Why is my data disappearing Cell C",
   "networks": [
     "cellc"
   ],
   "intentScore": 5,
-  "quickAnswer": "Cell C data usually happens because one app, hotspot use, or fallback browsing keeps the session alive after you think it has stopped. Check the Cell C app and *101# before you top up again.",
+  "quickAnswer": "Check your Cell C data balance using the Cell C app or the *147# detailed-balance menu (use *101# for airtime), then record the bundle name, allowance category and expiry. Compare the same period with your phone's app usage. A used allowance, an expired allowance and airtime charged after data runs out are different issues; pause mobile data and hotspot sharing while investigating an unexplained drop.",
   "causes": [
     {
-      "cause": "Cell C the phone keeps retrying downloads while signal shifts between coverage areas",
-      "explanation": "Most users notice this after a normal-looking session, then a surprise drain the next morning or after a second top-up on Cell C. Cell C data drain often feels uneven because coverage changes can trigger repeat retries. Users usually notice it after overnight refreshes or repeated top-ups."
+      "cause": "Apps or a shared connection used mobile data",
+      "explanation": "Inspect the phone's app and system usage for the matching period. Downloads, streaming and a connected hotspot device are checks to make; the account balance alone does not identify which app was responsible."
     },
     {
-      "cause": "The wrong bundle type finished first",
-      "explanation": "Video, social, night, or promo bundles can end before the main Cell C balance and make the data loss look random."
+      "cause": "The remaining allowance is restricted",
+      "explanation": "Cell C sells restricted products such as WhatsApp data. Check the actual allowance and expiry in the app or detailed balance menu rather than treating a social wallet as general browsing data."
     },
     {
-      "cause": "Hotspot or background apps kept running",
-      "explanation": "Another device or one busy app can keep consuming data even after the screen is off."
+      "cause": "An allowance reached its expiry",
+      "explanation": "Check the validity shown on the purchase and balance record. Expiry removes usable allowance without establishing that an app downloaded the same amount. Do not assume that every product lasts a calendar month."
     },
     {
-      "cause": "Cell C account checks happened too late",
-      "explanation": "Users often buy another Cell C bundle before checking which app or setting actually caused the drain."
+      "cause": "Airtime charging is being confused with data consumption",
+      "explanation": "Check data and airtime separately. Cell C requires opt-in for out-of-bundle data. Check data Spend Control separately from voice and SMS limits. A R0 data limit or no opt-in prevents further out-of-bundle data under the published rules. If you lower a limit after already exceeding it, the new limit may apply only next month; ask support to confirm the effective setting."
     }
   ],
   "fixSteps": {
@@ -34,70 +34,63 @@
       "vodacom": [],
       "mtn": [],
       "cellc": [
-        "Open Cell C app.",
-        "Dial *101#.",
-        "Check whether out-of-bundle browsing is enabled or allowed on the line; use Cell C's current self-service or support channel to request a change or block if needed.",
-        "Check whether hotspot, updates, or backup used data in the background.",
-        "Confirm which bundle type expired before topping up again."
+        "Pause mobile data and hotspot sharing if the balance is falling unexpectedly. You will need Wi-Fi for internet access until mobile data is restored; this does not cancel paid services.",
+        "Check the Cell C app or the *147# detailed-balance menu (use *101# for airtime). Save the balance, time, bundle name and expiry. Select the correct line on a dual-SIM phone and compare the same allowance before and after.",
+        "Cell C sells restricted products such as WhatsApp data. Check the actual allowance and expiry in the app or detailed balance menu rather than treating a social wallet as general browsing data.",
+        "Compare the same dates in the phone's mobile-data report. On Pixel, look for App data usage under the SIM settings; other Android menus vary. On iPhone, check Cellular or Mobile Data. Save the current-period counter before resetting it. Device estimates and operator records can differ.",
+        "Restrict the app that the records identify rather than assuming every app caused the loss. Check its own download, streaming and background settings. A data-saving setting can affect synchronisation or notifications; test the change before relying on it.",
+        "Check whether a connected hotspot device downloaded or updated during the same period. Turn off sharing when it is no longer needed and compare a later reading before buying another bundle.",
+        "Cell C requires opt-in for out-of-bundle data. Check data Spend Control separately from voice and SMS limits. A R0 data limit or no opt-in prevents further out-of-bundle data under the published rules. If you lower a limit after already exceeding it, the new limit may apply only next month; ask support to confirm the effective setting.",
+        "If the records still do not explain the drop, ask Cell C to identify the allowance, expiry or billed session. Provide the times and balances and request a reference; do not send passwords or OTPs to a third-party helper."
       ],
       "telkom": []
     }
   },
   "preventionTips": [
-    "Set a data warning before the bundle reaches the last part of the month.",
-    "Keep app updates and backups on Wi-Fi only.",
-    "Turn hotspot off as soon as you finish sharing data.",
-    "Check usage before buying another bundle so you stop the real drain first."
+    "Use Wi-Fi for large updates and backups where the app supports that setting.",
+    "Set a usage warning or limit if your phone supports it, with a period that matches the bundle.",
+    "Turn off hotspot sharing when finished and check which devices were connected.",
+    "Keep the purchase confirmation and check expiry before treating a remaining restricted balance as general data."
   ],
   "faqs": [
     {
       "question": "Why does my Cell C data keep disappearing?",
-      "answer": "Cell C data disappears when one app, hotspot use, or fallback browsing stays active. Check recent usage before buying another bundle."
+      "answer": "Possible explanations include app or hotspot usage, a restricted allowance or expiry. Compare the same wallet and dates in your account and phone records. An airtime deduction after depletion is a separate billing check."
     },
     {
       "question": "How do I stop data from disappearing on Cell C?",
-      "answer": "Use the Cell C app and *101# to confirm which bundle is being used. If out-of-bundle browsing is enabled or allowed, use Cell C's current self-service or support channel to request a change or block, then restrict the heaviest background app."
+      "answer": "Check the Cell C app or the *147# detailed-balance menu (use *101# for airtime), identify the usable bundle and compare app usage for the same period. Limit the activity supported by the records and check the account's out-of-bundle permission separately."
     },
     {
       "question": "Why did my Cell C data disappear overnight?",
-      "answer": "Overnight drain usually means background refresh, backup, or hotspot use stayed active after the screen was off. The next-morning usage history normally shows the culprit."
+      "answer": "Check for app or hotspot activity and an expiry during that period. A next-morning balance does not by itself show when usage occurred or which app caused it. Ask the operator to investigate if the records do not reconcile."
     },
     {
-      "question": "Can a social or video bundle end before my main Cell C data?",
-      "answer": "Yes. A short-validity or limited-use bundle can finish first and make the rest of the data loss look random."
+      "question": "Can a restricted bundle end while another data balance remains?",
+      "answer": "Yes. An allowance can have its own usage scope and expiry. Read the exact product terms and check the separate wallet; do not count night or app-specific data as unrestricted anytime data."
     }
   ],
   "internalLinks": [
     {
-      "anchorText": "See why Cell C data feels slow",
-      "url": "/data-problems/why-is-my-cell-c-data-so-slow",
-      "reason": "same data-loss cluster",
+      "anchorText": "Open the published Cell C data fix guide",
+      "url": "/data-problems/how-to-stop-data-disappearing-cell-c/",
+      "reason": "related published guidance",
       "status": "live"
     },
     {
-      "anchorText": "See why your Cell C airtime is disappearing",
-      "url": "/data-problems/why-is-my-airtime-disappearing-cell-c",
-      "reason": "same network related problem",
+      "anchorText": "Check Cell C self-service routes",
+      "url": "/cell-c-ussd-codes/",
+      "reason": "related published guidance",
       "status": "live"
     },
     {
-      "anchorText": "See the cheapest prepaid data options",
-      "url": "/comparisons/cheapest-prepaid-data-south-africa",
-      "reason": "related comparison, already in the registry",
+      "anchorText": "Review background data on Android",
+      "url": "/data-problems/how-to-stop-background-data-usage-android/",
+      "reason": "related published guidance",
       "status": "live"
-    },
-    {
-      "anchorText": "Check common Cell C USSD codes",
-      "url": "/tools/cell-c-ussd-codes",
-      "reason": "same network tool",
-      "status": "pending"
     }
   ],
-  "verifyFlags": [
-    "quickAnswer",
-    "fixSteps.byNetwork.cellc[1]",
-    "faqs[1].answer"
-  ],
+  "verifyFlags": [],
   "monetisation": {
     "adPlacement1": "after-quick-answer",
     "adPlacement2": "after-fix-steps",
@@ -107,21 +100,53 @@
     "FAQPage",
     "Article"
   ],
-  "lastReviewed": "2026-08-01",
-  "reviewDueDate": "2026-11-01",
+  "lastReviewed": "2026-11-02",
+  "reviewDueDate": "2027-01-31",
   "sourceNotes": [
-    "Cell C self-service evidence: users should compare the latest app, account, or USSD result with the balance shown before the problem started, then note the exact menu wording that appeared.",
-    "Operator-controlled context for unexpected data loss: public support pages, checkout wording, SMS confirmations, and account menus take priority over screenshots or forum claims for Cell C.",
-    "Device-side evidence for Cell C: app usage, hotspot records, backup timing, streaming quality, and update logs are checked so normal consumption is not mislabeled as an operator fault."
+    "Operator documentation reviewed on 2 November 2026: the linked Cell C pages support the stated balance channels and the qualified account/product checks.",
+    "Device documentation supports comparing usage periods and per-app settings; device totals can differ from operator records. Android menu wording depends on the manufacturer.",
+    "This is a documentary review. No live SIM, private account, purchase or cancellation was tested. Suggested diagnostic steps do not establish the cause of a particular deduction."
   ],
-  "uniqueValueSummary": "This guide is intentionally scoped to unexpected data loss for Cell C. It does not simply repeat a generic data-saving checklist: it separates account-side signals, device-side usage, and bundle-validity clues so a user can decide whether to change a phone setting, cancel a service, buy a different bundle, or escalate to Cell C support. The main check is Cell C bundle type, validity, hotspot state, background usage, out-of-bundle behaviour, and fallback browsing settings. The page remains conservative until more route-specific checks are available. That distinction matters because many South African prepaid problems look similar after the balance has already dropped, while the useful evidence is usually visible only in the first few minutes after the user notices the loss.",
-  "officialSupportContext": "DataCost can help users narrow unexpected data loss, but it cannot see a private Cell C account, reverse a charge, cancel a service on behalf of the user, or guarantee a personalised menu. For this route, the support question should be framed around Cell C bundle type, validity, hotspot state, background usage, out-of-bundle behaviour, and fallback browsing settings. If the evidence points to a billing fault, failed cancellation, SIM-specific offer, disputed deduction, or account-level block, the user should use the official Cell C app, USSD flow, store, or support channel and keep the reference number or confirmation SMS.",
+  "uniqueValueSummary": "This Cell C data guide starts with the balance category and the event recorded on the account. It separates consumed data, expired data and an allowance that cannot be used for the current activity. Compare the same SIM, wallet and period before changing a setting. The linked operator sources establish public channels and product rules; the phone records help test a possible device-side explanation. They cannot establish the cause of a private deduction without account evidence. Use the adjacent published fix guide when you need the full corrective workflow, and keep the record of what you changed so a later balance can be compared.",
+  "officialSupportContext": "DataCost cannot inspect a private Cell C account, cancel a service or reverse a charge. If the balance and usage records disagree, ask Cell C to explain the specific allowance, purchase or deduction. Give the approximate time, affected balance, exact bundle or service name and any confirmation message through the official support channel. Ask for a reference and retain the response. Do not assume an automatic refund or that one setting stops every charge; the remedy depends on the product, permission and account evidence.",
   "evidenceToCollect": [
     "A screenshot or note of the Cell C balance before and after the suspected loss, including date, approximate time, and the exact balance category shown.",
     "The active bundle name, validity window, and whether the remaining balance is anytime, night, social, promo, app-specific, or airtime credit.",
     "App or device usage for the same period, especially hotspot, video, app updates, cloud backups, streaming quality, and messaging media downloads.",
     "Any SMS, in-app confirmation, USSD result, or support reference that proves a service was cancelled, bought, expired, blocked, or changed."
   ],
-  "whenThisDoesNotApply": "This page should not be treated as proof that Cell C made an error on every line with unexpected data loss. It may not fit contract billing, business accounts, router-only SIMs, roaming, family-linked accounts, app-store purchases, or cases where another person controls the SIM. In those situations, account-specific support, live terms, and the latest official checkout or USSD wording matter more than a general troubleshooting guide.",
-  "indexingStatus": "draft"
+  "whenThisDoesNotApply": "This is a general Cell C consumer troubleshooting guide, not evidence of an operator billing error. Contract, business, router, shared-account and roaming products can have different terms. A bank debit or app-store subscription paid with a card may not be an airtime deduction. Follow the exact product terms and the official support route when the account type or payment source differs. If another person controls the SIM or account, obtain the relevant account record instead of guessing from the handset total.",
+  "indexingStatus": "draft",
+  "officialSources": [
+    {
+      "href": "https://www.cellc.co.za/cellc/data-guidelines",
+      "label": "Cell C data guidelines and Spend Control",
+      "note": "Out-of-bundle opt-in, separate spend controls and the delayed-effect exception when lowering an exceeded limit."
+    },
+    {
+      "href": "https://www.cellc.co.za/cellc/switch/prepaid",
+      "label": "Cell C prepaid balance guidance",
+      "note": "App balances, *101# airtime and *147# detailed self-service."
+    },
+    {
+      "href": "https://www.cellc.co.za/cellc/get-whatsappbundles",
+      "label": "Cell C WhatsApp bundle guidance",
+      "note": "Restricted WhatsApp allocation and balance channels; other usage must be checked separately."
+    },
+    {
+      "href": "https://www.cellc.co.za/cellc/ContactUS",
+      "label": "Cell C official support",
+      "note": "Use the current official contact route for unexplained charges or an account-specific cancellation request."
+    },
+    {
+      "href": "https://support.google.com/pixelphone/answer/2819524?hl=en",
+      "label": "Google: review mobile data usage",
+      "note": "Pixel app counters and limits; manufacturer menus and operator measurements can differ."
+    },
+    {
+      "href": "https://support.apple.com/en-za/109323",
+      "label": "Apple: mobile data usage",
+      "note": "Per-app mobile data controls and current-period statistics on iPhone; check the correct SIM and period."
+    }
+  ]
 }

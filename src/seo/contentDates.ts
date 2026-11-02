@@ -96,7 +96,7 @@ const DATA_PROBLEM_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/data-problems/why-is-my-data-disappearing-mtn/': '2026-04-18T00:00:00.000Z',
   '/data-problems/why-is-my-data-disappearing-overnight-android/': '2026-10-22T00:00:00.000Z',
   '/data-problems/why-is-my-data-disappearing-telkom/': '2026-05-02T00:00:00.000Z',
-  '/data-problems/why-is-my-data-disappearing-vodacom/': '2026-08-01T00:00:00.000Z'
+  '/data-problems/why-is-my-data-disappearing-vodacom/': '2026-11-02T00:00:00.000Z'
 };
 
 const FIX_ROUTE_MODIFIED_ISO: Record<string, string> = {
