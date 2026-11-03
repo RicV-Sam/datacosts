@@ -25,6 +25,7 @@ metadata.set('/best-data-deals-south-africa/', { title: 'Monthly data deal compa
 
 metadata.set('/buy-data-airtime-south-africa/', { title: 'How to Buy Data and Airtime in South Africa', description: 'Compare top-up routes and check the network, allowance, expiry and full amount before paying.' });
 metadata.set('/ussd-codes-south-africa/', { title: 'USSD codes for South Africa', description: 'Find network balance, recharge and self-service instructions.' });
+metadata.set('/videos/', { title: 'Mobile Data and Fibre Videos', description: 'Watch quick guides to USSD balance codes, phone settings, bundles and fibre.' });
 metadata.set('/guides/', { title: 'DataCost guides', description: 'Browse mobile data, airtime and connectivity guides.' });
 metadata.set('/network/', { title: 'Mobile networks', description: 'Browse operator data bundles and network guides.' });
 

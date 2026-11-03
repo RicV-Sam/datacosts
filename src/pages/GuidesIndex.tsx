@@ -36,6 +36,7 @@ export const GuidesIndex: React.FC<GuidesIndexProps> = ({ onNavigate, onScrollTo
   const getGuide = (slug: string) => guideMap.get(slug);
 
   const popularGuides = [
+    { slug: 'video-guides', title: 'Mobile Data and Fibre Videos', description: 'Watch quick guides to balance codes, phone settings, data bundles and fibre.', path: '/videos/' },
     { slug: 'cellphone-retention-offer-vs-switching-south-africa', title: 'Retention Offer vs Switching Networks', description: 'Use a full-term calculator and written-offer checklist before accepting a deal to stay.', path: '/guides/cellphone-retention-offer-vs-switching-south-africa/' },
     { slug: 'what-to-do-when-cellphone-contract-ends-south-africa', title: 'Your Contract Ended: What Next?', description: 'Compare an upgrade, SIM-only, prepaid, month-to-month or changing networks without losing your number.', path: '/guides/what-to-do-when-cellphone-contract-ends-south-africa/' },
     { slug: 'how-to-cancel-cellphone-contract-south-africa', title: 'How to Cancel a Cellphone Contract', description: 'Notice periods, early-cancellation fees, device returns, expiry and complaint escalation for South African mobile contracts.', path: '/guides/how-to-cancel-cellphone-contract-south-africa/' },

@@ -41,6 +41,7 @@ const STATIC_ROUTE_MODIFIED_ISO: Record<string, string> = {
   '/fibre/fibre-installation-costs-south-africa/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fibre/coverage-by-area/': FIBRE_REVIEW_MODIFIED_ISO,
   '/fix/': '2026-10-16T00:00:00.000Z',
+  '/videos/': '2026-11-03T00:00:00.000Z',
   '/guides/': '2026-10-16T00:00:00.000Z',
   '/tools/usable-data-cost-calculator/': '2026-10-12T00:00:00.000Z',
   '/tools/contract-vs-prepaid-phone-calculator/': '2026-10-12T00:00:00.000Z',

@@ -210,6 +210,11 @@
     "description": "Stop Samsung apps using data in background by limiting mobile data, sync, and app permissions so your bundle lasts longer between top-ups and renewals."
   },
   {
+    "path": "/videos/",
+    "title": "Mobile Data and Fibre Videos",
+    "description": "Watch quick guides to USSD balance codes, phone settings, bundles and fibre."
+  },
+  {
     "path": "/privacy-policy/",
     "title": "Privacy policy",
     "description": "Open this DataCost guide."

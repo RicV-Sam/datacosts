@@ -267,6 +267,7 @@ export function getIndexableRoutes(): string[] {
     routes.add(dataProblemRoute);
   }
   routes.add('/guides/');
+  routes.add('/videos/');
   routes.add('/network/');
   routes.add('/privacy-policy/');
   routes.add('/terms/');

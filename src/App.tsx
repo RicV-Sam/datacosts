@@ -13,6 +13,7 @@ const AlertsPage = lazy(() => import('./pages/AlertsPage').then((mod) => ({ defa
 const GuidePage = lazy(() => import('./components/GuidePage').then((mod) => ({ default: mod.GuidePage })));
 const NetworkPage = lazy(() => import('./pages/NetworkPage').then((mod) => ({ default: mod.NetworkPage })));
 const NetworkHubPage = lazy(() => import('./pages/NetworkHubPage').then((mod) => ({ default: mod.NetworkHubPage })));
+const VideoGuidesPage = lazy(() => import('./pages/VideoGuidesPage').then((mod) => ({ default: mod.VideoGuidesPage })));
 const GuidesIndex = lazy(() => import('./pages/GuidesIndex').then((mod) => ({ default: mod.GuidesIndex })));
 const BundleTypePage = lazy(() => import('./pages/BundleTypePage').then((mod) => ({ default: mod.BundleTypePage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((mod) => ({ default: mod.NotFoundPage })));
@@ -218,6 +219,7 @@ function AppContent() {
           element={<SitemapPage onScrollTo={handleScrollTo} onNavigate={navigateTo} />}
         />
         <Route path="/sitemap" element={<Navigate to="/sitemap/" replace />} />
+        <Route path="/videos/" element={<VideoGuidesPage onNavigate={navigateTo} onScrollTo={handleScrollTo} />} />
         <Route
           path="/guides/"
           element={<GuidesIndex onNavigate={navigateTo} onScrollTo={handleScrollTo} />}
